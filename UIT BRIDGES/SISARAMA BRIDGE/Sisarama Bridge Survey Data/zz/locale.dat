@@ -1,0 +1,46 @@
+*Locale Default File: locale.dat
+*Keyname,Setting
+*VERSION:12.0
+*DELIMITER:,
+*FNAME:locale.dat
+*UNITS:Imperial
+*TITLES:Locale Defaults,Description
+*FIELD:Keyname,,2,1,0,0,0,,Program key name
+*FIELD:Setting,,2,17,0,0,0,,User assigned name
+language,English - American
+decimal_point,.
+thousands_sep,\,
+grouping,3
+mon_int_symbol,$
+mon_symbol,$
+mon_decimal_point,.
+mon_thousands_sep,\,
+mon_grouping,0
+positive_sign,+
+negative_sign,-
+mon_digits,2
+mon_positive_fmt,0
+mon_negative_fmt,1
+mon_positive_sign,
+mon_negative_sign,-
+dts_format,0
+dts_delim,-
+dts_dzeros,0
+dts_mzeros,0
+dts_century,0
+dtl_format,0
+dtl_wfmt,0
+dtl_dfmt,1
+dtl_mfmt,2
+dtl_yfmt,2
+dtl_wdelim, 
+dtl_ddelim,\, 
+dtl_mdelim, 
+dtl_ydelim,\, 
+tm_hourbase,0
+tm_delim,:
+tm_amstr, am
+tm_pmstr, pm
+tm_zonename, EST
+tm_gmt,1
+tm_zeros,0

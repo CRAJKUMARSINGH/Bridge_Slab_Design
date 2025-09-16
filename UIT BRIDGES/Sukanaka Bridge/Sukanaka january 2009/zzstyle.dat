@@ -1,0 +1,44 @@
+*Softdesk Style Default File: zzstyle.dat
+*Description,Keyname,Stylename,Fontfile,ImperialHeight,MetricHeight,SpecialFlag,AutoCreate
+*VERSION:12.0
+*DELIMITER:,
+*FNAME:zzstyle.dat
+*UNITS:Imperial
+*TITLES:Style Defaults,Description
+*FIELD:Description,,2,17,0,0,0,,Description
+*FIELD:Keyname,,2,1,0,0,0,,Program key name
+*FIELD:Aliasname,,2,17,0,0,0,,User assigned name
+*FIELD:Font,,2,17,0,0,0,,Font
+*FIELD:Imperialheight,,2,1,0,0,0,,Imperialheight
+*FIELD:Metricheight,,2,1,0,0,0,,Metricheight
+*FIELD:SpecialFlag,,2,1,0,0,0,,Specials Flag
+*FIELD:Create,,2,1,0,0,0,,Create bit
+User text (large),TEXTL,TEXTL,romans.shx,0.250000,5.000000,0,0
+User text (medium),TEXTM,TEXTM,romans.shx,0.093750,3.000000,0,0
+User text (small),TEXTS,TEXTS,romans.shx,0.062500,1.500000,0,0
+Object label text,OBJTEXT,OBJTEXT,romans.shx,0.093750,3.000000,0,0
+Annotation text,ANNTEXT,ANNTEXT,romans.shx,0.093750,3.000000,0,0
+Attribute text,ATTTEXT,ATTTEXT,romans,0.093750,3.000000,0,0
+Dimension text,DIMTEXT,DIMTEXT,dim.shx,0.093750,3.000000,0,0
+Plan grid bubble text,GRIDTEXT,GRIDTEXT,romans.shx,0.093750,3.000000,0,0
+Section mark text,ANNSXTEXT,ANNSXTEXT,romans.shx,0.093750,3.000000,0,0
+Detail mark text,ANNDTTEXT,ANNDTTEXT,romans.shx,0.093750,3.000000,0,0
+Miscellaneous annotation text,ANNSYMTEXT,ANNSYMTEXT,romans.shx,0.093750,3.000000,0,0
+Border text (large),BORDERTEXTL,BORDERTEXTL,romans.shx,0.250000,5.000000,0,0
+Border text (medium),BORDERTEXTM,BORDERTEXTM,romans.shx,0.093750,3.000000,0,0
+Border text (small),BORDERTEXTS,BORDERTEXTS,romans.shx,0.062500,1.500000,0,0
+Title block text (large),TITLEBLKL,TITLEBLKL,romans.shx,0.250000,5.000000,0,0
+Title block text (medium),TITLEBLKM,TITLEBLKM,romans.shx,0.093750,3.000000,0,0
+Title block text (small),TITLEBLKS,TITLEBLKS,romans.shx,0.062500,1.500000,0,0
+Title text (large),TITTEXTL,TITTEXTL,romanc.shx,0.250000,5.000000,0,0
+Title text (medium),TITTEXTM,TITTEXTM,romanc.shx,0.093750,3.000000,0,0
+Title text (small),TITTEXTS,TITTEXTS,romanc.shx,0.062500,1.500000,0,0
+Schedule text (titles),SCHTEXTL,SCHTEXTL,romans.shx,0.250000,5.000000,0,0
+Schedule text (entries),SCHTEXTM,SCHTEXTM,romans.shx,0.093750,3.000000,0,0
+Schedule text (notes),SCHTEXTS,SCHTEXTS,romans.shx,0.062500,1.500000,0,0
+Legend text (large),LGDTEXTL,LGDTEXTL,romans.shx,0.250000,5.000000,0,0
+Legend text (medium),LGDTEXTM,LGDTEXTM,romans.shx,0.093750,3.000000,0,0
+Legend text (small),LGDTEXTS,LGDTEXTS,romans.shx,0.062500,1.500000,0,0
+Table annotation text,ANNTABLE,ANNTABLE,romans.shx,0.093750,3.000000,0,0
+Match line text,MATCHTEXT,MATCHTEXT,romans.shx,0.093750,3.000000,0,0
+Weld Symbol Style,WELDSTYLE,WELDSTYLE,romans,0.093750,3.000000,1,0

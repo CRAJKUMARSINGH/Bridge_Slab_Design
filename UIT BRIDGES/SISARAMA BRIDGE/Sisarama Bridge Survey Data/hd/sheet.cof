@@ -1,0 +1,10 @@
+"Smooth Surfaces      ",0.011
+"Fallow (no residue)  ",0.050
+"Cultivated Soil <20% ",0.060
+"Cultivated Soil >20% ",0.170
+"Grass - Short Prairie",0.150
+"Grass - Dense        ",0.240
+"Grass - Bermuda      ",0.410
+"Range (natural)      ",0.130
+"Woods - Lt Underbrush",0.400
+"Woods - Dn Underbrush",0.800

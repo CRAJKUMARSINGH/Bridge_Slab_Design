@@ -1,0 +1,291 @@
+{
+  "project_info": {
+    "bridge_name": "New Bridge Enhanced",
+    "location": "Auto-Generated Test Location",
+    "design_date": "2025-09-09 21:13:28",
+    "skew_angle": 25.0
+  },
+  "survey_data": {
+    "num_cross_section_points": 15,
+    "num_longitudinal_points": 10,
+    "cross_sectional_area": 479.50000000000017,
+    "wetted_perimeter": 70.0034999125044,
+    "hfl": 101.2
+  },
+  "hydraulic_analysis": {
+    "discharge": 1265.76,
+    "regime_width": 170.7721007659038,
+    "effective_waterway": 168.37210076590378,
+    "design_velocity": 3.5,
+    "obstructed_velocity": 3.8618227163687213,
+    "afflux": 0.08270253977371754,
+    "manning_n": 0.033
+  },
+  "pier_design": {
+    "design_levels": {
+      "foundation_level": 93.49,
+      "deck_level": 102.4,
+      "pier_cap_level": 101.42500000000001,
+      "pier_height": 7.9350000000000165,
+      "bed_level": 94.99
+    },
+    "dead_loads": {
+      "slab": 3110.3999999999996,
+      "wearing_coat": 155.51999999999998,
+      "footpath": 345.59999999999997,
+      "pier_cap": 324.0,
+      "pier_stem": 2285.2800000000047,
+      "total_dead_load": 6220.800000000005
+    },
+    "live_loads": {
+      "vertical_reaction": 1950,
+      "moment": 1950,
+      "impact_factor": 1.25,
+      "total_live_load": 2437.5
+    },
+    "pier_dimensions": {
+      "width": 1.5,
+      "length": 8.0,
+      "height": 7.9350000000000165
+    },
+    "pier_cap": {
+      "thickness": 0.975,
+      "width_total": 15.0
+    }
+  },
+  "foundation_design": {
+    "footing_length": 9.0,
+    "footing_width": 3.0,
+    "extension_length": 0.0,
+    "extension_width": 0.25,
+    "total_vertical_load": 8658.300000000005,
+    "longitudinal_moment": 1950,
+    "transverse_moment": 975.0,
+    "eccentricity_longitudinal": 0.22521742143376863,
+    "eccentricity_transverse": 0.11260871071688432,
+    "el_lf_ratio": 0.025024157937085404,
+    "et_lf_ratio": 0.03753623690562811,
+    "max_pressure": 441.04814814814836,
+    "min_pressure": 200.3074074074076,
+    "area_in_tension": 0,
+    "utilization_ratio": 0.9801069958847741,
+    "status": "ACCEPTABLE"
+  },
+  "abutment_design": {
+    "type_1_battered": {
+      "type": "Type-1 Battered Faces",
+      "geometry": {
+        "stem_thickness_top": 0.5,
+        "stem_thickness_base": 1.0,
+        "height": 11.810000000000011,
+        "base_length": 6.0,
+        "base_width": 3.0,
+        "heel_length": 3.5,
+        "toe_length": 2.5
+      },
+      "dead_load": 9668.700000000003,
+      "active_earth_pressure": 6276.424500000013,
+      "foundation": {
+        "status": "EXCEEDED_LIMITS",
+        "message": "No acceptable abutment footing within 3m extension"
+      },
+      "status": "EXCEEDED_LIMITS"
+    },
+    "type_2_cantilever": {
+      "type": "Type-2 Cantilever",
+      "geometry": {
+        "stem_thickness_top": 0.4,
+        "stem_thickness_base": 0.9,
+        "height": 11.810000000000011,
+        "base_length": 5.5,
+        "base_width": 3.0,
+        "heel_length": 3.0,
+        "toe_length": 2.5
+      },
+      "dead_load": 8703.540000000005,
+      "active_earth_pressure": 6276.424500000013,
+      "foundation": {
+        "status": "EXCEEDED_LIMITS",
+        "message": "No acceptable abutment footing within 3m extension"
+      },
+      "status": "EXCEEDED_LIMITS"
+    }
+  },
+  "estimation": {
+    "concrete_volume_m3": 538.58,
+    "steel_quantity_tonnes": 42.28,
+    "notes": "Preliminary estimate; refine with detailed reinforcement tables."
+  },
+  "design_status": "COMPLETED",
+  "detailed_pier_geometry": {
+    "pier_cap_details": {
+      "length": 15.0,
+      "width": 1.5,
+      "thickness": 0.6,
+      "volume": 13.5,
+      "level_top": 102.375,
+      "level_bottom": 101.775
+    },
+    "pier_stem_details": {
+      "length": 8.0,
+      "width": 1.5,
+      "height": 7.335000000000017,
+      "volume": 88.02000000000021,
+      "level_top": 101.775,
+      "level_bottom": 95.28999999999999
+    },
+    "flared_portion_details": {
+      "height": 0.6,
+      "top_length": 8.0,
+      "top_width": 1.5,
+      "bottom_length": 8.3,
+      "bottom_width": 1.8,
+      "volume": 8.065909632530568,
+      "level_top": 95.28999999999999,
+      "level_bottom": 94.69
+    },
+    "footing_details": {
+      "length": 9.0,
+      "width": 3.0,
+      "thickness": 1.2,
+      "volume": 32.4,
+      "level_top": 94.69,
+      "level_bottom": 93.49,
+      "extension_length": 0.0,
+      "extension_width": 0.25
+    },
+    "total_pier_height": 9.135000000000016,
+    "total_pier_volume": 141.98590963253076,
+    "pier_levels_summary": {
+      "deck_level": 102.4,
+      "pier_cap_top": 102.375,
+      "pier_cap_bottom": 101.775,
+      "pier_stem_top": 101.775,
+      "pier_stem_bottom": 95.28999999999999,
+      "footing_top": 94.69,
+      "footing_bottom": 93.49
+    }
+  },
+  "complete_abutment_design": {
+    "type_1_battered_abutment": {
+      "geometry": {
+        "type": "Type-1 Battered",
+        "stem_height": 3.200000000000003,
+        "top_width": 1.0,
+        "bottom_width": 1.6400000000000006,
+        "batter_slope": 0.1,
+        "wing_wall_length": 6.0,
+        "wing_wall_height": 2.5,
+        "footing_thickness": 1.0
+      },
+      "dead_loads": {
+        "stem": 1216.5120000000015,
+        "footing": 708.4800000000002,
+        "wing_walls": 216.0,
+        "total_dead_load": 2140.992000000002
+      },
+      "earth_pressures": {
+        "ka": 0.3333333333333334,
+        "kp": 2.9999999999999982,
+        "active_pressure": 19.200000000000024,
+        "active_force": 30.720000000000066,
+        "active_moment": 32.7680000000001,
+        "passive_force": 26.999999999999986
+      },
+      "design_status": "COMPLETED",
+      "reference": "Based on UIT Bridges Excel sheets"
+    },
+    "type_2_cantilever_abutment": {
+      "geometry": {
+        "type": "Type-2 Cantilever",
+        "stem_height": 3.200000000000003,
+        "stem_width": 1.0,
+        "heel_length": 2.0,
+        "toe_length": 1.0,
+        "total_base_width": 4.0,
+        "wing_wall_length": 6.0,
+        "wing_wall_height": 2.5,
+        "footing_thickness": 1.0
+      },
+      "dead_loads": {
+        "stem": 921.6000000000008,
+        "footing": 1152.0,
+        "heel": 576.0,
+        "toe": 288.0,
+        "wing_walls": 216.0,
+        "backfill": 950.4000000000012,
+        "total_dead_load": 4104.000000000002
+      },
+      "earth_pressures": {
+        "ka": 0.3333333333333334,
+        "kp": 2.9999999999999982,
+        "active_pressure": 19.200000000000024,
+        "active_force": 30.720000000000066,
+        "active_moment": 32.7680000000001,
+        "passive_force": 26.999999999999986
+      },
+      "design_status": "COMPLETED",
+      "reference": "Based on Chittorgarh Excel sheets"
+    },
+    "comparison_summary": {
+      "type1_total_load": 2140.992000000002,
+      "type2_total_load": 4104.000000000002,
+      "recommended_type": "Type-1 Battered",
+      "cost_difference": 1963.0079999999998
+    }
+  },
+  "comprehensive_estimation": {
+    "pier_quantities": {
+      "concrete": 283.9718192650615,
+      "steel": 20.43198000000003,
+      "formwork": 375.93000000000063,
+      "excavation": 136.0
+    },
+    "abutment_quantities": {
+      "concrete": 178.41600000000017,
+      "steel": 14.005656000000013,
+      "formwork": 204.80000000000018,
+      "excavation": 320.0
+    },
+    "deck_quantities": {
+      "concrete": 440.64,
+      "steel": 48.833279999999995,
+      "formwork": 921.5999999999999,
+      "waterproofing": 460.79999999999995
+    },
+    "cost_breakdown": {
+      "concrete_cost": 7675736.463753024,
+      "steel_cost": 6245318.700000002,
+      "formwork_cost": 676048.5000000003,
+      "excavation_cost": 82080.0,
+      "waterproofing_cost": 39167.99999999999,
+      "miscellaneous": 1471835.1663753027,
+      "contractor_profit": 1942822.419615399,
+      "total_cost": 18133009.249743726
+    },
+    "total_project_cost": 18133009.249743726,
+    "cost_per_sqm_deck": 39351.1485454508,
+    "material_summary": {
+      "total_concrete": 903.0278192650617,
+      "total_steel": 83.27091600000003,
+      "total_formwork": 1502.3300000000008,
+      "total_excavation": 456.0
+    },
+    "cost_distribution": {
+      "pier_cost_percentage": 21.7622949914328,
+      "abutment_cost_percentage": 14.156283519440002,
+      "deck_cost_percentage": 40.853318376290446
+    }
+  },
+  "design_version": "Enhanced v2.0.0",
+  "features_included": [
+    "Hydraulic Analysis",
+    "Pier Stability & Design",
+    "Foundation Optimization",
+    "Type-1 Battered Abutment",
+    "Type-2 Cantilever Abutment",
+    "Detailed Pier Geometry",
+    "Comprehensive Cost Estimation",
+    "Quantity Takeoff"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "project": {
+    "bridge_name": "New Bridge Base",
+    "location": "Auto-Generated Test Location",
+    "design_date": "2025-09-09 21:13:28",
+    "skew_angle": 20.0
+  },
+  "quantities": {
+    "concrete_volume_m3": 533.93,
+    "steel_quantity_tonnes": 41.91,
+    "notes": "Preliminary estimate; refine with detailed reinforcement tables."
+  },
+  "items": [],
+  "notes": "Populate items from ESTIMATION_* specs after cell mapping."
+}
