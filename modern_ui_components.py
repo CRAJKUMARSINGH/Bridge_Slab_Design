@@ -339,20 +339,18 @@ class ModernUIComponents:
             for j, col in enumerate(cols):
                 if i + j < len(sheets):
                     sheet_name, status, icon = sheets[i + j]
-                    col.markdown(f\"\"\"
-                    <div style=\"background: #f8f9fa; padding: 0.5rem; border-radius: 6px; 
-                                border-left: 3px solid #70AD47; margin: 0.25rem 0;\">
-                        <span style=\"color: #27AE60;\">{icon}</span> {sheet_name}
-                    </div>
-                    \"\"\", unsafe_allow_html=True)
+                    col.markdown(f'''<div style="background: #f8f9fa; padding: 0.5rem; border-radius: 6px; 
+                                border-left: 3px solid #70AD47; margin: 0.25rem 0;">
+                        <span style="color: #27AE60;">{icon}</span> {sheet_name}
+                    </div>''', unsafe_allow_html=True)
         
         # Generation button
-        st.markdown(\"---\")
+        st.markdown("---")
         
-        if st.button(\"🚀 Generate Complete Design Excel\", 
-                    type=\"primary\", 
+        if st.button("🚀 Generate Complete Design Excel", 
+                    type="primary", 
                     use_container_width=True,
-                    help=\"Generate comprehensive Excel file with all calculations\"):
+                    help="Generate comprehensive Excel file with all calculations"):
             
             # Show progress
             progress_bar = st.progress(0)
@@ -361,14 +359,14 @@ class ModernUIComponents:
             # Simulate generation process
             import time
             steps = [
-                \"Initializing Excel generator...\",
-                \"Creating input parameters sheet...\",
-                \"Generating hydraulic calculations...\",
-                \"Processing structural design...\",
-                \"Creating foundation analysis...\",
-                \"Finalizing cost estimates...\",
-                \"Applying professional formatting...\",
-                \"Saving Excel file...\"
+                "Initializing Excel generator...",
+                "Creating input parameters sheet...",
+                "Generating hydraulic calculations...",
+                "Processing structural design...",
+                "Creating foundation analysis...",
+                "Finalizing cost estimates...",
+                "Applying professional formatting...",
+                "Saving Excel file..."
             ]
             
             for i, step in enumerate(steps):
@@ -376,7 +374,7 @@ class ModernUIComponents:
                 progress_bar.progress((i + 1) / len(steps))
                 time.sleep(0.5)  # Simulate processing time
             
-            status_text.success(\"✅ Excel file generated successfully!\")
+            status_text.success("✅ Excel file generated successfully!")
             
             # In actual implementation, call the enhanced Excel generator
             # excel_generator = EnhancedExcelGenerator()
@@ -387,80 +385,80 @@ class ModernUIComponents:
             st.balloons()
     
     def create_system_status_panel(self) -> None:
-        \"\"\"Create system status monitoring panel\"\"\"
+        """Create system status monitoring panel"""
         
-        st.markdown(\"#### 🔍 System Status\")
+        st.markdown("#### 🔍 System Status")
         
         status_items = [
-            (\"Input Validation\", \"complete\", \"✅\"),
-            (\"Design Computation\", \"complete\", \"✅\"),
-            (\"Cost Estimation\", \"complete\", \"✅\"),
-            (\"Excel Generation\", \"ready\", \"🔄\"),
+            ("Input Validation", "complete", "✅"),
+            ("Design Computation", "complete", "✅"),
+            ("Cost Estimation", "complete", "✅"),
+            ("Excel Generation", "ready", "🔄"),
         ]
         
         for item, status, icon in status_items:
-            status_color = \"#27AE60\" if status == \"complete\" else \"#F39C12\"
-            status_text = \"Complete\" if status == \"complete\" else \"Ready\"
+            status_color = "#27AE60" if status == "complete" else "#F39C12"
+            status_text = "Complete" if status == "complete" else "Ready"
             
-            st.markdown(f\"\"\"
-            <div style=\"display: flex; justify-content: space-between; align-items: center;
+            st.markdown(f"""
+            <div style="display: flex; justify-content: space-between; align-items: center;
                         background: {status_color}15; padding: 0.5rem; border-radius: 6px;
-                        border: 1px solid {status_color}40; margin: 0.25rem 0;\">
+                        border: 1px solid {status_color}40; margin: 0.25rem 0;">
                 <span>{item}</span>
-                <div style=\"display: flex; align-items: center; color: {status_color};\">
-                    <span style=\"margin-right: 0.5rem;\">{icon}</span>
+                <div style="display: flex; align-items: center; color: {status_color};">
+                    <span style="margin-right: 0.5rem;">{icon}</span>
                     <small>{status_text}</small>
                 </div>
             </div>
-            \"\"\", unsafe_allow_html=True)
+            """, unsafe_allow_html=True)
     
     def create_reference_projects_sidebar(self) -> Optional[Dict[str, Any]]:
-        \"\"\"Create reference projects sidebar\"\"\"
+        """Create reference projects sidebar"""
         
-        st.markdown(\"\"\"
-        <div class=\"sidebar-section\">
-            <h4 style=\"margin-top: 0; color: #2C3E50;\">📚 Reference Projects</h4>
+        st.markdown("""
+        <div class="sidebar-section">
+            <h4 style="margin-top: 0; color: #2C3E50;">📚 Reference Projects</h4>
         </div>
-        \"\"\", unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
         
         reference_projects = [
             {
-                \"name\": \"Kherwara Bridge\",
-                \"location\": \"Som River\",
-                \"spans\": \"3 Spans × 12m\",
-                \"type\": \"Slab Bridge\",
-                \"parameters\": {
-                    \"bridge_name\": \"Kherwara Bridge\",
-                    \"location\": \"Som River\",
-                    \"num_spans\": 3,
-                    \"effective_span\": 12.0,
-                    \"bridge_width\": 7.5
+                "name": "Kherwara Bridge",
+                "location": "Som River",
+                "spans": "3 Spans × 12m",
+                "type": "Slab Bridge",
+                "parameters": {
+                    "bridge_name": "Kherwara Bridge",
+                    "location": "Som River",
+                    "num_spans": 3,
+                    "effective_span": 12.0,
+                    "bridge_width": 7.5
                 }
             },
             {
-                \"name\": \"Parasram Bridge\",
-                \"location\": \"Jethliya\",
-                \"spans\": \"2 Spans × 8m\",
-                \"type\": \"Slab Bridge\",
-                \"parameters\": {
-                    \"bridge_name\": \"Parasram Bridge\", 
-                    \"location\": \"Jethliya\",
-                    \"num_spans\": 2,
-                    \"effective_span\": 8.0,
-                    \"bridge_width\": 6.0
+                "name": "Parasram Bridge",
+                "location": "Jethliya",
+                "spans": "2 Spans × 8m",
+                "type": "Slab Bridge",
+                "parameters": {
+                    "bridge_name": "Parasram Bridge", 
+                    "location": "Jethliya",
+                    "num_spans": 2,
+                    "effective_span": 8.0,
+                    "bridge_width": 6.0
                 }
             },
             {
-                \"name\": \"UIT Police Chowki\",
-                \"location\": \"Udaipur\",
-                \"spans\": \"4 Spans × 10m\",
-                \"type\": \"Slab Bridge\",
-                \"parameters\": {
-                    \"bridge_name\": \"UIT Police Chowki Bridge\",
-                    \"location\": \"Udaipur\",
-                    \"num_spans\": 4,
-                    \"effective_span\": 10.0,
-                    \"bridge_width\": 8.0
+                "name": "UIT Police Chowki",
+                "location": "Udaipur",
+                "spans": "4 Spans × 10m",
+                "type": "Slab Bridge",
+                "parameters": {
+                    "bridge_name": "UIT Police Chowki Bridge",
+                    "location": "Udaipur",
+                    "num_spans": 4,
+                    "effective_span": 10.0,
+                    "bridge_width": 8.0
                 }
             }
         ]
@@ -469,13 +467,13 @@ class ModernUIComponents:
         
         for i, project in enumerate(reference_projects):
             if st.button(
-                f\"📁 {project['name']}\",
-                key=f\"ref_project_{i}\",
-                help=f\"Load parameters from {project['name']} ({project['location']})\",
+                f"📁 {project['name']}",
+                key=f"ref_project_{i}",
+                help=f"Load parameters from {project['name']} ({project['location']})",
                 use_container_width=True
             ):
                 selected_project = project['parameters']
-                st.success(f\"✅ Loaded parameters from {project['name']}\")
+                st.success(f"✅ Loaded parameters from {project['name']}")
         
         return selected_project
     

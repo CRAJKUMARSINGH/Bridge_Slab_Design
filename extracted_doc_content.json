@@ -1,0 +1,1393 @@
+{
+  "overview": {
+    "total_doc_files": 44,
+    "total_size_mb": 5.6787109375,
+    "projects_covered": 10,
+    "document_types": 6
+  },
+  "project_breakdown": {
+    "Bundan River Bridge TAD": {
+      "file_count": 2,
+      "total_size_kb": 90.0,
+      "document_types": [
+        "Cover Page",
+        "Index/Contents"
+      ]
+    },
+    "Kherwara Bridge (SOM River)": {
+      "file_count": 6,
+      "total_size_kb": 258.0,
+      "document_types": [
+        "Design Notes",
+        "Cover Page",
+        "Index/Contents"
+      ]
+    },
+    "Parasram Bridge Projects": {
+      "file_count": 6,
+      "total_size_kb": 259.5,
+      "document_types": [
+        "Design Notes",
+        "Cover Page",
+        "Index/Contents"
+      ]
+    },
+    "UIT - Bridge Near Police Chowki": {
+      "file_count": 4,
+      "total_size_kb": 740.5,
+      "document_types": [
+        "Design Notes",
+        "Cover Page",
+        "Index/Contents",
+        "Comments/Reviews"
+      ]
+    },
+    "UIT - Navratna Complex Bridge": {
+      "file_count": 5,
+      "total_size_kb": 811.0,
+      "document_types": [
+        "Design Notes",
+        "Cover Page",
+        "Index/Contents",
+        "Hydraulic Calculations"
+      ]
+    },
+    "UIT - Bridge Near Alu Factory": {
+      "file_count": 5,
+      "total_size_kb": 811.0,
+      "document_types": [
+        "Hydraulic Calculations",
+        "Design Clarifications",
+        "Design Notes",
+        "Cover Page",
+        "Index/Contents"
+      ]
+    },
+    "UIT - Sisarama Bridge": {
+      "file_count": 4,
+      "total_size_kb": 704.0,
+      "document_types": [
+        "Design Notes",
+        "Cover Page",
+        "Index/Contents"
+      ]
+    },
+    "UIT - Ayad River Bridge (Maharashtra Bhawan)": {
+      "file_count": 4,
+      "total_size_kb": 757.0,
+      "document_types": [
+        "Design Notes",
+        "Cover Page",
+        "Index/Contents"
+      ]
+    },
+    "UIT - Sukanaka Bridge": {
+      "file_count": 5,
+      "total_size_kb": 701.0,
+      "document_types": [
+        "Comments/Reviews",
+        "Design Notes",
+        "Technical Document",
+        "Cover Page",
+        "Index/Contents"
+      ]
+    },
+    "UIT - Syphon Bedla Road Bridge": {
+      "file_count": 3,
+      "total_size_kb": 683.0,
+      "document_types": [
+        "Design Notes",
+        "Cover Page",
+        "Index/Contents"
+      ]
+    }
+  },
+  "content_types": {
+    "cover_pages": {
+      "count": 12,
+      "representative_files": [
+        "0 cover page.doc",
+        "0 cover page.doc",
+        "0 cover page.doc"
+      ]
+    },
+    "index_files": {
+      "count": 13,
+      "representative_files": [
+        "01 INDEX.DOC",
+        "01 INDEX.DOC",
+        "01 INDEX.DOC"
+      ]
+    },
+    "design_notes": {
+      "count": 12,
+      "representative_files": [
+        "Design Notes  Submersible Bridge on  SOM RIVER.doc",
+        "Design Notes  Submersible Bridge on  SOM RIVER.doc",
+        "Design Notes  ON T01 To Jethliya Sobhaniya Teendhari Chhatri Road .doc"
+      ]
+    },
+    "hydraulic_calculations": {
+      "count": 3,
+      "representative_files": [
+        "Hydraulic Calculations AYAD BRIDGE.doc",
+        "Hydraulic Calculations.doc",
+        "Hydraulic Calculations Gumania Wala Nalah Bridge Near Aaloo factory.doc"
+      ]
+    },
+    "comments_reviews": {
+      "count": 2,
+      "representative_files": [
+        "tRILOK gUPTA Comments_on_Bridge_Part-II.doc",
+        "tRILOK gUPTA Comments_on_Bridge_Part-II.doc"
+      ]
+    },
+    "other": {
+      "count": 2,
+      "representative_files": [
+        "design clarifications alu uit no print.doc",
+        "Where box culverts are laid side by side in multicell.doc"
+      ]
+    }
+  },
+  "detailed_content": {
+    "extraction_summary": {
+      "total_files": 44,
+      "categories": {
+        "cover_pages": 12,
+        "index_files": 13,
+        "design_notes": 12,
+        "hydraulic_calculations": 3,
+        "comments_reviews": 2,
+        "other": 2
+      },
+      "extraction_timestamp": "1758267728.003493"
+    },
+    "by_category": {
+      "cover_pages": [
+        {
+          "filename": "0 cover page.doc",
+          "path": "PROJECT FILES USED\\Bundan River Bridge TAD\\0 cover page.doc",
+          "directory": "PROJECT FILES USED\\Bundan River Bridge TAD",
+          "size_kb": 52.0,
+          "project_context": "Bundan River Bridge TAD",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - 0 cover page.doc - 52.0 KB]"
+        },
+        {
+          "filename": "0 cover page.doc",
+          "path": "PROJECT FILES USED\\KHERWARA BRIDGE\\0 cover page.doc",
+          "directory": "PROJECT FILES USED\\KHERWARA BRIDGE",
+          "size_kb": 51.5,
+          "project_context": "Kherwara Bridge (SOM River)",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - 0 cover page.doc - 51.5 KB]"
+        },
+        {
+          "filename": "0 cover page.doc",
+          "path": "PROJECT FILES USED\\KHERWARA BRIDGE II\\0 cover page.doc",
+          "directory": "PROJECT FILES USED\\KHERWARA BRIDGE II",
+          "size_kb": 48.0,
+          "project_context": "Kherwara Bridge (SOM River)",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - 0 cover page.doc - 48.0 KB]"
+        },
+        {
+          "filename": "0 cover page.doc",
+          "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850\\0 cover page.doc",
+          "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850",
+          "size_kb": 50.5,
+          "project_context": "Parasram Bridge Projects",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - 0 cover page.doc - 50.5 KB]"
+        },
+        {
+          "filename": "0 cover page.doc",
+          "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River\\0 cover page.doc",
+          "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River",
+          "size_kb": 50.5,
+          "project_context": "Parasram Bridge Projects",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - 0 cover page.doc - 50.5 KB]"
+        },
+        {
+          "filename": "cover page.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki\\cover page.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki",
+          "size_kb": 626.5,
+          "project_context": "UIT - Bridge Near Police Chowki",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - cover page.doc - 626.5 KB]"
+        },
+        {
+          "filename": "cover page.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX\\cover page.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX",
+          "size_kb": 626.5,
+          "project_context": "UIT - Navratna Complex Bridge",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - cover page.doc - 626.5 KB]"
+        },
+        {
+          "filename": "cover page.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY\\cover page.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY",
+          "size_kb": 626.0,
+          "project_context": "UIT - Bridge Near Alu Factory",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - cover page.doc - 626.0 KB]"
+        },
+        {
+          "filename": "cover page.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE\\cover page.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE",
+          "size_kb": 596.0,
+          "project_context": "UIT - Sisarama Bridge",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - cover page.doc - 596.0 KB]"
+        },
+        {
+          "filename": "cover page.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD\\cover page.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD",
+          "size_kb": 627.0,
+          "project_context": "UIT - Ayad River Bridge (Maharashtra Bhawan)",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - cover page.doc - 627.0 KB]"
+        },
+        {
+          "filename": "cover page.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009\\cover page.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009",
+          "size_kb": 596.5,
+          "project_context": "UIT - Sukanaka Bridge",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - cover page.doc - 596.5 KB]"
+        },
+        {
+          "filename": "0 cover page.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD\\0 cover page.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD",
+          "size_kb": 603.5,
+          "project_context": "UIT - Syphon Bedla Road Bridge",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - 0 cover page.doc - 603.5 KB]"
+        }
+      ],
+      "index_files": [
+        {
+          "filename": "01 INDEX.DOC",
+          "path": "PROJECT FILES USED\\Bundan River Bridge TAD\\01 INDEX.DOC",
+          "directory": "PROJECT FILES USED\\Bundan River Bridge TAD",
+          "size_kb": 38.0,
+          "project_context": "Bundan River Bridge TAD",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - 01 INDEX.DOC - 38.0 KB]"
+        },
+        {
+          "filename": "01 INDEX.DOC",
+          "path": "PROJECT FILES USED\\KHERWARA BRIDGE\\01 INDEX.DOC",
+          "directory": "PROJECT FILES USED\\KHERWARA BRIDGE",
+          "size_kb": 36.5,
+          "project_context": "Kherwara Bridge (SOM River)",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - 01 INDEX.DOC - 36.5 KB]"
+        },
+        {
+          "filename": "01 INDEX.DOC",
+          "path": "PROJECT FILES USED\\KHERWARA BRIDGE II\\01 INDEX.DOC",
+          "directory": "PROJECT FILES USED\\KHERWARA BRIDGE II",
+          "size_kb": 36.5,
+          "project_context": "Kherwara Bridge (SOM River)",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - 01 INDEX.DOC - 36.5 KB]"
+        },
+        {
+          "filename": "01 INDEX.DOC",
+          "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850\\01 INDEX.DOC",
+          "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850",
+          "size_kb": 37.0,
+          "project_context": "Parasram Bridge Projects",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - 01 INDEX.DOC - 37.0 KB]"
+        },
+        {
+          "filename": "01 INDEX.DOC",
+          "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River\\01 INDEX.DOC",
+          "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River",
+          "size_kb": 37.0,
+          "project_context": "Parasram Bridge Projects",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - 01 INDEX.DOC - 37.0 KB]"
+        },
+        {
+          "filename": "INDEX.DOC",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki\\INDEX.DOC",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki",
+          "size_kb": 39.0,
+          "project_context": "UIT - Bridge Near Police Chowki",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - INDEX.DOC - 39.0 KB]"
+        },
+        {
+          "filename": "INDEX.DOC",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX\\INDEX.DOC",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX",
+          "size_kb": 36.5,
+          "project_context": "UIT - Navratna Complex Bridge",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - INDEX.DOC - 36.5 KB]"
+        },
+        {
+          "filename": "INDEX.DOC",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY\\INDEX.DOC",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY",
+          "size_kb": 37.0,
+          "project_context": "UIT - Bridge Near Alu Factory",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - INDEX.DOC - 37.0 KB]"
+        },
+        {
+          "filename": "INDEX.DOC",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE\\INDEX.DOC",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE",
+          "size_kb": 25.0,
+          "project_context": "UIT - Sisarama Bridge",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - INDEX.DOC - 25.0 KB]"
+        },
+        {
+          "filename": "INDEX maharashtra bhavan.DOC",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD\\INDEX maharashtra bhavan.DOC",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD",
+          "size_kb": 40.5,
+          "project_context": "UIT - Ayad River Bridge (Maharashtra Bhawan)",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - INDEX maharashtra bhavan.DOC - 40.5 KB]"
+        },
+        {
+          "filename": "INDEX.DOC",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD\\INDEX.DOC",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD",
+          "size_kb": 39.0,
+          "project_context": "UIT - Ayad River Bridge (Maharashtra Bhawan)",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - INDEX.DOC - 39.0 KB]"
+        },
+        {
+          "filename": "INDEX.DOC",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009\\INDEX.DOC",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009",
+          "size_kb": 25.0,
+          "project_context": "UIT - Sukanaka Bridge",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - INDEX.DOC - 25.0 KB]"
+        },
+        {
+          "filename": "01 INDEX.DOC",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD\\01 INDEX.DOC",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD",
+          "size_kb": 36.5,
+          "project_context": "UIT - Syphon Bedla Road Bridge",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - 01 INDEX.DOC - 36.5 KB]"
+        }
+      ],
+      "design_notes": [
+        {
+          "filename": "Design Notes  Submersible Bridge on  SOM RIVER.doc",
+          "path": "PROJECT FILES USED\\KHERWARA BRIDGE\\Design Notes  Submersible Bridge on  SOM RIVER.doc",
+          "directory": "PROJECT FILES USED\\KHERWARA BRIDGE",
+          "size_kb": 42.5,
+          "project_context": "Kherwara Bridge (SOM River)",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes  Submersible Bridge on  SOM RIVER.doc - 42.5 KB]"
+        },
+        {
+          "filename": "Design Notes  Submersible Bridge on  SOM RIVER.doc",
+          "path": "PROJECT FILES USED\\KHERWARA BRIDGE II\\Design Notes  Submersible Bridge on  SOM RIVER.doc",
+          "directory": "PROJECT FILES USED\\KHERWARA BRIDGE II",
+          "size_kb": 43.0,
+          "project_context": "Kherwara Bridge (SOM River)",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes  Submersible Bridge on  SOM RIVER.doc - 43.0 KB]"
+        },
+        {
+          "filename": "Design Notes  ON T01 To Jethliya Sobhaniya Teendhari Chhatri Road .doc",
+          "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850\\Design Notes  ON T01 To Jethliya Sobhaniya Teendhari Chhatri Road .doc",
+          "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850",
+          "size_kb": 42.0,
+          "project_context": "Parasram Bridge Projects",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes  ON T01 To Jethliya Sobhaniya Teendhari Chhatri Road .doc - 42.0 KB]"
+        },
+        {
+          "filename": "Design Notes  Mandvi Parsola Vai Bajpura road across Jakham River.doc",
+          "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River\\Design Notes  Mandvi Parsola Vai Bajpura road across Jakham River.doc",
+          "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River",
+          "size_kb": 42.5,
+          "project_context": "Parasram Bridge Projects",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes  Mandvi Parsola Vai Bajpura road across Jakham River.doc - 42.5 KB]"
+        },
+        {
+          "filename": "Design Notes bridge nr police chowki.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki\\Design Notes bridge nr police chowki.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki",
+          "size_kb": 51.0,
+          "project_context": "UIT - Bridge Near Police Chowki",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes bridge nr police chowki.doc - 51.0 KB]"
+        },
+        {
+          "filename": "Design Notes Navaratna bridge.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX\\Design Notes Navaratna bridge.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX",
+          "size_kb": 47.0,
+          "project_context": "UIT - Navratna Complex Bridge",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes Navaratna bridge.doc - 47.0 KB]"
+        },
+        {
+          "filename": "Design Notes Alu Bridge.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY\\Design Notes Alu Bridge.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY",
+          "size_kb": 47.5,
+          "project_context": "UIT - Bridge Near Alu Factory",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes Alu Bridge.doc - 47.5 KB]"
+        },
+        {
+          "filename": "Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILL.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE\\Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILL.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE",
+          "size_kb": 40.0,
+          "project_context": "UIT - Sisarama Bridge",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILL.doc - 40.0 KB]"
+        },
+        {
+          "filename": "Design Notes Maharashtra Bhawan Bridge.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD\\Design Notes Maharashtra Bhawan Bridge.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD",
+          "size_kb": 50.5,
+          "project_context": "UIT - Ayad River Bridge (Maharashtra Bhawan)",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes Maharashtra Bhawan Bridge.doc - 50.5 KB]"
+        },
+        {
+          "filename": "Design Notes SUKANAKA bridge nr MATOON VILLAGE.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009\\Design Notes SUKANAKA bridge nr MATOON VILLAGE.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009",
+          "size_kb": 36.5,
+          "project_context": "UIT - Sukanaka Bridge",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes SUKANAKA bridge nr MATOON VILLAGE.doc - 36.5 KB]"
+        },
+        {
+          "filename": "Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILLAGE.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD\\Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILLAGE.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD",
+          "size_kb": 43.0,
+          "project_context": "UIT - Sisarama Bridge",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILLAGE.doc - 43.0 KB]"
+        },
+        {
+          "filename": "Design Notes HIGH LEVEL BRIDGE at BEDLA NEAR SYPHON CHAURAHA.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD\\Design Notes HIGH LEVEL BRIDGE at BEDLA NEAR SYPHON CHAURAHA.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD",
+          "size_kb": 43.0,
+          "project_context": "UIT - Syphon Bedla Road Bridge",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes HIGH LEVEL BRIDGE at BEDLA NEAR SYPHON CHAURAHA.doc - 43.0 KB]"
+        }
+      ],
+      "hydraulic_calculations": [
+        {
+          "filename": "Hydraulic Calculations AYAD BRIDGE.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX\\Hydraulic Calculations AYAD BRIDGE.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX",
+          "size_kb": 57.5,
+          "project_context": "UIT - Navratna Complex Bridge",
+          "file_type": "Hydraulic Calculations",
+          "content_preview": "[Binary DOC file - Hydraulic Calculations AYAD BRIDGE.doc - 57.5 KB]"
+        },
+        {
+          "filename": "Hydraulic Calculations.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX\\Hydraulic Calculations.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX",
+          "size_kb": 43.5,
+          "project_context": "UIT - Navratna Complex Bridge",
+          "file_type": "Hydraulic Calculations",
+          "content_preview": "[Binary DOC file - Hydraulic Calculations.doc - 43.5 KB]"
+        },
+        {
+          "filename": "Hydraulic Calculations Gumania Wala Nalah Bridge Near Aaloo factory.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY\\Hydraulic Calculations Gumania Wala Nalah Bridge Near Aaloo factory.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY",
+          "size_kb": 59.5,
+          "project_context": "UIT - Bridge Near Alu Factory",
+          "file_type": "Hydraulic Calculations",
+          "content_preview": "[Binary DOC file - Hydraulic Calculations Gumania Wala Nalah Bridge Near Aaloo factory.doc - 59.5 KB]"
+        }
+      ],
+      "comments_reviews": [
+        {
+          "filename": "tRILOK gUPTA Comments_on_Bridge_Part-II.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki\\tRILOK gUPTA Comments_on_Bridge_Part-II.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki",
+          "size_kb": 24.0,
+          "project_context": "UIT - Bridge Near Police Chowki",
+          "file_type": "Comments/Reviews",
+          "content_preview": "[Binary DOC file - tRILOK gUPTA Comments_on_Bridge_Part-II.doc - 24.0 KB]"
+        },
+        {
+          "filename": "tRILOK gUPTA Comments_on_Bridge_Part-II.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009\\tRILOK gUPTA Comments_on_Bridge_Part-II.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009",
+          "size_kb": 24.0,
+          "project_context": "UIT - Sukanaka Bridge",
+          "file_type": "Comments/Reviews",
+          "content_preview": "[Binary DOC file - tRILOK gUPTA Comments_on_Bridge_Part-II.doc - 24.0 KB]"
+        }
+      ],
+      "other": [
+        {
+          "filename": "design clarifications alu uit no print.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY\\design clarifications alu uit no print.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY",
+          "size_kb": 41.0,
+          "project_context": "UIT - Bridge Near Alu Factory",
+          "file_type": "Design Clarifications",
+          "content_preview": "[Binary DOC file - design clarifications alu uit no print.doc - 41.0 KB]"
+        },
+        {
+          "filename": "Where box culverts are laid side by side in multicell.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Where box culverts are laid side by side in multicell.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge",
+          "size_kb": 19.0,
+          "project_context": "UIT - Sukanaka Bridge",
+          "file_type": "Technical Document",
+          "content_preview": "[Binary DOC file - Where box culverts are laid side by side in multicell.doc - 19.0 KB]"
+        }
+      ]
+    },
+    "by_project": {
+      "Bundan River Bridge TAD": [
+        {
+          "filename": "0 cover page.doc",
+          "path": "PROJECT FILES USED\\Bundan River Bridge TAD\\0 cover page.doc",
+          "directory": "PROJECT FILES USED\\Bundan River Bridge TAD",
+          "size_kb": 52.0,
+          "project_context": "Bundan River Bridge TAD",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - 0 cover page.doc - 52.0 KB]"
+        },
+        {
+          "filename": "01 INDEX.DOC",
+          "path": "PROJECT FILES USED\\Bundan River Bridge TAD\\01 INDEX.DOC",
+          "directory": "PROJECT FILES USED\\Bundan River Bridge TAD",
+          "size_kb": 38.0,
+          "project_context": "Bundan River Bridge TAD",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - 01 INDEX.DOC - 38.0 KB]"
+        }
+      ],
+      "Kherwara Bridge (SOM River)": [
+        {
+          "filename": "0 cover page.doc",
+          "path": "PROJECT FILES USED\\KHERWARA BRIDGE\\0 cover page.doc",
+          "directory": "PROJECT FILES USED\\KHERWARA BRIDGE",
+          "size_kb": 51.5,
+          "project_context": "Kherwara Bridge (SOM River)",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - 0 cover page.doc - 51.5 KB]"
+        },
+        {
+          "filename": "01 INDEX.DOC",
+          "path": "PROJECT FILES USED\\KHERWARA BRIDGE\\01 INDEX.DOC",
+          "directory": "PROJECT FILES USED\\KHERWARA BRIDGE",
+          "size_kb": 36.5,
+          "project_context": "Kherwara Bridge (SOM River)",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - 01 INDEX.DOC - 36.5 KB]"
+        },
+        {
+          "filename": "Design Notes  Submersible Bridge on  SOM RIVER.doc",
+          "path": "PROJECT FILES USED\\KHERWARA BRIDGE\\Design Notes  Submersible Bridge on  SOM RIVER.doc",
+          "directory": "PROJECT FILES USED\\KHERWARA BRIDGE",
+          "size_kb": 42.5,
+          "project_context": "Kherwara Bridge (SOM River)",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes  Submersible Bridge on  SOM RIVER.doc - 42.5 KB]"
+        },
+        {
+          "filename": "0 cover page.doc",
+          "path": "PROJECT FILES USED\\KHERWARA BRIDGE II\\0 cover page.doc",
+          "directory": "PROJECT FILES USED\\KHERWARA BRIDGE II",
+          "size_kb": 48.0,
+          "project_context": "Kherwara Bridge (SOM River)",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - 0 cover page.doc - 48.0 KB]"
+        },
+        {
+          "filename": "01 INDEX.DOC",
+          "path": "PROJECT FILES USED\\KHERWARA BRIDGE II\\01 INDEX.DOC",
+          "directory": "PROJECT FILES USED\\KHERWARA BRIDGE II",
+          "size_kb": 36.5,
+          "project_context": "Kherwara Bridge (SOM River)",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - 01 INDEX.DOC - 36.5 KB]"
+        },
+        {
+          "filename": "Design Notes  Submersible Bridge on  SOM RIVER.doc",
+          "path": "PROJECT FILES USED\\KHERWARA BRIDGE II\\Design Notes  Submersible Bridge on  SOM RIVER.doc",
+          "directory": "PROJECT FILES USED\\KHERWARA BRIDGE II",
+          "size_kb": 43.0,
+          "project_context": "Kherwara Bridge (SOM River)",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes  Submersible Bridge on  SOM RIVER.doc - 43.0 KB]"
+        }
+      ],
+      "Parasram Bridge Projects": [
+        {
+          "filename": "0 cover page.doc",
+          "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850\\0 cover page.doc",
+          "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850",
+          "size_kb": 50.5,
+          "project_context": "Parasram Bridge Projects",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - 0 cover page.doc - 50.5 KB]"
+        },
+        {
+          "filename": "01 INDEX.DOC",
+          "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850\\01 INDEX.DOC",
+          "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850",
+          "size_kb": 37.0,
+          "project_context": "Parasram Bridge Projects",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - 01 INDEX.DOC - 37.0 KB]"
+        },
+        {
+          "filename": "Design Notes  ON T01 To Jethliya Sobhaniya Teendhari Chhatri Road .doc",
+          "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850\\Design Notes  ON T01 To Jethliya Sobhaniya Teendhari Chhatri Road .doc",
+          "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850",
+          "size_kb": 42.0,
+          "project_context": "Parasram Bridge Projects",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes  ON T01 To Jethliya Sobhaniya Teendhari Chhatri Road .doc - 42.0 KB]"
+        },
+        {
+          "filename": "0 cover page.doc",
+          "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River\\0 cover page.doc",
+          "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River",
+          "size_kb": 50.5,
+          "project_context": "Parasram Bridge Projects",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - 0 cover page.doc - 50.5 KB]"
+        },
+        {
+          "filename": "01 INDEX.DOC",
+          "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River\\01 INDEX.DOC",
+          "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River",
+          "size_kb": 37.0,
+          "project_context": "Parasram Bridge Projects",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - 01 INDEX.DOC - 37.0 KB]"
+        },
+        {
+          "filename": "Design Notes  Mandvi Parsola Vai Bajpura road across Jakham River.doc",
+          "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River\\Design Notes  Mandvi Parsola Vai Bajpura road across Jakham River.doc",
+          "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River",
+          "size_kb": 42.5,
+          "project_context": "Parasram Bridge Projects",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes  Mandvi Parsola Vai Bajpura road across Jakham River.doc - 42.5 KB]"
+        }
+      ],
+      "UIT - Bridge Near Police Chowki": [
+        {
+          "filename": "cover page.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki\\cover page.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki",
+          "size_kb": 626.5,
+          "project_context": "UIT - Bridge Near Police Chowki",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - cover page.doc - 626.5 KB]"
+        },
+        {
+          "filename": "Design Notes bridge nr police chowki.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki\\Design Notes bridge nr police chowki.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki",
+          "size_kb": 51.0,
+          "project_context": "UIT - Bridge Near Police Chowki",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes bridge nr police chowki.doc - 51.0 KB]"
+        },
+        {
+          "filename": "INDEX.DOC",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki\\INDEX.DOC",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki",
+          "size_kb": 39.0,
+          "project_context": "UIT - Bridge Near Police Chowki",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - INDEX.DOC - 39.0 KB]"
+        },
+        {
+          "filename": "tRILOK gUPTA Comments_on_Bridge_Part-II.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki\\tRILOK gUPTA Comments_on_Bridge_Part-II.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki",
+          "size_kb": 24.0,
+          "project_context": "UIT - Bridge Near Police Chowki",
+          "file_type": "Comments/Reviews",
+          "content_preview": "[Binary DOC file - tRILOK gUPTA Comments_on_Bridge_Part-II.doc - 24.0 KB]"
+        }
+      ],
+      "UIT - Navratna Complex Bridge": [
+        {
+          "filename": "cover page.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX\\cover page.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX",
+          "size_kb": 626.5,
+          "project_context": "UIT - Navratna Complex Bridge",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - cover page.doc - 626.5 KB]"
+        },
+        {
+          "filename": "Design Notes Navaratna bridge.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX\\Design Notes Navaratna bridge.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX",
+          "size_kb": 47.0,
+          "project_context": "UIT - Navratna Complex Bridge",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes Navaratna bridge.doc - 47.0 KB]"
+        },
+        {
+          "filename": "Hydraulic Calculations AYAD BRIDGE.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX\\Hydraulic Calculations AYAD BRIDGE.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX",
+          "size_kb": 57.5,
+          "project_context": "UIT - Navratna Complex Bridge",
+          "file_type": "Hydraulic Calculations",
+          "content_preview": "[Binary DOC file - Hydraulic Calculations AYAD BRIDGE.doc - 57.5 KB]"
+        },
+        {
+          "filename": "Hydraulic Calculations.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX\\Hydraulic Calculations.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX",
+          "size_kb": 43.5,
+          "project_context": "UIT - Navratna Complex Bridge",
+          "file_type": "Hydraulic Calculations",
+          "content_preview": "[Binary DOC file - Hydraulic Calculations.doc - 43.5 KB]"
+        },
+        {
+          "filename": "INDEX.DOC",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX\\INDEX.DOC",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX",
+          "size_kb": 36.5,
+          "project_context": "UIT - Navratna Complex Bridge",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - INDEX.DOC - 36.5 KB]"
+        }
+      ],
+      "UIT - Bridge Near Alu Factory": [
+        {
+          "filename": "cover page.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY\\cover page.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY",
+          "size_kb": 626.0,
+          "project_context": "UIT - Bridge Near Alu Factory",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - cover page.doc - 626.0 KB]"
+        },
+        {
+          "filename": "design clarifications alu uit no print.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY\\design clarifications alu uit no print.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY",
+          "size_kb": 41.0,
+          "project_context": "UIT - Bridge Near Alu Factory",
+          "file_type": "Design Clarifications",
+          "content_preview": "[Binary DOC file - design clarifications alu uit no print.doc - 41.0 KB]"
+        },
+        {
+          "filename": "Design Notes Alu Bridge.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY\\Design Notes Alu Bridge.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY",
+          "size_kb": 47.5,
+          "project_context": "UIT - Bridge Near Alu Factory",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes Alu Bridge.doc - 47.5 KB]"
+        },
+        {
+          "filename": "Hydraulic Calculations Gumania Wala Nalah Bridge Near Aaloo factory.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY\\Hydraulic Calculations Gumania Wala Nalah Bridge Near Aaloo factory.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY",
+          "size_kb": 59.5,
+          "project_context": "UIT - Bridge Near Alu Factory",
+          "file_type": "Hydraulic Calculations",
+          "content_preview": "[Binary DOC file - Hydraulic Calculations Gumania Wala Nalah Bridge Near Aaloo factory.doc - 59.5 KB]"
+        },
+        {
+          "filename": "INDEX.DOC",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY\\INDEX.DOC",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY",
+          "size_kb": 37.0,
+          "project_context": "UIT - Bridge Near Alu Factory",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - INDEX.DOC - 37.0 KB]"
+        }
+      ],
+      "UIT - Sisarama Bridge": [
+        {
+          "filename": "cover page.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE\\cover page.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE",
+          "size_kb": 596.0,
+          "project_context": "UIT - Sisarama Bridge",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - cover page.doc - 596.0 KB]"
+        },
+        {
+          "filename": "Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILL.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE\\Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILL.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE",
+          "size_kb": 40.0,
+          "project_context": "UIT - Sisarama Bridge",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILL.doc - 40.0 KB]"
+        },
+        {
+          "filename": "INDEX.DOC",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE\\INDEX.DOC",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE",
+          "size_kb": 25.0,
+          "project_context": "UIT - Sisarama Bridge",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - INDEX.DOC - 25.0 KB]"
+        },
+        {
+          "filename": "Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILLAGE.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD\\Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILLAGE.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD",
+          "size_kb": 43.0,
+          "project_context": "UIT - Sisarama Bridge",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILLAGE.doc - 43.0 KB]"
+        }
+      ],
+      "UIT - Ayad River Bridge (Maharashtra Bhawan)": [
+        {
+          "filename": "cover page.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD\\cover page.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD",
+          "size_kb": 627.0,
+          "project_context": "UIT - Ayad River Bridge (Maharashtra Bhawan)",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - cover page.doc - 627.0 KB]"
+        },
+        {
+          "filename": "Design Notes Maharashtra Bhawan Bridge.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD\\Design Notes Maharashtra Bhawan Bridge.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD",
+          "size_kb": 50.5,
+          "project_context": "UIT - Ayad River Bridge (Maharashtra Bhawan)",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes Maharashtra Bhawan Bridge.doc - 50.5 KB]"
+        },
+        {
+          "filename": "INDEX maharashtra bhavan.DOC",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD\\INDEX maharashtra bhavan.DOC",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD",
+          "size_kb": 40.5,
+          "project_context": "UIT - Ayad River Bridge (Maharashtra Bhawan)",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - INDEX maharashtra bhavan.DOC - 40.5 KB]"
+        },
+        {
+          "filename": "INDEX.DOC",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD\\INDEX.DOC",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD",
+          "size_kb": 39.0,
+          "project_context": "UIT - Ayad River Bridge (Maharashtra Bhawan)",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - INDEX.DOC - 39.0 KB]"
+        }
+      ],
+      "UIT - Sukanaka Bridge": [
+        {
+          "filename": "Where box culverts are laid side by side in multicell.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Where box culverts are laid side by side in multicell.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge",
+          "size_kb": 19.0,
+          "project_context": "UIT - Sukanaka Bridge",
+          "file_type": "Technical Document",
+          "content_preview": "[Binary DOC file - Where box culverts are laid side by side in multicell.doc - 19.0 KB]"
+        },
+        {
+          "filename": "cover page.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009\\cover page.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009",
+          "size_kb": 596.5,
+          "project_context": "UIT - Sukanaka Bridge",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - cover page.doc - 596.5 KB]"
+        },
+        {
+          "filename": "Design Notes SUKANAKA bridge nr MATOON VILLAGE.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009\\Design Notes SUKANAKA bridge nr MATOON VILLAGE.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009",
+          "size_kb": 36.5,
+          "project_context": "UIT - Sukanaka Bridge",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes SUKANAKA bridge nr MATOON VILLAGE.doc - 36.5 KB]"
+        },
+        {
+          "filename": "INDEX.DOC",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009\\INDEX.DOC",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009",
+          "size_kb": 25.0,
+          "project_context": "UIT - Sukanaka Bridge",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - INDEX.DOC - 25.0 KB]"
+        },
+        {
+          "filename": "tRILOK gUPTA Comments_on_Bridge_Part-II.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009\\tRILOK gUPTA Comments_on_Bridge_Part-II.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009",
+          "size_kb": 24.0,
+          "project_context": "UIT - Sukanaka Bridge",
+          "file_type": "Comments/Reviews",
+          "content_preview": "[Binary DOC file - tRILOK gUPTA Comments_on_Bridge_Part-II.doc - 24.0 KB]"
+        }
+      ],
+      "UIT - Syphon Bedla Road Bridge": [
+        {
+          "filename": "0 cover page.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD\\0 cover page.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD",
+          "size_kb": 603.5,
+          "project_context": "UIT - Syphon Bedla Road Bridge",
+          "file_type": "Cover Page",
+          "content_preview": "[Binary DOC file - 0 cover page.doc - 603.5 KB]"
+        },
+        {
+          "filename": "01 INDEX.DOC",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD\\01 INDEX.DOC",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD",
+          "size_kb": 36.5,
+          "project_context": "UIT - Syphon Bedla Road Bridge",
+          "file_type": "Index/Contents",
+          "content_preview": "[Binary DOC file - 01 INDEX.DOC - 36.5 KB]"
+        },
+        {
+          "filename": "Design Notes HIGH LEVEL BRIDGE at BEDLA NEAR SYPHON CHAURAHA.doc",
+          "path": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD\\Design Notes HIGH LEVEL BRIDGE at BEDLA NEAR SYPHON CHAURAHA.doc",
+          "directory": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD",
+          "size_kb": 43.0,
+          "project_context": "UIT - Syphon Bedla Road Bridge",
+          "file_type": "Design Notes",
+          "content_preview": "[Binary DOC file - Design Notes HIGH LEVEL BRIDGE at BEDLA NEAR SYPHON CHAURAHA.doc - 43.0 KB]"
+        }
+      ]
+    },
+    "file_details": [
+      {
+        "filename": "0 cover page.doc",
+        "path": "PROJECT FILES USED\\Bundan River Bridge TAD\\0 cover page.doc",
+        "directory": "PROJECT FILES USED\\Bundan River Bridge TAD",
+        "size_kb": 52.0,
+        "project_context": "Bundan River Bridge TAD",
+        "file_type": "Cover Page",
+        "content_preview": "[Binary DOC file - 0 cover page.doc - 52.0 KB]"
+      },
+      {
+        "filename": "0 cover page.doc",
+        "path": "PROJECT FILES USED\\KHERWARA BRIDGE\\0 cover page.doc",
+        "directory": "PROJECT FILES USED\\KHERWARA BRIDGE",
+        "size_kb": 51.5,
+        "project_context": "Kherwara Bridge (SOM River)",
+        "file_type": "Cover Page",
+        "content_preview": "[Binary DOC file - 0 cover page.doc - 51.5 KB]"
+      },
+      {
+        "filename": "0 cover page.doc",
+        "path": "PROJECT FILES USED\\KHERWARA BRIDGE II\\0 cover page.doc",
+        "directory": "PROJECT FILES USED\\KHERWARA BRIDGE II",
+        "size_kb": 48.0,
+        "project_context": "Kherwara Bridge (SOM River)",
+        "file_type": "Cover Page",
+        "content_preview": "[Binary DOC file - 0 cover page.doc - 48.0 KB]"
+      },
+      {
+        "filename": "0 cover page.doc",
+        "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850\\0 cover page.doc",
+        "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850",
+        "size_kb": 50.5,
+        "project_context": "Parasram Bridge Projects",
+        "file_type": "Cover Page",
+        "content_preview": "[Binary DOC file - 0 cover page.doc - 50.5 KB]"
+      },
+      {
+        "filename": "0 cover page.doc",
+        "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River\\0 cover page.doc",
+        "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River",
+        "size_kb": 50.5,
+        "project_context": "Parasram Bridge Projects",
+        "file_type": "Cover Page",
+        "content_preview": "[Binary DOC file - 0 cover page.doc - 50.5 KB]"
+      },
+      {
+        "filename": "cover page.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki\\cover page.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki",
+        "size_kb": 626.5,
+        "project_context": "UIT - Bridge Near Police Chowki",
+        "file_type": "Cover Page",
+        "content_preview": "[Binary DOC file - cover page.doc - 626.5 KB]"
+      },
+      {
+        "filename": "cover page.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX\\cover page.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX",
+        "size_kb": 626.5,
+        "project_context": "UIT - Navratna Complex Bridge",
+        "file_type": "Cover Page",
+        "content_preview": "[Binary DOC file - cover page.doc - 626.5 KB]"
+      },
+      {
+        "filename": "cover page.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY\\cover page.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY",
+        "size_kb": 626.0,
+        "project_context": "UIT - Bridge Near Alu Factory",
+        "file_type": "Cover Page",
+        "content_preview": "[Binary DOC file - cover page.doc - 626.0 KB]"
+      },
+      {
+        "filename": "cover page.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE\\cover page.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE",
+        "size_kb": 596.0,
+        "project_context": "UIT - Sisarama Bridge",
+        "file_type": "Cover Page",
+        "content_preview": "[Binary DOC file - cover page.doc - 596.0 KB]"
+      },
+      {
+        "filename": "cover page.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD\\cover page.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD",
+        "size_kb": 627.0,
+        "project_context": "UIT - Ayad River Bridge (Maharashtra Bhawan)",
+        "file_type": "Cover Page",
+        "content_preview": "[Binary DOC file - cover page.doc - 627.0 KB]"
+      },
+      {
+        "filename": "cover page.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009\\cover page.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009",
+        "size_kb": 596.5,
+        "project_context": "UIT - Sukanaka Bridge",
+        "file_type": "Cover Page",
+        "content_preview": "[Binary DOC file - cover page.doc - 596.5 KB]"
+      },
+      {
+        "filename": "0 cover page.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD\\0 cover page.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD",
+        "size_kb": 603.5,
+        "project_context": "UIT - Syphon Bedla Road Bridge",
+        "file_type": "Cover Page",
+        "content_preview": "[Binary DOC file - 0 cover page.doc - 603.5 KB]"
+      },
+      {
+        "filename": "01 INDEX.DOC",
+        "path": "PROJECT FILES USED\\Bundan River Bridge TAD\\01 INDEX.DOC",
+        "directory": "PROJECT FILES USED\\Bundan River Bridge TAD",
+        "size_kb": 38.0,
+        "project_context": "Bundan River Bridge TAD",
+        "file_type": "Index/Contents",
+        "content_preview": "[Binary DOC file - 01 INDEX.DOC - 38.0 KB]"
+      },
+      {
+        "filename": "01 INDEX.DOC",
+        "path": "PROJECT FILES USED\\KHERWARA BRIDGE\\01 INDEX.DOC",
+        "directory": "PROJECT FILES USED\\KHERWARA BRIDGE",
+        "size_kb": 36.5,
+        "project_context": "Kherwara Bridge (SOM River)",
+        "file_type": "Index/Contents",
+        "content_preview": "[Binary DOC file - 01 INDEX.DOC - 36.5 KB]"
+      },
+      {
+        "filename": "01 INDEX.DOC",
+        "path": "PROJECT FILES USED\\KHERWARA BRIDGE II\\01 INDEX.DOC",
+        "directory": "PROJECT FILES USED\\KHERWARA BRIDGE II",
+        "size_kb": 36.5,
+        "project_context": "Kherwara Bridge (SOM River)",
+        "file_type": "Index/Contents",
+        "content_preview": "[Binary DOC file - 01 INDEX.DOC - 36.5 KB]"
+      },
+      {
+        "filename": "01 INDEX.DOC",
+        "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850\\01 INDEX.DOC",
+        "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850",
+        "size_kb": 37.0,
+        "project_context": "Parasram Bridge Projects",
+        "file_type": "Index/Contents",
+        "content_preview": "[Binary DOC file - 01 INDEX.DOC - 37.0 KB]"
+      },
+      {
+        "filename": "01 INDEX.DOC",
+        "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River\\01 INDEX.DOC",
+        "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River",
+        "size_kb": 37.0,
+        "project_context": "Parasram Bridge Projects",
+        "file_type": "Index/Contents",
+        "content_preview": "[Binary DOC file - 01 INDEX.DOC - 37.0 KB]"
+      },
+      {
+        "filename": "INDEX.DOC",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki\\INDEX.DOC",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki",
+        "size_kb": 39.0,
+        "project_context": "UIT - Bridge Near Police Chowki",
+        "file_type": "Index/Contents",
+        "content_preview": "[Binary DOC file - INDEX.DOC - 39.0 KB]"
+      },
+      {
+        "filename": "INDEX.DOC",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX\\INDEX.DOC",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX",
+        "size_kb": 36.5,
+        "project_context": "UIT - Navratna Complex Bridge",
+        "file_type": "Index/Contents",
+        "content_preview": "[Binary DOC file - INDEX.DOC - 36.5 KB]"
+      },
+      {
+        "filename": "INDEX.DOC",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY\\INDEX.DOC",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY",
+        "size_kb": 37.0,
+        "project_context": "UIT - Bridge Near Alu Factory",
+        "file_type": "Index/Contents",
+        "content_preview": "[Binary DOC file - INDEX.DOC - 37.0 KB]"
+      },
+      {
+        "filename": "INDEX.DOC",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE\\INDEX.DOC",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE",
+        "size_kb": 25.0,
+        "project_context": "UIT - Sisarama Bridge",
+        "file_type": "Index/Contents",
+        "content_preview": "[Binary DOC file - INDEX.DOC - 25.0 KB]"
+      },
+      {
+        "filename": "INDEX maharashtra bhavan.DOC",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD\\INDEX maharashtra bhavan.DOC",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD",
+        "size_kb": 40.5,
+        "project_context": "UIT - Ayad River Bridge (Maharashtra Bhawan)",
+        "file_type": "Index/Contents",
+        "content_preview": "[Binary DOC file - INDEX maharashtra bhavan.DOC - 40.5 KB]"
+      },
+      {
+        "filename": "INDEX.DOC",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD\\INDEX.DOC",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD",
+        "size_kb": 39.0,
+        "project_context": "UIT - Ayad River Bridge (Maharashtra Bhawan)",
+        "file_type": "Index/Contents",
+        "content_preview": "[Binary DOC file - INDEX.DOC - 39.0 KB]"
+      },
+      {
+        "filename": "INDEX.DOC",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009\\INDEX.DOC",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009",
+        "size_kb": 25.0,
+        "project_context": "UIT - Sukanaka Bridge",
+        "file_type": "Index/Contents",
+        "content_preview": "[Binary DOC file - INDEX.DOC - 25.0 KB]"
+      },
+      {
+        "filename": "01 INDEX.DOC",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD\\01 INDEX.DOC",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD",
+        "size_kb": 36.5,
+        "project_context": "UIT - Syphon Bedla Road Bridge",
+        "file_type": "Index/Contents",
+        "content_preview": "[Binary DOC file - 01 INDEX.DOC - 36.5 KB]"
+      },
+      {
+        "filename": "Design Notes  Submersible Bridge on  SOM RIVER.doc",
+        "path": "PROJECT FILES USED\\KHERWARA BRIDGE\\Design Notes  Submersible Bridge on  SOM RIVER.doc",
+        "directory": "PROJECT FILES USED\\KHERWARA BRIDGE",
+        "size_kb": 42.5,
+        "project_context": "Kherwara Bridge (SOM River)",
+        "file_type": "Design Notes",
+        "content_preview": "[Binary DOC file - Design Notes  Submersible Bridge on  SOM RIVER.doc - 42.5 KB]"
+      },
+      {
+        "filename": "Design Notes  Submersible Bridge on  SOM RIVER.doc",
+        "path": "PROJECT FILES USED\\KHERWARA BRIDGE II\\Design Notes  Submersible Bridge on  SOM RIVER.doc",
+        "directory": "PROJECT FILES USED\\KHERWARA BRIDGE II",
+        "size_kb": 43.0,
+        "project_context": "Kherwara Bridge (SOM River)",
+        "file_type": "Design Notes",
+        "content_preview": "[Binary DOC file - Design Notes  Submersible Bridge on  SOM RIVER.doc - 43.0 KB]"
+      },
+      {
+        "filename": "Design Notes  ON T01 To Jethliya Sobhaniya Teendhari Chhatri Road .doc",
+        "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850\\Design Notes  ON T01 To Jethliya Sobhaniya Teendhari Chhatri Road .doc",
+        "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Jethliya Sobhaniya Teendhari Chhatri Ch. 0850",
+        "size_kb": 42.0,
+        "project_context": "Parasram Bridge Projects",
+        "file_type": "Design Notes",
+        "content_preview": "[Binary DOC file - Design Notes  ON T01 To Jethliya Sobhaniya Teendhari Chhatri Road .doc - 42.0 KB]"
+      },
+      {
+        "filename": "Design Notes  Mandvi Parsola Vai Bajpura road across Jakham River.doc",
+        "path": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River\\Design Notes  Mandvi Parsola Vai Bajpura road across Jakham River.doc",
+        "directory": "PROJECT FILES USED\\PARASRAM BRIDGE\\Mandvi Parsola Vai Bajpura at Jakham River",
+        "size_kb": 42.5,
+        "project_context": "Parasram Bridge Projects",
+        "file_type": "Design Notes",
+        "content_preview": "[Binary DOC file - Design Notes  Mandvi Parsola Vai Bajpura road across Jakham River.doc - 42.5 KB]"
+      },
+      {
+        "filename": "Design Notes bridge nr police chowki.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki\\Design Notes bridge nr police chowki.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki",
+        "size_kb": 51.0,
+        "project_context": "UIT - Bridge Near Police Chowki",
+        "file_type": "Design Notes",
+        "content_preview": "[Binary DOC file - Design Notes bridge nr police chowki.doc - 51.0 KB]"
+      },
+      {
+        "filename": "Design Notes Navaratna bridge.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX\\Design Notes Navaratna bridge.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX",
+        "size_kb": 47.0,
+        "project_context": "UIT - Navratna Complex Bridge",
+        "file_type": "Design Notes",
+        "content_preview": "[Binary DOC file - Design Notes Navaratna bridge.doc - 47.0 KB]"
+      },
+      {
+        "filename": "Design Notes Alu Bridge.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY\\Design Notes Alu Bridge.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY",
+        "size_kb": 47.5,
+        "project_context": "UIT - Bridge Near Alu Factory",
+        "file_type": "Design Notes",
+        "content_preview": "[Binary DOC file - Design Notes Alu Bridge.doc - 47.5 KB]"
+      },
+      {
+        "filename": "Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILL.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE\\Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILL.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\SISARAMA BRIDGE",
+        "size_kb": 40.0,
+        "project_context": "UIT - Sisarama Bridge",
+        "file_type": "Design Notes",
+        "content_preview": "[Binary DOC file - Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILL.doc - 40.0 KB]"
+      },
+      {
+        "filename": "Design Notes Maharashtra Bhawan Bridge.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD\\Design Notes Maharashtra Bhawan Bridge.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\SUBMERSIBLE BRIDGEACROSS AYAD RIVER ON MAHARASHTRA BHAWAN ---- NEW BHUPALPURA ROAD",
+        "size_kb": 50.5,
+        "project_context": "UIT - Ayad River Bridge (Maharashtra Bhawan)",
+        "file_type": "Design Notes",
+        "content_preview": "[Binary DOC file - Design Notes Maharashtra Bhawan Bridge.doc - 50.5 KB]"
+      },
+      {
+        "filename": "Design Notes SUKANAKA bridge nr MATOON VILLAGE.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009\\Design Notes SUKANAKA bridge nr MATOON VILLAGE.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009",
+        "size_kb": 36.5,
+        "project_context": "UIT - Sukanaka Bridge",
+        "file_type": "Design Notes",
+        "content_preview": "[Binary DOC file - Design Notes SUKANAKA bridge nr MATOON VILLAGE.doc - 36.5 KB]"
+      },
+      {
+        "filename": "Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILLAGE.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD\\Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILLAGE.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD",
+        "size_kb": 43.0,
+        "project_context": "UIT - Sisarama Bridge",
+        "file_type": "Design Notes",
+        "content_preview": "[Binary DOC file - Design Notes HIGH LEVEL BRIDGE ACROSS SISARAMA NALAH ON UDAIPUR- SISARAMA ROAD NEAR SISARAMA VILLAGE.doc - 43.0 KB]"
+      },
+      {
+        "filename": "Design Notes HIGH LEVEL BRIDGE at BEDLA NEAR SYPHON CHAURAHA.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD\\Design Notes HIGH LEVEL BRIDGE at BEDLA NEAR SYPHON CHAURAHA.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\SYHON BEDLA ROAD",
+        "size_kb": 43.0,
+        "project_context": "UIT - Syphon Bedla Road Bridge",
+        "file_type": "Design Notes",
+        "content_preview": "[Binary DOC file - Design Notes HIGH LEVEL BRIDGE at BEDLA NEAR SYPHON CHAURAHA.doc - 43.0 KB]"
+      },
+      {
+        "filename": "Hydraulic Calculations AYAD BRIDGE.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX\\Hydraulic Calculations AYAD BRIDGE.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX",
+        "size_kb": 57.5,
+        "project_context": "UIT - Navratna Complex Bridge",
+        "file_type": "Hydraulic Calculations",
+        "content_preview": "[Binary DOC file - Hydraulic Calculations AYAD BRIDGE.doc - 57.5 KB]"
+      },
+      {
+        "filename": "Hydraulic Calculations.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX\\Hydraulic Calculations.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\NAVRATNA COMPLEX",
+        "size_kb": 43.5,
+        "project_context": "UIT - Navratna Complex Bridge",
+        "file_type": "Hydraulic Calculations",
+        "content_preview": "[Binary DOC file - Hydraulic Calculations.doc - 43.5 KB]"
+      },
+      {
+        "filename": "Hydraulic Calculations Gumania Wala Nalah Bridge Near Aaloo factory.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY\\Hydraulic Calculations Gumania Wala Nalah Bridge Near Aaloo factory.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY",
+        "size_kb": 59.5,
+        "project_context": "UIT - Bridge Near Alu Factory",
+        "file_type": "Hydraulic Calculations",
+        "content_preview": "[Binary DOC file - Hydraulic Calculations Gumania Wala Nalah Bridge Near Aaloo factory.doc - 59.5 KB]"
+      },
+      {
+        "filename": "tRILOK gUPTA Comments_on_Bridge_Part-II.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki\\tRILOK gUPTA Comments_on_Bridge_Part-II.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\Bridge Nr Police Chowki",
+        "size_kb": 24.0,
+        "project_context": "UIT - Bridge Near Police Chowki",
+        "file_type": "Comments/Reviews",
+        "content_preview": "[Binary DOC file - tRILOK gUPTA Comments_on_Bridge_Part-II.doc - 24.0 KB]"
+      },
+      {
+        "filename": "tRILOK gUPTA Comments_on_Bridge_Part-II.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009\\tRILOK gUPTA Comments_on_Bridge_Part-II.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Sukanaka january 2009",
+        "size_kb": 24.0,
+        "project_context": "UIT - Sukanaka Bridge",
+        "file_type": "Comments/Reviews",
+        "content_preview": "[Binary DOC file - tRILOK gUPTA Comments_on_Bridge_Part-II.doc - 24.0 KB]"
+      },
+      {
+        "filename": "design clarifications alu uit no print.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY\\design clarifications alu uit no print.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\NR ALU FACTORY",
+        "size_kb": 41.0,
+        "project_context": "UIT - Bridge Near Alu Factory",
+        "file_type": "Design Clarifications",
+        "content_preview": "[Binary DOC file - design clarifications alu uit no print.doc - 41.0 KB]"
+      },
+      {
+        "filename": "Where box culverts are laid side by side in multicell.doc",
+        "path": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge\\Where box culverts are laid side by side in multicell.doc",
+        "directory": "PROJECT FILES USED\\UIT BRIDGES\\Sukanaka Bridge",
+        "size_kb": 19.0,
+        "project_context": "UIT - Sukanaka Bridge",
+        "file_type": "Technical Document",
+        "content_preview": "[Binary DOC file - Where box culverts are laid side by side in multicell.doc - 19.0 KB]"
+      }
+    ]
+  }
+}

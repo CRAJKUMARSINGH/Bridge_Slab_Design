@@ -40,6 +40,7 @@ from detailed_calculation_display import (
 from modern_ui_components import ModernUIComponents
 from enhanced_excel_generator import EnhancedExcelGenerator, ExcelGenerationOptions
 from river_section_input_schema import RiverSectionInputUI, HydraulicCalculationEngine, RiverSectionInputSchema
+from hfl_cross_section_printer import add_hfl_cross_section_to_app
 
 # Page configuration
 st.set_page_config(
@@ -345,10 +346,11 @@ def display_river_section_input(app: StreamlitEnhancedBridgeApp):
     river_ui = st.session_state.river_section_ui
     
     # Create tabs for different aspects
-    input_tab, viz_tab, calc_tab, results_tab = st.tabs([
+    input_tab, viz_tab, calc_tab, hfl_tab, results_tab = st.tabs([
         "📝 Input Schema", 
         "📊 Visualization", 
         "🧮 Calculations", 
+        "📄 HFL A4 Print",
         "📈 Results"
     ])
     
@@ -378,6 +380,10 @@ def display_river_section_input(app: StreamlitEnhancedBridgeApp):
                 st.session_state.hydraulic_calculation_results = results
         else:
             st.warning("⚠️ Please complete River Section Input first!")
+    
+    with hfl_tab:
+        # HFL A4 Cross-Section Printable Drawing
+        add_hfl_cross_section_to_app()
     
     with results_tab:
         if 'hydraulic_calculation_results' in st.session_state:

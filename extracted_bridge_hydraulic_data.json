@@ -1,0 +1,3347 @@
+{
+  "file_info": {
+    "file_path": "PROJECT FILES USED\\Bundan River Bridge TAD\\3 Stability Analysis SUBMERSIBLE BRIDGE  ACROSS BHUNDAN RIVER ON KATUMBI CHANDROD ROAD.xls",
+    "available_sheets": [
+      "afflux calculation",
+      "HYDRAULICS",
+      "Deck Anchorage",
+      "CROSS SECTION",
+      "Bed Slope",
+      "abstract of stresses",
+      "STABILITY CHECK FOR PIER",
+      "STEEL IN FLARED  PIER BASE ",
+      "STEEL IN PIER",
+      "FOOTING DESIGN",
+      "Footing STRESS DIAGRAM"
+    ],
+    "extraction_timestamp": "2025-09-19T12:40:19.250150"
+  },
+  "afflux_calculation": {
+    "sheet_name": "afflux calculation",
+    "description": "Afflux calculation for bridge hydraulics",
+    "key_parameters": {
+      "parameter_36": [
+        "Afflux h =",
+        "((V2/17.85) +0.0152)x(A2/a2-1)",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "parameter_76": [
+        "Afflux h =",
+        "2.0199999999999996",
+        "m",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "parameter_77": [
+        "Afflux flood level =",
+        "100.5",
+        "+",
+        "2.0199999999999996",
+        "=",
+        "102.52",
+        "m",
+        ""
+      ],
+      "parameter_82": [
+        "Afflux flood level ",
+        "=",
+        "102.52",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "raw_data": [
+      {
+        "row": 0,
+        "data": [
+          "DESIGN OF SUBMERSIBLE BRIDGE  ACROSS BHUNDAN RIVER ON KATUMBI CHANDROD ROAD \n",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 1,
+        "data": [
+          "Hydraulic Calculation",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 2,
+        "data": [
+          "Computation of Discharge",
+          "",
+          "1",
+          "Flood calculation by Area Velocity Method (As per Article- 5 of IRC SP-13)",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 3,
+        "data": [
+          "Q",
+          "=",
+          "A x V ",
+          "",
+          "",
+          "Where",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 4,
+        "data": [
+          "A",
+          "=",
+          "436.64999999999986",
+          "m2 ",
+          "",
+          "",
+          "A =",
+          "Cross sectional area in m2"
+        ]
+      },
+      {
+        "row": 5,
+        "data": [
+          "P",
+          "=",
+          "175.42884810250675",
+          " m",
+          "",
+          "",
+          "P = ",
+          "Perimeter calculated in m"
+        ]
+      },
+      {
+        "row": 6,
+        "data": [
+          "S",
+          "=",
+          "1",
+          "IN",
+          "106",
+          "",
+          "S =",
+          "Slope as per drain LS taken at "
+        ]
+      },
+      {
+        "row": 7,
+        "data": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "Proposal site"
+        ]
+      },
+      {
+        "row": 8,
+        "data": [
+          "n",
+          "=",
+          "0.033",
+          "",
+          "",
+          "",
+          "n = ",
+          "Rugosity coefficient "
+        ]
+      },
+      {
+        "row": 9,
+        "data": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "(As per IRC SP-13)"
+        ]
+      },
+      {
+        "row": 10,
+        "data": [
+          "V",
+          "=",
+          "I/nx (A/P) 2/3   x(S) 1/2",
+          "",
+          "",
+          "",
+          "V =",
+          "Velocity in m/sec."
+        ]
+      },
+      {
+        "row": 11,
+        "data": [
+          "  ",
+          "=",
+          "5.41",
+          "m/sec.",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 12,
+        "data": [
+          "Q",
+          "=",
+          "2362.28",
+          "Cumecs",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 13,
+        "data": [
+          "Linear Water Way Calculation",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 14,
+        "data": [
+          "Regime Surface width of the stream is given by :-",
+          "",
+          "L",
+          " = ",
+          "4.8 (Q)1/2",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 15,
+        "data": [
+          "",
+          "=",
+          "233.29999999999998",
+          "m",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 16,
+        "data": [
+          "Looking to the built up Urban area constraints adopt ",
+          "",
+          "17",
+          "Spans of ",
+          "",
+          "8.4",
+          "M each.",
+          ""
+        ]
+      },
+      {
+        "row": 17,
+        "data": [
+          "This will cause contraction and afflux. Calculation is done for the same to fix deck level.",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 18,
+        "data": [
+          "Effective linear water way proposed =",
+          "17",
+          "x",
+          "8.4",
+          "=",
+          "142.8",
+          "M",
+          ""
+        ]
+      },
+      {
+        "row": 19,
+        "data": [
+          "",
+          "",
+          "",
+          "",
+          "Total",
+          "142.8",
+          "M",
+          ""
+        ]
+      },
+      {
+        "row": 20,
+        "data": [
+          "Scour Depth Calculation",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 21,
+        "data": [
+          "(As per  clause no. 703.2.2.1 of IRC : 78.1983)",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 22,
+        "data": [
+          "dsm =",
+          "1.34x (Db2 /Ksf)  1/3",
+          "",
+          "",
+          "",
+          "Where",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 23,
+        "data": [
+          "",
+          "",
+          "",
+          "",
+          "Db",
+          "=",
+          "The discharge in Cumecs per meter width",
+          ""
+        ]
+      },
+      {
+        "row": 24,
+        "data": [
+          "",
+          "",
+          "",
+          "",
+          "Ksf",
+          "=",
+          "the silt factor",
+          ""
+        ]
+      },
+      {
+        "row": 25,
+        "data": [
+          "",
+          "",
+          "",
+          "",
+          " ",
+          "=",
+          "1.5",
+          ""
+        ]
+      },
+      {
+        "row": 26,
+        "data": [
+          "Effective linear waterway",
+          "=",
+          "Width of waterway   - Obstructed width of piper",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 27,
+        "data": [
+          "=",
+          "133.20000000000002",
+          "- (",
+          "16",
+          "x",
+          "1.2",
+          ")",
+          ""
+        ]
+      },
+      {
+        "row": 28,
+        "data": [
+          "=",
+          "114.00000000000001",
+          "m",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 29,
+        "data": [
+          "Db",
+          "=    ",
+          "2362.28",
+          "/",
+          "114.00000000000001",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 30,
+        "data": [
+          "",
+          "=",
+          "20.73",
+          "Cumecs per metre width",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 31,
+        "data": [
+          "dsm =",
+          "8.84",
+          "m",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 32,
+        "data": [
+          "As per Clause No. 703-2-3-1 of IRC 78-1983 considering Scour at the pier two times of calculated scour depth below the highest flood level. But we shall provide foundation at 4.5 m below bed level with scour protection works. ",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 33,
+        "data": [
+          "Afflux Calculation",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 34,
+        "data": [
+          "As per IS: 7784 (Part -I) 1975 ",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 35,
+        "data": [
+          "Molesworth Formula for Afflux",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 36,
+        "data": [
+          "Afflux h =",
+          "((V2/17.85) +0.0152)x(A2/a2-1)",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 37,
+        "data": [
+          "Where,",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 38,
+        "data": [
+          "h",
+          "=",
+          "afflux in m,",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 39,
+        "data": [
+          "v",
+          "=",
+          "Velocity in the unobstructed stream in m/s,",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 40,
+        "data": [
+          "A",
+          "=",
+          "the unobstructed sectional area of the river in m2",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 41,
+        "data": [
+          "a",
+          "=",
+          "the obstructed sectional area of the river at the cross drainage work in m2.",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 42,
+        "data": [
+          "As per Annexure- 1",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 43,
+        "data": [
+          "Unobstructed Area of Flow after Bridge Construction =",
+          "",
+          "133.20000000000002",
+          "x",
+          "5",
+          "=",
+          "666.0000000000001",
+          "m2 "
+        ]
+      },
+      {
+        "row": 44,
+        "data": [
+          "A",
+          "=",
+          "666.0000000000001",
+          "m2 ",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 45,
+        "data": [
+          "V",
+          "=",
+          "5.41",
+          "m/sec.",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 46,
+        "data": [
+          "Computation of Area obstructed by  Deck Slab",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 47,
+        "data": [
+          "HFL : ",
+          "100.5",
+          "m",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 48,
+        "data": [
+          "Top Level of Deck slab : ",
+          "99",
+          "m",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 49,
+        "data": [
+          "Thickness of Slab and Wearing Coat",
+          "0.88",
+          "m",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 50,
+        "data": [
+          "Length Of Slab",
+          "133.20000000000002",
+          "m",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 51,
+        "data": [
+          "Height of Obstruction",
+          "0.88",
+          "m",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 52,
+        "data": [
+          "Area obstructed by deck slab",
+          "133.20000000000002",
+          "x",
+          "0.88",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 53,
+        "data": [
+          "",
+          "=",
+          "117.21600000000002",
+          "m2 ",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 54,
+        "data": [
+          "Computation of Area obstructed by  Piers",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 55,
+        "data": [
+          "HFL : ",
+          "100.5",
+          "m",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 56,
+        "data": [
+          "Soffit of Deck slab : ",
+          "98.12",
+          "m",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 57,
+        "data": [
+          "Average river bed level  = ",
+          "95.5",
+          "m",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 58,
+        "data": [
+          "Nos. of pier ",
+          "=",
+          "16",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 59,
+        "data": [
+          "Height of Obstruction",
+          "100.5",
+          "-",
+          "95.5",
+          "=",
+          "5",
+          "m",
+          ""
+        ]
+      },
+      {
+        "row": 60,
+        "data": [
+          "Area obstructed by one pier  :  = ",
+          "1.2",
+          "x",
+          "5",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 61,
+        "data": [
+          "",
+          "=",
+          "6",
+          "m2 ",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 62,
+        "data": [
+          "For 16 Nos. of piers = ",
+          "16",
+          "x",
+          "6",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 63,
+        "data": [
+          "A1",
+          "=",
+          "96",
+          "m2 ",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 64,
+        "data": [
+          "Computation of Area obstructed by  Abutments",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 65,
+        "data": [
+          "Average ground level  = ",
+          "95.5",
+          "m",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 66,
+        "data": [
+          "Height of Obstruction",
+          "100.5",
+          "=",
+          "95.5",
+          "=",
+          "5",
+          "m",
+          ""
+        ]
+      },
+      {
+        "row": 67,
+        "data": [
+          "Area obstructed by one Abutment  : A2 = ",
+          "(0.40+0.75)/2 ",
+          "x",
+          "5",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 68,
+        "data": [
+          "",
+          "=",
+          "2.875",
+          "m2 ",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 69,
+        "data": [
+          "For two Abutments = ",
+          "2",
+          "x",
+          "2.875",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 70,
+        "data": [
+          "",
+          "=",
+          "5.75",
+          "m2 ",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 71,
+        "data": [
+          "Total area of obstruction due to slab, piers and abutments A ",
+          "= ",
+          "A0 +A1 + A2",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 72,
+        "data": [
+          "",
+          "=",
+          "117.21600000000002",
+          "+",
+          "96",
+          "+",
+          "5.75",
+          ""
+        ]
+      },
+      {
+        "row": 73,
+        "data": [
+          "",
+          "=",
+          "218.966",
+          "m2 ",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 74,
+        "data": [
+          "Actual Area of flow a =",
+          "666.0000000000001",
+          "-",
+          "218.966",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 75,
+        "data": [
+          "",
+          "=",
+          "447.0340000000001",
+          "m2 ",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 76,
+        "data": [
+          "Afflux h =",
+          "2.0199999999999996",
+          "m",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 77,
+        "data": [
+          "Afflux flood level =",
+          "100.5",
+          "+",
+          "2.0199999999999996",
+          "=",
+          "102.52",
+          "m",
+          ""
+        ]
+      },
+      {
+        "row": 78,
+        "data": [
+          " Obstructed Velocity",
+          "V",
+          "=",
+          "Q/a",
+          "-",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 79,
+        "data": [
+          " Obstructed Velocity",
+          "=",
+          "2362.28",
+          "/",
+          "447.0340000000001",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 80,
+        "data": [
+          "",
+          "=",
+          "5.29",
+          "m/sec",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 81,
+        "data": [
+          "However we consider design velocity ",
+          "5.5",
+          "m/sec. ",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 82,
+        "data": [
+          "Afflux flood level ",
+          "=",
+          "102.52",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 83,
+        "data": [
+          "Top of deck slab",
+          "=",
+          "99",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 84,
+        "data": [
+          "This is well above the Afflux flood level.",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 85,
+        "data": [
+          "Though it is not a high level bridge; there shall be no hindrance to traffic during high floods.",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 86,
+        "data": [
+          "Hence OK.",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      }
+    ]
+  },
+  "hydraulics": {
+    "sheet_name": "HYDRAULICS",
+    "description": "Bridge hydraulics calculations",
+    "water_levels": {
+      "row_2": [
+        "HIGHEST FLOOD LEVEL",
+        "",
+        "",
+        "",
+        "",
+        100.5,
+        "M"
+      ]
+    },
+    "discharge_data": {
+      "row_3": [
+        "CHAINAGE",
+        "G.L.",
+        "DEPTH OF FLOW IN  M",
+        "LENGTH OF FLOW",
+        "AVERAGE DEPTH OF FLOW",
+        "CROSS SECTIONAL AREA OF FLOW",
+        "WETTED PERIMETER"
+      ],
+      "row_22": [
+        "",
+        "Design Discharge =",
+        "",
+        "",
+        2360.4142462878367,
+        "CUMECS",
+        ""
+      ]
+    },
+    "velocity_data": {
+      "row_0": [
+        "DETERMINATION OF VELOCITY AT PROPOSED SUBMERSIBLE BRIDGE  ACROSS BHUNDAN RIVER ON KATUMBI CHANDROD ROAD ",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "raw_data": [
+      {
+        "row": 0,
+        "data": [
+          "DETERMINATION OF VELOCITY AT PROPOSED SUBMERSIBLE BRIDGE  ACROSS BHUNDAN RIVER ON KATUMBI CHANDROD ROAD ",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 1,
+        "data": [
+          "AS PER UPSTREAM SECTION",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 2,
+        "data": [
+          "HIGHEST FLOOD LEVEL",
+          "",
+          "",
+          "",
+          "",
+          100.5,
+          "M"
+        ]
+      },
+      {
+        "row": 3,
+        "data": [
+          "CHAINAGE",
+          "G.L.",
+          "DEPTH OF FLOW IN  M",
+          "LENGTH OF FLOW",
+          "AVERAGE DEPTH OF FLOW",
+          "CROSS SECTIONAL AREA OF FLOW",
+          "WETTED PERIMETER"
+        ]
+      },
+      {
+        "row": 4,
+        "data": [
+          0,
+          100.5,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "row": 5,
+        "data": [
+          25,
+          97.48,
+          3.019999999999996,
+          25,
+          1.509999999999998,
+          37.74999999999995,
+          25.18174735795751
+        ]
+      },
+      {
+        "row": 6,
+        "data": [
+          50,
+          97.174,
+          3.3259999999999934,
+          25,
+          3.1729999999999947,
+          79.32499999999987,
+          25.00187264986365
+        ]
+      },
+      {
+        "row": 7,
+        "data": [
+          75,
+          97.178,
+          3.3220000000000027,
+          25,
+          3.323999999999998,
+          83.09999999999995,
+          25.000000319999998
+        ]
+      },
+      {
+        "row": 8,
+        "data": [
+          100,
+          96.645,
+          3.855000000000004,
+          25,
+          3.5885000000000034,
+          89.71250000000009,
+          25.005681134494218
+        ]
+      },
+      {
+        "row": 9,
+        "data": [
+          125,
+          96.8,
+          3.700000000000003,
+          25,
+          3.7775000000000034,
+          94.43750000000009,
+          25.000480495382483
+        ]
+      },
+      {
+        "row": 10,
+        "data": [
+          150,
+          100.257,
+          0.242999999999995,
+          25,
+          1.971499999999999,
+          49.28749999999997,
+          25.237885192701864
+        ]
+      },
+      {
+        "row": 11,
+        "data": [
+          175,
+          100.5,
+          0,
+          25,
+          0.1214999999999975,
+          3.0374999999999375,
+          25.001180952107042
+        ]
+      },
+      {
+        "row": 12,
+        "data": [
+          "",
+          "",
+          "TOTAL",
+          175,
+          "",
+          436.64999999999986,
+          175.42884810250675
+        ]
+      },
+      {
+        "row": 14,
+        "data": [
+          "",
+          "A",
+          436.64999999999986,
+          "SQM",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 15,
+        "data": [
+          "",
+          "P",
+          175.42884810250675,
+          "M",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 16,
+        "data": [
+          "",
+          "R",
+          2.489043305721623,
+          "M",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 17,
+        "data": [
+          "",
+          "N",
+          0.033,
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 18,
+        "data": [
+          "",
+          "S       1 IN",
+          106,
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 19,
+        "data": [
+          "",
+          "V",
+          5.405735134061233,
+          "M/SEC",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 20,
+        "data": [
+          "",
+          "Q",
+          2360.4142462878367,
+          "CUMECS",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 21,
+        "data": [
+          "",
+          "The design engineer visually observed the river to ascertain the Roughness Coefficient n for the Manning's formula. Upon visual inspection of the river in the vicinity of the proposed bridge site it was found that the River bed surface is good with clean straight banks, no rifts or deep pools however containing some weeds and stones. Roughness Coefficient pertaining to these characteristics is 0.033",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 22,
+        "data": [
+          "",
+          "Design Discharge =",
+          "",
+          "",
+          2360.4142462878367,
+          "CUMECS",
+          ""
+        ]
+      }
+    ]
+  },
+  "deck_anchorage": {
+    "sheet_name": "Deck Anchorage",
+    "description": "Deck anchorage calculations for submersible bridge",
+    "uplift_calculations": {
+      "row_3": [
+        "",
+        "One possible solution to this anchorage is as shown in detailed drawing. The aim in this anchorage is to secure the deck slab to piers or abutments against uplift or lateral thrust and at the same time allow lateral movement due to expansion and contraction due to temperature effects the arrangement will be evident from the sketch given in the detailed drawing.",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "row_4": [
+        "Check Against Uplift",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "row_5": [
+        "",
+        "The uplift force shall be maximum when the flow level is Just at near deck level.",
+        "",
+        "",
+        "",
+        "",
+        "THIS WILL BE IN CASE OF AFFLUX FLOOD LEVEL ",
+        "",
+        "",
+        "",
+        "",
+        "102.52",
+        "M",
+        ""
+      ],
+      "row_7": [
+        "",
+        "Maximum Uplift Pressure",
+        "=",
+        "2.0199999999999996",
+        "x ",
+        "10",
+        "=",
+        "20.199999999999996",
+        "kN/Sqm",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "row_9": [
+        "",
+        "Uplift Force on Slab",
+        "=",
+        "162",
+        "x",
+        "20.199999999999996",
+        "=",
+        "3272.4",
+        "kN",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "row_14": [
+        "",
+        "Net Uplift Pressure",
+        "=",
+        "3272.4",
+        "-",
+        "4121.280000000001",
+        "=",
+        "-848.8800000000006",
+        "kN",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "anchorage_requirements": {
+      "row_0": [
+        "ANCHORAGE OF DECK SLAB TO SUBSTRUCTURE ",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "row_2": [
+        "",
+        "In the case of a submersible bridge, the deck slab is near the plane of maximum velocity. To counteract the sliding action due to velocity of flow, loss of weight of slab due to buoyancy, the tilting forces due to eddies and currents and the disturbing forces due to debris or trees floating down the stream ,  it is necessary to anchor the deck slab to the substructure.",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "row_30": [
+        "",
+        "Dia of Anchor Bars",
+        "32",
+        "mm",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "row_32": [
+        "",
+        "Shear Force Resisted by one Anchor Bar =",
+        "",
+        "(",
+        "0.785",
+        "x",
+        "32",
+        "2",
+        "/4 )x",
+        "190",
+        "/ 1000",
+        "=",
+        "38.19",
+        "kN"
+      ]
+    },
+    "design_parameters": {
+      "row_8": [
+        "",
+        "Area of Slab under effect of buoyancy",
+        "=",
+        "10.8",
+        "x",
+        "15",
+        "=",
+        "162",
+        "Sqm",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "row_24": [
+        "",
+        "DRAG FORCE ON DECK SLAB DUE TO AFFLUX",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "row_25": [
+        "",
+        "Area Obstructed",
+        "=",
+        "10.8",
+        "x",
+        "2.0199999999999996",
+        "=",
+        "21.815999999999995",
+        "Sqm",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "row_27": [
+        "",
+        "Drag Force on Slab",
+        "=",
+        "52",
+        "x",
+        "k",
+        "x",
+        "v2",
+        "x",
+        "Area Obstructed",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "raw_data": [
+      {
+        "row": 0,
+        "data": [
+          "ANCHORAGE OF DECK SLAB TO SUBSTRUCTURE ",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 2,
+        "data": [
+          "",
+          "In the case of a submersible bridge, the deck slab is near the plane of maximum velocity. To counteract the sliding action due to velocity of flow, loss of weight of slab due to buoyancy, the tilting forces due to eddies and currents and the disturbing forces due to debris or trees floating down the stream ,  it is necessary to anchor the deck slab to the substructure.",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 3,
+        "data": [
+          "",
+          "One possible solution to this anchorage is as shown in detailed drawing. The aim in this anchorage is to secure the deck slab to piers or abutments against uplift or lateral thrust and at the same time allow lateral movement due to expansion and contraction due to temperature effects the arrangement will be evident from the sketch given in the detailed drawing.",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 4,
+        "data": [
+          "Check Against Uplift",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 5,
+        "data": [
+          "",
+          "The uplift force shall be maximum when the flow level is Just at near deck level.",
+          "",
+          "",
+          "",
+          "",
+          "THIS WILL BE IN CASE OF AFFLUX FLOOD LEVEL ",
+          "",
+          "",
+          "",
+          "",
+          "102.52",
+          "M",
+          ""
+        ]
+      },
+      {
+        "row": 6,
+        "data": [
+          "",
+          "Total Height",
+          "=",
+          "2.0199999999999996",
+          "M",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 7,
+        "data": [
+          "",
+          "Maximum Uplift Pressure",
+          "=",
+          "2.0199999999999996",
+          "x ",
+          "10",
+          "=",
+          "20.199999999999996",
+          "kN/Sqm",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 8,
+        "data": [
+          "",
+          "Area of Slab under effect of buoyancy",
+          "=",
+          "10.8",
+          "x",
+          "15",
+          "=",
+          "162",
+          "Sqm",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 9,
+        "data": [
+          "",
+          "Uplift Force on Slab",
+          "=",
+          "162",
+          "x",
+          "20.199999999999996",
+          "=",
+          "3272.4",
+          "kN",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 10,
+        "data": [
+          "",
+          "Self Weight of  Slab",
+          "=",
+          "10.8",
+          "x",
+          "15",
+          "x",
+          "0.9",
+          "x",
+          "24",
+          "=",
+          "3499.2000000000003",
+          "kN",
+          ""
+        ]
+      },
+      {
+        "row": 11,
+        "data": [
+          "",
+          "Self Weight of Wearing Coat",
+          "=",
+          "10.8",
+          "x",
+          "12",
+          "x",
+          "0.075",
+          "x",
+          "24",
+          "=",
+          "233.28000000000003",
+          "kN",
+          ""
+        ]
+      },
+      {
+        "row": 12,
+        "data": [
+          "",
+          "Footpath",
+          "=",
+          "2X10.8",
+          "x",
+          "1.5",
+          "x",
+          "0.5",
+          "x",
+          "24",
+          "=",
+          "388.80000000000007",
+          "kN",
+          ""
+        ]
+      },
+      {
+        "row": 13,
+        "data": [
+          "",
+          "TOTAL",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "4121.280000000001",
+          "kN",
+          ""
+        ]
+      },
+      {
+        "row": 14,
+        "data": [
+          "",
+          "Net Uplift Pressure",
+          "=",
+          "3272.4",
+          "-",
+          "4121.280000000001",
+          "=",
+          "-848.8800000000006",
+          "kN",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 15,
+        "data": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "< 0 Hence Ok.",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 16,
+        "data": [
+          "Check Against Sliding",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 17,
+        "data": [
+          "",
+          "Refer Stability Check of Pier",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 18,
+        "data": [
+          "",
+          "WATER CURRENT IN TRANSVERSE DIRECTION ( ACROSS THE BRIDGE)",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 19,
+        "data": [
+          "",
+          "As per IRC- II ( 6-1966) clause 213.5",
+          "",
+          "For V=",
+          "5.5",
+          "m/sec",
+          "Maximum velocity being 1.414 x mean velocity",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "(1.414= Root of 2)",
+          ""
+        ]
+      },
+      {
+        "row": 20,
+        "data": [
+          "",
+          "Obstructed Velocity = V Cos 20 0",
+          "=",
+          "5.5",
+          "x",
+          "Cos 20 0",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 21,
+        "data": [
+          "",
+          "",
+          "=",
+          "5.168642217602512",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 22,
+        "data": [
+          "",
+          "2v2",
+          "=",
+          "53.42972474716603",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 23,
+        "data": [
+          "",
+          "The soffit of the deck is at HFL ",
+          "=",
+          "100.5",
+          "M",
+          "The afflux Flood Level is ",
+          "",
+          "",
+          "102.52",
+          "M",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 24,
+        "data": [
+          "",
+          "DRAG FORCE ON DECK SLAB DUE TO AFFLUX",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 25,
+        "data": [
+          "",
+          "Area Obstructed",
+          "=",
+          "10.8",
+          "x",
+          "2.0199999999999996",
+          "=",
+          "21.815999999999995",
+          "Sqm",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 27,
+        "data": [
+          "",
+          "Drag Force on Slab",
+          "=",
+          "52",
+          "x",
+          "k",
+          "x",
+          "v2",
+          "x",
+          "Area Obstructed",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 28,
+        "data": [
+          "",
+          "",
+          "=",
+          "52",
+          "x",
+          "1.5",
+          "x",
+          "53.42972474716603",
+          "x",
+          "21.815999999999995",
+          "/ 100",
+          "=",
+          "909.1858425656557",
+          "kN"
+        ]
+      },
+      {
+        "row": 30,
+        "data": [
+          "",
+          "Dia of Anchor Bars",
+          "32",
+          "mm",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 31,
+        "data": [
+          "",
+          "Permissible Shear Stress",
+          "190",
+          "N/mm2",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 32,
+        "data": [
+          "",
+          "Shear Force Resisted by one Anchor Bar =",
+          "",
+          "(",
+          "0.785",
+          "x",
+          "32",
+          "2",
+          "/4 )x",
+          "190",
+          "/ 1000",
+          "=",
+          "38.19",
+          "kN"
+        ]
+      },
+      {
+        "row": 33,
+        "data": [
+          "",
+          "Number Of Bars Provided Per slab",
+          "30",
+          "Nos.",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 34,
+        "data": [
+          "",
+          "Total Shear Resisted",
+          "=",
+          "30",
+          "x",
+          "38.19",
+          "=",
+          "1145.6999999999998",
+          "kN",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 35,
+        "data": [
+          "",
+          "FACTOR OF SAFETY",
+          "=",
+          "1145.6999999999998",
+          "/",
+          "909.1858425656557",
+          "=",
+          "1.27",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 36,
+        "data": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "> 2.00 Hence OK",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      }
+    ]
+  },
+  "cross_section": {
+    "sheet_name": "CROSS SECTION",
+    "description": "River cross section data",
+    "chainage_data": [
+      0.0,
+      25.0,
+      50.0,
+      75.0,
+      100.0,
+      125.0,
+      150.0,
+      162.0,
+      162.0,
+      0.0,
+      0.0,
+      25.0,
+      50.0,
+      75.0,
+      100.0,
+      125.0,
+      150.0,
+      175.0,
+      180.0,
+      0.0,
+      180.0
+    ],
+    "elevation_data": [
+      100.5,
+      95.691,
+      95.421,
+      95.656,
+      95.282,
+      97.277,
+      100.5,
+      100.5,
+      100.5,
+      100.5,
+      100.5,
+      97.48,
+      97.174,
+      97.178,
+      96.645,
+      96.8,
+      100.257,
+      100.5,
+      100.5,
+      100.5,
+      100.5
+    ],
+    "coordinates": [
+      {
+        "chainage": 0.0,
+        "elevation": 100.5
+      },
+      {
+        "chainage": 25.0,
+        "elevation": 95.691
+      },
+      {
+        "chainage": 50.0,
+        "elevation": 95.421
+      },
+      {
+        "chainage": 75.0,
+        "elevation": 95.656
+      },
+      {
+        "chainage": 100.0,
+        "elevation": 95.282
+      },
+      {
+        "chainage": 125.0,
+        "elevation": 97.277
+      },
+      {
+        "chainage": 150.0,
+        "elevation": 100.5
+      },
+      {
+        "chainage": 162.0,
+        "elevation": 100.5
+      },
+      {
+        "chainage": 162.0,
+        "elevation": 100.5
+      },
+      {
+        "chainage": 0.0,
+        "elevation": 100.5
+      },
+      {
+        "chainage": 0.0,
+        "elevation": 100.5
+      },
+      {
+        "chainage": 25.0,
+        "elevation": 97.48
+      },
+      {
+        "chainage": 50.0,
+        "elevation": 97.174
+      },
+      {
+        "chainage": 75.0,
+        "elevation": 97.178
+      },
+      {
+        "chainage": 100.0,
+        "elevation": 96.645
+      },
+      {
+        "chainage": 125.0,
+        "elevation": 96.8
+      },
+      {
+        "chainage": 150.0,
+        "elevation": 100.257
+      },
+      {
+        "chainage": 175.0,
+        "elevation": 100.5
+      },
+      {
+        "chainage": 180.0,
+        "elevation": 100.5
+      },
+      {
+        "chainage": 0.0,
+        "elevation": 100.5
+      },
+      {
+        "chainage": 180.0,
+        "elevation": 100.5
+      }
+    ],
+    "raw_data": [
+      {
+        "row": 0,
+        "data": [
+          "CROSS SECTION OF RIVER DOWN-STREAM",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 1,
+        "data": [
+          "Chainage in M (u/s or d/s)",
+          "RL in M",
+          "",
+          "SUBMERSIBLE BRIDGE  ACROSS BEDACH RIVER ON SYPHON TIRAHA - BEDLA ROAD "
+        ]
+      },
+      {
+        "row": 2,
+        "data": [
+          0,
+          100.5,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 3,
+        "data": [
+          25,
+          95.691,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 4,
+        "data": [
+          50,
+          95.421,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 5,
+        "data": [
+          75,
+          95.656,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 6,
+        "data": [
+          100,
+          95.282,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 7,
+        "data": [
+          125,
+          97.277,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 8,
+        "data": [
+          150,
+          100.5,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 9,
+        "data": [
+          162,
+          100.5,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 10,
+        "data": [
+          162,
+          100.5,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 11,
+        "data": [
+          0,
+          100.5,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 29,
+        "data": [
+          "CROSS SECTION OF RIVERUP-STREAM",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 30,
+        "data": [
+          "Chainage in M (u/s or d/s)",
+          "RL in M",
+          "",
+          "SUBMERSIBLE BRIDGE  ACROSS BEDACH RIVER ON SYPHON TIRAHA - BEDLA ROAD "
+        ]
+      },
+      {
+        "row": 31,
+        "data": [
+          0,
+          100.5,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 32,
+        "data": [
+          25,
+          97.48,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 33,
+        "data": [
+          50,
+          97.174,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 34,
+        "data": [
+          75,
+          97.178,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 35,
+        "data": [
+          100,
+          96.645,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 36,
+        "data": [
+          125,
+          96.8,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 37,
+        "data": [
+          150,
+          100.257,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 38,
+        "data": [
+          175,
+          100.5,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 39,
+        "data": [
+          180,
+          100.5,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 40,
+        "data": [
+          0,
+          100.5,
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 41,
+        "data": [
+          180,
+          100.5,
+          "",
+          ""
+        ]
+      }
+    ]
+  },
+  "bed_slope": {
+    "sheet_name": "Bed Slope",
+    "description": "River bed slope determination",
+    "longitudinal_profile": [
+      {
+        "chainage": 0.0,
+        "bed_level": 97.304
+      },
+      {
+        "chainage": 25.0,
+        "bed_level": 97.718
+      },
+      {
+        "chainage": 50.0,
+        "bed_level": 97.642
+      },
+      {
+        "chainage": 75.0,
+        "bed_level": 97.615
+      },
+      {
+        "chainage": 100.0,
+        "bed_level": 97.603
+      },
+      {
+        "chainage": 125.0,
+        "bed_level": 97.705
+      },
+      {
+        "chainage": 150.0,
+        "bed_level": 97.693
+      },
+      {
+        "chainage": 175.0,
+        "bed_level": 97.437
+      },
+      {
+        "chainage": 200.0,
+        "bed_level": 97.35
+      },
+      {
+        "chainage": 225.0,
+        "bed_level": 97.3
+      },
+      {
+        "chainage": 250.0,
+        "bed_level": 97.25
+      },
+      {
+        "chainage": 275.0,
+        "bed_level": 97.0
+      },
+      {
+        "chainage": 300.0,
+        "bed_level": 96.75
+      },
+      {
+        "chainage": 325.0,
+        "bed_level": 96.55
+      },
+      {
+        "chainage": 350.0,
+        "bed_level": 96.5
+      },
+      {
+        "chainage": 375.0,
+        "bed_level": 96.0
+      },
+      {
+        "chainage": 400.0,
+        "bed_level": 95.314
+      },
+      {
+        "chainage": 425.0,
+        "bed_level": 94.447
+      },
+      {
+        "chainage": 450.0,
+        "bed_level": 94.448
+      },
+      {
+        "chainage": 475.0,
+        "bed_level": 94.009
+      },
+      {
+        "chainage": 500.0,
+        "bed_level": 93.351
+      }
+    ],
+    "slope_calculations": {
+      "overall_slope": 0.008734000000000009,
+      "slope_percentage": 0.873400000000001
+    },
+    "bed_levels": [
+      97.304,
+      97.718,
+      97.642,
+      97.615,
+      97.603,
+      97.705,
+      97.693,
+      97.437,
+      97.35,
+      97.3,
+      97.25,
+      97.0,
+      96.75,
+      96.55,
+      96.5,
+      96.0,
+      95.314,
+      94.447,
+      94.448,
+      94.009,
+      93.351
+    ],
+    "chainages": [
+      0.0,
+      25.0,
+      50.0,
+      75.0,
+      100.0,
+      125.0,
+      150.0,
+      175.0,
+      200.0,
+      225.0,
+      250.0,
+      275.0,
+      300.0,
+      325.0,
+      350.0,
+      375.0,
+      400.0,
+      425.0,
+      450.0,
+      475.0,
+      500.0
+    ],
+    "raw_data": [
+      {
+        "row": 0,
+        "data": [
+          "DETERMINATION  OF BED SLOPE OF THE RIVER",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 1,
+        "data": [
+          "Chainage in M (u/s or d/s)",
+          "RL in M",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 2,
+        "data": [
+          0,
+          97.304,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 3,
+        "data": [
+          25,
+          97.718,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 4,
+        "data": [
+          50,
+          97.642,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 5,
+        "data": [
+          75,
+          97.615,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 6,
+        "data": [
+          100,
+          97.603,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 7,
+        "data": [
+          125,
+          97.705,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 8,
+        "data": [
+          150,
+          97.693,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 9,
+        "data": [
+          175,
+          97.437,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 10,
+        "data": [
+          200,
+          97.35,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 11,
+        "data": [
+          225,
+          97.3,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 12,
+        "data": [
+          250,
+          97.25,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 13,
+        "data": [
+          275,
+          97,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 14,
+        "data": [
+          300,
+          96.75,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 15,
+        "data": [
+          325,
+          96.55,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 16,
+        "data": [
+          350,
+          96.5,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 17,
+        "data": [
+          375,
+          96,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 18,
+        "data": [
+          400,
+          95.314,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 19,
+        "data": [
+          425,
+          94.447,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 20,
+        "data": [
+          450,
+          94.448,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 21,
+        "data": [
+          475,
+          94.009,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 22,
+        "data": [
+          500,
+          93.351,
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 29,
+        "data": [
+          "",
+          "",
+          "",
+          "Reference Poits",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 30,
+        "data": [
+          "",
+          "",
+          "",
+          "Ch",
+          "RL",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 31,
+        "data": [
+          "",
+          "",
+          "",
+          150,
+          97.693,
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 32,
+        "data": [
+          "",
+          "",
+          "",
+          400,
+          95.314,
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 34,
+        "data": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "DISTANCE",
+          "",
+          250,
+          "M"
+        ]
+      },
+      {
+        "row": 35,
+        "data": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "FALL",
+          "",
+          2.379000000000005,
+          "M"
+        ]
+      },
+      {
+        "row": 36,
+        "data": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "SLOPE",
+          1.0,
+          "IN",
+          106
+        ]
+      }
+    ]
+  }
+}
