@@ -39,6 +39,7 @@ from detailed_calculation_display import (
 # Import modern UI components
 from modern_ui_components import ModernUIComponents
 from enhanced_excel_generator import EnhancedExcelGenerator, ExcelGenerationOptions
+from river_section_input_schema import RiverSectionInputUI, HydraulicCalculationEngine, RiverSectionInputSchema
 
 # Page configuration
 st.set_page_config(
@@ -131,8 +132,9 @@ def main():
         app.ui_components.create_system_status_panel()
     
     # Main content area with enhanced tabs
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
         "🔧 Parameters",
+        "🌊 River & Hydraulics",
         "📊 Live Preview", 
         "🏛️ Abutment Design",
         "🧮 Excel Verbatim",
@@ -145,21 +147,24 @@ def main():
         display_modern_project_setup(app)
     
     with tab2:
-        display_live_calculation_preview(app)
+        display_river_section_input(app)
     
     with tab3:
-        display_abutment_design(app)
+        display_live_calculation_preview(app)
     
     with tab4:
-        display_detailed_calculations(app)
+        display_abutment_design(app)
     
     with tab5:
-        display_analysis_results(app)
+        display_detailed_calculations(app)
     
     with tab6:
-        display_cost_and_excel_generation(app)
+        display_analysis_results(app)
     
     with tab7:
+        display_cost_and_excel_generation(app)
+    
+    with tab8:
         display_reports_export(app)
 
 def display_project_setup(app: StreamlitEnhancedBridgeApp):
@@ -321,6 +326,167 @@ def display_cost_and_excel_generation(app: StreamlitEnhancedBridgeApp):
         
         # Use modern UI components for Excel generation
         app.ui_components.create_excel_generation_panel(st.session_state.current_parameters)
+
+def display_river_section_input(app: StreamlitEnhancedBridgeApp):
+    """Display comprehensive river section and hydraulic input"""
+    
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                color: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
+        <h2 style="margin: 0; font-size: 1.8rem;">🌊 River Section & Hydraulic Analysis</h2>
+        <p style="margin: 0; opacity: 0.9; font-size: 1.1rem;">Comprehensive hydraulic input schema for professional bridge design</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Initialize river section UI
+    if 'river_section_ui' not in st.session_state:
+        st.session_state.river_section_ui = RiverSectionInputUI()
+    
+    river_ui = st.session_state.river_section_ui
+    
+    # Create tabs for different aspects
+    input_tab, viz_tab, calc_tab, results_tab = st.tabs([
+        "📝 Input Schema", 
+        "📊 Visualization", 
+        "🧮 Calculations", 
+        "📈 Results"
+    ])
+    
+    with input_tab:
+        st.markdown("### 📝 Complete River Section Input Schema")
+        
+        # Render complete form
+        river_data = river_ui.render_complete_form()
+        
+        # Save to session state
+        if st.button("💾 Save River Section Data", type="primary", use_container_width=True):
+            st.session_state.river_section_data = river_data
+            st.session_state.river_data_entered = True
+            st.success("✅ River section data saved successfully!")
+            st.balloons()
+    
+    with viz_tab:
+        if 'river_section_data' in st.session_state:
+            river_ui.render_visualization_tab(st.session_state.river_section_data)
+        else:
+            st.warning("⚠️ Please complete River Section Input first!")
+    
+    with calc_tab:
+        if 'river_section_data' in st.session_state:
+            results = river_ui.render_hydraulic_calculations_tab(st.session_state.river_section_data)
+            if results:
+                st.session_state.hydraulic_calculation_results = results
+        else:
+            st.warning("⚠️ Please complete River Section Input first!")
+    
+    with results_tab:
+        if 'hydraulic_calculation_results' in st.session_state:
+            display_hydraulic_results_summary(st.session_state.hydraulic_calculation_results)
+        else:
+            st.info("📈 Hydraulic calculation results will appear here after analysis.")
+
+def display_hydraulic_results_summary(results: Dict[str, Any]):
+    """Display hydraulic calculation results summary"""
+    
+    st.markdown("### 📈 Hydraulic Analysis Summary")
+    
+    # Key results overview
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        st.metric(
+            "Design Afflux", 
+            f"{results['afflux']['design_afflux']:.3f} m",
+            help="Conservative afflux for design"
+        )
+    
+    with col2:
+        status = results['waterway']['waterway_status']
+        color = "green" if status == "ADEQUATE" else "orange" if "MARGINAL" in status else "red"
+        st.markdown(f"""
+        <div style="text-align: center; padding: 1rem; border-radius: 8px; background: {color}20; border: 1px solid {color};">
+            <div style="font-size: 1.2rem; font-weight: bold; color: {color};">{status}</div>
+            <div style="font-size: 0.8rem; color: #666;">Waterway Status</div>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col3:
+        st.metric(
+            "Total Scour Depth", 
+            f"{results['scour']['total_scour_depth']:.2f} m",
+            help="Total scour including local effects"
+        )
+    
+    with col4:
+        st.metric(
+            "Foundation Depth", 
+            f"{results['summary']['foundation_depth_required']:.2f} m",
+            help="Required foundation depth below bed"
+        )
+    
+    # Detailed breakdown
+    st.markdown("---")
+    st.markdown("### 🔍 Detailed Breakdown")
+    
+    # Create detailed results table
+    detailed_data = []
+    
+    # Afflux details
+    afflux = results['afflux']
+    detailed_data.extend([
+        ["Afflux Analysis", "Yarnell Formula", f"{afflux['yarnell_afflux']:.3f}", "m", "Standard pier formula"],
+        ["", "IRC:5 Formula", f"{afflux['irc_afflux']:.3f}", "m", "Indian standard method"],
+        ["", "Design Value", f"{afflux['design_afflux']:.3f}", "m", "Conservative design"]
+    ])
+    
+    # Waterway details
+    waterway = results['waterway']
+    detailed_data.extend([
+        ["Waterway Analysis", "Lacey Regime Width", f"{waterway['lacey_regime_width']:.1f}", "m", "Required by Lacey"],
+        ["", "Waterway Provided", f"{waterway['waterway_provided']:.1f}", "m", "Actual provision"],
+        ["", "Adequacy Ratio", f"{waterway['waterway_adequacy_ratio']:.2f}", "-", waterway['waterway_status']]
+    ])
+    
+    # Scour details
+    scour = results['scour']
+    detailed_data.extend([
+        ["Scour Analysis", "Normal Scour (Lacey)", f"{scour['normal_scour_lacey']:.2f}", "m", "General scour"],
+        ["", "Design Scour", f"{scour['design_scour_depth']:.2f}", "m", "With safety factor"],
+        ["", "Local Scour at Piers", f"{scour['local_scour_at_piers']:.2f}", "m", "Around pier foundations"],
+        ["", "Total Scour", f"{scour['total_scour_depth']:.2f}", "m", "Combined effect"]
+    ])
+    
+    # Display table
+    df_results = pd.DataFrame(detailed_data, columns=[
+        'Category', 'Parameter', 'Value', 'Unit', 'Description'
+    ])
+    
+    st.dataframe(df_results, use_container_width=True)
+    
+    # Export options
+    st.markdown("---")
+    st.markdown("### 💾 Export Hydraulic Results")
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        if st.button("📄 Export to PDF", key="export_hydraulic_pdf"):
+            st.info("🖄 PDF export functionality will be implemented")
+    
+    with col2:
+        if st.button("📊 Export to Excel", key="export_hydraulic_excel"):
+            st.info("🖄 Excel export functionality will be implemented")
+    
+    with col3:
+        if st.button("📝 Export to JSON", key="export_hydraulic_json"):
+            import json
+            json_str = json.dumps(results, indent=2, default=str)
+            st.download_button(
+                label="📋 Download JSON",
+                data=json_str,
+                file_name=f"hydraulic_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+                mime="application/json"
+            )
 
 def display_detailed_calculations(app: StreamlitEnhancedBridgeApp):
     """
