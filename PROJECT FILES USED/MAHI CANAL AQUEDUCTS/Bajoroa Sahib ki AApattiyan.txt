@@ -1,0 +1,24 @@
+From-
+Prof. K,M, Bajoria
+Fax- 022-25767302
+Mbl. 9820718117
+ 
+To,
+Sh. T.H. Shah
+Superintending Engineer
+Mahi Project, Banswara
+ 
+	Sub: Proof checking of Design of Trough Aquaduct
+ 
+	I have checked the design and drawings submitted to me for design of trough Aquaduct across river Som and Jakham. Kindly ask the consultant to further carry and the following analysis/design and submit to myself. 
+ 
+1-      load due to water pressure to be considered on walls of trough section
+2-      The section to be modeled as a whole "C" section vather than slabe supported on side beams.
+3-      The slab is on tension side of "C"  section. Provide ……… to avoid concrete …… thickness of slab.
+4-      Consider negative bending moment in bottom slab due to continuity from side wall junction.
+5-      Side wall to be designed for tension and bending moments @two axes (vertical & horizontal)
+6-      consider wind load on trough walls and piers. 
+ 
+ 									   Sd/-
+								 (Prof. K.M. Bajoria)
+

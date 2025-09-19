@@ -7,7 +7,7 @@ Features:
 - Complete project workflow: Setup → Parameters → Abutment → Calculations → Results → Export
 - Hydraulic analysis integration with structural design
 - Type-1 (Battered) and Type-2 (Cantilever) abutment design
-- 25-sheet Excel report generation
+- 75-sheet Excel report generation
 - Professional PDF export with mixed orientations
 - Project templates from UIT, Chittorgarh, Kherwara references
 
@@ -1119,7 +1119,7 @@ class CompleteBridgeDesignApp:
             st.warning("No calculation results available. Please run calculations first.")
             return
         
-        st.subheader("25-Sheet Excel Report")
+        st.subheader("75-Sheet Excel Report")
         st.info("Generate comprehensive Excel file with professional formatting")
         
         if st.button("📈 Generate Excel Report", type="primary"):
