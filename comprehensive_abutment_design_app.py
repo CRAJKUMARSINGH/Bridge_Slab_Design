@@ -47,6 +47,27 @@ from typing import Dict, Any, Tuple, List
 from dataclasses import dataclass
 from enum import Enum
 
+# ----------------------------------------------------------------------------
+# CACHING UTILITIES FOR PERFORMANCE
+# ----------------------------------------------------------------------------
+
+@st.cache_data(show_spinner=False)
+def compute_design_results(
+    project_params: Dict[str, Any],
+    soil_params: Dict[str, Any],
+    material_params: Dict[str, Any],
+    abutment_type_value: str,
+) -> Dict[str, Any]:
+    """Compute abutment design results with caching to speed up UI interactions."""
+    project_obj = ProjectParameters(**project_params)
+    soil_obj = SoilParameters(**soil_params)
+    material_obj = MaterialProperties(**material_params)
+    abutment_type = (
+        AbutmentType.TYPE_1_BATTERED if 'Battered' in abutment_type_value else AbutmentType.TYPE_2_CANTILEVER
+    )
+    designer = AbutmentDesigner(project_obj, soil_obj, material_obj, abutment_type)
+    return designer.design_complete_abutment()
+
 # Page configuration
 st.set_page_config(
     page_title="Comprehensive Abutment Designer",
@@ -503,8 +524,9 @@ def display_design_analysis(project: ProjectParameters, soil: SoilParameters, ma
     
     with col1:
         st.subheader("Type-1 Battered Face Abutment")
-        designer1 = AbutmentDesigner(project, soil, material, AbutmentType.TYPE_1_BATTERED)
-        results1 = designer1.design_complete_abutment()
+        results1 = compute_design_results(
+            project.__dict__, soil.__dict__, material.__dict__, AbutmentType.TYPE_1_BATTERED.value
+        )
         
         # Display key results
         st.metric("Height", f"{results1['geometry']['height']:.2f} m")
@@ -517,8 +539,9 @@ def display_design_analysis(project: ProjectParameters, soil: SoilParameters, ma
     
     with col2:
         st.subheader("Type-2 Cantilever Abutment")
-        designer2 = AbutmentDesigner(project, soil, material, AbutmentType.TYPE_2_CANTILEVER)
-        results2 = designer2.design_complete_abutment()
+        results2 = compute_design_results(
+            project.__dict__, soil.__dict__, material.__dict__, AbutmentType.TYPE_2_CANTILEVER.value
+        )
         
         # Display key results
         st.metric("Height", f"{results2['geometry']['height']:.2f} m")
@@ -634,14 +657,16 @@ def display_stability_analysis(project: ProjectParameters, soil: SoilParameters,
     if 'battered_results' in st.session_state:
         results1 = st.session_state['battered_results']
     else:
-        designer1 = AbutmentDesigner(project, soil, material, AbutmentType.TYPE_1_BATTERED)
-        results1 = designer1.design_complete_abutment()
+        results1 = compute_design_results(
+            project.__dict__, soil.__dict__, material.__dict__, AbutmentType.TYPE_1_BATTERED.value
+        )
     
     if 'cantilever_results' in st.session_state:
         results2 = st.session_state['cantilever_results']
     else:
-        designer2 = AbutmentDesigner(project, soil, material, AbutmentType.TYPE_2_CANTILEVER)
-        results2 = designer2.design_complete_abutment()
+        results2 = compute_design_results(
+            project.__dict__, soil.__dict__, material.__dict__, AbutmentType.TYPE_2_CANTILEVER.value
+        )
     
     # Select abutment type for detailed analysis
     selected_type = st.selectbox("Select Abutment Type for Analysis", 
@@ -680,6 +705,9 @@ def display_stability_analysis(project: ProjectParameters, soil: SoilParameters,
     # Earth pressure diagram
     st.subheader("🌍 Earth Pressure Distribution")
     
+    if not MATPLOTLIB_AVAILABLE:
+        st.info("📈 Earth pressure chart requires matplotlib. Install to view plot.")
+        return
     fig, ax = plt.subplots(figsize=(12, 8))
     
     height = results['geometry']['height']
@@ -758,14 +786,16 @@ def display_reinforcement_design(project: ProjectParameters, soil: SoilParameter
     if 'battered_results' in st.session_state:
         results1 = st.session_state['battered_results']
     else:
-        designer1 = AbutmentDesigner(project, soil, material, AbutmentType.TYPE_1_BATTERED)
-        results1 = designer1.design_complete_abutment()
+        results1 = compute_design_results(
+            project.__dict__, soil.__dict__, material.__dict__, AbutmentType.TYPE_1_BATTERED.value
+        )
     
     if 'cantilever_results' in st.session_state:
         results2 = st.session_state['cantilever_results']
     else:
-        designer2 = AbutmentDesigner(project, soil, material, AbutmentType.TYPE_2_CANTILEVER)
-        results2 = designer2.design_complete_abutment()
+        results2 = compute_design_results(
+            project.__dict__, soil.__dict__, material.__dict__, AbutmentType.TYPE_2_CANTILEVER.value
+        )
     
     # Select abutment type
     selected_type = st.selectbox("Select Abutment Type for Reinforcement", 
@@ -823,6 +853,9 @@ def display_reinforcement_design(project: ProjectParameters, soil: SoilParameter
     # Reinforcement drawing
     st.subheader("📐 Reinforcement Layout")
     
+    if not MATPLOTLIB_AVAILABLE:
+        st.info("📐 Reinforcement layout requires matplotlib. Install to view plot.")
+        return
     fig, ax = plt.subplots(figsize=(14, 10))
     
     # Draw abutment outline

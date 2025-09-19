@@ -34,8 +34,11 @@ class BridgeDesignPDFGenerator:
         if not filename:
             timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
             filename = f'Complete_Bridge_Design_Report_{timestamp}.pdf'
-        
-        filepath = os.path.join(r'c:\Users\Rajkumar\Bridge_Slab_Design', filename)
+
+        # Save under current working directory in a portable way
+        reports_dir = os.path.join(os.getcwd(), 'reports')
+        os.makedirs(reports_dir, exist_ok=True)
+        filepath = os.path.join(reports_dir, filename)
         
         with PdfPages(filepath) as pdf:
             print("🎨 Generating Complete PDF Report...")
@@ -645,7 +648,13 @@ class BridgeDesignPDFGenerator:
                 fontsize=10, ha='center')
         
         pdf.savefig(fig, bbox_inches='tight')
-        plt.close(fig)3, ax4)) = plt.subplots(2, 2, figsize=(self.fig_width_landscape, self.fig_height_landscape))
+        plt.close(fig)
+
+    def _create_quantity_distributions(self, pdf: PdfPages):
+        """Create additional quantity distribution charts (landscape)."""
+        fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(
+            2, 2, figsize=(self.fig_width_landscape, self.fig_height_landscape)
+        )
         fig.subplots_adjust(wspace=0.4, hspace=0.4)
         
         ax1.set_title('Concrete Quantity Distribution')

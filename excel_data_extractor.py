@@ -6,13 +6,20 @@ from typing import Dict, List, Tuple, Any
 class BridgeHydraulicDataExtractor:
     def __init__(self, excel_file_path: str):
         self.excel_file_path = excel_file_path
+        # Reuse a single ExcelFile handle for all sheet parses (significantly faster)
         self.xl_file = pd.ExcelFile(excel_file_path)
         self.extracted_data = {}
+    
+    def _parse_sheet(self, sheet_name: str):
+        """Safely parse a sheet using the cached ExcelFile. Returns DataFrame or raises."""
+        if sheet_name not in self.xl_file.sheet_names:
+            raise ValueError(f"Sheet '{sheet_name}' not found. Available: {self.xl_file.sheet_names}")
+        return self.xl_file.parse(sheet_name=sheet_name, header=None)
         
     def extract_afflux_calculation(self) -> Dict[str, Any]:
         """Extract afflux calculation data"""
         try:
-            df = pd.read_excel(self.excel_file_path, sheet_name='afflux calculation', header=None)
+            df = self._parse_sheet('afflux calculation')
             
             # Extract key afflux parameters
             afflux_data = {
@@ -51,7 +58,7 @@ class BridgeHydraulicDataExtractor:
     def extract_hydraulics_data(self) -> Dict[str, Any]:
         """Extract hydraulics data"""
         try:
-            df = pd.read_excel(self.excel_file_path, sheet_name='HYDRAULICS', header=None)
+            df = self._parse_sheet('HYDRAULICS')
             
             hydraulics_data = {
                 'sheet_name': 'HYDRAULICS',
@@ -97,7 +104,7 @@ class BridgeHydraulicDataExtractor:
     def extract_deck_anchorage_data(self) -> Dict[str, Any]:
         """Extract deck anchorage data"""
         try:
-            df = pd.read_excel(self.excel_file_path, sheet_name='Deck Anchorage', header=None)
+            df = self._parse_sheet('Deck Anchorage')
             
             anchorage_data = {
                 'sheet_name': 'Deck Anchorage',
@@ -140,7 +147,7 @@ class BridgeHydraulicDataExtractor:
     def extract_cross_section_data(self) -> Dict[str, Any]:
         """Extract cross section data"""
         try:
-            df = pd.read_excel(self.excel_file_path, sheet_name='CROSS SECTION', header=None)
+            df = self._parse_sheet('CROSS SECTION')
             
             cross_section_data = {
                 'sheet_name': 'CROSS SECTION',
@@ -196,7 +203,7 @@ class BridgeHydraulicDataExtractor:
     def extract_bed_slope_data(self) -> Dict[str, Any]:
         """Extract bed slope data"""
         try:
-            df = pd.read_excel(self.excel_file_path, sheet_name='Bed Slope', header=None)
+            df = self._parse_sheet('Bed Slope')
             
             bed_slope_data = {
                 'sheet_name': 'Bed Slope',
@@ -284,7 +291,12 @@ class BridgeHydraulicDataExtractor:
 
 if __name__ == "__main__":
     # Extract data from the Excel file
-    file_path = r'PROJECT FILES USED\Bundan River Bridge TAD\3 Stability Analysis SUBMERSIBLE BRIDGE  ACROSS BHUNDAN RIVER ON KATUMBI CHANDROD ROAD.xls'
+    import os
+    file_path = os.path.join(
+        'PROJECT FILES USED',
+        'Bundan River Bridge TAD',
+        '3 Stability Analysis SUBMERSIBLE BRIDGE  ACROSS BHUNDAN RIVER ON KATUMBI CHANDROD ROAD.xls'
+    )
     
     extractor = BridgeHydraulicDataExtractor(file_path)
     all_data = extractor.extract_all_data()
