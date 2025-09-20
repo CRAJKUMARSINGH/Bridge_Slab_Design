@@ -5,13 +5,17 @@ Generates complete A4 portrait and landscape PDF reports combining all design sh
 """
 
 import json
+import os
+from datetime import datetime
+from typing import Dict, Any, List, Optional
+
+# Use a headless backend for environments without a display (improves reliability and load time)
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.backends.backend_pdf import PdfPages
 import numpy as np
-from datetime import datetime
-import os
-from typing import Dict, Any, List, Optional
 
 # Set style for professional plots
 plt.style.use('default')
@@ -34,8 +38,10 @@ class BridgeDesignPDFGenerator:
         if not filename:
             timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
             filename = f'Complete_Bridge_Design_Report_{timestamp}.pdf'
-        
-        filepath = os.path.join(r'c:\Users\Rajkumar\Bridge_Slab_Design', filename)
+        # Cross-platform output location inside a local 'reports' directory
+        reports_dir = os.path.join(os.getcwd(), 'reports')
+        os.makedirs(reports_dir, exist_ok=True)
+        filepath = os.path.join(reports_dir, filename)
         
         with PdfPages(filepath) as pdf:
             print("🎨 Generating Complete PDF Report...")
@@ -643,113 +649,6 @@ class BridgeDesignPDFGenerator:
                 fontsize=10, ha='center')
         ax.text(5, 1.4, 'Ready for detailed engineering and construction', 
                 fontsize=10, ha='center')
-        
-        pdf.savefig(fig, bbox_inches='tight')
-        plt.close(fig)3, ax4)) = plt.subplots(2, 2, figsize=(self.fig_width_landscape, self.fig_height_landscape))
-        fig.subplots_adjust(wspace=0.4, hspace=0.4)
-        
-        ax1.set_title('Concrete Quantity Distribution')
-        ax2.set_title('Steel Quantity Distribution')
-        ax3.set_title('Formwork Quantity Distribution')
-        ax4.set_title('Excavation Quantity Distribution')
-        
-        estimation = self.results.get('comprehensive_estimation', {})
-        materials = estimation.get('material_summary', {})
-        
-        # Concrete distribution
-        concrete_data = {
-            'Pier': materials.get('total_concrete_pier', 0),
-            'Abutment': materials.get('total_concrete_abutment', 0),
-            'Deck': materials.get('total_concrete_deck', 0)
-        }
-        ax1.pie(concrete_data.values(), labels=concrete_data.keys(), autopct='%1.1f%%', startangle=90)
-        ax1.axis('equal')
-        
-        # Steel distribution
-        steel_data = {
-            'Pier': materials.get('total_steel_pier', 0),
-            'Abutment': materials.get('total_steel_abutment', 0),
-            'Deck': materials.get('total_steel_deck', 0)
-        }
-        ax2.pie(steel_data.values(), labels=steel_data.keys(), autopct='%1.1f%%', startangle=90)
-        ax2.axis('equal')
-        
-        # Formwork distribution
-        formwork_data = {
-            'Pier': materials.get('total_formwork_pier', 0),
-            'Abutment': materials.get('total_formwork_abutment', 0),
-            'Deck': materials.get('total_formwork_deck', 0)
-        }
-        ax3.pie(formwork_data.values(), labels=formwork_data.keys(), autopct='%1.1f%%', startangle=90)
-        ax3.axis('equal')
-        
-        # Excavation distribution
-        excavation_data = {
-            'Pier': materials.get('total_excavation_pier', 0),
-            'Abutment': materials.get('total_excavation_abutment', 0),
-            'Deck': materials.get('total_excavation_deck', 0)
-        }
-        ax4.pie(excavation_data.values(), labels=excavation_data.keys(), autopct='%1.1f%%', startangle=90)
-        ax4.axis('equal')
-        
-        pdf.savefig(fig, bbox_inches='tight')
-        plt.close(fig)
-
-    def _create_bridge_profile(self, pdf: PdfPages):
-        """Create bridge profile diagram in landscape"""
-        fig, ax = plt.subplots(figsize=(self.fig_width_landscape, self.fig_height_landscape))
-        ax.set_xlim(0, 10)
-        ax.set_ylim(0, 10)
-        ax.axis('off')
-        
-        ax.text(5, 9.5, 'BRIDGE PROFILE', fontsize=16, fontweight='bold', ha='center')
-        
-        survey_data = self.results.get('survey_data', {})
-        profile_points = survey_data.get('profile_points', [])
-        
-        # Plot profile points
-        x = [point['x'] for point in profile_points]
-        y = [point['y'] for point in profile_points]
-        ax.plot(x, y, marker='o', linestyle='-')
-        
-        # Add labels
-        for i, point in enumerate(profile_points):
-            ax.text(point['x'], point['y'], f"{point['x']}m, {point['y']}m", fontsize=10, ha='right', va='bottom')
-        
-        pdf.savefig(fig, bbox_inches='tight')
-        plt.close(fig)
-
-    def _create_summary_recommendations(self, pdf: PdfPages):
-        """Create summary and recommendations page"""
-        fig, ax = plt.subplots(figsize=(self.fig_width_portrait, self.fig_height_portrait))
-        ax.set_xlim(0, 10)
-        ax.set_ylim(0, 10)
-        ax.axis('off')
-        
-        ax.text(5, 9.5, 'SUMMARY & RECOMMENDATIONS', fontsize=16, fontweight='bold', ha='center')
-        
-        summary_info = [
-            "PROJECT SUMMARY:",
-            "• Bridge design is complete and meets all safety and performance criteria",
-            "• All components are optimized for cost and material usage",
-            "• Detailed drawings and calculations are provided in the report",
-            "",
-            "RECOMMENDATIONS:",
-            "• Proceed with construction as per the design drawings",
-            "• Ensure quality control during construction",
-            "• Monitor structural integrity post-construction"
-        ]
-        
-        y_pos = 8.8
-        for text in summary_info:
-            if text.startswith("•"):
-                ax.text(1, y_pos, text, fontsize=11, ha='left')
-            elif text == "":
-                y_pos -= 0.1
-                continue
-            else:
-                ax.text(1, y_pos, text, fontsize=11, fontweight='bold', ha='left', color='navy')
-            y_pos -= 0.3
         
         pdf.savefig(fig, bbox_inches='tight')
         plt.close(fig)
