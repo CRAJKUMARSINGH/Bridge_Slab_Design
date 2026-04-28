@@ -207,7 +207,7 @@ export function GADDrawing({ results }: { results: CompleteDesignResult }): Reac
           {(() => {
             const startRL = Math.ceil(vertBot);
             const endRL   = Math.floor(vertTop);
-            const ticks   = [];
+            const ticks: ReactElement[] = [];
             for (let r = startRL; r <= endRL; r += yincr) {
               const y = ey(r);
               ticks.push(
@@ -224,7 +224,7 @@ export function GADDrawing({ results }: { results: CompleteDesignResult }): Reac
           <line x1={gridL} y1={gridB} x2={gridR} y2={gridB} stroke={COLORS.DIMENSION} strokeWidth="1" />
           {(() => {
             const spanDist = totalLength + abutmentWidth * 2;
-            const ticks = [];
+            const ticks: ReactElement[] = [];
             for (let x = 0; x <= spanDist + approach * 2; x += xincr) {
               const xc = ex(x - approach);
               if (xc < gridL || xc > gridR) continue;

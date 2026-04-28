@@ -123,7 +123,7 @@ export async function generateDesignPDF(input: EnhancedProjectInput): Promise<Bu
   kv('Span Length', input.spanLength, 'm');
   kv('Total Length', input.totalLength, 'm');
   kv('Carriageway Width', input.carriageWidth, 'm');
-  kv('Number of Lanes', input.numberOfLanes);
+  kv('Number of Lanes', input.numberOfLanes ?? '—');
   y += 2;
 
   subheading('Hydraulic Data');
@@ -246,8 +246,8 @@ export async function generateDesignPDF(input: EnhancedProjectInput): Promise<Bu
       ['Description', 'Amount (₹)'],
       [
         ['Subtotal',                  cost.subtotal.toLocaleString('en-IN')],
-        ["Contractor's Profit (10%)", cost.profit.toLocaleString('en-IN')],
-        ['Overhead Charges (8%)',     cost.overhead.toLocaleString('en-IN')],
+        ["Contractor's Profit (10%)", (cost.profit ?? 0).toLocaleString('en-IN')],
+        ['Overhead Charges (8%)',     (cost.overhead ?? 0).toLocaleString('en-IN')],
         ['GST (18%)',                 cost.gst.toLocaleString('en-IN')],
         ['GRAND TOTAL',               cost.total.toLocaleString('en-IN')],
         ['Cost per Running Metre',    cost.ratePerMeter.toLocaleString('en-IN')],

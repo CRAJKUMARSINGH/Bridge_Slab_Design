@@ -127,7 +127,16 @@ export function designDeckAnchorage(input: DeckAnchorageInput): DeckAnchorageRes
   
   // STEP 4: ANCHORAGE DESIGN (if required)
   
-  let anchorageDesign = null;
+  let anchorageDesign: {
+    boltDiameter: number;
+    boltGrade: '4.6' | '8.8' | '10.9';
+    tensileStrength: number;
+    allowableLoad: number;
+    numberOfBolts: number;
+    spacing: number;
+    embedmentLength: number;
+    totalCapacity: number;
+  } | null = null;
   
   if (requiresAnchorage) {
     // Bolt properties based on grade

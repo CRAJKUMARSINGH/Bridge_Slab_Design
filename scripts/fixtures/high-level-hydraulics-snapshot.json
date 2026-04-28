@@ -8,16 +8,8 @@
   "effectiveWaterway": 48,
   "scourDepth": 10.776888820776767,
   "designScourDepth": 21.553777641553534,
-  "foundationDepth": 28.6665242632662,
-  "foundationLevel": 257.8334757367338,
-  "afflux": 0.14514745287840217,
-  "designWaterLevel": 286.6451474528784,
+  "afflux": 0.746715574377347,
+  "designWaterLevel": 287.24671557437733,
   "froudeNumber": 0.3830828646428329,
-  "flowType": "Subcritical",
-  "soffitLevel": 288.05,
-  "freeboard": 1.4048525471216067,
-  "freeboardAboveHfl": 1.5500000000000114,
-  "ircMinimumFreeboardAboveHfl": 1.5,
-  "requiredFreeboardAboveHfl": 1.5,
-  "isFreeboardSafe": true
+  "flowType": "Subcritical"
 }
