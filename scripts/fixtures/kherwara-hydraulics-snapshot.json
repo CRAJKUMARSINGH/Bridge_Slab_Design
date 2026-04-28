@@ -1,0 +1,21 @@
+{
+  "crossSectionalArea": 141.49999999999977,
+  "wettedPerimeter": 60.773368550611956,
+  "hydraulicRadius": 2.3283224770099555,
+  "velocity": 1.7180898181421296,
+  "discharge": 243.10970926711096,
+  "regimeWidth": 74.84148382758212,
+  "effectiveWaterway": 96,
+  "scourDepth": 2.4002456435915325,
+  "designScourDepth": 4.800491287183065,
+  "foundationDepth": 6.384653411953477,
+  "foundationLevel": 94.21534658804651,
+  "afflux": 0.3305990843929174,
+  "designWaterLevel": 100.93059908439291,
+  "froudeNumber": 0.2742719313645599,
+  "flowType": "Subcritical",
+  "soffitLevel": 101.35,
+  "freeboard": 0.4194009156070848,
+  "freeboardAboveHfl": 0.75,
+  "isFreeboardSafe": true
+}

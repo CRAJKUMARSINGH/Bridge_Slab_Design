@@ -1,0 +1,24 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "build/**"]
+    },
+    "check": {
+      "cache": false
+    },
+    "verify:engine": {
+      "cache": false
+    },
+    "verify:excel": {
+      "cache": false
+    },
+    "test:excel": {
+      "cache": false
+    },
+    "qa": {
+      "cache": false
+    }
+  }
+}

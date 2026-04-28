@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          var dark = t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.classList.toggle("dark", dark);
+        } catch (e) {}
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/bridge-icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bridge Design System</title>
+    <script type="module" crossorigin src="/assets/index-Dc_O6UTH.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BcET2Qim.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

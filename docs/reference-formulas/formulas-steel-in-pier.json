@@ -1,0 +1,1586 @@
+{
+  "sheetName": "STEEL IN PIER",
+  "totalFormulas": 127,
+  "extractedAt": "2025-11-24T14:14:49.941Z",
+  "formulas": [
+    {
+      "cell": "A2",
+      "row": 2,
+      "col": 1,
+      "formula": "'STEEL IN FLARED  PIER BASE '!A2:O2",
+      "value": "Name Of Work :- Construction of Submersible Bridge on ON KHERWARA - JAWAS - SUVERI ROAD IN KM 9/000, ACROSS RIVER SOM",
+      "cellRefs": [
+        "A2",
+        "O2"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C3",
+      "row": 3,
+      "col": 3,
+      "formula": "'STEEL IN FLARED  PIER BASE '!E3",
+      "value": 93.56999999999998,
+      "cellRefs": [
+        "E3"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E3",
+      "row": 3,
+      "col": 5,
+      "formula": "102-1.2",
+      "value": 100.8,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B6",
+      "row": 6,
+      "col": 2,
+      "formula": "'STABILITY CHECK FOR PIER'!B201",
+      "value": "SUPER STRUCTURE",
+      "cellRefs": [
+        "B201"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C6",
+      "row": 6,
+      "col": 3,
+      "formula": "'STABILITY CHECK FOR PIER'!C201",
+      "value": "=",
+      "cellRefs": [
+        "C201"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D6",
+      "row": 6,
+      "col": 4,
+      "formula": "'STABILITY CHECK FOR PIER'!D201",
+      "value": 1463.6159999999998,
+      "cellRefs": [
+        "D201"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E6",
+      "row": 6,
+      "col": 5,
+      "formula": "'STABILITY CHECK FOR PIER'!E201",
+      "value": "kN",
+      "cellRefs": [
+        "E201"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B7",
+      "row": 7,
+      "col": 2,
+      "formula": "'STABILITY CHECK FOR PIER'!B202",
+      "value": "SUB STRUCTURE",
+      "cellRefs": [
+        "B202"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C7",
+      "row": 7,
+      "col": 3,
+      "formula": "'STABILITY CHECK FOR PIER'!C202",
+      "value": "=",
+      "cellRefs": [
+        "C202"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D7",
+      "row": 7,
+      "col": 4,
+      "formula": "'STABILITY CHECK FOR PIER'!D202",
+      "value": 2821.2050880000015,
+      "cellRefs": [
+        "D202"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E7",
+      "row": 7,
+      "col": 5,
+      "formula": "'STABILITY CHECK FOR PIER'!E202",
+      "value": "kN",
+      "cellRefs": [
+        "E202"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F7",
+      "row": 7,
+      "col": 6,
+      "formula": "'STABILITY CHECK FOR PIER'!F202",
+      "value": "Without Buoyancy",
+      "cellRefs": [
+        "F202"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B8",
+      "row": 8,
+      "col": 2,
+      "formula": "'STABILITY CHECK FOR PIER'!B203",
+      "value": "SUB STRUCTURE",
+      "cellRefs": [
+        "B203"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C8",
+      "row": 8,
+      "col": 3,
+      "formula": "'STABILITY CHECK FOR PIER'!C203",
+      "value": "=",
+      "cellRefs": [
+        "C203"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D8",
+      "row": 8,
+      "col": 4,
+      "formula": "'STABILITY CHECK FOR PIER'!D203",
+      "value": 2271.835470000002,
+      "cellRefs": [
+        "D203"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E8",
+      "row": 8,
+      "col": 5,
+      "formula": "'STABILITY CHECK FOR PIER'!E203",
+      "value": "kN",
+      "cellRefs": [
+        "E203"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F8",
+      "row": 8,
+      "col": 6,
+      "formula": "'STABILITY CHECK FOR PIER'!F203",
+      "value": "With Buoyancy",
+      "cellRefs": [
+        "F203"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B9",
+      "row": 9,
+      "col": 2,
+      "formula": "'STABILITY CHECK FOR PIER'!B204",
+      "value": "LIVE LOAD ",
+      "cellRefs": [
+        "B204"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C9",
+      "row": 9,
+      "col": 3,
+      "formula": "'STABILITY CHECK FOR PIER'!C204",
+      "value": "=",
+      "cellRefs": [
+        "C204"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D9",
+      "row": 9,
+      "col": 4,
+      "formula": "'STABILITY CHECK FOR PIER'!D204",
+      "value": 788.2663473053892,
+      "cellRefs": [
+        "D204"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E9",
+      "row": 9,
+      "col": 5,
+      "formula": "'STABILITY CHECK FOR PIER'!E204",
+      "value": "kN",
+      "cellRefs": [
+        "E204"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B10",
+      "row": 10,
+      "col": 2,
+      "formula": "'STABILITY CHECK FOR PIER'!B205",
+      "value": "Total Load without Buoyancy",
+      "cellRefs": [
+        "B205"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C10",
+      "row": 10,
+      "col": 3,
+      "formula": "'STABILITY CHECK FOR PIER'!C205",
+      "value": "=",
+      "cellRefs": [
+        "C205"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D10",
+      "row": 10,
+      "col": 4,
+      "formula": "'STABILITY CHECK FOR PIER'!D205",
+      "value": 5073.0874353053905,
+      "cellRefs": [
+        "D205"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E10",
+      "row": 10,
+      "col": 5,
+      "formula": "'STABILITY CHECK FOR PIER'!E205",
+      "value": "kN",
+      "cellRefs": [
+        "E205"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B11",
+      "row": 11,
+      "col": 2,
+      "formula": "'STABILITY CHECK FOR PIER'!B206",
+      "value": "Total Load with Buoyancy",
+      "cellRefs": [
+        "B206"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C11",
+      "row": 11,
+      "col": 3,
+      "formula": "'STABILITY CHECK FOR PIER'!C206",
+      "value": "=",
+      "cellRefs": [
+        "C206"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D11",
+      "row": 11,
+      "col": 4,
+      "formula": "'STABILITY CHECK FOR PIER'!D206",
+      "value": 4523.717817305391,
+      "cellRefs": [
+        "D206"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E11",
+      "row": 11,
+      "col": 5,
+      "formula": "'STABILITY CHECK FOR PIER'!E206",
+      "value": "kN",
+      "cellRefs": [
+        "E206"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B12",
+      "row": 12,
+      "col": 2,
+      "formula": "'STABILITY CHECK FOR PIER'!B422",
+      "value": "Total LONGITUDINAL MOMENT",
+      "cellRefs": [
+        "B422"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C13",
+      "row": 13,
+      "col": 3,
+      "formula": "C3",
+      "value": 93.56999999999998,
+      "cellRefs": [
+        "C3"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D13",
+      "row": 13,
+      "col": 4,
+      "formula": "D15",
+      "value": "M =",
+      "cellRefs": [
+        "D15"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E13",
+      "row": 13,
+      "col": 5,
+      "formula": "'STABILITY CHECK FOR PIER'!H207",
+      "value": 356.81410292867747,
+      "cellRefs": [
+        "H207"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F13",
+      "row": 13,
+      "col": 6,
+      "formula": "'STABILITY CHECK FOR PIER'!K115",
+      "value": "kN-m",
+      "cellRefs": [
+        "K115"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B14",
+      "row": 14,
+      "col": 2,
+      "formula": "'STABILITY CHECK FOR PIER'!B423",
+      "value": "Total TRANSVERSE MOMENT",
+      "cellRefs": [
+        "B423"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C15",
+      "row": 15,
+      "col": 3,
+      "formula": "C3",
+      "value": 93.56999999999998,
+      "cellRefs": [
+        "C3"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D15",
+      "row": 15,
+      "col": 4,
+      "formula": "'STABILITY CHECK FOR PIER'!E155",
+      "value": "M =",
+      "cellRefs": [
+        "E155"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E15",
+      "row": 15,
+      "col": 5,
+      "formula": "'STABILITY CHECK FOR PIER'!H208",
+      "value": 2360.441980772989,
+      "cellRefs": [
+        "H208"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F15",
+      "row": 15,
+      "col": 6,
+      "formula": "'STABILITY CHECK FOR PIER'!K156",
+      "value": "kN-m",
+      "cellRefs": [
+        "K156"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B16",
+      "row": 16,
+      "col": 2,
+      "formula": "TROUGH!A21",
+      "value": "CONCRETE MIX",
+      "cellRefs": [
+        "A21"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "D16",
+      "row": 16,
+      "col": 4,
+      "formula": "'STEEL IN FLARED  PIER BASE '!D16",
+      "value": "M-25",
+      "cellRefs": [
+        "D16"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B17",
+      "row": 17,
+      "col": 2,
+      "formula": "TROUGH!A22",
+      "value": "CHARACTERISTIC STRENGTH OF REINFORCEMENT",
+      "cellRefs": [
+        "A22"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "F17",
+      "row": 17,
+      "col": 6,
+      "formula": "TROUGH!F22",
+      "value": 415,
+      "cellRefs": [
+        "F22"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "G17",
+      "row": 17,
+      "col": 7,
+      "formula": "TROUGH!G22",
+      "value": "N/mm2",
+      "cellRefs": [
+        "G22"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "B18",
+      "row": 18,
+      "col": 2,
+      "formula": "TROUGH!A23",
+      "value": "PERMISSIBLE STRESSES",
+      "cellRefs": [
+        "A23"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "B19",
+      "row": 19,
+      "col": 2,
+      "formula": "TROUGH!B24",
+      "value": "IN STEEL",
+      "cellRefs": [
+        "B24"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "B20",
+      "row": 20,
+      "col": 2,
+      "formula": "TROUGH!B31",
+      "value": "IN CONCRETE",
+      "cellRefs": [
+        "B31"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "B22",
+      "row": 22,
+      "col": 2,
+      "formula": "TROUGH!B32",
+      "value": "Permissible Compressive Stress in Bending",
+      "cellRefs": [
+        "B32"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "D22",
+      "row": 22,
+      "col": 4,
+      "formula": "TROUGH!C32",
+      "value": "σcbc",
+      "cellRefs": [
+        "C32"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "E22",
+      "row": 22,
+      "col": 5,
+      "formula": "TROUGH!D32",
+      "value": "=",
+      "cellRefs": [
+        "D32"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "G22",
+      "row": 22,
+      "col": 7,
+      "formula": "TROUGH!F32",
+      "value": "N/mm2",
+      "cellRefs": [
+        "F32"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "B23",
+      "row": 23,
+      "col": 2,
+      "formula": "TROUGH!B33",
+      "value": "Permissible Compressive Stress in Direct Compression",
+      "cellRefs": [
+        "B33"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "D23",
+      "row": 23,
+      "col": 4,
+      "formula": "TROUGH!C33",
+      "value": "σcc",
+      "cellRefs": [
+        "C33"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "E23",
+      "row": 23,
+      "col": 5,
+      "formula": "TROUGH!D33",
+      "value": "=",
+      "cellRefs": [
+        "D33"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "F23",
+      "row": 23,
+      "col": 6,
+      "formula": "TROUGH!E33",
+      "value": 8,
+      "cellRefs": [
+        "E33"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "G23",
+      "row": 23,
+      "col": 7,
+      "formula": "TROUGH!F33",
+      "value": "N/mm2",
+      "cellRefs": [
+        "F33"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "D24",
+      "row": 24,
+      "col": 4,
+      "formula": "TROUGH!C34",
+      "value": "σct",
+      "cellRefs": [
+        "C34"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "E24",
+      "row": 24,
+      "col": 5,
+      "formula": "TROUGH!D34",
+      "value": "=",
+      "cellRefs": [
+        "D34"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "F24",
+      "row": 24,
+      "col": 6,
+      "formula": "TROUGH!E34",
+      "value": 3.6,
+      "cellRefs": [
+        "E34"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "G24",
+      "row": 24,
+      "col": 7,
+      "formula": "TROUGH!F34",
+      "value": "N/mm2",
+      "cellRefs": [
+        "F34"
+      ],
+      "sheetRefs": [
+        "TROUGH"
+      ],
+      "functions": []
+    },
+    {
+      "cell": "F25",
+      "row": 25,
+      "col": 6,
+      "formula": "D10",
+      "value": 5073.0874353053905,
+      "cellRefs": [
+        "D10"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H25",
+      "row": 25,
+      "col": 8,
+      "formula": "D25*F25",
+      "value": 7609.631152958085,
+      "cellRefs": [
+        "D25",
+        "F25"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F26",
+      "row": 26,
+      "col": 6,
+      "formula": "E13",
+      "value": 356.81410292867747,
+      "cellRefs": [
+        "E13"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H26",
+      "row": 26,
+      "col": 8,
+      "formula": "D26*F26",
+      "value": 535.2211543930161,
+      "cellRefs": [
+        "D26",
+        "F26"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F27",
+      "row": 27,
+      "col": 6,
+      "formula": "E15",
+      "value": 2360.441980772989,
+      "cellRefs": [
+        "E15"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H27",
+      "row": 27,
+      "col": 8,
+      "formula": "D27*F27",
+      "value": 3540.6629711594837,
+      "cellRefs": [
+        "D27",
+        "F27"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D32",
+      "row": 32,
+      "col": 4,
+      "formula": "D31+C51/2",
+      "value": 87.5,
+      "cellRefs": [
+        "D31",
+        "C51"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F32",
+      "row": 32,
+      "col": 6,
+      "formula": "E30",
+      "value": 1200,
+      "cellRefs": [
+        "E30"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H32",
+      "row": 32,
+      "col": 8,
+      "formula": "D32/F32",
+      "value": 0.07291666666666667,
+      "cellRefs": [
+        "D32",
+        "F32"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D33",
+      "row": 33,
+      "col": 4,
+      "formula": "H25",
+      "value": 7609.631152958085,
+      "cellRefs": [
+        "H25"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H33",
+      "row": 33,
+      "col": 8,
+      "formula": "$F$21",
+      "value": 30,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "J33",
+      "row": 33,
+      "col": 10,
+      "formula": "$C$30",
+      "value": 12000,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "L33",
+      "row": 33,
+      "col": 12,
+      "formula": "$E$30",
+      "value": 1200,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D34",
+      "row": 34,
+      "col": 4,
+      "formula": "D33*F33/(H33*J33*L33)",
+      "value": 0.017614886928143718,
+      "cellRefs": [
+        "D33",
+        "F33",
+        "H33",
+        "J33",
+        "L33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D36",
+      "row": 36,
+      "col": 4,
+      "formula": "H26",
+      "value": 535.2211543930161,
+      "cellRefs": [
+        "H26"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E36",
+      "row": 36,
+      "col": 5,
+      "formula": "E33",
+      "value": "x",
+      "cellRefs": [
+        "E33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F36",
+      "row": 36,
+      "col": 6,
+      "formula": "$F$33*1000",
+      "value": 1000000,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H36",
+      "row": 36,
+      "col": 8,
+      "formula": "$F$21",
+      "value": 30,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "J36",
+      "row": 36,
+      "col": 10,
+      "formula": "$C$30",
+      "value": 12000,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "L36",
+      "row": 36,
+      "col": 12,
+      "formula": "$E$30",
+      "value": 1200,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D37",
+      "row": 37,
+      "col": 4,
+      "formula": "D36*F36/(H36*J36*L36^2)",
+      "value": 0.001032448214492701,
+      "cellRefs": [
+        "D36",
+        "F36",
+        "H36",
+        "J36",
+        "L36"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D42",
+      "row": 42,
+      "col": 4,
+      "formula": "$D$11",
+      "value": 4523.717817305391,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E42",
+      "row": 42,
+      "col": 5,
+      "formula": "E33",
+      "value": "x",
+      "cellRefs": [
+        "E33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F42",
+      "row": 42,
+      "col": 6,
+      "formula": "F33",
+      "value": 1000,
+      "cellRefs": [
+        "F33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H42",
+      "row": 42,
+      "col": 8,
+      "formula": "$F$22",
+      "value": 8,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D43",
+      "row": 43,
+      "col": 4,
+      "formula": "D42*F42/H42",
+      "value": 565464.7271631738,
+      "cellRefs": [
+        "D42",
+        "F42",
+        "H42"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C44",
+      "row": 44,
+      "col": 3,
+      "formula": "0.8",
+      "value": 0.8,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E44",
+      "row": 44,
+      "col": 5,
+      "formula": "D43",
+      "value": 565464.7271631738,
+      "cellRefs": [
+        "D43"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D45",
+      "row": 45,
+      "col": 4,
+      "formula": "C44*E44/100",
+      "value": 4523.717817305391,
+      "cellRefs": [
+        "C44",
+        "E44"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E48",
+      "row": 48,
+      "col": 5,
+      "formula": "C30",
+      "value": 12000,
+      "cellRefs": [
+        "C30"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G48",
+      "row": 48,
+      "col": 7,
+      "formula": "$E$30",
+      "value": 1200,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D49",
+      "row": 49,
+      "col": 4,
+      "formula": "C48*E48*G48/100",
+      "value": 43200,
+      "cellRefs": [
+        "C48",
+        "E48",
+        "G48"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D50",
+      "row": 50,
+      "col": 4,
+      "formula": "D49",
+      "value": 43200,
+      "cellRefs": [
+        "D49"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F51",
+      "row": 51,
+      "col": 6,
+      "formula": "D50/(0.785*C51^2)",
+      "value": 88.05095541401273,
+      "cellRefs": [
+        "D50",
+        "C51"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D52",
+      "row": 52,
+      "col": 4,
+      "formula": "ROUNDDOWN((2*(E48+G48)/F51),-1)",
+      "value": 290,
+      "cellRefs": [
+        "E48",
+        "G48",
+        "F51"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDDOWN"
+      ]
+    },
+    {
+      "cell": "D55",
+      "row": 55,
+      "col": 4,
+      "formula": "H27",
+      "value": 3540.6629711594837,
+      "cellRefs": [
+        "H27"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E55",
+      "row": 55,
+      "col": 5,
+      "formula": "E36",
+      "value": "x",
+      "cellRefs": [
+        "E36"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F55",
+      "row": 55,
+      "col": 6,
+      "formula": "$F$33*1000",
+      "value": 1000000,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G55",
+      "row": 55,
+      "col": 7,
+      "formula": "G36",
+      "value": "/ (",
+      "cellRefs": [
+        "G36"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H55",
+      "row": 55,
+      "col": 8,
+      "formula": "$F$21",
+      "value": 30,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I55",
+      "row": 55,
+      "col": 9,
+      "formula": "I36",
+      "value": "x",
+      "cellRefs": [
+        "I36"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E56",
+      "row": 56,
+      "col": 5,
+      "formula": "$C$30",
+      "value": 12000,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G56",
+      "row": 56,
+      "col": 7,
+      "formula": "$E$30",
+      "value": 1200,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D57",
+      "row": 57,
+      "col": 4,
+      "formula": "D55*F55/(H55*E56*G56^2)",
+      "value": 0.006829982583255177,
+      "cellRefs": [
+        "D55",
+        "F55",
+        "H55",
+        "E56",
+        "G56"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C61",
+      "row": 61,
+      "col": 3,
+      "formula": "E15",
+      "value": 2360.441980772989,
+      "cellRefs": [
+        "E15"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E61",
+      "row": 61,
+      "col": 5,
+      "formula": "102+1.2+0.925/2-91.79",
+      "value": 11.872500000000002,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G61",
+      "row": 61,
+      "col": 7,
+      "formula": "C61/E61",
+      "value": 198.8159175214141,
+      "cellRefs": [
+        "C61",
+        "E61"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C63",
+      "row": 63,
+      "col": 3,
+      "formula": "G61",
+      "value": 198.8159175214141,
+      "cellRefs": [
+        "G61"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G63",
+      "row": 63,
+      "col": 7,
+      "formula": "E56",
+      "value": 12000,
+      "cellRefs": [
+        "E56"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I63",
+      "row": 63,
+      "col": 9,
+      "formula": "G56",
+      "value": 1200,
+      "cellRefs": [
+        "G56"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D64",
+      "row": 64,
+      "col": 4,
+      "formula": "C63*E63/(G63*I63)",
+      "value": 0.01380666093898709,
+      "cellRefs": [
+        "C63",
+        "E63",
+        "G63",
+        "I63"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C65",
+      "row": 65,
+      "col": 3,
+      "formula": "F51*0.785*C51^2/(E56*G56)*100",
+      "value": 0.3,
+      "cellRefs": [
+        "F51",
+        "C51",
+        "E56",
+        "G56"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D69",
+      "row": 69,
+      "col": 4,
+      "formula": "C51",
+      "value": 25,
+      "cellRefs": [
+        "C51"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H69",
+      "row": 69,
+      "col": 8,
+      "formula": "D69/F69",
+      "value": 6.25,
+      "cellRefs": [
+        "D69",
+        "F69"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C72",
+      "row": 72,
+      "col": 3,
+      "formula": "I63",
+      "value": 1200,
+      "cellRefs": [
+        "I63"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E73",
+      "row": 73,
+      "col": 5,
+      "formula": "C70",
+      "value": 12,
+      "cellRefs": [
+        "C70"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G73",
+      "row": 73,
+      "col": 7,
+      "formula": "C73*E73",
+      "value": 144,
+      "cellRefs": [
+        "C73",
+        "E73"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C76",
+      "row": 76,
+      "col": 3,
+      "formula": "C70",
+      "value": 12,
+      "cellRefs": [
+        "C70"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D81",
+      "row": 81,
+      "col": 4,
+      "formula": "F76",
+      "value": 100,
+      "cellRefs": [
+        "F76"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D85",
+      "row": 85,
+      "col": 4,
+      "formula": "G48*1",
+      "value": 1200,
+      "cellRefs": [
+        "G48"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D86",
+      "row": 86,
+      "col": 4,
+      "formula": "D85-2*(75-C51/2-C76)",
+      "value": 1099,
+      "cellRefs": [
+        "D85",
+        "C51",
+        "C76"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D87",
+      "row": 87,
+      "col": 4,
+      "formula": "0.18*D81*D82*(D83/D84)*(D85/D86-1)",
+      "value": 35.874891741670936,
+      "cellRefs": [
+        "D81",
+        "D82",
+        "D83",
+        "D84",
+        "D85",
+        "D86"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D88",
+      "row": 88,
+      "col": 4,
+      "formula": "0.785*C76^2",
+      "value": 113.04,
+      "cellRefs": [
+        "C76"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C90",
+      "row": 90,
+      "col": 3,
+      "formula": "C70",
+      "value": 12,
+      "cellRefs": [
+        "C70"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C94",
+      "row": 94,
+      "col": 3,
+      "formula": "C51",
+      "value": 25,
+      "cellRefs": [
+        "C51"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E94",
+      "row": 94,
+      "col": 5,
+      "formula": "D52",
+      "value": 290,
+      "cellRefs": [
+        "D52"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C95",
+      "row": 95,
+      "col": 3,
+      "formula": "CONCATENATE(\"   \",C90,D90,F90,G90)",
+      "value": "   12mm dia rings @100mm c/c.",
+      "cellRefs": [
+        "C90",
+        "D90",
+        "F90",
+        "G90"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    }
+  ]
+}

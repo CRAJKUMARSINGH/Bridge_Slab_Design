@@ -1,0 +1,1955 @@
+{
+  "sheetName": "TYPE1-STABILITY CHECK ABUTMENT",
+  "totalFormulas": 148,
+  "extractedAt": "2025-11-24T14:14:50.444Z",
+  "formulas": [
+    {
+      "cell": "A2",
+      "row": 2,
+      "col": 1,
+      "formula": "'TYPE1-AbutMENT Drawing'!A1:Z1",
+      "value": "Name Of Work :- Construction of Submersible Bridge on ON KHERWARA - JAWAS - SUVERI ROAD IN KM 9/000, ACROSS RIVER SOM",
+      "cellRefs": [
+        "TYPE1",
+        "A1",
+        "Z1"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D13",
+      "row": 13,
+      "col": 4,
+      "formula": "'STABILITY CHECK FOR PIER'!P46/8.4",
+      "value": 177.84689142857164,
+      "cellRefs": [
+        "P46"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D14",
+      "row": 14,
+      "col": 4,
+      "formula": "'STABILITY CHECK FOR PIER'!F63/8.4",
+      "value": 93.84123182207014,
+      "cellRefs": [
+        "F63"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G21",
+      "row": 21,
+      "col": 7,
+      "formula": "C21*E21",
+      "value": 200,
+      "cellRefs": [
+        "C21",
+        "E21"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C23",
+      "row": 23,
+      "col": 3,
+      "formula": "G21",
+      "value": 200,
+      "cellRefs": [
+        "G21"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G23",
+      "row": 23,
+      "col": 7,
+      "formula": "C23/E23",
+      "value": 100,
+      "cellRefs": [
+        "C23",
+        "E23"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C24",
+      "row": 24,
+      "col": 3,
+      "formula": "G23",
+      "value": 100,
+      "cellRefs": [
+        "G23"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E24",
+      "row": 24,
+      "col": 5,
+      "formula": "F4",
+      "value": 8.4,
+      "cellRefs": [
+        "F4"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G24",
+      "row": 24,
+      "col": 7,
+      "formula": "ROUNDUP(C24/E24,2)",
+      "value": 11.91,
+      "cellRefs": [
+        "C24",
+        "E24"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "C28",
+      "row": 28,
+      "col": 3,
+      "formula": "11.7*10^-6",
+      "value": 0.000011699999999999998,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C29",
+      "row": 29,
+      "col": 3,
+      "formula": "D26",
+      "value": 17,
+      "cellRefs": [
+        "D26"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E29",
+      "row": 29,
+      "col": 5,
+      "formula": "C28",
+      "value": 0.000011699999999999998,
+      "cellRefs": [
+        "C28"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G29",
+      "row": 29,
+      "col": 7,
+      "formula": "C29*E29",
+      "value": 0.00019889999999999996,
+      "cellRefs": [
+        "C29",
+        "E29"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C30",
+      "row": 30,
+      "col": 3,
+      "formula": "2*10^-4",
+      "value": 0.0002,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C31",
+      "row": 31,
+      "col": 3,
+      "formula": "G29",
+      "value": 0.00019889999999999996,
+      "cellRefs": [
+        "G29"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E31",
+      "row": 31,
+      "col": 5,
+      "formula": "C30",
+      "value": 0.0002,
+      "cellRefs": [
+        "C30"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G31",
+      "row": 31,
+      "col": 7,
+      "formula": "E31+C31",
+      "value": 0.0003989,
+      "cellRefs": [
+        "E31",
+        "C31"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C32",
+      "row": 32,
+      "col": 3,
+      "formula": "G31",
+      "value": 0.0003989,
+      "cellRefs": [
+        "G31"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E32",
+      "row": 32,
+      "col": 5,
+      "formula": "'STABILITY CHECK FOR PIER'!D27*1000",
+      "value": 8799.999999999998,
+      "cellRefs": [
+        "D27"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G32",
+      "row": 32,
+      "col": 7,
+      "formula": "C32*E32/2",
+      "value": 1.7551599999999996,
+      "cellRefs": [
+        "C32",
+        "E32"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E33",
+      "row": 33,
+      "col": 5,
+      "formula": "ROUNDUP(5700*(30^0.5),2)",
+      "value": 31220.19,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "C34",
+      "row": 34,
+      "col": 3,
+      "formula": "G31",
+      "value": 0.0003989,
+      "cellRefs": [
+        "G31"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E34",
+      "row": 34,
+      "col": 5,
+      "formula": "E33",
+      "value": 31220.19,
+      "cellRefs": [
+        "E33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G34",
+      "row": 34,
+      "col": 7,
+      "formula": "G31*E33",
+      "value": 12.453733791,
+      "cellRefs": [
+        "G31",
+        "E33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C35",
+      "row": 35,
+      "col": 3,
+      "formula": "G34",
+      "value": 12.453733791,
+      "cellRefs": [
+        "G34"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E35",
+      "row": 35,
+      "col": 5,
+      "formula": "'STABILITY CHECK FOR PIER'!H27*1000",
+      "value": 750,
+      "cellRefs": [
+        "H27"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G35",
+      "row": 35,
+      "col": 7,
+      "formula": "C35*E35",
+      "value": 9340.300343249999,
+      "cellRefs": [
+        "C35",
+        "E35"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G36",
+      "row": 36,
+      "col": 7,
+      "formula": "G35/1000",
+      "value": 9.340300343249998,
+      "cellRefs": [
+        "G35"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E39",
+      "row": 39,
+      "col": 5,
+      "formula": "200*(1.2+0.975)/(11.1*15)",
+      "value": 2.612612612612612,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G52",
+      "row": 52,
+      "col": 7,
+      "formula": "F8",
+      "value": 35,
+      "cellRefs": [
+        "F8"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C53",
+      "row": 53,
+      "col": 3,
+      "formula": "F10",
+      "value": 17.5,
+      "cellRefs": [
+        "F10"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C54",
+      "row": 54,
+      "col": 3,
+      "formula": "ROUNDUP(0.496,3)",
+      "value": 0.496,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "C55",
+      "row": 55,
+      "col": 3,
+      "formula": "'TYPE1-AbutMENT Drawing'!G6/1000",
+      "value": 4.83000000000001,
+      "cellRefs": [
+        "TYPE1",
+        "G6"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B57",
+      "row": 57,
+      "col": 2,
+      "formula": "0.5",
+      "value": 0.5,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D57",
+      "row": 57,
+      "col": 4,
+      "formula": "E9",
+      "value": 18,
+      "cellRefs": [
+        "E9"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F57",
+      "row": 57,
+      "col": 6,
+      "formula": "C55",
+      "value": 4.83000000000001,
+      "cellRefs": [
+        "C55"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H57",
+      "row": 57,
+      "col": 8,
+      "formula": "C54",
+      "value": 0.496,
+      "cellRefs": [
+        "C54"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C58",
+      "row": 58,
+      "col": 3,
+      "formula": "ROUNDUP(B57*D57*F57*F57*H57,2)",
+      "value": 104.15,
+      "cellRefs": [
+        "B57",
+        "D57",
+        "F57",
+        "H57"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "C59",
+      "row": 59,
+      "col": 3,
+      "formula": "0.42",
+      "value": 0.42,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E59",
+      "row": 59,
+      "col": 5,
+      "formula": "C55",
+      "value": 4.83000000000001,
+      "cellRefs": [
+        "C55"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G59",
+      "row": 59,
+      "col": 7,
+      "formula": "ROUNDUP(C59*E59,2)",
+      "value": 2.03,
+      "cellRefs": [
+        "C59",
+        "E59"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "E63",
+      "row": 63,
+      "col": 5,
+      "formula": "ROUNDUP(1.2*18*0.496*$C$55,2)",
+      "value": 51.75,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "E64",
+      "row": 64,
+      "col": 5,
+      "formula": "ROUNDUP(0.3*24*0.496*$C$55,2)",
+      "value": 17.25,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "E65",
+      "row": 65,
+      "col": 5,
+      "formula": "SUM(E63:E64)",
+      "value": 69,
+      "cellRefs": [
+        "E63",
+        "E64"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "SUM"
+      ]
+    },
+    {
+      "cell": "C66",
+      "row": 66,
+      "col": 3,
+      "formula": "'TYPE1-AbutMENT Drawing'!B21/2000",
+      "value": 2.415000000000005,
+      "cellRefs": [
+        "TYPE1",
+        "B21"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B68",
+      "row": 68,
+      "col": 2,
+      "formula": "CONCATENATE(\"= (1.2 x 18 + 0.3 x 24 ) x \",'TYPE1-AbutMENT Drawing'!G32/1000,\" = \")",
+      "value": "= (1.2 x 18 + 0.3 x 24 ) x 4.5 = ",
+      "cellRefs": [
+        "TYPE1",
+        "G32"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "C68",
+      "row": 68,
+      "col": 3,
+      "formula": "((1.2*18)+(0.3*24))*'TYPE1-AbutMENT Drawing'!G32/1000",
+      "value": 129.6,
+      "cellRefs": [
+        "TYPE1",
+        "G32"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C70",
+      "row": 70,
+      "col": 3,
+      "formula": "CONCATENATE(\"18 x\",'TYPE1-AbutMENT Drawing'!G32/1000,\"x (\",'TYPE1-AbutMENT Drawing'!G6/1000,\" - \",'TYPE1-AbutMENT Drawing'!W30/1000,\")\")",
+      "value": "18 x4.5x (4.83000000000001 - 1)",
+      "cellRefs": [
+        "TYPE1",
+        "G32",
+        "G6",
+        "W30"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "E70",
+      "row": 70,
+      "col": 5,
+      "formula": "C124",
+      "value": 34.48,
+      "cellRefs": [
+        "C124"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C77",
+      "row": 77,
+      "col": 3,
+      "formula": "G134",
+      "value": 471.349,
+      "cellRefs": [
+        "G134"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C78",
+      "row": 78,
+      "col": 3,
+      "formula": "F134",
+      "value": 4132.472,
+      "cellRefs": [
+        "F134"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C79",
+      "row": 79,
+      "col": 3,
+      "formula": "C78",
+      "value": 4132.472,
+      "cellRefs": [
+        "C78"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E79",
+      "row": 79,
+      "col": 5,
+      "formula": "C77",
+      "value": 471.349,
+      "cellRefs": [
+        "C77"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G79",
+      "row": 79,
+      "col": 7,
+      "formula": "ROUND(C79/E79,2)",
+      "value": 8.77,
+      "cellRefs": [
+        "C79",
+        "E79"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "C82",
+      "row": 82,
+      "col": 3,
+      "formula": "CONCATENATE(\"=(\",F134,\" - \",G134,\" ) / \",C134,\" ) =\")",
+      "value": "=(4132.472 - 471.349 ) / 1004.041 ) =",
+      "cellRefs": [
+        "F134",
+        "G134",
+        "C134"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "E82",
+      "row": 82,
+      "col": 5,
+      "formula": "ROUND((F134-G134)/C134,2)",
+      "value": 3.65,
+      "cellRefs": [
+        "F134",
+        "G134",
+        "C134"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "C84",
+      "row": 84,
+      "col": 3,
+      "formula": "'TYPE1-AbutMENT Drawing'!M33/1000",
+      "value": 8.05,
+      "cellRefs": [
+        "TYPE1",
+        "M33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E84",
+      "row": 84,
+      "col": 5,
+      "formula": "C84/6",
+      "value": 1.3416666666666668,
+      "cellRefs": [
+        "C84"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C85",
+      "row": 85,
+      "col": 3,
+      "formula": "'TYPE1-AbutMENT Drawing'!M33/2000",
+      "value": 4.025,
+      "cellRefs": [
+        "TYPE1",
+        "M33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E85",
+      "row": 85,
+      "col": 5,
+      "formula": "E82",
+      "value": 3.65,
+      "cellRefs": [
+        "E82"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G85",
+      "row": 85,
+      "col": 7,
+      "formula": "ROUNDUP(C85-E85,2)",
+      "value": 0.38,
+      "cellRefs": [
+        "C85",
+        "E85"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "G86",
+      "row": 86,
+      "col": 7,
+      "formula": "E84",
+      "value": 1.3416666666666668,
+      "cellRefs": [
+        "E84"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C89",
+      "row": 89,
+      "col": 3,
+      "formula": "G128",
+      "value": 419.06399999999996,
+      "cellRefs": [
+        "G128"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C90",
+      "row": 90,
+      "col": 3,
+      "formula": "F128",
+      "value": 3855.154,
+      "cellRefs": [
+        "F128"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C91",
+      "row": 91,
+      "col": 3,
+      "formula": "C90",
+      "value": 3855.154,
+      "cellRefs": [
+        "C90"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E91",
+      "row": 91,
+      "col": 5,
+      "formula": "C89",
+      "value": 419.06399999999996,
+      "cellRefs": [
+        "C89"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G91",
+      "row": 91,
+      "col": 7,
+      "formula": "ROUND(C91/E91,2)",
+      "value": 9.2,
+      "cellRefs": [
+        "C91",
+        "E91"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "C94",
+      "row": 94,
+      "col": 3,
+      "formula": "CONCATENATE(\"=(\",F128,\" - \",G128,\" ) / \",C128,\" ) =\")",
+      "value": "=(3855.154 - 419.064 ) / 907.587 ) =",
+      "cellRefs": [
+        "F128",
+        "G128",
+        "C128"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "E94",
+      "row": 94,
+      "col": 5,
+      "formula": "ROUND((F128-G128)/C128,2)",
+      "value": 3.79,
+      "cellRefs": [
+        "F128",
+        "G128",
+        "C128"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "C97",
+      "row": 97,
+      "col": 3,
+      "formula": "C134",
+      "value": 1004.0409999999999,
+      "cellRefs": [
+        "C134"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D98",
+      "row": 98,
+      "col": 4,
+      "formula": "C134",
+      "value": 1004.0409999999999,
+      "cellRefs": [
+        "C134"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C100",
+      "row": 100,
+      "col": 3,
+      "formula": "CONCATENATE($C$97,\"/\",\"(\",'TYPE1-AbutMENT Drawing'!$M$33/1000,\"x\",1,\")\",\"(1 +\",\"(\",6,\"x\",$G$85,\"/\",'TYPE1-AbutMENT Drawing'!$M$33/1000,\"))\")",
+      "value": "1004.041/(8.05x1)(1 +(6x0.38/8.05))",
+      "cellRefs": [
+        "TYPE1"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "F100",
+      "row": 100,
+      "col": 6,
+      "formula": "ROUNDUP(($D$98*1000/'TYPE1-AbutMENT Drawing'!$M$33)*(1+$G$85*6*1000/'TYPE1-AbutMENT Drawing'!$M$33),2)",
+      "value": 160.06,
+      "cellRefs": [
+        "TYPE1"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "C101",
+      "row": 101,
+      "col": 3,
+      "formula": "CONCATENATE($C$97,\"/\",\"(\",'TYPE1-AbutMENT Drawing'!$M$33/1000,\"x\",1,\")\",\"(1 -\",\"(\",6,\"x\",$G$85,\"/\",'TYPE1-AbutMENT Drawing'!$M$33/1000,\"))\")",
+      "value": "1004.041/(8.05x1)(1 -(6x0.38/8.05))",
+      "cellRefs": [
+        "TYPE1"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "F101",
+      "row": 101,
+      "col": 6,
+      "formula": "ROUNDUP(($D$98*1000/'TYPE1-AbutMENT Drawing'!$M$33)*(1-$G$85*6*1000/'TYPE1-AbutMENT Drawing'!$M$33),2)",
+      "value": 89.4,
+      "cellRefs": [
+        "TYPE1"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "C106",
+      "row": 106,
+      "col": 3,
+      "formula": "$D$13",
+      "value": 177.84689142857164,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E106",
+      "row": 106,
+      "col": 5,
+      "formula": "ROUNDUP(('TYPE1-AbutMENT Drawing'!S32+('TYPE1-AbutMENT Drawing'!O32-'TYPE1-AbutMENT Drawing'!M13)/2)/1000,2)",
+      "value": 2.88,
+      "cellRefs": [
+        "TYPE1",
+        "S32",
+        "O32",
+        "M13"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "F106",
+      "row": 106,
+      "col": 6,
+      "formula": "ROUNDUP((C106*E106),2)",
+      "value": 512.2,
+      "cellRefs": [
+        "C106",
+        "E106"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "D107",
+      "row": 107,
+      "col": 4,
+      "formula": "$G$36",
+      "value": 9.340300343249998,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E107",
+      "row": 107,
+      "col": 5,
+      "formula": "ROUNDUP(('TYPE1-AbutMENT Drawing'!$B$21-'TYPE1-AbutMENT Drawing'!$K$17)/1000,2)",
+      "value": 4.39,
+      "cellRefs": [
+        "TYPE1"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "G107",
+      "row": 107,
+      "col": 7,
+      "formula": "D107*E107",
+      "value": 41.00391850686749,
+      "cellRefs": [
+        "D107",
+        "E107"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D108",
+      "row": 108,
+      "col": 4,
+      "formula": "C58",
+      "value": 104.15,
+      "cellRefs": [
+        "C58"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E108",
+      "row": 108,
+      "col": 5,
+      "formula": "G59",
+      "value": 2.03,
+      "cellRefs": [
+        "G59"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G108",
+      "row": 108,
+      "col": 7,
+      "formula": "D108*E108",
+      "value": 211.4245,
+      "cellRefs": [
+        "D108",
+        "E108"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D109",
+      "row": 109,
+      "col": 4,
+      "formula": "$E$65",
+      "value": 69,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E109",
+      "row": 109,
+      "col": 5,
+      "formula": "C66",
+      "value": 2.415000000000005,
+      "cellRefs": [
+        "C66"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G109",
+      "row": 109,
+      "col": 7,
+      "formula": "D109*E109",
+      "value": 166.63500000000033,
+      "cellRefs": [
+        "D109",
+        "E109"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C110",
+      "row": 110,
+      "col": 3,
+      "formula": "C68",
+      "value": 129.6,
+      "cellRefs": [
+        "C68"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E110",
+      "row": 110,
+      "col": 5,
+      "formula": "('TYPE1-AbutMENT Drawing'!M33-'TYPE1-AbutMENT Drawing'!G32/2)/1000",
+      "value": 5.8,
+      "cellRefs": [
+        "TYPE1",
+        "M33",
+        "G32"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F110",
+      "row": 110,
+      "col": 6,
+      "formula": "C110*E110",
+      "value": 751.68,
+      "cellRefs": [
+        "C110",
+        "E110"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C112",
+      "row": 112,
+      "col": 3,
+      "formula": "ROUNDUP('TYPE1-AbutMENT Drawing'!M33*'TYPE1-AbutMENT Drawing'!W30*24/1000000,2)",
+      "value": 193.2,
+      "cellRefs": [
+        "TYPE1",
+        "M33",
+        "W30"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "E112",
+      "row": 112,
+      "col": 5,
+      "formula": "'TYPE1-AbutMENT Drawing'!M33/2000",
+      "value": 4.025,
+      "cellRefs": [
+        "TYPE1",
+        "M33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F112",
+      "row": 112,
+      "col": 6,
+      "formula": "C112*E112",
+      "value": 777.63,
+      "cellRefs": [
+        "C112",
+        "E112"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B113",
+      "row": 113,
+      "col": 2,
+      "formula": "CONCATENATE('TYPE1-AbutMENT Drawing'!M33/1000,\"x\",'TYPE1-AbutMENT Drawing'!W30/1000,\"x 24 =\")",
+      "value": "8.05x1x 24 =",
+      "cellRefs": [
+        "TYPE1",
+        "M33",
+        "W30"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "C114",
+      "row": 114,
+      "col": 3,
+      "formula": "ROUNDUP('TYPE1-AbutMENT Drawing'!K23*'TYPE1-AbutMENT Drawing'!O32*24/1000000,2)",
+      "value": 54.94,
+      "cellRefs": [
+        "TYPE1",
+        "K23",
+        "O32"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "E114",
+      "row": 114,
+      "col": 5,
+      "formula": "ROUNDUP(('TYPE1-AbutMENT Drawing'!S32+'TYPE1-AbutMENT Drawing'!O32/2)/1000,2)",
+      "value": 3.03,
+      "cellRefs": [
+        "TYPE1",
+        "S32",
+        "O32"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "F114",
+      "row": 114,
+      "col": 6,
+      "formula": "C114*E114",
+      "value": 166.4682,
+      "cellRefs": [
+        "C114",
+        "E114"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B115",
+      "row": 115,
+      "col": 2,
+      "formula": "CONCATENATE('TYPE1-AbutMENT Drawing'!K23/1000,\"x\",'TYPE1-AbutMENT Drawing'!O32/1000,\"x 24 =\")",
+      "value": "2.18000000000001x1.05x 24 =",
+      "cellRefs": [
+        "TYPE1",
+        "K23",
+        "O32"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "C116",
+      "row": 116,
+      "col": 3,
+      "formula": "ROUNDUP('TYPE1-AbutMENT Drawing'!J20*'TYPE1-AbutMENT Drawing'!O32*24/1000000,2)",
+      "value": 30.24,
+      "cellRefs": [
+        "TYPE1",
+        "J20",
+        "O32"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "F116",
+      "row": 116,
+      "col": 6,
+      "formula": "C116*E116",
+      "value": 50.8032,
+      "cellRefs": [
+        "C116",
+        "E116"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B117",
+      "row": 117,
+      "col": 2,
+      "formula": "CONCATENATE('TYPE1-AbutMENT Drawing'!J20/1000,\"x\",'TYPE1-AbutMENT Drawing'!O32/1000,\"x 24 =\")",
+      "value": "1.2x1.05x 24 =",
+      "cellRefs": [
+        "TYPE1",
+        "J20",
+        "O32"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "C118",
+      "row": 118,
+      "col": 3,
+      "formula": "ROUNDUP('TYPE1-AbutMENT Drawing'!K17*'TYPE1-AbutMENT Drawing'!M13*24/1000000,2)",
+      "value": 3.24,
+      "cellRefs": [
+        "TYPE1",
+        "K17",
+        "M13"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "F118",
+      "row": 118,
+      "col": 6,
+      "formula": "C118*E118",
+      "value": 6.6419999999999995,
+      "cellRefs": [
+        "C118",
+        "E118"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B119",
+      "row": 119,
+      "col": 2,
+      "formula": "CONCATENATE('TYPE1-AbutMENT Drawing'!M13/1000,\"x\",'TYPE1-AbutMENT Drawing'!K17/1000,\"x 24 =\")",
+      "value": "0.3x0.45x 24 =",
+      "cellRefs": [
+        "TYPE1",
+        "M13",
+        "K17"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "C120",
+      "row": 120,
+      "col": 3,
+      "formula": "0.5*24*('TYPE1-AbutMENT Drawing'!$G$8-500)/1000*('TYPE1-AbutMENT Drawing'!$G$6-'TYPE1-AbutMENT Drawing'!$G$10-'TYPE1-AbutMENT Drawing'!$G$12)/1000",
+      "value": 63.12000000000024,
+      "cellRefs": [
+        "TYPE1"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E120",
+      "row": 120,
+      "col": 5,
+      "formula": "0.5+(2/3*('TYPE1-AbutMENT Drawing'!$G$8/1000-0.5))",
+      "value": 1.8333333333333333,
+      "cellRefs": [
+        "TYPE1"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F120",
+      "row": 120,
+      "col": 6,
+      "formula": "C120*E120",
+      "value": 115.72000000000044,
+      "cellRefs": [
+        "C120",
+        "E120"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B121",
+      "row": 121,
+      "col": 2,
+      "formula": "CONCATENATE(\"1/2x\",('TYPE1-AbutMENT Drawing'!$G$8-500)/1000,\"x\",('TYPE1-AbutMENT Drawing'!$G$6-'TYPE1-AbutMENT Drawing'!$G$12-'TYPE1-AbutMENT Drawing'!$G10)/1000,\"x\",24,\"=\")",
+      "value": "1/2x2x2.63000000000001x24=",
+      "cellRefs": [
+        "TYPE1",
+        "G10"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "C122",
+      "row": 122,
+      "col": 3,
+      "formula": "0.5*24*('TYPE1-AbutMENT Drawing'!$G$7-500)/1000*('TYPE1-AbutMENT Drawing'!$G$6-'TYPE1-AbutMENT Drawing'!$G$10-'TYPE1-AbutMENT Drawing'!$G$12)/1000",
+      "value": 126.24000000000048,
+      "cellRefs": [
+        "TYPE1"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E122",
+      "row": 122,
+      "col": 5,
+      "formula": "'TYPE1-AbutMENT Drawing'!$M$33/1000-0.5-(2/3*('TYPE1-AbutMENT Drawing'!$G$7/1000-0.5))",
+      "value": 4.883333333333335,
+      "cellRefs": [
+        "TYPE1"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F122",
+      "row": 122,
+      "col": 6,
+      "formula": "C122*E122",
+      "value": 616.4720000000025,
+      "cellRefs": [
+        "C122",
+        "E122"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B123",
+      "row": 123,
+      "col": 2,
+      "formula": "CONCATENATE(\"1/2x\",('TYPE1-AbutMENT Drawing'!$G$7-500)/1000,\"x\",('TYPE1-AbutMENT Drawing'!$G$6-'TYPE1-AbutMENT Drawing'!$G$12-'TYPE1-AbutMENT Drawing'!$G12)/1000,\"x\",24,\"=\")",
+      "value": "1/2x4x2.83000000000001x24=",
+      "cellRefs": [
+        "TYPE1",
+        "G12"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "C124",
+      "row": 124,
+      "col": 3,
+      "formula": "ROUNDUP((0.5*('TYPE1-AbutMENT Drawing'!$B$21-'TYPE1-AbutMENT Drawing'!$W$30)/1000* $E$9),2)",
+      "value": 34.48,
+      "cellRefs": [
+        "TYPE1"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "E124",
+      "row": 124,
+      "col": 5,
+      "formula": "'TYPE1-AbutMENT Drawing'!$M$33/1000-0.25",
+      "value": 7.800000000000001,
+      "cellRefs": [
+        "TYPE1"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F124",
+      "row": 124,
+      "col": 6,
+      "formula": "C124*E124",
+      "value": 268.944,
+      "cellRefs": [
+        "C124",
+        "E124"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B125",
+      "row": 125,
+      "col": 2,
+      "formula": "CONCATENATE(0.5,\" x \",('TYPE1-AbutMENT Drawing'!B21-'TYPE1-AbutMENT Drawing'!W30)/1000,\" x \", E9,\"=\")",
+      "value": "0.5 x 3.83000000000001 x 18=",
+      "cellRefs": [
+        "TYPE1",
+        "B21",
+        "W30",
+        "E9"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "C126",
+      "row": 126,
+      "col": 3,
+      "formula": "0.5*18*('TYPE1-AbutMENT Drawing'!$G$7-500)/1000*('TYPE1-AbutMENT Drawing'!$G$6-'TYPE1-AbutMENT Drawing'!$G$10-'TYPE1-AbutMENT Drawing'!$G$12)/1000",
+      "value": 94.68000000000036,
+      "cellRefs": [
+        "TYPE1"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E126",
+      "row": 126,
+      "col": 5,
+      "formula": "'TYPE1-AbutMENT Drawing'!$M$33/1000-0.5-(1/3*('TYPE1-AbutMENT Drawing'!$G$7/1000-0.5))",
+      "value": 6.216666666666668,
+      "cellRefs": [
+        "TYPE1"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F126",
+      "row": 126,
+      "col": 6,
+      "formula": "C126*E126",
+      "value": 588.5940000000023,
+      "cellRefs": [
+        "C126",
+        "E126"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "B127",
+      "row": 127,
+      "col": 2,
+      "formula": "CONCATENATE(\"1/2x\",('TYPE1-AbutMENT Drawing'!$G$7-500)/1000,\"x\",('TYPE1-AbutMENT Drawing'!$G$6-'TYPE1-AbutMENT Drawing'!$G$12-'TYPE1-AbutMENT Drawing'!$G15)/1000,\"x\",18,\"=\")",
+      "value": "1/2x4x3.83000000000001x18=",
+      "cellRefs": [
+        "TYPE1",
+        "G15"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "C128",
+      "row": 128,
+      "col": 3,
+      "formula": "ROUNDUP(SUM(C106:C127),3)",
+      "value": 907.587,
+      "cellRefs": [
+        "C106",
+        "C127"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP",
+        "SUM"
+      ]
+    },
+    {
+      "cell": "F128",
+      "row": 128,
+      "col": 6,
+      "formula": "ROUNDUP(SUM(F106:F127),3)",
+      "value": 3855.154,
+      "cellRefs": [
+        "F106",
+        "F127"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP",
+        "SUM"
+      ]
+    },
+    {
+      "cell": "G128",
+      "row": 128,
+      "col": 7,
+      "formula": "ROUNDUP(SUM(G106:G127),3)",
+      "value": 419.06399999999996,
+      "cellRefs": [
+        "G106",
+        "G127"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP",
+        "SUM"
+      ]
+    },
+    {
+      "cell": "C130",
+      "row": 130,
+      "col": 3,
+      "formula": "D14",
+      "value": 93.84123182207014,
+      "cellRefs": [
+        "D14"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E130",
+      "row": 130,
+      "col": 5,
+      "formula": "('TYPE1-AbutMENT Drawing'!S32+('TYPE1-AbutMENT Drawing'!O32-'TYPE1-AbutMENT Drawing'!M13)/2)/1000",
+      "value": 2.875,
+      "cellRefs": [
+        "TYPE1",
+        "S32",
+        "O32",
+        "M13"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F130",
+      "row": 130,
+      "col": 6,
+      "formula": "C130*E130",
+      "value": 269.79354148845164,
+      "cellRefs": [
+        "C130",
+        "E130"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C132",
+      "row": 132,
+      "col": 3,
+      "formula": "E39",
+      "value": 2.612612612612612,
+      "cellRefs": [
+        "E39"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E132",
+      "row": 132,
+      "col": 5,
+      "formula": "E106",
+      "value": 2.88,
+      "cellRefs": [
+        "E106"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F132",
+      "row": 132,
+      "col": 6,
+      "formula": "C132*E132",
+      "value": 7.524324324324323,
+      "cellRefs": [
+        "C132",
+        "E132"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D133",
+      "row": 133,
+      "col": 4,
+      "formula": "G24",
+      "value": 11.91,
+      "cellRefs": [
+        "G24"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E133",
+      "row": 133,
+      "col": 5,
+      "formula": "ROUNDUP(('TYPE1-AbutMENT Drawing'!$B$21-'TYPE1-AbutMENT Drawing'!$K$17)/1000,2)",
+      "value": 4.39,
+      "cellRefs": [
+        "TYPE1"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "G133",
+      "row": 133,
+      "col": 7,
+      "formula": "D133*E133",
+      "value": 52.28489999999999,
+      "cellRefs": [
+        "D133",
+        "E133"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C134",
+      "row": 134,
+      "col": 3,
+      "formula": "ROUNDUP(SUM(C128:C133),3)",
+      "value": 1004.0409999999999,
+      "cellRefs": [
+        "C128",
+        "C133"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP",
+        "SUM"
+      ]
+    },
+    {
+      "cell": "D134",
+      "row": 134,
+      "col": 4,
+      "formula": "SUM(D106:D133)",
+      "value": 194.40030034325,
+      "cellRefs": [
+        "D106",
+        "D133"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "SUM"
+      ]
+    },
+    {
+      "cell": "F134",
+      "row": 134,
+      "col": 6,
+      "formula": "ROUNDUP(SUM(F128:F133),3)",
+      "value": 4132.472,
+      "cellRefs": [
+        "F128",
+        "F133"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP",
+        "SUM"
+      ]
+    },
+    {
+      "cell": "G134",
+      "row": 134,
+      "col": 7,
+      "formula": "ROUNDUP(SUM(G128:G133),3)",
+      "value": 471.349,
+      "cellRefs": [
+        "G128",
+        "G133"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP",
+        "SUM"
+      ]
+    },
+    {
+      "cell": "C136",
+      "row": 136,
+      "col": 3,
+      "formula": "F134",
+      "value": 4132.472,
+      "cellRefs": [
+        "F134"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E136",
+      "row": 136,
+      "col": 5,
+      "formula": "G134",
+      "value": 471.349,
+      "cellRefs": [
+        "G134"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G136",
+      "row": 136,
+      "col": 7,
+      "formula": "C136-E136",
+      "value": 3661.1229999999996,
+      "cellRefs": [
+        "C136",
+        "E136"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C138",
+      "row": 138,
+      "col": 3,
+      "formula": "F100",
+      "value": 160.06,
+      "cellRefs": [
+        "F100"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E138",
+      "row": 138,
+      "col": 5,
+      "formula": "'STABILITY CHECK FOR PIER'!E17*10",
+      "value": 200,
+      "cellRefs": [
+        "E17"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C139",
+      "row": 139,
+      "col": 3,
+      "formula": "F101",
+      "value": 89.4,
+      "cellRefs": [
+        "F101"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C142",
+      "row": 142,
+      "col": 3,
+      "formula": "D134",
+      "value": 194.40030034325,
+      "cellRefs": [
+        "D134"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E143",
+      "row": 143,
+      "col": 5,
+      "formula": "C134",
+      "value": 1004.0409999999999,
+      "cellRefs": [
+        "C134"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G143",
+      "row": 143,
+      "col": 7,
+      "formula": "ROUNDUP(C143*E143,2)",
+      "value": 602.43,
+      "cellRefs": [
+        "C143",
+        "E143"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUNDUP"
+      ]
+    },
+    {
+      "cell": "C144",
+      "row": 144,
+      "col": 3,
+      "formula": "G143",
+      "value": 602.43,
+      "cellRefs": [
+        "G143"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E144",
+      "row": 144,
+      "col": 5,
+      "formula": "C142",
+      "value": 194.40030034325,
+      "cellRefs": [
+        "C142"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G144",
+      "row": 144,
+      "col": 7,
+      "formula": "ROUND(C144/E144,2)",
+      "value": 3.1,
+      "cellRefs": [
+        "C144",
+        "E144"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUND"
+      ]
+    }
+  ]
+}

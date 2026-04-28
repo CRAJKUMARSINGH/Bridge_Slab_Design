@@ -1,0 +1,3186 @@
+{
+  "sheetName": "LLOAD",
+  "totalFormulas": 228,
+  "extractedAt": "2025-11-24T14:14:49.752Z",
+  "formulas": [
+    {
+      "cell": "E19",
+      "row": 19,
+      "col": 5,
+      "formula": "VLOOKUP(span,AA27:AC39,2,0.1)",
+      "value": 80,
+      "cellRefs": [
+        "AA27",
+        "AC39"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "VLOOKUP"
+      ]
+    },
+    {
+      "cell": "E20",
+      "row": 20,
+      "col": 5,
+      "formula": "VLOOKUP(span,AA27:AC39,3,0.1)",
+      "value": 3.65,
+      "cellRefs": [
+        "AA27",
+        "AC39"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "VLOOKUP"
+      ]
+    },
+    {
+      "cell": "C25",
+      "row": 25,
+      "col": 3,
+      "formula": "7.6+0.375+0.375",
+      "value": 8.35,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H25",
+      "row": 25,
+      "col": 8,
+      "formula": "span",
+      "value": 8.35,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C28",
+      "row": 28,
+      "col": 3,
+      "formula": "CONCATENATE(E19,\"*(\",C25,\"-\",E20,\"+\",E26,\")/\",C25)",
+      "value": "80*(8.35-3.65+0.3)/8.35",
+      "cellRefs": [
+        "E19",
+        "C25",
+        "E20",
+        "E26"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "I28",
+      "row": 28,
+      "col": 9,
+      "formula": "E19*(C25-E20+1.6)/C25",
+      "value": 60.35928143712574,
+      "cellRefs": [
+        "E19",
+        "C25",
+        "E20"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I30",
+      "row": 30,
+      "col": 9,
+      "formula": "E19-I28",
+      "value": 19.640718562874262,
+      "cellRefs": [
+        "E19",
+        "I28"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D31",
+      "row": 31,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(I28,1),\" + \",ROUND(I29,1))",
+      "value": "60.4 + 0",
+      "cellRefs": [
+        "I28",
+        "I29"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I31",
+      "row": 31,
+      "col": 9,
+      "formula": "I28+I29",
+      "value": 60.35928143712574,
+      "cellRefs": [
+        "I28",
+        "I29"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D32",
+      "row": 32,
+      "col": 4,
+      "formula": "CONCATENATE(\"0.2*\",E19)",
+      "value": "0.2*80",
+      "cellRefs": [
+        "E19"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "I32",
+      "row": 32,
+      "col": 9,
+      "formula": "0.2*E19",
+      "value": 16,
+      "cellRefs": [
+        "E19"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I36",
+      "row": 36,
+      "col": 9,
+      "formula": "I35*(I33+I30)",
+      "value": 0,
+      "cellRefs": [
+        "I35",
+        "I33",
+        "I30"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I37",
+      "row": 37,
+      "col": 9,
+      "formula": "MAX(I32/2+I36,I32-I36)",
+      "value": 16,
+      "cellRefs": [
+        "I32",
+        "I36"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "MAX"
+      ]
+    },
+    {
+      "cell": "AA39",
+      "row": 39,
+      "col": 27,
+      "formula": "$C$25+$A$25+($E$26-0.04)/2",
+      "value": 8.780000000000001,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D41",
+      "row": 41,
+      "col": 4,
+      "formula": "$E$44/2-C41",
+      "value": 1.605,
+      "cellRefs": [
+        "C41"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E46",
+      "row": 46,
+      "col": 5,
+      "formula": "CONCATENATE(I45,\"*\",\"(\",ROUND(I28,1),\" + \",I29,\")\")",
+      "value": "2.905*(60.4 + 0)",
+      "cellRefs": [
+        "I45",
+        "I28",
+        "I29"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I46",
+      "row": 46,
+      "col": 9,
+      "formula": "I45*I28",
+      "value": 175.34371257485026,
+      "cellRefs": [
+        "I45",
+        "I28"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D47",
+      "row": 47,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(I28,1),\"*\",C6,\"-\",ROUND(I29,1),\"*\",C7)",
+      "value": "60.4*0.3-0*0.3",
+      "cellRefs": [
+        "I28",
+        "C6",
+        "I29",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I47",
+      "row": 47,
+      "col": 9,
+      "formula": "I31*C6-I29*C7",
+      "value": 18.10778443113772,
+      "cellRefs": [
+        "I31",
+        "C6",
+        "I29",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I48",
+      "row": 48,
+      "col": 9,
+      "formula": "I47/I31",
+      "value": 0.3,
+      "cellRefs": [
+        "I47",
+        "I31"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "AC56",
+      "row": 56,
+      "col": 29,
+      "formula": "AA39",
+      "value": 8.780000000000001,
+      "cellRefs": [
+        "AA39"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "A57",
+      "row": 57,
+      "col": 1,
+      "formula": "A25",
+      "value": 0.3,
+      "cellRefs": [
+        "A25"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C57",
+      "row": 57,
+      "col": 3,
+      "formula": "C25",
+      "value": 8.35,
+      "cellRefs": [
+        "C25"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H57",
+      "row": 57,
+      "col": 8,
+      "formula": "H25",
+      "value": 8.35,
+      "cellRefs": [
+        "H25"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "J57",
+      "row": 57,
+      "col": 10,
+      "formula": "I25",
+      "value": 0.3,
+      "cellRefs": [
+        "I25"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E58",
+      "row": 58,
+      "col": 5,
+      "formula": "+E26",
+      "value": 0.3,
+      "cellRefs": [
+        "E26"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C60",
+      "row": 60,
+      "col": 3,
+      "formula": "CONCATENATE(G52,\"*(\",C57,\"-\",A57,\")/\",C57)",
+      "value": "0*(8.35-0.3)/8.35",
+      "cellRefs": [
+        "G52",
+        "C57",
+        "A57"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "I60",
+      "row": 60,
+      "col": 9,
+      "formula": "G52*(C57-F52+A57)/C57",
+      "value": 0,
+      "cellRefs": [
+        "G52",
+        "C57",
+        "F52",
+        "A57"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C61",
+      "row": 61,
+      "col": 3,
+      "formula": "CONCATENATE(E51,\"*(\",C57,\"-\",E52,\"+\",E58,\"/2)/\",C57)",
+      "value": "55.4*(8.35-9.7+0.3/2)/8.35",
+      "cellRefs": [
+        "E51",
+        "C57",
+        "E52",
+        "E58"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "I61",
+      "row": 61,
+      "col": 9,
+      "formula": "-E51*(C57-E52+E58)/C57",
+      "value": 6.966467065868261,
+      "cellRefs": [
+        "E51",
+        "C57",
+        "E52",
+        "E58"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I62",
+      "row": 62,
+      "col": 9,
+      "formula": "E51-I61",
+      "value": 48.43353293413174,
+      "cellRefs": [
+        "E51",
+        "I61"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D63",
+      "row": 63,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(I62,1),\" + \",ROUND(I61,1))",
+      "value": "48.4 + 7",
+      "cellRefs": [
+        "I62",
+        "I61"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I63",
+      "row": 63,
+      "col": 9,
+      "formula": "I62+I61",
+      "value": 55.4,
+      "cellRefs": [
+        "I62",
+        "I61"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D64",
+      "row": 64,
+      "col": 4,
+      "formula": "CONCATENATE(0.2,\"*(\",G52,\"+\",E51,\")\")",
+      "value": "0.2*(0+55.4)",
+      "cellRefs": [
+        "G52",
+        "E51"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "I64",
+      "row": 64,
+      "col": 9,
+      "formula": "0.2*(G52+E51)",
+      "value": 11.08,
+      "cellRefs": [
+        "G52",
+        "E51"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I65",
+      "row": 65,
+      "col": 9,
+      "formula": "I33",
+      "value": 485,
+      "cellRefs": [
+        "I33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I67",
+      "row": 67,
+      "col": 9,
+      "formula": "I66*(I65+I62)",
+      "value": 0,
+      "cellRefs": [
+        "I66",
+        "I65",
+        "I62"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I68",
+      "row": 68,
+      "col": 9,
+      "formula": "MAX(I64/2+I67,I64-I67)",
+      "value": 11.08,
+      "cellRefs": [
+        "I64",
+        "I67"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "MAX"
+      ]
+    },
+    {
+      "cell": "D72",
+      "row": 72,
+      "col": 4,
+      "formula": "E75/2-C72",
+      "value": 2.9000000000000004,
+      "cellRefs": [
+        "E75",
+        "C72"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E75",
+      "row": 75,
+      "col": 5,
+      "formula": "E44",
+      "value": 8.4,
+      "cellRefs": [
+        "E44"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I76",
+      "row": 76,
+      "col": 9,
+      "formula": "D72",
+      "value": 2.9000000000000004,
+      "cellRefs": [
+        "D72"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E77",
+      "row": 77,
+      "col": 5,
+      "formula": "CONCATENATE(I76,\"*\",ROUND(I63,1))",
+      "value": "2.9*55.4",
+      "cellRefs": [
+        "I76",
+        "I63"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I77",
+      "row": 77,
+      "col": 9,
+      "formula": "I76*I63",
+      "value": 160.66000000000003,
+      "cellRefs": [
+        "I76",
+        "I63"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D78",
+      "row": 78,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(I61,1),\"*\",C6,\"-\",ROUND(I60,1),\"*\",C7)",
+      "value": "7*0.3-0*0.3",
+      "cellRefs": [
+        "I61",
+        "C6",
+        "I60",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I78",
+      "row": 78,
+      "col": 9,
+      "formula": "I61*C6-I60*C7",
+      "value": 2.0899401197604783,
+      "cellRefs": [
+        "I61",
+        "C6",
+        "I60",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I79",
+      "row": 79,
+      "col": 9,
+      "formula": "I78/I63",
+      "value": 0.037724550898203583,
+      "cellRefs": [
+        "I78",
+        "I63"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C84",
+      "row": 84,
+      "col": 3,
+      "formula": "CONCATENATE(\"2*\",ROUND(I60,1))",
+      "value": "2*0",
+      "cellRefs": [
+        "I60"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I84",
+      "row": 84,
+      "col": 9,
+      "formula": "2*I60",
+      "value": 0,
+      "cellRefs": [
+        "I60"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C85",
+      "row": 85,
+      "col": 3,
+      "formula": "CONCATENATE(\"2*\",ROUND(I61,1))",
+      "value": "2*7",
+      "cellRefs": [
+        "I61"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I85",
+      "row": 85,
+      "col": 9,
+      "formula": "2*I61",
+      "value": 13.932934131736522,
+      "cellRefs": [
+        "I61"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I86",
+      "row": 86,
+      "col": 9,
+      "formula": "2*E51-I85",
+      "value": 96.86706586826348,
+      "cellRefs": [
+        "E51",
+        "I85"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D87",
+      "row": 87,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(I84,1),\" + \",ROUND(I85,1))",
+      "value": "0 + 13.9",
+      "cellRefs": [
+        "I84",
+        "I85"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I87",
+      "row": 87,
+      "col": 9,
+      "formula": "I84+I85",
+      "value": 13.932934131736522,
+      "cellRefs": [
+        "I84",
+        "I85"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I88",
+      "row": 88,
+      "col": 9,
+      "formula": "I64",
+      "value": 11.08,
+      "cellRefs": [
+        "I64"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I89",
+      "row": 89,
+      "col": 9,
+      "formula": "I33",
+      "value": 485,
+      "cellRefs": [
+        "I33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I91",
+      "row": 91,
+      "col": 9,
+      "formula": "I90*(I89+I86)",
+      "value": 0,
+      "cellRefs": [
+        "I90",
+        "I89",
+        "I86"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I92",
+      "row": 92,
+      "col": 9,
+      "formula": "MAX(I88/2+I91,I88-I91)",
+      "value": 11.08,
+      "cellRefs": [
+        "I88",
+        "I91"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "MAX"
+      ]
+    },
+    {
+      "cell": "D96",
+      "row": 96,
+      "col": 4,
+      "formula": "E99/2-C96",
+      "value": 1.1500000000000004,
+      "cellRefs": [
+        "E99",
+        "C96"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E99",
+      "row": 99,
+      "col": 5,
+      "formula": "E44",
+      "value": 8.4,
+      "cellRefs": [
+        "E44"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I100",
+      "row": 100,
+      "col": 9,
+      "formula": "D96",
+      "value": 1.1500000000000004,
+      "cellRefs": [
+        "D96"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E101",
+      "row": 101,
+      "col": 5,
+      "formula": "CONCATENATE(I100,\"*\",ROUND(I87,1))",
+      "value": "1.15*13.9",
+      "cellRefs": [
+        "I100",
+        "I87"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I101",
+      "row": 101,
+      "col": 9,
+      "formula": "I87*I100",
+      "value": 16.022874251497004,
+      "cellRefs": [
+        "I87",
+        "I100"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D102",
+      "row": 102,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(I85,1),\"*\",C6,\"-\",ROUND(I84,1),\"*\",C7)",
+      "value": "13.9*0.3-0*0.3",
+      "cellRefs": [
+        "I85",
+        "C6",
+        "I84",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I102",
+      "row": 102,
+      "col": 9,
+      "formula": "ABS(I85*C6-I84*C7)",
+      "value": 4.179880239520957,
+      "cellRefs": [
+        "I85",
+        "C6",
+        "I84",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ABS"
+      ]
+    },
+    {
+      "cell": "I103",
+      "row": 103,
+      "col": 9,
+      "formula": "I102/I87",
+      "value": 0.3,
+      "cellRefs": [
+        "I102",
+        "I87"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C108",
+      "row": 108,
+      "col": 3,
+      "formula": "CONCATENATE(\"90% of\",\" 3*\",ROUND(I60,1))",
+      "value": "90% of 3*0",
+      "cellRefs": [
+        "I60"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I108",
+      "row": 108,
+      "col": 9,
+      "formula": "0.9*3*I60",
+      "value": 0,
+      "cellRefs": [
+        "I60"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C109",
+      "row": 109,
+      "col": 3,
+      "formula": "CONCATENATE(\"90% of\",\" 3*\",ROUND(I61,1))",
+      "value": "90% of 3*7",
+      "cellRefs": [
+        "I61"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I109",
+      "row": 109,
+      "col": 9,
+      "formula": "0.9*3*I61",
+      "value": 18.809461077844304,
+      "cellRefs": [
+        "I61"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I110",
+      "row": 110,
+      "col": 9,
+      "formula": "load1*0.9*3-I109",
+      "value": 61.1105389221557,
+      "cellRefs": [
+        "I109"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D111",
+      "row": 111,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(I108,1),\" + \",ROUND(I109,1))",
+      "value": "0 + 18.8",
+      "cellRefs": [
+        "I108",
+        "I109"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I111",
+      "row": 111,
+      "col": 9,
+      "formula": "I108+I109",
+      "value": 18.809461077844304,
+      "cellRefs": [
+        "I108",
+        "I109"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D112",
+      "row": 112,
+      "col": 4,
+      "formula": "CONCATENATE(\"(0.2)*\",55.4,\"+\",\"0.05*\",55.4)",
+      "value": "(0.2)*55.4+0.05*55.4",
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "I112",
+      "row": 112,
+      "col": 9,
+      "formula": "(0.2)*55.4+(0.05)*55.4",
+      "value": 13.85,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I114",
+      "row": 114,
+      "col": 9,
+      "formula": "I33",
+      "value": 485,
+      "cellRefs": [
+        "I33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I116",
+      "row": 116,
+      "col": 9,
+      "formula": "I115*(I114+I111)",
+      "value": 0,
+      "cellRefs": [
+        "I115",
+        "I114",
+        "I111"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I117",
+      "row": 117,
+      "col": 9,
+      "formula": "MAX(I112/2+I116,I112-I116)",
+      "value": 13.85,
+      "cellRefs": [
+        "I112",
+        "I116"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "MAX"
+      ]
+    },
+    {
+      "cell": "E121",
+      "row": 121,
+      "col": 5,
+      "formula": "E124/2-C121",
+      "value": 0.7000000000000002,
+      "cellRefs": [
+        "E124",
+        "C121"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I125",
+      "row": 125,
+      "col": 9,
+      "formula": "E121",
+      "value": 0.7000000000000002,
+      "cellRefs": [
+        "E121"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E126",
+      "row": 126,
+      "col": 5,
+      "formula": "CONCATENATE(I125,\"*\",ROUND(I111,1))",
+      "value": "0.7*18.8",
+      "cellRefs": [
+        "I125",
+        "I111"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I126",
+      "row": 126,
+      "col": 9,
+      "formula": "I125*I111",
+      "value": 13.166622754491016,
+      "cellRefs": [
+        "I125",
+        "I111"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D127",
+      "row": 127,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(I109,1),\"*\",C6,\"-\",ROUND(I108,1),\"*\",C7)",
+      "value": "18.8*0.3-0*0.3",
+      "cellRefs": [
+        "I109",
+        "C6",
+        "I108",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I127",
+      "row": 127,
+      "col": 9,
+      "formula": "ABS(I109*C6-I108*C7)",
+      "value": 5.642838323353291,
+      "cellRefs": [
+        "I109",
+        "C6",
+        "I108",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ABS"
+      ]
+    },
+    {
+      "cell": "I128",
+      "row": 128,
+      "col": 9,
+      "formula": "I127/I111",
+      "value": 0.3,
+      "cellRefs": [
+        "I127",
+        "I111"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C132",
+      "row": 132,
+      "col": 3,
+      "formula": "CONCATENATE(\"90% of\",\"(\",ROUND(I60,2),\"+\",ROUND(I29,2),\")\")",
+      "value": "90% of(0+0)",
+      "cellRefs": [
+        "I60",
+        "I29"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I132",
+      "row": 132,
+      "col": 9,
+      "formula": "0.9*(I60+I29)",
+      "value": 0,
+      "cellRefs": [
+        "I60",
+        "I29"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C133",
+      "row": 133,
+      "col": 3,
+      "formula": "CONCATENATE(\"90% of\",\"(\",ROUND(I61,2),\"+\",ROUND(I28,2),\")\")",
+      "value": "90% of(6.97+60.36)",
+      "cellRefs": [
+        "I61",
+        "I28"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I133",
+      "row": 133,
+      "col": 9,
+      "formula": "0.9*(I61+I28)",
+      "value": 60.5931736526946,
+      "cellRefs": [
+        "I61",
+        "I28"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I134",
+      "row": 134,
+      "col": 9,
+      "formula": "(E51+E19)*0.9-I133",
+      "value": 61.26682634730541,
+      "cellRefs": [
+        "E51",
+        "E19",
+        "I133"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D135",
+      "row": 135,
+      "col": 4,
+      "formula": "CONCATENATE(I32,\" + \",\"5% of \",55.4)",
+      "value": "16 + 5% of 55.4",
+      "cellRefs": [
+        "I32"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "I135",
+      "row": 135,
+      "col": 9,
+      "formula": "I32+0.05*55.4",
+      "value": 18.77,
+      "cellRefs": [
+        "I32"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I137",
+      "row": 137,
+      "col": 9,
+      "formula": "I33",
+      "value": 485,
+      "cellRefs": [
+        "I33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I139",
+      "row": 139,
+      "col": 9,
+      "formula": "I138*(I137+I134)",
+      "value": 0,
+      "cellRefs": [
+        "I138",
+        "I137",
+        "I134"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I140",
+      "row": 140,
+      "col": 9,
+      "formula": "MAX(I135/2+I139,I135-I139)",
+      "value": 18.77,
+      "cellRefs": [
+        "I135",
+        "I139"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "MAX"
+      ]
+    },
+    {
+      "cell": "E147",
+      "row": 147,
+      "col": 5,
+      "formula": "E99",
+      "value": 8.4,
+      "cellRefs": [
+        "E99"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I148",
+      "row": 148,
+      "col": 9,
+      "formula": "D144",
+      "value": 2.905,
+      "cellRefs": [
+        "D144"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I149",
+      "row": 149,
+      "col": 9,
+      "formula": "-F144",
+      "value": -0.84,
+      "cellRefs": [
+        "F144"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D150",
+      "row": 150,
+      "col": 4,
+      "formula": "CONCATENATE(\"0.9*(\",ROUND(I31,1),\"*\",ROUND(I148,3),\"-\",ROUND(I63,1),\"*\",ROUND(I149,3),\")\")",
+      "value": "0.9*(60.4*2.905-55.4*-0.84)",
+      "cellRefs": [
+        "I31",
+        "I148",
+        "I63",
+        "I149"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I150",
+      "row": 150,
+      "col": 9,
+      "formula": "0.9*(I31*I148+I63*I149)",
+      "value": 115.92694131736523,
+      "cellRefs": [
+        "I31",
+        "I148",
+        "I63",
+        "I149"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I151",
+      "row": 151,
+      "col": 9,
+      "formula": "I150/(I132+I133)",
+      "value": 1.9132013447889424,
+      "cellRefs": [
+        "I150",
+        "I132",
+        "I133"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D152",
+      "row": 152,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(I133,1),\"*\",C6,\"-\",ROUND(I132,1),\"*\",C7)",
+      "value": "60.6*0.3-0*0.3",
+      "cellRefs": [
+        "I133",
+        "C6",
+        "I132",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I152",
+      "row": 152,
+      "col": 9,
+      "formula": "ABS(I133*C6-I132*C7)",
+      "value": 18.17795209580838,
+      "cellRefs": [
+        "I133",
+        "C6",
+        "I132",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ABS"
+      ]
+    },
+    {
+      "cell": "I153",
+      "row": 153,
+      "col": 9,
+      "formula": "I152/(I132+I133)",
+      "value": 0.3,
+      "cellRefs": [
+        "I152",
+        "I132",
+        "I133"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E161",
+      "row": 161,
+      "col": 5,
+      "formula": "H161+C162",
+      "value": 100,
+      "cellRefs": [
+        "H161",
+        "C162"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H161",
+      "row": 161,
+      "col": 8,
+      "formula": "IF(C162=49,51,34)",
+      "value": 51,
+      "cellRefs": [
+        "C162"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "IF"
+      ]
+    },
+    {
+      "cell": "C162",
+      "row": 162,
+      "col": 3,
+      "formula": "IF(U165>=8.28,49,58)",
+      "value": 49,
+      "cellRefs": [
+        "U165"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "IF"
+      ]
+    },
+    {
+      "cell": "D162",
+      "row": 162,
+      "col": 4,
+      "formula": "VLOOKUP(C162,V161:W162,2,0.1)",
+      "value": 3.33,
+      "cellRefs": [
+        "C162",
+        "V161",
+        "W162"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "VLOOKUP"
+      ]
+    },
+    {
+      "cell": "F164",
+      "row": 164,
+      "col": 6,
+      "formula": "VLOOKUP(H161,V168:W169,2,0.1)",
+      "value": 3.19,
+      "cellRefs": [
+        "H161",
+        "V168",
+        "W169"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "VLOOKUP"
+      ]
+    },
+    {
+      "cell": "U165",
+      "row": 165,
+      "col": 21,
+      "formula": "A167+C167+E168",
+      "value": 8.950000000000001,
+      "cellRefs": [
+        "A167",
+        "C167",
+        "E168"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "AA165",
+      "row": 165,
+      "col": 27,
+      "formula": "$C$25+$A$25+($E$26)",
+      "value": 8.950000000000001,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C167",
+      "row": 167,
+      "col": 3,
+      "formula": "H25",
+      "value": 8.35,
+      "cellRefs": [
+        "H25"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H167",
+      "row": 167,
+      "col": 8,
+      "formula": "C25",
+      "value": 8.35,
+      "cellRefs": [
+        "C25"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C170",
+      "row": 170,
+      "col": 3,
+      "formula": "CONCATENATE(C162,\"*(\",C167,\" - \",D162,\" + \",E168,\")/\",C167)",
+      "value": "49*(8.35 - 3.33 + 0.3)/8.35",
+      "cellRefs": [
+        "C162",
+        "C167",
+        "D162",
+        "E168"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "I170",
+      "row": 170,
+      "col": 9,
+      "formula": "C162*(C167-D162+E168)/C167",
+      "value": 31.219161676646703,
+      "cellRefs": [
+        "C162",
+        "C167",
+        "D162",
+        "E168"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C171",
+      "row": 171,
+      "col": 3,
+      "formula": "CONCATENATE(H161,\"*(\",H167,\"-\",F164,\"+\",F168,\")/\",H167)",
+      "value": "51*(8.35-3.19+1.6)/8.35",
+      "cellRefs": [
+        "H161",
+        "H167",
+        "F164",
+        "F168"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "I171",
+      "row": 171,
+      "col": 9,
+      "formula": "H161*(H167-F164-F168)/H167",
+      "value": 21.7437125748503,
+      "cellRefs": [
+        "H161",
+        "H167",
+        "F164",
+        "F168"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I172",
+      "row": 172,
+      "col": 9,
+      "formula": "C162-I171",
+      "value": 27.2562874251497,
+      "cellRefs": [
+        "C162",
+        "I171"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "U172",
+      "row": 172,
+      "col": 21,
+      "formula": "F168+H167+J167",
+      "value": 11.549999999999999,
+      "cellRefs": [
+        "F168",
+        "H167",
+        "J167"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D173",
+      "row": 173,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(I170,1),\" + \",ROUND(I171,1))",
+      "value": "31.2 + 21.7",
+      "cellRefs": [
+        "I170",
+        "I171"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I173",
+      "row": 173,
+      "col": 9,
+      "formula": "ROUND(I170+I171,0)",
+      "value": 53,
+      "cellRefs": [
+        "I170",
+        "I171"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "AA173",
+      "row": 173,
+      "col": 27,
+      "formula": "$C$25+$A$25+($E$26)",
+      "value": 8.950000000000001,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D174",
+      "row": 174,
+      "col": 4,
+      "formula": "CONCATENATE(\"0.2*\",E161)",
+      "value": "0.2*100",
+      "cellRefs": [
+        "E161"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "I174",
+      "row": 174,
+      "col": 9,
+      "formula": "0.2*E161",
+      "value": 20,
+      "cellRefs": [
+        "E161"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I175",
+      "row": 175,
+      "col": 9,
+      "formula": "I33",
+      "value": 485,
+      "cellRefs": [
+        "I33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I177",
+      "row": 177,
+      "col": 9,
+      "formula": "I176*(I175+I172)",
+      "value": 0,
+      "cellRefs": [
+        "I176",
+        "I175",
+        "I172"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I178",
+      "row": 178,
+      "col": 9,
+      "formula": "MAX(I174/2+I177,I174-I177)",
+      "value": 20,
+      "cellRefs": [
+        "I174",
+        "I177"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "MAX"
+      ]
+    },
+    {
+      "cell": "D182",
+      "row": 182,
+      "col": 4,
+      "formula": "$E$44/2-C182",
+      "value": 1.605,
+      "cellRefs": [
+        "C182"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E185",
+      "row": 185,
+      "col": 5,
+      "formula": "E147",
+      "value": 8.4,
+      "cellRefs": [
+        "E147"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E187",
+      "row": 187,
+      "col": 5,
+      "formula": "CONCATENATE(I186,\"*\",\"(\",ROUND(I170,1),\" + \",ROUND(I171,1),\")\")",
+      "value": "2.905*(31.2 + 21.7)",
+      "cellRefs": [
+        "I186",
+        "I170",
+        "I171"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I187",
+      "row": 187,
+      "col": 9,
+      "formula": "I186*I173",
+      "value": 153.965,
+      "cellRefs": [
+        "I186",
+        "I173"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D188",
+      "row": 188,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(I170,2),\"*\",C6,\"-\",ROUND(I171,2),\"*\",C7)",
+      "value": "31.22*0.3-21.74*0.3",
+      "cellRefs": [
+        "I170",
+        "C6",
+        "I171",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I188",
+      "row": 188,
+      "col": 9,
+      "formula": "ABS(I170*C6-I171*C7)",
+      "value": 2.8426347305389212,
+      "cellRefs": [
+        "I170",
+        "C6",
+        "I171",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ABS"
+      ]
+    },
+    {
+      "cell": "I189",
+      "row": 189,
+      "col": 9,
+      "formula": "I188/I173",
+      "value": 0.053634617557338136,
+      "cellRefs": [
+        "I188",
+        "I173"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D192",
+      "row": 192,
+      "col": 4,
+      "formula": "E192-H192",
+      "value": 29.6,
+      "cellRefs": [
+        "E192",
+        "H192"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E192",
+      "row": 192,
+      "col": 5,
+      "formula": "VLOOKUP(two_span_length,T195:W200,2,0.1)",
+      "value": 50,
+      "cellRefs": [
+        "T195",
+        "W200"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "VLOOKUP"
+      ]
+    },
+    {
+      "cell": "H192",
+      "row": 192,
+      "col": 8,
+      "formula": "IF(OR(E192=T205,E192=T209),U205,IF(OR(E192=T212,E192=T213),U212,IF(E192=T214,U214,\"err\")))",
+      "value": 20.4,
+      "cellRefs": [
+        "E192",
+        "T205",
+        "T209",
+        "U205",
+        "T212",
+        "T213",
+        "U212",
+        "T214",
+        "U214"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "IF",
+        "OR"
+      ]
+    },
+    {
+      "cell": "E193",
+      "row": 193,
+      "col": 5,
+      "formula": "VLOOKUP(two_span_length,T195:W200,4,0.1)",
+      "value": 5.71,
+      "cellRefs": [
+        "T195",
+        "W200"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "VLOOKUP"
+      ]
+    },
+    {
+      "cell": "G193",
+      "row": 193,
+      "col": 7,
+      "formula": "VLOOKUP(two_span_length,T195:W200,3,0.1)",
+      "value": 8.79,
+      "cellRefs": [
+        "T195",
+        "W200"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "VLOOKUP"
+      ]
+    },
+    {
+      "cell": "D195",
+      "row": 195,
+      "col": 4,
+      "formula": "VLOOKUP(load1,R218:S221,2,0.1)",
+      "value": 4.07,
+      "cellRefs": [
+        "R218",
+        "S221"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "VLOOKUP"
+      ]
+    },
+    {
+      "cell": "E195",
+      "row": 195,
+      "col": 5,
+      "formula": "E193-D195",
+      "value": 1.6399999999999997,
+      "cellRefs": [
+        "E193",
+        "D195"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "F195",
+      "row": 195,
+      "col": 6,
+      "formula": "G193-G195",
+      "value": 4.6499999999999995,
+      "cellRefs": [
+        "G193",
+        "G195"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "G195",
+      "row": 195,
+      "col": 7,
+      "formula": "VLOOKUP(load,Q205:S214,3,0.1)",
+      "value": 4.14,
+      "cellRefs": [
+        "Q205",
+        "S214"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "VLOOKUP"
+      ]
+    },
+    {
+      "cell": "T195",
+      "row": 195,
+      "col": 20,
+      "formula": "V195+W195",
+      "value": 9,
+      "cellRefs": [
+        "V195",
+        "W195"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "T196",
+      "row": 196,
+      "col": 20,
+      "formula": "V196+W196",
+      "value": 13.3,
+      "cellRefs": [
+        "V196",
+        "W196"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "T197",
+      "row": 197,
+      "col": 20,
+      "formula": "V197+W197",
+      "value": 14.5,
+      "cellRefs": [
+        "V197",
+        "W197"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "A198",
+      "row": 198,
+      "col": 1,
+      "formula": "A25",
+      "value": 0.3,
+      "cellRefs": [
+        "A25"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C198",
+      "row": 198,
+      "col": 3,
+      "formula": "C25",
+      "value": 8.35,
+      "cellRefs": [
+        "C25"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H198",
+      "row": 198,
+      "col": 8,
+      "formula": "H25",
+      "value": 8.35,
+      "cellRefs": [
+        "H25"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "J198",
+      "row": 198,
+      "col": 10,
+      "formula": "+J57",
+      "value": 0.3,
+      "cellRefs": [
+        "J57"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "T198",
+      "row": 198,
+      "col": 20,
+      "formula": "V198+W198",
+      "value": 18.700000000000003,
+      "cellRefs": [
+        "V198",
+        "W198"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E199",
+      "row": 199,
+      "col": 5,
+      "formula": "+E26",
+      "value": 0.3,
+      "cellRefs": [
+        "E26"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "T199",
+      "row": 199,
+      "col": 20,
+      "formula": "V199+W199",
+      "value": 18.8,
+      "cellRefs": [
+        "V199",
+        "W199"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "T200",
+      "row": 200,
+      "col": 20,
+      "formula": "A198+C198+E199+H198+J198",
+      "value": 17.6,
+      "cellRefs": [
+        "A198",
+        "C198",
+        "E199",
+        "H198",
+        "J198"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C201",
+      "row": 201,
+      "col": 3,
+      "formula": "CONCATENATE(H192,\"*(\",H198,\"-\",F195,\"+\",F199,\")/\",H198)",
+      "value": "20.4*(8.35-4.65+0.3)/8.35",
+      "cellRefs": [
+        "H192",
+        "H198",
+        "F195",
+        "F199"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "I201",
+      "row": 201,
+      "col": 9,
+      "formula": "H192*(H198-(G193-G195)+F199)/H198",
+      "value": 9.772455089820358,
+      "cellRefs": [
+        "H192",
+        "H198",
+        "G193",
+        "G195",
+        "F199"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C202",
+      "row": 202,
+      "col": 3,
+      "formula": "CONCATENATE(E192,\"*(\",C198,\"-\",E195,\"+\",E199,\")/\",C198)",
+      "value": "50*(8.35-1.64+0.3)/8.35",
+      "cellRefs": [
+        "E192",
+        "C198",
+        "E195",
+        "E199"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "I202",
+      "row": 202,
+      "col": 9,
+      "formula": "D192*(C198-E195+E199)/C198",
+      "value": 24.849820359281438,
+      "cellRefs": [
+        "D192",
+        "C198",
+        "E195",
+        "E199"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I203",
+      "row": 203,
+      "col": 9,
+      "formula": "load1-I202",
+      "value": 4.750179640718564,
+      "cellRefs": [
+        "I202"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D204",
+      "row": 204,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(I201,2),\" + \",ROUND(I202,2))",
+      "value": "9.77 + 24.85",
+      "cellRefs": [
+        "I201",
+        "I202"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I204",
+      "row": 204,
+      "col": 9,
+      "formula": "I201+I202",
+      "value": 34.62227544910179,
+      "cellRefs": [
+        "I201",
+        "I202"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D205",
+      "row": 205,
+      "col": 4,
+      "formula": "CONCATENATE(0.2,\"*(\",E192,\")\")",
+      "value": "0.2*(50)",
+      "cellRefs": [
+        "E192"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "I205",
+      "row": 205,
+      "col": 9,
+      "formula": "0.2*E192",
+      "value": 10,
+      "cellRefs": [
+        "E192"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I206",
+      "row": 206,
+      "col": 9,
+      "formula": "I33",
+      "value": 485,
+      "cellRefs": [
+        "I33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I208",
+      "row": 208,
+      "col": 9,
+      "formula": "I207*(I206+I203)",
+      "value": 0,
+      "cellRefs": [
+        "I207",
+        "I206",
+        "I203"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I209",
+      "row": 209,
+      "col": 9,
+      "formula": "MAX(I205/2+I208,I205-I208)",
+      "value": 10,
+      "cellRefs": [
+        "I205",
+        "I208"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "MAX"
+      ]
+    },
+    {
+      "cell": "U215",
+      "row": 215,
+      "col": 21,
+      "formula": "$C$25+$A$25+($E$26-0.04)/2",
+      "value": 8.780000000000001,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "I217",
+      "row": 217,
+      "col": 9,
+      "formula": "D213",
+      "value": 4.2,
+      "cellRefs": [
+        "D213"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E218",
+      "row": 218,
+      "col": 5,
+      "formula": "CONCATENATE(I217,\"*\",ROUND(I204,1))",
+      "value": "4.2*34.6",
+      "cellRefs": [
+        "I217",
+        "I204"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I218",
+      "row": 218,
+      "col": 9,
+      "formula": "I217*I204",
+      "value": 145.41355688622752,
+      "cellRefs": [
+        "I217",
+        "I204"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D219",
+      "row": 219,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(I202,1),\"*\",C6,\"-\",ROUND(I201,1),\"*\",C7)",
+      "value": "24.8*0.3-9.8*0.3",
+      "cellRefs": [
+        "I202",
+        "C6",
+        "I201",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "I219",
+      "row": 219,
+      "col": 9,
+      "formula": "ABS(I202*C6-I201*C7)",
+      "value": 4.523209580838323,
+      "cellRefs": [
+        "I202",
+        "C6",
+        "I201",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ABS"
+      ]
+    },
+    {
+      "cell": "I220",
+      "row": 220,
+      "col": 9,
+      "formula": "I219/I204",
+      "value": 0.13064449179511303,
+      "cellRefs": [
+        "I219",
+        "I204"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C225",
+      "row": 225,
+      "col": 3,
+      "formula": "CONCATENATE(\"2*\",ROUND(I201,1))",
+      "value": "2*9.8",
+      "cellRefs": [
+        "I201"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "H225",
+      "row": 225,
+      "col": 8,
+      "formula": "2*I201",
+      "value": 19.544910179640716,
+      "cellRefs": [
+        "I201"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C226",
+      "row": 226,
+      "col": 3,
+      "formula": "CONCATENATE(\"2*\",ROUND(I202,1))",
+      "value": "2*24.8",
+      "cellRefs": [
+        "I202"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "H226",
+      "row": 226,
+      "col": 8,
+      "formula": "2*I202",
+      "value": 49.699640718562875,
+      "cellRefs": [
+        "I202"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H227",
+      "row": 227,
+      "col": 8,
+      "formula": "load1*2-H226",
+      "value": 9.500359281437127,
+      "cellRefs": [
+        "H226"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D228",
+      "row": 228,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(H225,1),\" + \",ROUND(H226,1))",
+      "value": "19.5 + 49.7",
+      "cellRefs": [
+        "H225",
+        "H226"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "H228",
+      "row": 228,
+      "col": 8,
+      "formula": "H225+H226",
+      "value": 69.24455089820358,
+      "cellRefs": [
+        "H225",
+        "H226"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H229",
+      "row": 229,
+      "col": 8,
+      "formula": "I64",
+      "value": 11.08,
+      "cellRefs": [
+        "I64"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H230",
+      "row": 230,
+      "col": 8,
+      "formula": "I33",
+      "value": 485,
+      "cellRefs": [
+        "I33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H232",
+      "row": 232,
+      "col": 8,
+      "formula": "H231*(H230+H227)",
+      "value": 0,
+      "cellRefs": [
+        "H231",
+        "H230",
+        "H227"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H233",
+      "row": 233,
+      "col": 8,
+      "formula": "MAX(H229/2+H232,H229-H232)",
+      "value": 11.08,
+      "cellRefs": [
+        "H229",
+        "H232"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "MAX"
+      ]
+    },
+    {
+      "cell": "D237",
+      "row": 237,
+      "col": 4,
+      "formula": "E240/2-C237",
+      "value": 1.1500000000000004,
+      "cellRefs": [
+        "E240",
+        "C237"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E240",
+      "row": 240,
+      "col": 5,
+      "formula": "E44",
+      "value": 8.4,
+      "cellRefs": [
+        "E44"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H241",
+      "row": 241,
+      "col": 8,
+      "formula": "D237",
+      "value": 1.1500000000000004,
+      "cellRefs": [
+        "D237"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E242",
+      "row": 242,
+      "col": 5,
+      "formula": "CONCATENATE(H241,\"*\",ROUND(H228,1))",
+      "value": "1.15*69.2",
+      "cellRefs": [
+        "H241",
+        "H228"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "H242",
+      "row": 242,
+      "col": 8,
+      "formula": "H228*H241",
+      "value": 79.63123353293415,
+      "cellRefs": [
+        "H228",
+        "H241"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D243",
+      "row": 243,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(H226,1),\"*\",C6,\"-\",ROUND(H225,1),\"*\",C7)",
+      "value": "49.7*0.3-19.5*0.3",
+      "cellRefs": [
+        "H226",
+        "C6",
+        "H225",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "H243",
+      "row": 243,
+      "col": 8,
+      "formula": "ABS(H226*C6-H225*C7)",
+      "value": 9.046419161676646,
+      "cellRefs": [
+        "H226",
+        "C6",
+        "H225",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ABS"
+      ]
+    },
+    {
+      "cell": "H244",
+      "row": 244,
+      "col": 8,
+      "formula": "H243/H228",
+      "value": 0.13064449179511303,
+      "cellRefs": [
+        "H243",
+        "H228"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C249",
+      "row": 249,
+      "col": 3,
+      "formula": "CONCATENATE(\"90% of\",\" 3*\",ROUND(I201,1))",
+      "value": "90% of 3*9.8",
+      "cellRefs": [
+        "I201"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "H249",
+      "row": 249,
+      "col": 8,
+      "formula": "0.9*3*I201",
+      "value": 26.385628742514967,
+      "cellRefs": [
+        "I201"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C250",
+      "row": 250,
+      "col": 3,
+      "formula": "CONCATENATE(\"90% of\",\" 3*\",ROUND(I202,1))",
+      "value": "90% of 3*24.8",
+      "cellRefs": [
+        "I202"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "H250",
+      "row": 250,
+      "col": 8,
+      "formula": "0.9*3*I202",
+      "value": 67.09451497005989,
+      "cellRefs": [
+        "I202"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H251",
+      "row": 251,
+      "col": 8,
+      "formula": "load1*0.9*3-H250",
+      "value": 12.825485029940111,
+      "cellRefs": [
+        "H250"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D252",
+      "row": 252,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(H249,1),\" + \",ROUND(H250,1))",
+      "value": "26.4 + 67.1",
+      "cellRefs": [
+        "H249",
+        "H250"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "H252",
+      "row": 252,
+      "col": 8,
+      "formula": "H249+H250",
+      "value": 93.48014371257486,
+      "cellRefs": [
+        "H249",
+        "H250"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D253",
+      "row": 253,
+      "col": 4,
+      "formula": "CONCATENATE(\"(0.2)*\",55.4,\"+\",\"0.05*\",55.4)",
+      "value": "(0.2)*55.4+0.05*55.4",
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "H253",
+      "row": 253,
+      "col": 8,
+      "formula": "(0.2)*55.4+(0.05)*55.4",
+      "value": 13.85,
+      "cellRefs": [],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H255",
+      "row": 255,
+      "col": 8,
+      "formula": "I33",
+      "value": 485,
+      "cellRefs": [
+        "I33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H257",
+      "row": 257,
+      "col": 8,
+      "formula": "H256*(H255+H252)",
+      "value": 0,
+      "cellRefs": [
+        "H256",
+        "H255",
+        "H252"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H258",
+      "row": 258,
+      "col": 8,
+      "formula": "MAX(H253/2+H257,H253-H257)",
+      "value": 13.85,
+      "cellRefs": [
+        "H253",
+        "H257"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "MAX"
+      ]
+    },
+    {
+      "cell": "E262",
+      "row": 262,
+      "col": 5,
+      "formula": "E265/2-C262",
+      "value": 0.7000000000000002,
+      "cellRefs": [
+        "E265",
+        "C262"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H266",
+      "row": 266,
+      "col": 8,
+      "formula": "E262",
+      "value": 0.7000000000000002,
+      "cellRefs": [
+        "E262"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "E267",
+      "row": 267,
+      "col": 5,
+      "formula": "CONCATENATE(H266,\"*\",ROUND(H252,1))",
+      "value": "0.7*93.5",
+      "cellRefs": [
+        "H266",
+        "H252"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "H267",
+      "row": 267,
+      "col": 8,
+      "formula": "H266*H252",
+      "value": 65.43610059880241,
+      "cellRefs": [
+        "H266",
+        "H252"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D268",
+      "row": 268,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(H250,1),\"*\",C6,\"-\",ROUND(H249,1),\"*\",C7)",
+      "value": "67.1*0.3-26.4*0.3",
+      "cellRefs": [
+        "H250",
+        "C6",
+        "H249",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "H268",
+      "row": 268,
+      "col": 8,
+      "formula": "ABS(H250*C6-H249*C7)",
+      "value": 12.212665868263475,
+      "cellRefs": [
+        "H250",
+        "C6",
+        "H249",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ABS"
+      ]
+    },
+    {
+      "cell": "H269",
+      "row": 269,
+      "col": 8,
+      "formula": "H268/H252",
+      "value": 0.13064449179511306,
+      "cellRefs": [
+        "H268",
+        "H252"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C273",
+      "row": 273,
+      "col": 3,
+      "formula": "CONCATENATE(\"90% of\",\"(\",ROUND(I201,2),\"+\",ROUND(I171,2),\")\")",
+      "value": "90% of(9.77+21.74)",
+      "cellRefs": [
+        "I201",
+        "I171"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "H273",
+      "row": 273,
+      "col": 8,
+      "formula": "0.9*(I201+I171)",
+      "value": 28.364550898203593,
+      "cellRefs": [
+        "I201",
+        "I171"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "C274",
+      "row": 274,
+      "col": 3,
+      "formula": "CONCATENATE(\"90% of\",\"(\",ROUND(I202,2),\"+\",ROUND(I170,2),\")\")",
+      "value": "90% of(24.85+31.22)",
+      "cellRefs": [
+        "I202",
+        "I170"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "H274",
+      "row": 274,
+      "col": 8,
+      "formula": "0.9*(I202+I170)",
+      "value": 50.46208383233533,
+      "cellRefs": [
+        "I202",
+        "I170"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H275",
+      "row": 275,
+      "col": 8,
+      "formula": "load1*0.9*3-H274",
+      "value": 29.45791616766467,
+      "cellRefs": [
+        "H274"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D276",
+      "row": 276,
+      "col": 4,
+      "formula": "CONCATENATE(I32,\" + \",\"5% of \",55.4)",
+      "value": "16 + 5% of 55.4",
+      "cellRefs": [
+        "I32"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE"
+      ]
+    },
+    {
+      "cell": "H276",
+      "row": 276,
+      "col": 8,
+      "formula": "I32+0.05*55.4",
+      "value": 18.77,
+      "cellRefs": [
+        "I32"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H278",
+      "row": 278,
+      "col": 8,
+      "formula": "I33",
+      "value": 485,
+      "cellRefs": [
+        "I33"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H280",
+      "row": 280,
+      "col": 8,
+      "formula": "H279*(H278+H275)",
+      "value": 0,
+      "cellRefs": [
+        "H279",
+        "H278",
+        "H275"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H281",
+      "row": 281,
+      "col": 8,
+      "formula": "MAX(H276/2+H280,H276-H280)",
+      "value": 18.77,
+      "cellRefs": [
+        "H276",
+        "H280"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "MAX"
+      ]
+    },
+    {
+      "cell": "H289",
+      "row": 289,
+      "col": 8,
+      "formula": "D285",
+      "value": 2.905,
+      "cellRefs": [
+        "D285"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H290",
+      "row": 290,
+      "col": 8,
+      "formula": "-F285",
+      "value": -0.84,
+      "cellRefs": [
+        "F285"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D291",
+      "row": 291,
+      "col": 4,
+      "formula": "CONCATENATE(\"0.9*(\",ROUND(I28,1),\"*\",ROUND(H289,1),\"-\",ROUND(I60,1),\"*\",ROUND(H290,1),\")\")",
+      "value": "0.9*(60.4*2.9-0*-0.8)",
+      "cellRefs": [
+        "I28",
+        "H289",
+        "I60",
+        "H290"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "H291",
+      "row": 291,
+      "col": 8,
+      "formula": "0.9*(I173*H289+I204*H290)",
+      "value": 112.39405976047905,
+      "cellRefs": [
+        "I173",
+        "H289",
+        "I204",
+        "H290"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "H292",
+      "row": 292,
+      "col": 8,
+      "formula": "H291/(H273+H274)",
+      "value": 1.4258386159029504,
+      "cellRefs": [
+        "H291",
+        "H273",
+        "H274"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    },
+    {
+      "cell": "D293",
+      "row": 293,
+      "col": 4,
+      "formula": "CONCATENATE(ROUND(H274,1),\"*\",C6,\"-\",ROUND(H273,1),\"*\",C7)",
+      "value": "50.5*0.3-28.4*0.3",
+      "cellRefs": [
+        "H274",
+        "C6",
+        "H273",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "CONCATENATE",
+        "ROUND"
+      ]
+    },
+    {
+      "cell": "H293",
+      "row": 293,
+      "col": 8,
+      "formula": "ABS(H274*C6-H273*C7)",
+      "value": 6.62925988023952,
+      "cellRefs": [
+        "H274",
+        "C6",
+        "H273",
+        "C7"
+      ],
+      "sheetRefs": [],
+      "functions": [
+        "ABS"
+      ]
+    },
+    {
+      "cell": "H294",
+      "row": 294,
+      "col": 8,
+      "formula": "H293/(H273+H274)",
+      "value": 0.08409923755975364,
+      "cellRefs": [
+        "H293",
+        "H273",
+        "H274"
+      ],
+      "sheetRefs": [],
+      "functions": []
+    }
+  ]
+}
