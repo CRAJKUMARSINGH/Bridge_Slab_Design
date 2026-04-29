@@ -1,0 +1,672 @@
+{
+  "input": {
+    "projectName": "Construction of Submersible Bridge on Larathi to Larathi B Road, across Som River",
+    "location": "Larathi to Larathi B Road, Som River",
+    "riverName": "Som",
+    "bridgeType": "submersible",
+    "spanLength": 8,
+    "numberOfSpans": 12,
+    "skew": 0,
+    "carriageWidth": 7.5,
+    "numberOfLanes": 2,
+    "totalLength": 96,
+    "hfl": 99.5,
+    "bedLevel": 96.17,
+    "foundationLevel": 92,
+    "discharge": 1066.8,
+    "manningN": 0.033,
+    "bedSlope": 926,
+    "laceysSiltFactor": 1.5,
+    "crossSectionData": [
+      {
+        "chainage": 0,
+        "gl": 99.35
+      },
+      {
+        "chainage": 5,
+        "gl": 98.08
+      },
+      {
+        "chainage": 10,
+        "gl": 94.39
+      },
+      {
+        "chainage": 20,
+        "gl": 93.84
+      },
+      {
+        "chainage": 30,
+        "gl": 92.69
+      },
+      {
+        "chainage": 40,
+        "gl": 93.59
+      },
+      {
+        "chainage": 50,
+        "gl": 94.02
+      },
+      {
+        "chainage": 60,
+        "gl": 94.62
+      },
+      {
+        "chainage": 70,
+        "gl": 94.34
+      },
+      {
+        "chainage": 80,
+        "gl": 95.58
+      },
+      {
+        "chainage": 90,
+        "gl": 97.61
+      },
+      {
+        "chainage": 95,
+        "gl": 98.98
+      },
+      {
+        "chainage": 100,
+        "gl": 99.49
+      },
+      {
+        "chainage": 105,
+        "gl": 99.78
+      },
+      {
+        "chainage": 110,
+        "gl": 100.12
+      },
+      {
+        "chainage": 115,
+        "gl": 100.573
+      }
+    ],
+    "pierWidth": 1.2,
+    "pierLength": 3.5,
+    "pierDepth": 4,
+    "numberOfPiers": 11,
+    "pierBaseWidth": 2.5,
+    "pierBaseLength": 4.5,
+    "abutmentHeight": 8,
+    "abutmentWidth": 3.5,
+    "abutmentDepth": 5,
+    "dirtWallHeight": 2.5,
+    "returnWallLength": 6,
+    "concreteGrade": "M25",
+    "fck": 25,
+    "steelGrade": "Fe415",
+    "fy": 415,
+    "sbc": 200,
+    "phi": 30,
+    "gamma": 18,
+    "rtl": 101.6,
+    "agl": 96.6,
+    "nbl": 96.6,
+    "ofl": 100.6,
+    "dwl": 100.83,
+    "deckSlabThickness": 0.25,
+    "freeboardAboveHfl": 1,
+    "issuingAuthority": "PWD / Employer records (Larathi Som sample)",
+    "jobNumber": "LARATHI-SOM-STAB-REF",
+    "hardRockAvailable": true
+  },
+  "hydraulics": {
+    "crossSectionalArea": 440.825,
+    "wettedPerimeter": 117.05675460673912,
+    "hydraulicRadius": 3.7659082680105422,
+    "velocity": 2.410425564901543,
+    "discharge": 1062.5758496477226,
+    "regimeWidth": 156.4664423315221,
+    "effectiveWaterway": 96,
+    "scourDepth": 6.416439664221748,
+    "designScourDepth": 12.832879328443497,
+    "afflux": 0.8262337841844295,
+    "designWaterLevel": 100.32623378418442,
+    "froudeNumber": 0.42173253300832936,
+    "flowType": "Subcritical"
+  },
+  "pier": {
+    "geometry": {
+      "width": 1.2,
+      "length": 3.5,
+      "depth": 4,
+      "baseWidth": 2.5,
+      "baseLength": 4.5,
+      "spacing": 8
+    },
+    "loads": {
+      "deadLoad": 420,
+      "liveLoad": 400,
+      "hydrostaticForce": 296.5561893470548,
+      "dragForce": 273.6140594034033,
+      "windForce": 0,
+      "totalHorizontalForce": 570.1702487504581,
+      "buoyancy": 171.24514437596662
+    },
+    "loadCases": [
+      {
+        "caseNumber": 1,
+        "description": "Service Condition",
+        "deadLoadFactor": 1,
+        "liveLoadFactor": 1,
+        "windLoadFactor": 0,
+        "buoyancyFactor": 1,
+        "verticalForce": 648.7548556240333,
+        "horizontalForce": 570.1702487504581,
+        "moment": 789.9202835311634,
+        "slidingFOS": 0.5689132825202606,
+        "overturningFOS": 1.8479059920183554,
+        "bearingFOS": 3.4681821345841626,
+        "status": "UNSAFE"
+      },
+      {
+        "caseNumber": 2,
+        "description": "Construction Stage",
+        "deadLoadFactor": 1,
+        "liveLoadFactor": 0,
+        "windLoadFactor": 1,
+        "buoyancyFactor": 0,
+        "verticalForce": 420,
+        "horizontalForce": 570.1702487504581,
+        "moment": 789.9202835311634,
+        "slidingFOS": 0.3683110447453547,
+        "overturningFOS": 1.196323248943029,
+        "bearingFOS": 5.357142857142857,
+        "status": "UNSAFE"
+      },
+      {
+        "caseNumber": 3,
+        "description": "Flood Condition",
+        "deadLoadFactor": 1,
+        "liveLoadFactor": 0,
+        "windLoadFactor": 0,
+        "buoyancyFactor": 1,
+        "verticalForce": 248.75485562403338,
+        "horizontalForce": 570.1702487504581,
+        "moment": 789.9202835311634,
+        "slidingFOS": 0.21814085895325622,
+        "overturningFOS": 0.7085505168345184,
+        "bearingFOS": 9.04504957041175,
+        "status": "UNSAFE"
+      },
+      {
+        "caseNumber": 4,
+        "description": "Seismic Condition",
+        "deadLoadFactor": 1,
+        "liveLoadFactor": 0.25,
+        "windLoadFactor": 0,
+        "buoyancyFactor": 1,
+        "verticalForce": 348.7548556240334,
+        "horizontalForce": 570.1702487504581,
+        "moment": 789.9202835311634,
+        "slidingFOS": 0.30583396484500736,
+        "overturningFOS": 0.9933893856304777,
+        "bearingFOS": 6.451523079080961,
+        "status": "UNSAFE"
+      },
+      {
+        "caseNumber": 5,
+        "description": "Ultimate Limit State",
+        "deadLoadFactor": 1.35,
+        "liveLoadFactor": 1.5,
+        "windLoadFactor": 0.9,
+        "buoyancyFactor": 1,
+        "verticalForce": 995.7548556240333,
+        "horizontalForce": 570.1702487504581,
+        "moment": 789.9202835311634,
+        "slidingFOS": 0.8732083599646371,
+        "overturningFOS": 2.836296866740334,
+        "bearingFOS": 2.259592295525327,
+        "status": "UNSAFE"
+      }
+    ],
+    "reinforcement": {
+      "mainSteel": {
+        "diameter": 25,
+        "spacing": 150,
+        "numberOfBars": 16,
+        "area": 7854,
+        "weight": 1250
+      },
+      "linkSteel": {
+        "diameter": 10,
+        "spacing": 150,
+        "numberOfBars": 40,
+        "area": 3142,
+        "weight": 250
+      },
+      "flaredBase": {
+        "diameter": 25,
+        "spacing": 150,
+        "numberOfBars": 16,
+        "area": 7854,
+        "weight": 1250
+      }
+    },
+    "footing": {
+      "length": 4.5,
+      "width": 2.5,
+      "thickness": 1,
+      "reinforcement": {
+        "diameter": 25,
+        "spacing": 150,
+        "numberOfBars": 16,
+        "area": 7854,
+        "weight": 1250
+      },
+      "basePressure": {
+        "max": 180,
+        "min": 120,
+        "distribution": [
+          180,
+          170,
+          160,
+          150,
+          140,
+          130,
+          120
+        ]
+      }
+    },
+    "pierCap": {
+      "length": 4,
+      "width": 1.7,
+      "thickness": 0.8,
+      "reinforcement": {
+        "diameter": 25,
+        "spacing": 150,
+        "numberOfBars": 16,
+        "area": 7854,
+        "weight": 1250
+      }
+    }
+  },
+  "abutmentType1": {
+    "geometry": {
+      "height": 8,
+      "width": 3.5,
+      "depth": 5,
+      "baseWidth": 5,
+      "baseLength": 6,
+      "dirtWallHeight": 2.5,
+      "returnWallLength": 6
+    },
+    "earthPressure": {
+      "ka": 0.3333333333333334,
+      "pa": 192.00000000000006,
+      "location": 2.6666666666666665
+    },
+    "loads": {
+      "deadLoad": 3500,
+      "liveLoad": 100,
+      "earthPressure": 192.00000000000006,
+      "soilSurcharge": 80,
+      "waterPressure": 0
+    },
+    "loadCases": [
+      {
+        "caseNumber": 1,
+        "description": "Case 1",
+        "deadLoadFactor": 1,
+        "liveLoadFactor": 1,
+        "windLoadFactor": 0,
+        "buoyancyFactor": 0,
+        "verticalForce": 3600,
+        "horizontalForce": 192.00000000000006,
+        "moment": 512.0000000000001,
+        "slidingFOS": 9.374999999999996,
+        "overturningFOS": 17.578124999999996,
+        "bearingFOS": 1.6666666666666667,
+        "status": "UNSAFE"
+      },
+      {
+        "caseNumber": 2,
+        "description": "Case 2",
+        "deadLoadFactor": 1,
+        "liveLoadFactor": 1,
+        "windLoadFactor": 0,
+        "buoyancyFactor": 0,
+        "verticalForce": 3600,
+        "horizontalForce": 192.00000000000006,
+        "moment": 512.0000000000001,
+        "slidingFOS": 9.374999999999996,
+        "overturningFOS": 17.578124999999996,
+        "bearingFOS": 1.6666666666666667,
+        "status": "UNSAFE"
+      },
+      {
+        "caseNumber": 3,
+        "description": "Case 3",
+        "deadLoadFactor": 1,
+        "liveLoadFactor": 1,
+        "windLoadFactor": 0,
+        "buoyancyFactor": 0,
+        "verticalForce": 3600,
+        "horizontalForce": 192.00000000000006,
+        "moment": 512.0000000000001,
+        "slidingFOS": 9.374999999999996,
+        "overturningFOS": 17.578124999999996,
+        "bearingFOS": 1.6666666666666667,
+        "status": "UNSAFE"
+      },
+      {
+        "caseNumber": 4,
+        "description": "Case 4",
+        "deadLoadFactor": 1,
+        "liveLoadFactor": 1,
+        "windLoadFactor": 0,
+        "buoyancyFactor": 0,
+        "verticalForce": 3600,
+        "horizontalForce": 192.00000000000006,
+        "moment": 512.0000000000001,
+        "slidingFOS": 9.374999999999996,
+        "overturningFOS": 17.578124999999996,
+        "bearingFOS": 1.6666666666666667,
+        "status": "UNSAFE"
+      },
+      {
+        "caseNumber": 5,
+        "description": "Case 5",
+        "deadLoadFactor": 1,
+        "liveLoadFactor": 1,
+        "windLoadFactor": 0,
+        "buoyancyFactor": 0,
+        "verticalForce": 3600,
+        "horizontalForce": 192.00000000000006,
+        "moment": 512.0000000000001,
+        "slidingFOS": 9.374999999999996,
+        "overturningFOS": 17.578124999999996,
+        "bearingFOS": 1.6666666666666667,
+        "status": "UNSAFE"
+      }
+    ],
+    "reinforcement": {
+      "abutmentBody": {
+        "diameter": 20,
+        "spacing": 150,
+        "numberOfBars": 12,
+        "area": 3768,
+        "weight": 600
+      },
+      "dirtWall": {
+        "diameter": 20,
+        "spacing": 150,
+        "numberOfBars": 12,
+        "area": 3768,
+        "weight": 600
+      },
+      "returnWall": {
+        "diameter": 20,
+        "spacing": 150,
+        "numberOfBars": 12,
+        "area": 3768,
+        "weight": 600
+      },
+      "footing": {
+        "diameter": 20,
+        "spacing": 150,
+        "numberOfBars": 12,
+        "area": 3768,
+        "weight": 600
+      },
+      "abutmentCap": {
+        "diameter": 20,
+        "spacing": 150,
+        "numberOfBars": 12,
+        "area": 3768,
+        "weight": 600
+      }
+    }
+  },
+  "abutmentC1": {
+    "geometry": {
+      "height": 8,
+      "width": 3.5,
+      "depth": 5,
+      "baseWidth": 5,
+      "baseLength": 6,
+      "dirtWallHeight": 2.5,
+      "returnWallLength": 6
+    },
+    "earthPressure": {
+      "ka": 0.3333333333333334,
+      "pa": 192.00000000000006,
+      "location": 2.6666666666666665
+    },
+    "loads": {
+      "deadLoad": 3500,
+      "liveLoad": 100,
+      "earthPressure": 192.00000000000006,
+      "soilSurcharge": 80,
+      "waterPressure": 0
+    },
+    "loadCases": [
+      {
+        "caseNumber": 1,
+        "description": "Case 1",
+        "deadLoadFactor": 1,
+        "liveLoadFactor": 1,
+        "windLoadFactor": 0,
+        "buoyancyFactor": 0,
+        "verticalForce": 3600,
+        "horizontalForce": 192.00000000000006,
+        "moment": 512.0000000000001,
+        "slidingFOS": 9.374999999999996,
+        "overturningFOS": 17.578124999999996,
+        "bearingFOS": 1.6666666666666667,
+        "status": "UNSAFE"
+      },
+      {
+        "caseNumber": 2,
+        "description": "Case 2",
+        "deadLoadFactor": 1,
+        "liveLoadFactor": 1,
+        "windLoadFactor": 0,
+        "buoyancyFactor": 0,
+        "verticalForce": 3600,
+        "horizontalForce": 192.00000000000006,
+        "moment": 512.0000000000001,
+        "slidingFOS": 9.374999999999996,
+        "overturningFOS": 17.578124999999996,
+        "bearingFOS": 1.6666666666666667,
+        "status": "UNSAFE"
+      },
+      {
+        "caseNumber": 3,
+        "description": "Case 3",
+        "deadLoadFactor": 1,
+        "liveLoadFactor": 1,
+        "windLoadFactor": 0,
+        "buoyancyFactor": 0,
+        "verticalForce": 3600,
+        "horizontalForce": 192.00000000000006,
+        "moment": 512.0000000000001,
+        "slidingFOS": 9.374999999999996,
+        "overturningFOS": 17.578124999999996,
+        "bearingFOS": 1.6666666666666667,
+        "status": "UNSAFE"
+      },
+      {
+        "caseNumber": 4,
+        "description": "Case 4",
+        "deadLoadFactor": 1,
+        "liveLoadFactor": 1,
+        "windLoadFactor": 0,
+        "buoyancyFactor": 0,
+        "verticalForce": 3600,
+        "horizontalForce": 192.00000000000006,
+        "moment": 512.0000000000001,
+        "slidingFOS": 9.374999999999996,
+        "overturningFOS": 17.578124999999996,
+        "bearingFOS": 1.6666666666666667,
+        "status": "UNSAFE"
+      },
+      {
+        "caseNumber": 5,
+        "description": "Case 5",
+        "deadLoadFactor": 1,
+        "liveLoadFactor": 1,
+        "windLoadFactor": 0,
+        "buoyancyFactor": 0,
+        "verticalForce": 3600,
+        "horizontalForce": 192.00000000000006,
+        "moment": 512.0000000000001,
+        "slidingFOS": 9.374999999999996,
+        "overturningFOS": 17.578124999999996,
+        "bearingFOS": 1.6666666666666667,
+        "status": "UNSAFE"
+      }
+    ],
+    "reinforcement": {
+      "abutmentBody": {
+        "diameter": 20,
+        "spacing": 150,
+        "numberOfBars": 12,
+        "area": 3768,
+        "weight": 600
+      },
+      "dirtWall": {
+        "diameter": 20,
+        "spacing": 150,
+        "numberOfBars": 12,
+        "area": 3768,
+        "weight": 600
+      },
+      "returnWall": {
+        "diameter": 20,
+        "spacing": 150,
+        "numberOfBars": 12,
+        "area": 3768,
+        "weight": 600
+      },
+      "footing": {
+        "diameter": 20,
+        "spacing": 150,
+        "numberOfBars": 12,
+        "area": 3768,
+        "weight": 600
+      },
+      "abutmentCap": {
+        "diameter": 20,
+        "spacing": 150,
+        "numberOfBars": 12,
+        "area": 3768,
+        "weight": 600
+      }
+    }
+  },
+  "estimation": {
+    "quantities": {
+      "concrete": {
+        "m25": 1548.55,
+        "m30": 0,
+        "m35": 0,
+        "total": 1548.55
+      },
+      "steel": {
+        "fe415": 97.5715,
+        "fe500": 0,
+        "total": 97.5715
+      },
+      "formwork": 873.6,
+      "excavation": {
+        "ordinary": 0,
+        "hardRock": 0,
+        "total": 0
+      },
+      "backfill": 0
+    },
+    "boq": [
+      {
+        "itemNo": "1",
+        "description": "Concrete M25",
+        "unit": "m³",
+        "quantity": 1548.55,
+        "rate": 6500,
+        "amount": 10065575
+      },
+      {
+        "itemNo": "2",
+        "description": "Steel Fe415",
+        "unit": "MT",
+        "quantity": 97.5715,
+        "rate": 65000,
+        "amount": 6342147.5
+      },
+      {
+        "itemNo": "3",
+        "description": "Formwork",
+        "unit": "m²",
+        "quantity": 873.6,
+        "rate": 350,
+        "amount": 305760
+      },
+      {
+        "itemNo": "4",
+        "description": "Excavation",
+        "unit": "m³",
+        "quantity": 0,
+        "rate": 250,
+        "amount": 0
+      },
+      {
+        "itemNo": "5",
+        "description": "Backfill",
+        "unit": "m³",
+        "quantity": 0,
+        "rate": 180,
+        "amount": 0
+      },
+      {
+        "itemNo": "6",
+        "description": "PCC Blinding",
+        "unit": "m³",
+        "quantity": 22.375,
+        "rate": 5000,
+        "amount": 111875
+      },
+      {
+        "itemNo": "7",
+        "description": "Wearing Coat",
+        "unit": "m³",
+        "quantity": 36,
+        "rate": 8000,
+        "amount": 288000
+      },
+      {
+        "itemNo": "8",
+        "description": "Expansion Joints",
+        "unit": "m",
+        "quantity": 15,
+        "rate": 5000,
+        "amount": 75000
+      },
+      {
+        "itemNo": "9",
+        "description": "Bearings",
+        "unit": "nos",
+        "quantity": 22,
+        "rate": 25000,
+        "amount": 550000
+      },
+      {
+        "itemNo": "10",
+        "description": "TOTAL",
+        "unit": "",
+        "quantity": 0,
+        "rate": 0,
+        "amount": 17738357.5
+      }
+    ],
+    "cost": {
+      "subtotal": 17738357.5,
+      "gst": 3192904.35,
+      "total": 20931261.85,
+      "ratePerMeter": 218033.9776041667,
+      "profit": 0,
+      "overhead": 0
+    }
+  }
+}

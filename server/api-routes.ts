@@ -7,7 +7,16 @@ import type { ProjectInput } from '../bridge-excel-generator/types';
 import { mergeProjectInput, PHASE1_QUICK_TEMPLATES } from './default-project-inputs';
 import { generateDesignPDF } from './pdf-export';
 import { generateBridgeDXF } from './dxf-export';
-import { generateGADSvg, generatePierSvg, generateAbutmentSvg, generateSlabSvg } from './svg-diagrams';
+import {
+  generateGADSvg,
+  generatePierSvg,
+  generateAbutmentSvg,
+  generateSlabSvg,
+  generateScourProfileSvg,
+  generatePierStabilitySvg,
+  generateAbutmentPressureSvg,
+  generateSlabReinfPlanSvg,
+} from './svg-diagrams';
 import { calculateReinforcement, generateReinforcementDetailSVG, generateReinforcementSectionSVG } from './reinforcement-drawings';
 import { calculateDetailedAbutmentDesign, calculateDetailedEstimation, calculateDeckAnchorage } from './remote-app-adapter';
 import { formatZodIssues, projectInputBodySchema } from './project-input-zod';
@@ -277,6 +286,58 @@ async function svgSlabHandler(req: Request, res: Response) {
 }
 router.get('/drawings/svg/slab', svgSlabHandler);
 router.post('/drawings/svg/slab', svgSlabHandler);
+
+async function svgScourProfileHandler(req: Request, res: Response) {
+  try {
+    const input = mergeInputFromRequest(req);
+    const enhancedInput = { ...input, ...calculateCompleteDesign(input) };
+    res.setHeader('Content-Type', 'image/svg+xml');
+    res.send(generateScourProfileSvg(enhancedInput as any));
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+}
+router.get('/drawings/svg/scour-profile', svgScourProfileHandler);
+router.post('/drawings/svg/scour-profile', svgScourProfileHandler);
+
+async function svgPierStabilityHandler(req: Request, res: Response) {
+  try {
+    const input = mergeInputFromRequest(req);
+    const enhancedInput = { ...input, ...calculateCompleteDesign(input) };
+    res.setHeader('Content-Type', 'image/svg+xml');
+    res.send(generatePierStabilitySvg(enhancedInput as any));
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+}
+router.get('/drawings/svg/pier-stability', svgPierStabilityHandler);
+router.post('/drawings/svg/pier-stability', svgPierStabilityHandler);
+
+async function svgAbutmentPressureHandler(req: Request, res: Response) {
+  try {
+    const input = mergeInputFromRequest(req);
+    const enhancedInput = { ...input, ...calculateCompleteDesign(input) };
+    res.setHeader('Content-Type', 'image/svg+xml');
+    res.send(generateAbutmentPressureSvg(enhancedInput as any));
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+}
+router.get('/drawings/svg/abutment-pressure', svgAbutmentPressureHandler);
+router.post('/drawings/svg/abutment-pressure', svgAbutmentPressureHandler);
+
+async function svgSlabReinfPlanHandler(req: Request, res: Response) {
+  try {
+    const input = mergeInputFromRequest(req);
+    const enhancedInput = { ...input, ...calculateCompleteDesign(input) };
+    res.setHeader('Content-Type', 'image/svg+xml');
+    res.send(generateSlabReinfPlanSvg(enhancedInput as any));
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+}
+router.get('/drawings/svg/slab-reinf-plan', svgSlabReinfPlanHandler);
+router.post('/drawings/svg/slab-reinf-plan', svgSlabReinfPlanHandler);
 
 /**
  * POST /api/design/pdf/comprehensive — returns ~200 page PDF with all 46 sheets

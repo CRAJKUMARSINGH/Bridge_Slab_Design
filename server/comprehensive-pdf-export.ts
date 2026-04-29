@@ -9,6 +9,18 @@ import { jsPDF } from 'jspdf';
 import type { EnhancedProjectInput, BOQItem, ProjectInput } from '../bridge-excel-generator/types';
 import { drawWbInputTemplateSheets } from './pdf-input-template-sheets';
 import { buildWorkbookSheetPreviews, type WorkbookSheetPreview } from './workbook-sheets-preview';
+import {
+  getClosingNarrativeParagraphs,
+  getHydraulicNarrativeParagraphs,
+  getStructuralNarrativeParagraphs,
+  getVerificationNarrativeParagraphs,
+} from '../bridge-excel-generator/narrative-engine';
+import {
+  generateAbutmentPressureSvg,
+  generatePierStabilitySvg,
+  generateScourProfileSvg,
+  generateSlabReinfPlanSvg,
+} from './svg-diagrams';
 
 // A4 dimensions in mm
 const PAGE_WIDTH = 210;
@@ -69,7 +81,11 @@ async function generateComprehensivePDFInternal(
   // Cover page
   addCoverPage(doc, input, totalPages);
 
-  /** Excel places INPUT templates before INDEX; same A–H models as the short design PDF. */
+  // Foreword page
+  doc.addPage();
+  addForeword(doc, input, totalPages);
+
+  /** Excel places INPUT templates before INDEX; same A-H models as the short design PDF. */
   const inputWorkbookPdfPages = drawWbInputTemplateSheets(doc, input as ProjectInput, MARGIN, PAGE_WIDTH, PAGE_HEIGHT);
 
   // Table of contents (after INPUT samples so page numbers line up)
@@ -166,6 +182,11 @@ async function generateComprehensivePDFInternal(
     else addDataSheet(doc, input, i, getSheetName(i), pageNumber, totalPages);
     pageNumber += 4;
   }
+
+  addAnnexureDrawingPage(doc, input, 'D-04 HYDRAULIC PROFILE & SCOUR DIAGRAM', generateScourProfileSvg(input), getHydraulicNarrativeParagraphs(input).slice(0, 2));
+  addAnnexureDrawingPage(doc, input, 'D-05 PIER STABILITY FREE-BODY', generatePierStabilitySvg(input), getStructuralNarrativeParagraphs(input).slice(0, 2));
+  addAnnexureDrawingPage(doc, input, 'D-06 ABUTMENT EARTH-PRESSURE DIAGRAM', generateAbutmentPressureSvg(input), getVerificationNarrativeParagraphs(input).slice(0, 2));
+  addAnnexureDrawingPage(doc, input, 'D-07 SLAB REINFORCEMENT PLAN', generateSlabReinfPlanSvg(input), getClosingNarrativeParagraphs(input).slice(0, 2));
 
   /** Workbook-faithful grid excerpts until total length reaches the ~200–250 page band. */
   await appendWorkbookPreviewAppendix(
@@ -325,6 +346,80 @@ function addCoverPage(doc: jsPDF, input: EnhancedProjectInput, totalPages: numbe
   doc.text('Page 1 of ' + totalPages, PW - MARGIN, PH - 10, { align: 'right' });
 }
 
+function addForeword(doc: jsPDF, input: EnhancedProjectInput, totalPages: number): void {
+  const pageNum = doc.getNumberOfPages();
+  addSheetHeader(doc, 'ABOUT THIS DESIGN REPORT', pageNum, totalPages);
+  doc.setFontSize(18);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(...COLORS.header);
+  doc.text('About this design report', MARGIN, 44);
+
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(...COLORS.text);
+  const lead = doc.splitTextToSize(
+    'This report is generated directly from the bridge design engine. Narrative prose, governing values, quantities and annexure diagrams are all tied back to the same design state so reviewers can trace the engineering story without manually reconciling separate documents.',
+    CONTENT_WIDTH,
+  );
+  doc.text(lead, MARGIN, 54);
+
+  drawTable(doc, 82, [
+    { header: 'Scope block', width: 56, align: 'left' as const },
+    { header: 'Declared report scope', width: 129, align: 'left' as const },
+  ], [
+    { cells: [{ value: 'Scope' }, { value: 'Hydraulics, slab, pier, abutment, estimation, workbook appendix and annexure drawings.' }] },
+    { cells: [{ value: 'Governing codes' }, { value: `IRC:6, IRC:112, IRC:78, IRC:SP:13${input.bridgeType === 'high-level' ? ', IRC:5' : ''}.` }] },
+    { cells: [{ value: 'Deliverables' }, { value: 'Excel workbook, HTML report, comprehensive PDF, DXF and SVG engineering annexures.' }] },
+    { cells: [{ value: 'Narrative mode' }, { value: 'Deterministic prose computed from project inputs and derived design results.' }] },
+  ]);
+}
+
+function addAnnexureDrawingPage(
+  doc: jsPDF,
+  input: EnhancedProjectInput,
+  title: string,
+  svg: string,
+  narrative: string[],
+): void {
+  doc.addPage();
+  const pageNum = doc.getNumberOfPages();
+  addSheetHeader(doc, title, pageNum, estimateTotalPages(input));
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(...COLORS.text);
+  let y = 40;
+  for (const para of narrative) {
+    const lines = doc.splitTextToSize(para, CONTENT_WIDTH);
+    doc.text(lines, MARGIN, y);
+    y += lines.length * 4 + 3;
+  }
+  const svgLines = svgToPdfText(svg, 160);
+  doc.setFont('courier', 'normal');
+  doc.setFontSize(5.5);
+  doc.setTextColor(110, 120, 130);
+  doc.text(svgLines, MARGIN, y + 2);
+}
+
+function svgToPdfText(svg: string, maxLineLength: number): string[] {
+  const compact = svg
+    .replace(/\s+/g, ' ')
+    .replace(/></g, '>\n<')
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const lines: string[] = [];
+  for (const line of compact) {
+    if (line.length <= maxLineLength) {
+      lines.push(line);
+      continue;
+    }
+    for (let i = 0; i < line.length; i += maxLineLength) {
+      lines.push(line.slice(i, i + maxLineLength));
+    }
+  }
+  return lines.slice(0, 80);
+}
+
 function addTableOfContents(
   doc: jsPDF,
   input: EnhancedProjectInput,
@@ -339,18 +434,18 @@ function addTableOfContents(
     {
       sheet: 'IN1-3',
       name: 'INPUT workbook tabs (Hydraulics, Pier, Abutment — A–H sample layout)',
-      page: 2,
+      page: 3,
     },
-    { sheet: '01', name: 'INDEX', page: 3 + shift },
-    { sheet: '02', name: 'INSERT- HYDRAULICS', page: 5 + shift },
-    { sheet: '03', name: 'afflux calculation', page: 7 + shift },
-    { sheet: '04', name: 'HYDRAULICS', page: 11 + shift },
-    { sheet: '05-08', name: 'DECK ANCHORAGE, CROSS SECTION, BED SLOPE, SBC', page: 15 + shift },
-    { sheet: '09-18', name: 'PIER DESIGN & STABILITY (10 sheets)', page: 23 + shift },
-    { sheet: '19-28', name: 'TYPE1 ABUTMENT (10 sheets)', page: 53 + shift },
-    { sheet: '29', name: 'TECHNOTE', page: 83 + shift },
-    { sheet: '30-41', name: 'C1 CANTILEVER ABUTMENT (12 sheets)', page: 85 + shift },
-    { sheet: '42-46', name: 'ESTIMATION & REPORTS (5 sheets)', page: 121 + shift },
+    { sheet: '01', name: 'INDEX', page: 4 + shift },
+    { sheet: '02', name: 'INSERT- HYDRAULICS', page: 6 + shift },
+    { sheet: '03', name: 'afflux calculation', page: 8 + shift },
+    { sheet: '04', name: 'HYDRAULICS', page: 12 + shift },
+    { sheet: '05-08', name: 'DECK ANCHORAGE, CROSS SECTION, BED SLOPE, SBC', page: 16 + shift },
+    { sheet: '09-18', name: 'PIER DESIGN & STABILITY (10 sheets)', page: 24 + shift },
+    { sheet: '19-28', name: 'TYPE1 ABUTMENT (10 sheets)', page: 54 + shift },
+    { sheet: '29', name: 'TECHNOTE', page: 84 + shift },
+    { sheet: '30-41', name: 'C1 CANTILEVER ABUTMENT (12 sheets)', page: 86 + shift },
+    { sheet: '42-46', name: 'ESTIMATION & REPORTS (5 sheets)', page: 122 + shift },
   ];
 
   let y = 60;

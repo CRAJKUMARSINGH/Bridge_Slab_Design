@@ -5,7 +5,6 @@
  */
 
 import type { ProjectInput, EnhancedProjectInput, BOQItem } from '../bridge-excel-generator/types';
-import { calculateCompleteDesign } from '../bridge-excel-generator/design-engine';
 
 // Types from REMOTE_APP modules
 interface AbutmentDesignInput {
@@ -297,10 +296,12 @@ export function calculateDetailedEstimation(input: ProjectInput, designResults: 
                    (2 * 2 * (input.abutmentWidth + input.abutmentHeight) * 10);
   
   // Excavation
-  const excavation = (input.numberOfPiers * input.pierBaseWidth * input.pierBaseLength * 
-                     (input.foundationLevel - input.bedLevel + 1)) +
-                     (2 * (input.abutmentWidth + 1.5) * 10 * 
-                     (input.foundationLevel - input.bedLevel + 1));
+  // NOTE: keep excavation depth non-negative. Some templates have foundationLevel
+  // above bedLevel by inputs noise; negative excavation makes BOQ invalid.
+  const excavationDepth = Math.max(0, input.foundationLevel - input.bedLevel + 1);
+  const excavation =
+    input.numberOfPiers * input.pierBaseWidth * input.pierBaseLength * excavationDepth +
+    2 * (input.abutmentWidth + 1.5) * 10 * excavationDepth;
   
   // Backfill
   const backfill = excavation * 0.4;

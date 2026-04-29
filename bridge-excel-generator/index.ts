@@ -6,6 +6,9 @@
 import ExcelJS from 'exceljs';
 import { ProjectInput, EnhancedProjectInput } from './types';
 import calculateCompleteDesign from './design-engine';
+import type { EstimationResult } from './types';
+import { assertNarrativeHasNoPlaceholders, getSheetNarrativeParagraphs } from './narrative-engine';
+import { calculateDetailedEstimation } from '../server/remote-app-adapter';
 
 // Import all sheet generators
 import { generateIndexSheet } from './sheets/01-index';
@@ -75,6 +78,19 @@ export async function generateCompleteExcel(
       spanCC: input.spanLength
     }
   };
+
+  // Estimation + BOQ for downstream HTML/PDF/report sheets.
+  // Design engine now already computes estimation; keep a fallback mapping just in case.
+  if (designResults && 'estimation' in designResults && designResults.estimation) {
+    enhancedInput.estimation = designResults.estimation as any;
+  } else {
+    try {
+      const detailedEstimation = calculateDetailedEstimation(input, designResults);
+      enhancedInput.estimation = mapDetailedEstimationToEstimationResult(detailedEstimation, input);
+    } catch (e) {
+      console.error('⚠️ Estimation generation failed:', e instanceof Error ? e.message : String(e));
+    }
+  }
   
   const workbook = new ExcelJS.Workbook();
   
@@ -196,6 +212,10 @@ export async function generateCompleteExcel(
   
   // Sheets 35-46: C1 Abutment (Placeholder implementations)
   await generateC1AbutmentPlaceholderSheets(workbook, enhancedInput);
+
+  // Add a detailed engineering story block to every sheet so reviewers get
+  // context, assumptions, governing values, and decision trace in-place.
+  applyDetailedNarrativeToAllSheets(workbook, enhancedInput);
   
   console.log('✅ Excel generation complete!');
   console.log(`Total sheets: ${workbook.worksheets.length}/46`);
@@ -217,3 +237,74 @@ export async function saveExcelToFile(input: ProjectInput, filename: string): Pr
 
 // Export main function
 export default generateCompleteExcel;
+
+function mapDetailedEstimationToEstimationResult(
+  detailed: any,
+  input: ProjectInput,
+): EstimationResult {
+  const totalConcrete = Number(detailed?.quantities?.concrete?.m25 ?? 0) +
+    Number(detailed?.quantities?.concrete?.m30 ?? 0) +
+    Number(detailed?.quantities?.concrete?.m35 ?? 0);
+
+  const totalSteel = Number(detailed?.quantities?.steel?.fe415 ?? 0) + Number(detailed?.quantities?.steel?.fe500 ?? 0);
+
+  const excavationOrd = Number(detailed?.quantities?.excavation?.ordinary ?? 0);
+  const excavationHard = Number(detailed?.quantities?.excavation?.hardRock ?? 0);
+  const excavationTotal = excavationOrd + excavationHard;
+
+  const subtotal = Number(detailed?.costs?.total ?? 0);
+  const gst = subtotal * 0.18;
+  const total = subtotal + gst;
+
+  const ratePerMeter = input.totalLength > 0 ? total / input.totalLength : total;
+
+  return {
+    quantities: {
+      concrete: {
+        m25: Number(detailed?.quantities?.concrete?.m25 ?? 0),
+        m30: Number(detailed?.quantities?.concrete?.m30 ?? 0),
+        m35: Number(detailed?.quantities?.concrete?.m35 ?? 0),
+        total: totalConcrete,
+      },
+      steel: {
+        fe415: Number(detailed?.quantities?.steel?.fe415 ?? 0),
+        fe500: Number(detailed?.quantities?.steel?.fe500 ?? 0),
+        total: totalSteel,
+      },
+      formwork: Number(detailed?.quantities?.formwork ?? 0),
+      excavation: {
+        ordinary: excavationOrd,
+        hardRock: excavationHard,
+        total: excavationTotal,
+      },
+      backfill: Number(detailed?.quantities?.backfill ?? 0),
+    },
+    boq: Array.isArray(detailed?.boqItems) ? detailed.boqItems : [],
+    cost: {
+      subtotal,
+      gst,
+      total,
+      ratePerMeter,
+      profit: 0,
+      overhead: 0,
+    },
+  };
+}
+
+function applyDetailedNarrativeToAllSheets(
+  workbook: ExcelJS.Workbook,
+  input: EnhancedProjectInput,
+): void {
+  for (const ws of workbook.worksheets) {
+    const startRow = ws.rowCount + 2;
+    const lines = getSheetNarrativeParagraphs(ws.name, input);
+
+    for (let i = 0; i < lines.length; i += 1) {
+      assertNarrativeHasNoPlaceholders(lines[i], `${ws.name} row ${startRow + i}`);
+      const cell = ws.getCell(startRow + i, 1);
+      cell.value = lines[i];
+      cell.font = { italic: i > 0, size: i === 0 ? 11 : 10, color: { argb: 'FF1F4E79' } };
+      cell.alignment = { wrapText: true, vertical: 'top' };
+    }
+  }
+}

@@ -5,6 +5,8 @@
  */
 
 import { ProjectInput, HydraulicsResult, PierDesignResult, AbutmentDesignResult, LoadCase, SteelDetails } from './types';
+import { calculateDetailedEstimation } from '../server/remote-app-adapter';
+import type { EstimationResult } from './types';
 
 /**
  * Main design engine - calculates everything
@@ -25,13 +27,82 @@ export function calculateCompleteDesign(input: ProjectInput) {
   const abutmentC1 = calculateAbutmentDesign(input, hydraulics, 'C1');
   
   console.log('✅ Design Engine: All calculations complete');
+
+  // Estimation + BOQ for reporting.
+  // NOTE: We compute using existing detailed-estimation logic, but map into
+  // the bridge-excel-generator EstimationResult shape expected by sheets/HTML.
+  let estimation: EstimationResult | undefined;
+  try {
+    const detailed = calculateDetailedEstimation(input, {
+      hydraulics,
+      pier,
+      abutmentType1,
+      abutmentC1,
+    });
+    estimation = mapDetailedEstimationToEstimationResult(detailed, input);
+  } catch (e) {
+    console.error('⚠️ Estimation generation failed in design-engine:', e instanceof Error ? e.message : String(e));
+  }
   
   return {
     input,
     hydraulics,
     pier,
     abutmentType1,
-    abutmentC1
+    abutmentC1,
+    estimation,
+  };
+}
+
+function mapDetailedEstimationToEstimationResult(detailed: any, input: ProjectInput): EstimationResult {
+  const totalConcrete =
+    Number(detailed?.quantities?.concrete?.m25 ?? 0) +
+    Number(detailed?.quantities?.concrete?.m30 ?? 0) +
+    Number(detailed?.quantities?.concrete?.m35 ?? 0);
+
+  const totalSteel =
+    Number(detailed?.quantities?.steel?.fe415 ?? 0) + Number(detailed?.quantities?.steel?.fe500 ?? 0);
+
+  const excavationOrd = Number(detailed?.quantities?.excavation?.ordinary ?? 0);
+  const excavationHard = Number(detailed?.quantities?.excavation?.hardRock ?? 0);
+  const excavationTotal = excavationOrd + excavationHard;
+
+  const subtotal = Number(detailed?.costs?.total ?? 0);
+  const gst = subtotal * 0.18;
+  const total = subtotal + gst;
+
+  const ratePerMeter = input.totalLength > 0 ? total / input.totalLength : total;
+
+  return {
+    quantities: {
+      concrete: {
+        m25: Number(detailed?.quantities?.concrete?.m25 ?? 0),
+        m30: Number(detailed?.quantities?.concrete?.m30 ?? 0),
+        m35: Number(detailed?.quantities?.concrete?.m35 ?? 0),
+        total: totalConcrete,
+      },
+      steel: {
+        fe415: Number(detailed?.quantities?.steel?.fe415 ?? 0),
+        fe500: Number(detailed?.quantities?.steel?.fe500 ?? 0),
+        total: totalSteel,
+      },
+      formwork: Number(detailed?.quantities?.formwork ?? 0),
+      excavation: {
+        ordinary: excavationOrd,
+        hardRock: excavationHard,
+        total: excavationTotal,
+      },
+      backfill: Number(detailed?.quantities?.backfill ?? 0),
+    },
+    boq: Array.isArray(detailed?.boqItems) ? detailed.boqItems : [],
+    cost: {
+      subtotal,
+      gst,
+      total,
+      ratePerMeter,
+      profit: 0,
+      overhead: 0,
+    },
   };
 }
 

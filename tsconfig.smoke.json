@@ -1,0 +1,30 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "bridge-excel-generator/**/*",
+    "scripts/**/*",
+    "server/**/*",
+    "shared/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "client/**/*",
+    "**/*.test.ts"
+  ],
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "./.smoke-dist",
+    "rootDir": ".",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "allowImportingTsExtensions": false,
+    "declaration": false,
+    "sourceMap": false,
+    "incremental": false,
+    "tsBuildInfoFile": "./node_modules/typescript/tsbuildinfo-smoke",
+    "strict": false,
+    "noImplicitAny": false
+  }
+}

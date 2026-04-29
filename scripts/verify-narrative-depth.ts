@@ -1,45 +1,48 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import { getSheetNarrativeParagraphs } from '../bridge-excel-generator/narrative-engine';
+import { KHERWARA_REFERENCE_PROJECT_INPUT } from './fixtures/kherwara-project-input';
+import calculateCompleteDesign from '../bridge-excel-generator/design-engine';
 
-/**
- * Simple verification script for narrative depth.
- * It scans generated HTML report files (assumed to be under 'reports/html')
- * and ensures each sheet (21‑34) contains at least three <p> paragraphs.
- * Adjust paths or detection logic as needed.
- */
-const REPORT_DIR = path.resolve(process.cwd(), 'reports', 'html');
+const SHEETS_TO_VERIFY = [
+  'HYDRAULICS',
+  'STABILITY CHECK FOR PIER',
+  'TYPE1-STABILITY CHECK ABUTMENT',
+  'TechNote',
+  'Tech Report',
+  'ESTIMATION',
+];
 
-function getSheetFiles(): string[] {
-  if (!fs.existsSync(REPORT_DIR)) {
-    console.warn(`Report directory not found: ${REPORT_DIR}`);
-    return [];
-  }
-  return fs.readdirSync(REPORT_DIR).filter(f => f.match(/sheet-(21|2[2-9]|3[0-4])\.html$/i));
-}
+function main(): void {
+  const result = calculateCompleteDesign(KHERWARA_REFERENCE_PROJECT_INPUT);
+  const enhancedInput = {
+    ...KHERWARA_REFERENCE_PROJECT_INPUT,
+    hydraulics: result.hydraulics,
+    pier: result.pier,
+    abutmentType1: result.abutmentType1,
+    abutmentC1: result.abutmentC1,
+    estimation: result.estimation,
+  };
 
-function countParagraphs(html: string): number {
-  const matches = html.match(/<p[^>]*>/gi);
-  return matches ? matches.length : 0;
-}
+  let failed = false;
 
-function verify(): void {
-  const files = getSheetFiles();
-  let allPass = true;
-  for (const file of files) {
-    const content = fs.readFileSync(path.join(REPORT_DIR, file), 'utf-8');
-    const paraCount = countParagraphs(content);
-    if (paraCount < 3) {
-      console.error(`❌ ${file} has only ${paraCount} paragraphs (minimum 3 required).`);
-      allPass = false;
-    } else {
-      console.log(`✅ ${file} contains ${paraCount} paragraphs.`);
+  for (const sheet of SHEETS_TO_VERIFY) {
+    const paragraphs = getSheetNarrativeParagraphs(sheet, enhancedInput);
+    const joined = paragraphs.join(' ');
+    const hasStepLogic = /Step 1/i.test(joined) && /Step 2/i.test(joined);
+    const hasDesignData = /Design data:/i.test(joined);
+    const hasVerdict = /Hence O\.K\.|Hence NOT O\.K\./i.test(joined);
+    const hasSpecificity = !/same engineering narrative chain/i.test(joined);
+
+    if (paragraphs.length < 4 || !hasStepLogic || !hasDesignData || !hasVerdict || !hasSpecificity) {
+      console.error(`FAIL ${sheet}`);
+      console.error(`  paragraphs=${paragraphs.length}, designData=${hasDesignData}, steps=${hasStepLogic}, verdict=${hasVerdict}, specific=${hasSpecificity}`);
+      failed = true;
+      continue;
     }
+
+    console.log(`OK ${sheet} (${paragraphs.length} paragraphs)`);
   }
-  if (!allPass) {
-    process.exit(1);
-  } else {
-    console.log('All narrative depth checks passed.');
-  }
+
+  if (failed) process.exit(1);
 }
 
-verify();
+main();

@@ -4,6 +4,22 @@ import ExcelJS from 'exceljs';
 import { generateCompleteExcel } from '../bridge-excel-generator/index';
 import { PHASE1_QUICK_TEMPLATES } from '../server/default-project-inputs';
 
+function assertNoNarrativePlaceholders(text: string, context: string) {
+  const forbiddenPatterns: Array<{ name: string; re: RegExp }> = [
+    { name: 'NaN token', re: /\bNaN\b/ },
+    { name: 'insert placeholder', re: /\[INSERT HERE\]/i },
+    { name: 'em-dash placeholder', re: /—/ },
+    { name: 'colon dash placeholder', re: /:\s-\s*([.,;:]|$)/ },
+    { name: 'equals dash placeholder', re: /=\s-\s*([.,;:]|$)/ },
+  ];
+
+  for (const pattern of forbiddenPatterns) {
+    if (pattern.re.test(text)) {
+      throw new Error(`Narrative placeholder violation (${pattern.name}) in ${context}`);
+    }
+  }
+}
+
 async function main() {
   const users = PHASE1_QUICK_TEMPLATES.slice(0, 3);
   console.log(`Testing 3 distinct users...`);
@@ -36,6 +52,7 @@ async function main() {
           const rowText = row.values.map(v => typeof v === 'object' && v && 'richText' in v ? v.richText.map(r => r.text).join('') : String(v || '')).join(' ').trim();
           if (rowText) text += rowText + '\n';
         });
+        assertNoNarrativePlaceholders(text, `${user.id}/${sheetName}`);
         reportText += `\`\`\`text\n${text}\n\`\`\`\n\n`;
       } else {
         reportText += `### ${sheetName} Content\n*Sheet not found*\n\n`;

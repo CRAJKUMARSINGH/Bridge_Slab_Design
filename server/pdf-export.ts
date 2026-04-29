@@ -7,6 +7,7 @@ import { jsPDF } from 'jspdf';
 import type { EnhancedProjectInput, ProjectInput } from '../bridge-excel-generator/types';
 import { buildHydraulicsPreviewRows } from '../shared/hydraulics-sheet-preview';
 import { drawWbInputTemplateSheets } from './pdf-input-template-sheets';
+import { getSheetNarrativeParagraphs } from '../bridge-excel-generator/narrative-engine';
 
 const DARK_BLUE: [number, number, number] = [31, 73, 107];
 const MID_BLUE:  [number, number, number] = [40, 80, 150];
@@ -83,6 +84,20 @@ export async function generateDesignPDF(input: EnhancedProjectInput): Promise<Bu
     y += 3;
   };
 
+  const paragraphs = (title: string, lines: string[]) => {
+    subheading(title);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8.5);
+    doc.setTextColor(...DARK_TEXT);
+    for (const line of lines) {
+      const wrapped = doc.splitTextToSize(line, CW - 4);
+      checkY(wrapped.length * 4 + 2);
+      doc.text(wrapped, M + 2, y);
+      y += wrapped.length * 4 + 1;
+    }
+    y += 2;
+  };
+
   // ── PAGE 1: COVER ──────────────────────────────────────────────────────────
   doc.setFillColor(...DARK_BLUE);
   doc.rect(0, 0, PW, 60, 'F');
@@ -152,6 +167,8 @@ export async function generateDesignPDF(input: EnhancedProjectInput): Promise<Bu
   kv('SBC', input.sbc, 'kN/m²');
   kv('Phi (φ)', input.phi, '°');
   kv('Gamma (γ)', input.gamma, 'kN/m³');
+  y += 2;
+  paragraphs('Engineering Story', getSheetNarrativeParagraphs('Tech Report', input).slice(0, 4));
 
   // ── INPUT template sheets (same row order as Excel 00-input-template-*) ───
   drawWbInputTemplateSheets(doc, input as ProjectInput, M, PW, PH);
@@ -166,6 +183,7 @@ export async function generateDesignPDF(input: EnhancedProjectInput): Promise<Bu
   heading('PIER STABILITY SUMMARY', 16);
   const pier = input.pier;
   if (pier) {
+    paragraphs('Pier Story', getSheetNarrativeParagraphs('STABILITY CHECK FOR PIER', input));
     subheading('Pier Geometry & Loads');
     kv('Pier Width', pier.geometry.width, 'm');
     kv('Pier Length', pier.geometry.length, 'm');
@@ -200,6 +218,7 @@ export async function generateDesignPDF(input: EnhancedProjectInput): Promise<Bu
   // ── PAGE 5: ABUTMENT STABILITY ─────────────────────────────────────────────
   newPage();
   heading('ABUTMENT STABILITY SUMMARY', 16);
+  paragraphs('Abutment Story', getSheetNarrativeParagraphs('TYPE1-STABILITY CHECK ABUTMENT', input).slice(0, 4));
 
   for (const [label, abt] of [['TYPE-1', input.abutmentType1], ['C1 (Cantilever)', input.abutmentC1]] as const) {
     if (!abt) continue;
@@ -228,6 +247,7 @@ export async function generateDesignPDF(input: EnhancedProjectInput): Promise<Bu
   // ── PAGE 6: ESTIMATION BOQ ─────────────────────────────────────────────────
   newPage();
   heading('BILL OF QUANTITIES', 16);
+  paragraphs('Estimate Story', getSheetNarrativeParagraphs('ESTIMATION', input).slice(0, 4));
   const est = input.estimation;
   if (est) {
     table(

@@ -23,6 +23,7 @@
     "verify:excel": "tsx scripts/verify-kherwara-excel-golden.ts",
     "verify:samples-wb": "tsx scripts/run-five-samples-workbook-label-match.ts",
     "smoke:11-designs": "tsx scripts/run-eleven-design-smoke.ts",
+    "smoke:11-full": "tsx scripts/run-eleven-full-artifacts.ts --limit=11",
     "batch:11-comprehensive-pdf": "tsx scripts/batch-eleven-comprehensive-pdf.ts",
     "draft:descriptive-lines": "tsx scripts/draft-descriptive-lines-from-workbook.ts",
     "assimilate:standards": "tsx scripts/assimilate-sheet-by-sheet.ts",

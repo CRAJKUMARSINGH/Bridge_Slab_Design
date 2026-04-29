@@ -1,0 +1,69 @@
+{
+  "projectName": "Small Bridge Template",
+  "location": "Rajasthan, India",
+  "riverName": "Sample River",
+  "bridgeType": "submersible",
+  "spanLength": 8,
+  "numberOfSpans": 3,
+  "skew": 0,
+  "carriageWidth": 4.5,
+  "numberOfLanes": 2,
+  "totalLength": 24,
+  "hfl": 282,
+  "bedLevel": 277,
+  "foundationLevel": 273,
+  "discharge": 85,
+  "manningN": 0.03,
+  "bedSlope": 1000,
+  "laceysSiltFactor": 1.5,
+  "crossSectionData": [
+    {
+      "chainage": 0,
+      "gl": 277
+    },
+    {
+      "chainage": 10,
+      "gl": 276
+    },
+    {
+      "chainage": 20,
+      "gl": 275.5
+    },
+    {
+      "chainage": 30,
+      "gl": 276
+    },
+    {
+      "chainage": 40,
+      "gl": 277
+    }
+  ],
+  "pierWidth": 1,
+  "pierLength": 3,
+  "pierDepth": 3.5,
+  "numberOfPiers": 2,
+  "pierBaseWidth": 2,
+  "pierBaseLength": 3.5,
+  "abutmentHeight": 6,
+  "abutmentWidth": 3,
+  "abutmentDepth": 4,
+  "dirtWallHeight": 2.5,
+  "returnWallLength": 6,
+  "concreteGrade": "M25",
+  "fck": 25,
+  "steelGrade": "Fe415",
+  "fy": 415,
+  "sbc": 150,
+  "phi": 30,
+  "gamma": 18,
+  "rtl": 285,
+  "agl": 278.5,
+  "nbl": 277,
+  "ofl": 281.5,
+  "dwl": 282.25,
+  "deckSlabThickness": 0.25,
+  "freeboardAboveHfl": 1,
+  "issuingAuthority": "",
+  "jobNumber": "",
+  "hardRockAvailable": false
+}

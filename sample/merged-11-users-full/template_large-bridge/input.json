@@ -1,0 +1,69 @@
+{
+  "projectName": "Large Bridge Template",
+  "location": "Rajasthan, India",
+  "riverName": "Sample River",
+  "bridgeType": "submersible",
+  "spanLength": 16,
+  "numberOfSpans": 5,
+  "skew": 0,
+  "carriageWidth": 10.5,
+  "numberOfLanes": 3,
+  "totalLength": 80,
+  "hfl": 295,
+  "bedLevel": 288,
+  "foundationLevel": 283,
+  "discharge": 1800,
+  "manningN": 0.035,
+  "bedSlope": 1500,
+  "laceysSiltFactor": 1.65,
+  "crossSectionData": [
+    {
+      "chainage": 0,
+      "gl": 280
+    },
+    {
+      "chainage": 20,
+      "gl": 279.2
+    },
+    {
+      "chainage": 40,
+      "gl": 278.5
+    },
+    {
+      "chainage": 60,
+      "gl": 279
+    },
+    {
+      "chainage": 80,
+      "gl": 280
+    }
+  ],
+  "pierWidth": 1.5,
+  "pierLength": 4.5,
+  "pierDepth": 6,
+  "numberOfPiers": 4,
+  "pierBaseWidth": 3,
+  "pierBaseLength": 5.5,
+  "abutmentHeight": 10,
+  "abutmentWidth": 4.5,
+  "abutmentDepth": 6,
+  "dirtWallHeight": 2.5,
+  "returnWallLength": 6,
+  "concreteGrade": "M25",
+  "fck": 25,
+  "steelGrade": "Fe415",
+  "fy": 415,
+  "sbc": 280,
+  "phi": 32,
+  "gamma": 18,
+  "rtl": 298,
+  "agl": 289,
+  "nbl": 288,
+  "ofl": 292,
+  "dwl": 295.5,
+  "deckSlabThickness": 0.25,
+  "freeboardAboveHfl": 1,
+  "issuingAuthority": "",
+  "jobNumber": "",
+  "hardRockAvailable": false
+}
