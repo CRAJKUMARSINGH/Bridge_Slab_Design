@@ -11,6 +11,18 @@ A professional-grade engineering suite for the automated design and documentatio
 
 ---
 
+## Suite Structure Note
+
+This repository root is the canonical **CURSOR SLAB DESIGN** suite.
+
+- **Main app (design/excel/reports):** this root workspace
+- **Drawing baselines and record-keeper references:** `D1`, `D2`, `D4`
+- **Merger decision/evidence docs:** `COMPLIANCE_MERGER.md`, `PHASE0_FEATURE_COMPARISON_MATRICES.md`, `KIMI_SLAB_DESIGN`
+
+During merger phases, drawing and main app can remain separate runtimes, but they are governed as a single product suite with a shared interface contract and QA gates.
+
+---
+
 ## 🚀 Quick Start (Video-Style Guide)
 
 ### 1. Installation & Environment Setup

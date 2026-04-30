@@ -31,8 +31,41 @@ import {
   STABILITY_CHECK_PIER_SHEET_NAME,
 } from './workbook-sheets-preview';
 import { resolveFeatureFlags } from '../shared/feature-flags';
+import { buildPierCaseCatalog, resolveDefaultPierAssetRoot } from './pier-case-engine';
+import { PIER_MASTER_SCHEMA, recommendPierType, type PierMasterVariables } from './pier-recommendation-engine';
+import { generatePierPayload } from './pier-template-mapper';
 
 const router = Router();
+
+function getPositiveIntEnv(name: string, fallback: number): number {
+  const raw = process.env[name];
+  if (!raw) return fallback;
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+async function fetchWithTimeoutAndRetry(
+  url: string,
+  init: RequestInit,
+  timeoutMs: number,
+  retries: number,
+): Promise<globalThis.Response> {
+  let lastError: unknown;
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const response = await fetch(url, { ...init, signal: controller.signal });
+      clearTimeout(timeout);
+      return response;
+    } catch (error) {
+      clearTimeout(timeout);
+      lastError = error;
+      if (attempt === retries) throw error;
+    }
+  }
+  throw lastError instanceof Error ? lastError : new Error('fetch failed');
+}
 
 function mergeInputFromRequest(req: Request): ProjectInput {
   if (
@@ -761,6 +794,122 @@ router.get('/feature-flags', (_req, res) => {
 });
 
 /**
+ * GET /api/design/pier-cases/catalog
+ * Scans local pier asset library and returns classified + scored best-case defaults.
+ */
+router.get('/pier-cases/catalog', (req, res) => {
+  try {
+    const root =
+      typeof req.query.root === 'string' && req.query.root.trim().length > 0
+        ? req.query.root.trim()
+        : resolveDefaultPierAssetRoot();
+    const catalog = buildPierCaseCatalog(root);
+    res.json({ success: true, catalog });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+/**
+ * GET /api/design/pier-cases/master-schema
+ * Returns master-variable schema for parametric pier engine input dashboard.
+ */
+router.get('/pier-cases/master-schema', (_req, res) => {
+  res.json({ success: true, schema: PIER_MASTER_SCHEMA });
+});
+
+/**
+ * POST /api/design/pier-cases/recommend
+ * Best-pier recommendation from master variables (span/site/seismic/wind context).
+ */
+router.post('/pier-cases/recommend', (req, res) => {
+  try {
+    const body = req.body as Partial<PierMasterVariables>;
+    const required = [
+      'height',
+      'width',
+      'length',
+      'numberOfColumns',
+      'stemThickness',
+      'capBeamWidth',
+      'capBeamDepth',
+      'foundationType',
+      'seismicZone',
+      'windZone',
+      'bearingType',
+      'skewAngle',
+      'roadWidth',
+      'spanLength',
+      'crossingType',
+      'concreteGrade',
+      'steelGrade',
+      'clearCover',
+      'reinforcementPreference',
+      'ircIsLoadClass',
+    ] as const;
+    const missing = required.filter((k) => body[k] === undefined || body[k] === null);
+    if (missing.length) {
+      res.status(400).json({
+        success: false,
+        error: `Missing master variables: ${missing.join(', ')}`,
+      });
+      return;
+    }
+
+    const recommendation = recommendPierType(body as PierMasterVariables);
+    res.json({ success: true, recommendation });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+/**
+ * POST /api/design/pier-cases/generate
+ * Generates parametric pier payload (geometry/reinf/foundation/BOQ/BBS/summary) from master inputs.
+ */
+router.post('/pier-cases/generate', (req, res) => {
+  try {
+    const body = req.body as Partial<PierMasterVariables>;
+    const required = [
+      'height',
+      'width',
+      'length',
+      'numberOfColumns',
+      'stemThickness',
+      'capBeamWidth',
+      'capBeamDepth',
+      'foundationType',
+      'seismicZone',
+      'windZone',
+      'bearingType',
+      'skewAngle',
+      'roadWidth',
+      'spanLength',
+      'crossingType',
+      'concreteGrade',
+      'steelGrade',
+      'clearCover',
+      'reinforcementPreference',
+      'ircIsLoadClass',
+    ] as const;
+    const missing = required.filter((k) => body[k] === undefined || body[k] === null);
+    if (missing.length) {
+      res.status(400).json({
+        success: false,
+        error: `Missing master variables: ${missing.join(', ')}`,
+      });
+      return;
+    }
+
+    const recommendation = recommendPierType(body as PierMasterVariables);
+    const payload = generatePierPayload({ ...(body as PierMasterVariables), pierType: recommendation.recommendedType });
+    res.json({ success: true, recommendation, payload });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+/**
  * POST /api/design/slabdraw-zip
  * Forwards the design input to the slabdraw service and streams back the
  * ZIP of 5 DXF sheets + BOQ.xlsx. Set SLABDRAW_URL in .env (defaults to
@@ -768,13 +917,20 @@ router.get('/feature-flags', (_req, res) => {
  */
 router.post('/slabdraw-zip', async (req: Request, res: Response) => {
   const slabdrawUrl = (process.env.SLABDRAW_URL || 'http://localhost:8000').replace(/\/$/, '');
+  const slabdrawTimeoutMs = getPositiveIntEnv('SLABDRAW_TIMEOUT', 30000);
+  const slabdrawRetry = getPositiveIntEnv('SLABDRAW_RETRY', 3);
 
   try {
-    const upstream = await fetch(`${slabdrawUrl}/render`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(req.body ?? {}),
-    });
+    const upstream = await fetchWithTimeoutAndRetry(
+      `${slabdrawUrl}/render`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(req.body ?? {}),
+      },
+      slabdrawTimeoutMs,
+      slabdrawRetry,
+    );
 
     if (!upstream.ok) {
       const text = await upstream.text();
@@ -819,13 +975,20 @@ router.post('/slabdraw-zip', async (req: Request, res: Response) => {
  */
 router.get('/slabdraw-health', async (_req, res) => {
   const slabdrawUrl = (process.env.SLABDRAW_URL || 'http://localhost:8000').replace(/\/$/, '');
+  const slabdrawTimeoutMs = getPositiveIntEnv('SLABDRAW_TIMEOUT', 30000);
+  const slabdrawRetry = getPositiveIntEnv('SLABDRAW_RETRY', 3);
 
   try {
     const start = Date.now();
-    const upstream = await fetch(`${slabdrawUrl}/healthz`, {
-      method: 'GET',
-      headers: { 'Accept': 'application/json' },
-    });
+    const upstream = await fetchWithTimeoutAndRetry(
+      `${slabdrawUrl}/healthz`,
+      {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' },
+      },
+      slabdrawTimeoutMs,
+      slabdrawRetry,
+    );
 
     const duration = Date.now() - start;
 

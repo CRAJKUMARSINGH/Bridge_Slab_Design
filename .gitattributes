@@ -7,6 +7,11 @@
 *.jpeg filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
 *.xlsx filter=lfs diff=lfs merge=lfs -text
+
+attached_assets/** filter=lfs diff=lfs merge=lfs -text
+Dwg-Dxf-Record-Keeper/COMPONENT_DRAWINGS_SORTED/** filter=lfs diff=lfs merge=lfs -text
+Dwg-Dxf-Record-Keeper/DRAWINGS_FROM_RAJKUMAR_DESIGNS/** filter=lfs diff=lfs merge=lfs -text
+Dwg-Dxf-Record-Keeper/GENERATED_DRAWINGS/** filter=lfs diff=lfs merge=lfs -text
 *.bak filter=lfs diff=lfs merge=lfs -text
 *.BAK filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text

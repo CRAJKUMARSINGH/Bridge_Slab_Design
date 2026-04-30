@@ -21,6 +21,18 @@ function adequacy(actual: number | undefined, threshold: number, label: string):
   return `${label} is below requirement by ${fmt((1 - ratio) * 100, 1)} percent.`;
 }
 
+function caseByMin(
+  cases: Array<{ [key: string]: any }>,
+  key: 'slidingFOS' | 'overturningFOS' | 'bearingFOS',
+) {
+  return cases.reduce<any | undefined>((best, item) => {
+    if (!best) return item;
+    return Number(item?.[key] ?? Number.POSITIVE_INFINITY) < Number(best?.[key] ?? Number.POSITIVE_INFINITY)
+      ? item
+      : best;
+  }, undefined);
+}
+
 function narrativeContext(input: EnhancedProjectInput) {
   const h = input.hydraulics;
   const pier = input.pier;
@@ -110,13 +122,13 @@ export function getHydraulicNarrativeParagraphs(input: EnhancedProjectInput): st
     'elevated, so scour protection and current-force checks become critical';
 
   return [
-    `HYDRAULIC NARRATIVE: the crossing is read as a river-behaviour problem first, so section area, wetted perimeter, hydraulic radius, velocity, afflux and scour must all support the same flood story.`,
-    `Design data: HFL ${fmt(input.hfl)} m MSL, bed level ${fmt(input.bedLevel)} m MSL, Manning n ${fmt(input.manningN, 3)}, bed slope 1 in ${fmt(input.bedSlope, 0)}, discharge ${fmt(c.q)} cumecs, and total provided bridge waterway ${fmt(c.totalBridgeLength)} m.`,
-    `Step 1 - from the adopted section, the engine reports area ${fmt(c.h?.crossSectionalArea, 3)} m2 and wetted perimeter ${fmt(c.h?.wettedPerimeter, 3)} m, giving hydraulic radius ${fmt(c.h?.hydraulicRadius, 4)} m; this produces velocity ${fmt(c.v, 3)} m/s and Froude number ${fmt(c.froude, 3)}, so the flow regime is interpreted as ${c.flowType}.`,
-    `Step 2 - regime and scour logic are then carried forward together: regime width is ${fmt(c.h?.regimeWidth)} m, the provided waterway ${waterwayVerdict}, computed afflux is ${fmt(c.afflux, 3)} m, design water level is ${fmt(c.dwl, 3)} m MSL, and design scour depth is ${fmt(c.scour, 3)} m below the working bed.`,
+    `HYDRAULIC NARRATIVE: the bridge is first read as a river regime problem. The report therefore links cross-section, velocity, design discharge, afflux, scour and founding level in one continuous engineering story, so the subsequent pier and abutment checks are not detached from the flood model.`,
+    `Design data: HFL = ${fmt(input.hfl, 3)} m MSL, bed level = ${fmt(input.bedLevel, 3)} m MSL, foundation level = ${fmt(c.foundationLevel, 3)} m MSL, Manning n = ${fmt(input.manningN, 3)}, bed slope = 1 in ${fmt(input.bedSlope, 0)}, total waterway = ${fmt(c.totalBridgeLength, 2)} m, and design discharge Q = ${fmt(c.q, 2)} cumecs.`,
+    `Step 1 - A) FLOW CALCULATION: the adopted waterway section gives area A = ${fmt(c.h?.crossSectionalArea, 3)} m2 and wetted perimeter P = ${fmt(c.h?.wettedPerimeter, 3)} m. Hence hydraulic radius R = A/P = ${fmt(c.h?.hydraulicRadius, 4)} m, velocity V = ${fmt(c.v, 3)} m/s, and Froude number Fr = ${fmt(c.froude, 3)}. The flow regime is read as ${c.flowType}, so the discharge, afflux and scour computations are carried forward as one consistent hydraulic envelope.`,
+    `Step 2 - B) WATERWAY, AFFLUX AND SCOUR: regime width is ${fmt(c.h?.regimeWidth, 2)} m and the provided waterway ${waterwayVerdict} with provided/required ratio ${fmt(waterwayRatio, 2)}. Computed afflux is ${fmt(c.afflux, 3)} m, design water level is HFL + afflux = ${fmt(c.dwl, 3)} m MSL, and design scour depth is ${fmt(c.scour, 3)} m below the working bed. This fixes the foundation narrative before structural actions are accepted.`,
     c.isHigh
-      ? `Check: high-level deck control compares available freeboard ${fmt(c.availableFreeboard)} m with required freeboard ${fmt(c.requiredFreeboard)} m. ${verdict(Boolean(c.h?.isFreeboardSafe ?? (c.availableFreeboard >= c.requiredFreeboard)))}`
-      : `Check: for a submersible crossing, overtopping is accepted by concept, but velocity is ${velocityVerdict}, so scour/current/buoyancy actions must still remain within the downstream stability chain. ${verdict(c.froude < 2 && c.scour < 100)}`,
+      ? `CHECK: high-level deck control compares available freeboard ${fmt(c.availableFreeboard, 3)} m with required freeboard ${fmt(c.requiredFreeboard, 3)} m. ${verdict(Boolean(c.h?.isFreeboardSafe ?? (c.availableFreeboard >= c.requiredFreeboard)))}`
+      : `CHECK: for a submersible crossing, overtopping is intentional, but velocity is ${velocityVerdict}; therefore drag, buoyancy, scour and anchorage remain governing review items. ${verdict(c.froude < 2 && c.scour < 100)}`,
   ];
 }
 
@@ -125,13 +137,21 @@ export function getStructuralNarrativeParagraphs(input: EnhancedProjectInput): s
   const footingPressure = c.pier?.footing?.basePressure?.max;
   const footingVerdict = footingPressure !== undefined ? adequacy(input.sbc, footingPressure, 'SBC versus governing pier pressure') : 'Pier footing pressure is not available in the current result set.';
   const activeThrust = c.type1?.earthPressure?.pa ?? c.c1?.earthPressure?.pa ?? 0;
+  const pierCases = c.pier?.loadCases ?? [];
+  const seismicCase = pierCases.find((lc) => /seismic/i.test(lc.description)) ?? pierCases[3];
+  const windCases = pierCases.filter((lc) => Number(lc.windLoadFactor) > 0);
+  const windMoment = windCases.length ? Math.max(...windCases.map((lc) => lc.moment)) : 0;
 
   return [
-    `STRUCTURAL NARRATIVE: the superstructure and substructure are treated as one force path, so deck action, current load, buoyancy, earth pressure and bearing pressure are checked as linked engineering events rather than as isolated tables.`,
-    `Design data: slab thickness ${fmt(c.slabThickness)} m, span ${fmt(input.spanLength)} m, carriageway ${fmt(input.carriageWidth)} m, pier geometry ${fmt(c.pier?.geometry.width)} m x ${fmt(c.pier?.geometry.length)} m x ${fmt(c.pier?.geometry.depth)} m, and governing foundation level ${fmt(c.foundationLevel)} m MSL.`,
-    `Step 1 - the hydraulic actions are turned into structural actions by combining dead load ${fmt(c.pier?.loads.deadLoad)} kN, live load ${fmt(c.pier?.loads.liveLoad)} kN, hydrostatic force ${fmt(c.pier?.loads.hydrostaticForce)} kN, drag force ${fmt(c.pier?.loads.dragForce)} kN and buoyancy ${fmt(c.pier?.loads.buoyancy)} kN across the generated pier load cases.`,
-    `Step 2 - the same equilibrium method is used for retaining components: active earth-pressure coefficient Ka is ${fmt(c.type1?.earthPressure?.ka ?? c.c1?.earthPressure?.ka, 3)}, total active thrust is ${fmt(activeThrust)} kN, and the abutment footing/base system must convert that destabilising action into acceptable sliding, overturning and bearing response.`,
-    `Check: pier minima are Sliding ${fmt(c.minPierSliding)}, Overturning ${fmt(c.minPierOverturning)}, Bearing ${fmt(c.minPierBearing)}. ${verdict(c.minPierOk)} Additional bearing narrative: ${footingVerdict}`,
+    `STRUCTURAL NARRATIVE: the structure is narrated as one force path from deck to bearing, pier, footing and soil. Deck gravity/live effects, current load, buoyancy, earth pressure, braking, wind and seismic components are therefore read together before the report permits a final "Hence O.K." line.`,
+    `Design data: slab thickness = ${fmt(c.slabThickness, 3)} m, span = ${fmt(input.spanLength, 2)} m, carriageway = ${fmt(input.carriageWidth, 2)} m, pier = ${fmt(c.pier?.geometry.width, 2)} m x ${fmt(c.pier?.geometry.length, 2)} m x ${fmt(c.pier?.geometry.depth, 2)} m, base = ${fmt(c.pier?.geometry.baseWidth, 2)} m x ${fmt(c.pier?.geometry.baseLength, 2)} m, SBC = ${fmt(input.sbc, 2)} kN/m2, phi = ${fmt(input.phi, 2)} deg, gamma = ${fmt(input.gamma, 2)} kN/m3.`,
+    `Step 1 - A) DEAD LOAD CALCULATION: pier/self and deck reactions are accumulated into vertical restoring action. The current pier result carries dead load ${fmt(c.pier?.loads.deadLoad, 2)} kN and live load ${fmt(c.pier?.loads.liveLoad, 2)} kN, so every stability case starts from the same computed vertical load table used by the workbook.`,
+    `Step 2 - B) LIVE LOAD CALCULATION: live load reaction is ${fmt(c.pier?.loads.liveLoad, 2)} kN and is activated by the service and ultimate combinations through live-load factors in the pier load-case table. This preserves the legacy workbook habit of keeping live reaction and braking/longitudinal effects visible before base stress is read.`,
+    `C) LOADS DUE TO WATER CURRENT: hydrostatic force = ${fmt(c.pier?.loads.hydrostaticForce, 2)} kN, drag/current force = ${fmt(c.pier?.loads.dragForce, 2)} kN, buoyancy = ${fmt(c.pier?.loads.buoyancy, 2)} kN, and total horizontal action = ${fmt(c.pier?.loads.totalHorizontalForce, 2)} kN. These forces are applied with foundation lever arms to produce sliding, overturning and base-pressure checks.`,
+    `D) SEISMIC CONDITION: the seismic-design row is ${seismicCase ? `case ${seismicCase.caseNumber} (${seismicCase.description}) with V = ${fmt(seismicCase.verticalForce, 2)} kN, H = ${fmt(seismicCase.horizontalForce, 2)} kN and M = ${fmt(seismicCase.moment, 2)} kN-m` : 'not generated in the current pier load-case set'}. The report keeps this row explicit even when seismic is not governing.`,
+    `E) WIND FORCE: wind-sensitive combinations are ${windCases.length ? windCases.map((lc) => `case ${lc.caseNumber}`).join(', ') : 'not controlling for this pier model'}; maximum wind-combination moment carried by the load table is ${fmt(windMoment, 2)} kN-m and pier wind screening force is ${fmt(c.pier?.loads.windForce ?? 0, 2)} kN.`,
+    `BASE PRESSURE / EARTH PRESSURE LINK: Rankine Ka = ${fmt(c.type1?.earthPressure?.ka ?? c.c1?.earthPressure?.ka, 3)} and active thrust Pa = ${fmt(activeThrust, 2)} kN. Pa acts at approximately H/3 above base and is carried into abutment sliding, overturning and bearing verification, including surcharge where generated by the engine.`,
+    `CHECK: pier minima are Sliding ${fmt(c.minPierSliding, 3)}, Overturning ${fmt(c.minPierOverturning, 3)}, Bearing ${fmt(c.minPierBearing, 3)}. ${verdict(c.minPierOk)} Base pressure reading: ${footingVerdict}`,
   ];
 }
 
@@ -144,11 +164,12 @@ export function getClosingNarrativeParagraphs(input: EnhancedProjectInput): stri
     (c.minType1Bearing ?? 0) >= 2.5;
 
   return [
-    `CLOSING NARRATIVE: the bridge is accepted only when the river story, the stability story and the quantity story remain consistent with one another.`,
-    `Project closure data: total bridge length ${fmt(c.totalBridgeLength)} m, design discharge ${fmt(c.q)} cumecs, design scour depth ${fmt(c.scour)} m, foundation level ${fmt(c.foundationLevel)} m MSL, and estimated project total Rs ${fmt(estTotal, 2)}.`,
-    `Step 1 - hydraulic acceptance requires afflux ${fmt(c.afflux)} m and flow regime ${c.flowType} to remain compatible with the adopted waterway and crossing type.`,
-    `Step 2 - structural acceptance requires pier and abutment stability minima to remain above project thresholds; Type1 abutment minima are Sliding ${fmt(c.minType1Sliding)}, Overturning ${fmt(c.minType1Overturning)}, Bearing ${fmt(c.minType1Bearing)}. ${verdict(type1Ok)}`,
-    `Check: once the same computed geometry also drives the BOQ, the note, report and estimate become audit-traceable to one numerical source. ${verdict(c.minPierOk && type1Ok)}`,
+    `CLOSING NARRATIVE: the bridge is accepted only when the river story, stability story, detailing story and quantity story remain consistent with one another. Any CHECK result is treated as an engineering review stop-point, not as a submission-ready closeout.`,
+    `Design data: total bridge length ${fmt(c.totalBridgeLength, 2)} m, design discharge ${fmt(c.q, 2)} cumecs, design water level ${fmt(c.dwl, 3)} m MSL, design scour depth ${fmt(c.scour, 3)} m, foundation level ${fmt(c.foundationLevel, 3)} m MSL, and estimated project total Rs ${fmt(estTotal, 2)}.`,
+    `Step 1 - D) SEISMIC / WIND / SERVICEABILITY CLOSURE: the generated load cases retain lateral actions in the pier and abutment tables; high-level cases must prove freeboard and exposed wind behavior, while submersible cases must explicitly accept overtopping and then prove drag, buoyancy and anchorage behavior.`,
+    `Step 2 - BASE PRESSURE / STABILITY VERDICT: Type1 abutment minima are Sliding ${fmt(c.minType1Sliding, 3)}, Overturning ${fmt(c.minType1Overturning, 3)}, Bearing ${fmt(c.minType1Bearing, 3)}. ${verdict(type1Ok)}`,
+    `FOUNDATION / BEARING NOTE: foundation level ${fmt(c.foundationLevel, 3)} m MSL is checked against design scour ${fmt(c.scour, 3)} m, SBC ${fmt(input.sbc, 2)} kN/m2 and the generated base-pressure envelopes. Bearing-seat and cap details are therefore tied to the same geometry used for pier cap, abutment cap and deck reaction calculations.`,
+    `FINAL TRACEABILITY CHECK: the same computed geometry drives TechNote, Tech Report, workbook narratives, drawings, BOQ and estimate. ${verdict(c.minPierOk && type1Ok)}`,
   ];
 }
 
@@ -158,13 +179,29 @@ export function getVerificationNarrativeParagraphs(input: EnhancedProjectInput):
     (c.minC1Sliding ?? 0) >= 1.5 &&
     (c.minC1Overturning ?? 0) >= 1.8 &&
     (c.minC1Bearing ?? 0) >= 2.5;
+  const cases = c.pier?.loadCases ?? [];
+  const baseArea = (c.pier?.footing.width ?? input.pierBaseWidth) * (c.pier?.footing.length ?? input.pierBaseLength);
+  const serviceCase = cases.find((lc) => /service/i.test(lc.description)) ?? cases[0];
+  const floodCase = cases.find((lc) => /flood/i.test(lc.description)) ?? cases[2];
+  const seismicCase = cases.find((lc) => /seismic/i.test(lc.description)) ?? cases[3];
+  const bearingCase = caseByMin(cases, 'bearingFOS');
+  const windCases = cases.filter((lc) => Number(lc.windLoadFactor) > 0);
+  const qService = serviceCase && baseArea > 0 ? serviceCase.verticalForce / baseArea : undefined;
+  const qBearing = bearingCase && baseArea > 0 ? bearingCase.verticalForce / baseArea : undefined;
 
   return [
-    `VERIFICATION NARRATIVE: this report is intended to let a checker read backward from the final verdict to the governing numbers without opening source code or reconstructing hidden assumptions.`,
-    `Design data: discharge ${fmt(c.q)} cumecs, velocity ${fmt(c.v)} m/s, afflux ${fmt(c.afflux)} m, scour ${fmt(c.scour)} m, SBC ${fmt(input.sbc)} kN/m2, phi ${fmt(input.phi)} deg, gamma ${fmt(input.gamma)} kN/m3.`,
-    `Step 1 - hydraulic verification checks whether the selected section, regime width, afflux and scour remain mutually consistent and whether freeboard logic is satisfied for high-level arrangements or overtopping logic is explicitly accepted for submersible arrangements.`,
-    `Step 2 - structural verification checks whether the governing pier and abutment load cases keep sliding, overturning and bearing within acceptance. Cantilever/C1 minima are Sliding ${fmt(c.minC1Sliding)}, Overturning ${fmt(c.minC1Overturning)}, Bearing ${fmt(c.minC1Bearing)}. ${verdict(c1Ok)}`,
-    `Final verification line: computed values, narrative prose, report tables and annexure drawings are all generated from the same design state, so any design revision will propagate through the whole report set. ${verdict(c.minPierOk)}`,
+    `VERIFICATION NARRATIVE: this report is intended to let a checker read backward from final verdict to governing numbers without opening source code or reconstructing hidden assumptions. The prose is deterministic and is generated from the same input plus design-result object as the tables and drawings.`,
+    `Design data: discharge ${fmt(c.q, 2)} cumecs, velocity ${fmt(c.v, 3)} m/s, afflux ${fmt(c.afflux, 3)} m, design water level ${fmt(c.dwl, 3)} m MSL, scour ${fmt(c.scour, 3)} m, SBC ${fmt(input.sbc, 2)} kN/m2, phi ${fmt(input.phi, 2)} deg, gamma ${fmt(input.gamma, 2)} kN/m3.`,
+    `Step 1 - HYDRAULIC VERIFICATION: section, regime width, afflux and scour are checked as a mutually consistent chain. High-level bridges must satisfy freeboard/clearance; submersible bridges must state overtopping intent and then prove current, buoyancy and stability behavior.`,
+    `Step 2 - STRUCTURAL VERIFICATION: governing pier and abutment load cases must keep sliding, overturning and bearing within acceptance. Cantilever/C1 minima are Sliding ${fmt(c.minC1Sliding, 3)}, Overturning ${fmt(c.minC1Overturning, 3)}, Bearing ${fmt(c.minC1Bearing, 3)}. ${verdict(c1Ok)}`,
+    `A) DEAD LOAD CALCULATION REVIEW: pier/substructure dead load ${fmt(c.pier?.loads.deadLoad, 2)} kN is the base restoring component. Service case ${serviceCase?.caseNumber ?? 0} carries V = ${fmt(serviceCase?.verticalForce, 2)} kN and q = V/A = ${fmt(qService, 3)} kN/m2 over base area ${fmt(baseArea, 3)} m2.`,
+    `B) LIVE LOAD CALCULATION REVIEW: live reaction ${fmt(c.pier?.loads.liveLoad, 2)} kN is visible through the service and ultimate live-load factors. This preserves the attached workbook's practice of separating live reaction before combining moments and stresses.`,
+    `C) LOADS DUE TO WATER CURRENT REVIEW: hydrostatic ${fmt(c.pier?.loads.hydrostaticForce, 2)} kN plus drag/current ${fmt(c.pier?.loads.dragForce, 2)} kN gives horizontal action ${fmt(c.pier?.loads.totalHorizontalForce, 2)} kN. Flood case ${floodCase?.caseNumber ?? 0} reports M = ${fmt(floodCase?.moment, 2)} kN-m and buoyancy factor ${fmt(floodCase?.buoyancyFactor, 2)}.`,
+    `D) SEISMIC CONDITION REVIEW: ${seismicCase ? `case ${seismicCase.caseNumber} (${seismicCase.description}) remains in the audit table with V = ${fmt(seismicCase.verticalForce, 2)} kN, H = ${fmt(seismicCase.horizontalForce, 2)} kN and M = ${fmt(seismicCase.moment, 2)} kN-m` : 'no seismic row is present in the generated set'}. A non-governing seismic result is still stated, not silently omitted.`,
+    `E) WIND FORCE REVIEW: wind-factor cases are ${windCases.length ? windCases.map((lc) => `case ${lc.caseNumber}`).join(', ') : 'not governing'} and pier wind screening force is ${fmt(c.pier?.loads.windForce ?? 0, 2)} kN. Wind therefore remains part of the report audit trail even when water current controls.`,
+    `BASE PRESSURE / STABILITY VERDICT: governing pier bearing case ${bearingCase?.caseNumber ?? 0} gives q = ${fmt(qBearing, 3)} kN/m2; pier minima are Sliding ${fmt(c.minPierSliding, 3)}, Overturning ${fmt(c.minPierOverturning, 3)}, Bearing ${fmt(c.minPierBearing, 3)}. ${verdict(c.minPierOk)}`,
+    `ABUTMENT / FOUNDATION VERIFICATION: Type1 minima are Sliding ${fmt(c.minType1Sliding, 3)}, Overturning ${fmt(c.minType1Overturning, 3)}, Bearing ${fmt(c.minType1Bearing, 3)}; C1 minima are Sliding ${fmt(c.minC1Sliding, 3)}, Overturning ${fmt(c.minC1Overturning, 3)}, Bearing ${fmt(c.minC1Bearing, 3)}. This extends the source PCC abutment workbook's sill/foundation/seismic pressure checks into the final report narrative.`,
+    `FINAL VERIFICATION LINE: computed values, narrative prose, report tables and annexure drawings are all generated from the same design state, so a revision to HFL, SBC, span, geometry or load class refreshes the whole report set. ${verdict(c.minPierOk)}`,
   ];
 }
 
@@ -186,34 +223,73 @@ function buildTechReportNarrative(input: EnhancedProjectInput): string[] {
 
 function buildPierNarrative(input: EnhancedProjectInput): string[] {
   const c = narrativeContext(input);
+  const cases = c.pier?.loadCases ?? [];
+  const baseArea = (c.pier?.footing.width ?? input.pierBaseWidth) * (c.pier?.footing.length ?? input.pierBaseLength);
+  const slidingCase = caseByMin(cases, 'slidingFOS');
+  const overturningCase = caseByMin(cases, 'overturningFOS');
+  const bearingCase = caseByMin(cases, 'bearingFOS');
+  const serviceCase = cases.find((lc) => /service/i.test(lc.description)) ?? cases[0];
+  const floodCase = cases.find((lc) => /flood/i.test(lc.description)) ?? cases[2];
+  const seismicCase = cases.find((lc) => /seismic/i.test(lc.description)) ?? cases[3];
+  const windCases = cases.filter((lc) => Number(lc.windLoadFactor) > 0);
+  const windMoment = windCases.length ? Math.max(...windCases.map((lc) => lc.moment)) : 0;
+  const qService = serviceCase && baseArea > 0 ? serviceCase.verticalForce / baseArea : undefined;
+  const qBearing = bearingCase && baseArea > 0 ? bearingCase.verticalForce / baseArea : undefined;
+  const pressureMax = c.pier?.footing.basePressure.max ?? qBearing;
+  const pressureMin = c.pier?.footing.basePressure.min;
   return [
-    'STORY - Pier stability is the equilibrium story: vertical restoring action and horizontal destabilising action must remain in balance across all governing load cases.',
-    `Design data: pier width ${fmt(c.pier?.geometry.width)} m, length ${fmt(c.pier?.geometry.length)} m, depth ${fmt(c.pier?.geometry.depth)} m, base ${fmt(c.pier?.geometry.baseWidth)} m x ${fmt(c.pier?.geometry.baseLength)} m.`,
-    `Step 1 - actions are assembled from dead load ${fmt(c.pier?.loads.deadLoad)} kN, live load ${fmt(c.pier?.loads.liveLoad)} kN, hydrostatic force ${fmt(c.pier?.loads.hydrostaticForce)} kN, drag/current force ${fmt(c.pier?.loads.dragForce)} kN and buoyancy ${fmt(c.pier?.loads.buoyancy)} kN.`,
-    `Step 2 - each load case resolves sliding, overturning and bearing factors of safety; governing minima are Sliding ${fmt(c.minPierSliding)}, Overturning ${fmt(c.minPierOverturning)}, Bearing ${fmt(c.minPierBearing)}.`,
-    `Check: compare against Sliding >= 1.50, Overturning >= 1.80, Bearing >= 2.50. ${verdict(c.minPierOk)}`,
+    'STORY - Pier stability is the equilibrium story in the legacy BEDACH pattern: DESIGN DATA first, then A) dead load, B) live load, C) water current, D) seismic, E) wind, and finally base-pressure/stability verdict.',
+    `Design data: project ${input.projectName}; HFL ${fmt(input.hfl, 3)} m MSL; bed level ${fmt(input.bedLevel, 3)} m MSL; foundation level ${fmt(c.foundationLevel, 3)} m MSL; design water level ${fmt(c.dwl, 3)} m MSL; design discharge ${fmt(c.q, 2)} cumecs; velocity ${fmt(c.v, 3)} m/s; design scour ${fmt(c.scour, 3)} m; SBC ${fmt(input.sbc, 2)} kN/m2.`,
+    `Design data: pier body ${fmt(c.pier?.geometry.width, 2)} m x ${fmt(c.pier?.geometry.length, 2)} m x ${fmt(c.pier?.geometry.depth, 2)} m; footing/base ${fmt(c.pier?.footing.width ?? input.pierBaseWidth, 2)} m x ${fmt(c.pier?.footing.length ?? input.pierBaseLength, 2)} m x ${fmt(c.pier?.footing.thickness, 2)} m; base area A = ${fmt(baseArea, 3)} m2; pier cap ${fmt(c.pier?.pierCap.width, 2)} m x ${fmt(c.pier?.pierCap.length, 2)} m x ${fmt(c.pier?.pierCap.thickness, 2)} m.`,
+    `Step 1 - A) DEAD LOAD CALCULATION: computed pier/substructure dead load = ${fmt(c.pier?.loads.deadLoad, 2)} kN. The load-case table applies dead-load factors from ${cases.map((lc) => `${lc.caseNumber}:${fmt(lc.deadLoadFactor, 2)}`).join(', ') || 'not available'}, so the restoring vertical load remains traceable in each service, flood, seismic and ultimate row.`,
+    `Step 2 - B) LIVE LOAD CALCULATION: maximum generated live-load reaction on the pier line = ${fmt(c.pier?.loads.liveLoad, 2)} kN. Service case ${serviceCase?.caseNumber ?? 0} uses live-load factor ${fmt(serviceCase?.liveLoadFactor, 2)}, while the ultimate case uses the governing live-load factor shown in the load table; this mirrors the legacy workbook's separate live reaction and moment disclosure before stress calculation.`,
+    `C) LOADS DUE TO WATER CURRENT: hydraulic force is split into hydrostatic ${fmt(c.pier?.loads.hydrostaticForce, 2)} kN plus drag/current ${fmt(c.pier?.loads.dragForce, 2)} kN, giving total horizontal force ${fmt(c.pier?.loads.totalHorizontalForce, 2)} kN. Flood case ${floodCase?.caseNumber ?? 0} carries V = ${fmt(floodCase?.verticalForce, 2)} kN, H = ${fmt(floodCase?.horizontalForce, 2)} kN, M = ${fmt(floodCase?.moment, 2)} kN-m, with buoyancy factor ${fmt(floodCase?.buoyancyFactor, 2)}.`,
+    `D) SEISMIC CONDITION: ${seismicCase ? `case ${seismicCase.caseNumber} (${seismicCase.description}) is retained with DL factor ${fmt(seismicCase.deadLoadFactor, 2)}, LL factor ${fmt(seismicCase.liveLoadFactor, 2)}, buoyancy factor ${fmt(seismicCase.buoyancyFactor, 2)}, V = ${fmt(seismicCase.verticalForce, 2)} kN and M = ${fmt(seismicCase.moment, 2)} kN-m` : 'no seismic case is present in the generated set'}. If the site zone makes seismic non-governing, the report still states the checked row rather than hiding the decision.`,
+    `E) WIND FORCE: pier wind screening force = ${fmt(c.pier?.loads.windForce ?? 0, 2)} kN. Wind-factor cases are ${windCases.length ? windCases.map((lc) => `${lc.caseNumber} (${lc.description})`).join('; ') : 'not governing in this result set'}, and the maximum wind-combination moment read from the generated table is ${fmt(windMoment, 2)} kN-m.`,
+    `BASE PRESSURE CALCULATION: service base pressure q = V/A = ${fmt(serviceCase?.verticalForce, 2)} / ${fmt(baseArea, 3)} = ${fmt(qService, 3)} kN/m2. Governing bearing case ${bearingCase?.caseNumber ?? 0} gives q = ${fmt(qBearing, 3)} kN/m2, while the footing pressure envelope reports qmax ${fmt(pressureMax, 3)} kN/m2 and qmin ${fmt(pressureMin, 3)} kN/m2 against SBC ${fmt(input.sbc, 2)} kN/m2.`,
+    `STABILITY VERDICT: governing sliding is case ${slidingCase?.caseNumber ?? 0} with FOS ${fmt(c.minPierSliding, 3)}; governing overturning is case ${overturningCase?.caseNumber ?? 0} with FOS ${fmt(c.minPierOverturning, 3)}; governing bearing is case ${bearingCase?.caseNumber ?? 0} with FOS ${fmt(c.minPierBearing, 3)}. Compare against Sliding >= 1.50, Overturning >= 1.80, Bearing >= 2.50. ${verdict(c.minPierOk)}`,
   ];
 }
 
 function buildType1Narrative(input: EnhancedProjectInput): string[] {
   const c = narrativeContext(input);
+  const ab = c.type1;
+  const cases = ab?.loadCases ?? [];
+  const baseArea = (ab?.geometry.baseWidth ?? 0) * (ab?.geometry.baseLength ?? 0);
+  const serviceCase = cases.find((lc) => /service/i.test(lc.description)) ?? cases[0];
+  const seismicCase = cases.find((lc) => /seismic/i.test(lc.description)) ?? cases.find((lc) => lc.windLoadFactor > 0);
+  const bearingCase = caseByMin(cases, 'bearingFOS');
+  const qService = serviceCase && baseArea > 0 ? serviceCase.verticalForce / baseArea : undefined;
+  const qBearing = bearingCase && baseArea > 0 ? bearingCase.verticalForce / baseArea : undefined;
   return [
-    'STORY - Type1 abutment stability is the retaining-soil story: earth thrust tries to slide and overturn the abutment while self-weight and base reaction restore stability.',
-    `Design data: height ${fmt(c.type1?.geometry.height ?? input.abutmentHeight)} m, base width ${fmt(c.type1?.geometry.baseWidth)} m, active earth-pressure coefficient Ka ${fmt(c.type1?.earthPressure?.ka, 3)}, total active thrust Pa ${fmt(c.type1?.earthPressure?.pa)} kN.`,
-    'Step 1 - active soil thrust and surcharge effects are resolved at their line of action, while dead load of stem, footing and backfill produce restoring vertical load and moment.',
-    `Step 2 - the governing Type1 checks produce minimum FOS values of Sliding ${fmt(c.minType1Sliding)}, Overturning ${fmt(c.minType1Overturning)} and Bearing ${fmt(c.minType1Bearing)}.`,
-    `Check: compare against project acceptance limits before issuing reinforcement and BOQ. ${verdict((c.minType1Sliding ?? 0) >= 1.5 && (c.minType1Overturning ?? 0) >= 1.8 && (c.minType1Bearing ?? 0) >= 2.5)}`,
+    'STORY - Type1 abutment stability follows the PCC open-foundation workbook pattern: input geometry, sill/foundation pressure, live-load surcharge, seismic row, and foundation-level stability must all be visible before the section is called safe.',
+    `Design data: abutment height ${fmt(ab?.geometry.height ?? input.abutmentHeight, 2)} m, top/body width ${fmt(ab?.geometry.width, 2)} m, depth ${fmt(ab?.geometry.depth, 2)} m, base ${fmt(ab?.geometry.baseWidth, 2)} m x ${fmt(ab?.geometry.baseLength, 2)} m, base area ${fmt(baseArea, 3)} m2, foundation level ${fmt(c.foundationLevel, 3)} m MSL, SBC ${fmt(input.sbc, 2)} kN/m2.`,
+    `Step 1 - A) DEAD LOAD / REACTION: abutment dead load is ${fmt(ab?.loads.deadLoad, 2)} kN and live reaction is ${fmt(ab?.loads.liveLoad, 2)} kN. Service case ${serviceCase?.caseNumber ?? 0} resolves V = ${fmt(serviceCase?.verticalForce, 2)} kN, H = ${fmt(serviceCase?.horizontalForce, 2)} kN, M = ${fmt(serviceCase?.moment, 2)} kN-m, giving service q = ${fmt(qService, 3)} kN/m2.`,
+    `Step 2 - B) LIVE LOAD SURCHARGE / EARTH PRESSURE: Rankine Ka = ${fmt(ab?.earthPressure.ka, 3)}, active thrust Pa = ${fmt(ab?.earthPressure.pa, 2)} kN acting at ${fmt(ab?.earthPressure.location, 3)} m above base, and live-load surcharge component = ${fmt(ab?.loads.soilSurcharge, 2)} kN. This reproduces the attached abutment workbook's separation of dead reaction, live reaction and surcharge stress.`,
+    `C) FOUNDATION PRESSURE AT SILL / BOTTOM LEVEL: governing bearing case ${bearingCase?.caseNumber ?? 0} gives q = ${fmt(qBearing, 3)} kN/m2 and bearing FOS ${fmt(c.minType1Bearing, 3)}. The report keeps the foundation-level pressure check visible against SBC ${fmt(input.sbc, 2)} kN/m2 before reinforcement or BOQ is accepted.`,
+    `D) SEISMIC CONDITION: ${seismicCase ? `case ${seismicCase.caseNumber} (${seismicCase.description}) reports V = ${fmt(seismicCase.verticalForce, 2)} kN, H = ${fmt(seismicCase.horizontalForce, 2)} kN and M = ${fmt(seismicCase.moment, 2)} kN-m` : 'no separate seismic case is present in the current Type1 load-case set'}. Seismic is stated explicitly so a non-governing case is not mistaken for an omitted check.`,
+    `BASE PRESSURE / STABILITY VERDICT: Type1 minima are Sliding ${fmt(c.minType1Sliding, 3)}, Overturning ${fmt(c.minType1Overturning, 3)}, Bearing ${fmt(c.minType1Bearing, 3)}. Compare against project acceptance before issuing abutment body, dirt wall, return wall, footing and cap reinforcement. ${verdict((c.minType1Sliding ?? 0) >= 1.5 && (c.minType1Overturning ?? 0) >= 1.8 && (c.minType1Bearing ?? 0) >= 2.5)}`,
   ];
 }
 
 function buildC1Narrative(input: EnhancedProjectInput): string[] {
   const c = narrativeContext(input);
+  const ab = c.c1;
+  const cases = ab?.loadCases ?? [];
+  const baseArea = (ab?.geometry.baseWidth ?? 0) * (ab?.geometry.baseLength ?? 0);
+  const serviceCase = cases.find((lc) => /service/i.test(lc.description)) ?? cases[0];
+  const seismicCase = cases.find((lc) => /seismic/i.test(lc.description)) ?? cases.find((lc) => lc.windLoadFactor > 0);
+  const bearingCase = caseByMin(cases, 'bearingFOS');
+  const qService = serviceCase && baseArea > 0 ? serviceCase.verticalForce / baseArea : undefined;
+  const qBearing = bearingCase && baseArea > 0 ? bearingCase.verticalForce / baseArea : undefined;
   return [
-    'STORY - Cantilever abutment behaviour is the stem-footing interaction story: stem action, heel/toe pressure and earth thrust must be read together, not as isolated calculations.',
-    `Design data: C1 height ${fmt(c.c1?.geometry.height ?? input.abutmentHeight)} m, base width ${fmt(c.c1?.geometry.baseWidth)} m, active earth-pressure coefficient Ka ${fmt(c.c1?.earthPressure?.ka, 3)}, total active thrust Pa ${fmt(c.c1?.earthPressure?.pa)} kN.`,
-    'Step 1 - stem and footing geometry establish the resisting dead-load system; earth pressure and surcharge establish the destabilising side of the equilibrium.',
-    `Step 2 - the governing Cantilever checks produce minimum FOS values of Sliding ${fmt(c.minC1Sliding)}, Overturning ${fmt(c.minC1Overturning)} and Bearing ${fmt(c.minC1Bearing)}.`,
-    `Check: foundation pressure and stability acceptance must both pass before cantilever detailing is treated as final. ${verdict((c.minC1Sliding ?? 0) >= 1.5 && (c.minC1Overturning ?? 0) >= 1.8 && (c.minC1Bearing ?? 0) >= 2.5)}`,
+    'STORY - Cantilever abutment behaviour is the stem-footing interaction story: stem action, heel/toe pressure, live-load surcharge, seismic increment and foundation bearing must be read together, not as isolated calculations.',
+    `Design data: C1 height ${fmt(ab?.geometry.height ?? input.abutmentHeight, 2)} m, base ${fmt(ab?.geometry.baseWidth, 2)} m x ${fmt(ab?.geometry.baseLength, 2)} m, base area ${fmt(baseArea, 3)} m2, Ka ${fmt(ab?.earthPressure.ka, 3)}, Pa ${fmt(ab?.earthPressure.pa, 2)} kN, Pa location ${fmt(ab?.earthPressure.location, 3)} m above base.`,
+    `Step 1 - A) DEAD LOAD / LIVE LOAD: dead load ${fmt(ab?.loads.deadLoad, 2)} kN and live load ${fmt(ab?.loads.liveLoad, 2)} kN establish the vertical restoring system. Service case ${serviceCase?.caseNumber ?? 0} gives V = ${fmt(serviceCase?.verticalForce, 2)} kN and q = ${fmt(qService, 3)} kN/m2.`,
+    `Step 2 - B) EARTH PRESSURE / SURCHARGE: earth-pressure load ${fmt(ab?.loads.earthPressure, 2)} kN plus soil surcharge ${fmt(ab?.loads.soilSurcharge, 2)} kN and water pressure ${fmt(ab?.loads.waterPressure, 2)} kN form the destabilising side of the cantilever equilibrium.`,
+    `C) FOUNDATION CHECK: governing bearing case ${bearingCase?.caseNumber ?? 0} gives q = ${fmt(qBearing, 3)} kN/m2 against SBC ${fmt(input.sbc, 2)} kN/m2. This keeps the bottom-of-foundation pressure story aligned with the attached PCC abutment workbook.`,
+    `D) SEISMIC CONDITION: ${seismicCase ? `case ${seismicCase.caseNumber} (${seismicCase.description}) reports V = ${fmt(seismicCase.verticalForce, 2)} kN, H = ${fmt(seismicCase.horizontalForce, 2)} kN and M = ${fmt(seismicCase.moment, 2)} kN-m` : 'no separate seismic case is present in the current cantilever load-case set'}.`,
+    `BASE PRESSURE / STABILITY VERDICT: Cantilever minima are Sliding ${fmt(c.minC1Sliding, 3)}, Overturning ${fmt(c.minC1Overturning, 3)}, Bearing ${fmt(c.minC1Bearing, 3)}. Foundation pressure and stability acceptance must both pass before cantilever detailing is treated as final. ${verdict((c.minC1Sliding ?? 0) >= 1.5 && (c.minC1Overturning ?? 0) >= 1.8 && (c.minC1Bearing ?? 0) >= 2.5)}`,
   ];
 }
 
