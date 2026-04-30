@@ -74,7 +74,14 @@ export interface ProjectInput {
   agl: number;                  // Average ground level (m MSL)
   nbl: number;                  // Normal bed level (m MSL)
   ofl: number;                  // Ordinary flood level (m MSL)
-  dwl: number;                  // Deep water level (m MSL)
+  dwl: number;                  // Design Water Level (m MSL)
+  
+  // Optional Specific Concrete Grades
+  concreteGradeFoundation?: string;
+  concreteGradePier?: string;
+  concreteGradeAbutment?: string;
+  concreteGradeDeck?: string;
+  concreteGradeWearing?: string;
 }
 
 export interface CrossSectionPoint {
@@ -270,11 +277,12 @@ export interface EstimationResult {
   // Cost Summary
   cost: {
     subtotal: number;           // ₹
-    profit?: number;            // ₹
-    overhead?: number;          // ₹
+    profit: number;             // ₹
+    overhead: number;           // ₹
     gst: number;                // ₹
     total: number;              // ₹
     ratePerMeter: number;       // ₹/m
+    ratePerSqm?: number;        // ₹/m²
   };
 }
 

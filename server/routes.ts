@@ -1,5 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import apiRouter from "./api-routes";
 
 export function registerRoutes(app: Express): Server {
   // Health check endpoint
@@ -16,6 +17,9 @@ export function registerRoutes(app: Express): Server {
       },
     });
   });
+
+  // Main design API routes
+  app.use("/api", apiRouter);
 
   const httpServer = createServer(app);
   return httpServer;

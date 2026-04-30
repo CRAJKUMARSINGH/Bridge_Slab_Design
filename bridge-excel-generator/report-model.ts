@@ -1,13 +1,14 @@
 import type { EnhancedProjectInput } from './types';
 
 export interface ReportModelEntry {
-  value: unknown;
+  value: any;
   unit?: string;
   formulaText?: string;
   label?: string;
 }
 
-export type ReportModel = Record<string, ReportModelEntry>;
+export type ReportCell = ReportModelEntry;
+export type ReportModel = Record<string, ReportCell>;
 
 export function buildReportModel(input: EnhancedProjectInput): ReportModel {
   return {
