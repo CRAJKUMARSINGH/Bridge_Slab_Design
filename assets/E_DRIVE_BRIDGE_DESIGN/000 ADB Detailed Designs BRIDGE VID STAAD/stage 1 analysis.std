@@ -1,0 +1,60 @@
+STAAD PLANE stage-1
+START JOB INFORMATION
+* PAGE 21 ADB PROJECT REPORT
+END JOB INFORMATION
+INPUT WIDTH 79
+UNIT METER KN
+joint coordinates
+1 0 0 0; 2 0.54 0 0; 3 1.74 0 0; 4 4.94 0 0 10 34.58 0 0
+11 37.78 0 0; 12 38.98 0 0; 13 39.52 0 0
+member incidences
+1 1 2 12
+member property indian
+* members 1,2, 11 & 12 are rectangular
+1 2 11 12 pri ax 1.54 ix 0.001 iz 0.62
+* members 3, 10 are Reducing Section
+3 10 pri ax 1.26 ix 0.001 iz 0.558
+* members 4 to 9 are rectangular in middle.
+4 to 9 pri ax 0.98 ix 0.001 iz 0.496
+constants
+e concrete all
+poi concrete all
+supports
+2 12 pinned
+load 1
+member load
+* Area 1.54 Sqm >>>> 1.54 x 25 = 38.50
+1 2 11 12 uni gy -38.5
+* Area 1.26 Sqm >>>> 1.26 x 25 = 31.50
+3 10 uni gy -31.5
+* Area 0.98 Sqm >>>> 0.98 x 25 = 24.50
+4 to 9 uni gy -24.5
+Load 2 end girder
+member load
+*slab
+***  0.25*1.9*25 = 11.875
+1 to 12 uni gy -11.875
+*pre-cast slab
+***    0.05*1.5*25/2=0.9375
+1 to 12 uni gy -0.9375
+*diapragm
+joint load
+1 13 fy -4.9
+7 FY -16.5
+load 3 mid girder
+member load
+*slab
+***   0.25*2.2*25 = 13.75
+1 to 12 uni gy -13.75
+*pre-cast slab
+**** 0.05*1.5*25=1.875
+1 to 12 uni gy -1.875
+*diapragm
+joint load
+1 13 fy -9.75
+7 FY -33
+perform analysis
+PRINT MAXFORCES ENVELOPE
+print member forces
+print support reactions
+FINISH

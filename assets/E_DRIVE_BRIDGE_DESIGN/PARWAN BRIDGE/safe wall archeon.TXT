@@ -1,0 +1,74 @@
+
+
+Archon RetWall
+
+SOIL PRESSURE UNDER FOOTING
+
+Max = 1.02E+04 psf
+Min = 1424 psf
+Base Bearing Capacity = 5.80E+05 psf
+Bearing Safety Factor = 56.73
+Bearing is OK!
+Overturning Safety Factor = 3.007 ,Greater than 2.000 OK
+Overturning Moment = 1736527.00 ft-lbs
+Moment that resists overturning = 5222319.00 ft-lbs
+Sliding Safety Factor = 54.90 ,Greater than 1.500 OK
+Force that causes sliding = 131026.00 lb
+Friction force that resists sliding = 7192887.00 lb
+
+GENERAL WALL INFORMAION
+
+Fill over toe is not used to resist sliding with
+passive pressure.
+Axial Load on Wall = 0.00 lb
+Maximum Wall Moment = 710356.2 ft-lbs
+
+Wall is a Cantelever type
+Structural rebar is required!
+
+
+Footing requires Rebar.
+
+SOIL DATA
+
+Wall restrains 32.00 ft of Backfill.
+Backfill Material is Coarse Sand or Sand and Gravel
+Density = 162.4 lb/cf
+Overburden = 0 psf
+Slope Angle = 0 radians
+Internal Angle of Friction = 0 degrees
+
+FILL OVER TOE IS 5.000 ft
+Fill Material Over Toe is Coarse Sand or Sand and Gravel
+Internal Angle of Friction = 0 degrees
+Density = 162.4 lb/cf
+
+BASE MATERIAL UNDER FOOTING IS Crystalline BedRock
+Internal Angle of Friction = 44.99 degrees
+Density = 145.0 lb/cf
+
+
+
+Archon RetWall
+
+REBAR / CONCRETE DATA
+
+Footing Bar Clear Cover = 3.000 in
+Wall Bar Clear Cover = 3.000 in
+Concrete Compressive Strength = 3500 psi
+Rebar Yield Strength = 6.00E+04 psi
+
+WALL REBAR
+
+Main wall tension bars are #18 at 12.00 in Centers.
+Lap Length = 234.0 in
+Straight Bar Development Length = 138.0 in
+Hook Bar Development Length = 48.00 in
+
+Wall Horizontal bars are #14 at 18.00 in Centers, each face.
+
+FOOTING REBAR:
+
+Footing Rebar is  at 12.00 in Centers along top of footing.
+Footing Rebar is #18 at 12.00 in Centers along Bottom of footing.
+Footing bars running parallel to wall are #10 at 18.00 in Centers, top and bottom.

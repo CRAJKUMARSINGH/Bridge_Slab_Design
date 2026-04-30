@@ -1,0 +1,28 @@
+"Business: Downtown area (low)",0.70000000
+"Business: Downtown area (high)",0.95000000
+"Neighborhood areas (low)",0.50000000
+"Neighborhood areas (high)",0.70000000
+"Residential - Single Family areas (low)",0.30000000
+"Residential - Single Family areas (high)",0.50000000
+"Residential - Multi units, detached (low)",0.40000000
+"Residential - Multi units, detached (high)",0.60000000
+"Residential - Multi units, attached (low)",0.60000000
+"Residential - Multi units, attached (high)",0.75000000
+"Residential - Suburban (low)",0.25000000
+"Residential - Suburban (high)",0.40000000
+"Residential - 1.2 acre lots or more (low)",0.30000000
+"Residential - 1.2 acre lots or more (high)",0.45000000
+"Apartment dwelling areas (low)",0.50000000
+"Apartment dwelling areas (high)",0.70000000
+"Industrial: Light areas (low)",0.50000000
+"Industrial: Light areas (high)",0.80000000
+"Industrial: Heavy areas (low)",0.60000000
+"Industrial: Heavy areas (high)",0.90000000
+"Parks, cemeteries (low)",0.10000000
+"Parks, cemeteries (high)",0.25000000
+"Playgrounds (low)",0.20000000
+"Playgrounds (high)",0.40000000
+"Railroad yard areas (low)",0.20000000
+"Railroad yard areas (high)",0.40000000
+"Unimproved areas (low)",0.10000000
+"Unimproved areas (high)",0.30000000

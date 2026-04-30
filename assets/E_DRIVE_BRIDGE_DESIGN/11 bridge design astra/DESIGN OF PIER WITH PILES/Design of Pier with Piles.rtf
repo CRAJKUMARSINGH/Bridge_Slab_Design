@@ -1,0 +1,1249 @@
+{\rtf1\ansi\deff0{\fonttbl{\f0\fnil\fcharset0 Lucida Console;}{\f1\fnil\fcharset161 Lucida Console;}}
+{\colortbl ;\red255\green0\blue0;}
+\viewkind4\uc1\pard\lang1033\f0\fs18\par
+\par
+\tab\tab **********************************************\par
+\tab\tab *            ASTRA Pro Release 15.0          *\par
+\tab\tab *        TechSOFT Engineering Services       *\par
+\tab\tab *                                            *\par
+\tab\tab *          DESIGN OF PIER WITH PILES         *\par
+\tab\tab *                                            *\par
+\tab\tab **********************************************\par
+\tab\tab ----------------------------------------------\par
+\tab\tab THIS RESULT CREATED ON 01.08.2015  AT 23:03:11 \par
+\tab\tab ----------------------------------------------\par
+\par
+USER'S INPUT DATA :\par
+-------------------\par
+\par
+B1 = 8.500 m\par
+B2 = 1.300 m\par
+B3 = 2.800 m\par
+B4 = 2.200 m\par
+B5 = 1.300 m\par
+B6 = 1.750 m\par
+\par
+H1 = 395.000 m\par
+H2 = 393.000 m\par
+H3 = 297.000 m\par
+H4 = 297.000 m\par
+H5 = 295.200 m\par
+\par
+D1 = 0.500 m\par
+D2 = 1.500 m\par
+D3 = 6.504 m\par
+D4 = 1.800 m\par
+\par
+S1 = 3.600 m\par
+S2 = 3.600 m\par
+S3 = 0.750 m\par
+S4 = 3.600 m\par
+S5 = 0.750 m\par
+S6 = 0.750 m\par
+S7 = 3.600 m\par
+S8 = 0.750 m\par
+\par
+W1 = 2.550 m\par
+\par
+\par
+1. Density Of Concrete = 2.400 t/m^3\par
+2. Density Of Soil = 1.800 t/m^3\par
+3. Length of Pile  = 20.000 m\par
+4. Over all Depth of Super Structure =   1.500 m\par
+5. Cross Slope =  0.094 m\par
+6. Wearing Coat =  0.065 m\par
+\par
+\par
+\par
+STEP 1 : LOAD CALCULATIONS AT PIER BASE\par
+---------------------------------------\par
+\par
+\par
+Normal Case\par
+-----------\par
+\par
+\par
+----------------------------------------------------------------------------------------------------------------\par
+                                              --------------------   Moment About Pier     ---------------------\par
+----------------------------------------------------------------------------------------------------------------\par
+S.No  Vertical Load                Value (t)   Distance w.r.t    Moment about    Distance w.r.t    Moment about\par
+                                                c.g of Shaft     c.g of Shaft    c.g of Shaft     c.g of Shaft\par
+                                                (m) in Long      in Long (t-m)   (m) in Trans     in Trans (t-m) \par
+----------------------------------------------------------------------------------------------------------------\par
+\par
+1     Dead Load + SIDL               479.010        0.000             0.000            0.000              0.000 \par
+2     Live Load (Max Long Moment)     92.000        1.100           101.200            1.155            106.260 \par
+3     Live Load (Max Trans Moment)    46.780        1.100            51.460            2.950            138.010 \par
+4     Pier Cap                       111.240        0.000             0.000            0.000              0.000 \par
+5     Pier Shaft                     168.580        0.000             0.000            0.000              0.000 \par
+----------------------------------------------------------------------------------------------------------------\par
+\par
+Horizontal Force (As per Clause 214.5.1 of IRC:6-2000)  \par
+\par
+Coefficent of friction = fc = 0.050\par
+Applied Horizontal force = 20.000 t \par
+Dead Load + SIDL - Reaction = 479.010 t\par
+\par
+Live Load Reaction at free end - Max Long Moment Case = 15.581 t\par
+\par
+\par
+Force at Bearings : Normal Case\par
+-------------------------------\par
+\par
+1. Fixed Bearing - Max Longitudinal Moment Case\par
+-----------------------------------------------\par
+\par
+Greater of  - I       (20.000-0.050*(479.010+15.581))  = -4.730 t\par
+or          -II       (20.000/2+0.050*(479.010+15.581))  = 34.730 t\par
+\par
+ Max Longitudinal Moment = 34.730 t\par
+cg from Pier shaft base (Long) 393.000 - 297.000 + 0.000  = 96.000 m\par
+\par
+Moment about Pier Shaft base (Long)  34.730 x 96.000 = 3334.037 t-m\par
+\par
+\par
+2. Free Bearing - Max Longitudinal Moment Case\par
+----------------------------------------------\par
+\par
+Horizontal force  (0.050*(479.010 + 15.581)) = 24.730 t\par
+\par
+Moment about Pier Shaft base (Long)   24.730 * 96.000  = 2374.037 t-m\par
+\par
+Seismic Case Calculations\par
+-------------------------\par
+\par
+Seismic coefficient :\par
+---------------------\par
+\par
+Ah = horizontal seismic coefficient   =   ( Z / 2 ) . ( Sa / g ) / ( R / I )  \par
+Z = Zone Factor  =   0.240 \par
+I = Importance Factor  =   1.500  \par
+Sa / g = Average response acceleration coefficient = 2.500\par
+R = Response reduction factor  = 2.500\par
+\par
+Horizontal seismic coefficient = Ah = 0.180\par
+Vertical seismic coefficient  =  0.090\par
+\par
+cg of Pier cap from Top            Rect        Trap   \par
+Weight                            4.250    7.350          0.725   \par
+\par
+ 1.275 \par
+\par
+\par
+Force at Bearings : Seismic Case - Longitudinal\par
+-----------------------------------------------\par
+\par
+1. Fixed Bearing - Max Longitudinal Moment Case\par
+-----------------------------------------------\par
+\par
+Greater of  - I (479.010*0.180+20.000/2-0.050*(479.010+15.581/2))   = 71.882 t\par
+or   -II (((479.010*0.180)/2+20.000/2)/2+0.050*(479.010+15.581/2))  = 50.895 t \par
+ Max Longitudinal Moment = 71.882 t\par
+\par
+cg from Pier shaft base (Long) 393.000 - 297.000 + 0.000  = 96.000 m\par
+\par
+Moment about Pier Shaft base (Long) = 71.882 * 96.000  = 6900.650 t-m\par
+\par
+2. Free Bearing - Max Longitudinal Moment Case\par
+----------------------------------------------\par
+\par
+Horizontal force  (0.050*(479.010 + 15.581/2)) = 24.340 t\par
+\par
+Moment about Pier Shaft base (Long) = 24.340 * 96.000  = 2336.642 t-m\par
+\par
+\par
+Force at Bearings : Seismic Case - Transverse\par
+---------------------------------------------\par
+\par
+1. Fixed Bearing - Max Longitudinal Moment Case\par
+-----------------------------------------------\par
+\par
+Greater of  - I (20.000/2-0.050*(479.010+15.581/2)) = -14.340 t \par
+or -II ((20.000//2)/2+0.050*(479.010+15.581/2))  = 29.340 t \par
+\par
+ Max Longitudinal Moment = 29.340 t \par
+cg from Pier shaft base (Long) 393.000 - 297.000 + 0.000  = 96.000 m\par
+Moment about Pier Shaft base (Long) = 29.340 * 96.000 = 2816.642 t-m\par
+\par
+Forces and Moments at the Base of Pier\par
+--------------------------------------\par
+\par
+Normal Case\par
+-----------\par
+\par
+I: Max Longitudinal Moment Case\par
+-------------------------------\par
+\par
+Vertical Load = 479.010 + 92.000 + 111.240 + 168.580 = 850.830 t \par
+Transverse Moment  = 106.260 t-m \par
+Longitudinal Moment = 101.200 + 3334.037 = 3435.237 t-m\par
+\par
+II:  Max Transverse Moment Case\par
+-------------------------------\par
+\par
+Vertical Load = 479.010 + 46.780 + 15.581 + 111.240 + 168.580 = 821.191 t \par
+Transverse Moment =  138.010 t-m \par
+\par
+Longitudinal Moment = 51.460 + 3334.037 = 3385.497   t-m \par
+\par
+\par
+\par
+Seismic Case: (Longitudinal)\par
+----------------------------\par
+\par
+Seismic Coefficient = 0.180  \par
+\par
+\par
+On Dead Load + SIDL \par
+---------------------\par
+\par
+Horizontal Load = 0.180 *  479.010 = 86.222 t\par
+\par
+Acting at a distance from pile cap top = 393.000 - 297.000 + 0.000 + 0.5*(395.000 - 393.000)\par
+                                       = 97.000 m\par
+\par
+Moment about Pile Cap Top = 86.222 * 97.000 = 8363.515 \par
+\par
+On Pier Cap\par
+-----------\par
+\par
+Horizontal Load = 0.180 *  111.240 = 20.023 t\par
+\par
+Acting at a distance from pile cap top = 6.504 + 1.275 = 7.779)\par
+\par
+Moment about Pile Cap Top = 20.023 * 7.779 = 155.756 \par
+\par
+On Pier Shaft\par
+-------------\par
+\par
+Horizontal Load = 0.180 *  168.580 = 30.344 t\par
+\par
+Acting at a distance from pile cap top = 6.504 / 2 = 3.252)\par
+\par
+Moment about Pile Cap Top = 30.344 * 3.252 = 98.680 \par
+\par
+\par
+Total Horizontal Load = 86.222 + 20.023 + 30.344 = 136.589 t\par
+\par
+Total Moment about Pile Cap Top = 8363.515 + 155.756 + 98.680  = 8617.951 t-m\par
+\par
+\par
+\par
+Seismic Case: (Transverse)\par
+--------------------------\par
+\par
+On Dead Load + SIDL \par
+---------------------\par
+\par
+Horizontal Load = 0.180 *  479.010 = 86.222 t\par
+\par
+Acting at a distance from pile cap top = 393.000 - 297.000 + 0.000 + 0.5*(395.000 - 393.000)\par
+                                       = 97.000 m\par
+\par
+Moment about Pile Cap Top = 86.222 * 97.000 = 8363.515 \par
+\par
+On Pier Cap\par
+-----------\par
+\par
+Horizontal Load = 0.180 *  111.240 = 20.023 t\par
+\par
+Acting at a distance from pile cap top = 6.504 + 1.275 = 7.779)\par
+\par
+Moment about Pile Cap Top = 20.023 * 7.779 = 155.756 \par
+\par
+On Pier Shaft\par
+-------------\par
+\par
+Horizontal Load = 0.180 *  168.580 = 30.344 t\par
+\par
+Acting at a distance from pile cap top = 6.504 / 2 = 3.252)\par
+\par
+Moment about Pile Cap Top = 30.344 * 3.252 = 98.680 \par
+\par
+Live Load\par
+-------------\par
+\par
+Horizontal Load = 0.180 *  46.780 = 4.210 t\par
+\par
+Acting at a distance from pile cap top = 393.000 - 297.000 + 1.500 + 1.2 + 0.25  = 98.950)\par
+\par
+Moment about Pile Cap Top = 4.210 * 98.950 = 416.599 \par
+\par
+\par
+Total Horizontal Load = 86.222 + 20.023 + 30.344 + 4.210 = 140.800 t\par
+\par
+Total Moment about Pile Cap Top = 8363.515 + 155.756 + 98.680 + 416.599  = 9034.550 t-m\par
+\par
+Longitudinal Seismic Case\par
+--------------------------\par
+\par
+Vertical Load = 479.010 + 0.5 * 92.000 + 111.240 + 168.580   = 804.830 t \par
+\par
+Transverse Moment = 0.5 * 106.260  = 53.130 t-m\par
+\par
+Longitudinal Moment = 101.200 + 8617.951 = 8719.151 t-m \par
+\par
+\par
+Transverse Seismic Case\par
+-----------------------\par
+\par
+\par
+Vertical Load = 479.010 + 0.5 * 46.780 + 111.240 + 168.580   = 782.220 t \par
+\par
+Transverse Moment = 0.5 * 106.260 + 9034.550  = 9103.555 t-m\par
+\par
+Longitudinal Moment = 101.200 + 2816.642 = 2917.842 t-m \par
+\par
+\par
+\par
+\par
+------------------------------------------------------------------------------------------------------------------------\par
+\par
+\par
+STEP 2 : ONE SPAN DISLODGED CONDITION\par
+-------------------------------------\par
+\par
+\par
+Normal Case\par
+-----------\par
+\par
+----------------------------------------------------------------------------------------------------------------\par
+                                              --------------------   Moment About Pier     ---------------------\par
+----------------------------------------------------------------------------------------------------------------\par
+S.No  Vertical Load                Value (t)   Distance w.r.t    Moment about    Distance w.r.t    Moment about\par
+                                                c.g of Shaft     c.g of Shaft    c.g of Shaft     c.g of Shaft\par
+                                                (m) in Long      in Long (t-m)   (m) in Trans     in Trans (t-m) \par
+----------------------------------------------------------------------------------------------------------------\par
+1     Dead Load + SIDL               239.510        1.100           263.456            0.000              0.000 \par
+2     Live Load (Max Long Moment)      0.000        1.100             0.000            1.155              0.000 \par
+3     Live Load (Max Trans Moment)     0.000        0.000             0.000            2.950              0.000 \par
+4     Pier Cap                       111.240        0.000             0.000            0.000              0.000 \par
+5     Pier Shaft                     168.580        0.000             0.000            0.000              0.000 \par
+----------------------------------------------------------------------------------------------------------------\par
+\par
+Horizontal Force (As per Clause 214.5.1 of IRC:6-2000)  \par
+\par
+Coefficent of friction = fc = 0.050\par
+Applied Horizontal force = 0.000 t \par
+Dead Load + SIDL - Reaction = 239.510 t\par
+Live Load Reaction at free end - Max Long Moment Case = 0.000 t\par
+Dead Load + SIDL - Full Span = 2 x 239.510 = 479.020 t\par
+\par
+\par
+Force at Bearings : Normal Case\par
+-------------------------------\par
+\par
+\par
+1. Fixed Bearing - Max Longitudinal Moment Case  \par
+------------------------------------------------\par
+\par
+Greater of  - I       (0.000-0.050*(239.510+0.000))  = -11.976 t\par
+\par
+ Max Longitudinal Moment    = 11.976 t\par
+\par
+cg from Pier shaft base (Long)   (393.000 - 297.000 + 0.25) = 96.250  m \par
+Moment about Pier Shaft base (Long)  11.976 x 96.250 = 1152.642 t-m\par
+\par
+\par
+2. Free Bearing - Max Longitudinal Moment Case  \par
+-----------------------------------------------\par
+\par
+\par
+Horizontal force  (0.050*(239.510 + 0.000)) = 11.976 t\par
+\par
+Moment about Pier Shaft base (Long)   11.976 * 96.250  = 1152.642 t-m\par
+\par
+\par
+Seismic Case Calculations\par
+-------------------------\par
+\par
+Seismic coefficient : \par
+----------------------\par
+\par
+Ah = horizontal seismic coefficient   =   ( Z / 2 ) . ( Sa / g ) / ( R / I )  \par
+Z = Zone Factor  = 0.240 \par
+I = Importance Factor  =   1.500  \par
+Sa / g = Average response acceleration coefficient  = 2.500\par
+R = Response reduction factor  = 2.500\par
+Horizontal seismic coefficient  =  0.180\par
+Vertical seismic coefficient  = Ah/2 =  0.180 / 2 =  0.090 \par
+\par
+\par
+Force at Bearings : Seismic Case - Longitudinal \par
+------------------------------------------------\par
+\par
+1. Fixed Bearing - Max Longitudinal Moment Case  \par
+-----------------------------------------------\par
+\par
+Greater of  - I ( 479.020 * 0.180 +  0.000 / 2 -  0.050 *(239.510 + 0.000/2))  = 74.248 t \par
+\par
+or -II (((479.020*0.180)/2+0.000/2)/2+0.050*(239.510+0.000/2))  = 9.580 t \par
+\par
+\par
+Max Longitudinal Moment = max_lm2 = 74.248 t \par
+\par
+cg from Pier shaft base (Long) = 96.250 m\par
+\par
+Moment about Pier Shaft base (Long) = mom3 = 74.248 * 96.250 = 7146.380 t-m \par
+\par
+\par
+2. Free Bearing - Max Longitudinal Moment Case \par
+-----------------------------------------------\par
+\par
+Horizontal force = HF3 = (0.050*(239.510+0.000/2)) = 11.976 t\par
+\par
+Moment about Pier Shaft base (Long) = mom4 = 11.976 * 96.250 = 1152.642 t-m \par
+\par
+\par
+Force at Bearings : Seismic Case - Transvesre \par
+----------------------------------------------\par
+\par
+3. Fixed Bearing - Max Longitudinal Moment Case  \par
+-------------------------------------------------\par
+\par
+\par
+Greater of  - I (0.000 / 2 - 0.050 * (239.510 + 0.000/2)) = -11.976 t \par
+\par
+or -II ((0.000/2)/2+0.050*(239.510+0.000/2)) = 11.976 t \par
+\par
+ Max Longitudinal Moment = max_lm3 = 11.976 t \par
+\par
+cg from Pier shaft base (Long) = 96.250 m\par
+\par
+Moment about Pier Shaft base (Long) = mom5 = 11.976 * 96.250 = 1152.642 t-m \par
+\par
+\par
+Forces and Moments at the Base of Pier - One Span Dislodged Condition \par
+----------------------------------------------------------------------\par
+\par
+Normal Case\par
+-----------\par
+\par
+I: Max Longitudinal Moment Case  \par
+-------------------------------\par
+\par
+Vertical Load = VL1 = 239.510 + 0.000 + 111.240 + 168.580 = 519.330 t \par
+\par
+Transverse Moment = TM1 = 0.000 t-m\par
+\par
+Longitudinal Moment = LM1 = 0.000 + 1152.642 = 1152.642 t-m \par
+\par
+\par
+II:  Max Transverse Moment Case\par
+-------------------------------\par
+\par
+\par
+Vertical Load = VL2 = 239.510 + 0.000 + 111.240 + 168.580 = 519.330 t \par
+\par
+Transverse Moment = TM2 = 0.000 t-m \par
+\par
+Longitudinal Moment = LM2 = 0.000 + 1152.642 = 1152.642 t-m \par
+\par
+Moment of Inertia = MI1 = \f1\'f0 * B2^4 / 64 = 3.142 * 1.300 ^ 4 / 64 = 0.140 m^4 \par
+\par
+Area = ar = \'f0 * B2^2 / 4 = 3.142 * 1.300 ^ 2 / 4 = 1.327 m^4 \par
+\par
+(Super Structure on one side condition) - 1.75 x L  \par
+\par
+Effective Length of Pier = eff_len1 = 1.75 x 6.504 = 11.382 m\par
+\par
+\par
+(Service with simply supported span on both sides and pier fixed at base condition) - 1.2 x L  \par
+\par
+Effective Length of Pier = eff_len2 = 1.2 x 6.504 = 7.805 m\par
+Radius of gyration = r = SQRT(MI1/ar) = SQRT(0.140/1.327) = 0.325\par
+\par
+L/r - Super Structure on one side condition = 11.382 / 0.325 = 35.022\par
+\par
+L/r - Service condition  = 7.805 / 0.325 = 24.015\par
+\par
+\par
+Seismic Case Calculations \par
+-------------------------\par
+\par
+Seismic Case: (Longitudinal)\par
+----------------------------\par
+\par
+\par
+On Dead Load + SIDL \par
+---------------------\par
+\par
+Horizontal Load = 0.180 *  479.020 = 86.224 t\par
+\par
+Acting at a distance from pile cap top = 393.000 - 297.000 + 0.000 + 0.5*(395.000 - 393.000)\par
+                                       = 97.000 m\par
+\par
+Moment about Pile Cap Top = 86.224 * 97.000 = 8363.689 \par
+\par
+On Pier Cap\par
+-----------\par
+\par
+Horizontal Load = 0.180 *  111.240 = 20.023 t\par
+\par
+Acting at a distance from pile cap top = 6.504 + 1.275 = 7.779)\par
+\par
+Moment about Pile Cap Top = 20.023 * 7.779 = 155.756 \par
+\par
+On Pier Shaft\par
+-------------\par
+\par
+Horizontal Load = 0.180 *  168.580 = 30.344 t\par
+\par
+Acting at a distance from pile cap top = 6.504 / 2 = 3.252)\par
+\par
+Moment about Pile Cap Top = 30.344 * 3.252 = 98.680 \par
+\par
+\par
+Total Horizontal Load = 86.224 + 20.023 + 30.344 = 136.591 t\par
+\par
+Total Moment about Pile Cap Top = 8363.689 + 155.756 + 98.680  = 8618.125 t-m\par
+\par
+\par
+\par
+Seismic Case: (Transverse)   \par
+\par
+\par
+On Dead Load + SIDL \par
+---------------------\par
+\par
+Horizontal Load = 0.5 * 0.180 * 479.020 = 43.112 t\par
+\par
+Acting at a distance from pile cap top = 393.000 - 297.000 + 0.000 + 0.5*(395.000 - 393.000)\par
+                                       = 97.000 m\par
+\par
+Moment about Pile Cap Top = 43.112 * 97.000 = 4181.845 \par
+\par
+On Pier Cap\par
+-----------\par
+\par
+Horizontal Load = 0.180 *  111.240 = 20.023 t\par
+\par
+Acting at a distance from pile cap top = 6.504 + 1.275 = 7.779)\par
+\par
+Moment about Pile Cap Top = 20.023 * 7.779 = 155.756 \par
+\par
+On Pier Shaft\par
+-------------\par
+\par
+Horizontal Load = 0.180 *  168.580 = 30.344 t\par
+\par
+Acting at a distance from pile cap top = 6.504 / 2 = 3.252)\par
+\par
+Moment about Pile Cap Top = 30.344 * 3.252 = 98.680 \par
+\par
+\par
+Total Horizontal Load = 43.112 + 20.023 + 30.344 = 93.479 t\par
+\par
+Total Moment about Pile Cap Top = 4181.845 + 155.756 + 98.680 = 4436.281 t-m\par
+\par
+Longitudinal Seismic Case\par
+-------------------------\par
+\par
+Vertical Load = 239.510 + 0.5 * 0.000 + 111.240 + 168.580   = 519.330 t \par
+\par
+Transverse Moment = 0.5 * 0.000  = 0.000 t-m\par
+\par
+Longitudinal Moment = 0.000 + 8618.125 = 8618.125 t-m \par
+\par
+\par
+Transverse Seismic Case\par
+-----------------------\par
+\par
+\par
+\par
+Vertical Load = 239.510 + 0.5 * 0.000 + 111.240 + 168.580   = 519.330 t \par
+\par
+Transverse Moment = 0.5 * 138.010 + 4436.281  = 4436.281 t-m\par
+\par
+Longitudinal Moment = 0.000 + 1152.642 = 1152.642 t-m \par
+\par
+\par
+STEP 3 : LOAD CALCULATIONS - AT PILE CAP BASE\par
+---------------------------------------------\par
+\par
+\par
+Load Calculations of Pile Cap and soil wt above pile cap \par
+\par
+\par
+Total No. of Pile = tp = 6 nos\par
+Total No. of row = tr = 3 nos\par
+\par
+\par
+\par
+\par
+Total Width of Pile Cap in Longitudinal Dircetion = wpcl = S3 + S4 + S5\par
+                                                         = 0.750 + 3.600 + 0.750\par
+                                                         = 5.100 m\par
+\par
+Total Width of Pile Cap in Transverse direction = wpct = S6 + tr x S7 + S8\par
+                                                       = 0.750 + 2 x 3.600 + 0.750\par
+                                                       = 8.700 m\par
+\par
+\par
+\par
+\par
+Depth of pile cap = dp = 1.800 m\par
+Self Weight of Pile cap = pcwt = wpcl * wpct * dp * conc_den\par
+                               = 5.100 * 8.700 * 1.800 * 2.400\par
+                               = 191.678 t\par
+\par
+Soil weight above pile cap = swt = wpcl * wpct * (H3 - H4) * soil_den\par
+                                 = 5.100 * 8.700 * (297.000 - 297.000) * 2.400\par
+                                 = 0.000 t\par
+\par
+\par
+\par
+Normal Case\par
+-----------\par
+\par
+----------------------------------------------------------------------------------------------------------------\par
+                                              --------------------   Moment About Pier     ---------------------\par
+----------------------------------------------------------------------------------------------------------------\par
+S.No  Vertical Load                Value (t)   Distance w.r.t    Moment about    Distance w.r.t    Moment about\par
+                                                c.g of Shaft     c.g of Shaft    c.g of Shaft     c.g of Shaft\par
+                                                (m) in Long      in Long (t-m)   (m) in Trans     in Trans (t-m) \par
+----------------------------------------------------------------------------------------------------------------\par
+1     Dead Load + SIDL               479.010        0.000             0.000            0.000              0.000 \par
+2     Live Load (Max Long Moment)     92.000        1.100           101.200            1.155            106.260 \par
+3     Live Load (Max Trans Moment)    46.780        1.100            51.460            2.950            138.010 \par
+4     Pier Cap                       111.240        0.000             0.000            0.000              0.000 \par
+5     Pier Shaft                     168.580        0.000             0.000            0.000              0.000 \par
+----------------------------------------------------------------------------------------------------------------\par
+\par
+\par
+Horizontal Force (As per Clause 214.5.1 of IRC:6-2000) \par
+\par
+Coefficent of friction = fc = 0.050\par
+Applied Horizontal force = AHF1 = 20.000 t\par
+Dead Load + SIDL Reaction at Pier - From both spans = 479.010 t\par
+Live Load Reaction at free end = LLR1 = 15.581 t\par
+Dead Load + SIDL -Full Span = 479.010 t\par
+\par
+\par
+Force at Bearings : Normal Case\par
+-------------------------------\par
+\par
+\par
+1. Fixed Bearing - Max Longitudinal Moment Case\par
+-----------------------------------------------\par
+\par
+Greater of  - I = (AHF1 - fc * (Val1 + LLR1))\par
+                = (20.000 - 0.050 * (479.010 + 15.581))\par
+                = -4.730 t\par
+\par
+or          -II = (AHF1 / 2 + fc * (Val1 + LLR1))\par
+                = (20.000 / 2 + 0.050 * (479.010 + 15.581))\par
+                = 34.730 t\par
+\par
+Maximum Longitudinal Moment = mlm1 = 34.730 t\par
+\par
+\par
+cg from Pier shaft base (Long) = cg1 = H2 - H5 + 0.25\par
+                                     = 393.000 - 393.000 + 0.25\par
+                                     = 98.050 m\par
+\par
+\par
+Moment about Pier Shaft base (Long) = mom_long1 = mlm1 * cg1\par
+                                                = 34.730 * 98.050\par
+                                                = 3405.232 t-m\par
+\par
+\par
+2. Free Bearing - Max Longitudinal Moment Case\par
+----------------------------------------------\par
+\par
+Horizontal force = hf1 = (fc * (Val1 + LLR1))\par
+                       = (0.050 * (0.050 + 0.050))\par
+                       = 24.730 t\par
+\par
+Moment about Pier Shaft base (Long) = mom_long2 = hf1 * cg1\par
+                                                = 24.730 * 98.050\par
+                                                = 2424.732 t-m\par
+\par
+Force at Bearings : Seismic Case - Longitudinal \par
+------------------------------------------------\par
+\par
+Horizontal Seismic Coefficient = Ah = 0.180 \par
+\par
+\par
+1. Fixed Bearing - Max Longitudinal Moment Case\par
+-----------------------------------------------\par
+\par
+Greater of  - I  = (Val1 * Ah + AHF1 / 2 - fc * (Val1 + LLR1 / 2.0)) \par
+                 = (479.010 * 0.180 + 20.000 / 2 - 0.050 * (479.010 + 15.581 / 2.0))\par
+                 = 71.882 t\par
+or    - II  = ((479.010 * 0.180) / 2 * (20.000 / 2.0) / 2.0 + 0.050 * (479.010 + 15.581 / 2))\par
+            = 239.895 t\par
+ Maximum Longitudinal Moment = mlm2 = 239.895 t\par
+\par
+Moment about Pier Shaft base (Long)  = mom_long3 = mlm2 * cg1\par
+                                     = 239.895 * 98.050\par
+                                     = 23521.658 t-m\par
+\par
+2. Free Bearing - Max Longitudinal Moment Case \par
+----------------------------------------------\par
+\par
+Horizontal force  (fc * (Val1 + LLR1 / 2.0))\par
+                  (0.050 * (479.010 + 15.581 / 2.0))\par
+                  (24.340 * (24.340 + 24.340 / 2.0))   24.340 t  \par
+\par
+\par
+Moment about Pier Shaft base (Long) = mom_long4 = hf2 * cg1\par
+                                                = 24.340 * 98.050 t-m\par
+                                                = 2386.539 t-m\par
+\par
+\par
+Force at Bearings : Seismic Case - Transverse\par
+---------------------------------------------\par
+\par
+3. Fixed Bearing - Max Longitudinal Moment Case\par
+-----------------------------------------------\par
+\par
+\f0\par
+Greater of  - I = (AHF1 / 2 - fc * (Val1 + LLR1 / 2))\par
+                = (20.000 / 2 - 0.050 * (479.010 + 15.581 / 2))\par
+                = -14.340 t \par
+\par
+or   - II = ((AHF1 / 2) / 2 + fc * (Val1 + LLR1 / 2))\par
+          = ((20.000 / 2) / 2 + 20.000 * (20.000 + 20.000 / 2))\par
+          = 29.340 t\par
+\par
+ Maximum Longitudinal Moment = mlm3 = 29.340 t\par
+\par
+Moment about Pier Shaft base (Long) = mom_long5 = mlm3 * cg1\par
+                                                = 29.340 * 98.050\par
+                                                = 2876.789 t-m\par
+\par
+Forces and Moments at the Base of Pile Cap \par
+------------------------------------------\par
+\par
+Normal Case\par
+-----------\par
+\par
+I: Max Longitudinal Moment Case\par
+-------------------------------\par
+\par
+Vertical Load = vl1 = Val1 + Val2 + Val4 + Val5 + pcwt + swt\par
+                    = 479.010 + 92.000 + 111.240 + 168.580 + 191.678 + 0.000\par
+                    = 1042.508 t\par
+\par
+Transverse Moment = tm1 = 106.260 t-m\par
+\par
+Longitudinal Moment = lm1 = 101.200 + 0.000 + 0.000 + 3405.232\par
+                          = 3506.432 t-m\par
+\par
+II:  Max Transverse Moment Case\par
+-------------------------------\par
+\par
+Vertical Load = vl2 = Val1 + Val3 + LLR1 + Val4 + Val5 + pcwt + swt\par
+                    = 479.010 + 46.780 + 15.581 + 111.240 + 168.580 + 191.678 + 0.000\par
+                    = 1012.869 t\par
+\par
+Transverse Moment = tm2 = 138.010 t-m\par
+\par
+Longitudinal Moment = lm2 = 51.460 + 0.000 + 0.000 + 3405.232\par
+                          = 3456.692 t-m\par
+\par
+Longitudinal Seismic Case\par
+-------------------------\par
+\par
+Horizontal Seismic Coefficient = Ah = 0.180\par
+\par
+\par
+On Dead Load + SIDL \par
+---------------------\par
+\par
+Horizontal Load = 0.180 *  479.010 = 86.222 t\par
+\par
+Acting at a distance from pile cap Base = 393.000 - 295.200 + 0.000 + 0.5*(395.000 - 393.000)\par
+                                       = 98.800 m\par
+\par
+Moment about Pile Cap Top = 86.222 * 98.800 = 8518.714 \par
+\par
+On Pier Cap\par
+-----------\par
+\par
+Horizontal Load = 0.180 *  111.240 = 20.023 t\par
+\par
+Acting at a distance from pile cap top = 6.504 + 1.275 + 1.800 = 9.579\par
+\par
+Moment about Pile Cap Top = 20.023 * 9.579 = 191.798 \par
+\par
+On Pier Shaft\par
+-------------\par
+\par
+Horizontal Load = 0.180 *  168.580 = 30.344 t\par
+\par
+Acting at a distance from pile cap top = 6.504 / 2 + 1.800 = 5.052)\par
+\par
+Moment about Pile Cap Top = 30.344 * 5.052 = 153.300 \par
+\par
+\par
+Total Horizontal Load = 86.222 + 20.023 + 30.344 = 136.589 t\par
+\par
+Total Moment about Pile Cap Top = 8518.714 + 191.798 + 153.300  = 8863.812 t-m\par
+\par
+\par
+Transverse Seismic Case \par
+------------------------\par
+\par
+\par
+On Dead Load + SIDL \par
+---------------------\par
+\par
+Horizontal Load = 0.180 *  479.010 = 86.222 t\par
+\par
+Acting at a distance from pile cap Base = 393.000 - 295.200 + 0.000 + 0.5*(395.000 - 393.000)\par
+                                       = 98.800 m\par
+\par
+Moment about Pile Cap Top = 86.222 * 98.800 = 8518.714 \par
+\par
+On Pier Cap\par
+-----------\par
+\par
+Horizontal Load = 0.180 *  111.240 = 20.023 t\par
+\par
+Acting at a distance from pile cap top = 6.504 + 1.275 + 1.800 = 9.579\par
+\par
+Moment about Pile Cap Top = 20.023 * 9.579 = 191.798 \par
+\par
+On Pier Shaft\par
+-------------\par
+\par
+Horizontal Load = 0.180 *  168.580 = 30.344 t\par
+\par
+Acting at a distance from pile cap top = 6.504 / 2 + 1.800 = 5.052)\par
+\par
+Moment about Pile Cap Top = 30.344 * 5.052 = 153.300 \par
+\par
+Live Load\par
+-------------\par
+\par
+Horizontal Load = 0.5 * 0.180 *  46.780 = 4.210 t\par
+\par
+Acting at a distance from pile cap top = H2 - H5 + 1.5 + 1.2 + 0.25\par
+                                       = 393.000 - 393.000 + 1.5 + 1.2 + 0.25\par
+                                       = 100.750 m\par
+\par
+Moment about Pile Cap Top = 4.210 * 100.750 = 424.178 \par
+\par
+\par
+Total Horizontal Load = 86.222 + 20.023 + 30.344  + 4.210 = 140.800 t\par
+\par
+Total Moment about Pile Cap Top = 8518.714 + 191.798 + 153.300 + 424.178  = 9287.989 t-m\par
+\par
+\par
+Longitudinal Seismic Case\par
+-------------------------\par
+\par
+\par
+Vertical Load = vl3 = 479.010 + 0.5 * 92.000 + 111.240 + 168.580 + 191.678 + 0.000\par
+                    = 996.508 t\par
+Transverse Moment = tm3 = 0.5 * 106.260 = 53.130 t-m  \par
+\par
+Longitudinal Moment = lm3 = 101.200 + 0.000 + 0.000 + 8863.812 = 8965.012 t-m\par
+\par
+\par
+Transverse Seismic Case \par
+-----------------------\par
+\par
+Vertical Load = vl4 = 479.010 + 0.5 * 92.000 + 111.240 + 168.580 + 191.678 + 0.000\par
+                    = 973.898 t\par
+\par
+Transverse Moment = tm3 = 0.5 * 106.260 + 9287.989 = 53.130 t-m  \par
+\par
+Longitudinal Moment = lm3 = 51.460 + 0.000 + 0.000 + 2876.789 = 2928.249 t-m\par
+\par
+\par
+\par
+STEP 4 : SUMMARY OF LOAD CASES\par
+-------------------------------\par
+\par
+A) Forces and Moments at the Base of Pier\par
+-----------------------------------------\par
+\par
+--------------------------------------------------------------------------\par
+S.No    Description of Cases               Vertical       Mll       Mtt \par
+                                           Load (t)     (t-m)      (t-m)\par
+--------------------------------------------------------------------------\par
+ 1     Normal - Longitudinal Moment Case    850.830   3435.237    106.260\par
+ 2     Normal - Transverse Moment Case      821.191   3385.497    138.010\par
+ 3     Seismic Case -Longitudinal           804.830   8719.151     53.130\par
+ 4     Seismic Case -Transverse             782.220   2917.842   9103.555\par
+--------------------------------------------------------------------------\par
+\par
+\par
+B) Forces and Moments at the Base of Pier - One Span Dislodged Condition\par
+------------------------------------------------------------------------\par
+\par
+--------------------------------------------------------------------------\par
+S.No    Description of Cases               Vertical       Mll       Mtt \par
+                                           Load (t)     (t-m)      (t-m)\par
+--------------------------------------------------------------------------\par
+ 1     Normal - Longitudinal Moment Case    519.330   1152.642      0.000\par
+ 2     Normal - Transverse Moment Case      519.330   1152.642      0.000\par
+ 3     Seismic Case -Longitudinal           519.330   8618.125      0.000\par
+ 4     Seismic Case -Transverse             519.330   1152.642   4436.281\par
+--------------------------------------------------------------------------\par
+\par
+C) Forces and Moments at the Base of Pile Cap\par
+----------------------------------------------\par
+\par
+--------------------------------------------------------------------------\par
+S.No    Description of Cases               Vertical       Mll       Mtt \par
+                                           Load (t)     (t-m)      (t-m)\par
+--------------------------------------------------------------------------\par
+ 1     Normal - Longitudinal Moment Case   1042.508   3506.432    106.260\par
+ 2     Normal - Transverse Moment Case     1012.869   3456.692    138.010\par
+ 3     Seismic Case -Longitudinal           996.508   8965.012     53.130\par
+ 4     Seismic Case -Transverse             973.898   2928.249   9356.994\par
+--------------------------------------------------------------------------\par
+\par
+\par
+\par
+STEP 5 : DESIGN OF PILE & PILE CAP\par
+-----------------------------------\par
+\par
+\par
+C.G. in Longitudinal Direction\par
+------------------------------\par
+\par
+\par
+----------------------------------------------------------------------------------------------------------\par
+No.of        Pile       Pile        Pile           Area of      Total area      Distance                  \par
+Piles        No.s       Dia        Section          pile         area in        from section      A*x      \par
+                        (m)                                     section (A)      A-A (x)\par
+----------------------------------------------------------------------------------------------------------\par
+   3         4,5,6      1.200        p-p             1.131           3.393         0.750        2.545\par
+   3         1,2,3      1.200        t-t             1.131           3.393         4.350       14.759\par
+----------------------------------------------------------------------------------------------------------\par
+                                                                     6.786                     17.304\par
+----------------------------------------------------------------------------------------------------------\par
+\par
+\par
+Cg of Pile Group = 17.304 / 6.786 = 2.550 m    from left end Section A-A\par
+\par
+Distance between C/L of brg to cg of pile group = cgpg - (wpcl / 2) \par
+                                                = 2.550 - (5.100 / 2)\par
+                                                = 0.000 m\par
+\par
+\par
+\par
+\par
+Along Longitudinal Direction\par
+------------------------------\par
+\par
+\par
+----------------------------------------------------------------------------------------------\par
+Pile       Dia of    Area of       Distance from     Distance w.r.t                 Total M.I \par
+No          pile    pile (m^2)       section          c.g of Pile          d^2      = \u8721?x^2   \par
+             (m)       A             A-A (m)         group (m) - d                              \par
+----------------------------------------------------------------------------------------------\par
+   1         1.2        1.131        4.35                 1.800           3.240         3.240\par
+   2         1.2        1.131        4.35                 1.800           3.240         3.240\par
+   3         1.2        1.131        4.35                 1.800           3.240         3.240\par
+   4         1.2        1.131        0.75                 1.800           3.240         3.240\par
+   5         1.2        1.131        0.75                 1.800           3.240         3.240\par
+   6         1.2        1.131        0.75                 1.800           3.240         3.240\par
+----------------------------------------------------------------------------------------------\par
+                        6.786                                                          19.440\par
+----------------------------------------------------------------------------------------------\par
+\par
+\par
+Cg of Pile Group = 17.304 / 6.786 = 2.550 m    from left end Section A-A\par
+\par
+Distance between C/L of brg to cg of pile group = cgpg - (wpcl / 2) \par
+                                                = 2.550 - (5.100 / 2)\par
+                                                = 0.000 m\par
+\par
+\par
+\par
+\par
+C.G. in Transverse Direction\par
+------------------------------\par
+\par
+\par
+----------------------------------------------------------------------------------------------------------\par
+No.of        Pile       Pile        Pile           Area of      Total area      Distance                  \par
+Piles        No.s       Dia        Section          pile         area in        from section      A*y      \par
+                        (m)                                     section (A)      B-B (y)\par
+----------------------------------------------------------------------------------------------------------\par
+   2         1,4        1.200        w-w             1.131           2.262         7.950       17.982\par
+   2         2,5        1.200        v-v             1.131           2.262         4.350        9.839\par
+   2         3,6        1.200        u-u             1.131           2.262         0.750        1.696\par
+----------------------------------------------------------------------------------------------------------\par
+                                                                     6.786                     29.518\par
+----------------------------------------------------------------------------------------------------------\par
+\par
+\par
+Cg of Pile Group = 29.518 / 6.786 = 4.350 m    from left end Section B-B\par
+\par
+Distance between C/L of brg to cg of pile group = cgpg - (wpcl / 2) \par
+                                                = 4.350 - (8.700 / 2)\par
+                                                = 0.000 m\par
+\par
+\par
+\par
+\par
+\par
+Along Transverse Direction\par
+------------------------------\par
+\par
+\par
+----------------------------------------------------------------------------------------------\par
+Pile       Dia of    Area of       Distance from     Distance w.r.t                 Total M.I \par
+No          pile    pile (m^2)       section          c.g of Pile          d^2      = \u8721?x^2   \par
+             (m)       A             A-A (m)         group (m) - d                              \par
+----------------------------------------------------------------------------------------------\par
+   1         1.2        1.131        7.95                 3.600          12.960        12.960\par
+   2         1.2        1.131        4.35                 0.000           0.000         0.000\par
+   3         1.2        1.131        0.75                 3.600          12.960        12.960\par
+   4         1.2        1.131        7.95                 3.600          12.960        12.960\par
+   5         1.2        1.131        4.35                 0.000           0.000         0.000\par
+   6         1.2        1.131        0.75                 3.600          12.960        12.960\par
+----------------------------------------------------------------------------------------------\par
+                        6.786                                                          51.840\par
+----------------------------------------------------------------------------------------------\par
+\par
+\par
+Cg of Pile Group = 29.518 / 6.786 = 4.350 m    from left end Section B-B\par
+\par
+Distance between C/L of brg to cg of pile group = cgpg - (wpct / 2) \par
+                                                = 4.350 - (8.700 / 2)\par
+                                                = 0.000 m\par
+\par
+\par
+\par
+\par
+STEP 6 : PILE REACTIONS\par
+-----------------------\par
+\par
+\par
+Pile Capacity for 1200 mm dia pile = 250 t\par
+No. of Piles = 6 nos\par
+ex^2 = 19.440 \par
+ey^2 = 51.840 \par
+\par
+\par
+\par
+\par
+--------------------------------------------------------------------------------------------------------------\par
+                            Distances w.r.t                 Normal - Longitudinal Moment Case                                \par
+                            along directions     -------------------------------------------------------------\par
+--------------------------------------------------------------------------------------------------------------\par
+S.No    Dia of    Pile No   x (m)      y (m)       P/N    Mll * x/ex^2    Mtt * y/ey^2    Total (t)    Check\par
+       Pile (mm)                                                                   \par
+--------------------------------------------------------------------------------------------------------------\par
+ 1        1200       1       1.80       3.60     173.75     324.67           7.38          505.80     NOT OK\par
+ 2        1200       2       1.80       0.00     173.75     324.67           0.00          498.42     \cf1 NOT OK\cf0\par
+ 3        1200       3       1.80       3.60     173.75     324.67          -7.38          491.04     \cf1 NOT OK\cf0\par
+ 4        1200       4       1.80       3.60     173.75    -324.67           7.38         -143.54        OK \par
+ 5        1200       5       1.80       0.00     173.75    -324.67           0.00         -150.92        OK \par
+ 6        1200       6       1.80       3.60     173.75    -324.67          -7.38         -158.30        OK \par
+--------------------------------------------------------------------------------------------------------------\par
+\par
+Longitudinal Moment Capacity = 250.000 t\par
+Maximum Longitudinal Moment = maxlm1 = 505.800 t\par
+Minimum Longitudinal Moment = minlm1 = -158.297 t\par
+\par
+\par
+\par
+--------------------------------------------------------------------------------------------------------------\par
+                            Distances w.r.t                 Normal - Transverse Moment case\par
+                            along directions     -------------------------------------------------------------\par
+--------------------------------------------------------------------------------------------------------------\par
+S.No    Dia of    Pile No   x (m)      y (m)       P/N    Mll * x/ex^2    Mtt * y/ey^2    Total (t)    Check\par
+       Pile (mm)                                                                   \par
+--------------------------------------------------------------------------------------------------------------\par
+ 1        1200       1       1.80       3.60     168.81     320.06           9.58          498.46     \cf1 NOT OK\cf0\par
+ 2        1200       2       1.80       0.00     168.81     320.06           0.00          488.88     \cf1 NOT OK\cf0\par
+ 3        1200       3       1.80       3.60     168.81     320.06          -9.58          479.29     \cf1 NOT OK\cf0\par
+ 4        1200       4       1.80       3.60     168.81    -320.06           9.58         -141.67        OK \par
+ 5        1200       5       1.80       0.00     168.81    -320.06           0.00         -151.25        OK \par
+ 6        1200       6       1.80       3.60     168.81    -320.06          -9.58         -160.84        OK \par
+--------------------------------------------------------------------------------------------------------------\par
+\par
+Transverse Moment Capacity = 250.000 t\par
+Maximum Longitudinal Moment = maxtm2 = 498.460 t\par
+Minimum Longitudinal Moment = mintm2 = -160.837 t\par
+\par
+\par
+\par
+--------------------------------------------------------------------------------------------------------------\par
+                            Distances w.r.t                 Seismic Case - Longitudinal\par
+                            along directions     -------------------------------------------------------------\par
+--------------------------------------------------------------------------------------------------------------\par
+S.No    Dia of    Pile No   x (m)      y (m)       P/N    Mll * x/ex^2    Mtt * y/ey^2    Total (t)    Check\par
+       Pile (mm)                                                                   \par
+--------------------------------------------------------------------------------------------------------------\par
+ 1        1200       1       1.80       3.60     166.08     830.09           3.69          999.87     \cf1 NOT OK\cf0\par
+ 2        1200       2       1.80       0.00     166.08     830.09           0.00          996.18     \cf1 NOT OK\cf0\par
+ 3        1200       3       1.80       3.60     166.08     830.09          -3.69          992.49     \cf1 NOT OK\cf0\par
+ 4        1200       4       1.80       3.60     166.08    -830.09           3.69         -660.32        OK \par
+ 5        1200       5       1.80       0.00     166.08    -830.09           0.00         -664.01        OK \par
+ 6        1200       6       1.80       3.60     166.08    -830.09          -3.69         -667.70        OK \par
+--------------------------------------------------------------------------------------------------------------\par
+\par
+Longitudinal Moment Capacity = 250.000 t\par
+Maximum Longitudinal Moment = maxlm2 = 999.868 t\par
+Minimum Longitudinal Moment = minlm2 = -667.699 t\par
+\par
+\par
+\par
+--------------------------------------------------------------------------------------------------------------\par
+                            Distances w.r.t                  Seismic Case - Transverse\par
+                            along directions     -------------------------------------------------------------\par
+--------------------------------------------------------------------------------------------------------------\par
+S.No    Dia of    Pile No   x (m)      y (m)       P/N    Mll * x/ex^2    Mtt * y/ey^2    Total (t)    Check\par
+       Pile (mm)                                                                   \par
+--------------------------------------------------------------------------------------------------------------\par
+ 1        1200       1       1.80       3.60     162.32     271.13         649.79         1083.24     \cf1 NOT OK\cf0\par
+ 2        1200       2       1.80       0.00     162.32     271.13           0.00          433.45     \cf1 NOT OK\cf0\par
+ 3        1200       3       1.80       3.60     162.32     271.13        -649.79         -216.34        OK \par
+ 4        1200       4       1.80       3.60     162.32    -271.13         649.79          540.97     \cf1 NOT OK\cf0\par
+ 5        1200       5       1.80       0.00     162.32    -271.13           0.00         -108.82        OK \par
+ 6        1200       6       1.80       3.60     162.32    -271.13        -649.79         -758.61        OK \par
+--------------------------------------------------------------------------------------------------------------\par
+\par
+Transverse Moment Capacity = 312.500 t\par
+Maximum Transverse Moment = maxtm2 = 1083.242 t\par
+Minimum Transverse Moment = mintm2 = -758.609 t\par
+\par
+\par
+\par
+\par
+STEP 7 : STRUCTURAL DESIGN OF PILE\par
+-----------------------------------\par
+\par
+CALCULATION OF NO. OF PILES\par
+---------------------------\par
+\par
+\par
+Total Vertical load at cg of pile cap = tvl = 1042.508 t \par
+Total Horizontal force = thf = 34.730 t\par
+Seismic Horizontal force = shf = 140.800 t \par
+Vertical Load Capacity of pile = vc = 250.000 t\par
+\par
+Horizontal Load Capacity of Pile = hc = 20.000 t \par
+\par
+No. of Plies required (Vertical) = vpn = tvl / vc = 1042.508 / 250.000 = 4.170 nos \par
+\par
+No. of Plies required (Horizontal) = hpn = tvl / vc = 34.730 / 20.000 = 1.736 nos \par
+\par
+No. of Plies required (Horizontal- in Seismic Case) = shf / (hc*1.25)\par
+                                                    = 140.800 / (20.000*1.25)\par
+                                                    = 5.632 nos \par
+\par
+Provided No of piles = 6 nos \par
+\par
+\par
+STRUCTURAL DESIGN OF PILE\par
+-------------------------\par
+\par
+\par
+Maximum Lateral Force in Longitudinal Direction on Pile Foundation under normal condition = mlfl = 34.730 t\par
+\par
+Corresponding Max. Vertical Load on one Pile for Load - Normal Case = cmaxvl1 = 505.800 t\par
+and Corresponding Minimum Vertical Load on one Pile for Load - Normal Case = cminvl1 = -158.297 t\par
+\par
+Maximum Lateral Force in Longitudinal Direction on Pile Foundation under Seismic Condition = 140.800 t\par
+\par
+Corresponding Maximum Vertical Load on one Pile - Seismic case = 1083.242 t \par
+Corresponding Minimum Vertical Load on one Pile - Seismic case = -667.699 t \par
+\par
+Total No. of Piles = tp = 6\par
+Length of Pile = lp = 20 m \par
+Diameter of Pile = dp = 1.2 m \par
+\par
+LOAD CALCULATIONS FOR STRUCTURAL DESIGN \par
+----------------------------------------\par
+\par
+\par
+a) Normal Case \par
+--------------\par
+Max. Lateral Force on one Pile under Normal Condition = Q = 34.730 / 6.000 = 5.788 t  = 6 t\par
+\par
+Max. Lateral load Capacity of Pile under Normal Condition = 20.000  t  > 6.000 t, SO,   OK\par
+Now, Maximum Moment in Pile is given by = 2.95*Q tm \par
+Therefore, Maximum Moment in Pile under Normal condition = mmp = 2.95*6 = 17.700 t-m \par
+\par
+Corresponding Maximum Vertical Load (Excluding Self Weight of pile) = 505.800 t \par
+\par
+Corresponding Minimum Vertical Load (Excluding Self Weight of pile) = -158.297 t \par
+\par
+\par
+b) Seismic Case \par
+----------------\par
+\par
+Maximum Lateral Force on one Pile under Seismic Condition = shf/tp = 140.800 / 6 = 23.467 t \par
+\par
+Max. Lateral load Capacity of Pile under Seismic Condition = 1.25 x hc\par
+                                                           = 1.25 x 20.000\par
+                                                           = 25.000 t > 23.467, SO   OK.\par
+\par
+\par
+Maximum Moment in Pile under Seismic condition = 2.95*Q = 2.95*23.467 = 69.226 tm \par
+\par
+Corresponding Maximum Vertical Load (Excluding Self Weight of pile) = 1083.242 t \par
+Corresponding Minimum Vertical Load (Excluding Self Weight of pile) = -667.699 t  \par
+\par
+Self weight of pile = pwt = conc_den * Pile_len * \f1\'f0 * pcdia^2 / 4  = 54.3 t \par
+                          = 2.400 * 20.000 * 3.14159 * 1.200^2 / 4\par
+                          = 54.287 t \par
+\par
+The design loads and moments are summarised below : \par
+\par
+Sr. No. Description                  Vertical Load (t)     Moment (tm)   Eccentricity M/V (m) \par
+\par
+1. Normal Case (Max. Vertical load)         505.800            17.700              0.035\par
+2. Normal Case (Min. Vertical Load)        -158.297            17.700             -0.112\par
+3. Seismic Case (Max. Vertical Load)       1083.242            69.226              0.064\par
+4. Seismic Case (Min. Vertical Load)       -667.699            69.226             -0.104\par
+\par
+Calculation of Reinforcement\par
+-----------------------------\par
+\par
+The reinforcement in pile assumed 0.83% of cross-sectional area. 0.83% of c/s area \par
+\par
+Area of Reinforcement = ar_rein = (rpa / 100) * \'f0 * (pcdia * 100)^2\par
+                                = (0.830 / 100) * 3.142 * (1.200 * 100)^2\par
+                                = 93.871 Sq.cm \par
+\par
+\par
+Bar dia to be provided = bdia = 25 mm \par
+No. of 25 dia. Bars reqd. = ar_rein / (\'f0 * bdia^2 / 400.0) = 19 No. \par
+                           = 93.871 / (3.14159 * 25.000^2 / 400.0)\par
+                           = 19.123 \par
+                           = 19.000 Nos\par
+\par
+\par
+No. of 25 dia. Bars prov. = 22 No. \par
+\par
+\par
+Provide 25 dia , 22 nos. around periphery \par
+\par
+As provided = bar_prvd * (Math.PI * bdia^2 / 400.0)\par
+            = 22 * (3.14159 * 25.000^2 / 400.0) \par
+            = 107.992 Sq.cm\par
+\par
+\par
+Provide 8 dia. @ 150mm as helical reinforcement \par
+\par
+Pile Reinforcement below Depth of Fixity \par
+\par
+\par
+-------------------------------------------------------------------------------------\par
+The Pile reinforcement 21b - 16  dia  have been provided below the depth of fixity. \par
+The details of  depth of  fixity have  been  derived in page no.20. To economize on\par
+the area of reinforcement, bars  have  been curtailed after providing the anchorage\par
+length  as  per  clause 304.6.2 of IRC: 21 - 2000  and minimum reinforcement as per \par
+clause 709.4.4 of IRC: 78-2000 below the  depth  of  fixity.\par
+-------------------------------------------------------------------------------------\par
+\par
+\par
+\par
+\par
+---------------------------------------------------------------------------\par
+---------------------       END OF REPORT        --------------------------\par
+---------------------------------------------------------------------------\f0\par
+}
+ 
