@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Submersible Bridge Slab Designer"
+version = "1.0.0"
+id = "artifacts/book-builder"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23513
+
+[services.development]
+run = "pnpm --filter @workspace/book-builder run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/book-builder", "run", "build" ]
+
+[services.production.run]
+args = [ "node", "--enable-source-maps", "artifacts/book-builder/dist/index.js" ]
+
+[services.production.run.env]
+NODE_ENV = "production"
+PORT = "23513"
+
+[services.env]
+PORT = "23513"

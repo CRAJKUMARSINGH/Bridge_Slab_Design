@@ -1,0 +1,202 @@
+@import "tailwindcss";
+@import "./styles/excel-fidelity.css";
+@import "./styles/struds-report.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Semantic tokens — toggled via `.dark` on <html> (see index.html + ThemeProvider) */
+:root {
+  --app-bg: #f0f4fc;
+  --app-bg-mesh: radial-gradient(
+    ellipse 100% 80% at 50% -30%,
+    color-mix(in oklab, var(--app-accent) 22%, transparent),
+    transparent 55%
+  );
+  --app-fg: #0f172a;
+  --app-muted: #64748b;
+  --app-accent: #0891b2;
+  --app-accent-glow: color-mix(in oklab, var(--app-accent) 45%, transparent);
+  --app-card: color-mix(in oklab, #ffffff 88%, var(--app-fg));
+  --app-border: color-mix(in oklab, var(--app-fg) 12%, transparent);
+  --app-input-bg: #ffffff;
+  --app-input-border: color-mix(in oklab, var(--app-fg) 16%, transparent);
+  --app-glass-bg: color-mix(in oklab, #ffffff 78%, transparent);
+  --app-glass-border: color-mix(in oklab, var(--app-fg) 14%, transparent);
+  --app-glass-shadow: 0 12px 48px color-mix(in oklab, var(--app-fg) 12%, transparent);
+  --app-nav-bg: color-mix(in oklab, #ffffff 72%, transparent);
+  --neo-light: #ffffff;
+  --neo-shadow-dark: color-mix(in oklab, var(--app-fg) 14%, transparent);
+  --neo-shadow-mid: color-mix(in oklab, var(--app-fg) 8%, transparent);
+
+  /* 2025 Neon Accents */
+  --neon-cyan: #0ea5e9;
+  --neon-amber: #f59e0b;
+  --neon-purple: #8b5cf6;
+  --neon-green: #10b981;
+}
+
+.dark {
+  --app-bg: #0a0f1a;
+  --app-bg-mesh: radial-gradient(
+    ellipse 100% 70% at 50% -25%,
+    color-mix(in oklab, var(--app-accent) 38%, transparent),
+    transparent 50%
+  );
+  --app-fg: #f1f5f9;
+  --app-muted: #94a3b8;
+  --app-accent: #22d3ee;
+  --app-accent-glow: color-mix(in oklab, var(--app-accent) 42%, transparent);
+  --app-card: color-mix(in oklab, #ffffff 8%, #020617);
+  --app-border: color-mix(in oklab, #ffffff 14%, transparent);
+  --app-input-bg: color-mix(in oklab, #ffffff 8%, #0f172a);
+  --app-input-border: color-mix(in oklab, #ffffff 16%, transparent);
+  --app-glass-bg: color-mix(in oklab, #ffffff 10%, transparent);
+  --app-glass-border: color-mix(in oklab, #ffffff 16%, transparent);
+  --app-glass-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.45),
+    0 0 0 1px color-mix(in oklab, #ffffff 8%, transparent),
+    0 0 80px -20px color-mix(in oklab, var(--app-accent) 55%, transparent);
+  --app-nav-bg: color-mix(in oklab, #ffffff 8%, transparent);
+  --neo-light: transparent;
+  --neo-shadow-dark: transparent;
+  --neo-shadow-mid: transparent;
+
+  /* 2025 Neon Accents (Dark Mode) */
+  --neon-cyan: #00d4ff;
+  --neon-amber: #ffb347;
+  --neon-purple: #bf5fff;
+  --neon-green: #39ff14;
+}
+
+@theme inline {
+  --color-app-bg: var(--app-bg);
+  --color-app-fg: var(--app-fg);
+  --color-app-muted: var(--app-muted);
+  --color-app-accent: var(--app-accent);
+  --color-app-card: var(--app-card);
+  --color-app-border: var(--app-border);
+}
+
+@layer base {
+  body {
+    @apply antialiased text-app-fg bg-app-bg;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    border-radius: 1rem;
+    border: 1px solid var(--app-glass-border);
+    background: var(--app-glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: var(--app-glass-shadow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-panel::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -150%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .glass-panel:hover::before {
+    left: 150%;
+  }
+
+  /* Bento Grid Stats */
+  .bento-stat {
+    @apply flex flex-col items-center justify-center p-4 rounded-xl transition-all duration-300;
+    background: color-mix(in oklab, var(--app-accent) 8%, transparent);
+    border: 1px solid color-mix(in oklab, var(--app-accent) 15%, transparent);
+  }
+
+  .bento-stat:hover {
+    background: color-mix(in oklab, var(--app-accent) 12%, transparent);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 20px -5px var(--app-accent-glow);
+    transform: translateY(-2px);
+  }
+
+  .hero-glow {
+    background: radial-gradient(circle at center, var(--app-accent-glow), transparent 70%);
+    filter: blur(40px);
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .glass-modal-content {
+    background: var(--app-glass-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-color: var(--app-glass-border);
+    box-shadow:
+      var(--app-glass-shadow),
+      0 0 60px -18px var(--app-accent-glow);
+  }
+
+  .app-field {
+    @apply mt-1 w-full rounded-md border px-3 py-2 text-sm transition-[box-shadow,border-color];
+    background-color: var(--app-input-bg);
+    border-color: var(--app-input-border);
+    color: var(--app-fg);
+  }
+
+  .app-field:focus {
+    outline: none;
+    border-color: color-mix(in oklab, var(--app-accent) 55%, var(--app-input-border));
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--app-accent) 28%, transparent);
+  }
+
+  .app-shell-bg {
+    background-color: var(--app-bg);
+    background-image: var(--app-bg-mesh);
+  }
+
+  /** Soft UI (light): low-contrast extrusion; disabled in dark via transparent neo vars */
+  .neo-surface {
+    border-radius: 1rem;
+    background: var(--app-card);
+    box-shadow:
+      6px 6px 14px var(--neo-shadow-dark),
+      -5px -5px 12px var(--neo-light);
+    border: 1px solid var(--app-border);
+  }
+
+  .neo-surface:active {
+    box-shadow:
+      inset 3px 3px 8px var(--neo-shadow-mid),
+      inset -2px -2px 6px var(--neo-light);
+  }
+
+  /** Subtle depth hover (dashboard cards) */
+  .depth-lift {
+    transform: translateZ(0);
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .depth-lift {
+      transition: none;
+    }
+  }
+
+  .depth-lift:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow:
+      var(--app-glass-shadow),
+      0 0 40px -12px var(--app-accent-glow);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .depth-lift:hover {
+      transform: none;
+    }
+  }
+}
