@@ -34,6 +34,7 @@ import { resolveFeatureFlags } from '../shared/feature-flags';
 import { buildPierCaseCatalog, resolveDefaultPierAssetRoot } from './pier-case-engine';
 import { PIER_MASTER_SCHEMA, recommendPierType, type PierMasterVariables } from './pier-recommendation-engine';
 import { generatePierPayload } from './pier-template-mapper';
+import { optimiseBridgeDesign } from './optimisation-engine';
 
 const router = Router();
 
@@ -91,18 +92,19 @@ function parseMergedProjectInput(body: unknown):
   return { ok: true, input: mergeProjectInput(parsed.data) };
 }
 
-// RISK-3 cache: Load schema once at startup
-const PROJECT_INPUT_SCHEMA = JSON.parse(
-  readFileSync(join(process.cwd(), 'schemas', 'project-input.schema.json'), 'utf-8')
-);
 
 /**
- * GET /api/design/schema
- * JSON Schema for ProjectInput (Phase 1 contract for tools / forms).
+ * POST /api/design/optimise
+ * Runs the iterative optimisation engine to find the smallest safe dimensions.
  */
-router.get('/schema', (_req, res) => {
-  res.setHeader('Content-Type', 'application/schema+json');
-  res.json(PROJECT_INPUT_SCHEMA);
+router.post('/optimise', async (req, res) => {
+  try {
+    const input = mergeProjectInput(req.body);
+    const result = await optimiseBridgeDesign(input);
+    res.json({ success: true, ...result });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
+  }
 });
 
 /**

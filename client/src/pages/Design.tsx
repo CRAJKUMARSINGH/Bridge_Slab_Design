@@ -223,6 +223,30 @@ export function Design() {
     }
   };
 
+  const handleOptimise = async () => {
+    if (!draft) return;
+    setLoading('optimise');
+    try {
+      const res = await fetch('/api/design/optimise', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(draft),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setDraft(data.optimised);
+        toast.success(data.message);
+        void persistResults(data.optimised);
+      } else {
+        toast.error(data.message || 'Optimisation failed');
+      }
+    } catch (e: any) {
+      toast.error(`Optimisation error: ${e.message}`);
+    } finally {
+      setLoading(null);
+    }
+  };
+
   const handleJSON = async () => {
     if (!draft) return;
     try {
@@ -795,9 +819,14 @@ export function Design() {
               <div className="space-y-6">
                 <section className="space-y-3" aria-labelledby="export-deliverables-heading">
                   <h4 id="export-deliverables-heading" className="text-[11px] font-bold uppercase tracking-wider text-app-muted">
-                    Primary deliverables
+                    Primary deliverables &amp; smart features
                   </h4>
-              <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+              <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
+                <button type="button" onClick={handleOptimise} disabled={!!loading}
+                  className={`${EXPORT_ACTION_BTN} bg-gradient-to-r from-yellow-600 to-amber-500 hover:from-yellow-700 hover:to-amber-600`}>
+                  {loading === 'optimise' ? <Loader2 className="w-5 h-5 animate-spin"/> : <Zap className="w-5 h-5"/>}
+                  Optimise Dimensions
+                </button>
                 <button type="button" onClick={() => handleGenerate('excel')} disabled={!!loading}
                   className={`${EXPORT_ACTION_BTN} bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600`}>
                   {loading === 'excel' ? <Loader2 className="w-5 h-5 animate-spin"/> : <FileSpreadsheet className="w-5 h-5"/>}
