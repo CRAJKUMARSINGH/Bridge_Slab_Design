@@ -1,0 +1,70 @@
+{
+  "projectName": "High Level Slab Bridge Template",
+  "location": "Fixture � high-level reference",
+  "riverName": "SAMPLE",
+  "bridgeType": "high-level",
+  "spanLength": 12.114,
+  "numberOfSpans": 4,
+  "skew": 0,
+  "carriageWidth": 7.5,
+  "numberOfLanes": 2,
+  "totalLength": 48,
+  "hfl": 286.361,
+  "bedLevel": 281.2,
+  "foundationLevel": 277.5,
+  "discharge": 762.001,
+  "manningN": 0.03337,
+  "bedSlope": 1212.472,
+  "laceysSiltFactor": 1.5,
+  "crossSectionData": [
+    {
+      "chainage": 0,
+      "gl": 281.4
+    },
+    {
+      "chainage": 20,
+      "gl": 280.9
+    },
+    {
+      "chainage": 40,
+      "gl": 280.5
+    },
+    {
+      "chainage": 60,
+      "gl": 280.8
+    },
+    {
+      "chainage": 80,
+      "gl": 281.3
+    }
+  ],
+  "pierWidth": 1.2,
+  "pierLength": 3.5,
+  "pierDepth": 4.5,
+  "numberOfPiers": 3,
+  "pierBaseWidth": 2.5,
+  "pierBaseLength": 4.5,
+  "abutmentHeight": 8.5,
+  "abutmentWidth": 3.8,
+  "abutmentDepth": 5.2,
+  "dirtWallHeight": 2.6,
+  "returnWallLength": 6.2,
+  "concreteGrade": "M30",
+  "fck": 30,
+  "steelGrade": "Fe500",
+  "fy": 500,
+  "sbc": 218.032,
+  "phi": 30,
+  "gamma": 18,
+  "rtl": 288.3,
+  "agl": 282.4,
+  "nbl": 281.2,
+  "ofl": 285.2,
+  "dwl": 286.9,
+  "deckSlabThickness": 0.25,
+  "freeboardAboveHfl": 1.2,
+  "issuingAuthority": "",
+  "jobNumber": "",
+  "hardRockAvailable": false,
+  "deckSoffitLevel": 288.05
+}

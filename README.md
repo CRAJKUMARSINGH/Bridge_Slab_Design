@@ -110,14 +110,5 @@ npm run qa
 
 ---
 
-## 📄 Documentation
-
-- [`AGENTS.md`](AGENTS.md): Binding specification and contributor guidelines.
-- [`docs/milestones/STATUS.md`](docs/milestones/STATUS.md): Current development status and blockers.
-- [`docs/OPERATOR_NOTE.md`](docs/OPERATOR_NOTE.md): Command reference and golden test values.
-- [`docs/PHASE_ZERO_READ_PIPELINE.md`](docs/PHASE_ZERO_READ_PIPELINE.md): Data extraction logic for reference workbooks.
-
----
-
 ## ⚖️ License & Compliance
 This software is built for professional engineering use and requires validation by a licensed Structural Engineer. Compliance with **IRC:6-2016** and **IRC:112-2011** is maintained by the design engine core.
