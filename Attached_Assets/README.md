@@ -4,7 +4,7 @@ Legacy bridge-office reference material (Excel stability models, Word notes, sam
 
 ## Git and Git LFS
 
-Most office binaries under this folder are stored with **Git LFS** (`.xls`, `.doc`, `.docx`, `.pdf`, images, etc.). Plain text (`.txt`, `.md`, `.csv`) stays in normal Git.
+Most office binaries under this folder are stored with **Git LFS** (`.xls`, `.doc`, `.docx`, `.pdf`, images, etc.). Plain text (`.txt`, `.md`, `.csv`) stays in normal Git—never use a case-folded path glob like `attached_assets/**` for this folder on Windows, or Git may incorrectly send prose through LFS.
 
 ### Clone with file contents
 
