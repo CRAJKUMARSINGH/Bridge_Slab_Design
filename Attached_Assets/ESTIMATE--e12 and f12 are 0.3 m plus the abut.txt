@@ -1,3 +1,34 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:caf4f4288e9656b7a4a18f1201d949669be8e44e8be5dbe23e35954e7e05e591
-size 697
+e12 and f12 are 0.3 m plus the abutment footing sizes
+e13 and f13 are 0.3 m plus the pier footing sizes
+d11 is number of piers
+d13 is abutment number fixed 2
+g12 depth ordinary soil excavatiom upto 3 m
+g17 depth ordinary soil excavatiom upto 3 to 6 m
+g22 depth Hard Rock Not requiring blasting
+g29 depth Hard Rock requiring blasting
+
+
+g13 =g12
+g18 =g17
+g23 = g22
+g30 = g29 
+
+d17:f18 same as d12:f13
+d22:f23 same as d12:f13
+d29:f30 same as d12:f13
+d36:f37 same as d12:f13
+d50:f51 same as d12:f13
+d56:f57 same as d43:f44
+
+
+d31 = d32 = number of spans
+d31:f32 same as d24:f25
+d43:d44 same as d12:d13
+e43:f44 are e12-0.3,f12-0.3, e13 -.3, f13-.3 respectively,
+
+
+
+
+
+
+

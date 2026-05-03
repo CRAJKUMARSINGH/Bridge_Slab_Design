@@ -1,3 +1,457 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:8e824f4afb743b8bbd6d8ec62e983e85d79f201ba1502e81c7eafc4bda06db82
-size 31396
+DESIGN OF PIER AND CHECK FOR STABILITY- SUBMERSIBLE BRIDGE 																																			
+Name Of Work :- Construction of Submersible Bridge on ON KHERWARA - JAWAS - SUVERI ROAD IN KM 9/000, ACROSS RIVER SOM																																			
+DESIGN DATA																																			
+																																			
+1	RIGHT EFFECTIVE SPAN		=	7.60	M																														
+2	SPAN C/C OF PIERS		=	8.80	M																														
+3	OVERALL WIDTH OF PIER CAP		=	8.40	M																														
+4	H.F.L.		=	100.60	M																														
+5	BUOYANCY																																		
+6		AT FOOTING LEVEL	=	100.00	%																														
+7		AT PIER LEVEL	=	100.00	%																														
+8	AQUEDUCT FALLS UNDER ZONE-II SO SEISMIC CASE IS NOT GOVERNING HERE.																																		
+9	FLOOD DISCHARGE		=	899.93	CUMECS																														
+10	RIVER BED SLOPE		=	1	IN	960																													
+11	DESIGN VELOCITY		=	1.84	m/sec																														
+12	BED LEVEL OF THE HEIGHEST PIER		=	96.47	M																														
+13	SAFE BEARING CAPACITY 		=	20.00	t/m2	200.00	kN/m2																												
+14	TOP LEVEL OF FOUNDING ROCK		=	93.47	M																														
+15	EMBEDMENT OF PIER IN HARD ROCK		=	1.50	M																														
+16	FOUNDATION LEVEL OF THE HIGHEST PIER		=	91.970	M																														
+17	DECK LEVEL OF THE BRIDGE		=	101.600	M																														
+18	TOP LEVEL OF THE PIER CAP		=	100.775	M																														
+19	LEVEL DIFFERENCE OF PIER CAP TOP AND FOUNDING LEVEL		=	8.81	M																														
+CHECKING STABILITY OF PIER AT R.L.91.97 M  FOOTING LEVEL																																			
+A	DEAD LOAD CALCULATION																																		
+	SUPER STRUCTURE																																		
+	Self Weight of  Slab	=	8.80	x	8.40	x	0.75	x	24.00	=	1330.56	kN																							
+	Self Weight of Wearing Coat	=	8.80	x	8.40	x	0.075	x	24.00	=	133.06	kN																							
+	TOTAL										1463.62	kN																							
+	SUB STRUCTURE																																		
+	Pier Cap																																		
+	Pier Cap	=	1.50	x	8.40	x	0.60	x	24.00					=	181.440	kN																			
+	Flared Portion Sides	=	0.50	x	0.15	x	0.60	x	8.40	x	2.00	x	24.00	=	18.144	kN																			
+		=	0.50	x	0.15	x	0.60	x	3.14	x	1.20	x	24.00	=	4.069	kN																			
+	Flared Portion u/s & d/s Sides	=	0.60	x	0.60	x	1.50	x	24.00					=	12.960	kN																			
+		=	3.14	/	4.00	x	1.20	x	1.20	x	0.60	x	24.00	=	16.278	kN																			
+	TOTAL														232.891	kN																			
+	Pier 																																		
+	Flared Portion Top	=	0.50	x	0.15	x	0.60	x	8.40	x	2	x	24.00	=	18.144	kN																			
+		=	0.50	x	0.15	x	0.60	x	3.14	x	1.20	x	24.00	=	4.069	kN																			
+	Pier Rectangular portion	=	1.20	x	7.50	x	5.96	x	24.00					=	1286.280	kN																			
+	Pier Curved portion	=	3.14	/	4	x	1.20	x	1.20	x	5.96	x	24.00	=	161.557	kN																			
+	Flared Portion bottom	=	0.50	x	0.60	x	0.30	x	24.00					=	2.160	kN																			
+		=	3.14	/	4	x	1.20	x	1.20	x	0.60	x	24.00	=	16.278	kN																			
+	TOTAL														1493.914	kN																			
+																																			
+	Weight of Pier Above H.F.L.	=													0.000	kN																			
+	Weight of Pier Below H.F.L.	=	1493.91	-	0.00									=	1493.914	kN																			
+																																			
+	Weight of Sub Structure with 15% Buoyancy	=	0.00	+ (	1493.91	x	22.50	/	24.00	)				=	1400.544	kN																			
+	Footing		SIZE	12.00	M x	3.80	M x		1.00	M																									
+	Weight without Buoyancy	=	12.00	x	3.80	x	1.00	x	24.00					=	1094.400	kN																			
+	Weight with 100% Buoyancy	=	12.00	x	3.80	x	1.00	x	14.00					=	638.400	kN																			
+	Total Weight of Substructure Without Buoyancy																																		
+		=	232.89	+	1493.91	+	1094.40							=	2821.205	kN																			
+	Total Weight of Substructure With Buoyancy																																		
+		=	232.89	+	1400.54	+	638.40							=	2271.835	kN																			
+																																			
+B	LIVE LOAD CALCULATION																																		
+	Maximum Reaction due Live Load including Impact	=	788.27	x	1.00	=	788.27		kN																										
+	Refer Live load Computation sheet showing maximum reaction 	=	78.83	T which is =	788.27	kN					Haunch	0.60	M																						
+											PCC Offset	0.20	M																						
+	TOTAL LONGITUDINAL MOMENT DUE TO LIVE LOAD & BREAKING FORCE										Length Variant	1.00	M																						
+	Maximum Longitudinal moment due to Live Load including Impact and Breaking Force 	=	122.13	x	2.00	=	244.25		kN-m		Width Variant	0.50	M																						
+	Refer Live load Computation sheet showing maximum reaction  	=	12.21	T- m 																															
+				which is =	122.13	kN-m						137.30	Stress																						
+												60.92																							
+	TOTAL TRANSVERSE MOMENT DUE TO LIVE LOAD & BREAKING FORCE																																		
+	Maximum Transverse moment due to Live Load including Impact and Breaking Force	=	1123.94	x	2.00	=	2247.88		kN-m																										
+	Refer Live load Computation sheet showing maximum reaction  	=	112.39	T- m 																															
+				which is =	1123.94	kN-m																													
+																																			
+C	LOADS DUE TO WATER CURRENT																																		
+	WATER CURRENT IN LONGITUDINAL DIRECTION ( ALONG THE BRIDGE)																																		
+	As per IRC- II ( 6-1966) clause 213.5		For V=	1.84	m/sec																														
+	Since the bridge is at Zero Degrees skew from the direction of current as per IRC- II ( 6-1966) clause 213.5 it should be designed for (20+0) =20 Degrees or (20-0) = 20 Degrees whichever gives higher quantum of water current forces.																																		
+	Obstructed Velocity = V Sin 20 0	=	1.84	x	Sin 20 0																														
+		=	0.63																																
+	2v2	=	0.79																																
+	Total SUBMERGED Height	=	7.13	M	0.79	0.68	0.67		0.00																										
+	FORCE ON DECK SLAB BETWEEN Deck Level 101.6  M to Soffit Level  100.775 M																																		
+	2v2	= (	0.79	+	0.68	) /2  =	0.73																												
+	Area Obstructed	=	12.00	x	0.00	=	0.00	Sqm																											
+																																			
+	Force on Pier	=	52.00	x	k	x	v2	x	Area Obstructed																										
+		=	52.00	x	1.50	x	0.73	x	0.00	/ 100	=	0.00	kN	at R.L.	101.185	M																			
+	Moment @ R. L.		93.57	M =	0.00	x	7.62	=	0.00	kN-m																									
+	Moment @ R. L.		92.97	M =	0.00	x	8.22	=	0.00	kN-m																									
+	Moment @ R. L.		91.97	M =	0.00	x	9.22	=	0.00	kN-m																									
+	FORCE ON PIER CAP BETWEEN  100.775  M to Soffit Level  100.175 M																																		
+	2v2	= (	0.68	+	0.67	) /2  =	0.67																												
+	Area Obstructed	=	12.00	x	0.60	=	7.20	Sqm																											
+																																			
+	Force on Pier	=	52.00	x	k	x	v2	x	Area Obstructed																										
+		=	52.00	x	1.50	x	0.67	x	7.20	/ 100	=	3.78	kN	at R.L.	96.373	M																			
+	Moment @ R. L.		93.57	M =	3.78	x	2.80	=	10.59	kN-m																									
+	Moment @ R. L.		92.97	M =	3.78	x	3.40	=	12.86	kN-m																									
+	Moment @ R. L.		91.97	M =	3.78	x	4.40	=	16.64	kN-m																									
+	FORCE ON PIER BETWEEN  100.175  M to   93.47 M																																		
+	2v2	= (	0.67	+	0.00	) /2  =	0.33																												
+	Area Obstructed	=	7.33	x	8.70	=	63.81	Sqm																											
+																																			
+	Force on Pier	=	52.00	x	k	x	v2	x	Area Obstructed																										
+		=	52.00	x	1.50	x	0.33	x	63.81	/ 100	=	16.57	kN	at R.L.	96.073	M																			
+	Moment @ R. L.		93.57	M =	16.57	x	2.50	=	41.48	kN-m																									
+	Moment @ R. L.		92.97	M =	16.57	x	3.10	=	51.42	kN-m																									
+	Moment @ R. L.		91.97	M =	16.57	x	4.10	=	67.99	kN-m																									
+																																			
+	TOTAL LONGITUDINAL MOMENT DUE TO WATER CURRENT 																																		
+	Moment @ R. L.		93.57	M =	0.00	+	10.59																												
+						+	41.48	=	52.07	kN-m																									
+	Moment @ R. L.		92.97	M =	0.00	+	12.86																												
+						+	51.42	=	64.28	kN-m																									
+	Moment @ R. L.		91.97	M =	0.00	+	16.64																												
+						+	67.99	=	84.63	kN-m																									
+	WATER CURRENT IN TRANSVERSE DIRECTION ( ACROSS THE BRIDGE)																																		
+	As per IRC- II ( 6-1966) clause 213.5		For V=	1.84	m/sec	Maximum velocity being 1.414 x mean velocity						(1.414= Root of 2)																							
+	Obstructed Velocity = V Cos 20 0	=	1.84	x	Cos 20 0																														
+		=	1.72																																
+	2v2	=	5.95																																
+	Total Height	=	7.13	M	5.95	5.14	5.03		0.00																										
+	FORCE ON DECK SLAB BETWEEN Deck Level 101.6  M to Soffit Level  100.775 M																																		
+	2v2	= (	5.95	+	5.14	) /2  =	5.54																												
+	Area Obstructed	=	8.80	x	0.000	=	0.00	Sqm																											
+																																			
+	Force 	=	52.00	x	k	x	v2	x	Area Obstructed																										
+		=	52.00	x	1.50	x	5.54	x	0.00	/ 100	=	0.00	kN	at R.L.	101.185	M																			
+	Moment @ R. L.		93.57	M =	0.00	x	7.62	=	0.00	kN-m																									
+	Moment @ R. L.		92.97	M =	0.00	x	8.22	=	0.00	kN-m																									
+	Moment @ R. L.		91.97	M =	0.00	x	9.22	=	0.00	kN-m																									
+	FORCE ON PIER CAP BETWEEN  100.775  M to Soffit Level  100.175 M																																		
+	2v2	= (	5.14	+	5.03	) /2  =	5.08																												
+	Area Obstructed	=	1.50	x	0.60	=	0.90	Sqm																											
+																																			
+	Force on Pier	=	52.00	x	k	x	v2	x	Area Obstructed																										
+		=	52.00	x	1.50	x	5.08	x	0.90	/ 100	=	3.57	kN	at R.L.	96.373	M																			
+	Moment @ R. L.		93.57	M =	3.78	x	2.80	=	10.59	kN-m																									
+	Moment @ R. L.		92.97	M =	3.78	x	3.40	=	12.86	kN-m																									
+	Moment @ R. L.		91.97	M =	3.78	x	4.40	=	16.64	kN-m																									
+	FORCE ON PIER BETWEEN  100.175  M to   93.47 M																																		
+	2v2	= (	5.03	+	0.00	) /2  =	2.52																												
+	Area Obstructed	=	7.33	x	1.20	=	8.80	Sqm																											
+																																			
+	Force on Pier	=	52.00	x	k	x	v2	x	Area Obstructed																										
+		=	52.00	x	1.50	x	2.52	x	8.80	/ 100	=	17.28	kN	at R.L.	96.073	M																			
+	Moment @ R. L.		93.57	M =	16.57	x	2.50	=	41.48	kN-m																									
+	Moment @ R. L.		92.97	M =	16.57	x	3.10	=	51.42	kN-m																									
+	Moment @ R. L.		91.97	M =	16.57	x	4.10	=	67.99	kN-m																									
+																																			
+	TOTAL TRANSVERSE MOMENT DUE TO WATER CURRENT																																		
+	Moment @ R. L.		93.57	M =	0.00	+	10.59	=																											
+						+	41.48		52.07	kN-m																									
+	Moment @ R. L.		92.97	M =	0.00	+	12.86	=																											
+						+	51.42		64.28	kN-m																									
+	Moment @ R. L.		91.97	M =	0.00	+	16.64	=																											
+						+	67.99		84.63	kN-m																									
+D	SEISMIC CONDITION																																		
+	According to clause 222.1 of IRC : 6- 1966 the Aqueduct is situated in the standard Zone- II ; therefore the aqueduct need not to be designed for Seismic Forces.																																		
+E	WIND FORCE																																		
+	Slab																																		
+	Area	=	11.10	x	0.98						=	10.82	Sqm																						
+	height of C.G. above Bed level	=	101.19	-	96.47	=	4.72	m																											
+	According to Clause 212.3 IRC -6 -1966 		Wind pressure =		85.37	Kg/Sqm	=		0.85	kN/Sqm																									
+	Wind Force	=	10.82	x	0.85						=	9.24	kN																						
+	Moment @ R. L.		93.57	M =	9.24	x	7.62	=	70.36	kN-m																									
+	Moment @ R. L.		92.97	M =	9.24	x	8.22	=	75.90	kN-m																									
+	Moment @ R. L.		91.97	M =	9.24	x	9.22	=	85.14	kN-m																									
+	Pier Cap																																		
+	Area A1	=	1.50	x	0.60						=	0.90	Sqm																						
+	Area A2	=	1.35	x	0.60						=	0.81	Sqm																						
+											Total	1.71	Sqm																						
+	Y	= (	0.90	x	0.90	 )+ (	0.81	x	0.30	) /	1.71	0.62	M																						
+																																			
+	height of C.G. above Bed level	=	96.37	-	96.47	=	-0.10	m																											
+	According to Clause 212.3 IRC -6 -1966 		Wind pressure =		74.79	Kg/Sqm	=		0.75	kN/Sqm																									
+	Wind Force	=	1.71	x	0.75						=	1.28	kN																						
+	Moment @ R. L.		93.57	M =	1.28	x	2.80	=	3.58	kN-m																									
+	Moment @ R. L.		92.97	M =	1.28	x	3.40	=	4.35	kN-m																									
+	Moment @ R. L.		91.97	M =	1.28	x	4.40	=	5.63	kN-m																									
+(I)	Pier from R.L.		100.775	to	96.47	M																													
+	Area 	=	1.20	x	4.31						=	5.17	Sqm																						
+	height of C.G. above Bed level	=	98.62	-	96.47	=	2.15	m																											
+	According to Clause 212.3 IRC -6 -1966 		Wind pressure =		79.74	Kg/Sqm	=		0.80	kN/Sqm																									
+	Wind Force	=	5.17	x	0.80						=	4.12	kN																						
+	Moment @ R. L.		93.57	M =	4.12	x	5.05	=	20.81	kN-m																									
+	Moment @ R. L.		92.97	M =	1.28	x	5.65	=	7.23	kN-m																									
+	Moment @ R. L.		91.97	M =	1.28	x	6.65	=	8.51	kN-m																									
+	TOTAL TRANSVERSE MOMENT DUE TO WIND FORCE																																		
+	Moment @ R. L.		93.57	M =	70.36	+	3.58	+	20.81	+																									
+										=	94.75	kN-m																							
+	Moment @ R. L.		92.97	M =	75.90	+	4.35	+	7.23	+																									
+										=	87.48	kN-m																							
+	Moment @ R. L.		91.97	M =	85.14	+	5.63	+	8.51	+																									
+										=	99.28	kN-m																							
+	BASE PRESSURE CALCULATION 																																		
+	CASE- 1  FOR SERVICE CONDITION AT R. L.91.97 M																																		
+	VERTICAL LOADS																																		
+	DEAD LOAD CALCULATION																																		
+	SUPER STRUCTURE	=	1463.62	kN																															
+	SUB STRUCTURE	=	2821.21	kN	Without Buoyancy																														
+	SUB STRUCTURE	=	2271.84	kN	With Buoyancy																														
+	LIVE LOAD 	=	788.27	kN																															
+	Total Load without Buoyancy	=	5073.09	kN																															
+	Total Load with Buoyancy	=	4523.72	kN																															
+	Total LONGITUDINAL MOMENT	=	84.63	+	244.25	=	328.88	kN-m																											
+	Total TRANSVERSE MOMENT	=	84.63	+	2247.88	=	2332.51	kN-m																											
+	C.S.A.	=	12.00	x	3.80			=	45.60	m2																									
+	Ixx	=	1/6x	12.00	x	3.80	2  	=	28.88	m3																									
+	Iyy	=	1/6x	12.00	2  	x	3.80	=	91.20	m3																									
+	STRESS with Buoyancy	= (	4523.72	/	45.60	)+ / - (	328.88	/	28.88	)+ / - (	2332.51	/	91.20	)																					
+		=	99.20	+ / -	11.39	+ / -	25.58																												
+	Pmax	=	99.20	+	11.39	+	25.58																												
+		=	136.17	kN/m2																															
+			< 250 kN/m2 Hence O.K.																																
+	Pmin	=	99.20	-	11.39	-	25.58																												
+		=	62.24	kN/m2																															
+			> 0 Hence O.K.																																
+																																			
+	STRESS without Buoyancy	= (	5073.09	/	45.60	)+ / - (	328.88	/	28.88	)+ / - (	2332.51	/	91.20	)																					
+		=	111.25	+ / -	11.39	+ / -	25.58																												
+	Pmax	=	111.25	+	11.39	+	25.58																												
+		=	136.22	kN/m2																															
+			< 250 kN/m2 Hence O.K.																																
+	Pmin	=	111.25	-	11.39	-	25.58																												
+		=	74.29	kN/m2																															
+			> 0 Hence O.K.																																
+																																			
+	CASE- 2  FOR IDLE CONDITION AT R. L.91.97 M				(WHEN THERE IS NO LIVE LOAD)																														
+	SUPER STRUCTURE	=	1463.62	kN	A CHECK OF STABILITY DUE TO BUOYANCY EFFECT																														
+	SUB STRUCTURE	=	2821.21	kN	Without Buoyancy																														
+	SUB STRUCTURE	=	2271.84	kN	With Buoyancy																														
+	LIVE LOAD 	=	0.00	kN																															
+	Total Load without Buoyancy	=	4284.82	kN																															
+	Total Load with Buoyancy	=	3735.45	kN																															
+	STRESS with Buoyancy	= (	3735.45	/	45.60	)+ / - (	84.63	/	28.88	)+ / - (	84.63	/	91.20	)																					
+		=	81.92	+ / -	2.93	+ / -	0.93																												
+	Pmax	=	81.92	+	2.93	+	0.93																												
+		=	85.78	kN/m2																															
+			< 250 kN/m2 Hence O.K.																																
+	Pmin	=	81.92	-	2.93	-	0.93																												
+		=	78.06	kN/m2																															
+			> 0 Hence O.K.																																
+																																			
+	STRESS without Buoyancy	= (	4284.82	/	45.60	)+ / - (	84.63	/	28.88	)+ / - (	84.63	/	91.20	)																					
+		=	93.97	+ / -	2.93	+ / -	0.93																												
+	Pmax	=	93.97	+	2.93	+	0.93																												
+		=	97.82	kN/m2																															
+			< 250 kN/m2 Hence O.K.																																
+	Pmin	=	93.97	-	2.93	-	0.93																												
+		=	90.11	kN/m2																															
+			> 0 Hence O.K.																																
+																																			
+	CASE- 3 FOR WIND FORCE AT SERVICE CONDITION AT R. L.91.97 M																																		
+	SUPER STRUCTURE	=	1463.62	kN																															
+	SUB STRUCTURE	=	2821.21	kN	Without Buoyancy																														
+	SUB STRUCTURE	=	2271.84	kN	With Buoyancy																														
+	LIVE LOAD 	=	788.27	kN																															
+	Total Load without Buoyancy	=	5073.09	kN																															
+	Total Load with Buoyancy	=	4523.72	kN																															
+	Total LONGITUDINAL MOMENT	=	84.63	+	244.25			=	328.88	kN-m																									
+	Total TRANSVERSE MOMENT	=	84.63	+	99.28	+	2247.88	=	2431.79	kN-m																									
+	STRESS with Buoyancy	= (	4523.72	/	45.60	)+ / - (	328.88	/	28.88	)+ / - (	2431.79	/	91.20	)																					
+		=	99.20	+ / -	11.39	+ / -	26.66																												
+	Pmax	=	99.20	+	11.39	+	26.66																												
+		=	137.26	kN/m2																															
+			< 250 kN/m2 Hence O.K.																																
+	Pmin	=	99.20	-	11.39	-	26.66																												
+		=	61.15	kN/m2																															
+			> 0 Hence O.K.																																
+																																			
+	STRESS without Buoyancy	= (	5073.09	/	45.60	)+ / - (	328.88	/	28.88	)+ / - (	2431.79	/	91.20	)																					
+		=	111.25	+ / -	11.39	+ / -	26.66																												
+	Pmax	=	111.25	+	11.39	+	26.66																												
+		=	137.30	kN/m2																															
+			< 250 kN/m2 Hence O.K.																																
+	Pmin	=	111.25	-	11.39	-	26.66																												
+		=	73.20	kN/m2																															
+			> 0 Hence O.K.																																
+																																			
+	CASE- 4 FOR WIND FORCE AT IDLE CONDITION AT R. L.91.97 M					[ NO LIVE LOAD ]																													
+	SUPER STRUCTURE	=	1463.62	kN																															
+	SUB STRUCTURE	=	2821.21	kN	Without Buoyancy																														
+	SUB STRUCTURE	=	2271.84	kN	With Buoyancy																														
+	LIVE LOAD 	=	0.00	kN																															
+	Total Load without Buoyancy	=	4284.82	kN																															
+	Total Load with Buoyancy	=	3735.45	kN																															
+	Total LONGITUDINAL MOMENT	=	84.63	kN-m																															
+	Total TRANSVERSE MOMENT	=	84.63	+	99.28	=	183.91	kN-m																											
+	STRESS with Buoyancy	= (	3735.45	/	45.60	)+ / - (	84.63	/	28.88	)+ / - (	183.91	/	91.20	)																					
+		=	81.92	+ / -	2.93	+ / -	2.02																												
+	Pmax	=	81.92	+	2.93	+	2.02																												
+		=	86.86	kN/m2					82.83				81.00																						
+			< 250 kN/m2 Hence O.K.																																
+	Pmin	=	81.92	-	2.93	-	2.02																												
+		=	76.97	kN/m2																															
+			> 0 Hence O.K.																																
+	P3	=	81.92	+	2.93	-	2.02																												
+		=	82.83	kN/m2					76.97				86.86																						
+			< 250 kN/m2 Hence O.K.							Stress Diagram																									
+	P4	=	81.92	-	2.93	+	2.02																												
+		=	81.00	kN/m2																															
+			> 0 Hence O.K.																																
+	STRESS without Buoyancy	= (	4284.82	/	45.60	)+ / - (	84.63	/	28.88	)+ / - (	183.91	/	91.20	)																					
+		=	93.97	+ / -	2.93	+ / -	2.02																												
+	Pmax	=	93.97	+	2.93	+	2.02		93.05				94.88																						
+		=	98.91	kN/m2																															
+			< 250 kN/m2 Hence O.K.																																
+	Pmin	=	93.97	-	2.93	-	2.02																												
+		=	89.02	kN/m2																															
+			> 0 Hence O.K.						89.02				98.91																						
+										Stress Diagram																									
+																																			
+	CASE- 5 FOR ONE SPAN DISLODGED CONDITION AT R. L.91.97 M																																		
+	SUPER STRUCTURE	=	731.81	kN																															
+	SUB STRUCTURE	=	2821.21	kN	Without Buoyancy																														
+	SUB STRUCTURE	=	2271.84	kN	With Buoyancy																														
+	LIVE LOAD 	=	0.00	kN																															
+	Total Load without Buoyancy	=	3553.01	kN																															
+	Total Load with Buoyancy	=	3003.64	kN																															
+	Total LONGITUDINAL MOMENT	=	84.63	kN-m																															
+	Total TRANSVERSE MOMENT	=	84.63	+	99.28	=	183.91	kN-m																											
+	STRESS with Buoyancy	= (	3003.64	/	45.60	)+ / - (	84.63	/	28.88	)+ / - (	183.91	/	91.20	)																					
+		=	65.87	+ / -	2.93	+ / -	2.02																												
+	Pmax	=	65.87	+	2.93	+	2.02																												
+		=	70.82	kN/m2					64.96				66.78																						
+			< 250 kN/m2 Hence O.K.																																
+	Pmin	=	65.87	-	2.93	-	2.02																												
+		=	60.92	kN/m2																															
+	P3	=	65.87	+	2.93	-	2.02																												
+		=	66.78	kN/m2					60.92				70.82																						
+										Stress Diagram																									
+	P4	=	65.87	-	2.93	+	2.02																												
+		=	64.96	kN/m2																															
+																																			
+																																			
+	STRESS without Buoyancy	= (	3553.01	/	45.60	)+ / - (	84.63	/	28.88	)+ / - (	0.00	/	91.20	)																					
+		=	77.92	+ / -	2.93	+ / -	0.00																												
+	Pmax	=	77.92	+	2.93	+	0.00																												
+		=	80.85	kN/m2					74.99				80.85																						
+																																			
+	Pmin	=	77.92	-	2.93	-	0.00																												
+		=	74.99	kN/m2																															
+	P3	=	77.92	+	2.93	-	0.00																												
+		=	80.85	kN/m2					74.99				80.85																						
+										Stress Diagram																									
+	P4	=	77.92	-	2.93	+	0.00																												
+		=	74.99	kN/m2																															
+																																			
+	CASE- 6  FOR SERVICE CONDITION AT R. L.92.97 M																																		
+	VERTICAL LOADS																																		
+	DEAD LOAD CALCULATION																																		
+	SUPER STRUCTURE	=	1463.62	kN																															
+	SUB STRUCTURE	=	1726.81	kN	Without Buoyancy																														
+	SUB STRUCTURE	=	1633.44	kN	With Buoyancy																														
+	LIVE LOAD 	=	788.27	kN																															
+	Total Load without Buoyancy	=	3978.69	kN																															
+	Total Load with Buoyancy	=	3885.32	kN																															
+	Total LONGITUDINAL MOMENT	=	52.07	+	244.25	=	296.32	kN-m																											
+	Total TRANSVERSE MOMENT	=	52.07	+	2247.88	=	2299.95	kN-m																											
+	C.S.A.	=	12.00	x	1.20			=	14.40	m2																									
+	Ixx	=	1/6x	12.00	x	1.20	2  	=	2.88	m3																									
+	Iyy	=	1/6x	12.00	2  	x	1.20	=	28.80	m3																									
+	STRESS with Buoyancy	= (	3885.32	/	14.40	)+ / - (	296.32	/	2.88	)+ / - (	2299.95	/	28.80	)																					
+		=	269.81	+ / -	102.89	+ / -	79.86																												
+	Pmax	=	269.81	+	102.89	+	79.86																												
+		=	452.56	kN/m2																															
+			< 8000 kN/m2 (that is  8 N/mm2 ) Hence O.K.																																
+	Pmin	=	269.81	-	102.89	-	79.86																												
+		=	87.07	kN/m2																															
+			> (- 3600 kN/m2 (that is  3.6 N/mm2 ) Hence O.K.																																
+																																			
+	STRESS without Buoyancy	= (	3978.69	/	14.40	)+ / - (	296.32	/	2.88	)+ / - (	2299.95	/	28.80	)																					
+		=	276.30	+ / -	102.89	+ / -	79.86																												
+	Pmax	=	276.30	+	102.89	+	79.86																												
+		=	459.05	kN/m2																															
+			< 8000 kN/m2 (that is  8 N/mm2 ) Hence O.K.																																
+	Pmin	=	276.30	-	102.89	-	79.86																												
+		=	93.55	kN/m2																															
+			> (- 3600 kN/m2 (that is  3.6 N/mm2 ) Hence O.K.																																
+	CASE- 7 FOR IDLE CONDITION AT R. L.92.97 M																																		
+	SUPER STRUCTURE	=	1463.62	kN																															
+	SUB STRUCTURE	=	1726.81	kN	Without Buoyancy																														
+	SUB STRUCTURE	=	1633.44	kN	With Buoyancy																														
+	LIVE LOAD 	=	0.00	kN																															
+	Total Load without Buoyancy	=	3190.42	kN																															
+	Total Load with Buoyancy	=	3097.05	kN																															
+	STRESS with Buoyancy	= (	3097.05	/	14.40	)+ / - (	52.07	/	2.88	)+ / - (	52.07	/	28.80	)																					
+		=	215.07	+ / -	18.08	+ / -	1.81																												
+	Pmax	=	215.07	+	18.08	+	1.81																												
+		=	234.96	kN/m2																															
+			< 8000 kN/m2 (that is  8 N/mm2 ) Hence O.K.																																
+	Pmin	=	215.07	-	18.08	-	1.81																												
+		=	195.19	kN/m2																															
+			> (- 3600 kN/m2 (that is  3.6 N/mm2 ) Hence O.K.																																
+																																			
+	STRESS without Buoyancy	= (	3190.42	/	14.40	)+ / - (	52.07	/	2.88	)+ / - (	52.07	/	28.80	)																					
+		=	221.56	+ / -	18.08	+ / -	1.81																												
+	Pmax	=	221.56	+	18.08	+	1.81																												
+		=	241.44	kN/m2																															
+			< 8000 kN/m2 (that is  8 N/mm2 ) Hence O.K.																																
+	Pmin	=	221.56	-	18.08	-	1.81																												
+		=	201.67	kN/m2																															
+			> (- 3600 kN/m2 (that is  3.6 N/mm2 ) Hence O.K.																																
+																																			
+	CASE- 8 FOR WIND FORCE AT SERVICE CONDITION AT R. L.92.97 M																																		
+	SUPER STRUCTURE	=	1463.62	kN																															
+	SUB STRUCTURE	=	1726.81	kN	Without Buoyancy																														
+	SUB STRUCTURE	=	1633.44	kN	With Buoyancy																														
+	LIVE LOAD 	=	788.27	kN																															
+	Total Load without Buoyancy	=	3978.69	kN																															
+	Total Load with Buoyancy	=	3885.32	kN																															
+	Total LONGITUDINAL MOMENT	=	52.07	+	244.25			=	296.32	kN-m																									
+	Total TRANSVERSE MOMENT	=	52.07	+	94.75	+	2247.88	=	2394.70	kN-m																									
+	STRESS with Buoyancy	= (	3885.32	/	14.40	)+ / - (	296.32	/	2.88	)+ / - (	2394.70	/	28.80	)																					
+		=	269.81	+ / -	102.89	+ / -	83.15																												
+	Pmax	=	269.81	+	102.89	+	83.15																												
+		=	455.85	kN/m2																															
+			< 8000 kN/m2 (that is  8 N/mm2 ) Hence O.K.																																
+	Pmin	=	269.81	-	102.89	-	83.15																												
+		=	83.78	kN/m2																															
+			> (- 3600 kN/m2 (that is  3.6 N/mm2 ) Hence O.K.																																
+																																			
+	STRESS without Buoyancy	= (	3978.69	/	14.40	)+ / - (	296.32	/	2.88	)+ / - (	2394.70	/	28.80	)																					
+		=	276.30	+ / -	102.89	+ / -	83.15																												
+	Pmax	=	276.30	+	102.89	+	83.15																												
+		=	462.34	kN/m2																															
+			< 8000 kN/m2 (that is  8 N/mm2 ) Hence O.K.																																
+	Pmin	=	276.30	-	102.89	-	83.15																												
+		=	90.26	kN/m2																															
+			> (- 3600 kN/m2 (that is  3.6 N/mm2 ) Hence O.K.																																
+																																			
+	CASE- 9 FOR WIND FORCE AT IDLE CONDITION AT R. L.92.97 M																																		
+	SUPER STRUCTURE	=	1463.62	kN																															
+	SUB STRUCTURE	=	1726.81	kN	Without Buoyancy																														
+	SUB STRUCTURE	=	1633.44	kN	With Buoyancy																														
+	LIVE LOAD 	=	788.27	kN																															
+	Total Load without Buoyancy	=	3978.69	kN																															
+	Total Load with Buoyancy	=	3885.32	kN																															
+	Total LONGITUDINAL MOMENT	=	52.07	kN-m																															
+	Total TRANSVERSE MOMENT	=	52.07	+	94.75	=	146.82	kN-m																											
+	STRESS with Buoyancy	= (	3885.32	/	14.40	)+ / - (	52.07	/	2.88	)+ / - (	146.82	/	28.80	)																					
+		=	269.81	+ / -	18.08	+ / -	5.10																												
+	Pmax	=	269.81	+	18.08	+	5.10																												
+		=	292.99	kN/m2																															
+			< 8000 kN/m2 (that is  8 N/mm2 ) Hence O.K.																																
+	Pmin	=	269.81	-	18.08	-	5.10																												
+		=	246.64	kN/m2																															
+			> (- 3600 kN/m2 (that is  3.6 N/mm2 ) Hence O.K.																																
+																																			
+	STRESS without Buoyancy	= (	3978.69	/	14.40	)+ / - (	52.07	/	2.88	)+ / - (	146.82	/	28.80	)																					
+		=	276.30	+ / -	18.08	+ / -	5.10																												
+	Pmax	=	276.30	+	18.08	+	5.10																												
+		=	299.47	kN/m2																															
+			< 8000 kN/m2 (that is  8 N/mm2 ) Hence O.K.																																
+	Pmin	=	276.30	-	18.08	-	5.10																												
+		=	253.12	kN/m2																															
+			> (- 3600 kN/m2 (that is  3.6 N/mm2 ) Hence O.K.																																

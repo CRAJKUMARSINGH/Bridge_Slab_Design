@@ -1,3 +1,24 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:fd1bbe4a3056131899997583307b16ac5a4d0ecc91d339cd530cf5d8fe5c0338
-size 967
+add GIT LFS AND ADD THE FOLLOWING FOR READILY AVAILABLE IN REPO FOR FUTURE APP ENHANCEMENT AND RESEARCH>>>>>>1
+ C:\Users\Rajkumar\Bridge_Slab_Design\attached_assets   >>>>.2
+ >>>>C:\Users\Rajkumar\Dwg-Dxf-Record-Keeper\COMPONENT_DRAWINGS_SORTED >>>>>3 
+>>>>C:\Users\Rajkumar\Dwg-Dxf-Record-Keeper\DRAWINGS_FROM_RAJKUMAR_DESIGNS >>>>4
+ >>>>C:\Users\Rajkumar\Dwg-Dxf-Record-Keeper\GENERATED_DRAWINGS
+
+
+
+
+M1 = https://github.com/CRAJKUMARSINGH/Bridge_Slab_Design
+M2 = https://github.com/CRAJKUMARSINGH/M2_Bridge
+M3 = https://github.com/CRAJKUMARSINGH/M3_Bridge
+M4 = https://github.com/CRAJKUMARSINGH/Bridge-Drawing-Manager
+D1 = https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper
+D2 = https://github.com/CRAJKUMARSINGH/D2_Bridge
+D3 = https://github.com/CRAJKUMARSINGH/D3_Bridge
+D4 = https://github.com/CRAJKUMARSINGH/D4_Bridge
+
+
+git remote add origin https://github.com/CRAJKUMARSINGH/M2_Bridge.git
+
+git branch -M main
+
+git push -u origin main

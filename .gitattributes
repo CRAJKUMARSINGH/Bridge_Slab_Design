@@ -21,8 +21,6 @@
 # STRUDS-style reference HTML under Attached_Assets only (do not use *.html repo-wide — client/index.html must stay plain Git).
 Attached_Assets/**/*.htm filter=lfs diff=lfs merge=lfs -text
 Attached_Assets/**/*.HTM filter=lfs diff=lfs merge=lfs -text
-# Legacy lowercase path (if present); binaries under Attached_Assets use extension rules above on case-sensitive filesystems.
-attached_assets/** filter=lfs diff=lfs merge=lfs -text
 Dwg-Dxf-Record-Keeper/COMPONENT_DRAWINGS_SORTED/** filter=lfs diff=lfs merge=lfs -text
 Dwg-Dxf-Record-Keeper/DRAWINGS_FROM_RAJKUMAR_DESIGNS/** filter=lfs diff=lfs merge=lfs -text
 Dwg-Dxf-Record-Keeper/GENERATED_DRAWINGS/** filter=lfs diff=lfs merge=lfs -text
