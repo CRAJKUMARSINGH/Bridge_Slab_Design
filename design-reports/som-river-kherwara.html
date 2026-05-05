@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Design Report — SOM River Submersible Bridge (Kherwara-Jawas-Suveri Road)</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+
+<nav>
+  <a href="index.html">&#8592; All Projects</a>
+  <span style="color:#e0e0e0">|</span>
+  <span class="breadcrumb">Submersible Bridge · SOM RIVER · Kherwara-Jawas-Suveri Road km 9/000</span>
+</nav>
+
+<div class="cover sub">
+  <h1>Design Report · Submersible Bridge · IRC:6-2016 / IRC:78-1983</h1>
+  <h2>Construction of Submersible Bridge on SOM River<br>at Kherwara-Jawas-Suveri Road (km 9/000)</h2>
+  <h3>Complete 9-Case Pier Stability Report — All Values Extracted from DESIGN OF PIER AND CHECK FOR STABIL.txt</h3>
+  <div class="cover-grid">
+    <div class="cover-cell"><div class="lbl">Right Effective Span</div><div class="val">7.60 m</div></div>
+    <div class="cover-cell"><div class="lbl">Span C/C of Piers</div><div class="val">8.80 m</div></div>
+    <div class="cover-cell"><div class="lbl">Pier Cap Width</div><div class="val">8.40 m</div></div>
+    <div class="cover-cell"><div class="lbl">HFL / Deck Level</div><div class="val">100.60 / 101.60 m MSL</div></div>
+    <div class="cover-cell"><div class="lbl">Flood Discharge Q</div><div class="val">899.93 cumecs</div></div>
+    <div class="cover-cell"><div class="lbl">Design Velocity</div><div class="val">1.84 m/s</div></div>
+    <div class="cover-cell"><div class="lbl">Bed Level (Highest Pier)</div><div class="val">96.47 m MSL</div></div>
+    <div class="cover-cell"><div class="lbl">Foundation Level</div><div class="val">91.97 m MSL</div></div>
+    <div class="cover-cell"><div class="lbl">SBC / Hard Rock Top</div><div class="val">200 kN/m² / 93.47 m MSL</div></div>
+    <div class="cover-cell"><div class="lbl">Pier Cap Top Level</div><div class="val">100.775 m MSL</div></div>
+    <div class="cover-cell"><div class="lbl">Seismic Zone</div><div class="val">Zone II (not governing)</div></div>
+    <div class="cover-cell"><div class="lbl">Bed Slope</div><div class="val">1 in 960</div></div>
+  </div>
+  <div class="badge-row">
+    <span class="chip">SUBMERSIBLE</span>
+    <span class="chip">IRC:6-2016</span>
+    <span class="chip">IRC:78-1983</span>
+    <span class="chip">IRC SP-13</span>
+    <span class="chip">IS:1893 Zone II</span>
+    <span class="chip">BEDACH Sequence</span>
+    <span class="chip">9 Load Cases</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SECTION A: DESIGN BASIS -->
+  <div class="section" id="design-basis">
+    <div class="section-title">A — Design Basis Data and Hydraulic Parameters</div>
+    <div class="narrative">
+      <b>HYDRAULIC ANALYSIS — PURPOSE:</b> This submersible bridge carries Kherwara-Jawas-Suveri Road across the Som River at km 9/000. The hydraulic parameters establish the governing flood envelope — discharge, velocity, afflux, and scour — from which all subsequent structural checks derive their water levels, buoyancy loads, and founding-depth requirements. Since the bridge is designed to be overtopped at design flood, the emphasis shifts to drag force, buoyancy, and scour resistance rather than freeboard clearance.
+    </div>
+    <div class="three-col">
+      <div class="data-block">
+        <h4>Hydraulic Parameters</h4>
+        <div class="kv"><span class="k">HFL</span><span class="v">100.60 m MSL</span></div>
+        <div class="kv"><span class="k">Bed Level (Highest Pier)</span><span class="v">96.47 m MSL</span></div>
+        <div class="kv"><span class="k">Flood Discharge Q</span><span class="v">899.93 cumecs</span></div>
+        <div class="kv"><span class="k">River Bed Slope</span><span class="v">1 in 960</span></div>
+        <div class="kv"><span class="k">Design Velocity</span><span class="v">1.84 m/s</span></div>
+        <div class="kv"><span class="k">Flow Type</span><span class="v">Subcritical (V &lt; 3 m/s)</span></div>
+      </div>
+      <div class="data-block">
+        <h4>Structural Levels</h4>
+        <div class="kv"><span class="k">Deck Level</span><span class="v">101.60 m MSL</span></div>
+        <div class="kv"><span class="k">Pier Cap Top</span><span class="v">100.775 m MSL</span></div>
+        <div class="kv"><span class="k">Hard Rock Top</span><span class="v">93.47 m MSL</span></div>
+        <div class="kv"><span class="k">Embedment in Rock</span><span class="v">1.50 m</span></div>
+        <div class="kv"><span class="k">Foundation Level</span><span class="v">91.97 m MSL</span></div>
+        <div class="kv"><span class="k">Level Diff Cap–Foundation</span><span class="v">8.81 m</span></div>
+      </div>
+      <div class="data-block">
+        <h4>Soil and Material</h4>
+        <div class="kv"><span class="k">SBC</span><span class="v">200 kN/m² (20 t/m²)</span></div>
+        <div class="kv"><span class="k">Foundation Type</span><span class="v">Open (hard rock)</span></div>
+        <div class="kv"><span class="k">Seismic Zone</span><span class="v">Zone II — not governing</span></div>
+        <div class="kv"><span class="k">Buoyancy @ Footing</span><span class="v">100%</span></div>
+        <div class="kv"><span class="k">Buoyancy @ Pier</span><span class="v">100% (submerged)</span></div>
+        <div class="kv"><span class="k">Footing Size</span><span class="v">12.00 × 3.80 × 1.00 m</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION B: DEAD LOAD -->
+  <div class="section" id="dead-load">
+    <div class="section-title">B — Dead Load Calculation (IRC:6-2016 Cl. 203)</div>
+    <div class="narrative">
+      <b>STEP A — DEAD LOAD:</b> Dead loads constitute the primary vertical restoring force. They are accumulated in the sequence: superstructure slab → pier cap (with flared portions) → pier shaft (rectangular + curved) → footing. With 100% buoyancy applied at design flood, the effective pier self-weight is reduced by the unit weight of displaced water (24 − 10 = 14 kN/m³ for the footing; pier with 15% buoyancy factor per IRC:78-1983). The final values are held constant across all 9 load cases.
+    </div>
+    <table>
+      <tr><th>Component</th><th>Calculation</th><th class="num">Load (kN)</th></tr>
+      <tr><td>Deck Slab</td><td>8.80 × 8.40 × 0.75 × 24</td><td class="num">1,330.56</td></tr>
+      <tr><td>Wearing Coat</td><td>8.80 × 8.40 × 0.075 × 24</td><td class="num">133.06</td></tr>
+      <tr><td colspan="2"><b>Total Superstructure Dead Load</b></td><td class="num"><b>1,463.62</b></td></tr>
+      <tr><td>Pier Cap (rectangular)</td><td>1.50 × 8.40 × 0.60 × 24</td><td class="num">181.44</td></tr>
+      <tr><td>Pier Cap (flared sides)</td><td>0.50 × 0.15 × 0.60 × 8.40 × 2 × 24 + circular term</td><td class="num">22.21</td></tr>
+      <tr><td>Pier Cap (u/s &amp; d/s flare)</td><td>0.60 × 0.60 × 1.50 × 24 + circular term</td><td class="num">29.24</td></tr>
+      <tr><td colspan="2"><b>Total Pier Cap</b></td><td class="num"><b>232.89</b></td></tr>
+      <tr><td>Pier Rectangular</td><td>1.20 × 7.50 × 5.96 × 24</td><td class="num">1,286.28</td></tr>
+      <tr><td>Pier Curved</td><td>π/4 × 1.20² × 5.96 × 24</td><td class="num">161.56</td></tr>
+      <tr><td>Pier Flared (top + bottom)</td><td>Both ends combined</td><td class="num">40.65</td></tr>
+      <tr><td>Pier Weight Above HFL</td><td>—</td><td class="num">0.00</td></tr>
+      <tr><td>Pier Weight Below HFL</td><td>1,493.91 kN full</td><td class="num">1,493.91</td></tr>
+      <tr><td>Pier Weight with 15% Buoyancy</td><td>1,493.91 × 22.50/24.00</td><td class="num">1,400.54</td></tr>
+      <tr><td colspan="2"><b>Total Pier (without buoyancy)</b></td><td class="num"><b>1,493.91</b></td></tr>
+      <tr><td>Footing (without buoyancy)</td><td>12.00 × 3.80 × 1.00 × 24</td><td class="num">1,094.40</td></tr>
+      <tr><td>Footing (with 100% buoyancy)</td><td>12.00 × 3.80 × 1.00 × 14</td><td class="num">638.40</td></tr>
+      <tr><td colspan="2"><b>Total Substructure WITHOUT Buoyancy</b></td><td class="num"><b>2,821.21</b></td></tr>
+      <tr><td colspan="2"><b>Total Substructure WITH Buoyancy</b></td><td class="num"><b>2,271.84</b></td></tr>
+    </table>
+  </div>
+
+  <!-- SECTION C: LIVE LOAD -->
+  <div class="section" id="live-load">
+    <div class="section-title">C — Live Load Calculation (IRC:6-2016 Cl. 204–205)</div>
+    <div class="narrative">
+      <b>STEP B — LIVE LOAD:</b> The maximum reaction on the pier line for the governing IRC vehicle arrangement, including impact factor, is taken from the live load computation sheet ("LLCALpier1") which establishes 78.83 T = 788.27 kN. The longitudinal moment due to live load including braking force is 122.13 kN·m per abutment, giving 2 × 122.13 = 244.25 kN·m at the base. The transverse moment due to live load eccentricity and braking is 1,123.94 kN·m, giving 2 × 1,123.94 = 2,247.88 kN·m at the base. These values govern Cases 1, 3, 6, and 8.
+    </div>
+    <div class="two-col">
+      <div class="data-block">
+        <h4>Live Load Summary</h4>
+        <div class="kv"><span class="k">Max Pier Reaction (incl. impact)</span><span class="v">788.27 kN (78.83 T)</span></div>
+        <div class="kv"><span class="k">Longitudinal Moment (L+B)</span><span class="v">122.13 × 2 = 244.25 kN·m</span></div>
+        <div class="kv"><span class="k">Transverse Moment (L+B)</span><span class="v">1,123.94 × 2 = 2,247.88 kN·m</span></div>
+        <div class="kv"><span class="k">Haunch</span><span class="v">0.60 m</span></div>
+        <div class="kv"><span class="k">PCC Offset</span><span class="v">0.20 m</span></div>
+      </div>
+      <div class="data-block">
+        <h4>Live Load per Load Case</h4>
+        <div class="kv"><span class="k">Cases 1, 3, 6, 8 (Service + Wind)</span><span class="v">788.27 kN active</span></div>
+        <div class="kv"><span class="k">Cases 2, 4, 7, 9 (Idle / No LL)</span><span class="v">0.00 kN</span></div>
+        <div class="kv"><span class="k">Case 5 (One Span Dislodged)</span><span class="v">0.00 kN, Super = 731.81 kN</span></div>
+        <div class="kv"><span class="k">Seismic Case</span><span class="v">Zone II — not governing</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION D: WATER CURRENT -->
+  <div class="section" id="water-current">
+    <div class="section-title">D — Water Current and Wind Forces (IRC:6-2016 Cl. 209, 213)</div>
+    <div class="narrative">
+      <b>STEPS C and E — WATER CURRENT AND WIND:</b> Per IRC:6-2016 Cl. 213.5, with the bridge at zero degrees skew from the direction of current, design is for 20° in both longitudinal and transverse directions. Design velocity = 1.84 m/s. At 20° skew, longitudinal obstructed velocity = V sin 20° = 0.63 m/s; transverse = V cos 20° = 1.72 m/s (with maximum transverse velocity = 1.414 × mean = 1.414 × 1.84 m/s for the transverse component). Wind pressures are applied per IRC:6 Cl. 212.3, varying by height above bed level. The seismic condition is Zone II and per IRC:6 Cl. 222.1 is not governing; it is recorded explicitly to confirm this was checked.
+    </div>
+    <table>
+      <tr><th>Component</th><th>Direction</th><th>Area (m²)</th><th class="num">Force (kN)</th><th colspan="2">Moment @ FL 91.97 m (kN·m)</th></tr>
+      <tr><td>Deck Slab</td><td>Longitudinal &amp; Transverse</td><td>0.00</td><td class="num">0.00</td><td class="num" colspan="2">0.00</td></tr>
+      <tr><td>Pier Cap (L-dir)</td><td>Longitudinal</td><td>7.20</td><td class="num">3.78</td><td class="num" colspan="2">16.64</td></tr>
+      <tr><td>Pier (L-dir)</td><td>Longitudinal</td><td>63.81</td><td class="num">16.57</td><td class="num" colspan="2">67.99</td></tr>
+      <tr><td colspan="2"><b>Total Longitudinal Water Current Moment @ RL 91.97</b></td><td></td><td></td><td class="num" colspan="2"><b>84.63 kN·m</b></td></tr>
+      <tr><td>Pier Cap (T-dir)</td><td>Transverse</td><td>0.90</td><td class="num">3.57</td><td class="num" colspan="2">16.64</td></tr>
+      <tr><td>Pier (T-dir)</td><td>Transverse</td><td>8.80</td><td class="num">17.28</td><td class="num" colspan="2">67.99</td></tr>
+      <tr><td colspan="2"><b>Total Transverse Water Current Moment @ RL 91.97</b></td><td></td><td></td><td class="num" colspan="2"><b>84.63 kN·m</b></td></tr>
+      <tr><td>Wind on Slab</td><td>Transverse</td><td>10.82 m²</td><td class="num">9.24</td><td class="num" colspan="2">85.14</td></tr>
+      <tr><td>Wind on Pier Cap</td><td>Transverse</td><td>1.71 m²</td><td class="num">1.28</td><td class="num" colspan="2">5.63</td></tr>
+      <tr><td>Wind on Pier Shaft</td><td>Transverse</td><td>5.17 m²</td><td class="num">4.12</td><td class="num" colspan="2">8.51</td></tr>
+      <tr><td colspan="2"><b>Total Wind Moment @ RL 91.97</b></td><td></td><td></td><td class="num" colspan="2"><b>99.28 kN·m</b></td></tr>
+    </table>
+  </div>
+
+  <!-- SECTION E: BASE PRESSURE — ALL 9 CASES -->
+  <div class="section" id="base-pressure">
+    <div class="section-title">E — Base Pressure — All 9 Load Cases @ Foundation Level RL 91.97 m</div>
+    <div class="narrative">
+      <b>BASE PRESSURE FORMULA:</b> The footing plan area CSA = 12.00 × 3.80 = 45.60 m²; section moduli Ixx = (1/6) × 12.00 × 3.80² = 28.88 m³; Iyy = (1/6) × 12.00² × 3.80 = 91.20 m³. Base pressure = V/CSA ± M_long/Ixx ± M_trans/Iyy. All pressures must remain: (i) below SBC = 200 kN/m² (soil); and (ii) below 250 kN/m² as adopted for this design; and (iii) above 0 (no tension). At pier level (RL 92.97m), the limits are rock-strength based: max 8,000 kN/m² (8 N/mm²); min −3,600 kN/m² (3.6 N/mm²).
+    </div>
+    <table>
+      <tr><th>Case</th><th>Condition</th><th class="num">V (kN)</th><th class="num">M_L (kN·m)</th><th class="num">M_T (kN·m)</th><th class="num">p_max (kN/m²)</th><th class="num">p_min (kN/m²)</th><th>Verdict</th></tr>
+      <tr><td><b>1</b></td><td>Service — With Buoyancy</td><td class="num">4,523.72</td><td class="num">328.88</td><td class="num">2,332.51</td><td class="num">136.17</td><td class="num">62.24</td><td class="ok">O.K.</td></tr>
+      <tr><td></td><td>Service — Without Buoyancy</td><td class="num">5,073.09</td><td class="num">328.88</td><td class="num">2,332.51</td><td class="num">136.22</td><td class="num">74.29</td><td class="ok">O.K.</td></tr>
+      <tr><td><b>2</b></td><td>Idle (No LL) — With Buoyancy</td><td class="num">3,735.45</td><td class="num">84.63</td><td class="num">84.63</td><td class="num">85.78</td><td class="num">78.06</td><td class="ok">O.K.</td></tr>
+      <tr><td></td><td>Idle — Without Buoyancy</td><td class="num">4,284.82</td><td class="num">84.63</td><td class="num">84.63</td><td class="num">97.82</td><td class="num">90.11</td><td class="ok">O.K.</td></tr>
+      <tr><td><b>3</b></td><td>Wind + Service — With Buoyancy</td><td class="num">4,523.72</td><td class="num">328.88</td><td class="num">2,431.79</td><td class="num">137.26</td><td class="num">61.15</td><td class="ok">O.K.</td></tr>
+      <tr><td></td><td>Wind + Service — Without Buoyancy</td><td class="num">5,073.09</td><td class="num">328.88</td><td class="num">2,431.79</td><td class="num"><b>137.30</b></td><td class="num">73.20</td><td class="ok">O.K. (Governing)</td></tr>
+      <tr><td><b>4</b></td><td>Wind + Idle — With Buoyancy</td><td class="num">3,735.45</td><td class="num">84.63</td><td class="num">183.91</td><td class="num">86.86</td><td class="num">76.97</td><td class="ok">O.K.</td></tr>
+      <tr><td></td><td>Wind + Idle — Without Buoyancy</td><td class="num">4,284.82</td><td class="num">84.63</td><td class="num">183.91</td><td class="num">98.91</td><td class="num">89.02</td><td class="ok">O.K.</td></tr>
+      <tr><td><b>5</b></td><td>One Span Dislodged — With Buoyancy</td><td class="num">3,003.64</td><td class="num">84.63</td><td class="num">183.91</td><td class="num">70.82</td><td class="num">60.92</td><td class="ok">O.K.</td></tr>
+      <tr><td></td><td>One Span Dislodged — Without Buoyancy</td><td class="num">3,553.01</td><td class="num">84.63</td><td class="num">0.00</td><td class="num">80.85</td><td class="num">74.99</td><td class="ok">O.K.</td></tr>
+    </table>
+    <div class="verdict-box verdict-ok">
+      <b>GOVERNING BASE PRESSURE (Foundation RL 91.97 m):</b> Maximum pressure = 137.30 kN/m² occurs in Case 3 (Wind + Service, without buoyancy). This is compared against the adopted bearing capacity limit of 250 kN/m² for the underlying hard rock stratum. The ratio 137.30 / 250 = 0.549, confirming a comfortable safety factor of 1.82× against bearing failure. Minimum pressure = 61.15 kN/m² (Case 3, with buoyancy) > 0, so no tensile contact develops. All 9 cases at foundation RL 91.97 m pass without exception. <b>Hence O.K.</b>
+    </div>
+  </div>
+
+  <!-- SECTION F: PIER CAP LEVEL CASES 6-9 -->
+  <div class="section" id="pier-cap-level">
+    <div class="section-title">F — Base Pressure at Pier Cap Level RL 92.97 m (Cases 6–9)</div>
+    <div class="narrative">
+      <b>PIER CAP LEVEL CHECK:</b> At RL 92.97 m (cap-to-footing interface), the effective cross-section reduces to 12.00 × 1.20 = 14.40 m² (cap plan area). Section moduli: Ixx = 2.88 m³; Iyy = 28.80 m³. The bearing limits at this level are for rock/concrete contact: max 8,000 kN/m² (8 N/mm²); min −3,600 kN/m² (3.6 N/mm² in tension). The vertical loads used here exclude the footing weight (checked only at foundation level).
+    </div>
+    <table>
+      <tr><th>Case</th><th>Condition</th><th class="num">V (kN)</th><th class="num">M_L (kN·m)</th><th class="num">M_T (kN·m)</th><th class="num">p_max (kN/m²)</th><th class="num">p_min (kN/m²)</th><th>Verdict</th></tr>
+      <tr><td><b>6</b></td><td>Service — With Buoyancy</td><td class="num">3,885.32</td><td class="num">296.32</td><td class="num">2,299.95</td><td class="num">452.56</td><td class="num">87.07</td><td class="ok">O.K. (&lt;8,000)</td></tr>
+      <tr><td></td><td>Service — Without Buoyancy</td><td class="num">3,978.69</td><td class="num">296.32</td><td class="num">2,299.95</td><td class="num">459.05</td><td class="num">93.55</td><td class="ok">O.K.</td></tr>
+      <tr><td><b>7</b></td><td>Idle — With Buoyancy</td><td class="num">3,097.05</td><td class="num">52.07</td><td class="num">52.07</td><td class="num">234.96</td><td class="num">195.19</td><td class="ok">O.K.</td></tr>
+      <tr><td></td><td>Idle — Without Buoyancy</td><td class="num">3,190.42</td><td class="num">52.07</td><td class="num">52.07</td><td class="num">241.44</td><td class="num">201.67</td><td class="ok">O.K.</td></tr>
+      <tr><td><b>8</b></td><td>Wind + Service — With Buoyancy</td><td class="num">3,885.32</td><td class="num">296.32</td><td class="num">2,394.70</td><td class="num">455.85</td><td class="num">83.78</td><td class="ok">O.K.</td></tr>
+      <tr><td></td><td>Wind + Service — Without Buoyancy</td><td class="num">3,978.69</td><td class="num">296.32</td><td class="num">2,394.70</td><td class="num">462.34</td><td class="num">90.26</td><td class="ok">O.K.</td></tr>
+      <tr><td><b>9</b></td><td>Wind + Idle — With Buoyancy</td><td class="num">3,885.32</td><td class="num">52.07</td><td class="num">146.82</td><td class="num">292.99</td><td class="num">246.64</td><td class="ok">O.K.</td></tr>
+      <tr><td></td><td>Wind + Idle — Without Buoyancy</td><td class="num">3,978.69</td><td class="num">52.07</td><td class="num">146.82</td><td class="num">299.47</td><td class="num">253.12</td><td class="ok">O.K.</td></tr>
+    </table>
+    <div class="verdict-box verdict-ok">
+      <b>PIER CAP LEVEL VERDICT:</b> Maximum pressure at RL 92.97 m = 462.34 kN/m² (Case 8, without buoyancy) is well within the rock/concrete allowable of 8,000 kN/m². Minimum pressure = 83.78 kN/m² > 0 in all cases; no tensile contact. All four pier cap level cases pass. <b>Hence O.K.</b>
+    </div>
+  </div>
+
+  <!-- FINAL VERDICT -->
+  <div class="section" id="final-verdict">
+    <div class="section-title">G — Design Closure and Final Verdict</div>
+    <div class="narrative">
+      <b>CONSOLIDATED VERDICT — ALL 9 CASES PLUS SEISMIC DECLARATION:</b> The pier stability analysis for the Som River submersible bridge at Kherwara-Jawas-Suveri Road km 9/000 has been checked across nine load combinations — Service, Idle, Wind+Service, Wind+Idle, One-Span-Dislodged at foundation level; and Service, Idle, Wind+Service, Wind+Idle at pier cap level. The seismic case per IRC:6 Cl. 222.1 is Zone II and is explicitly declared non-governing; it has been checked and recorded.
+    </div>
+    <table>
+      <tr><th>Check</th><th>Governing Value</th><th>Allowable</th><th>Ratio</th><th>Verdict</th></tr>
+      <tr><td>Max Base Pressure @ RL 91.97</td><td class="num">137.30 kN/m²</td><td class="num">250 kN/m²</td><td class="num">0.55</td><td class="ok">O.K. — 1.82× margin</td></tr>
+      <tr><td>Min Base Pressure @ RL 91.97</td><td class="num">61.15 kN/m²</td><td class="num">&gt; 0</td><td>—</td><td class="ok">No tension — O.K.</td></tr>
+      <tr><td>Max Pressure @ RL 92.97 (cap)</td><td class="num">462.34 kN/m²</td><td class="num">8,000 kN/m²</td><td class="num">0.058</td><td class="ok">O.K. — 17.3× margin</td></tr>
+      <tr><td>Min Pressure @ RL 92.97 (cap)</td><td class="num">83.78 kN/m²</td><td class="num">&gt; 0</td><td>—</td><td class="ok">No tension — O.K.</td></tr>
+      <tr><td>Seismic Zone Check</td><td>Zone II — IRC:6 Cl. 222.1</td><td>Not governing</td><td>—</td><td class="ok">Declared non-governing — O.K.</td></tr>
+      <tr><td>Buoyancy Stability (Case 2)</td><td class="num">p_min = 78.06 kN/m²</td><td class="num">&gt; 0</td><td>—</td><td class="ok">Positive throughout — O.K.</td></tr>
+    </table>
+    <div class="verdict-box verdict-ok">
+      <b>DESIGN ACCEPTED FOR THIS PIER:</b> All nine load combinations at both checked levels (RL 91.97 m and RL 92.97 m) produce base pressures within the prescribed allowable limits. No tensile contact develops in any combination. The seismic exclusion is explicitly declared per IRC:6-2016 Cl. 222.1. The design is accepted and cleared for foundation drawings, bar bending schedules, and BOQ preparation. <b>All checks: Hence O.K.</b>
+    </div>
+    <div class="narrative" style="margin-top:12px"><b>ABUTMENT NOTE (IRC:78-1983) — TYPE 1 GRAVITY:</b> This report covers pier stability only. The Som River submersible bridge abutments at Kherwara-Jawas-Suveri Road km 9/000 are Type 1 gravity (mass concrete), consistent with the low submersible deck level (H ≤ 5 m). Abutment stability checks — sliding (FOS ≥ 1.50), overturning (FOS ≥ 1.80), bearing (FOS ≥ 2.50) — must be confirmed in a dedicated Abutment Design XLS (not in this pier report). Active earth pressure per Rankine K<sub>a</sub>; LL surcharge h<sub>s</sub> = 1.2 m. See the <a href="drawings.html" style="color:#1a4a9e">IRC Drawings Reference</a> for the Type 1 gravity abutment design basis.</div>
+    <div class="src-note"><b>Source file (Git LFS):</b> DESIGN OF PIER AND CHECK FOR STABIL.txt — Construction of Submersible Bridge on SOM River at Kherwara-Jawas-Suveri Road km 9/000 (tracked in Attached_Assets) &nbsp;|&nbsp; <b>IRC References:</b> IRC:6-2016 Cl. 212.3, 213.5, 222.1; IRC:78-1983; IRC SP-13 &nbsp;|&nbsp; <b>Report generated:</b> May 2026</div>
+  </div>
+
+</div>
+<script src="_nav.js"></script>
+</body>
+</html>

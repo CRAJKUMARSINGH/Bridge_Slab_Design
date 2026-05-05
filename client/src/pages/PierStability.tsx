@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'wouter';
-import { Loader2, Layers, ArrowLeft } from 'lucide-react';
+import { Loader2, Layers, ArrowLeft, BookOpen } from 'lucide-react';
 import type { ProjectInput } from '../../../bridge-excel-generator/types';
 import { useDesignStore } from '@/stores/useDesignStore';
 import { ExcelLikeSheetGrid } from '@/components/ExcelLikeSheetGrid';
@@ -91,6 +91,22 @@ export function PierStability() {
             Change inputs on Design, then return here; this view rebuilds from the same generator as the download.
           </p>
         </header>
+
+        {/* ASTRA Reference banner */}
+        <div className="mb-6 flex flex-wrap items-center gap-3 rounded-xl border border-amber-500/25 bg-amber-500/8 px-4 py-3">
+          <BookOpen className="h-4 w-4 shrink-0 text-amber-400" />
+          <p className="flex-1 text-[11px] text-app-muted">
+            <strong className="text-amber-400">ASTRA 15 Reference:</strong> Pier stability formulas follow
+            <strong className="text-app-fg"> Pier Worksheet Design 1 &amp; 2</strong> (ASTRA DESIGN/Pier) and
+            <strong className="text-app-fg"> Pier with Pile Foundation</strong> tutorial.
+            Benchmark: BEDACH River pier W_DL=479 kN, W_LL=92 kN → SBC check 7.8 kg/cm². Seismic: Zone III Z=0.24, I=1.5 (frmPier_Design_with_Piles).
+          </p>
+          <Link href="/astra-library">
+            <a className="flex shrink-0 items-center gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-[11px] font-semibold text-amber-400 hover:bg-amber-500/20 transition">
+              <BookOpen className="h-3.5 w-3.5" /> Open ASTRA Library
+            </a>
+          </Link>
+        </div>
 
         {!projectInput && (
           <div className="rounded-xl border border-[var(--app-glass-border)] bg-app-card/40 px-6 py-10 text-center text-app-muted">

@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+﻿import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { Router, type Request, type Response } from 'express';
 import { generateCompleteExcel } from '../bridge-excel-generator/index';
@@ -20,7 +20,12 @@ import {
 import { calculateReinforcement, generateReinforcementDetailSVG, generateReinforcementSectionSVG } from './reinforcement-drawings';
 import { calculateDetailedAbutmentDesign, calculateDetailedEstimation, calculateDeckAnchorage } from './remote-app-adapter';
 import { formatZodIssues, projectInputBodySchema } from './project-input-zod';
-import { parseExcelToProjectInput, validateParsedInput } from './excel-parser';
+import {
+  isLikelyXlsxZip,
+  MAX_UPLOAD_XLSX_BYTES,
+  parseExcelToProjectInput,
+  validateParsedInput,
+} from './excel-parser';
 import { generateComprehensivePDF } from './comprehensive-pdf-export';
 import { generateHTMLDesignReport } from './design-report';
 import { validateDesign, generateValidationHTML } from './claude-validator';
@@ -320,8 +325,8 @@ async function svgAbutmentPressureHandler(req: Request, res: Response) {
     res.setHeader('Content-Type', 'image/svg+xml');
     res.send(generateAbutmentPressureSvg(enhancedInput as any));
   } catch (error: any) {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(500).json({ success: false, error: error.message, stack: String(error.stack || '').split('\n').slice(0, 6) });
+    // FIX-KERO-002: never leak stack traces to clients
+    res.status(500).json({ success: false, error: error.message });
   }
 }
 router.get('/drawings/svg/abutment-pressure', svgAbutmentPressureHandler);
@@ -451,12 +456,20 @@ router.post('/upload-excel', async (req, res) => {
   try {
     // Expect base64-encoded Excel file in body.file
     const fileBase64 = req.body.file;
-    if (!fileBase64) {
+    if (!fileBase64 || typeof fileBase64 !== 'string') {
       res.status(400).json({ success: false, error: 'No file provided (expected base64 in body.file)' });
+      return;
+    }
+    if (fileBase64.length > Math.ceil((MAX_UPLOAD_XLSX_BYTES * 4) / 3) + 16) {
+      res.status(413).json({ success: false, error: `File too large (max ${MAX_UPLOAD_XLSX_BYTES} bytes)` });
       return;
     }
     
     const buffer = Buffer.from(fileBase64, 'base64');
+    if (buffer.length === 0 || !isLikelyXlsxZip(buffer)) {
+      res.status(400).json({ success: false, error: 'Invalid XLSX file payload' });
+      return;
+    }
     const parsed = await parseExcelToProjectInput(buffer);
     const validation = validateParsedInput(parsed.input);
     

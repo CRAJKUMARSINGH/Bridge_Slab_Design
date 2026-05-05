@@ -2,7 +2,7 @@
 
 [![Engineering Status](https://img.shields.io/badge/Status-W16_Unified_Merge-green.svg)](#programme-status)
 [![IRC Compliance](https://img.shields.io/badge/Standards-IRC:6_|_IRC:78_|_IRC:112-blue.svg)](#engineering-standards)
-[![Build Status](https://img.shields.io/badge/QA-Pass_(31_Tests)-brightgreen.svg)](#regression-testing)
+[![Quality gates](https://img.shields.io/badge/QA-npm_run_qa-blue.svg)](#regression-testing)
 [![User Manual](https://img.shields.io/badge/Docs-User_Manual-orange.svg)](USER_MANUAL.md)
 
 > **Welcome Engineers!** Ready to cut your submersible bridge design time from weeks to minutes? CURSOR SLAB DESIGN’s automated generation engine instantly maps complex geometry inputs into audit-ready, IRC-compliant 53-sheet workbooks. Try out our visual dashboard below!
@@ -92,7 +92,7 @@ Generates a complete 53-sheet professional workbook including:
 | Milestone | Status | Details |
 |---|---|---|
 | **W16 (Post-v1)** | ✅ Complete | Unified Merge (Repo A + Repo B) finalized. |
-| **QA Verification** | 🟢 Pass | `npm run qa` passing with 31 tests. |
+| **QA Verification** | 🔧 Local | Run `npm run qa` before release; CI runs check, test, build, and audit policy. |
 | **Calculations** | 🛠 Validated | Scour (2.0×), IRC:66 stresses corrected. |
 | **Model Selection** | ⏱ Trial | Active 1-month trial (April-May 2026). |
 
@@ -112,3 +112,12 @@ npm run qa
 
 ## ⚖️ License & Compliance
 This software is built for professional engineering use and requires validation by a licensed Structural Engineer. Compliance with **IRC:6-2016** and **IRC:112-2011** is maintained by the design engine core.
+
+---
+
+## Security Notes
+
+- Dependency audit is enforced in CI via `npm run audit:policy`.
+- Current policy blocks all critical vulnerabilities and all new high vulnerabilities except the temporary `xlsx` exception.
+- `xlsx` remains under controlled exception status because npm audit currently reports no direct auto-fix path for the pinned branch in this workspace.
+- Compensating controls are enabled on upload routes: strict XLSX payload checks, 10 MB max file size, ZIP signature validation, and parser row/column/metadata scan limits.

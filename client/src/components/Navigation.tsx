@@ -60,7 +60,7 @@ export function Navigation() {
     { path: '/merge', label: 'Merge' },
     { path: '/design', label: 'Design' },
     { path: '/projects', label: 'Projects' },
-    { path: '/pier-stability', label: 'Pier stability' },
+    { path: '/pier-stability', label: 'Pier Stability' },
     { path: '/drawing', label: 'Drawing' },
     { path: '/estimate', label: 'Estimate' },
     { path: '/about-scope', label: 'About Scope' },
@@ -68,6 +68,11 @@ export function Navigation() {
     { path: '/hydraulics', label: 'Hydraulics' },
     { path: '/slab-design', label: 'Slab Design' },
     { path: '/dashboard', label: 'Dashboard' },
+    { path: '/t-girder', label: 'T-Girder' },
+    { path: '/astra-library', label: 'ASTRA Library' },
+    { path: '/interaction-diagram', label: 'P-M Diagram' },
+    { path: '/abutment-stability', label: 'Abutment' },
+    { path: '/formula-evaluator', label: 'Formula Eval' },
   ];
 
   return (

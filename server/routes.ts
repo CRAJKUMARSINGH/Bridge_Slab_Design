@@ -1,9 +1,11 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import apiRouter from "./api-routes";
 
+/**
+ * Wraps the Express app in an HTTP server.
+ * All API routes are mounted by `createApp` in `app-factory.ts` at `/api/design`.
+ */
 export function registerRoutes(app: Express): Server {
-  // Health check endpoint
   app.get("/api/health", (_req, res) => {
     res.json({
       status: "healthy",
@@ -18,9 +20,5 @@ export function registerRoutes(app: Express): Server {
     });
   });
 
-  // Main design API routes
-  app.use("/api", apiRouter);
-
-  const httpServer = createServer(app);
-  return httpServer;
+  return createServer(app);
 }

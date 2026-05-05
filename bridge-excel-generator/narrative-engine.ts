@@ -205,6 +205,53 @@ export function getVerificationNarrativeParagraphs(input: EnhancedProjectInput):
   ];
 }
 
+/** Single source of truth for HTML report, short PDF, and any export that needs the full workbook-aligned computation trace */
+export interface FullComputationNarrativeChunk {
+  title: string;
+  paragraphs: string[];
+}
+
+export function getFullTechnicalComputationNarrativeChunks(
+  input: EnhancedProjectInput,
+): FullComputationNarrativeChunk[] {
+  return [
+    {
+      title:
+        '1 — Hydraulics (A, P, R, V, Q, regime width, afflux, scour, DWL, freeboard)',
+      paragraphs: getHydraulicNarrativeParagraphs(input),
+    },
+    {
+      title:
+        '2 — Pier stability — STABILITY CHECK FOR PIER (dead / live / current / seismic / wind, q = V/A, FOS)',
+      paragraphs: getSheetNarrativeParagraphs('STABILITY CHECK FOR PIER', input),
+    },
+    {
+      title: '3 — Abutment Type 1 — TYPE1-STABILITY CHECK ABUTMENT',
+      paragraphs: getSheetNarrativeParagraphs('TYPE1-STABILITY CHECK ABUTMENT', input),
+    },
+    {
+      title: '4 — Abutment cantilever (C1) — C1-STABILITY CHECK ABUTMENT',
+      paragraphs: getSheetNarrativeParagraphs('C1-STABILITY CHECK ABUTMENT', input),
+    },
+    {
+      title: '5 — Structural envelope (deck reactions, currents, earth pressure link)',
+      paragraphs: getStructuralNarrativeParagraphs(input),
+    },
+    {
+      title: '6 — Design closure (traceability, foundation note, consistency)',
+      paragraphs: getClosingNarrativeParagraphs(input),
+    },
+    {
+      title: '7 — Verification audit (case-by-case review, same chain as Tech Report)',
+      paragraphs: getVerificationNarrativeParagraphs(input),
+    },
+    {
+      title: '8 — Estimation & BOQ trace',
+      paragraphs: getSheetNarrativeParagraphs('ESTIMATION', input),
+    },
+  ];
+}
+
 function buildTechNoteNarrative(input: EnhancedProjectInput): string[] {
   return [
     `DESIGN STORY NOTE (TechNote) - DESIGN OF ${input.bridgeType === 'high-level' ? 'HIGH-LEVEL' : 'SUBMERSIBLE'} BRIDGE`,

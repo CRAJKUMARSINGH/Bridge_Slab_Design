@@ -9,13 +9,7 @@
 
 import type { BOQItem, EnhancedProjectInput } from '../bridge-excel-generator/types';
 import { WORKBOOK_LINE_REPORT_CSS, buildHydraulicsWorkbookHtmlFragment } from './workbook-line-report';
-import {
-  getClosingNarrativeParagraphs,
-  getHydraulicNarrativeParagraphs,
-  getSheetNarrativeParagraphs,
-  getStructuralNarrativeParagraphs,
-  getVerificationNarrativeParagraphs,
-} from '../bridge-excel-generator/narrative-engine';
+import { getFullTechnicalComputationNarrativeChunks } from '../bridge-excel-generator/narrative-engine';
 import {
   generateAbutmentPressureSvg,
   generatePierStabilitySvg,
@@ -221,6 +215,21 @@ export function generateHTMLDesignReport(input: EnhancedProjectInput): string {
     .annexure-drawing h4 { margin: 0 0 10px; color: #1F496B; font-size: 14px; }
     .annexure-drawing .svg-wrap { overflow-x: auto; background: #f8fafd; border: 1px solid #edf2f7; padding: 8px; }
     .annexure-drawing p { font-size: 11px; line-height: 1.55; color: #364b63; }
+    .narrative-subsection { margin-bottom: 18px; page-break-inside: avoid; }
+    .narrative-subtitle {
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 10px;
+      font-weight: bold;
+      color: #b1007a;
+      margin: 14px 0 6px 0;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .narrative-lines td.narrative-line {
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.5;
+    }
   </style>
   <!-- Reference layout: ${REF_STRUDS_SLAB_SAMPLE} -->
 </head>
@@ -446,29 +455,34 @@ function generateHydraulicsSummarySection(input: EnhancedProjectInput): ReportSe
 }
 
 function generateEngineeringStorySection(input: EnhancedProjectInput): string {
-  const paragraphs = [
-    ...getHydraulicNarrativeParagraphs(input),
-    ...getStructuralNarrativeParagraphs(input),
-    ...getClosingNarrativeParagraphs(input),
-    ...getVerificationNarrativeParagraphs(input),
-  ];
+  const chunks = getFullTechnicalComputationNarrativeChunks(input);
 
-  return `
-    <div class="section">
-      <span class="struds-section-title">ENGINEERING STORY — TECHNICAL NARRATIVE</span>
-      <div class="struds-sheet-tag">Narrative synthesis aligned with TechNote / Tech Report intent</div>
-      <table class="struds-calc-table">
+  const subsectionHtml = chunks
+    .map(
+      (chunk) => `
+    <div class="narrative-subsection">
+      <div class="narrative-subtitle">${escapeHtml(chunk.title)}</div>
+      <table class="struds-calc-table narrative-lines">
         <tbody>
-          ${paragraphs
+          ${chunk.paragraphs
             .map(
               (paragraph) => `
           <tr>
-            <td>${escapeHtml(paragraph)}</td>
+            <td class="narrative-line">${escapeHtml(paragraph)}</td>
           </tr>`,
             )
             .join('')}
         </tbody>
       </table>
+    </div>`,
+    )
+    .join('');
+
+  return `
+    <div class="section">
+      <span class="struds-section-title">ENGINEERING STORY — FULL TECHNICAL COMPUTATION TRACE</span>
+      <div class="struds-sheet-tag">Workbook-aligned: numbered substeps, Design data lines, explicit formulas and verdicts — pier, Type1, C1 and estimation narratives match Excel sheet generators</div>
+      ${subsectionHtml}
     </div>`;
 }
 
@@ -524,7 +538,7 @@ function generateStrudsForewordHtml(input: EnhancedProjectInput): string {
         <div class="cell"><div class="struds-mini-label">Scope</div><div class="value">Hydraulics, pier, abutment, slab and estimate</div></div>
         <div class="cell"><div class="struds-mini-label">Governing codes</div><div class="value">IRC:6, IRC:112, IRC:78, IRC:SP:13${input.bridgeType === 'high-level' ? ', IRC:5' : ''}</div></div>
         <div class="cell"><div class="struds-mini-label">Deliverables</div><div class="value">Workbook, HTML report, PDF report, DXF and SVG annexures</div></div>
-        <div class="cell"><div class="struds-mini-label">Narrative mode</div><div class="value">Deterministic, computed from design inputs and derived results</div></div>
+        <div class="cell"><div class="struds-mini-label">Narrative mode</div><div class="value">Full technical trace: eight workbook-aligned blocks (hydraulics → pier → abutments → closure → verification → estimation)</div></div>
       </div>
     </section>`;
 }

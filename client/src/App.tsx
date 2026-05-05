@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { Route, Switch } from 'wouter';
+import { Route, Switch, Router } from 'wouter';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AppShell } from '@/components/AppShell';
 import { ThemeProvider } from '@/lib/theme-context';
@@ -20,6 +20,11 @@ const BridgeSlabReport = lazy(() => import('@/pages/BridgeSlabReport'));
 const HydraulicPage = lazy(() => import('@/pages/HydraulicPage'));
 const SlabPage = lazy(() => import('@/pages/SlabPage'));
 const Dashboard = lazy(() => import('@/pages/Dashboard'));
+const TGirder = lazy(() => import('@/pages/TGirder'));
+const AstraLibrary = lazy(() => import('@/pages/AstraLibrary'));
+const InteractionDiagram = lazy(() => import('@/pages/InteractionDiagram'));
+const AbutmentStability = lazy(() => import('@/pages/AbutmentStability'));
+const FormulaEvaluator = lazy(() => import('@/pages/FormulaEvaluator'));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -52,6 +57,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <HydrateDesignStore />
+        <Router base="/suite">
         <AppShell>
           <Suspense fallback={<LoadingFallback />}>
             <Switch>
@@ -67,11 +73,17 @@ export default function App() {
               <Route path="/hydraulics" component={HydraulicPage} />
               <Route path="/slab-design" component={SlabPage} />
               <Route path="/dashboard" component={Dashboard} />
+              <Route path="/t-girder" component={TGirder} />
+              <Route path="/astra-library" component={AstraLibrary} />
+              <Route path="/interaction-diagram" component={InteractionDiagram} />
+              <Route path="/abutment-stability" component={AbutmentStability} />
+              <Route path="/formula-evaluator" component={FormulaEvaluator} />
               <Route component={NotFound} />
             </Switch>
           </Suspense>
           <ThemedToaster />
         </AppShell>
+        </Router>
       </ThemeProvider>
     </QueryClientProvider>
   );

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDesignStore } from '@/stores/useDesignStore';
+import { AstraContextPanel } from '@/components/AstraContextPanel';
 import { 
   GADDrawing, PierDrawing, AbutmentDrawing, 
   DeckingDrawing, CrossSectionDrawing 
@@ -169,19 +170,51 @@ export function Drawing() {
         </div>
       </div>
       
+      {/* Drawing Standards Reference Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-        <div className="p-4 rounded-xl border border-white/5 bg-app-card/30">
-          <h4 className="text-xs font-bold text-app-accent uppercase tracking-wider mb-2">Auto-Scale</h4>
-          <p className="text-sm text-app-muted leading-relaxed">Drawing scale is automatically calculated to fit standard A1 dimensions (841mm width) at screen resolution.</p>
+        <div className="p-4 rounded-xl border border-cyan-500/20 bg-cyan-500/5">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-cyan-400" />
+            <h4 className="text-xs font-bold text-cyan-400 uppercase tracking-wider">Auto-Scale (IRC SP-13)</h4>
+          </div>
+          <p className="text-xs text-app-muted leading-relaxed mb-2">Drawing scale auto-computed to fit standard A1 (841×594 mm). Longitudinal section 1:100, cross-section 1:50, details 1:20 per IRC SP-13 Cl. 6.2.</p>
+          <div className="rounded-md bg-[#0d1117] px-2 py-1.5 font-mono text-[9px] text-emerald-400 leading-relaxed">
+            <p>Scale = sheet_width / bridge_length</p>
+            <p>Min girder depth shown ≥ 3 mm on sheet</p>
+          </div>
         </div>
-        <div className="p-4 rounded-xl border border-white/5 bg-app-card/30">
-          <h4 className="text-xs font-bold text-app-accent uppercase tracking-wider mb-2">Live Data</h4>
-          <p className="text-sm text-app-muted leading-relaxed">Changes in the Design tab are reflected here instantly. Substructure reinforcement follows IRC:112 guidelines.</p>
+        <div className="p-4 rounded-xl border border-blue-500/20 bg-blue-500/5">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-blue-400" />
+            <h4 className="text-xs font-bold text-blue-400 uppercase tracking-wider">Live Data (IRC:112)</h4>
+          </div>
+          <p className="text-xs text-app-muted leading-relaxed mb-2">Design tab changes propagate instantly. Pier/abutment rebar follows IRC:112-2011 cover rules (40 mm min. exposed). Slab steel from IS:456-2000 Cl.26.3.</p>
+          <div className="rounded-md bg-[#0d1117] px-2 py-1.5 font-mono text-[9px] text-emerald-400 leading-relaxed">
+            <p>Cover ≥ 40 mm (substructure)</p>
+            <p>Pt_min = 0.85/fy × 100 %</p>
+          </div>
         </div>
-        <div className="p-4 rounded-xl border border-white/5 bg-app-card/30">
-          <h4 className="text-xs font-bold text-app-accent uppercase tracking-wider mb-2">Print Ready</h4>
-          <p className="text-sm text-app-muted leading-relaxed">Use the Print button for high-fidelity PDF output. All line weights and hatch patterns are vectorized for clarity.</p>
+        <div className="p-4 rounded-xl border border-violet-500/20 bg-violet-500/5">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-violet-400" />
+            <h4 className="text-xs font-bold text-violet-400 uppercase tracking-wider">Print Ready (ASTRA DXF)</h4>
+          </div>
+          <p className="text-xs text-app-muted leading-relaxed mb-2">High-fidelity vector PDF matches ASTRA DXF export format. Line weights: border 0.7 mm, dimensions 0.25 mm, hatching 0.18 mm (ISO 128-20).</p>
+          <div className="rounded-md bg-[#0d1117] px-2 py-1.5 font-mono text-[9px] text-emerald-400 leading-relaxed">
+            <p>DXF R12 → ASTRA import ready</p>
+            <p>Layer: BEAM, SLAB, DIM, HATCH</p>
+          </div>
         </div>
+      </div>
+
+      {/* ASTRA Drawing Reference Panel */}
+      <div className="mt-4">
+        <AstraContextPanel
+          pageKey="drawing"
+          title="ASTRA DXF, GAD Standards, IRC SP-13, Under Pass Drawings"
+          defaultOpen={false}
+          compact={true}
+        />
       </div>
     </div>
   );

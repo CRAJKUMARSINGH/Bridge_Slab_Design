@@ -8,6 +8,7 @@
  * Styled to match Repo A's orchid/royal design language.
  */
 import { useMemo } from 'react';
+import { Link } from 'wouter';
 import { useModelStore } from '@/stores/useModelStore';
 import { useDesignStore } from '@/stores/useDesignStore';
 import { ModelSwitcher } from '@/components/ModelSwitcher';
@@ -24,6 +25,13 @@ import {
   Ruler,
   TrendingUp,
   PencilRuler,
+  BookOpen,
+  Waves,
+  GitBranch,
+  Box,
+  FlaskConical,
+  Zap,
+  ExternalLink,
 } from 'lucide-react';
 
 type Status = 'OK' | 'FAIL' | 'WARN' | 'INFO';
@@ -177,6 +185,113 @@ export default function Dashboard() {
         </div>
         <div className="mt-2 text-[10px] text-app-muted italic">
           Trial period active. Final selection after April–May 2026 user evaluation.
+        </div>
+      </div>
+
+      {/* ── ASTRA Knowledge Base ─────────────────────────────────── */}
+      <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 overflow-hidden">
+        {/* Header row */}
+        <div className="flex items-center justify-between px-5 py-4 border-b border-amber-500/15">
+          <div className="flex items-center gap-3">
+            <div className="rounded-lg bg-amber-500/15 p-2"><BookOpen className="h-4 w-4 text-amber-400" /></div>
+            <div>
+              <p className="text-sm font-bold text-amber-400">ASTRA 15 Knowledge Base</p>
+              <p className="text-[10px] text-app-muted">CRAJKUMARSINGH/Bridge_Slab_Design → Attached_Assets/ASTRA 15 TUTORIALS</p>
+            </div>
+          </div>
+          <Link href="/astra-library">
+            <a className="inline-flex items-center gap-1 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-[11px] font-bold text-amber-400 hover:bg-amber-500/20 transition">
+              <ExternalLink className="h-3 w-3" /> Open Full Library
+            </a>
+          </Link>
+        </div>
+
+        {/* Progress meter */}
+        <div className="px-5 py-3 border-b border-amber-500/10">
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="text-[10px] font-bold text-app-muted uppercase tracking-wide">Module implementation progress</span>
+            <span className="text-[10px] font-bold text-amber-400">11 / 32 live</span>
+          </div>
+          <div className="h-1.5 w-full rounded-full bg-app-card/50 overflow-hidden">
+            <div className="h-full rounded-full bg-gradient-to-r from-amber-500 to-emerald-500" style={{ width: '34%' }} />
+          </div>
+          <p className="mt-1 text-[9px] text-app-muted">34% — calculators wired to IRC/IS/ASTRA standards</p>
+        </div>
+
+        {/* Category grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-0 divide-x divide-y divide-amber-500/10">
+          {[
+            { icon: Waves,       label: 'Hydraulics',      total: 5,  live: 2, color: 'text-cyan-400',   page: '/hydraulics' },
+            { icon: GitBranch,   label: 'Superstructure',  total: 6,  live: 3, color: 'text-blue-400',   page: '/t-girder' },
+            { icon: Building2,   label: 'Substructure',    total: 7,  live: 3, color: 'text-amber-400',  page: '/pier-stability' },
+            { icon: FlaskConical,label: 'Materials',       total: 4,  live: 1, color: 'text-emerald-400',page: '/design' },
+            { icon: Box,         label: 'Culvert',         total: 5,  live: 1, color: 'text-violet-400', page: '/design' },
+            { icon: Zap,         label: 'Analysis',        total: 5,  live: 1, color: 'text-orange-400', page: '/interaction-diagram' },
+          ].map(c => (
+            <Link key={c.label} href={c.page}>
+              <a className="flex flex-col items-center gap-1 px-3 py-4 hover:bg-amber-500/8 transition group">
+                <c.icon className={`h-5 w-5 ${c.color} group-hover:scale-110 transition-transform`} />
+                <span className="text-[10px] font-semibold text-app-muted text-center leading-tight">{c.label}</span>
+                <div className="flex items-center gap-1">
+                  <span className={`text-xs font-bold ${c.color}`}>{c.live}</span>
+                  <span className="text-[9px] text-app-muted">/{c.total}</span>
+                </div>
+                <div className="w-full h-1 rounded-full bg-app-card/50 overflow-hidden">
+                  <div className={`h-full rounded-full bg-gradient-to-r from-${c.color.replace('text-','')} to-transparent`}
+                    style={{ width: `${Math.round((c.live / c.total) * 100)}%` }} />
+                </div>
+              </a>
+            </Link>
+          ))}
+        </div>
+
+        {/* Live calculators quick-access */}
+        <div className="px-5 py-3 border-t border-amber-500/10">
+          <p className="text-[9px] font-bold text-app-muted uppercase tracking-wide mb-2">Live calculators</p>
+          <div className="flex flex-wrap gap-2">
+            {[
+              { label: 'Hydraulics',        page: '/hydraulics',         color: 'border-cyan-500/30 text-cyan-400 bg-cyan-500/8' },
+              { label: 'T-Girder Analysis', page: '/t-girder',           color: 'border-blue-500/30 text-blue-400 bg-blue-500/8' },
+              { label: 'Pier Stability',    page: '/pier-stability',     color: 'border-amber-500/30 text-amber-400 bg-amber-500/8' },
+              { label: 'Abutment Stability',page: '/abutment-stability', color: 'border-orange-500/30 text-orange-400 bg-orange-500/8' },
+              { label: 'P-M Diagram',       page: '/interaction-diagram',color: 'border-violet-500/30 text-violet-400 bg-violet-500/8' },
+              { label: 'GAD Drawings',      page: '/drawing',            color: 'border-blue-500/30 text-blue-400 bg-blue-500/8' },
+              { label: 'Cost Estimate',     page: '/estimate',           color: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/8' },
+              { label: 'Section Properties',page: '/t-girder',           color: 'border-blue-500/30 text-blue-400 bg-blue-500/8' },
+              { label: 'Seismic Coeff.',    page: '/design',             color: 'border-orange-500/30 text-orange-400 bg-orange-500/8' },
+              { label: 'ASTRA Library',     page: '/astra-library',      color: 'border-amber-500/30 text-amber-400 bg-amber-500/8' },
+              { label: 'Narrative Report',  page: '/narrative-report',   color: 'border-purple-500/30 text-purple-400 bg-purple-500/8' },
+            ].map(l => (
+              <Link key={l.label} href={l.page}>
+                <a className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[10px] font-semibold transition hover:opacity-80 ${l.color}`}>
+                  <CheckCircle2 className="h-2.5 w-2.5" />
+                  {l.label}
+                </a>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Formula quick-ref strip */}
+        <div className="px-5 py-3 border-t border-amber-500/10 bg-[#0d1117]/50">
+          <p className="text-[9px] font-bold text-app-muted uppercase tracking-wide mb-2">Key design equations (ASTRA reference)</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
+            {[
+              { label: 'Manning (Hydraulics)', formula: 'Q = (1/n)·A·R^⅔·S₀^½' },
+              { label: 'Lacey Scour',          formula: 'dsm = 1.34·(q²/f)^⅓' },
+              { label: 'T-Girder UDL',         formula: 'wi = SMG·SCG·(Ds·γc + Dw·γw)' },
+              { label: 'Section centroid',      formula: 'ȳ = ΣAi·yi / ΣAi' },
+              { label: 'Coulomb Ka',            formula: 'Ka = sin²(α+φ) / [sin²α·(1+√…)²]' },
+              { label: 'Seismic Ah',            formula: 'Ah = Z/2 × Sa/g × I/R' },
+              { label: 'P-M Envelope',          formula: 'Pu0 = 0.4·fck·Ac + 0.67·fy·Asc' },
+              { label: 'Biaxial (Bresler)',      formula: '(Mux/Mux1)^α + (Muy/Muy1)^α ≤ 1' },
+            ].map(f => (
+              <div key={f.label} className="rounded-md border border-[var(--app-glass-border)]/40 bg-app-card/20 px-2.5 py-2">
+                <p className="text-[8px] font-bold text-app-muted uppercase tracking-wide mb-0.5">{f.label}</p>
+                <p className="font-mono text-[10px] text-emerald-400">{f.formula}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 

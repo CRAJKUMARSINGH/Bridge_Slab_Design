@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Project Statistics — IRC Bridge Design Suite</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+.hero{background:linear-gradient(135deg,#0a2a5e 0%,#1a4a9e 55%,#0e6e4a 100%);color:#fff;padding:36px 40px 28px}
+.hero h1{font-size:22px;font-weight:800;margin-bottom:6px}
+.hero p{opacity:.85;font-size:13px;max-width:800px;line-height:1.6}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin:24px 0}
+.stat-card{background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(10,42,94,.09);padding:18px 20px;text-align:center;border-top:4px solid #1a4a9e}
+.stat-card.sub{border-top-color:#0a6e3a}
+.stat-card.hl{border-top-color:#b45309}
+.stat-card.lfs{border-top-color:#58a6ff}
+.stat-num{font-size:32px;font-weight:900;color:#0a2a5e;line-height:1}
+.stat-card.sub .stat-num{color:#0a6e3a}
+.stat-card.hl .stat-num{color:#b45309}
+.stat-card.lfs .stat-num{color:#1a4a9e}
+.stat-label{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:#6a8099;margin-top:6px}
+.bar-wrap{background:#f0f4f8;border-radius:6px;height:12px;overflow:hidden;margin:6px 0}
+.bar-fill{height:12px;border-radius:6px;transition:width .8s ease}
+.bar-sub{background:linear-gradient(90deg,#0a6e3a,#2ea043)}
+.bar-hl{background:linear-gradient(90deg,#b45309,#d97706)}
+.bar-lfs{background:linear-gradient(90deg,#1a4a9e,#58a6ff)}
+.river-table td:last-child{text-align:right;font-family:monospace;font-size:12px}
+.badge{display:inline-block;padding:1px 8px;border-radius:8px;font-size:10px;font-weight:700;text-transform:uppercase}
+.badge.sub{background:#e8f7f0;color:#0a6e3a}
+.badge.hl{background:#fff3e0;color:#b45309}
+.lfs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:14px 0}
+.lfs-card{background:#f7f9fc;border:1px solid #e0e8f0;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px}
+.lfs-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.dot-never{background:#c8d5e8}
+.dot-ok{background:#0a6e3a}
+.dot-error{background:#dc2626}
+.dot-syncing{background:#58a6ff}
+.lfs-name{font-size:12.5px;font-weight:700;color:#1a2940;flex:1}
+.lfs-meta{font-size:11px;color:#6a8099}
+.refresh-btn{display:inline-flex;align-items:center;gap:6px;background:#1a4a9e;color:#fff;border:none;border-radius:6px;padding:7px 16px;font-size:12.5px;font-weight:600;cursor:pointer;transition:background .15s}
+.refresh-btn:hover{background:#0a2a5e}
+.last-updated{font-size:11px;color:#8b9ab4;margin-left:12px}
+.irc-pie{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin:14px 0}
+.pie-legend{flex:1;min-width:180px}
+.pie-row{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:12.5px}
+.pie-swatch{width:14px;height:14px;border-radius:3px;flex-shrink:0}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">&#8592; All Projects</a>
+  <span style="color:#ddd">|</span>
+  <span class="bc">Project Statistics &amp; Analytics Dashboard</span>
+</nav>
+
+<div class="hero">
+  <h1>Project Statistics — IRC Bridge Design Suite</h1>
+  <p>Live analytics drawn from the design reports registry and Git LFS sync state. Data updates automatically from the API on page load.</p>
+</div>
+
+<div class="container">
+
+  <div style="display:flex;align-items:center;margin-bottom:8px">
+    <button class="refresh-btn" onclick="loadAll()">&#8635; Refresh Data</button>
+    <span class="last-updated" id="last-updated">Loading...</span>
+  </div>
+
+  <!-- STATS ROW -->
+  <div class="stat-grid" id="stat-grid">
+    <div class="stat-card"><div class="stat-num" id="s-total">—</div><div class="stat-label">Total Reports</div></div>
+    <div class="stat-card sub"><div class="stat-num" id="s-sub">—</div><div class="stat-label">Submersible</div></div>
+    <div class="stat-card hl"><div class="stat-num" id="s-hl">—</div><div class="stat-label">High-Level</div></div>
+    <div class="stat-card lfs"><div class="stat-num" id="s-repos">—</div><div class="stat-label">LFS Repos</div></div>
+    <div class="stat-card lfs"><div class="stat-num" id="s-synced">—</div><div class="stat-label">Repos Synced</div></div>
+    <div class="stat-card"><div class="stat-num" id="s-files">—</div><div class="stat-label">Total LFS Files</div></div>
+  </div>
+
+  <!-- BRIDGE TYPE BREAKDOWN -->
+  <div class="section">
+    <div class="section-title">Bridge Type Distribution</div>
+    <div id="type-bars">Loading...</div>
+    <div class="irc-pie" id="irc-legend"></div>
+  </div>
+
+  <!-- RIVER-WISE BREAKDOWN -->
+  <div class="section">
+    <div class="section-title">River / Location Registry — All 16 Projects</div>
+    <table id="project-table">
+      <tr><th>#</th><th>Project Title</th><th>River</th><th>Type</th><th>Report</th></tr>
+    </table>
+  </div>
+
+  <!-- LFS REPOS STATUS -->
+  <div class="section">
+    <div class="section-title">Git LFS Repository Portfolio — 18 Repos</div>
+    <div class="lfs-grid" id="lfs-grid">Loading...</div>
+    <div style="margin-top:12px;font-size:12px;color:#6a8099">
+      Manage sync from the <a href="lfs-sync.html" style="color:#1a4a9e;font-weight:600">Git LFS Live-Sync Control Panel &#8599;</a>
+    </div>
+  </div>
+
+  <!-- IRC STANDARDS USAGE -->
+  <div class="section">
+    <div class="section-title">IRC Standards Coverage Across All Projects</div>
+    <table>
+      <tr><th>Standard</th><th>Coverage</th><th>Usage in Suite</th><th>Progress</th></tr>
+      <tr>
+        <td><b>IRC:6-2016</b></td><td>16 / 16 projects</td>
+        <td>Load combinations, water current, wind, seismic</td>
+        <td><div class="bar-wrap"><div class="bar-fill bar-sub" style="width:100%"></div></div></td>
+      </tr>
+      <tr>
+        <td><b>IRC:78-1983</b></td><td>16 / 16 projects</td>
+        <td>Foundations, scour depth, buoyancy, pier stability</td>
+        <td><div class="bar-wrap"><div class="bar-fill bar-sub" style="width:100%"></div></div></td>
+      </tr>
+      <tr>
+        <td><b>IRC SP-13</b></td><td>16 / 16 projects</td>
+        <td>Hydraulics, discharge, afflux, Manning, Lacey, Molesworth</td>
+        <td><div class="bar-wrap"><div class="bar-fill bar-sub" style="width:100%"></div></div></td>
+      </tr>
+      <tr>
+        <td><b>IRC:112-2015</b></td><td>7 / 16 projects</td>
+        <td>Concrete design (LSM), crack width, min reinforcement</td>
+        <td><div class="bar-wrap"><div class="bar-fill bar-hl" style="width:44%"></div></div></td>
+      </tr>
+      <tr>
+        <td><b>IRC:5-2015</b></td><td>7 / 16 projects</td>
+        <td>General design, freeboard requirements (high-level bridges)</td>
+        <td><div class="bar-wrap"><div class="bar-fill bar-hl" style="width:44%"></div></div></td>
+      </tr>
+      <tr>
+        <td><b>IS:1893-2016</b></td><td>16 / 16 projects</td>
+        <td>Seismic zone declaration (Zone II — non-governing in all)</td>
+        <td><div class="bar-wrap"><div class="bar-fill bar-lfs" style="width:100%"></div></div></td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+
+<footer>IRC Bridge Slab Design Suite &nbsp;·&nbsp; Statistics Dashboard &nbsp;·&nbsp; Data from <a href="/api/reports-list">/api/reports-list</a> + <a href="/api/lfs-sync/repos">/api/lfs-sync/repos</a></footer>
+<script src="_nav.js"></script>
+<script>
+function fmtTime(iso) {
+  if (!iso) return 'Never';
+  const d = new Date(iso);
+  const diff = Math.floor((Date.now() - d) / 1000);
+  if (diff < 60) return diff + 's ago';
+  if (diff < 3600) return Math.floor(diff/60) + 'm ago';
+  if (diff < 86400) return Math.floor(diff/3600) + 'h ago';
+  return d.toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'});
+}
+function dotClass(s) {
+  if (s==='ok') return 'dot-ok';
+  if (s==='error') return 'dot-error';
+  if (s==='syncing') return 'dot-syncing';
+  return 'dot-never';
+}
+
+async function loadAll() {
+  try {
+    const [rl, lr] = await Promise.all([
+      fetch('/api/reports-list').then(r=>r.json()),
+      fetch('/api/lfs-sync/repos').then(r=>r.json())
+    ]);
+
+    // Stats row
+    document.getElementById('s-total').textContent = rl.total;
+    document.getElementById('s-sub').textContent = rl.submersible;
+    document.getElementById('s-hl').textContent = rl.highLevel;
+    document.getElementById('s-repos').textContent = lr.repos.length;
+    const synced = lr.repos.filter(r=>r.status==='ok').length;
+    document.getElementById('s-synced').textContent = synced;
+    const totalFiles = lr.repos.reduce((a,r)=>a+(r.fileCount||0),0);
+    document.getElementById('s-files').textContent = totalFiles ? totalFiles.toLocaleString() : '—';
+
+    // Type distribution bars
+    const subPct = Math.round((rl.submersible / rl.total) * 100);
+    const hlPct = 100 - subPct;
+    document.getElementById('type-bars').innerHTML = `
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px">
+          <span><b>Submersible Bridges</b> — accept seasonal overtopping, economical for rural roads</span>
+          <span style="font-weight:700;color:#0a6e3a">${rl.submersible} (${subPct}%)</span>
+        </div>
+        <div class="bar-wrap" style="height:18px"><div class="bar-fill bar-sub" style="width:${subPct}%"></div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px">
+          <span><b>High-Level Bridges</b> — all-weather, IRC:5 freeboard compliance required</span>
+          <span style="font-weight:700;color:#b45309">${rl.highLevel} (${hlPct}%)</span>
+        </div>
+        <div class="bar-wrap" style="height:18px"><div class="bar-fill bar-hl" style="width:${hlPct}%"></div></div>
+      </div>`;
+
+    // Project table
+    const rows = rl.projects.map((p,i)=>`
+      <tr>
+        <td style="color:#6a8099;font-size:11px">${i+1}</td>
+        <td><a href="${p.file}" style="color:#1a4a9e;font-weight:600;text-decoration:none">${p.title}</a></td>
+        <td style="font-size:12px;color:#4a6080">${p.river}</td>
+        <td><span class="badge ${p.type==='submersible'?'sub':'hl'}">${p.type==='submersible'?'SUB':'H.L.'}</span></td>
+        <td><a href="${p.file}" style="font-size:11px;color:#6a8099">View &#8599;</a></td>
+      </tr>`).join('');
+    document.getElementById('project-table').innerHTML =
+      '<tr><th>#</th><th>Project Title</th><th>River</th><th>Type</th><th>Report</th></tr>' + rows;
+
+    // LFS grid
+    document.getElementById('lfs-grid').innerHTML = lr.repos.map(r=>`
+      <div class="lfs-card">
+        <div class="lfs-dot ${dotClass(r.status)}"></div>
+        <div>
+          <div class="lfs-name">${r.label}${r.primary?' ★':''}</div>
+          <div class="lfs-meta">
+            ${r.status==='ok' ? `${(r.fileCount||0)} files · ${(r.lfsFiles||0)} LFS · ${fmtTime(r.lastSync)}` :
+              r.status==='error' ? '⚠ Error: '+((r.lastError||'').slice(0,40)) :
+              'Not yet synced'}
+          </div>
+        </div>
+      </div>`).join('');
+
+    document.getElementById('last-updated').textContent = 'Updated ' + new Date().toLocaleTimeString('en-IN');
+  } catch(e) {
+    document.getElementById('last-updated').textContent = 'Error: ' + e.message;
+  }
+}
+loadAll();
+setInterval(loadAll, 60000);
+</script>
+</body>
+</html>

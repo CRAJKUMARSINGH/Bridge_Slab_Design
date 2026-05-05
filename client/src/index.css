@@ -33,6 +33,13 @@
   --neon-amber: #f59e0b;
   --neon-purple: #8b5cf6;
   --neon-green: #10b981;
+
+  /* Auspicious Theme */
+  --auspicious-orange: #FF8C00;
+  --auspicious-maroon: #800000;
+  --auspicious-gold: #FFD700;
+  --auspicious-cream: #FFFDE7;
+  --auspicious-orange-glow: rgba(255, 140, 0, 0.4);
 }
 
 .dark {
@@ -66,6 +73,13 @@
   --neon-amber: #ffb347;
   --neon-purple: #bf5fff;
   --neon-green: #39ff14;
+
+  /* Auspicious Theme (Dark Mode) */
+  --auspicious-orange: #FF9800;
+  --auspicious-maroon: #A52A2A;
+  --auspicious-gold: #FFD700;
+  --auspicious-cream: #1a1a1a;
+  --auspicious-orange-glow: rgba(255, 152, 0, 0.3);
 }
 
 @theme inline {
@@ -192,6 +206,42 @@
     box-shadow:
       var(--app-glass-shadow),
       0 0 40px -12px var(--app-accent-glow);
+  }
+
+  .auspicious-border {
+    border: 4px double var(--auspicious-gold);
+    outline: 2px solid var(--auspicious-maroon);
+    outline-offset: -6px;
+  }
+
+  .auspicious-gradient-text {
+    background: linear-gradient(to right, var(--auspicious-maroon), var(--auspicious-orange), var(--auspicious-maroon));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  }
+
+  .auspicious-card {
+    background: var(--auspicious-cream);
+    color: var(--auspicious-maroon);
+    border: 1px solid var(--auspicious-gold);
+    box-shadow: 0 4px 20px rgba(128, 0, 0, 0.1);
+  }
+
+  .auspicious-btn {
+    background: linear-gradient(to bottom, var(--auspicious-orange), var(--auspicious-maroon));
+    color: var(--auspicious-gold);
+    border: 1px solid var(--auspicious-gold);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 12px rgba(128, 0, 0, 0.2);
+  }
+
+  .auspicious-btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(128, 0, 0, 0.3);
   }
 
   @media (prefers-reduced-motion: reduce) {

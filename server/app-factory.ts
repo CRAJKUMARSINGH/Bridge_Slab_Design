@@ -19,9 +19,12 @@ export function createApp(options: AppOptions = {}) {
 
   // CORS - RISK-1 fix: use configurable origins
   if (options.cors) {
-    const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",") || [];
+    const allowedOrigins = (process.env.ALLOWED_ORIGINS ?? "")
+      .split(",")
+      .map((origin) => origin.trim())
+      .filter(Boolean);
     app.use(cors({
-      origin: allowedOrigins.length > 0 ? allowedOrigins : true,
+      origin: allowedOrigins.length > 0 ? allowedOrigins : false,
       credentials: true
     }));
   }

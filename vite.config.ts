@@ -32,6 +32,7 @@ export default defineConfig({
       plugins: [],
     },
   },
+  base: "/suite/",
   root: path.resolve(rootDir, "client"),
   build: {
     outDir: path.resolve(rootDir, "dist/public"),
@@ -41,7 +42,7 @@ export default defineConfig({
     host: "0.0.0.0",
     allowedHosts: true,
     fs: {
-      strict: true,
+      strict: false,
       deny: ["**/.*"],
     },
   },

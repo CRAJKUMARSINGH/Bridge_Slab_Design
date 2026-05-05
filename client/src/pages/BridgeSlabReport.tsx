@@ -43,6 +43,7 @@ import {
   exportAuditManifest,
   generateSurveySMS,
 } from "@/report-engine/exportUtils";
+import { generateCertificationReport } from "@/report-engine/generateCertificationReport";
 import { Derived, derive } from "@/report-engine/bridgeDerivation";
 import { InputSection } from "@/report-engine/sheets/InputSection";
 import { Inputs, XSecRow, MoSTRow } from "@/report-engine/types/bridgeTypes";
@@ -627,6 +628,28 @@ export default function BridgeSlabReport() {
           }}
         >
           📲 Export Survey SMS (.txt)
+        </button>
+        <button
+          onClick={() => {
+            if (!computed) {
+              alert("Please compute first.");
+              return;
+            }
+            generateCertificationReport(inp, d);
+          }}
+          style={{
+            background: "#006633",
+            color: "#fff",
+            border: "none",
+            padding: "6px 16px",
+            fontFamily: "Verdana,sans-serif",
+            fontSize: 11,
+            cursor: "pointer",
+            borderRadius: 2,
+            fontWeight: "bold",
+          }}
+        >
+          🏅 IRC Certification Report (.html)
         </button>
 
         <span style={{ fontSize: 10, color: "#555", marginLeft: 8 }}>

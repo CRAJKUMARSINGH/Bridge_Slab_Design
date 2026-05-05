@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
-import { Download, FileSpreadsheet, Loader2 } from 'lucide-react';
+import { Download, FileSpreadsheet, Loader2, BookOpen } from 'lucide-react';
 import { toast } from 'sonner';
 import type { CompleteDesignResult } from '../../../bridge-excel-generator/types';
 import { useDesignStore } from '@/stores/useDesignStore';
@@ -108,6 +108,22 @@ export function Estimate() {
     <div className="space-y-8">
         <div className="flex items-center gap-3">
           <h1 className="text-2xl font-bold text-app-fg">Cost estimate</h1>
+        </div>
+
+        {/* ASTRA Reference banner */}
+        <div className="flex flex-wrap items-center gap-3 rounded-xl border border-emerald-500/25 bg-emerald-500/8 px-4 py-3">
+          <BookOpen className="h-4 w-4 shrink-0 text-emerald-400" />
+          <p className="flex-1 text-[11px] text-app-muted">
+            <strong className="text-emerald-400">ASTRA 15 Reference:</strong> BOQ item quantities and rates follow
+            <strong className="text-app-fg"> Worksheet_Design/Abutment_Worksheet_sheet.xls</strong> and
+            <strong className="text-app-fg"> T-Beam Worksheet Design 1 &amp; 2</strong> from ASTRA tutorials.
+            Quantity computation method: volume of each structural element × unit rate per CPWD DSR / MoRTH SOR.
+          </p>
+          <Link href="/astra-library">
+            <a className="flex shrink-0 items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-[11px] font-semibold text-emerald-400 hover:bg-emerald-500/20 transition">
+              <BookOpen className="h-3.5 w-3.5" /> ASTRA Library
+            </a>
+          </Link>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">

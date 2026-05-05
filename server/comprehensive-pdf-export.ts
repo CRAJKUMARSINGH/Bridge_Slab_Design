@@ -12,6 +12,7 @@ import { buildWorkbookSheetPreviews, type WorkbookSheetPreview } from './workboo
 import {
   getClosingNarrativeParagraphs,
   getHydraulicNarrativeParagraphs,
+  getSheetNarrativeParagraphs,
   getStructuralNarrativeParagraphs,
   getVerificationNarrativeParagraphs,
 } from '../bridge-excel-generator/narrative-engine';
@@ -184,8 +185,8 @@ async function generateComprehensivePDFInternal(
   }
 
   addAnnexureDrawingPage(doc, input, 'D-04 HYDRAULIC PROFILE & SCOUR DIAGRAM', generateScourProfileSvg(input), getHydraulicNarrativeParagraphs(input).slice(0, 2));
-  addAnnexureDrawingPage(doc, input, 'D-05 PIER STABILITY FREE-BODY', generatePierStabilitySvg(input), getStructuralNarrativeParagraphs(input).slice(0, 2));
-  addAnnexureDrawingPage(doc, input, 'D-06 ABUTMENT EARTH-PRESSURE DIAGRAM', generateAbutmentPressureSvg(input), getVerificationNarrativeParagraphs(input).slice(0, 2));
+  addAnnexureDrawingPage(doc, input, 'D-05 PIER STABILITY FREE-BODY', generatePierStabilitySvg(input), getSheetNarrativeParagraphs('STABILITY CHECK FOR PIER', input).slice(0, 2));
+  addAnnexureDrawingPage(doc, input, 'D-06 ABUTMENT EARTH-PRESSURE DIAGRAM', generateAbutmentPressureSvg(input), getSheetNarrativeParagraphs('TYPE1-STABILITY CHECK ABUTMENT', input).slice(0, 2));
   addAnnexureDrawingPage(doc, input, 'D-07 SLAB REINFORCEMENT PLAN', generateSlabReinfPlanSvg(input), getClosingNarrativeParagraphs(input).slice(0, 2));
 
   /** Workbook-faithful grid excerpts until total length reaches the ~200–250 page band. */

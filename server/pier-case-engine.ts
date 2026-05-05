@@ -1,5 +1,5 @@
 import { existsSync, readdirSync, statSync } from 'node:fs';
-import { extname, join, relative } from 'node:path';
+import { extname, join, relative, resolve } from 'node:path';
 
 export type PierTemplateType =
   | 'single-column'
@@ -175,14 +175,14 @@ function totalScore(parts: PierCaseFile['scoreBreakup']): number {
 }
 
 export function resolveDefaultPierAssetRoot(): string {
+  const envRoot = process.env.PIER_ASSET_ROOT?.trim();
   const candidates = [
+    ...(envRoot ? [resolve(envRoot)] : []),
     join(process.cwd(), 'research_assets', 'component_drawings_sorted', 'Pier Geometry & Dimensions'),
     join(process.cwd(), 'Attached_Assets'),
-    'C:\\Users\\Rajkumar\\Bridge_Slab_Design\\Attached_Assets',
-    'C:\\Users\\Rajkumar\\Bridge_Slab_Design\\research_assets\\component_drawings_sorted\\Pier Geometry & Dimensions',
   ];
   const found = candidates.find((candidate) => existsSync(candidate) && statSync(candidate).isDirectory());
-  return found ?? candidates[0];
+  return found ?? join(process.cwd(), 'Attached_Assets');
 }
 
 export function buildPierCaseCatalog(root: string): PierCaseCatalog {

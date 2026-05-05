@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Git LFS Live-Sync Control Panel — Bridge Engineering Portfolio</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:#0d1117;color:#e6edf3;font-size:13.5px;min-height:100vh}
+/* NAV */
+nav{background:#161b22;border-bottom:1px solid #30363d;padding:12px 24px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:200}
+nav a{color:#58a6ff;text-decoration:none;font-weight:600;font-size:13px}
+nav a:hover{text-decoration:underline}
+.nav-sep{color:#30363d}
+.nav-title{font-weight:700;font-size:14px;color:#e6edf3}
+/* HEADER */
+.hero{background:linear-gradient(135deg,#0d1117 0%,#0d2137 40%,#0a2a0a 100%);border-bottom:1px solid #30363d;padding:36px 32px 28px}
+.hero h1{font-size:22px;font-weight:800;color:#e6edf3;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.hero h1 .lfs-badge{background:#238636;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;letter-spacing:.5px;vertical-align:middle}
+.hero p{color:#8b949e;font-size:13px;max-width:800px;line-height:1.65;margin-bottom:18px}
+.hero-stats{display:flex;gap:20px;flex-wrap:wrap}
+.stat{background:rgba(255,255,255,.04);border:1px solid #30363d;border-radius:8px;padding:10px 18px;text-align:center}
+.stat .n{font-size:22px;font-weight:800;color:#58a6ff}
+.stat .l{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:#8b949e;margin-top:2px}
+/* CONTROLS */
+.controls{background:#161b22;border-bottom:1px solid #30363d;padding:12px 32px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border:none;border-radius:6px;font-size:12.5px;font-weight:600;cursor:pointer;transition:opacity .15s}
+.btn:disabled{opacity:.45;cursor:default}
+.btn-primary{background:#238636;color:#fff}
+.btn-primary:hover:not(:disabled){background:#2ea043}
+.btn-secondary{background:#21262d;color:#e6edf3;border:1px solid #30363d}
+.btn-secondary:hover:not(:disabled){background:#30363d}
+.btn-danger{background:#b91c1c;color:#fff}
+.btn-danger:hover:not(:disabled){background:#dc2626}
+.filter-tabs{display:flex;gap:4px;margin-left:auto}
+.tab{padding:5px 14px;border-radius:6px;background:transparent;color:#8b949e;border:1px solid transparent;font-size:12px;font-weight:600;cursor:pointer}
+.tab.active{background:#21262d;color:#e6edf3;border-color:#30363d}
+/* GRID */
+.container{max-width:1400px;margin:0 auto;padding:24px 32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+/* REPO CARD */
+.card{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:18px 20px;position:relative;transition:border-color .2s}
+.card:hover{border-color:#58a6ff}
+.card.primary{border-color:#238636}
+.card-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.card-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.card-icon.git{background:rgba(88,166,255,.12)}
+.card-icon.primary-icon{background:rgba(35,134,54,.2)}
+.card-info{flex:1;min-width:0}
+.card-name{font-weight:700;font-size:14px;color:#e6edf3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-desc{font-size:11.5px;color:#8b949e;margin-top:2px;line-height:1.45}
+.status-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0}
+.s-never{background:#21262d;color:#8b949e;border:1px solid #30363d}
+.s-ok{background:rgba(35,134,54,.2);color:#3fb950;border:1px solid #238636}
+.s-syncing{background:rgba(88,166,255,.15);color:#58a6ff;border:1px solid #1f6feb;animation:pulse 1.2s infinite}
+.s-error{background:rgba(248,81,73,.12);color:#f85149;border:1px solid #b91c1c}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.card-meta{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0}
+.meta-item{background:#0d1117;border:1px solid #21262d;border-radius:6px;padding:6px 10px}
+.meta-label{font-size:10px;color:#6e7681;text-transform:uppercase;letter-spacing:.5px}
+.meta-value{font-size:12.5px;font-weight:600;color:#e6edf3;margin-top:2px;font-family:'Consolas',monospace}
+.meta-value.dim{color:#8b949e}
+.card-commit{font-size:11px;color:#8b949e;margin:6px 0;font-family:monospace;background:#0d1117;border:1px solid #21262d;border-radius:4px;padding:4px 8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card-actions{display:flex;gap:8px;margin-top:12px}
+.card-link{font-size:11px;color:#58a6ff;text-decoration:none;margin-left:auto;align-self:center}
+.card-link:hover{text-decoration:underline}
+/* CONSOLE */
+.console-panel{background:#0d1117;border:1px solid #30363d;border-radius:10px;margin-bottom:24px;overflow:hidden;display:none}
+.console-panel.visible{display:block}
+.console-header{background:#161b22;border-bottom:1px solid #30363d;padding:10px 18px;display:flex;align-items:center;gap:10px}
+.console-title{font-weight:700;font-size:13px;color:#e6edf3}
+.console-repo{font-size:11px;color:#58a6ff;font-family:monospace}
+.console-close{margin-left:auto;background:none;border:none;color:#8b949e;cursor:pointer;font-size:16px;padding:0 4px}
+.console-close:hover{color:#f85149}
+.progress-bar{height:3px;background:#21262d}
+.progress-fill{height:3px;background:linear-gradient(90deg,#238636,#58a6ff);width:0%;transition:width .4s}
+.phase-row{padding:8px 18px;font-size:12px;color:#8b949e;border-bottom:1px solid #161b22;display:flex;align-items:center;gap:8px}
+.phase-dot{width:6px;height:6px;border-radius:50%;background:#58a6ff;animation:pulse 1s infinite}
+.console-body{height:280px;overflow-y:auto;padding:10px 18px;font-family:'Consolas','Courier New',monospace;font-size:11.5px;line-height:1.6}
+.log-line{color:#8b949e;padding:1px 0}
+.log-line.cmd{color:#58a6ff;font-weight:600}
+.log-line.warn{color:#d29922}
+.log-line.err{color:#f85149}
+.log-line.ok{color:#3fb950}
+.console-done{padding:12px 18px;background:#0d2113;border-top:1px solid #238636;font-size:12.5px;color:#3fb950;font-weight:600;display:none}
+.console-done.error{background:#1a0c0c;border-color:#b91c1c;color:#f85149}
+/* SYNC-ALL progress */
+.syncall-bar{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:12px 20px;margin-bottom:16px;display:none}
+.syncall-bar.visible{display:flex;align-items:center;gap:16px}
+.syncall-text{font-size:12.5px;color:#e6edf3;font-weight:600;flex:1}
+.syncall-sub{font-size:11px;color:#8b949e}
+.syncall-prog{flex:1;background:#21262d;border-radius:4px;height:6px;overflow:hidden}
+.syncall-fill{height:6px;background:linear-gradient(90deg,#238636,#58a6ff);width:0%;transition:width .3s}
+footer{text-align:center;padding:24px;color:#6e7681;font-size:11px;border-top:1px solid #21262d;margin-top:8px}
+footer a{color:#58a6ff;text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">&#8592; All Design Reports</a>
+  <span class="nav-sep">|</span>
+  <span class="nav-title">&#x1F517; Git LFS Live-Sync Control Panel</span>
+</nav>
+
+<div class="hero">
+  <h1>Git LFS Live-Sync Control Panel <span class="lfs-badge">GIT LFS</span></h1>
+  <p>All 18 repositories in <b>CRAJKUMARSINGH</b>'s bridge engineering portfolio are registered here. Each repository is wired to Git Large File Storage (LFS) for binary assets — XLS workbooks, DOC design notes, DXF drawings, DWG files, and PDF reports. Use the controls below to pull the latest commits and LFS objects from any or all repos, and watch real-time progress streamed directly from git.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="n" id="stat-total">18</div><div class="l">Repos</div></div>
+    <div class="stat"><div class="n" id="stat-ok" style="color:#3fb950">0</div><div class="l">Synced</div></div>
+    <div class="stat"><div class="n" id="stat-never" style="color:#8b949e">18</div><div class="l">Never Synced</div></div>
+    <div class="stat"><div class="n" id="stat-error" style="color:#f85149">0</div><div class="l">Errors</div></div>
+    <div class="stat"><div class="n" id="stat-files" style="color:#d29922">0</div><div class="l">Total Files</div></div>
+    <div class="stat"><div class="n" id="stat-lfs" style="color:#58a6ff">0</div><div class="l">LFS Assets</div></div>
+  </div>
+</div>
+
+<div class="controls">
+  <button class="btn btn-primary" id="btn-sync-all" onclick="syncAll()">
+    &#x21BB; Sync All Repos
+  </button>
+  <button class="btn btn-secondary" onclick="loadRepos()">
+    &#x21BA; Refresh Status
+  </button>
+  <div id="syncall-bar" class="syncall-bar">
+    <div>
+      <div class="syncall-text" id="syncall-text">Syncing...</div>
+      <div class="syncall-sub" id="syncall-sub"></div>
+    </div>
+    <div class="syncall-prog"><div class="syncall-fill" id="syncall-fill"></div></div>
+  </div>
+  <div class="filter-tabs" style="margin-left:auto">
+    <button class="tab active" onclick="setFilter('all',this)">All</button>
+    <button class="tab" onclick="setFilter('ok',this)">Synced</button>
+    <button class="tab" onclick="setFilter('never',this)">Pending</button>
+    <button class="tab" onclick="setFilter('error',this)">Errors</button>
+  </div>
+</div>
+
+<div class="container">
+  <div id="console-panel" class="console-panel">
+    <div class="console-header">
+      <span style="font-size:14px">&#x1F4BB;</span>
+      <span class="console-title">Git LFS Sync — Live Output</span>
+      <span class="console-repo" id="console-repo-name"></span>
+      <button class="console-close" onclick="closeConsole()">&#x2715;</button>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+    <div class="phase-row" id="phase-row" style="display:none">
+      <span class="phase-dot"></span>
+      <span id="phase-label"></span>
+      <span style="margin-left:auto;font-size:10px;color:#6e7681" id="phase-step"></span>
+    </div>
+    <div class="console-body" id="console-body"></div>
+    <div class="console-done" id="console-done"></div>
+  </div>
+
+  <div id="syncall-banner" class="syncall-bar" style="display:none;margin-bottom:16px">
+    <div style="flex:1">
+      <div class="syncall-text" id="banner-text">Syncing all repos...</div>
+      <div class="syncall-sub" id="banner-sub"></div>
+    </div>
+    <div class="syncall-prog"><div class="syncall-fill" id="banner-fill"></div></div>
+  </div>
+
+  <div class="grid" id="repo-grid">
+    <div style="color:#8b949e;padding:24px;grid-column:1/-1;text-align:center">Loading repositories...</div>
+  </div>
+</div>
+
+<footer>
+  IRC Bridge Slab Design Suite &nbsp;·&nbsp; Git LFS Live-Sync Control Panel &nbsp;·&nbsp;
+  Source: <a href="https://github.com/CRAJKUMARSINGH" target="_blank">github.com/CRAJKUMARSINGH</a> &nbsp;·&nbsp;
+  Powered by <a href="/api/lfs-sync/repos" target="_blank">REST API</a>
+</footer>
+
+<script>
+let allRepos = [];
+let currentFilter = 'all';
+let syncingAll = false;
+
+function fmtTime(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  const diff = Math.floor((Date.now() - d) / 1000);
+  if (diff < 60) return `${diff}s ago`;
+  if (diff < 3600) return `${Math.floor(diff/60)}m ago`;
+  if (diff < 86400) return `${Math.floor(diff/3600)}h ago`;
+  return d.toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'});
+}
+
+function statusClass(s) {
+  if (s === 'ok') return 's-ok';
+  if (s === 'syncing') return 's-syncing';
+  if (s === 'error') return 's-error';
+  return 's-never';
+}
+function statusLabel(s) {
+  if (s === 'ok') return '&#10003; Synced';
+  if (s === 'syncing') return '&#8635; Syncing';
+  if (s === 'error') return '&#10007; Error';
+  return '&#9679; Not Synced';
+}
+
+function renderCard(repo) {
+  const isCurrent = repo.primary;
+  return `
+  <div class="card${isCurrent?' primary':''}" id="card-${repo.name}" data-status="${repo.status}">
+    <div class="card-header">
+      <div class="card-icon ${isCurrent?'primary-icon':'git'}">${isCurrent?'&#11088;':'&#128279;'}</div>
+      <div class="card-info">
+        <div class="card-name" title="${repo.url}">${repo.label}</div>
+        <div class="card-desc">${repo.desc}</div>
+      </div>
+      <span class="status-badge ${statusClass(repo.status)}">${statusLabel(repo.status)}</span>
+    </div>
+    <div class="card-meta">
+      <div class="meta-item">
+        <div class="meta-label">Last Sync</div>
+        <div class="meta-value ${repo.lastSync?'':'dim'}">${fmtTime(repo.lastSync)}</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Files / LFS</div>
+        <div class="meta-value ${repo.fileCount?'':'dim'}">${repo.fileCount||'—'} / ${repo.lfsFiles||'—'}</div>
+      </div>
+    </div>
+    ${repo.lastCommit ? `<div class="card-commit" title="${repo.lastCommit}">${repo.lastCommit}</div>` : ''}
+    ${repo.lastError ? `<div class="card-commit" style="color:#f85149;border-color:#b91c1c" title="${repo.lastError}">&#10007; ${repo.lastError.slice(0,80)}</div>` : ''}
+    <div class="card-actions">
+      <button class="btn btn-primary" id="btn-${repo.name}"
+        onclick="syncRepo('${repo.url}','${repo.name}')"
+        ${repo.status==='syncing'?'disabled':''}>
+        &#x21BB; ${repo.exists ? 'Pull Latest' : 'Clone + LFS Pull'}
+      </button>
+      <a class="card-link" href="${repo.url}" target="_blank" rel="noopener">GitHub &#8599;</a>
+    </div>
+  </div>`;
+}
+
+function updateStats(repos) {
+  const ok = repos.filter(r=>r.status==='ok').length;
+  const never = repos.filter(r=>r.status==='never'||!r.status).length;
+  const err = repos.filter(r=>r.status==='error').length;
+  const files = repos.reduce((a,r)=>a+(r.fileCount||0),0);
+  const lfs = repos.reduce((a,r)=>a+(r.lfsFiles||0),0);
+  document.getElementById('stat-ok').textContent = ok;
+  document.getElementById('stat-never').textContent = never;
+  document.getElementById('stat-error').textContent = err;
+  document.getElementById('stat-files').textContent = files.toLocaleString();
+  document.getElementById('stat-lfs').textContent = lfs.toLocaleString();
+}
+
+function applyFilter(repos) {
+  return currentFilter === 'all' ? repos : repos.filter(r => {
+    if (currentFilter === 'ok') return r.status === 'ok';
+    if (currentFilter === 'never') return !r.status || r.status === 'never';
+    if (currentFilter === 'error') return r.status === 'error';
+    return true;
+  });
+}
+
+function renderGrid(repos) {
+  const filtered = applyFilter(repos);
+  const grid = document.getElementById('repo-grid');
+  if (!filtered.length) {
+    grid.innerHTML = '<div style="color:#8b949e;padding:40px;text-align:center;grid-column:1/-1">No repos match this filter.</div>';
+    return;
+  }
+  grid.innerHTML = filtered.map(renderCard).join('');
+}
+
+async function loadRepos() {
+  try {
+    const r = await fetch('/api/lfs-sync/repos');
+    const data = await r.json();
+    allRepos = data.repos;
+    updateStats(allRepos);
+    renderGrid(allRepos);
+  } catch(e) {
+    document.getElementById('repo-grid').innerHTML =
+      `<div style="color:#f85149;padding:24px;grid-column:1/-1">Failed to load repo status: ${e.message}</div>`;
+  }
+}
+
+function setFilter(f, el) {
+  currentFilter = f;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  renderGrid(allRepos);
+}
+
+function closeConsole() {
+  document.getElementById('console-panel').classList.remove('visible');
+}
+
+function openConsole(repoName) {
+  const panel = document.getElementById('console-panel');
+  panel.classList.add('visible');
+  document.getElementById('console-repo-name').textContent = repoName;
+  document.getElementById('console-body').innerHTML = '';
+  document.getElementById('console-done').style.display = 'none';
+  document.getElementById('console-done').className = 'console-done';
+  document.getElementById('prog-fill').style.width = '5%';
+  document.getElementById('phase-row').style.display = 'none';
+  panel.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function appendLog(text, cls) {
+  const body = document.getElementById('console-body');
+  const d = document.createElement('div');
+  d.className = 'log-line' + (cls ? ' '+cls : '');
+  d.textContent = text;
+  body.appendChild(d);
+  body.scrollTop = body.scrollHeight;
+}
+
+function syncRepo(repoUrl, repoName) {
+  openConsole(repoName);
+  const btn = document.getElementById(`btn-${repoName}`);
+  if (btn) { btn.disabled = true; btn.textContent = '⟳ Syncing…'; }
+
+  // Update card badge
+  const card = document.getElementById(`card-${repoName}`);
+  if (card) {
+    card.dataset.status = 'syncing';
+    const badge = card.querySelector('.status-badge');
+    if (badge) { badge.className = 'status-badge s-syncing'; badge.innerHTML = '&#8635; Syncing'; }
+  }
+
+  const es = new EventSource('/api/lfs-sync/pull?stream=1');
+  // We actually use fetch + ReadableStream for POST SSE
+  es.close();
+
+  fetchSSE(repoUrl, repoName);
+}
+
+async function fetchSSE(repoUrl, repoName) {
+  const resp = await fetch('/api/lfs-sync/pull', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({repoUrl})
+  });
+
+  const reader = resp.body.getReader();
+  const decoder = new TextDecoder();
+  let buf = '';
+
+  const handleEvent = (ev, data) => {
+    try { data = JSON.parse(data); } catch { return; }
+    if (ev === 'cmd') { appendLog(data.line, 'cmd'); }
+    else if (ev === 'log') { appendLog(data.line); }
+    else if (ev === 'warn') { appendLog(data.line, 'warn'); }
+    else if (ev === 'error') { appendLog(data.line, 'err'); }
+    else if (ev === 'phase') {
+      const row = document.getElementById('phase-row');
+      row.style.display = 'flex';
+      document.getElementById('phase-label').textContent = data.label;
+      document.getElementById('phase-step').textContent = `Step ${data.n} of ${data.total}`;
+      document.getElementById('prog-fill').style.width = `${Math.round((data.n/data.total)*90)}%`;
+    }
+    else if (ev === 'done') {
+      document.getElementById('prog-fill').style.width = '100%';
+      document.getElementById('phase-row').style.display = 'none';
+      const doneEl = document.getElementById('console-done');
+      doneEl.style.display = 'block';
+      if (data.success) {
+        doneEl.className = 'console-done';
+        doneEl.innerHTML = `&#10003; Sync complete &nbsp;·&nbsp; ${data.fileCount||0} files &nbsp;·&nbsp; ${data.lfsFiles||0} LFS assets`;
+        appendLog(`✓ Done — ${data.fileCount||0} files, ${data.lfsFiles||0} LFS assets`, 'ok');
+      } else {
+        doneEl.className = 'console-done error';
+        doneEl.innerHTML = `&#10007; Sync failed: ${data.error||'unknown error'}`;
+      }
+      // Reload repo data after sync
+      setTimeout(() => {
+        loadRepos();
+        const btn = document.getElementById(`btn-${repoName}`);
+        if (btn) { btn.disabled = false; btn.innerHTML = '&#x21BB; Pull Latest'; }
+      }, 800);
+    }
+  };
+
+  while (true) {
+    const {value, done} = await reader.read();
+    if (done) break;
+    buf += decoder.decode(value, {stream: true});
+    const parts = buf.split('\n\n');
+    buf = parts.pop();
+    for (const part of parts) {
+      const lines = part.trim().split('\n');
+      let ev = 'message', data = '';
+      for (const line of lines) {
+        if (line.startsWith('event: ')) ev = line.slice(7);
+        else if (line.startsWith('data: ')) data = line.slice(6);
+      }
+      if (data) handleEvent(ev, data);
+    }
+  }
+}
+
+async function syncAll() {
+  if (syncingAll) return;
+  syncingAll = true;
+  const btn = document.getElementById('btn-sync-all');
+  btn.disabled = true;
+
+  const banner = document.getElementById('syncall-banner');
+  banner.style.display = 'flex';
+
+  const total = allRepos.length;
+  let done = 0;
+
+  for (const repo of allRepos) {
+    document.getElementById('banner-text').textContent = `Syncing ${done+1} of ${total}: ${repo.label}`;
+    document.getElementById('banner-sub').textContent = repo.url;
+    document.getElementById('banner-fill').style.width = `${Math.round((done/total)*100)}%`;
+
+    openConsole(repo.name);
+    await new Promise(resolve => {
+      (async () => {
+        const resp = await fetch('/api/lfs-sync/pull', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({repoUrl: repo.url})
+        });
+        const reader = resp.body.getReader();
+        const decoder = new TextDecoder();
+        let buf = '';
+        while (true) {
+          const {value, done: d} = await reader.read();
+          if (d) break;
+          buf += decoder.decode(value, {stream: true});
+          const parts = buf.split('\n\n');
+          buf = parts.pop();
+          for (const part of parts) {
+            const lines = part.trim().split('\n');
+            let ev = 'message', data = '';
+            for (const line of lines) {
+              if (line.startsWith('event: ')) ev = line.slice(7);
+              else if (line.startsWith('data: ')) data = line.slice(6);
+            }
+            if (data) {
+              try {
+                const obj = JSON.parse(data);
+                if (ev === 'log' || ev === 'cmd') appendLog(obj.line, ev === 'cmd' ? 'cmd' : '');
+                if (ev === 'warn') appendLog(obj.line, 'warn');
+                if (ev === 'error') appendLog(obj.line, 'err');
+                if (ev === 'phase') {
+                  document.getElementById('phase-row').style.display = 'flex';
+                  document.getElementById('phase-label').textContent = obj.label;
+                  document.getElementById('phase-step').textContent = `Step ${obj.n} of ${obj.total}`;
+                  document.getElementById('prog-fill').style.width = `${Math.round((obj.n/obj.total)*90)}%`;
+                }
+                if (ev === 'done') { resolve(); }
+              } catch {}
+            }
+          }
+        }
+        resolve();
+      })();
+    });
+
+    done++;
+    await loadRepos();
+    await new Promise(r => setTimeout(r, 600));
+  }
+
+  document.getElementById('banner-fill').style.width = '100%';
+  document.getElementById('banner-text').textContent = `All ${total} repos processed`;
+  document.getElementById('banner-sub').textContent = '';
+  btn.disabled = false;
+  syncingAll = false;
+  setTimeout(() => { banner.style.display = 'none'; }, 4000);
+}
+
+// Initial load
+loadRepos();
+// Auto-refresh every 30s
+setInterval(loadRepos, 30000);
+</script>
+</body>
+</html>

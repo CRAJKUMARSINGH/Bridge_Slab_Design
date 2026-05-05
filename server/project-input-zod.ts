@@ -67,7 +67,7 @@ export const projectInputBodySchema = z
     concreteGradeDeck: z.string().max(50).optional(),
     concreteGradeWearing: z.string().max(50).optional(),
   })
-  .passthrough();
+  .strip();
 
 export type ProjectInputBodyParsed = z.infer<typeof projectInputBodySchema>;
 

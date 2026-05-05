@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState, type ReactNode } from 'react';
 import { Link } from 'wouter';
-import { Loader2, Plus, Trash2, FileText, Layers, FileSpreadsheet, FileCheck, FileOutput, Calculator, Ruler, Building2, FileBarChart, FileJson, Grid3X3, SquareStack, Anchor, HardHat, Truck, Info, Maximize2 } from 'lucide-react';
+import { Loader2, Plus, Trash2, FileText, Layers, FileSpreadsheet, FileCheck, FileOutput, Calculator, Ruler, Building2, FileBarChart, FileJson, Grid3X3, SquareStack, Anchor, HardHat, Truck, Info, Maximize2, Zap } from 'lucide-react';
 import { toast } from 'sonner';
 import type { ProjectInput, CrossSectionPoint, CompleteDesignResult } from '../../../bridge-excel-generator/types';
 import { useDesignStore } from '@/stores/useDesignStore';
@@ -10,9 +10,17 @@ import { WorkbookInputTabs } from '@/components/WorkbookInputTabs';
 import { WorkbookSheetsViewer } from '@/components/WorkbookSheetsViewer';
 import { GlassModal } from '@/components/GlassModal';
 import { DesignPageSkeleton } from '@/components/Skeleton';
-import { DesignCheckDashboard } from '@/components/DesignCheckDashboard';
+import { DesignCheckDashboard, IrcClausePanel, UtilizationGaugesPanel } from '@/components/DesignCheckDashboard';
+import { EngineeringCopilot } from '@/components/EngineeringCopilot';
+import { SimilarProjectsPanel } from '@/components/SimilarProjectsPanel';
+import { DesignHistoryPanel } from '@/components/DesignHistoryPanel';
+import { useDesignHistory } from '@/stores/useDesignHistory';
+import { SeismicZonePanel } from '@/components/SeismicZonePanel';
+import { WindLoadPanel } from '@/components/WindLoadPanel';
+import { BackwaterCurvePanel } from '@/components/BackwaterCurvePanel';
 import { OptimisationAtAGlance } from '@/components/OptimisationAtAGlance';
 import { ModelOptimisersPanel } from '@/components/ModelOptimisersPanel';
+import { AstraContextPanel } from '@/components/AstraContextPanel';
 
 type TemplateItem = { id: string; name: string; description: string; input: ProjectInput };
 
@@ -32,10 +40,11 @@ export function Design() {
   const engineResults = useDesignStore((s) => s.results);
   const hyd = engineResults?.hydraulics;
 
-  const [loading, setLoading]           = useState<'excel' | 'pdf' | 'pdf-comprehensive' | 'pdf-short' | 'dxf' | 'html' | 'csv' | 'validate' | 'svg' | 'reinf-schedule' | 'reinf-drawing' | 'reinf-section' | 'abutment-detail' | 'estimation-detail' | 'deck-anchorage' | null>(null);
+  const [loading, setLoading]           = useState<'excel' | 'pdf' | 'pdf-comprehensive' | 'pdf-short' | 'dxf' | 'html' | 'csv' | 'validate' | 'svg' | 'reinf-schedule' | 'reinf-drawing' | 'reinf-section' | 'abutment-detail' | 'estimation-detail' | 'deck-anchorage' | 'optimise' | null>(null);
   const [templatesLoading, setTL]       = useState(true);
   const [templates, setTemplates]       = useState<TemplateItem[]>([]);
   const [draft, setDraft]               = useState<ProjectInput | null>(null);
+  const [currentTemplateId, setCurrentTemplateId] = useState<string | null>(null);
   const [templateDetail, setTemplateDetail] = useState<TemplateItem | null>(null);
   const [hydModalOpen, setHydModalOpen] = useState(false);
   const [dxfAcadVersion, setDxfAcadVersion] = useState<'AC1018' | 'AC1021'>('AC1021');
@@ -61,6 +70,7 @@ export function Design() {
           /* ignore */
         }
         setDraft(cloneInput(pick.input));
+        setCurrentTemplateId(pick.id);
       } catch (e) {
         if (!cancelled) toast.error('Could not load templates. Is the API running?');
       } finally {
@@ -126,6 +136,90 @@ export function Design() {
       if (data.success && data.results) {
         useDesignStore.getState().setResults(data.results);
         localStorage.setItem('lastDesignInput', JSON.stringify(body));
+
+        // ── Record history entry ──────────────────────────────────────────
+        const r   = data.results;
+        const hyd = r.hydraulics;
+        const laceyW = 4.75 * Math.sqrt(Math.max(body.discharge ?? 0, 0));
+        const provW  = body.numberOfSpans * body.spanLength;
+        const worstPier = [...r.pier.loadCases].sort((a, b) => a.slidingFOS - b.slidingFOS)[0];
+        const isHL = body.bridgeType === 'high-level';
+        const affluxLim = isHL ? 0.50 : 0.30;
+        const wRatio    = laceyW > 0 ? provW / laceyW : 0;
+        const fckMin    = 25;
+
+        // Quick clause counts (mirrors buildIrcClauses logic)
+        type CS = 'PASS' | 'WARN' | 'FAIL';
+        const checks: CS[] = [
+          hyd.afflux <= affluxLim ? 'PASS' : hyd.afflux <= affluxLim * 1.15 ? 'WARN' : 'FAIL',
+          wRatio >= 0.9 ? 'PASS' : wRatio >= 0.75 ? 'WARN' : 'FAIL',
+          (body.fck ?? 25) >= fckMin ? 'PASS' : 'FAIL',
+          ...r.pier.loadCases.map(lc => lc.status === 'SAFE' ? 'PASS' as CS : lc.status === 'CHECK' ? 'WARN' as CS : 'FAIL' as CS),
+        ];
+        const passCount = checks.filter(c => c === 'PASS').length;
+        const warnCount = checks.filter(c => c === 'WARN').length;
+        const failCount = checks.filter(c => c === 'FAIL').length;
+        const verdict: 'PASS' | 'WARN' | 'FAIL' = failCount > 0 ? 'FAIL' : warnCount > 0 ? 'WARN' : 'PASS';
+
+        useDesignHistory.getState().addEntry({
+          id:               Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+          timestamp:        Date.now(),
+          projectName:      body.projectName,
+          bridgeType:       body.bridgeType ?? 'submersible',
+          templateId:       null,
+          discharge:        body.discharge ?? 0,
+          numberOfSpans:    body.numberOfSpans,
+          spanLength:       body.spanLength,
+          afflux:           hyd.afflux,
+          velocity:         hyd.velocity,
+          scourDepth:       hyd.scourDepth,
+          froudeNumber:     hyd.froudeNumber,
+          waterwayRatio:    wRatio,
+          pierSlidingFOS:   worstPier?.slidingFOS ?? 0,
+          pierOverturningFOS: worstPier?.overturningFOS ?? 0,
+          verdict,
+          passCount,
+          warnCount,
+          failCount,
+          // Seismic: Zone III default (Z=0.16, Sa/g=2.5, I=1.0, R=3.0)
+          ...((() => {
+            const sAh     = (0.16 / 2) * 2.5 * (1.0 / 3.0);
+            const sW      = r.pier.loads.deadLoad;
+            const sH      = r.pier.loads.totalHorizontalForce;
+            const sFeq    = sAh * sW;
+            const sRfric  = (worstPier?.slidingFOS ?? 1) * sH;
+            const sSlideFOS = sH > 0 ? sRfric / (sH + sFeq) : 0;
+            const sArm    = r.pier.geometry.depth * 0.6;
+            const sOTRatio = sW > 0 ? (sFeq * sArm) / (sW * (r.pier.geometry.baseWidth / 2)) : 0;
+            const sOTFOS  = (worstPier?.overturningFOS ?? 1) / (1 + sOTRatio);
+            const sVerd: 'PASS' | 'WARN' | 'FAIL' = sSlideFOS >= 1.25 && sOTFOS >= 1.50 ? 'PASS' : sSlideFOS >= 1.10 ? 'WARN' : 'FAIL';
+            return { seismicAh: sAh, seismicPierSlideFOS: sSlideFOS, seismicPierOTFOS: sOTFOS, seismicVerdict: sVerd };
+          })()),
+          // Wind: Vb=44 m/s default (central Rajasthan), TC-2, k1=1.06, k3=1.0
+          ...((() => {
+            const wVb    = 44;
+            const wK2    = 1.00;   // TC-2, h≤10m approximation
+            const wVd    = wVb * 1.06 * wK2 * 1.0;
+            const wPd    = Math.max(0.6 * wVd * wVd, 464) / 1000; // kN/m²
+            const pierH  = r.pier.geometry.depth;
+            const pierL  = r.pier.geometry.length;
+            const deckD  = (body.deckSlabThickness ?? 0.5) + 0.3;
+            const FwP    = wPd * (pierH * pierL) * 1.3;
+            const FwDk   = wPd * (deckD * body.spanLength) * 1.3;
+            const Fw     = FwP + FwDk;
+            const wH     = r.pier.loads.totalHorizontalForce;
+            const wRfric = (worstPier?.slidingFOS ?? 1) * wH;
+            const wFOS   = wH > 0 ? wRfric / (wH + Fw) : 0;
+            const wOTarm = pierH * 0.5;
+            const wMbase = wH * wOTarm;
+            const wMS    = (worstPier?.overturningFOS ?? 1) * wMbase;
+            const wMwind = FwP * wOTarm + FwDk * pierH;
+            const wOTFOS = wMbase > 0 ? wMS / (wMbase + wMwind) : 0;
+            const wVerd: 'PASS' | 'WARN' | 'FAIL' = wFOS >= 1.50 && wOTFOS >= 1.80 ? 'PASS' : (wFOS >= 1.25 || wOTFOS >= 1.50) ? 'WARN' : 'FAIL';
+            return { windVd: wVd, windPd: wPd * 1000, windPierSlideFOS: wFOS, windVerdict: wVerd };
+          })()),
+          draft:            { ...body },
+        });
       }
     } catch {
       /* non-fatal: file export still succeeded */
@@ -154,6 +248,16 @@ export function Design() {
     },
     [persistResults],
   );
+
+  const handleLoadById = (id: string) => {
+    const found = templates.find(t => t.id === id);
+    if (!found) return;
+    try { localStorage.setItem(LAST_TEMPLATE_ID_KEY, id); } catch { /* ignore */ }
+    setDraft(cloneInput(found.input));
+    setCurrentTemplateId(id);
+    toast.message(`Loaded: ${found.name}`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const applyOptimisationUpdates = useCallback(
     (updates: Partial<ProjectInput>) => {
@@ -592,6 +696,7 @@ export function Design() {
                         /* ignore */
                       }
                       setDraft(cloneInput(t.input));
+                      setCurrentTemplateId(t.id);
                       toast.message(`Loaded: ${t.name}`);
                     }}
                     className="rounded-lg border border-[var(--app-glass-border)] bg-app-card/80 px-3 py-2 text-sm text-app-fg transition-colors hover:border-app-accent/45"
@@ -1005,6 +1110,32 @@ export function Design() {
               </p>
 
               <DesignCheckDashboard draft={draft} results={engineResults ?? null} />
+              {engineResults && <UtilizationGaugesPanel draft={draft} results={engineResults} />}
+              {engineResults && <IrcClausePanel draft={draft} results={engineResults} />}
+              {engineResults && draft && <SeismicZonePanel draft={draft} results={engineResults} />}
+              {engineResults && draft && <WindLoadPanel draft={draft} results={engineResults} />}
+              {engineResults && draft && <BackwaterCurvePanel draft={draft} results={engineResults} />}
+              {engineResults && draft && <EngineeringCopilot draft={draft} results={engineResults} />}
+              <DesignHistoryPanel
+                current={draft}
+                onRestore={(restoredDraft) => {
+                  setDraft(restoredDraft);
+                  try { localStorage.setItem(LAST_TEMPLATE_ID_KEY, ''); } catch { /* ignore */ }
+                  void persistResults(restoredDraft);
+                  toast.message(`Restored: ${restoredDraft.projectName}`);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              />
+              {draft && templates.length > 0 && (
+                <SimilarProjectsPanel
+                  draft={draft}
+                  templates={templates}
+                  currentTemplateId={currentTemplateId}
+                  currentName={templates.find(t => t.id === currentTemplateId)?.name ?? 'Active Design'}
+                  onLoad={handleLoadById}
+                  engineResults={engineResults ?? null}
+                />
+              )}
               <OptimisationAtAGlance
                 draft={draft}
                 results={engineResults ?? null}
@@ -1014,6 +1145,13 @@ export function Design() {
                 draft={draft}
                 results={engineResults ?? null}
                 onApply={applyOptimisationUpdates}
+              />
+
+              {/* ── ASTRA Reference Panel ──────────────────────────────── */}
+              <AstraContextPanel
+                pageKey="design"
+                title="Seismic Coeff., Materials, Bearing, Limit State (IRC:6, IS:456, IRC:83)"
+                defaultOpen={false}
               />
 
               {hyd && (

@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, relative, resolve } from 'node:path';
 import { Router, type Request, type Response } from 'express';
 import { generateCompleteExcel } from '../bridge-excel-generator/index';
 import calculateCompleteDesign from '../bridge-excel-generator/design-engine';
@@ -20,10 +20,16 @@ import {
 import { calculateReinforcement, generateReinforcementDetailSVG, generateReinforcementSectionSVG } from './reinforcement-drawings';
 import { calculateDetailedAbutmentDesign, calculateDetailedEstimation, calculateDeckAnchorage } from './remote-app-adapter';
 import { formatZodIssues, projectInputBodySchema } from './project-input-zod';
-import { parseExcelToProjectInput, validateParsedInput } from './excel-parser';
+import {
+  isLikelyXlsxZip,
+  MAX_UPLOAD_XLSX_BYTES,
+  parseExcelToProjectInput,
+  validateParsedInput,
+} from './excel-parser';
 import { generateComprehensivePDF } from './comprehensive-pdf-export';
 import { generateHTMLDesignReport } from './design-report';
 import { validateDesign, generateValidationHTML } from './claude-validator';
+import { generateIrcChecklistHTML } from './checklist-export';
 import { generateGADCSV, generateGADJSON } from '../scripts/generate-gad-csv';
 import {
   buildSingleWorkbookSheetPreview,
@@ -37,6 +43,14 @@ import { generatePierPayload } from './pier-template-mapper';
 import { optimiseBridgeDesign } from './optimisation-engine';
 
 const router = Router();
+
+/** Reject pier catalog roots outside the resolved default asset tree (no arbitrary drive traversal). */
+function isDirectoryWithin(rootAbs: string, candidateAbs: string): boolean {
+  const root = resolve(rootAbs);
+  const dir = resolve(candidateAbs);
+  const rel = relative(root, dir);
+  return rel === '' || !rel.startsWith('..');
+}
 
 function getPositiveIntEnv(name: string, fallback: number): number {
   const raw = process.env[name];
@@ -101,7 +115,7 @@ router.post('/optimise', async (req, res) => {
   try {
     const input = mergeProjectInput(req.body);
     const result = await optimiseBridgeDesign(input);
-    res.json({ success: true, ...result });
+    res.json({ ...result, success: true });
   } catch (error: any) {
     res.status(500).json({ success: false, error: error.message });
   }
@@ -485,12 +499,20 @@ router.post('/upload-excel', async (req, res) => {
   try {
     // Expect base64-encoded Excel file in body.file
     const fileBase64 = req.body.file;
-    if (!fileBase64) {
+    if (!fileBase64 || typeof fileBase64 !== 'string') {
       res.status(400).json({ success: false, error: 'No file provided (expected base64 in body.file)' });
+      return;
+    }
+    if (fileBase64.length > Math.ceil((MAX_UPLOAD_XLSX_BYTES * 4) / 3) + 16) {
+      res.status(413).json({ success: false, error: `File too large (max ${MAX_UPLOAD_XLSX_BYTES} bytes)` });
       return;
     }
     
     const buffer = Buffer.from(fileBase64, 'base64');
+    if (buffer.length === 0 || !isLikelyXlsxZip(buffer)) {
+      res.status(400).json({ success: false, error: 'Invalid XLSX file payload' });
+      return;
+    }
     const parsed = await parseExcelToProjectInput(buffer);
     const validation = validateParsedInput(parsed.input);
     
@@ -612,6 +634,28 @@ router.post('/validate', async (req, res) => {
       success: true,
       validation: validationReport
     });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+/**
+ * POST /api/design/checklist/html
+ * Generate IRC QA compliance checklist as a print-ready HTML document
+ */
+router.post('/checklist/html', async (req, res) => {
+  try {
+    const out = parseMergedProjectInput(req.body);
+    if (!out.ok) {
+      res.status(400).json({ success: false, error: 'Invalid request body', issues: out.issues });
+      return;
+    }
+    const input = out.input;
+    const designResults = calculateCompleteDesign(input);
+    const html = generateIrcChecklistHTML(input, designResults);
+    res.setHeader('Content-Type', 'text/html');
+    res.setHeader('Content-Disposition', `attachment; filename="${input.projectName.replace(/\s+/g, '_')}_IRC_Checklist.html"`);
+    res.send(html);
   } catch (error: any) {
     res.status(500).json({ success: false, error: error.message });
   }
@@ -801,11 +845,22 @@ router.get('/feature-flags', (_req, res) => {
  */
 router.get('/pier-cases/catalog', (req, res) => {
   try {
-    const root =
+    const defaultRoot = resolveDefaultPierAssetRoot();
+    const requestedRoot =
       typeof req.query.root === 'string' && req.query.root.trim().length > 0
         ? req.query.root.trim()
-        : resolveDefaultPierAssetRoot();
-    const catalog = buildPierCaseCatalog(root);
+        : defaultRoot;
+    const resolvedRoot = resolve(requestedRoot);
+    const resolvedDefaultRoot = resolve(defaultRoot);
+    const withinAllowedRoot = isDirectoryWithin(resolvedDefaultRoot, resolvedRoot);
+    if (!withinAllowedRoot) {
+      res.status(400).json({
+        success: false,
+        error: `root must be within configured asset root: ${resolvedDefaultRoot}`,
+      });
+      return;
+    }
+    const catalog = buildPierCaseCatalog(resolvedRoot);
     res.json({ success: true, catalog });
   } catch (error: any) {
     res.status(500).json({ success: false, error: error.message });

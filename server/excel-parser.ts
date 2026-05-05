@@ -7,6 +7,12 @@
 import ExcelJS from 'exceljs';
 import type { ProjectInput, CrossSectionPoint } from '../bridge-excel-generator/types';
 
+export const MAX_UPLOAD_XLSX_BYTES = 10 * 1024 * 1024; // 10 MB
+const MAX_WORKSHEETS_SCANNED = 80;
+const MAX_ROWS_SCANNED_PER_SHEET = 1000;
+const MAX_COLS_SCANNED_PER_ROW = 200;
+const MAX_METADATA_ENTRIES = 20000;
+
 interface ParsedExcelResult {
   input: Partial<ProjectInput>;
   metadata: {
@@ -16,10 +22,36 @@ interface ParsedExcelResult {
   };
 }
 
+export function isLikelyXlsxZip(buffer: Buffer): boolean {
+  if (buffer.length < 4) return false;
+  // ZIP signatures accepted by XLSX containers.
+  const sig0 = buffer[0];
+  const sig1 = buffer[1];
+  const sig2 = buffer[2];
+  const sig3 = buffer[3];
+  const isZip =
+    sig0 === 0x50 &&
+    sig1 === 0x4b &&
+    ((sig2 === 0x03 && sig3 === 0x04) ||
+      (sig2 === 0x05 && sig3 === 0x06) ||
+      (sig2 === 0x07 && sig3 === 0x08));
+  return isZip;
+}
+
 /**
  * Parse uploaded Excel file into ProjectInput
  */
 export async function parseExcelToProjectInput(buffer: Buffer): Promise<ParsedExcelResult> {
+  if (buffer.length === 0) {
+    throw new Error('Uploaded workbook is empty');
+  }
+  if (buffer.length > MAX_UPLOAD_XLSX_BYTES) {
+    throw new Error(`Uploaded workbook exceeds ${MAX_UPLOAD_XLSX_BYTES} byte limit`);
+  }
+  if (!isLikelyXlsxZip(buffer)) {
+    throw new Error('Uploaded file is not a valid XLSX container');
+  }
+
   const workbook = new ExcelJS.Workbook();
   await workbook.xlsx.load(buffer);
   
@@ -124,13 +156,20 @@ export async function parseExcelToProjectInput(buffer: Buffer): Promise<ParsedEx
   }
   
   // Collect all formulas and values for analysis
-  workbook.worksheets.forEach(ws => {
+  const worksheets = workbook.worksheets.slice(0, MAX_WORKSHEETS_SCANNED);
+  for (const ws of worksheets) {
+    let rowCounter = 0;
     ws.eachRow((row, rowNumber) => {
+      if (rowCounter >= MAX_ROWS_SCANNED_PER_SHEET) return;
+      rowCounter++;
+      let colCounter = 0;
       row.eachCell((cell, colNumber) => {
+        if (colCounter >= MAX_COLS_SCANNED_PER_ROW) return;
+        colCounter++;
         const colLetter = String.fromCharCode(64 + colNumber);
         const cellRef = `${colLetter}${rowNumber}`;
         
-        if (cell.formula) {
+        if (cell.formula && formulas.length < MAX_METADATA_ENTRIES) {
           formulas.push({
             sheet: ws.name,
             cell: cellRef,
@@ -138,7 +177,11 @@ export async function parseExcelToProjectInput(buffer: Buffer): Promise<ParsedEx
           });
         }
         
-        if (cell.value !== undefined && cell.value !== null) {
+        if (
+          cell.value !== undefined &&
+          cell.value !== null &&
+          values.length < MAX_METADATA_ENTRIES
+        ) {
           values.push({
             sheet: ws.name,
             cell: cellRef,
@@ -147,7 +190,7 @@ export async function parseExcelToProjectInput(buffer: Buffer): Promise<ParsedEx
         }
       });
     });
-  });
+  }
   
   return {
     input: result,

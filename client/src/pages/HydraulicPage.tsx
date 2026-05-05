@@ -1,4 +1,4 @@
-﻿import { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import {
   computeHydraulics,
   HydraulicInputs,
@@ -6,6 +6,7 @@ import {
   DEFAULT_HYDRAULIC,
 } from "@/report-engine/lib/hydraulicCalc";
 import HydraulicReport from "@/report-engine/components/HydraulicReport";
+import { AstraContextPanel } from "@/components/AstraContextPanel";
 
 export default function HydraulicPage() {
   const [inp, setInp] = useState<HydraulicInputs>(DEFAULT_HYDRAULIC);
@@ -29,7 +30,17 @@ export default function HydraulicPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 xl:grid-cols-[480px_1fr] gap-6 items-start">
+    <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+
+    {/* ── ASTRA Reference Banner ──────────────────────────────────────── */}
+    <AstraContextPanel
+      pageKey="hydraulics"
+      title="Hydraulic Calculations & Hydrology (IRC SP-13, IS:7784, Manning, Lacey)"
+      defaultOpen={false}
+      compact={true}
+    />
+
+    <div className="grid grid-cols-1 xl:grid-cols-[480px_1fr] gap-6 items-start">
       {/* â”€â”€ Input Panel â”€â”€ */}
       <form
         onSubmit={compute}
@@ -209,6 +220,7 @@ export default function HydraulicPage() {
           <EmptyState />
         )}
       </div>
+    </div>
     </div>
   );
 }
