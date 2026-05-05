@@ -2,6 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import cors from "cors";
 import pinoHttp from "pino-http";
 import apiRoutes from "./api-routes";
+import d4Routes from "./d4-routes";
 import logger from "./logger";
 
 export interface AppOptions {
@@ -66,6 +67,7 @@ export function createApp(options: AppOptions = {}) {
 
   // Mount API routes
   app.use('/api/design', apiRoutes);
+  app.use('/api', d4Routes);
 
   // Global error handler
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
