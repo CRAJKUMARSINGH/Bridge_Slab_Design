@@ -33,7 +33,8 @@
     "assets:ingest": "python scripts/ingest_bridge_documents.py --folder Attached_Assets",
     "research": "tsx ETERNAL_RESEARCH_CHILD/research_daemon.ts",
     "research:once": "tsx ETERNAL_RESEARCH_CHILD/research_daemon.ts --once",
-    "research:demo": "cross-env RESEARCH_FORCE_REL=\"0 commands only/assets directory.txt\" tsx ETERNAL_RESEARCH_CHILD/research_daemon.ts --once"
+    "research:demo": "cross-env RESEARCH_FORCE_REL=\"0 commands only/assets directory.txt\" tsx ETERNAL_RESEARCH_CHILD/research_daemon.ts --once",
+    "generate:api": "orval --config orval.config.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -138,6 +139,7 @@
     "cross-env": "^10.1.0",
     "drizzle-kit": "^0.31.10",
     "esbuild": "^0.25.0",
+    "orval": "^7.3.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.20.5",

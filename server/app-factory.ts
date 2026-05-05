@@ -1,6 +1,8 @@
 import express, { type Request, Response, NextFunction } from "express";
 import cors from "cors";
 import pinoHttp from "pino-http";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import apiRoutes from "./api-routes";
 import d4Routes from "./d4-routes";
 import logger from "./logger";
@@ -68,6 +70,17 @@ export function createApp(options: AppOptions = {}) {
   // Mount API routes
   app.use('/api/design', apiRoutes);
   app.use('/api', d4Routes);
+
+  // Serve OpenAPI 3.1 spec — Requirement 8.4
+  app.get('/api/openapi.yaml', (_req, res) => {
+    try {
+      const yaml = readFileSync(join(process.cwd(), 'openapi', 'bridge-suite.yaml'), 'utf-8');
+      res.setHeader('Content-Type', 'application/yaml');
+      res.send(yaml);
+    } catch {
+      res.status(404).json({ success: false, error: 'OpenAPI spec not found' });
+    }
+  });
 
   // Global error handler
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {

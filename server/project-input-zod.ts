@@ -66,6 +66,12 @@ export const projectInputBodySchema = z
     concreteGradeAbutment: z.string().max(50).optional(),
     concreteGradeDeck: z.string().max(50).optional(),
     concreteGradeWearing: z.string().max(50).optional(),
+    /**
+     * Optional project ID — when supplied, a successful design run is
+     * automatically saved as an Analysis Record (fire-and-forget).
+     * Requirement 12.1 / 12.2.
+     */
+    projectId: z.number().int().positive().optional(),
   })
   .strip();
 

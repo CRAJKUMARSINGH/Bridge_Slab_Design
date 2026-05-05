@@ -41,8 +41,35 @@ import { buildPierCaseCatalog, resolveDefaultPierAssetRoot } from './pier-case-e
 import { PIER_MASTER_SCHEMA, recommendPierType, type PierMasterVariables } from './pier-recommendation-engine';
 import { generatePierPayload } from './pier-template-mapper';
 import { optimiseBridgeDesign } from './optimisation-engine';
+import logger from './logger';
+import { db } from '../shared/db';
+import { analysisRecords } from '../shared/schema';
 
 const router = Router();
+
+/**
+ * Fire-and-forget helper: saves a design run as an Analysis Record.
+ * Never throws — errors are logged but never propagate to the client.
+ * Requirement 12.1, 12.3.
+ */
+async function saveAnalysisRecord(
+  projectId: number,
+  input: ProjectInput,
+  resultsSummary: unknown,
+): Promise<void> {
+  try {
+    if (!db) return; // DATABASE_URL not set — silently skip
+    await db.insert(analysisRecords).values({
+      projectId,
+      fileId: null,
+      variationType: 'design-run',
+      inputSnapshot: input as unknown as Record<string, unknown>,
+      resultsSummary: resultsSummary as Record<string, unknown> | null,
+    });
+  } catch (err) {
+    logger.error({ err }, 'auto-save analysis record failed');
+  }
+}
 
 /** Reject pier catalog roots outside the resolved default asset tree (no arbitrary drive traversal). */
 function isDirectoryWithin(rootAbs: string, candidateAbs: string): boolean {
@@ -157,6 +184,13 @@ router.post('/calculate', async (req, res) => {
     );
     
     res.send(buffer);
+
+    // Fire-and-forget auto-save — Requirement 12.1 / 12.2
+    const projectId = typeof parsed.data.projectId === 'number' ? parsed.data.projectId : null;
+    if (projectId) {
+      const summary = calculateCompleteDesign(input);
+      void saveAnalysisRecord(projectId, input, summary).catch(() => { /* already logged inside */ });
+    }
   } catch (error: any) {
     console.error('❌ Calculation error:', error);
     res.status(500).json({
@@ -216,6 +250,13 @@ router.post('/results', async (req, res) => {
     const input = out.input;
     const results = calculateCompleteDesign(input);
     res.json({ success: true, results });
+
+    // Fire-and-forget auto-save — Requirement 12.4
+    const rawBody = req.body && typeof req.body === 'object' ? req.body : {};
+    const projectId = typeof (rawBody as any).projectId === 'number' ? (rawBody as any).projectId : null;
+    if (projectId) {
+      void saveAnalysisRecord(projectId, input, results).catch(() => { /* already logged inside */ });
+    }
   } catch (error: any) {
     res.status(500).json({ success: false, error: error.message });
   }

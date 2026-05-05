@@ -1,0 +1,830 @@
+openapi: 3.1.0
+info:
+  title: Bridge Design Suite API
+  version: 1.0.0
+  description: >
+    REST API for the Bridge Design Suite — project management, file record
+    tracking, analysis/design-variation records, multi-file comparisons, and
+    stats dashboard. All new endpoints are under /api/projects, /api/files,
+    /api/records, /api/comparisons, and /api/stats.
+
+servers:
+  - url: /api
+    description: Local server
+
+paths:
+  # ── Projects ──────────────────────────────────────────────────────────────
+  /projects:
+    get:
+      operationId: listProjects
+      summary: List all projects
+      tags: [Projects]
+      responses:
+        '200':
+          description: Array of projects ordered by createdAt DESC
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    post:
+      operationId: createProject
+      summary: Create a new project
+      tags: [Projects]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectInput'
+      responses:
+        '201':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+  /projects/{id}:
+    parameters:
+      - $ref: '#/components/parameters/IdParam'
+    get:
+      operationId: getProject
+      summary: Get a project by ID
+      tags: [Projects]
+      responses:
+        '200':
+          description: Project found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    patch:
+      operationId: updateProject
+      summary: Partially update a project
+      tags: [Projects]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectInput'
+      responses:
+        '200':
+          description: Project updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    delete:
+      operationId: deleteProject
+      summary: Delete a project (cascades to files and records)
+      tags: [Projects]
+      responses:
+        '204':
+          description: Project deleted
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+  # ── File Records ──────────────────────────────────────────────────────────
+  /files:
+    get:
+      operationId: listFileRecords
+      summary: List file records
+      tags: [Files]
+      parameters:
+        - name: projectId
+          in: query
+          schema:
+            type: integer
+          description: Filter by project ID
+        - name: fileType
+          in: query
+          schema:
+            type: string
+          description: Filter by file type
+      responses:
+        '200':
+          description: Array of file records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FileRecord'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    post:
+      operationId: createFileRecord
+      summary: Create a file record
+      tags: [Files]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFileRecordInput'
+      responses:
+        '201':
+          description: File record created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileRecord'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+  /files/{id}:
+    parameters:
+      - $ref: '#/components/parameters/IdParam'
+    get:
+      operationId: getFileRecord
+      summary: Get a file record by ID
+      tags: [Files]
+      responses:
+        '200':
+          description: File record found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileRecord'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    patch:
+      operationId: updateFileRecord
+      summary: Partially update a file record
+      tags: [Files]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFileRecordInput'
+      responses:
+        '200':
+          description: File record updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileRecord'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    delete:
+      operationId: deleteFileRecord
+      summary: Delete a file record
+      tags: [Files]
+      responses:
+        '204':
+          description: File record deleted
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+  /files/{id}/similar:
+    parameters:
+      - $ref: '#/components/parameters/IdParam'
+    get:
+      operationId: getSimilarFiles
+      summary: Find structurally similar file records
+      tags: [Files]
+      responses:
+        '200':
+          description: Array of similar file records (may be empty)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FileRecord'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+  # ── Analysis Records ──────────────────────────────────────────────────────
+  /records:
+    get:
+      operationId: listRecords
+      summary: List analysis records
+      tags: [Records]
+      parameters:
+        - name: projectId
+          in: query
+          schema:
+            type: integer
+          description: Filter by project ID
+        - name: fileId
+          in: query
+          schema:
+            type: integer
+          description: Filter by file ID
+      responses:
+        '200':
+          description: Array of analysis records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AnalysisRecord'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    post:
+      operationId: createRecord
+      summary: Create an analysis record
+      tags: [Records]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRecordInput'
+      responses:
+        '201':
+          description: Analysis record created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalysisRecord'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+  /records/variations:
+    get:
+      operationId: getVariations
+      summary: Get analysis records grouped by variation type
+      tags: [Records]
+      responses:
+        '200':
+          description: Records grouped by variationType
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    variationType:
+                      type: string
+                    count:
+                      type: integer
+                    examples:
+                      type: array
+                      items: {}
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+  /records/{id}:
+    parameters:
+      - $ref: '#/components/parameters/IdParam'
+    get:
+      operationId: getRecord
+      summary: Get an analysis record by ID
+      tags: [Records]
+      responses:
+        '200':
+          description: Analysis record found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalysisRecord'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    patch:
+      operationId: updateRecord
+      summary: Partially update an analysis record
+      tags: [Records]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRecordInput'
+      responses:
+        '200':
+          description: Analysis record updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalysisRecord'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    delete:
+      operationId: deleteRecord
+      summary: Delete an analysis record
+      tags: [Records]
+      responses:
+        '204':
+          description: Analysis record deleted
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+  # ── Comparisons ───────────────────────────────────────────────────────────
+  /comparisons:
+    get:
+      operationId: listComparisons
+      summary: List all comparisons
+      tags: [Comparisons]
+      responses:
+        '200':
+          description: Array of comparisons
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comparison'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    post:
+      operationId: createComparison
+      summary: Create a comparison (requires ≥2 file IDs)
+      tags: [Comparisons]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateComparisonInput'
+      responses:
+        '201':
+          description: Comparison created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comparison'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+  /comparisons/{id}:
+    parameters:
+      - $ref: '#/components/parameters/IdParam'
+    get:
+      operationId: getComparison
+      summary: Get a comparison by ID
+      tags: [Comparisons]
+      responses:
+        '200':
+          description: Comparison found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comparison'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    delete:
+      operationId: deleteComparison
+      summary: Delete a comparison
+      tags: [Comparisons]
+      responses:
+        '204':
+          description: Comparison deleted
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+  # ── Stats ─────────────────────────────────────────────────────────────────
+  /stats/summary:
+    get:
+      operationId: getStatsSummary
+      summary: Get aggregate stats and recent files
+      tags: [Stats]
+      responses:
+        '200':
+          description: Stats summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatsSummary'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+
+components:
+  parameters:
+    IdParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+      description: Integer resource ID
+
+  responses:
+    BadRequest:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    UnprocessableEntity:
+      description: Foreign key or business rule violation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ServiceUnavailable:
+      description: Database not configured (DATABASE_URL not set)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+  schemas:
+    ErrorResponse:
+      type: object
+      required: [success, error]
+      properties:
+        success:
+          type: boolean
+          enum: [false]
+        error:
+          type: string
+
+    Project:
+      type: object
+      required: [id, name, createdAt, updatedAt]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        bridgeType:
+          type: string
+          nullable: true
+        location:
+          type: string
+          nullable: true
+        status:
+          type: string
+        fileCount:
+          type: integer
+        recordCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    CreateProjectInput:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+          minLength: 1
+        description:
+          type: string
+          nullable: true
+        bridgeType:
+          type: string
+          nullable: true
+        location:
+          type: string
+          nullable: true
+        status:
+          type: string
+
+    UpdateProjectInput:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        description:
+          type: string
+          nullable: true
+        bridgeType:
+          type: string
+          nullable: true
+        location:
+          type: string
+          nullable: true
+        status:
+          type: string
+
+    FileRecord:
+      type: object
+      required: [id, fileName, fileType, createdAt, updatedAt]
+      properties:
+        id:
+          type: integer
+        projectId:
+          type: integer
+          nullable: true
+        fileName:
+          type: string
+        fileType:
+          type: string
+        fileSizeKb:
+          type: number
+          nullable: true
+        bridgeType:
+          type: string
+          nullable: true
+        spanLength:
+          type: number
+          nullable: true
+        width:
+          type: number
+          nullable: true
+        height:
+          type: number
+          nullable: true
+        material:
+          type: string
+          nullable: true
+        loadCapacity:
+          type: number
+          nullable: true
+        designCode:
+          type: string
+          nullable: true
+        layers:
+          type: string
+          nullable: true
+        analysisStatus:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    CreateFileRecordInput:
+      type: object
+      required: [fileName, fileType, analysisStatus]
+      properties:
+        projectId:
+          type: integer
+          nullable: true
+        fileName:
+          type: string
+          minLength: 1
+        fileType:
+          type: string
+          minLength: 1
+        bridgeType:
+          type: string
+          nullable: true
+        spanLength:
+          type: number
+          nullable: true
+        width:
+          type: number
+          nullable: true
+        height:
+          type: number
+          nullable: true
+        material:
+          type: string
+          nullable: true
+        loadCapacity:
+          type: number
+          nullable: true
+        designCode:
+          type: string
+          nullable: true
+        analysisStatus:
+          type: string
+          minLength: 1
+
+    UpdateFileRecordInput:
+      type: object
+      properties:
+        projectId:
+          type: integer
+          nullable: true
+        fileName:
+          type: string
+        fileType:
+          type: string
+        bridgeType:
+          type: string
+          nullable: true
+        spanLength:
+          type: number
+          nullable: true
+        width:
+          type: number
+          nullable: true
+        material:
+          type: string
+          nullable: true
+        designCode:
+          type: string
+          nullable: true
+        analysisStatus:
+          type: string
+
+    AnalysisRecord:
+      type: object
+      required: [id, variationType, createdAt, updatedAt]
+      properties:
+        id:
+          type: integer
+        projectId:
+          type: integer
+          nullable: true
+        fileId:
+          type: integer
+          nullable: true
+        title:
+          type: string
+        variationType:
+          type: string
+        description:
+          type: string
+          nullable: true
+        parameters:
+          type: string
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        isFavorite:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    CreateRecordInput:
+      type: object
+      required: [title, variationType, isFavorite]
+      properties:
+        projectId:
+          type: integer
+          nullable: true
+        fileId:
+          type: integer
+          nullable: true
+        title:
+          type: string
+          minLength: 1
+        variationType:
+          type: string
+          minLength: 1
+        description:
+          type: string
+          nullable: true
+        parameters:
+          type: string
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        isFavorite:
+          type: boolean
+
+    UpdateRecordInput:
+      type: object
+      properties:
+        title:
+          type: string
+        variationType:
+          type: string
+        description:
+          type: string
+          nullable: true
+        parameters:
+          type: string
+          nullable: true
+        isFavorite:
+          type: boolean
+
+    Comparison:
+      type: object
+      required: [id, title, fileIds, createdAt, updatedAt]
+      properties:
+        id:
+          type: integer
+        projectId:
+          type: integer
+          nullable: true
+        title:
+          type: string
+        fileIds:
+          type: string
+          description: JSON-encoded array of file record IDs
+        differencesSummary:
+          type: string
+          nullable: true
+        similaritiesSummary:
+          type: string
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    CreateComparisonInput:
+      type: object
+      required: [title, fileIds]
+      properties:
+        projectId:
+          type: integer
+          nullable: true
+        title:
+          type: string
+          minLength: 1
+        fileIds:
+          type: string
+          description: JSON-encoded array of at least 2 file record IDs
+          minLength: 1
+        notes:
+          type: string
+          nullable: true
+
+    StatsSummary:
+      type: object
+      required: [totalProjects, totalFiles, totalRecords, totalComparisons, recentFiles]
+      properties:
+        totalProjects:
+          type: integer
+        totalFiles:
+          type: integer
+        totalRecords:
+          type: integer
+        totalComparisons:
+          type: integer
+        filesByType:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              count:
+                type: integer
+        recordsByVariationType:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              count:
+                type: integer
+        recentFiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileRecord'

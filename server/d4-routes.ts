@@ -494,6 +494,29 @@ router.post("/records", async (req, res, next) => {
   }
 });
 
+router.get("/records/variations", async (_req, res, next) => {
+  try {
+    const db = requireDb();
+    const rows = await db
+      .select({
+        variationType: analysisRecords.variationType,
+        count: sql<number>`count(*)`,
+      })
+      .from(analysisRecords)
+      .groupBy(analysisRecords.variationType)
+      .orderBy(desc(sql`count(*)`));
+    res.json(
+      rows.map((row) => ({
+        variationType: row.variationType,
+        count: row.count,
+        examples: [],
+      })),
+    );
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get("/records/:id", async (req, res, next) => {
   try {
     const id = parseIdOrBad(req, res);
@@ -550,29 +573,6 @@ router.delete("/records/:id", async (req, res, next) => {
     const db = requireDb();
     await db.delete(analysisRecords).where(eq(analysisRecords.id, id));
     res.status(204).send();
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.get("/records/variations", async (_req, res, next) => {
-  try {
-    const db = requireDb();
-    const rows = await db
-      .select({
-        variationType: analysisRecords.variationType,
-        count: sql<number>`count(*)`,
-      })
-      .from(analysisRecords)
-      .groupBy(analysisRecords.variationType)
-      .orderBy(desc(sql`count(*)`));
-    res.json(
-      rows.map((row) => ({
-        variationType: row.variationType,
-        count: row.count,
-        examples: [],
-      })),
-    );
   } catch (err) {
     next(err);
   }

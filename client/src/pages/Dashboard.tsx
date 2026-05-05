@@ -9,10 +9,12 @@
  */
 import { useMemo } from 'react';
 import { Link } from 'wouter';
+import { useQuery } from '@tanstack/react-query';
 import { useModelStore } from '@/stores/useModelStore';
 import { useDesignStore } from '@/stores/useDesignStore';
 import { ModelSwitcher } from '@/components/ModelSwitcher';
 import { SHEETS, CATEGORIES, sheetsByCategory } from '@/lib/sheet-definitions';
+import { apiClient } from '@/lib/api-client';
 import {
   CheckCircle2,
   XCircle,
@@ -32,9 +34,37 @@ import {
   FlaskConical,
   Zap,
   ExternalLink,
+  Database,
+  FolderKanban,
+  FileText,
+  GitCompare,
 } from 'lucide-react';
 
 type Status = 'OK' | 'FAIL' | 'WARN' | 'INFO';
+
+// ── Stats types ───────────────────────────────────────────────────────────────
+type StatsSummary = {
+  totalProjects: number;
+  totalFiles: number;
+  totalRecords: number;
+  totalComparisons: number;
+  recentFiles: Array<{
+    id: number;
+    fileName: string;
+    fileType: string;
+    projectId: number | null;
+    createdAt: string;
+  }>;
+};
+
+function useStatsSummary() {
+  return useQuery<StatsSummary>({
+    queryKey: ['stats', 'summary'],
+    queryFn: () => apiClient<StatsSummary>({ url: '/api/stats/summary', method: 'GET' }),
+    retry: false,
+    staleTime: 30_000,
+  });
+}
 
 function StatusBadge({ status }: { status: Status }) {
   const config: Record<Status, { bg: string; text: string; icon: typeof CheckCircle2 }> = {
@@ -133,6 +163,9 @@ export default function Dashboard() {
   const stabilitySafe = stabilityCases.filter((c) => c.status === 'SAFE').length;
   const engineReady = !!results;
 
+  // Live stats from DB — Requirement 11
+  const { data: stats, isError: statsError } = useStatsSummary();
+
   return (
     <div className="relative min-h-screen p-6 space-y-6 overflow-hidden">
       {/* 2025 Hero Glow Backgrounds */}
@@ -162,8 +195,46 @@ export default function Dashboard() {
         <MetricCard icon={Building2} label="Active Model" value={activeModel === 'model-a' ? 'A' : 'B'} status="INFO" />
         <MetricCard icon={Ruler} label="Hydraulic Q" value={results?.hydraulics?.discharge?.toFixed(1) ?? '--'} />
         <MetricCard icon={TrendingUp} label="Engine Status" value={engineReady ? 'Ready' : 'No Run Yet'} status={engineReady ? 'OK' : 'WARN'} />
-        <MetricCard icon={PencilRuler} label="Drawings" value="3 Ready" status="OK" />
+        {/* Live DB stats — Requirement 11 */}
+        <MetricCard icon={FolderKanban} label="Projects" value={stats ? String(stats.totalProjects) : '--'} status="INFO" />
+        <MetricCard icon={PencilRuler} label="Drawings" value={stats ? String(stats.totalFiles) : '--'} status={stats && stats.totalFiles > 0 ? 'OK' : 'INFO'} />
+        <MetricCard icon={FileText} label="Records" value={stats ? String(stats.totalRecords) : '--'} />
+        <MetricCard icon={GitCompare} label="Comparisons" value={stats ? String(stats.totalComparisons) : '--'} />
       </div>
+
+      {/* DB stats warning banner — Requirement 11.3 */}
+      {statsError && (
+        <div className="flex items-center gap-2 rounded-xl border border-amber-500/30 bg-amber-500/8 px-4 py-2.5 text-amber-400 text-xs">
+          <Database size={14} className="shrink-0" />
+          Live stats unavailable — database may be offline.
+        </div>
+      )}
+
+      {/* Recent Outputs — Requirement 11.4 */}
+      {stats && stats.recentFiles.length > 0 && (
+        <div className="rounded-xl border border-[var(--app-glass-border)] bg-[var(--app-glass-bg)] backdrop-blur-md overflow-hidden">
+          <div className="flex items-center gap-2 px-4 py-3 border-b border-[var(--app-glass-border)]">
+            <FileText size={14} className="text-app-accent" />
+            <h3 className="text-xs font-bold text-app-fg uppercase tracking-wider">Recent Outputs</h3>
+            <span className="ml-auto text-[10px] text-app-muted">last {stats.recentFiles.length} files</span>
+          </div>
+          <div className="divide-y divide-[var(--app-glass-border)]">
+            {stats.recentFiles.map(f => (
+              <div key={f.id} className="flex items-center justify-between px-4 py-2 hover:bg-app-accent/5 transition-colors">
+                <div>
+                  <div className="text-xs font-medium text-app-fg">{f.fileName}</div>
+                  <div className="text-[10px] text-app-muted">
+                    {new Date(f.createdAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
+                  </div>
+                </div>
+                <span className="rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide bg-app-accent/10 text-app-accent border border-app-accent/20">
+                  {f.fileType}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Model Info Banner */}
       <div className="rounded-xl bg-gradient-to-r from-orchid/10 to-royalblue/10 border border-orchid/30 p-4 shadow-[0_0_20px_rgba(139,92,246,0.1)] relative overflow-hidden">

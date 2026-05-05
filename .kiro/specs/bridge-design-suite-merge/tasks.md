@@ -53,7 +53,7 @@ Express 4, or Zod 3.
     `Object.assign(new Error('Database not configured'), { status: 503 })`
   - _Requirements: 13.2_
 
-- [-] 3. Create server/db-guard.ts — 503 middleware
+- [x] 3. Create server/db-guard.ts — 503 middleware
   - Create `server/db-guard.ts`
   - Import `db` from `../shared/db`
   - Export `dbGuard` Express middleware: if `db` is null, respond with HTTP 503
@@ -61,7 +61,7 @@ Express 4, or Zod 3.
     `next()`
   - _Requirements: 13.2_
 
-- [~] 4. Create server/project-routes.ts — Projects CRUD
+- [x] 4. Create server/project-routes.ts — Projects CRUD
   - Create `server/project-routes.ts` with an Express `Router`
   - Apply `dbGuard` as the first middleware on the router
   - `POST /` — validate body with `insertProjectSchema`, insert into `projects`, return 201
@@ -74,7 +74,7 @@ Express 4, or Zod 3.
   - All error responses use `{ success: false, error: string }` shape
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8_
 
-- [~] 5. Create server/file-routes.ts — File Records CRUD + similar search
+- [x] 5. Create server/file-routes.ts — File Records CRUD + similar search
   - Create `server/file-routes.ts` with an Express `Router`
   - Apply `dbGuard` as the first middleware on the router
   - `POST /` — validate body with `insertFileRecordSchema`; validate `fileType` is one of
@@ -91,7 +91,7 @@ Express 4, or Zod 3.
   - `DELETE /:id` — delete, return 204
   - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4.1, 4.2, 4.3, 4.4, 4.5_
 
-- [~] 6. Create server/record-routes.ts — Analysis Records CRUD + variations grouping
+- [x] 6. Create server/record-routes.ts — Analysis Records CRUD + variations grouping
   - Create `server/record-routes.ts` with an Express `Router`
   - Apply `dbGuard` as the first middleware on the router
   - `POST /` — validate body with `insertAnalysisSchema`; require `inputSnapshot` (400 if
@@ -106,7 +106,7 @@ Express 4, or Zod 3.
   - `DELETE /:id` — delete, return 204
   - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 5.10_
 
-- [~] 7. Create server/comparison-routes.ts — Comparisons CRUD
+- [x] 7. Create server/comparison-routes.ts — Comparisons CRUD
   - Create `server/comparison-routes.ts` with an Express `Router`
   - Apply `dbGuard` as the first middleware on the router
   - `POST /` — validate body with `insertComparisonSchema`; additionally validate that
@@ -117,7 +117,7 @@ Express 4, or Zod 3.
   - `DELETE /:id` — delete, return 204
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7_
 
-- [~] 8. Create server/stats-routes.ts — Stats summary endpoint
+- [x] 8. Create server/stats-routes.ts — Stats summary endpoint
   - Create `server/stats-routes.ts` with an Express `Router`
   - Apply `dbGuard` as the first middleware on the router
   - `GET /summary` — issue five queries concurrently via `Promise.all`:
@@ -128,7 +128,7 @@ Express 4, or Zod 3.
     recentFiles }`; all counts default to 0 when tables are empty
   - _Requirements: 7.1, 7.2, 7.3_
 
-- [~] 9. Modify server/app-factory.ts — mount new routers and serve OpenAPI YAML
+- [x] 9. Modify server/app-factory.ts — mount new routers and serve OpenAPI YAML
   - Import `projectRoutes`, `fileRoutes`, `recordRoutes`, `comparisonRoutes`,
     `statsRoutes` from their respective route files
   - Import `readFileSync` from `node:fs` and `join` from `node:path`
@@ -144,7 +144,7 @@ Express 4, or Zod 3.
   - Keep all existing mounts and middleware unchanged
   - _Requirements: 8.4, 13.1_
 
-- [~] 10. Modify server/api-routes.ts — add optional projectId and fire-and-forget auto-save
+- [x] 10. Modify server/api-routes.ts — add optional projectId and fire-and-forget auto-save
   - Add `projectId: z.number().int().optional()` to `projectInputBodySchema` in
     `server/project-input-zod.ts` (or inline in `api-routes.ts` if schema is defined there)
   - Write a `saveAnalysisRecord(projectId: number, input: ProjectInput, summary: unknown)`
@@ -158,7 +158,7 @@ Express 4, or Zod 3.
   - Ensure the response is never delayed or blocked by the auto-save path
   - _Requirements: 12.1, 12.2, 12.3, 12.4_
 
-- [~] 11. Create openapi/bridge-suite.yaml — OpenAPI 3.1 specification
+- [x] 11. Create openapi/bridge-suite.yaml — OpenAPI 3.1 specification
   - Create `openapi/` directory and `openapi/bridge-suite.yaml`
   - Set `openapi: 3.1.0`, `info.title: Bridge Design Suite API`, `info.version: 1.0.0`
   - Define paths for all new endpoints:
@@ -179,7 +179,7 @@ Express 4, or Zod 3.
   - Document 400, 404, 422, 503 error responses referencing `ErrorResponse` schema
   - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5_
 
-- [~] 12. Add Orval codegen configuration and generate:api script
+- [x] 12. Add Orval codegen configuration and generate:api script
   - Install `orval` as a devDependency: `npm install --save-dev orval`
   - Create `orval.config.ts` at the workspace root:
     - Input: `./openapi/bridge-suite.yaml`
@@ -200,13 +200,13 @@ Express 4, or Zod 3.
   - Verify generated files carry `// @ts-nocheck` header
   - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5_
 
-- [~] 13. Checkpoint — verify TypeScript compilation and existing tests pass
+- [x] 13. Checkpoint — verify TypeScript compilation and existing tests pass
   - Run `npm run check` and fix any TypeScript errors introduced by steps 1–12
   - Run `npm run test` and confirm all pre-existing Vitest suites pass without modification
   - Ensure all new server files compile cleanly under strict mode
   - _Requirements: 13.4, 13.5_
 
-- [~] 14. Modify client/src/pages/Projects.tsx — add live CRUD section above template library
+- [x] 14. Modify client/src/pages/Projects.tsx — add live CRUD section above template library
   - [ ] 14.1 Add project list and create-project UI above the existing IRC template library
     - Import `useListProjects`, `useCreateProject`, `useDeleteProject` from the generated
       API hooks in `client/src/generated/api/`
@@ -236,7 +236,7 @@ Express 4, or Zod 3.
       section) completely unchanged
     - _Requirements: 10.4, 10.5, 10.6, 10.7_
 
-- [~] 15. Modify client/src/pages/Dashboard.tsx — replace hard-coded metrics with live stats
+- [x] 15. Modify client/src/pages/Dashboard.tsx — replace hard-coded metrics with live stats
   - Import `useGetStatsSummary` from the generated API hooks
   - Call `const { data: stats, isError } = useGetStatsSummary()` at the top of the
     `Dashboard` component
@@ -255,7 +255,7 @@ Express 4, or Zod 3.
   - When stats are loading, show `"--"` in all affected metric cards
   - _Requirements: 11.1, 11.2, 11.3, 11.4_
 
-- [~] 16. Checkpoint — verify TypeScript compilation and full test suite
+- [x] 16. Checkpoint — verify TypeScript compilation and full test suite
   - Run `npm run check` and fix any TypeScript errors in client pages or generated files
   - Run `npm run test` and confirm all tests pass
   - _Requirements: 13.4, 13.5_
