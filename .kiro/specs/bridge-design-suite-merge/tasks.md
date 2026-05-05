@@ -260,8 +260,8 @@ Express 4, or Zod 3.
   - Run `npm run test` and confirm all tests pass
   - _Requirements: 13.4, 13.5_
 
-- [~] 17. Write property-based tests encoding correctness properties P1–P6
-  - [ ] 17.1 Write property test for JSON round-trip integrity (P1)
+- [x] 17. Write property-based tests encoding correctness properties P1–P6
+  - [x] 17.1 Write property test for JSON round-trip integrity (P1)
     - Create `server/__tests__/pbt-round-trip.test.ts`
     - Use `vitest` + `fast-check` (add `fast-check` as a devDependency if not present)
     - Generate arbitrary `ProjectInput`-shaped objects using `fc.record(...)` with
@@ -272,7 +272,7 @@ Express 4, or Zod 3.
     - **Property P1: JSON Round-Trip Integrity**
     - **Validates: Requirements 14.2, 14.3**
 
-  - [ ] 17.2 Write property test for similarity symmetry (P2)
+  - [x] 17.2 Write property test for similarity symmetry (P2)
     - Create `server/__tests__/pbt-similarity.test.ts`
     - Extract the `isSimilar(a, b)` comparison logic from `file-routes.ts` into a
       pure helper function `isSimilar` exported from `server/similarity.ts`
@@ -281,7 +281,7 @@ Express 4, or Zod 3.
     - **Property P2: Similarity Symmetry**
     - **Validates: Requirements 4.1, 4.2**
 
-  - [ ] 17.3 Write property test for stats consistency (P3)
+  - [x] 17.3 Write property test for stats consistency (P3)
     - Create `server/__tests__/pbt-stats.test.ts`
     - Mock the Drizzle `db` object with an in-memory store using `vitest` mocks
     - For arbitrary arrays of file records (length 0–20), assert that
@@ -292,7 +292,7 @@ Express 4, or Zod 3.
     - **Property P3: Stats Consistency**
     - **Validates: Requirements 7.1, 7.2**
 
-  - [ ] 17.4 Write property test for comparison minimum size (P4)
+  - [x] 17.4 Write property test for comparison minimum size (P4)
     - Create `server/__tests__/pbt-comparison-min.test.ts`
     - Use `fc.array(fc.integer(), { maxLength: 1 })` to generate `fileIds` arrays with
       0 or 1 entries
@@ -302,7 +302,7 @@ Express 4, or Zod 3.
     - **Property P4: Comparison Minimum Size**
     - **Validates: Requirements 6.2, 6.3**
 
-  - [ ] 17.5 Write property test for cascade delete (P5)
+  - [x] 17.5 Write property test for cascade delete (P5)
     - Create `server/__tests__/pbt-cascade-delete.test.ts`
     - Mock the Drizzle `db` object with an in-memory store
     - For arbitrary project + file records + analysis records, simulate a project delete
@@ -311,7 +311,7 @@ Express 4, or Zod 3.
     - **Property P5: Cascade Delete**
     - **Validates: Requirements 2.7, 1.5**
 
-  - [ ] 17.6 Write property test for DATABASE_URL absent guard (P6)
+  - [x] 17.6 Write property test for DATABASE_URL absent guard (P6)
     - Create `server/__tests__/pbt-db-guard.test.ts`
     - Use `fc.constantFrom('/api/projects', '/api/files', '/api/records', '/api/comparisons', '/api/stats/summary')` to generate route paths
     - For each path, call the route handler with `db = null` (simulate absent
@@ -320,7 +320,7 @@ Express 4, or Zod 3.
     - **Property P6: DATABASE_URL Absent Guard**
     - **Validates: Requirements 13.2_**
 
-- [~] 18. Final checkpoint — full quality gate
+- [x] 18. Final checkpoint — full quality gate
   - Run `npm run check` — zero TypeScript errors expected
   - Run `npm run test` — all tests (pre-existing + new PBT) must pass
   - Verify `GET /api/openapi.yaml` returns the YAML file with `Content-Type: application/yaml`

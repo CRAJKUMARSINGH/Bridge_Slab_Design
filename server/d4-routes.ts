@@ -3,6 +3,7 @@ import { and, desc, eq, sql } from "drizzle-orm";
 import { z } from "zod";
 import { dbGuard } from "./db-guard";
 import { requireDb } from "../shared/db";
+import { isSimilar } from "./similarity";
 import {
   analysisRecords,
   comparisons,
@@ -435,6 +436,7 @@ router.get("/files/:id/similar", async (req, res, next) => {
     const db = requireDb();
     const [base] = await db.select().from(fileRecords).where(eq(fileRecords.id, id)).limit(1);
     if (!base) return res.status(404).json({ error: "File record not found" });
+    // Coarse DB filter: same bridgeType and fileType, exclude self
     const rows = await db
       .select()
       .from(fileRecords)
@@ -446,8 +448,10 @@ router.get("/files/:id/similar", async (req, res, next) => {
         ),
       )
       .orderBy(desc(fileRecords.id))
-      .limit(20);
-    res.json(rows.map(mapFileRow));
+      .limit(100);
+    // Fine filter: apply ±20% numeric similarity (Requirement 4.2)
+    const similar = rows.filter(r => isSimilar(base, r));
+    res.json(similar.map(mapFileRow));
   } catch (err) {
     next(err);
   }
