@@ -34,7 +34,9 @@
     "research": "tsx ETERNAL_RESEARCH_CHILD/research_daemon.ts",
     "research:once": "tsx ETERNAL_RESEARCH_CHILD/research_daemon.ts --once",
     "research:demo": "cross-env RESEARCH_FORCE_REL=\"0 commands only/assets directory.txt\" tsx ETERNAL_RESEARCH_CHILD/research_daemon.ts --once",
-    "generate:api": "orval --config orval.config.ts"
+    "generate:api": "orval --config orval.config.ts",
+    "build:vercel": "vite build --config vite.config.prod.ts && esbuild api/index.ts --platform=node --packages=external --bundle --format=esm --outfile=api/index.js --external:sharp --external:@neondatabase/serverless",
+    "build:netlify": "vite build --config vite.config.prod.ts && esbuild netlify/functions/api.ts --platform=node --packages=external --bundle --format=cjs --outfile=netlify/functions/api.js --external:sharp --external:@neondatabase/serverless"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -104,6 +106,7 @@
     "react-resizable-panels": "^2.1.9",
     "readable-stream": "^4.7.0",
     "recharts": "^2.15.4",
+    "serverless-http": "^3.2.0",
     "sharp": "^0.34.5",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",

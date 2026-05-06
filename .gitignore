@@ -15,3 +15,10 @@ research_assets/drawings_from_rajkumar_designs/CHITORGARH PWD/
 research_assets/drawings_from_rajkumar_designs/
 TEST_CURRENT_OUTPUT.xlsx
 git-repos/
+
+# Deployment build artifacts (source files are committed, compiled outputs are not)
+api/index.js
+netlify/functions/api.js
+.netlify/
+.vercel/
+dist/
