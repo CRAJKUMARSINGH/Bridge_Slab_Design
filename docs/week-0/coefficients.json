@@ -1,0 +1,183 @@
+﻿{
+  "factor_and_limit_cells": [
+    {
+      "id": "Factors!B3",
+      "sheet": "Factors",
+      "cell": "B3",
+      "label": "Gamma_G (self weight)",
+      "units": "",
+      "value": 1.35,
+      "referenced_by": [
+        "Calc!B5",
+        "Calc!B7"
+      ],
+      "confidence": 0.9,
+      "status": "auto"
+    },
+    {
+      "id": "Factors!B4",
+      "sheet": "Factors",
+      "cell": "B4",
+      "label": "Gamma_Q (live load)",
+      "units": "",
+      "value": 1.5,
+      "referenced_by": [
+        "Calc!B11"
+      ],
+      "confidence": 0.9,
+      "status": "auto"
+    },
+    {
+      "id": "Factors!B7",
+      "sheet": "Factors",
+      "cell": "B7",
+      "label": "Elastic modulus E (MPa)",
+      "units": "MPa",
+      "value": 210000,
+      "referenced_by": [
+        "Calc!B3"
+      ],
+      "confidence": 0.9,
+      "status": "auto"
+    },
+    {
+      "id": "Factors!B8",
+      "sheet": "Factors",
+      "cell": "B8",
+      "label": "Unit weight concrete (kN/m3)",
+      "units": "kN/m",
+      "value": 25,
+      "referenced_by": [
+        "Calc!B4"
+      ],
+      "confidence": 0.9,
+      "status": "auto"
+    },
+    {
+      "id": "Factors!B9",
+      "sheet": "Factors",
+      "cell": "B9",
+      "label": "Unit weight asphalt (kN/m3)",
+      "units": "kN/m",
+      "value": 24,
+      "referenced_by": [
+        "Calc!B4"
+      ],
+      "confidence": 0.9,
+      "status": "auto"
+    },
+    {
+      "id": "Calc!B19",
+      "sheet": "Calc",
+      "cell": "B19",
+      "label": "Shear capacity vc (MPa)",
+      "units": "MPa",
+      "value": 2.5,
+      "referenced_by": [
+        "Calc!B20",
+        "Calc!B22"
+      ],
+      "confidence": 0.82,
+      "status": "auto"
+    }
+  ],
+  "embedded_literals": [
+    {
+      "literal": "1000",
+      "occurrences": 5,
+      "used_in": [
+        {
+          "cell": "Calc!B14",
+          "label": "Deflection live load",
+          "formula": "5*Inputs!B10*(Inputs!B3*1000)^4/(384*Factors!B5*Inputs!B12)"
+        },
+        {
+          "cell": "Calc!B15",
+          "label": "Deflection limit",
+          "formula": "Inputs!B3*1000/Factors!B10"
+        },
+        {
+          "cell": "Calc!B18",
+          "label": "Shear stress demand",
+          "formula": "B7*1000/(Inputs!B6*Inputs!B4*1000*Inputs!B9*1000)"
+        },
+        {
+          "cell": "Calc!B18",
+          "label": "Shear stress demand",
+          "formula": "B7*1000/(Inputs!B6*Inputs!B4*1000*Inputs!B9*1000)"
+        },
+        {
+          "cell": "Calc!B18",
+          "label": "Shear stress demand",
+          "formula": "B7*1000/(Inputs!B6*Inputs!B4*1000*Inputs!B9*1000)"
+        }
+      ]
+    },
+    {
+      "literal": "8",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "Calc!B6",
+          "label": "Max bending moment M",
+          "formula": "B5*Inputs!B3^2/8"
+        }
+      ]
+    },
+    {
+      "literal": "2",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "Calc!B7",
+          "label": "Max shear V",
+          "formula": "B5*Inputs!B3/2+Inputs!B11*Factors!B3"
+        }
+      ]
+    },
+    {
+      "literal": "1000000",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "Calc!B10",
+          "label": "Bending stress demand",
+          "formula": "B6*1000000/B9"
+        }
+      ]
+    },
+    {
+      "literal": "1",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "Calc!B12",
+          "label": "Bending check",
+          "formula": "IF(B11<=1,\"OK\",\"NOT OK\")"
+        }
+      ]
+    },
+    {
+      "literal": "5",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "Calc!B14",
+          "label": "Deflection live load",
+          "formula": "5*Inputs!B10*(Inputs!B3*1000)^4/(384*Factors!B5*Inputs!B12)"
+        }
+      ]
+    },
+    {
+      "literal": "384",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "Calc!B14",
+          "label": "Deflection live load",
+          "formula": "5*Inputs!B10*(Inputs!B3*1000)^4/(384*Factors!B5*Inputs!B12)"
+        }
+      ]
+    }
+  ]
+}

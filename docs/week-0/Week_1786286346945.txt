@@ -1,0 +1,392 @@
+﻿No, that X post is not useful for your goal.
+The linked post is about a Python library (jsonexcel) that converts JSON / JSONL / Python records into clean Excel workbooks. It goes in the opposite direction from what you need (Excel ΓåÆ narrative PDF report) and has nothing to do with report generation, storytelling PDFs, or parameter-driven design outputs.
+What you actually need
+You have an Excel workbook with interrelated formulas that calculates bridge designs. You want a prototype app that:
+	ΓÇó	Accepts different sets of input variables
+	ΓÇó	Runs the same calculations
+	ΓÇó	Produces a ~200-page PDF written in flowing narrative / storytelling paragraphs (not dry tables)
+Practical path to a prototype
+1. Extract the calculation engine from Excel
+	ΓÇó	Use Python + openpyxl or formulas / xlcalculator to read the workbook and evaluate the formulas programmatically.
+	ΓÇó	Better long-term: reverse-engineer the key formulas into pure Python functions (or keep the Excel file as the calculation engine and drive it from Python). This gives you a clean function like:
+def calculate_bridge(inputs: dict) -> dict:
+    # returns all intermediate and final results
+2. Generate the narrative text
+	ΓÇó	Create a set of Jinja2 (or similar) templates that turn the calculated numbers into paragraph-style storytelling text.
+	ΓÇó	Example structure: ΓÇ£The span of XX m combined with the chosen girder depth of YY mm results in a moment demand of ΓÇª which is comfortably within the capacity of ΓÇªΓÇ¥
+	ΓÇó	You can make the tone more ΓÇ£story-likeΓÇ¥ by adding transitional sentences, design rationale, assumptions, etc.
+3. Produce the PDF Common options (all work well in a prototype):
+	ΓÇó	WeasyPrint or xhtml2pdf ΓåÆ write HTML + CSS that looks like a professional report, then convert to PDF.
+	ΓÇó	ReportLab ΓåÆ more control, steeper learning curve.
+	ΓÇó	Pandoc (Markdown ΓåÆ PDF) if you prefer writing the narrative in Markdown.
+	ΓÇó	For very long documents, generate chapter-by-chapter and merge.
+4. Wrap it as a simple prototype app Fastest options:
+	ΓÇó	Streamlit or Gradio ΓåÆ web UI where the user enters the variable set, clicks ΓÇ£GenerateΓÇ¥, and downloads the PDF.
+	ΓÇó	FastAPI + simple frontend if you want something more solid.
+	ΓÇó	Even a command-line script that takes a JSON/YAML/CSV of inputs is enough for an early prototype.
+Recommended minimal tech stack for a working prototype
+	ΓÇó	Python
+	ΓÇó	openpyxl / formulas (or pure Python calc engine)
+	ΓÇó	Jinja2 (narrative templates)
+	ΓÇó	WeasyPrint or ReportLab (PDF)
+	ΓÇó	Streamlit (UI)
+Next steps I can help with
+	ΓÇó	Outline the exact architecture
+	ΓÇó	Show how to drive an existing Excel file from Python and extract results
+	ΓÇó	Draft sample Jinja templates that turn numbers into storytelling paragraphs
+	ΓÇó	Scaffold a Streamlit app that accepts variables and returns a PDF
+	ΓÇó	Discuss how to keep the Excel formulas as the single source of truth vs. migrating them to code
+Just tell me which part you want to tackle first (calculation engine, narrative generation, PDF layout, or the UI), and whether you prefer to keep the Excel file as the calculation brain or move the logic into Python.
+Got it ΓÇö that changes the picture significantly.
+You have a ~25-sheet Excel workbook that already produces a polished, multi-page design report with:
+	ΓÇó	Landscape orientation pages
+	ΓÇó	Graphs / stress charts
+	ΓÇó	Typical cross-section drawings
+	ΓÇó	Predefined page breaks
+	ΓÇó	Interrelated formulas across sheets
+The goal is a prototype app that takes a new set of input variables and automatically generates a similar ~200-page PDF (narrative storytelling paragraphs + the same visual elements).
+Realistic approach for a prototype
+1. Keep Excel as the calculation + charting engine (fastest path)
+	ΓÇó	Drive the existing workbook from Python (openpyxl + xlwings if you need full Excel calculation, or formulas library).
+	ΓÇó	Change the input cells with the new variable set.
+	ΓÇó	Let Excel recalculate everything (all 25 sheets).
+	ΓÇó	Export / capture:
+	ΓÇó	Charts ΓåÆ save as high-res images (PNG/SVG)
+	ΓÇó	Cross-section drawings ΓåÆ if they are Excel shapes or charts, capture them as images; if they are linked drawings, export them separately
+	ΓÇó	Key result tables ΓåÆ read the values
+This preserves all your existing formulas, page-break logic, and chart formatting with almost zero re-work.
+2. Assemble the PDF programmatically Use a PDF library that supports:
+	ΓÇó	Mixed portrait + landscape pages
+	ΓÇó	Precise page breaks
+	ΓÇó	Embedding images (charts + cross-sections)
+	ΓÇó	Flowing narrative text
+Best options for this use-case:
+	ΓÇó	ReportLab (most control over landscape pages, exact positioning, headers/footers, page breaks)
+	ΓÇó	WeasyPrint (HTML/CSS ΓåÆ PDF ΓÇö easier for narrative text, but landscape + complex page control is a bit more fiddly)
+	ΓÇó	python-docx + LibreOffice headless (if you prefer to generate a Word document first, then convert to PDF)
+3. Narrative storytelling layer
+	ΓÇó	After calculation, extract the key numbers.
+	ΓÇó	Feed them into Jinja2 (or similar) templates that produce the flowing paragraph text (ΓÇ£The design utilises a span of ΓÇª resulting in a maximum bending moment of ΓÇª which is resisted by the chosen section with a utilisation ratio of ΓÇªΓÇ¥).
+	ΓÇó	Insert the captured charts and cross-section images at the appropriate points in the narrative.
+4. Prototype UI
+	ΓÇó	Streamlit or Gradio is perfect for a first version:
+	ΓÇó	Form for the input variables
+	ΓÇó	ΓÇ£Generate ReportΓÇ¥ button
+	ΓÇó	Progress indication while Excel recalculates + images are captured
+	ΓÇó	Download button for the finished PDF
+Key practical points you should decide early
+Element	Recommended handling in prototype	Notes
+Formulas & calculations	Keep inside Excel, drive from Python	Least risk
+Graphs / stress charts	Export as PNG/SVG from Excel	High quality, preserves formatting
+Typical cross sections	Capture as images or re-draw with matplotlib/CAD	Depends how they are currently made
+Landscape pages	Explicit landscape pages in ReportLab / WeasyPrint	Fully supported
+Predefined page breaks	Hard-code logical sections in the PDF template	Replicate the structure
+25 sheets	Treat as one calculation model	Only surface the final results + selected intermediate charts
+Suggested next step
+Would you like me to outline a concrete technical skeleton for this prototype (folder structure + main Python modules + which libraries for each part)?
+Or do you want to focus on one specific piece first, for example:
+	ΓÇó	How to drive the 25-sheet workbook and extract charts as images
+	ΓÇó	How to build the narrative templates
+	ΓÇó	How to create mixed-orientation PDFs with embedded charts
+	ΓÇó	The Streamlit UI
+Just tell me which part you want to tackle next and whether you are comfortable keeping Excel as the calculation engine or prefer to eventually move the logic fully into Python.
+
+Read your file ΓÇö the objective is clear. Here's a 10-week build plan for a prototype app that takes bridge design input variables ΓåÆ runs the existing 25-sheet Excel calculation model ΓåÆ outputs a 200-page narrative PDF (storytelling paragraphs + landscape pages, stress charts, cross-section drawings, predefined breaks).
+
+Assumptions (call them out if wrong): Python only; ~8ΓÇô10 focused hours/week; Excel stays as the calculation engine during the prototype (the least-risk path from the file); you have a copy of the workbook to develop against.
+
+The plan at a glance
+
+| Week | Focus | Deliverable |
+|---|---|---|
+| 1 | Workbook reconnaissance | workbook_map.json ΓÇö full inventory of the 25 sheets |
+| 2 | Input schema | Validated input loader (inputs.json/YAML) |
+| 3 | Calculation engine | calculate_bridge(inputs) -> results + golden test |
+| 4 | Asset extraction | Charts & cross-sections exported as PNGs + layout manifest |
+| 5 | Results layer | Structured results dict + snapshot tests |
+| 6 | Narrative layer | Jinja2 templates ΓåÆ storytelling paragraphs |
+| 7 | PDF builder | First real PDF with mixed portrait/landscape pages |
+| 8 | Report assembly | Full ~200-page PDF, cover ΓåÆ TOC ΓåÆ all sections |
+| 9 | Prototype UI | Streamlit app: form ΓåÆ generate ΓåÆ download |
+| 10 | Capstone | End-to-end acceptance: inputs in ΓåÆ 200-page PDF out, deployed |
+
+Week 1 ΓÇö Workbook reconnaissance
+Focus topics: openpyxl read-only mode; iterating sheets, cell ranges, named ranges; detecting charts (ws._charts), embedded images and shapes; mapping cross-sheet dependencies.
+Deliverable: inspect_workbook.py that dumps every sheet's structure ΓÇö which cells hold inputs, which hold results, where the stress charts and cross-section drawings live, and where page breaks fall ΓÇö into workbook_map.json.
+Milestone ΓÇö done when: you can answer "which cell on which sheet is the span input?" and "which sheets contain what?" without opening Excel.
+Est. hours: 8
+
+Week 2 ΓÇö Input schema & validation
+Focus topics: defining a dataclass/Pydantic model for the design variables; serializing to JSON/YAML; ranges and sanity checks (e.g., span limits, material properties); versioning the input set.
+Deliverable: inputs_schema.py + load_inputs() + a sample_inputs.yaml capturing one known-good design case from an existing run.
+Milestone ΓÇö done when: a malformed input file fails with a readable error, and a valid one round-trips cleanly. This schema becomes the contract for both the calc engine and the UI.
+Est. hours: 6
+
+Week 3 ΓÇö The calculation engine (the decision point)
+Focus topics: how to evaluate the workbook's formulas. Three routes:
+1. xlwings ΓÇö drives real Excel; recalculates all 25 sheets and reads back values. Highest fidelity, requires Excel installed (Windows/macOS).
+2. formulas (GitHub) or xlcalculator (PyPI) ΓÇö pure-Python evaluation of the formula graph, no Excel needed; great for headless/servers, but watch out for unsupported functions.
+3. Reverse-engineer key formulas into Python functions ΓÇö cleanest long-term, most work now.
+
+Deliverable: calc_engine.py exposing calculate_bridge(inputs: dict) -> dict:, plus a golden test that compares output against a known design run from your existing reports.
+Milestone ΓÇö done when: the numbers you get programmatically match the numbers in the Excel file for the same input set (tolerance agreed up-front, e.g. 0.1%).
+Est. hours: 10
+
+Week 4 ΓÇö Capturing visual assets
+Focus topics: exporting charts from Excel ΓÇö xlwings' chart.api.Chart.Export() writes high-res PNGs directly (xlwings Chart API); capturing cross-section drawings/shapes (or re-drawing them with matplotlib if they're vector-native); naming convention for assets (assets/02_stress_span45.png).
+Deliverable: export_assets.py producing all charts and cross-sections as PNGs for one run, plus layout_manifest.json mapping each asset ΓåÆ sheet ΓåÆ approximate position in the report narrative.
+Milestone ΓÇö done when: every visual element that appears in an existing 200-page report is extractable as an image file.
+Est. hours: 8
+
+Week 5 ΓÇö Results extraction & data layer
+Focus topics: reading all computed values back out of the recalculated workbook; grouping results into a structured dict (geometry, loads, moments, stresses, utilizations, checks); pinning values with snapshot tests so later refactors can't silently change results.
+Deliverable: results_extractor.py ΓÇö one clean results object the narrative and PDF layers will consume.
+Milestone ΓÇö done when: the results dict is stable across two consecutive runs (deterministic) and test-locked.
+Est. hours: 6
+
+Week 6 ΓÇö The narrative layer
+Focus topics: Jinja2 templating (Template Designer docs); writing paragraph-style macros from the file's own example ΓÇö "The span of XX m combined with the chosen girder depth of YY mm results in a moment demand of ΓÇª, comfortably within the capacity of ΓÇª"; adding transitional sentences, design rationale, and assumptions; conditional paragraphs that only appear when a check fails.
+Deliverable: templates/ (cover, intro, per-system sections, conclusion) + narrative.py rendering one full sample chapter from real Week-5 data.
+Milestone ΓÇö done when: the text reads like a report written by a structural engineer, not a table dump ΓÇö and every number in it comes from the results dict, never hard-coded.
+Est. hours: 8
+
+Week 7 ΓÇö PDF builder (first real output)
+Focus topics: WeasyPrint HTML/CSSΓåÆPDF (weasyprint.org); landscape orientation via @page { size: A4 landscape }; repeating headers/footers and page numbers; embedding the Week-4 images; forcing page breaks with page-break-before; a solid setup guide like Nutrient's WeasyPrint walkthrough or pbpython's Pandas+Jinja+WeasyPrint recipe.
+Deliverable: pdf_builder.py producing a real first PDF ΓÇö say 15ΓÇô30 pages mixing narrative paragraphs, a stress chart, a cross-section, and a landscape results section.
+Milestone ΓÇö done when: one section renders correctly with charts embedded, correct orientation, and page breaks where your Excel report puts them.
+Est. hours: 10
+
+Week 8 ΓÇö Full ~200-page report assembly
+Focus topics: chapter builders that assemble sections in the exact order of your existing report; auto-generated table of contents; cover page from project metadata; rendering chapter-by-chapter and merging (WeasyPrint is fine with long docs, but build for it); performance tuning.
+Deliverable: one complete ~200-page narrative PDF generated end-to-end from a fresh input set ΓÇö narrative + every chart + every cross-section + predefined breaks.
+Milestone ΓÇö done when: page count and section order approximate the original Excel-output report, and a fresh run regenerates it in reasonable time (e.g. < 5 min).
+Est. hours: 12
+
+Week 9 ΓÇö Prototype UI
+Focus topics: Streamlit forms for the input variables; "Generate Report" button with progress feedback; caching the workbook/engine so recalcs are fast; st.download_button for the finished PDF (pattern from this Streamlit PDF-generator thread); presets (load/save input sets).
+Deliverable: app.py ΓÇö enter variables ΓåÆ click ΓåÆ progress bar ΓåÆ download the 200-page PDF.
+Milestone ΓÇö done when: someone with zero Python knowledge can generate a valid report from the browser.
+Est. hours: 10
+
+Week 10 ΓÇö Capstone: polish, package, deploy
+Focus topics: error handling and logging (what happens when Excel is missing, inputs are absurd, a chart export fails); config file for paths/versions; packaging (requirements.txt, maybe a Docker image for headless runs ΓÇö this is where the Week-3 pure-Python path pays off); deploying the Streamlit app to Streamlit Community Cloud; a README that documents the input schema.
+Deliverable: deployed prototype + an acceptance test: three different input sets go in, three complete 200-page narrative PDFs come out, all values cross-checked against Excel.
+Milestone ΓÇö done when: the app survives a fresh user poking it, and you can hand it to a colleague with a one-line link.
+Est. hours: 12
+
+Cross-cutting notes
+
+- Beware the Week-3 fork: if you pick xlwings (Excel as the brain), the app needs a machine with Excel. If you need a headless/cloud deployment, budget time in Week 3 for formulas/xlcalculator ΓÇö that decision ripples through Weeks 9ΓÇô10. Per the file, you can also postpone it entirely and run the prototype on a desktop.
+- Keep the golden test alive: every time you touch the calc or extraction layers, re-run the Week-3 comparison ΓÇö it's your safety net against silently wrong 200-page reports.
+
+If you want, the natural next step is to start Week 1: I can scaffold the repository (folder structure + inspect_workbook.py skeleton) so you can run it against your workbook immediately.
+
+The code is built, tested end-to-end, and the three lists below come from an actual run. One important caveat up front: you only uploaded the text file (the objective), not the Excel workbook itself ΓÇö there's no .xlsx in this conversation or in your AI Drive, so I could not run against your real 25-sheet model. To prove the logic works I built a small synthetic bridge workbook (same patterns: Inputs/Factors/Calc sheets, cross-sheet formulas, IF checks, defined names), recalculated it with LibreOffice headless, and ran the classifier on it. Run the same command on your real file and everything below replays on your data ΓÇö anything from your actual workbook is therefore unconfirmed until you do that, which is exactly the "ask me for confirmation" behavior the script is designed around.
+
+What the code does
+
+classify_cells.py (openpyxl, two passes: data_only=False for formulas + data_only=True for cached values) walks every cell and classifies it using explicit rules:
+
+Variables ΓÇö hard-coded numbers with a label, no formula precedents of their own (roots of the dependency graph), that feed other formulas. Signals: sheet name contains input/param/variable, label contains span/length/width/depth/thickness/strength/load/number of, label says chosen/selected/adopted/provided (engineer decisions), or the cell has an Excel defined name (SpanL, steelgrade_fy).
+
+Coefficients ΓÇö fixed factors, material properties, code limits, and numeric literals embedded inside formulas (8, 2, 1000, 384, 1000000ΓÇª ΓÇö flagged with location so you can promote real constants like 8 in M = wL┬▓/8 to named cells). Signals: sheet name contains factor/coeff/limit/table, label contains factor/gamma/modulus/density/unit weight/coefficient/capacity.
+
+Constraints ΓÇö any formula that is an inequality or design check: IF(..., utilisation ratios, and their governing combinations (MAX). Each constraint is also emitted in standard optimisation form g(x) Γëñ 0 with a current-feasibility flag.
+
+Ambiguous ΓÇö anything the rules can't decide at ΓëÑ0.7 confidence is NOT guessed; it's listed for you to confirm.
+
+Confirmation happens three ways:
+- --confirm ΓÇö interactive terminal prompts: v variable / c coefficient / k constraint / s skip / Enter keeps the guess
+- --answers my_answers.json ΓÇö batch-preload your decisions so you only answer once ({"overrides": {"Calc!B13": "coefficient"}, "skip": []})
+- the script never silently assumes ΓÇö low-confidence cells always appear on screen and in registry.json marked "ambiguous"
+
+Run on your real workbook
+
+pip install openpyxl
+python classify_cells.py "BridgeDesign.xlsx" --confirm --outdir bridge_out
+next runs: reuse your answers so you're never re-prompted
+python classify_cells.py "BridgeDesign.xlsx" --answers my_answers.json --outdir bridge_out
+
+Tip: if your workbook's cached values are missing (openpyxl can't calculate), open it once in Excel so values are stored, then re-run ΓÇö the script prints "(not cached)" for affected cells.
+
+Verified output ΓÇö the three lists (actual tool output, demo workbook)
+
+Variables ΓÇö 11 found
+| # | Cell | Label | Value | Units | Conf |
+|---|---|---|---|---|---|
+| 1 | Inputs!B3 | Span length L | 45 | m | 0.95 ┬╖ defined name SpanL |
+| 2 | Inputs!B4 | Deck width W | 12 | m | 0.95 |
+| 3 | Inputs!B5 | Girder spacing s | 3 | m | 0.95 |
+| 4 | Inputs!B6 | Number of girders n | 4 | ΓÇô | 0.95 |
+| 5 | Inputs!B7 | Concrete strength fck | 40 | MPa | 0.95 |
+| 6 | Inputs!B8 | Steel grade fy | 355 | MPa | 0.95 ┬╖ defined name steelgrade_fy |
+| 7 | Inputs!B9 | Deck thickness t | 0.25 | m | 0.95 |
+| 8 | Inputs!B10 | Live load UDL wl | 25 | kN/m | 0.95 |
+| 9 | Inputs!B11 | Live load concentrated Q | 150 | kN | 0.95 |
+| 10 | Inputs!B12 | Second moment of area I | 6.5e10 | mmΓü┤ | 0.95 |
+| 11 | Calc!B9 | Chosen section modulus Wc | 45,000,000 | mm┬│ | 0.85 (engineer-chosen ΓåÆ variable) |
+
+Coefficients ΓÇö 6 named cells + 7 embedded literals
+| # | Cell | Label | Value | Units | Conf |
+|---|---|---|---|---|---|
+| 1 | Factors!B3 | Gamma_G | 1.35 | ΓÇô | 0.90 |
+| 2 | Factors!B4 | Gamma_Q | 1.5 | ΓÇô | 0.90 |
+| 3 | Factors!B7 | Elastic modulus E | 210,000 | MPa | 0.90 |
+| 4 | Factors!B8 | Unit weight concrete | 25 | kN/m┬│ | 0.90 |
+| 5 | Factors!B9 | Unit weight asphalt | 24 | kN/m┬│ | 0.90 |
+| 6 | Calc!B19 | Shear capacity vc | 2.5 | MPa | 0.82 |
+
+Embedded literals (constants hard-coded inside formulas ΓÇö review these and promote to named cells if you want them tunable):
+- 1000 ├ù5 (mm/m conversion, e.g. 5Inputs!B10(Inputs!B31000)^4/(384Factors!B5*Inputs!B12))
+- 8 ├ù1 (=B5*Inputs!B3^2/8 ΓÇö simply-supported moment coefficient)
+- 2 ├ù1 (=B5*Inputs!B3/2+... ΓÇö shear coefficient)
+- 5 ├ù1 and 384 ├ù1 (deflection formula 5wlΓü┤/384EI)
+- 1000000 ├ù1 (kN┬╖mΓåÆN┬╖mm)
+- 1 ├ù1 (utilisation threshold IF(B11<=1,...))
+
+Constraints ΓÇö 6 design checks, with optimisation form
+| # | Cell | Label | Inequality | g(x) Γëñ 0 form |
+|---|---|---|---|---|
+| 1 | Calc!B11 | Utilisation (bending) | Utilisation Γëñ 1.0 | g = 0.8022 ΓêÆ 1.0 Γëñ 0 ΓåÆ feasible |
+| 2 | Calc!B12 | Bending check | B11 Γëñ 1 | ΓÇö |
+| 3 | Calc!B16 | Deflection check | B14 Γëñ B15 (18,669,075 Γëñ 450,000 ΓåÆ violated in demo) | ΓÇö |
+| 4 | Calc!B20 | Shear check | B18 Γëñ B19 | ΓÇö |
+| 5 | Calc!B22 | Governing utilisation | Governing utilisation Γëñ 1.0 | g = 0.8022 ΓêÆ 1.0 Γëñ 0 ΓåÆ feasible |
+| 6 | Calc!B23 | Adjusted governing utilisation | Adjusted ΓÇª Γëñ 1.0 | g = 0.8663 ΓêÆ 1.0 Γëñ 0 ΓåÆ feasible |
+
+Confirmation round (this is the part that asks you)
+Two cells were genuinely ambiguous ΓÇö no sheet name or label keyword gives them away:
+- Calc!B13 "Parameter alpha (-)" = 0.9 ΓåÆ you decide: variable (tunable) or coefficient (fixed)
+- Calc!B21 "Correction k3 (-)" = 1.2 ΓåÆ same choice
+
+I demonstrated the flow by answering coefficient for both via answers_demo.json ΓÇö on your real workbook, these prompts appear sequentially and your answers get saved so the next run is silent. Don't be surprised to see more of these on the real 25-sheet file: capacity rows (Shear capacity vc = 2.5) double as constraint right-hand sides, so the script reports them in both the coefficient list and the constraint inequality (B18 Γëñ B19).
+
+Files (real, verified)
+
+| File | URL |
+|---|---|
+| classify_cells.py ΓÇö the script | Download |
+| make_demo.py ΓÇö builds the demo workbook (delete when not needed) | Download |
+| demo_bridge_raw.xlsx ΓÇö recalculated demo workbook | Download |
+| answers_demo.json ΓÇö example answers file | Download |
+| registry.json ΓÇö full cell-by-cell dump (labels, formulas, precedents, refs, confidence) | Download |
+| variables.json | Download |
+| coefficients.json (incl. embedded literals + where used) | Download |
+| constraints.json (inequalities + g-form) | Download |
+
+Next step: upload your actual BridgeDesign.xlsx here (or drop its path if it's already in your AI Drive), and I'll run the classifier on it, walk you through the confirmation batch, and hand back your real variables / coefficients / constraints as JSON ΓÇö ready to feed Week 2 (input schema) and Week 3 (calc engine) of the plan.
+
+I cloned and audited your repo (Bridge_Slab_Design) in the sandbox this turn ΓÇö every file named below is verified from that clone or the GitHub page. Here's the diagnosis, and the full Week 0 reorientation plan.
+
+Why it reads as a failure initiative (evidence from your own repo)
+
+| Symptom | Evidence I actually saw |
+|---|---|
+| No single entry point | package.json ships 30+ scripts: dev, qa, verify:engine, verify:excel, test:excel, verify:narrative, demo:workbook, smoke:11-designs, smoke:11-full, batch:11-comprehensive-pdf, phase-zero, phase-zero:full, research, research:once, research:demoΓÇª A newcomer cannot tell which one produces the deliverable. |
+| Two competing calculation engines | client/src/report-engine/ (25 files) and client/src/report-engine-weaver/ (18 files) ΓÇö same tests duplicated (slabCalc.test.ts, hydraulicCalc.test.ts, engineConsistency.test.ts exist in both trees) |
+| Two Excel sheet sources | bridge-excel-generator/sheets/ vs bridge-excel-generator/sheets-extracted/ ΓÇö near-identical filenames with drifting content (02-insert-hydraulics.ts vs 02-insert--hydraulics.ts, 09-stability-check-pier.ts vs 09-stability-check-for-pier.ts) |
+| Two language stacks | TypeScript full-stack plus python_cad/ (main.py, pier_engine.py, scanner.py) plus scripts/ingest_bridge_documents.py ΓÇö nobody knows which is canonical |
+| Heavy platform for a pipeline | DB/auth dependency hairball: drizzle-orm, @neondatabase/serverless, passport, express-session, connect-pg-simple, memorystore ΓÇö for an app whose output is a PDF |
+| AI research daemon inside the product repo | ETERNAL_RESEARCH_CHILD/research_daemon.ts wired as npm run research / research:once / research:demo |
+| Deployment chaos | vercel.json and netlify.toml, api/ and netlify/ and server/ ΓÇö three server targets |
+| Self-diagnosed risk | AUDIT-REPORT-v1.0.md (audited by "Grok ΓÇö NASA-level zero-defect audit mode"): 6 Critical, 18 High, 18 Medium, 8 Low = 50 findings; explicitly says several engine/export files "were not fully read due to size; findings ΓÇª inferred from call-sites" |
+| Asset sprawl | Attached_Assets/ holds 100+ legacy .xls/.doc projects; assets/ has 4 more sub-trees (COMPONENT_DRAWINGS_SORTED, DRAWINGS_FROM_RAJKUMAR_DESIGNS, E_DRIVE_BRIDGE_DESIGN, GENERATED_DRAWINGS) |
+| Single shallow commit | git log shows one commit (87f042b Add Netlify + Vercel production deployment files) ΓÇö full history unconfirmed (shallow clone) |
+| Product identity crisis | README headline sells "audit-ready, IRC-compliant 53-sheet workbooks", but your own DREAM030526.md (3 May 2026) says the opposite: "the authoritative design deliverable ΓÇª is detailed design documentation, *not* a Microsoft Excel file"; Excel is "second class, not the headline". The codebase never caught up with that decision. |
+
+One line: you built a platform (UI + DB + auth + 3 deployment targets + a research daemon) around what should be a pipeline (inputs ΓåÆ calculations ΓåÆ narrative ΓåÆ PDF), with two of every engine, no pinned test baseline, and a goldmine of legacy .xls engineering assets locked in a folder nobody can drive programmatically.
+
+The good news ΓÇö three things you already have that anchor the reorientation
+
+1. The input contract already exists: VARIABLE_SELECTION_SHEET.xlsx is a 194-row variable catalog with explicit Type column (INPUT / CALCULATED / FIXED) and "Used in Sheets" mappings ΓÇö e.g. spanLength=10 m (INPUT, all structural sheets), totalLength=80 m (CALCULATED). This is the canonical input schema; it just isn't wired to anything.
+2. A golden project already exists: Kherwara ΓÇö scripts/verify-kherwara-excel-golden.ts, README mentions "Kherwara golden snapshots", and Attached_Assets/ holds the source docs (DESIGN REPORT KHARKA BRIDGE.docx, FINAL BRIDGE KHERKA 01ΓÇô03.docx, Analysis-of-Deck-Slab-and-Tee-Beam-of-a-Kherka Bridge.docx).
+3. The report-engine components exist: bridge-excel-generator/design-engine.ts, narrative-engine.ts, server/landscape-pdf-export.ts, server/comprehensive-pdf-export.ts ΓÇö the pieces for report-first output are all present, just buried.
+
+(I also verified Kherwara Γëá Kharka: the repo's own file is "KHARKA bridge"; the golden script says "Kherwara". Resolve this naming on Day 1 ΓÇö don't assume they're the same project.)
+
+The reorientation spine
+
+Your repo already contains the strategy document; Week 0 is about making the code agree with it, using the classifier pipeline I built for you in the previous turn as the extraction spine:
+
+VARIABLE_SELECTION_SHEET.xlsx (194-row catalog)
+      Γöé  extract INPUT rows
+      Γû╝
+inputs/schema.json  ΓöÇΓöÇΓû║  validate (shared/schema.ts)
+      Γöé
+classify_cells.py (real workbook ΓåÆ variables/coefficients/constraints JSON)
+      Γöé
+      Γû╝
+bridge-excel-generator/design-engine.ts ΓöÇΓöÇΓû║ narrative-engine.ts ΓöÇΓöÇΓû║ pdf export
+      Γöé
+      Γû╝
+   out/-report.pdf        tests/golden/ (Kherwara snapshot)
+
+Test-first, report-first, Excel-as-regression-harness-only ΓÇö exactly what DREAM030526.md already mandates.
+
+WEEK 0 ΓÇö DAY-BY-DAY PLAN
+
+Day 0 ┬╖ Baseline & freeze (~2 h)
+Create branch reorient-week0 (main untouched). Record the status quo before touching anything.
+git checkout -b reorient-week0
+Write BASELINE_MANIFEST.md (top-level inventory, all 30+ npm scripts, duplicate engine trees, artifact outputs design-reports/.html, sample/, artifacts/).
+Run npm install && npm run check on your machine (I did not run it ΓÇö the dep tree is huge and sandbox verification is pending; mark the result as finding #0).
+EXIT: manifest committed, screenshot of npm run check result captured, zero files modified.
+
+Day 1 ┬╖ Golden project + input contract (~4 h)
+Pick Kherwara/Kharka as the one validation project. Drive one legacy .xls through your own classifier ΓÇö this is the first end-to-end proof.
+soffice --headless --convert-to xlsx "Attached_Assets/.xls" --outdir work/golden/
+python classify_cells.py work/golden/*.xlsx --confirm --outdir work/golden/out
+Derive the contract from the catalog:
+scripts/extract_contract.py  # reads VARIABLE_SELECTION_SHEET.xlsx ΓåÆ inputs/schema.json (INPUT rows only)
+EXIT: variables.json / coefficients.json / constraints.json committed; schema approved by you; Γëñ5 open ambiguous cells.
+
+Day 2 ┬╖ Quarantine the platform layer (~3 h)
+Archive, never delete (git mv preserves history). Move to archive/:
+mkdir archive
+git mv ETERNAL_RESEARCH_CHILD/ archive/
+git mv scripts/phase-zero/ scripts/smoke-.ts scripts/batch-.ts scripts/run-fifteen-*.ts \
+       scripts/stress-test-*.ts scripts/export-sample-output-bundle.ts archive/scripts/
+git mv api/ netlify/ archive/deploy-targets/        # keep server/ (single target)
+git mv client/ archive/client-dashboard/            # UI is out of the critical path
+git mv client/src/report-engine-weaver/ archive/    # duplicate engine
+Strip DB/auth dependency hairball:
+npm uninstall drizzle-orm drizzle-kit drizzle-zod @neondatabase/serverless passport \
+       passport-local express-session connect-pg-simple memorystore
+Re-run npm run check ΓÇö must still pass.
+EXIT: tsc passes on trimmed set; server boots with no DB (npm run dev renders); every removed file lives in archive/.
+
+Day 3 ┬╖ One pipeline, one command (~4 h)
+Create pipeline/run.ts = load contract ΓåÆ validate ΓåÆ design-engine ΓåÆ narrative-engine ΓåÆ landscape-pdf-export ΓåÆ PDF. Wire:
+"design": "tsx pipeline/run.ts --input inputs/KHERWARA.yaml --out out/KHERWARA-report.pdf",
+"classify": "python classify_cells.py"
+ExcelJS stays only for golden-file parity tests, never the user-facing path (per DREAM030526.md).
+EXIT: npm run design -- --input inputs/KHERWARA.yaml produces one PDF for the golden project; no server/UI in the critical path.
+
+Day 4 ┬╖ Golden regression harness (~4 h)
+tests/golden/kherwara/inputs.yaml
+tests/golden/kherwara/expected.json      # frozen intermediates, rtol = 1e-6
+npm run verify:golden                    # ANY diff > 0 blocks
+Constraint gate: evaluate every inequality from constraints.json (utilisation Γëñ 1.0 etc.).
+Negative test: tamper one input ΓåÆ verify:golden must go RED.
+EXIT: golden green on Kherwara; red on tampered input ΓÇö the harness bites.
+
+Day 5 ┬╖ Acceptance gate (~3 h)
+- Rewrite README.md: one-purpose sentence ("report-first bridge design pipeline"), 2-command quickstart, input contract, pipeline diagram, "add a new project" section.
+- Commit requirements.txt (Python: openpyxl, PyYAML) + trimmed, locked package-lock.json.
+- Write WEEK0_ACCEPTANCE.md restating Day 0ΓÇô5 exit criteria, with a licensed-engineer sign-off line.
+- Merge reorient-week0.
+EXIT: a colleague on a clean clone follows the README and produces the Kherwara PDF with zero questions.
+
+Non-negotiables
+- Archive, never delete ΓÇö git mv only
+- One golden project before expanding ΓÇö Kherwara/Kharka
+- No new feature work until verify:golden is green
+- Every number in the report traces to inputs/ or a formula ΓÇö no hard-coded outputs
+
+Checklist file (download)
+WEEK0_REORIENT_CHECKLIST.md ΓÇö full Day 0ΓÇô5 checklist with commands and exit criteria
+
+Unconfirmed items: npm install/npm run check result (needs your machine), full git history (clone was shallow), and whether the Kherwara golden script's snapshots still match the current engine.
+
+Want me to execute the first two Day-1 moves now ΓÇö generate extract_contract.py from VARIABLE_SELECTION_SHEET.xlsx and produce the Kherwara classifier run? If yes, drop the canonical Kherwara workbook path (or upload the .xls) and I'll do it against the real data.
+

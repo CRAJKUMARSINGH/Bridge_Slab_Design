@@ -1,0 +1,7 @@
+﻿{
+  "overrides": {
+    "Calc!B13": "coefficient",
+    "Calc!B21": "coefficient"
+  },
+  "skip": []
+}

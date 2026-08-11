@@ -1,123 +1,91 @@
-# CURSOR SLAB DESIGN
+﻿# Bridge Report Studio
 
-[![Engineering Status](https://img.shields.io/badge/Status-W16_Unified_Merge-green.svg)](#programme-status)
-[![IRC Compliance](https://img.shields.io/badge/Standards-IRC:6_|_IRC:78_|_IRC:112-blue.svg)](#engineering-standards)
-[![Quality gates](https://img.shields.io/badge/QA-npm_run_qa-blue.svg)](#regression-testing)
-[![User Manual](https://img.shields.io/badge/Docs-User_Manual-orange.svg)](USER_MANUAL.md)
+A report-first bridge slab design system. The engineer provides a controlled
+set of bridge geometry, material, loading, section-property, and
+calculation-factor inputs. The system runs one authoritative calculation
+pipeline, shows every intermediate and governing check, and produces a
+detailed narrative HTML/PDF design report with traceable numbers, charts,
+drawings, assumptions, and review status.
 
-> **Welcome Engineers!** Ready to cut your submersible bridge design time from weeks to minutes? CURSOR SLAB DESIGN’s automated generation engine instantly maps complex geometry inputs into audit-ready, IRC-compliant 53-sheet workbooks. Try out our visual dashboard below!
-
-A professional-grade engineering suite for the automated design and documentation of submersible high-level slab bridges. This tool transforms complex IRC-standard calculations into audit-ready 53-sheet Excel workbooks, high-fidelity DXF drawings, and narrative engineering dossiers.
-
----
-
-## Suite Structure Note
-
-This repository root is the canonical **CURSOR SLAB DESIGN** suite.
-
-- **Main app (design/excel/reports):** this root workspace
-- **Drawing baselines and record-keeper references:** `D1`, `D2`, `D4`
-- **Merger decision/evidence docs:** `COMPLIANCE_MERGER.md`, `PHASE0_FEATURE_COMPARISON_MATRICES.md`, `KIMI_SLAB_DESIGN`
-
-During merger phases, drawing and main app can remain separate runtimes, but they are governed as a single product suite with a shared interface contract and QA gates.
+**Status:** Week 3 of 15 ΓÇö prototype / review build  
+**Engineering sign-off:** Not yet obtained. All outputs are DRAFT.
 
 ---
 
-## 🚀 Quick Start (Video-Style Guide)
+## Quick start
 
-### 1. Installation & Environment Setup
-Clone the repository and install the engineering dependencies.
 ```bash
-# Install Node.js 20+ and npm 9+ first
-npm install
-```
+# Install
+npm install          # or: pnpm install
 
-### 2. Launch the Design Dashboard
-Start the development server to access the interactive web interface.
-```bash
+# Development server (existing prototype)
 npm run dev
-# Dashboard available at: http://localhost:5000
+
+# TypeScript check
+npm run check
+
+# Week 0 hydraulics regression
+npx tsx scripts/week0/verify-golden.ts
+
+# Week 6+ calculation parity regression (once golden snapshot is frozen)
+npx tsx scripts/week6/verify-golden.ts
+
+# Run classifier against a workbook
+python scripts/week0/classify_cells.py <workbook.xlsx> \
+  --answers inputs/answers_demo.json --outdir docs/week-2/output/
 ```
 
-### 3. Configure Design Parameters
-Open the UI and navigate to the **Design** page.
-- **Hydraulics**: Enter Discharge (Q), Bed Level, and HFL.
-- **Structural**: Select Slab Thickness and Material Grades (M25/Fe500).
-- **Model Selection**: Switch between **Model A** and **Model B** for performance comparison.
+---
 
-### 4. Verify & Export
-- **Live Checks**: Monitor real-time visualizations for Scour Depth and Afflux.
-- **Export**: Click the action buttons (20+ formats) to generate:
-    - 📄 **Excel**: 53-sheet complete design workbook.
-    - 📐 **DXF**: Professional CAD drawings with 16 engineering layers.
-    - 📖 **PDF/HTML**: Narrative report with step-by-step prose derivations.
+## Repository map
+
+See [`docs/week-3/repo-map.md`](docs/week-3/repo-map.md) for the full layout.
+
+Key paths:
+
+| Path | Purpose |
+|---|---|
+| `lib/engine/src/` | **Single authoritative calculation engine** |
+| `lib/api-zod/src/` | Zod input schema + validation |
+| `lib/api-spec/` | OpenAPI contract |
+| `artifacts/api-server/` | Express 5 API server |
+| `artifacts/mockup-sandbox/` | React UI + shadcn components |
+| `scripts/week0/` | Foundation scripts (classifier, make_demo, harness) |
+| `scripts/week6/` | Calculation parity harness |
+| `tests/golden/kherwara/` | Golden project fixtures |
+| `inputs/` | Foundation variable/coefficient/constraint registries |
+| `project/` | Decision log, asset register, open questions |
+| `docs/week-1/ ΓÇª week-15/` | Week deliverables |
+| `creat.md` | Living project charter |
 
 ---
 
-## 🛠 Core Capabilities
+## Week-by-week progress
 
-### 📊 Automated Workbook Generation
-Generates a complete 53-sheet professional workbook including:
-- **Hydraulics**: Manning’s formula, Lacey scour, and Molesworth afflux calculations.
-- **Pier Stability**: 5-case analysis (Normal, HFL, Full Submersion, Buoyancy cases).
-- **Abutment Design**: Support for Type1 and C1 profiles with earth pressure (Ka/Pa) analysis.
-- **Structural**: Slab design compliant with IRC:21-2000 / IRC:112.
-- **Estimation**: Detailed Quantity takeoff and BOQ roll-up.
-
-### 🎨 Professional DXF Engine
-- **CAD Standard**: AutoCAD-compatible export (AC1021) with dynamic levels for HFL, Scour, and Bed.
-- **Multi-Unit**: Support for both Meters (m) and Millimeters (mm).
-- **Engineering Layers**: Dedicated layers for dimensions, hatching, and text annotations.
-
-### 🧪 Engineering Rigor
-- **Structural Standards**: IRC SP-13 (Hydraulics), IRC:6 (Loads), IRC:78 (Foundations), IRC:112 (Concrete).
-- **Dual-Model Trial**: Interactive selection for Model A vs Model B with persistent trial state.
-- **Narrative Storytelling**: Report prose designed for "spoon-fed" engineering transparency.
-
----
-
-## 🏗 Technology Stack
-
-- **Frontend**: React + Vite + Tailwind (Internal Components)
-- **Backend**: Node.js + Express (REST API)
-- **Engine**: TypeScript Structural Calculation Core
-- **Logging**: Pino Structured Logging
-- **Testing**: Vitest Suite (31 unit & regression tests)
-- **Excel**: ExcelJS with dynamic formula wiring
-
----
-
-## 🚦 Programme Status
-
-| Milestone | Status | Details |
+| Week | Deliverable | Status |
 |---|---|---|
-| **W16 (Post-v1)** | ✅ Complete | Unified Merge (Repo A + Repo B) finalized. |
-| **QA Verification** | 🔧 Local | Run `npm run qa` before release; CI runs check, test, build, and audit policy. |
-| **Calculations** | 🛠 Validated | Scour (2.0×), IRC:66 stresses corrected. |
-| **Model Selection** | ⏱ Trial | Active 1-month trial (April-May 2026). |
+| 0 | Foundation JSON registries, demo workbook, classifier | Γ£à |
+| 1 | Baseline freeze, decision log, asset register | Γ£à |
+| 2 | Classifier run, ambiguity decisions, versioned registries | Γ£à |
+| 3 | Archive manifest, repo map, README | Γ£à |
+| 4 | Zod input schema, validation, Kherwara fixture | ≡ƒöº |
+| 5 | Pure calculation engine functions, unit tests | ≡ƒöº |
+| 6 | Golden snapshot, verify:golden harness, tamper test | ≡ƒôï |
+| 7 | Traceability surface, engineering review checklist | ≡ƒôï |
+| 8 | Narrative report engine, chapter templates | ≡ƒôï |
+| 9 | SVG cross-section, chart contracts | ≡ƒôï |
+| 10 | Landscape HTML/PDF export | ≡ƒôï |
+| 11 | Project persistence, Drizzle schema, run history | ≡ƒôï |
+| 12 | Workbook intake, multi-run workspace | ≡ƒôï |
+| 13 | Auth, logging, health checks, security | ≡ƒôï |
+| 14 | End-to-end acceptance, user manual | ≡ƒôï |
+| 15 | Release candidate, sign-off gate | ≡ƒôï |
 
 ---
 
-## 🧪 Regression Testing
+## Engineering important notes
 
-Run the full verification suite before any commit:
-```bash
-npm run qa
-```
-- `verify:engine`: Validates hydraulics core against Kherwara golden snapshots.
-- `verify:excel`: Checks cross-sheet formula wiring and BOQ roll-up.
-- `test:excel`: Generates `TEST_CURRENT_OUTPUT.xlsx` for manual inspection.
-
----
-
-## ⚖️ License & Compliance
-This software is built for professional engineering use and requires validation by a licensed Structural Engineer. Compliance with **IRC:6-2016** and **IRC:112-2011** is maintained by the design engine core.
-
----
-
-## Security Notes
-
-- Dependency audit is enforced in CI via `npm run audit:policy`.
-- Current policy blocks all critical vulnerabilities and all new high vulnerabilities except the temporary `xlsx` exception.
-- `xlsx` remains under controlled exception status because npm audit currently reports no direct auto-fix path for the pinned branch in this workspace.
-- Compensating controls are enabled on upload routes: strict XLSX payload checks, 10 MB max file size, ZIP signature validation, and parser row/column/metadata scan limits.
+- All outputs are **DRAFT** until a licensed engineer records review status.
+- Failed checks are **never suppressed** ΓÇö they appear in UI and report.
+- `creat.md` is the project charter. Keep it current.
+- The project is **not complete** until `creat.md` records launch evidence.

@@ -1,0 +1,74 @@
+﻿[
+  {
+    "id": "Calc!B11",
+    "label": "Utilisation (bending) U_b (-)",
+    "kind": "pairwise",
+    "inequality": "Utilisation <= 1.0",
+    "inequality_raw": "Utilisation <= 1.0",
+    "g_form": "g = 0.8022 - 1.0 <= 0   (feasible=True)",
+    "value": 0.802156690140845,
+    "formula": "B10/(Inputs!B8/Factors!B4)",
+    "confidence": 0.85,
+    "status": "auto"
+  },
+  {
+    "id": "Calc!B12",
+    "label": "Bending check (-)",
+    "kind": "if_check",
+    "inequality": "B11<=1",
+    "inequality_raw": "B11<=1",
+    "g_form": "",
+    "value": "OK",
+    "formula": "IF(B11<=1,\"OK\",\"NOT OK\")",
+    "confidence": 0.85,
+    "status": "auto"
+  },
+  {
+    "id": "Calc!B16",
+    "label": "Deflection check (-)",
+    "kind": "if_check",
+    "inequality": "B14<=B15",
+    "inequality_raw": "B14<=B15",
+    "g_form": "",
+    "value": "NOT OK",
+    "formula": "IF(B14<=B15,\"OK\",\"NOT OK\")",
+    "confidence": 0.85,
+    "status": "auto"
+  },
+  {
+    "id": "Calc!B20",
+    "label": "Shear check (-)",
+    "kind": "if_check",
+    "inequality": "B18<=B19",
+    "inequality_raw": "B18<=B19",
+    "g_form": "",
+    "value": "OK",
+    "formula": "IF(B18<=B19,\"OK\",\"NOT OK\")",
+    "confidence": 0.85,
+    "status": "auto"
+  },
+  {
+    "id": "Calc!B22",
+    "label": "Governing utilisation (-)",
+    "kind": "pairwise",
+    "inequality": "Governing utilisation <= 1.0",
+    "inequality_raw": "Governing utilisation <= 1.0",
+    "g_form": "g = 0.8022 - 1.0 <= 0   (feasible=True)",
+    "value": 0.802156690140845,
+    "formula": "MAX(B11,B18/B19)",
+    "confidence": 0.85,
+    "status": "auto"
+  },
+  {
+    "id": "Calc!B23",
+    "label": "Adjusted governing utilisation (-)",
+    "kind": "pairwise",
+    "inequality": "Adjusted governing utilisati <= 1.0",
+    "inequality_raw": "Adjusted governing utilisati <= 1.0",
+    "g_form": "g = 0.8663 - 1.0 <= 0   (feasible=True)",
+    "value": 0.866329225352113,
+    "formula": "B22*B13*B21",
+    "confidence": 0.85,
+    "status": "auto"
+  }
+]
