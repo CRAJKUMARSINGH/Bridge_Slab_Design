@@ -1,4 +1,4 @@
-﻿import { readFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { Router, type Request, type Response } from 'express';
 import { generateCompleteExcel } from '../bridge-excel-generator/index';
@@ -507,7 +507,7 @@ router.post('/report/html', async (req, res) => {
     const designResults = calculateCompleteDesign(input);
     const enhancedInput = { ...input, ...designResults } as any;
     
-    const html = generateHTMLDesignReport(enhancedInput);
+    const html = await generateHTMLDesignReport(enhancedInput);
     
     res.setHeader('Content-Type', 'text/html');
     res.setHeader('Content-Disposition', `attachment; filename="${input.projectName.replace(/\s+/g, '_')}_Report.html"`);

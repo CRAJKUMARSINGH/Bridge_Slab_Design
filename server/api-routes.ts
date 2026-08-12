@@ -591,7 +591,7 @@ router.post('/report/html', async (req, res) => {
     const designResults = calculateCompleteDesign(input);
     const enhancedInput = { ...input, ...designResults } as any;
     
-    const html = generateHTMLDesignReport(enhancedInput);
+    const html = await generateHTMLDesignReport(enhancedInput);
     
     res.setHeader('Content-Type', 'text/html');
     res.setHeader('Content-Disposition', `attachment; filename="${input.projectName.replace(/\s+/g, '_')}_Report.html"`);

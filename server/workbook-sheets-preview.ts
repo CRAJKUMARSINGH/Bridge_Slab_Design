@@ -13,8 +13,8 @@ export type WorkbookSheetPreview = {
   rows: string[][];
 };
 
-const MAX_ROWS = 140;
-const MAX_COLS = 18;
+export const MAX_ROWS = 140;
+export const MAX_COLS = 18;
 
 /** Same worksheet name as `bridge-excel-generator/sheets/09-stability-check-pier.ts`. */
 export const STABILITY_CHECK_PIER_SHEET_NAME = 'STABILITY CHECK FOR PIER';

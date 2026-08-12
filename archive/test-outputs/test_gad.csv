@@ -1,0 +1,42 @@
+Parameter,Value,Unit,Description,CAD_Layer
+PROJECT_NAME,Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD,,Project identification,TEXT
+TOTAL_LENGTH,96,m,Total bridge length,DIMENSIONS
+SPAN_LENGTH,8,m,Individual span,DIMENSIONS
+NUMBER_OF_SPANS,12,nos,Span count,DIMENSIONS
+BRIDGE_WIDTH,10.5,m,Overall width,STRUCTURE
+CARRIAGE_WIDTH,7.5,m,Carriageway,STRUCTURE
+HFL,100.6,m MSL,Highest Flood Level,WATER_LEVEL
+BED_LEVEL,96.6,m MSL,River bed level,STRUCTURE
+FOUNDATION_LEVEL,92.6,m MSL,Foundation depth,STRUCTURE
+RTL,101.6,m MSL,Road Top Level,STRUCTURE
+AGL,96.6,m MSL,Average Ground Level,STRUCTURE
+NUMBER_OF_PIERS,11,nos,Pier count,PIERS
+PIER_WIDTH,1.2,m,Pier width (flow),PIERS
+PIER_LENGTH,3.5,m,Pier length (bridge),PIERS
+PIER_DEPTH,4,m,Pier below bed,PIERS
+PIER_BASE_WIDTH,2.5,m,Footing width,PIERS
+PIER_BASE_LENGTH,4.5,m,Footing length,PIERS
+PIER_POSITIONS,"8,16,24,32,40,48,56,64,72,80,88",m,Pier chainages,PIERS
+ABUTMENT_WIDTH,0.575,m,Abutment width,ABUTMENTS
+ABUTMENT_HEIGHT,5,m,Abutment height,ABUTMENTS
+ABUTMENT_DEPTH,3,m,Foundation depth,ABUTMENTS
+DIRT_WALL_HEIGHT,3.5,m,Dirt wall,ABUTMENTS
+RETURN_WALL_LENGTH,6,m,Return wall,ABUTMENTS
+ABUT_LEFT_POS,0,m,Left abutment chainage,ABUTMENTS
+ABUT_RIGHT_POS,96,m,Right abutment chainage,ABUTMENTS
+VELOCITY,1.72,m/s,Design velocity,HYDRAULICS
+DISCHARGE,243.11,cumecs,Design discharge,HYDRAULICS
+AFFLUX,0.256,m,Afflux (head loss),HYDRAULICS
+CROSS_SECTION_POINTS,7,nos,Survey points,DIMENSIONS
+FIRST_CHAINAGE,0,m,Start chainage,DIMENSIONS
+LAST_CHAINAGE,60,m,End chainage,DIMENSIONS
+SCALE_HORIZONTAL,1,,H scale (1:1000 typical),SETUP
+SCALE_VERTICAL,10,,V exaggeration (10x),SETUP
+DRAWING_UNITS,METERS,,CAD units,SETUP
+CS_POINT_1,"0,100.5","m,m","Chainage 0.00, GL 100.50",CROSS_SECTION
+CS_POINT_2,"10,98.2","m,m","Chainage 10.00, GL 98.20",CROSS_SECTION
+CS_POINT_3,"20,96.6","m,m","Chainage 20.00, GL 96.60",CROSS_SECTION
+CS_POINT_4,"30,96.8","m,m","Chainage 30.00, GL 96.80",CROSS_SECTION
+CS_POINT_5,"40,97.5","m,m","Chainage 40.00, GL 97.50",CROSS_SECTION
+CS_POINT_6,"50,99.8","m,m","Chainage 50.00, GL 99.80",CROSS_SECTION
+CS_POINT_7,"60,101.2","m,m","Chainage 60.00, GL 101.20",CROSS_SECTION

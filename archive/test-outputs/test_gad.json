@@ -1,0 +1,168 @@
+{
+  "project": {
+    "name": "Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD",
+    "date": "2026-08-12T05:56:05.649Z",
+    "standard": "IRC:6-2016, IRC:112-2015"
+  },
+  "geometry": {
+    "type": "SubmersibleBridge",
+    "totalLength": 96,
+    "spans": [
+      {
+        "spanNumber": 1,
+        "length": 8,
+        "startChainage": 0,
+        "endChainage": 8
+      },
+      {
+        "spanNumber": 2,
+        "length": 8,
+        "startChainage": 8,
+        "endChainage": 16
+      },
+      {
+        "spanNumber": 3,
+        "length": 8,
+        "startChainage": 16,
+        "endChainage": 24
+      },
+      {
+        "spanNumber": 4,
+        "length": 8,
+        "startChainage": 24,
+        "endChainage": 32
+      },
+      {
+        "spanNumber": 5,
+        "length": 8,
+        "startChainage": 32,
+        "endChainage": 40
+      },
+      {
+        "spanNumber": 6,
+        "length": 8,
+        "startChainage": 40,
+        "endChainage": 48
+      },
+      {
+        "spanNumber": 7,
+        "length": 8,
+        "startChainage": 48,
+        "endChainage": 56
+      },
+      {
+        "spanNumber": 8,
+        "length": 8,
+        "startChainage": 56,
+        "endChainage": 64
+      },
+      {
+        "spanNumber": 9,
+        "length": 8,
+        "startChainage": 64,
+        "endChainage": 72
+      },
+      {
+        "spanNumber": 10,
+        "length": 8,
+        "startChainage": 72,
+        "endChainage": 80
+      },
+      {
+        "spanNumber": 11,
+        "length": 8,
+        "startChainage": 80,
+        "endChainage": 88
+      },
+      {
+        "spanNumber": 12,
+        "length": 8,
+        "startChainage": 88,
+        "endChainage": 96
+      }
+    ],
+    "width": 10.5
+  },
+  "piers": {
+    "count": 11,
+    "spacing": 8,
+    "positions": [
+      8,
+      16,
+      24,
+      32,
+      40,
+      48,
+      56,
+      64,
+      72,
+      80,
+      88
+    ],
+    "width": 1.2,
+    "length": 3.5,
+    "depth": 4,
+    "footing": {
+      "width": 2.5,
+      "length": 4.5
+    }
+  },
+  "abutments": {
+    "left": {
+      "position": 0,
+      "width": 0.575,
+      "height": 5,
+      "depth": 3
+    },
+    "right": {
+      "position": 96,
+      "width": 0.575,
+      "height": 5,
+      "depth": 3
+    }
+  },
+  "levels": {
+    "hfl": 100.6,
+    "bedLevel": 96.6,
+    "foundationLevel": 92.6,
+    "rtl": 101.6,
+    "agl": 96.6
+  },
+  "hydraulics": {
+    "velocity": 1.7180898181421296,
+    "discharge": 243.10970926711096,
+    "afflux": 0.2561406481468059,
+    "area": 141.49999999999977,
+    "perimeter": 60.773368550611956
+  },
+  "crossSection": [
+    {
+      "chainage": 0,
+      "gl": 100.5
+    },
+    {
+      "chainage": 10,
+      "gl": 98.2
+    },
+    {
+      "chainage": 20,
+      "gl": 96.6
+    },
+    {
+      "chainage": 30,
+      "gl": 96.8
+    },
+    {
+      "chainage": 40,
+      "gl": 97.5
+    },
+    {
+      "chainage": 50,
+      "gl": 99.8
+    },
+    {
+      "chainage": 60,
+      "gl": 101.2
+    }
+  ]
+}

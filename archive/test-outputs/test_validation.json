@@ -1,0 +1,123 @@
+{
+  "projectName": "Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD",
+  "validatedAt": "2026-08-12T05:56:05.652Z",
+  "overallStatus": "REJECTED",
+  "summary": "5 critical failure(s) found. Design must be revised before proceeding.",
+  "validations": [
+    {
+      "section": "Hydraulics",
+      "status": "PASS",
+      "message": "Velocity 1.72 m/s within acceptable range",
+      "details": [
+        "Suitable for submersible bridge design"
+      ]
+    },
+    {
+      "section": "Hydraulics",
+      "status": "PASS",
+      "message": "Subcritical flow (Fr = 0.27) - stable",
+      "details": [
+        "No hydraulic jump expected"
+      ]
+    },
+    {
+      "section": "Foundation",
+      "status": "WARNING",
+      "message": "Scour depth (4.80m) approaches pier embedment (4.00m)",
+      "details": [
+        "Scour depth is 80%+ of pier depth",
+        "Risk of undermining"
+      ],
+      "recommendation": "Increase pier depth or provide scour protection"
+    },
+    {
+      "section": "Pier Stability - Service Condition",
+      "status": "FAIL",
+      "message": "Stability checks failed for Service Condition",
+      "details": [
+        "Sliding FOS 0.71 < 1.5 required"
+      ],
+      "recommendation": "Increase base dimensions or revise load factors"
+    },
+    {
+      "section": "Pier Stability - Construction Stage",
+      "status": "FAIL",
+      "message": "Stability checks failed for Construction Stage",
+      "details": [
+        "Sliding FOS 0.46 < 1.5 required",
+        "Overturning FOS 1.47 < 1.8 required"
+      ],
+      "recommendation": "Increase base dimensions or revise load factors"
+    },
+    {
+      "section": "Pier Stability - Flood Condition",
+      "status": "FAIL",
+      "message": "Stability checks failed for Flood Condition",
+      "details": [
+        "Sliding FOS 0.27 < 1.5 required",
+        "Overturning FOS 0.86 < 1.8 required"
+      ],
+      "recommendation": "Increase base dimensions or revise load factors"
+    },
+    {
+      "section": "Pier Stability - Seismic Condition",
+      "status": "FAIL",
+      "message": "Stability checks failed for Seismic Condition",
+      "details": [
+        "Sliding FOS 0.38 < 1.5 required",
+        "Overturning FOS 1.21 < 1.8 required"
+      ],
+      "recommendation": "Increase base dimensions or revise load factors"
+    },
+    {
+      "section": "Pier Stability - Ultimate Limit State",
+      "status": "FAIL",
+      "message": "Stability checks failed for Ultimate Limit State",
+      "details": [
+        "Sliding FOS 1.09 < 1.5 required",
+        "Bearing FOS 1.70 < 2.5 required"
+      ],
+      "recommendation": "Increase base dimensions or revise load factors"
+    },
+    {
+      "section": "Abutment",
+      "status": "WARNING",
+      "message": "Abutment height (5m) > 50% of span (8m)",
+      "details": [
+        "High abutment may increase earth pressure",
+        "Check for overturning"
+      ],
+      "recommendation": "Consider relieving slab or lighter fill material"
+    },
+    {
+      "section": "Afflux",
+      "status": "PASS",
+      "message": "Afflux 0.256m acceptable",
+      "details": [
+        "Afflux/Depth ratio: 6.4% < 10%"
+      ]
+    },
+    {
+      "section": "Survey Data",
+      "status": "INFO",
+      "message": "7 cross-section points provided",
+      "details": [
+        "Adequate for area calculation"
+      ]
+    },
+    {
+      "section": "Bridge Type Policy",
+      "status": "INFO",
+      "message": "Submersible bridge mode active; overtopping behavior is allowed by policy.",
+      "details": [
+        "Deck clearance above HFL is not enforced as a fail criterion in submersible mode."
+      ]
+    }
+  ],
+  "ircReferences": [
+    "IRC SP-13: Velocity screening for bridge waterway behavior",
+    "IRC:78-1983: Pier depth ≥ 1.33 × Lacey's scour depth",
+    "IRC:6-2016: FOS for load combinations",
+    "IRC SP-13: Afflux calculation by Molesworth formula"
+  ]
+}

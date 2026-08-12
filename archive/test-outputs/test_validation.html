@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Design Validation Report - Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; margin: 40px; background: #f5f5f5; }
+    .container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .header { text-align: center; margin-bottom: 30px; }
+    .header h1 { color: #2c3e50; margin: 0; }
+    .overall-status {
+      display: inline-block;
+      padding: 15px 40px;
+      font-size: 18pt;
+      font-weight: bold;
+      color: white;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .summary { background: #ecf0f1; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+    .validation-item {
+      border-left: 5px solid;
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      background: #f8f9fa;
+    }
+    .validation-item h3 { margin: 0 0 10px 0; font-size: 12pt; }
+    .validation-item .status {
+      display: inline-block;
+      padding: 4px 12px;
+      color: white;
+      font-size: 9pt;
+      font-weight: bold;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .validation-item ul { margin: 10px 0; padding-left: 20px; }
+    .validation-item li { margin: 5px 0; }
+    .recommendation {
+      background: #fff3cd;
+      padding: 10px 15px;
+      border-radius: 4px;
+      margin-top: 10px;
+      font-style: italic;
+    }
+    .irc-refs {
+      background: #e8f4f8;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 30px;
+    }
+    .irc-refs h3 { margin-top: 0; color: #2c3e50; }
+    .irc-refs ul { list-style: none; padding: 0; }
+    .irc-refs li { padding: 5px 0; border-bottom: 1px solid #bdc3c7; }
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 2px solid #ecf0f1;
+      color: #7f8c8d;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>BRIDGE DESIGN VALIDATION REPORT</h1>
+      <div class="overall-status" style="background: #e74c3c;">
+        REJECTED
+      </div>
+      <h2>Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD</h2>
+      <p>Validated: 8/12/2026, 11:26:05 AM</p>
+    </div>
+    
+    <div class="summary">
+      <strong>Summary:</strong> 5 critical failure(s) found. Design must be revised before proceeding.
+    </div>
+    
+    <h2>Detailed Validations</h2>
+    
+      <div class="validation-item" style="border-color: #27ae60;">
+        <span class="status" style="background: #27ae60;">PASS</span>
+        <h3>Hydraulics</h3>
+        <p>Velocity 1.72 m/s within acceptable range</p>
+        <ul><li>Suitable for submersible bridge design</li></ul>
+        
+      </div>
+    
+      <div class="validation-item" style="border-color: #27ae60;">
+        <span class="status" style="background: #27ae60;">PASS</span>
+        <h3>Hydraulics</h3>
+        <p>Subcritical flow (Fr = 0.27) - stable</p>
+        <ul><li>No hydraulic jump expected</li></ul>
+        
+      </div>
+    
+      <div class="validation-item" style="border-color: #f39c12;">
+        <span class="status" style="background: #f39c12;">WARNING</span>
+        <h3>Foundation</h3>
+        <p>Scour depth (4.80m) approaches pier embedment (4.00m)</p>
+        <ul><li>Scour depth is 80%+ of pier depth</li><li>Risk of undermining</li></ul>
+        <div class="recommendation">💡 Increase pier depth or provide scour protection</div>
+      </div>
+    
+      <div class="validation-item" style="border-color: #e74c3c;">
+        <span class="status" style="background: #e74c3c;">FAIL</span>
+        <h3>Pier Stability - Service Condition</h3>
+        <p>Stability checks failed for Service Condition</p>
+        <ul><li>Sliding FOS 0.71 < 1.5 required</li></ul>
+        <div class="recommendation">💡 Increase base dimensions or revise load factors</div>
+      </div>
+    
+      <div class="validation-item" style="border-color: #e74c3c;">
+        <span class="status" style="background: #e74c3c;">FAIL</span>
+        <h3>Pier Stability - Construction Stage</h3>
+        <p>Stability checks failed for Construction Stage</p>
+        <ul><li>Sliding FOS 0.46 < 1.5 required</li><li>Overturning FOS 1.47 < 1.8 required</li></ul>
+        <div class="recommendation">💡 Increase base dimensions or revise load factors</div>
+      </div>
+    
+      <div class="validation-item" style="border-color: #e74c3c;">
+        <span class="status" style="background: #e74c3c;">FAIL</span>
+        <h3>Pier Stability - Flood Condition</h3>
+        <p>Stability checks failed for Flood Condition</p>
+        <ul><li>Sliding FOS 0.27 < 1.5 required</li><li>Overturning FOS 0.86 < 1.8 required</li></ul>
+        <div class="recommendation">💡 Increase base dimensions or revise load factors</div>
+      </div>
+    
+      <div class="validation-item" style="border-color: #e74c3c;">
+        <span class="status" style="background: #e74c3c;">FAIL</span>
+        <h3>Pier Stability - Seismic Condition</h3>
+        <p>Stability checks failed for Seismic Condition</p>
+        <ul><li>Sliding FOS 0.38 < 1.5 required</li><li>Overturning FOS 1.21 < 1.8 required</li></ul>
+        <div class="recommendation">💡 Increase base dimensions or revise load factors</div>
+      </div>
+    
+      <div class="validation-item" style="border-color: #e74c3c;">
+        <span class="status" style="background: #e74c3c;">FAIL</span>
+        <h3>Pier Stability - Ultimate Limit State</h3>
+        <p>Stability checks failed for Ultimate Limit State</p>
+        <ul><li>Sliding FOS 1.09 < 1.5 required</li><li>Bearing FOS 1.70 < 2.5 required</li></ul>
+        <div class="recommendation">💡 Increase base dimensions or revise load factors</div>
+      </div>
+    
+      <div class="validation-item" style="border-color: #f39c12;">
+        <span class="status" style="background: #f39c12;">WARNING</span>
+        <h3>Abutment</h3>
+        <p>Abutment height (5m) > 50% of span (8m)</p>
+        <ul><li>High abutment may increase earth pressure</li><li>Check for overturning</li></ul>
+        <div class="recommendation">💡 Consider relieving slab or lighter fill material</div>
+      </div>
+    
+      <div class="validation-item" style="border-color: #27ae60;">
+        <span class="status" style="background: #27ae60;">PASS</span>
+        <h3>Afflux</h3>
+        <p>Afflux 0.256m acceptable</p>
+        <ul><li>Afflux/Depth ratio: 6.4% < 10%</li></ul>
+        
+      </div>
+    
+      <div class="validation-item" style="border-color: #3498db;">
+        <span class="status" style="background: #3498db;">INFO</span>
+        <h3>Survey Data</h3>
+        <p>7 cross-section points provided</p>
+        <ul><li>Adequate for area calculation</li></ul>
+        
+      </div>
+    
+      <div class="validation-item" style="border-color: #3498db;">
+        <span class="status" style="background: #3498db;">INFO</span>
+        <h3>Bridge Type Policy</h3>
+        <p>Submersible bridge mode active; overtopping behavior is allowed by policy.</p>
+        <ul><li>Deck clearance above HFL is not enforced as a fail criterion in submersible mode.</li></ul>
+        
+      </div>
+    
+    
+    <div class="irc-refs">
+      <h3>IRC Standards Referenced</h3>
+      <ul>
+        <li>📋 IRC SP-13: Velocity screening for bridge waterway behavior</li><li>📋 IRC:78-1983: Pier depth ≥ 1.33 × Lacey's scour depth</li><li>📋 IRC:6-2016: FOS for load combinations</li><li>📋 IRC SP-13: Afflux calculation by Molesworth formula</li>
+      </ul>
+    </div>
+    
+    <div class="footer">
+      <p>Bridge Design Validation System</p>
+      <p>IRC:6-2016 | IRC:112-2015 | IRC:78-1983 | IRC SP-13 | IRC:5-2015 (clearance, as applicable)</p>
+    </div>
+  </div>
+</body>
+</html>
+  
