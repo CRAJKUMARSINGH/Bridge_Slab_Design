@@ -1,0 +1,43 @@
+#!/bin/sh
+# ============================================================
+# pre-commit hook: protect weekly plan and creat*.md files
+# These files must NEVER be deleted from the repository.
+# ============================================================
+
+PROTECTED_PATTERNS="creat*.md docs/week-*/.*\.md"
+
+# Get files staged for deletion
+DELETED_FILES=$(git diff --cached --name-only --diff-filter=D)
+
+BLOCKED=""
+
+for file in $DELETED_FILES; do
+  # Check creat*.md at root
+  case "$file" in
+    creat*.md)
+      BLOCKED="$BLOCKED\n  ❌ $file  (root plan file — protected)"
+      ;;
+    docs/week-*/*.md)
+      BLOCKED="$BLOCKED\n  ❌ $file  (weekly implementation deliverable — protected)"
+      ;;
+  esac
+done
+
+if [ -n "$BLOCKED" ]; then
+  echo ""
+  echo "╔══════════════════════════════════════════════════════╗"
+  echo "║  PRE-COMMIT GUARD: Protected files cannot be deleted ║"
+  echo "╚══════════════════════════════════════════════════════╝"
+  echo ""
+  echo "The following files are permanently protected and cannot"
+  echo "be removed in a commit:"
+  printf "$BLOCKED\n"
+  echo ""
+  echo "These files are the 15-week AC plan and weekly implementation"
+  echo "deliverables. To override (engineering leads only), use:"
+  echo "  git commit --no-verify"
+  echo ""
+  exit 1
+fi
+
+exit 0
