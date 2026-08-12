@@ -22,3 +22,5 @@ netlify/functions/api.js
 .netlify/
 .vercel/
 dist/
+
+robotic-test-output-*.xlsx
