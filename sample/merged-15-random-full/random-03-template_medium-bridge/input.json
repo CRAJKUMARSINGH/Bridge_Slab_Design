@@ -1,0 +1,69 @@
+{
+  "projectName": "Medium Bridge Template",
+  "location": "Rajasthan, India",
+  "riverName": "Sample River",
+  "bridgeType": "submersible",
+  "spanLength": 12.125,
+  "numberOfSpans": 4,
+  "skew": 0,
+  "carriageWidth": 7.5,
+  "numberOfLanes": 2,
+  "totalLength": 48,
+  "hfl": 288.152,
+  "bedLevel": 282,
+  "foundationLevel": 278,
+  "discharge": 624.214,
+  "manningN": 0.03344,
+  "bedSlope": 1204.006,
+  "laceysSiltFactor": 1.5,
+  "crossSectionData": [
+    {
+      "chainage": 0,
+      "gl": 280
+    },
+    {
+      "chainage": 20,
+      "gl": 279.2
+    },
+    {
+      "chainage": 40,
+      "gl": 278.5
+    },
+    {
+      "chainage": 60,
+      "gl": 279
+    },
+    {
+      "chainage": 80,
+      "gl": 280
+    }
+  ],
+  "pierWidth": 1.2,
+  "pierLength": 3.5,
+  "pierDepth": 5,
+  "numberOfPiers": 3,
+  "pierBaseWidth": 2.5,
+  "pierBaseLength": 4.5,
+  "abutmentHeight": 8,
+  "abutmentWidth": 3.5,
+  "abutmentDepth": 5,
+  "dirtWallHeight": 2.5,
+  "returnWallLength": 6,
+  "concreteGrade": "M25",
+  "fck": 25,
+  "steelGrade": "Fe415",
+  "fy": 415,
+  "sbc": 207.144,
+  "phi": 30,
+  "gamma": 18,
+  "rtl": 290,
+  "agl": 283,
+  "nbl": 282,
+  "ofl": 286,
+  "dwl": 288.5,
+  "deckSlabThickness": 0.25,
+  "freeboardAboveHfl": 1,
+  "issuingAuthority": "",
+  "jobNumber": "",
+  "hardRockAvailable": false
+}

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bridge Slab Design — Complete Project Registry</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4f8;color:#1a2940;font-size:14px}
+.header{background:linear-gradient(135deg,#0a2a5e 0%,#1a4a9e 60%,#0e7c5a 100%);color:#fff;padding:36px 40px 28px}
+.header h1{font-size:28px;letter-spacing:1px;margin-bottom:6px}
+.header p{opacity:.85;font-size:13px;max-width:800px}
+.codes{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:12px;padding:3px 12px;font-size:11px;font-weight:600;letter-spacing:.5px}
+.container{max-width:1300px;margin:32px auto;padding:0 24px}
+.section-title{font-size:16px;font-weight:700;color:#0a2a5e;border-bottom:3px solid #1a4a9e;padding-bottom:8px;margin:28px 0 16px;text-transform:uppercase;letter-spacing:.5px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(370px,1fr));gap:20px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(10,42,94,.1);overflow:hidden;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(10,42,94,.18)}
+.card-header{padding:14px 18px 10px;border-bottom:1px solid #e8edf5}
+.badge{display:inline-block;padding:2px 10px;border-radius:10px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px}
+.badge.hl{background:#e8f4fd;color:#0a6eb4}
+.badge.sub{background:#e8f7f0;color:#0a6e3a}
+.badge.est{background:#fff3e0;color:#b45309}
+.card-title{font-size:14px;font-weight:700;color:#1a2940;line-height:1.35}
+.card-sub{font-size:11.5px;color:#4a6080;margin-top:3px}
+.card-body{padding:12px 18px}
+.spec-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f0f4f8;font-size:12px}
+.spec-row:last-child{border:none}
+.spec-label{color:#6a8099}
+.spec-val{font-weight:600;color:#1a2940}
+.card-footer{padding:10px 18px 14px;display:flex;gap:8px}
+.btn{display:inline-block;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:600;text-decoration:none;transition:background .15s}
+.btn-primary{background:#1a4a9e;color:#fff}
+.btn-primary:hover{background:#0a2a5e}
+.btn-sec{background:#e8edf5;color:#1a2940}
+.btn-sec:hover{background:#d0d8e8}
+.status-ok{color:#0a6e3a;font-weight:600}
+.status-chk{color:#b45309;font-weight:600}
+.lfs-box{background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(10,42,94,.1);padding:24px;margin-bottom:24px}
+.lfs-box h3{color:#0a2a5e;margin-bottom:12px;font-size:15px}
+.lfs-box code{background:#f0f4f8;border-radius:4px;padding:2px 7px;font-family:monospace;font-size:12px}
+.lfs-box pre{background:#1a2940;color:#e0e8f0;border-radius:8px;padding:16px;margin:10px 0;font-size:12px;line-height:1.7;overflow-x:auto}
+.stat-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:24px 0}
+.stat{background:#fff;border-radius:8px;padding:16px 20px;text-align:center;box-shadow:0 2px 8px rgba(10,42,94,.08)}
+.stat-num{font-size:28px;font-weight:800;color:#1a4a9e}
+.stat-label{font-size:11px;color:#6a8099;margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
+footer{text-align:center;padding:28px;color:#6a8099;font-size:12px;background:#fff;margin-top:40px;border-top:1px solid #e8edf5}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>IRC Bridge Slab Design — Complete Project Registry</h1>
+  <p>All design reports generated from engineering source files in the Attached_Assets repository folder. Each report follows the BEDACH load-accumulation sequence under the IRC suite of standards. Binary source files (.doc, .xls, .docx, .xlsx) are tracked via Git LFS.</p>
+  <div class="codes">
+    <span class="chip">IRC:6-2016</span>
+    <span class="chip">IRC:112-2015</span>
+    <span class="chip">IRC:78-1983</span>
+    <span class="chip">IRC SP-13</span>
+    <span class="chip">IRC:5-2015</span>
+    <span class="chip">IS:1893</span>
+    <span class="chip">Git LFS</span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="stat-bar">
+    <div class="stat"><div class="stat-num">16</div><div class="stat-label">Bridge Projects</div></div>
+    <div class="stat"><div class="stat-num">9</div><div class="stat-label">Submersible</div></div>
+    <div class="stat"><div class="stat-num">7</div><div class="stat-label">High-Level</div></div>
+    <div class="stat"><div class="stat-num">100+</div><div class="stat-label">Source Files (LFS)</div></div>
+    <div class="stat"><div class="stat-num">9</div><div class="stat-label">Load Cases</div></div>
+    <div class="stat"><div class="stat-num">IRC</div><div class="stat-label">Standard Suite</div></div>
+  </div>
+
+  <!-- GIT LFS LIVE-SYNC PANEL LINK -->
+  <div class="lfs-box" style="background:linear-gradient(135deg,#0d1117 0%,#0d2137 60%,#0a2a0a 100%);color:#e6edf3;border:1.5px solid #238636">
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <div style="font-size:36px">&#x1F517;</div>
+      <div style="flex:1">
+        <h3 style="color:#3fb950;font-size:16px;margin-bottom:5px">Git LFS Live-Sync Control Panel &nbsp;<span style="background:#238636;color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;vertical-align:middle;letter-spacing:.5px">NEW</span></h3>
+        <p style="color:#8b949e;font-size:12.5px;line-height:1.6">All <b style="color:#e6edf3">18 repositories</b> in the CRAJKUMARSINGH bridge engineering portfolio are wired here for real-time Git LFS pulls. Clone any repo, download all binary assets (XLS workbooks, DOC notes, DXF drawings, DWG files), track sync status, and watch live git output streamed directly in your browser — no terminal needed.</p>
+      </div>
+      <a href="lfs-sync.html" style="display:inline-flex;align-items:center;gap:8px;background:#238636;color:#fff;padding:10px 22px;border-radius:8px;font-weight:700;font-size:13px;text-decoration:none;white-space:nowrap;flex-shrink:0">
+        &#x21BB; Open Sync Panel &#8599;
+      </a>
+    </div>
+    <div style="margin-top:16px;border-top:1px solid #30363d;padding-top:12px">
+      <p style="color:#8b949e;font-size:12px;margin-bottom:8px">Command-line alternative — pull the primary repo with full LFS assets:</p>
+      <pre style="background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:14px;font-size:12px;color:#e6edf3;line-height:1.7;overflow-x:auto">git lfs install
+git clone https://github.com/CRAJKUMARSINGH/Bridge_Slab_Design.git
+cd Bridge_Slab_Design
+git lfs pull</pre>
+      <p style="color:#6e7681;font-size:11.5px;margin-top:8px">To verify: <code style="background:#161b22;border:1px solid #30363d;border-radius:3px;padding:1px 6px;color:#58a6ff">git lfs ls-files | grep Attached_Assets</code> &nbsp;·&nbsp; See <a href="GIT_LFS_SETUP.md" style="color:#58a6ff">GIT_LFS_SETUP.md</a> for complete push/pull guide.</p>
+    </div>
+  </div>
+
+  <!-- SUBMERSIBLE BRIDGES -->
+  <div class="section-title">Submersible Bridges</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge sub">Submersible · FULL DATA</span>
+        <div class="card-title">SOM RIVER — Kherwara-Jawas-Suveri Road (km 9/000)</div>
+        <div class="card-sub">Complete 9-case pier stability with real computed values</div>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">Span (c/c piers)</span><span class="spec-val">8.80 m (7.60 m clear)</span></div>
+        <div class="spec-row"><span class="spec-label">HFL / Deck Level</span><span class="spec-val">100.60 / 101.60 m MSL</span></div>
+        <div class="spec-row"><span class="spec-label">Q / Velocity</span><span class="spec-val">899.93 cumecs / 1.84 m/s</span></div>
+        <div class="spec-row"><span class="spec-label">Foundation Level</span><span class="spec-val">91.97 m MSL (hard rock)</span></div>
+        <div class="spec-row"><span class="spec-label">SBC / Seismic Zone</span><span class="spec-val">200 kN/m² / Zone II</span></div>
+        <div class="spec-row"><span class="spec-label">Max Base Pressure</span><span class="spec-val status-ok">137.30 kN/m² &lt; 250 — O.K.</span></div>
+      </div>
+      <div class="card-footer">
+        <a href="som-river-kherwara.html" class="btn btn-primary">View Full Report</a>
+        <a href="#" class="btn btn-sec">Source: PIER STABIL.txt</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge sub">Submersible</span>
+        <div class="card-title">BEDACH RIVER — Syphon Tiraha to Bedla Road</div>
+        <div class="card-sub">Stability analysis, LL calc, abutment, dirt wall · Source: 3 XLS files</div>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">River / Road</span><span class="spec-val">Bedach River, Syphon–Bedla</span></div>
+        <div class="spec-row"><span class="spec-label">Source Files</span><span class="spec-val">Stability + LLCALpier + Abut + Dirt Wall XLS</span></div>
+        <div class="spec-row"><span class="spec-label">Seismic Zone</span><span class="spec-val">Zone II (per BEDACH context)</span></div>
+        <div class="spec-row"><span class="spec-label">Load Cases</span><span class="spec-val">9 cases (BEDACH sequence)</span></div>
+        <div class="spec-row"><span class="spec-label">Standards</span><span class="spec-val">IRC:6-2016, IRC:78-1983</span></div>
+      </div>
+      <div class="card-footer">
+        <a href="bedach-river-bedla.html" class="btn btn-primary">View Full Report</a>
+        <a href="#" class="btn btn-sec">Source: 4 XLS (LFS)</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge sub">Submersible</span>
+        <div class="card-title">JAKHAM RIVER — Mandvi Parsola via Bajpura Road</div>
+        <div class="card-sub">Stability + abutment + site visit bills · Source: XLS + DOC files</div>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">River</span><span class="spec-val">Jakham River</span></div>
+        <div class="spec-row"><span class="spec-label">Road</span><span class="spec-val">Mandvi–Parsola via Bajpura</span></div>
+        <div class="spec-row"><span class="spec-label">Source Files</span><span class="spec-val">Stability XLS + Design Notes DOC</span></div>
+        <div class="spec-row"><span class="spec-label">Site Records</span><span class="spec-val">Bills: 31-05-05, 01-09-05, 06-09-05</span></div>
+        <div class="spec-row"><span class="spec-label">Load Cases</span><span class="spec-val">9 cases (BEDACH sequence)</span></div>
+      </div>
+      <div class="card-footer">
+        <a href="jakham-river-mandvi.html" class="btn btn-primary">View Full Report</a>
+        <a href="#" class="btn btn-sec">Source: XLS + DOC (LFS)</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge sub">Submersible</span>
+        <div class="card-title">T01 — Jethliya Sobhaniya Teendhari Chhatri Road</div>
+        <div class="card-sub">Stability + abutment + dirt wall · Source: XLS files</div>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">Road Designation</span><span class="spec-val">T01 (rural bridge)</span></div>
+        <div class="spec-row"><span class="spec-label">Source Files</span><span class="spec-val">Stability + Abut + Dirt Wall XLS</span></div>
+        <div class="spec-row"><span class="spec-label">Design Notes</span><span class="spec-val">DOC file available</span></div>
+        <div class="spec-row"><span class="spec-label">Load Cases</span><span class="spec-val">9 cases (BEDACH sequence)</span></div>
+        <div class="spec-row"><span class="spec-label">Standards</span><span class="spec-val">IRC:6, IRC:78, IRC SP-13</span></div>
+      </div>
+      <div class="card-footer">
+        <a href="t01-road-jethliya.html" class="btn btn-primary">View Full Report</a>
+        <a href="#" class="btn btn-sec">Source: XLS + DOC (LFS)</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge sub">Submersible</span>
+        <div class="card-title">SOM RIVER — Larathi to Larathi B (2022)</div>
+        <div class="card-sub">Construction documentation + stability · Source: DOCX + XLS</div>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">River</span><span class="spec-val">Som River at Larathi</span></div>
+        <div class="spec-row"><span class="spec-label">Status</span><span class="spec-val">Construction stage (28.06.2022)</span></div>
+        <div class="spec-row"><span class="spec-label">Source Files</span><span class="spec-val">DOCX construction + Stability XLS</span></div>
+        <div class="spec-row"><span class="spec-label">Load Cases</span><span class="spec-val">9 cases (BEDACH sequence)</span></div>
+        <div class="spec-row"><span class="spec-label">Standards</span><span class="spec-val">IRC:6-2016, IRC:112-2015</span></div>
+      </div>
+      <div class="card-footer">
+        <a href="som-river-larathi.html" class="btn btn-primary">View Full Report</a>
+        <a href="#" class="btn btn-sec">Source: DOCX + XLS (LFS)</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge sub">Submersible</span>
+        <div class="card-title">SUKANAKA NALAH — Jhamar Kotada Road, Matoon Village</div>
+        <div class="card-sub">Stability + abutment + dirt wall · Source: XLS files</div>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">Nala / Road</span><span class="spec-val">Sukanaka Nalah, Udaipur–Jhamar Kotada</span></div>
+        <div class="spec-row"><span class="spec-label">Village</span><span class="spec-val">Near Matoon Village</span></div>
+        <div class="spec-row"><span class="spec-label">Source Files</span><span class="spec-val">2× Stability + Abut + Dirt Wall XLS</span></div>
+        <div class="spec-row"><span class="spec-label">Design Notes</span><span class="spec-val">SUKANAKA bridge nr MATOON DOC</span></div>
+        <div class="spec-row"><span class="spec-label">Load Cases</span><span class="spec-val">9 cases (BEDACH sequence)</span></div>
+      </div>
+      <div class="card-footer">
+        <a href="sukanaka-nalah-matoon.html" class="btn btn-primary">View Full Report</a>
+        <a href="#" class="btn btn-sec">Source: XLS + DOC (LFS)</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge sub">Submersible</span>
+        <div class="card-title">AYAD RIVER — Maharashtra Bhawan to New Bhupalpura</div>
+        <div class="card-sub">Stability + abutment + hydraulics · Source: XLS + DOC</div>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">River</span><span class="spec-val">Ayad River, Udaipur</span></div>
+        <div class="spec-row"><span class="spec-label">Road</span><span class="spec-val">Maharashtra Bhawan – New Bhupalpura</span></div>
+        <div class="spec-row"><span class="spec-label">Source Files</span><span class="spec-val">Stability + Abut XLS + Hydraulics DOC</span></div>
+        <div class="spec-row"><span class="spec-label">Hydraulics</span><span class="spec-val">Ayad Bridge DOC + hydraulics.xls</span></div>
+        <div class="spec-row"><span class="spec-label">Load Cases</span><span class="spec-val">9 cases (BEDACH sequence)</span></div>
+      </div>
+      <div class="card-footer">
+        <a href="ayad-river-maharashtra.html" class="btn btn-primary">View Full Report</a>
+        <a href="#" class="btn btn-sec">Source: XLS + DOC (LFS)</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge sub">Submersible</span>
+        <div class="card-title">GUMANIYA WALA NALAH — Near Aaloo Factory, Udaipur</div>
+        <div class="card-sub">Full design: pier cap + abutment + stability + hydraulics</div>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">Nala</span><span class="spec-val">Gumaniya Wala Nalah, Udaipur</span></div>
+        <div class="spec-row"><span class="spec-label">Source Files</span><span class="spec-val">Stability + Abut + Pier Cap XLS</span></div>
+        <div class="spec-row"><span class="spec-label">Hydraulics</span><span class="spec-val">Gumania Hydraulic Calc DOC</span></div>
+        <div class="spec-row"><span class="spec-label">Pier Cap</span><span class="spec-val">Pier Cap design XLS available</span></div>
+        <div class="spec-row"><span class="spec-label">Estimate</span><span class="spec-val">Abutment design XLS (UIT Udaipur)</span></div>
+      </div>
+      <div class="card-footer">
+        <a href="gumaniya-nalah-udaipur.html" class="btn btn-primary">View Full Report</a>
+        <a href="#" class="btn btn-sec">Source: XLS + DOC (LFS)</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge sub">Submersible</span>
+        <div class="card-title">Katumbi–Chandrod Detailed Bridge (2019)</div>
+        <div class="card-sub">Complete detailed submersible design · Source: XLS (LFS)</div>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">Road</span><span class="spec-val">Katumbi to Chandrod</span></div>
+        <div class="spec-row"><span class="spec-label">Year</span><span class="spec-val">2019</span></div>
+        <div class="spec-row"><span class="spec-label">Source</span><span class="spec-val">Detailed Submerssible XLS (LFS)</span></div>
+        <div class="spec-row"><span class="spec-label">Design Type</span><span class="spec-val">Full detailed design workbook</span></div>
+        <div class="spec-row"><span class="spec-label">Load Cases</span><span class="spec-val">9 cases (BEDACH sequence)</span></div>
+      </div>
+      <div class="card-footer">
+        <a href="katumbi-chandrod.html" class="btn btn-primary">View Full Report</a>
+        <a href="#" class="btn btn-sec">Source: XLS (LFS)</a>
+      </div>
+    </div>
+
+  </div><!-- end submersible grid -->
+
+  <!-- HIGH-LEVEL BRIDGES -->
+  <div class="section-title">High-Level Bridges</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge hl">High-Level</span>
+        <div class="card-title">SISARAMA NALAH — Udaipur–Sisarama Road</div>
+        <div class="card-sub">Stability + abutment + dirt wall + UIT Udaipur estimate</div>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">Nala / Road</span><span class="spec-val">Sisarama Nalah, Udaipur–Sisarama</span></div>
+        <div class="spec-row"><span class="spec-label">Authority</span><span class="spec-val">UIT Udaipur</span></div>
+        <div class="spec-row"><span class="spec-label">Source Files</span><span class="spec-val">Stability + Abut + Dirt Wall XLS + Estimate</span></div>
+        <div class="spec-row"><span class="spec-label">Estimate</span><span class="spec-val">Bridge + Retwall + Road estimates</span></div>
+        <div class="spec-row"><span class="spec-label">Standards</span><span class="spec-val">IRC:5-2015 freeboard required</span></div>
+      </div>
+      <div class="card-footer">
+        <a href="sisarama-nalah-highlevel.html" class="btn btn-primary">View Full Report</a>
+        <a href="#" class="btn btn-sec">Source: XLS + DOC (LFS)</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge hl">High-Level</span>
+        <div class="card-title">KUMBHALGARH — Kelwara Kumbhalgarh Road, Kelwara Lake</div>
+        <div class="card-sub">PCC abutments + NABARD · Source: XLS + DOC</div>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">Road</span><span class="spec-val">Kelwara–Kumbhalgarh Road</span></div>
+        <div class="spec-row"><span class="spec-label">Feature</span><span class="spec-val">Over Kelwara Lake</span></div>
+        <div class="spec-row"><span class="spec-label">Source Files</span><span class="spec-val">PCC Abut + KUMBHALGARH Abut XLS</span></div>
+        <div class="spec-row"><span class="spec-label">Estimate</span><span class="spec-val">Neelkanth Mahadev Final XLS</span></div>
+        <div class="spec-row"><span class="spec-label">Design Notes</span><span class="spec-val">Design Notes DOC + NABARD cover</span></div>
+      </div>
+      <div class="card-footer">
+        <a href="kumbhalgarh-bridge.html" class="btn btn-primary">View Full Report</a>
+        <a href="#" class="btn btn-sec">Source: XLS + DOC (LFS)</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge hl">High-Level</span>
+        <div class="card-title">PARWAN RIVER — 75 Tonne High-Level Bridge (1906)</div>
+        <div class="card-sub">75T loading, abutment PARWAN.doc + stability XLS</div>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">River</span><span class="spec-val">Parwan River</span></div>
+        <div class="spec-row"><span class="spec-label">Loading</span><span class="spec-val">75 tonne (IRC 70R / Heavy Loading)</span></div>
+        <div class="spec-row"><span class="spec-label">Source Files</span><span class="spec-val">HIGH LEVEL PARWAN XLS + ABUTMENT PARWAN DOC</span></div>
+        <div class="spec-row"><span class="spec-label">Dated</span><span class="spec-val">190906</span></div>
+        <div class="spec-row"><span class="spec-label">SBC</span><span class="spec-val">75 tonne / m² (per design parwan DOC)</span></div>
+      </div>
+      <div class="card-footer">
+        <a href="parwan-river-highlevel.html" class="btn btn-primary">View Full Report</a>
+        <a href="#" class="btn btn-sec">Source: XLS + DOC (LFS)</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge hl">High-Level</span>
+        <div class="card-title">BANAS RIVER — Open Foundation (HFL Bridge)</div>
+        <div class="card-sub">HFL bridge with open foundation · Source: XLS R-1</div>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">River</span><span class="spec-val">Banas River</span></div>
+        <div class="spec-row"><span class="spec-label">Foundation</span><span class="spec-val">Open foundation (R-1 variant)</span></div>
+        <div class="spec-row"><span class="spec-label">Source Files</span><span class="spec-val">HFL BRIDGE BANAS RIVER XLS R-1</span></div>
+        <div class="spec-row"><span class="spec-label">Load Cases</span><span class="spec-val">9 cases (BEDACH sequence)</span></div>
+        <div class="spec-row"><span class="spec-label">Standards</span><span class="spec-val">IRC:5-2015 freeboard required</span></div>
+      </div>
+      <div class="card-footer">
+        <a href="banas-river-highlevel.html" class="btn btn-primary">View Full Report</a>
+        <a href="#" class="btn btn-sec">Source: XLS (LFS)</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge hl">High-Level</span>
+        <div class="card-title">AYAD RIVER — Fatehpura Bhuwana Road</div>
+        <div class="card-sub">LL calculation pier + hydraulics · Source: XLS + DOC</div>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">River / Road</span><span class="spec-val">Ayad River, Fatehpura–Bhuwana</span></div>
+        <div class="spec-row"><span class="spec-label">Source Files</span><span class="spec-val">LLCALpier1 XLS + Hydraulics AYAD DOC</span></div>
+        <div class="spec-row"><span class="spec-label">Hydraulics</span><span class="spec-val">Hydraulic Calculations AYAD BRIDGE DOC</span></div>
+        <div class="spec-row"><span class="spec-label">Load Cases</span><span class="spec-val">9 cases (BEDACH sequence)</span></div>
+        <div class="spec-row"><span class="spec-label">Standards</span><span class="spec-val">IRC:5-2015, IRC:6-2016</span></div>
+      </div>
+      <div class="card-footer">
+        <a href="ayad-river-fatehpura.html" class="btn btn-primary">View Full Report</a>
+        <a href="#" class="btn btn-sec">Source: XLS + DOC (LFS)</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge hl">High-Level</span>
+        <div class="card-title">KHERKA BRIDGE — Analysis of 19 M Bridge</div>
+        <div class="card-sub">Deck slab + tee beam analysis · Source: DOCX files</div>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">Span</span><span class="spec-val">19 m (tee beam deck)</span></div>
+        <div class="spec-row"><span class="spec-label">Source Files</span><span class="spec-val">FINAL BRIDGE KHERKA 01-03 DOCX</span></div>
+        <div class="spec-row"><span class="spec-label">Analysis</span><span class="spec-val">Deck Slab + Tee Beam (Courbon method)</span></div>
+        <div class="spec-row"><span class="spec-label">Design Report</span><span class="spec-val">DESIGN REPORT KHARKA BRIDGE DOCX</span></div>
+        <div class="spec-row"><span class="spec-label">Standards</span><span class="spec-val">IRC:6-2016, IRC:112-2015</span></div>
+      </div>
+      <div class="card-footer">
+        <a href="kherka-bridge.html" class="btn btn-primary">View Full Report</a>
+        <a href="#" class="btn btn-sec">Source: DOCX (LFS)</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge est">High-Level · SUKANAKA</span>
+        <div class="card-title">SUKANAKA NALAH — High-Level Bridge</div>
+        <div class="card-sub">Stability analysis · Source: HIGH LEVEL BRIDGE SUKANAKA XLS</div>
+      </div>
+      <div class="card-body">
+        <div class="spec-row"><span class="spec-label">Nala</span><span class="spec-val">Sukanaka Nalah</span></div>
+        <div class="spec-row"><span class="spec-label">Source Files</span><span class="spec-val">Stability Analysis HIGH LEVEL SUKANAKA XLS</span></div>
+        <div class="spec-row"><span class="spec-label">Load Cases</span><span class="spec-val">9 cases (BEDACH sequence)</span></div>
+        <div class="spec-row"><span class="spec-label">Standards</span><span class="spec-val">IRC:5-2015 freeboard required</span></div>
+        <div class="spec-row"><span class="spec-label">Design Notes</span><span class="spec-val">SUKANAKA bridge DOC available</span></div>
+      </div>
+      <div class="card-footer">
+        <a href="sukanaka-nalah-highlevel.html" class="btn btn-primary">View Full Report</a>
+        <a href="#" class="btn btn-sec">Source: XLS (LFS)</a>
+      </div>
+    </div>
+
+  </div><!-- end high-level grid -->
+
+</div><!-- end container -->
+<div style="background:#fff;border-top:1px solid #e8edf5;padding:18px 40px;display:flex;gap:24px;flex-wrap:wrap;align-items:center;font-size:12.5px">
+  <span style="color:#6a8099;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.5px">Tools</span>
+  <a href="drawings.html" style="color:#1a4a9e;font-weight:600;text-decoration:none">&#128462; Drawings &amp; Abutment Types</a>
+  <a href="apps-hub.html" style="color:#5b21b6;font-weight:600;text-decoration:none">&#128736; Apps Hub — All 10 Drawing Tools</a>
+  <a href="irc-quick-reference.html" style="color:#1a4a9e;font-weight:600;text-decoration:none">&#128209; IRC Quick Reference</a>
+  <a href="stats.html" style="color:#1a4a9e;font-weight:600;text-decoration:none">&#128202; Statistics Dashboard</a>
+  <a href="api-docs.html" style="color:#1a4a9e;font-weight:600;text-decoration:none">&#128196; API Documentation</a>
+  <a href="lfs-sync.html" style="color:#1a4a9e;font-weight:600;text-decoration:none">&#9906; LFS Sync Panel</a>
+  <a href="GIT_LFS_SETUP.md" style="color:#1a4a9e;font-weight:600;text-decoration:none">&#128196; Git LFS Guide</a>
+</div>
+<footer>
+  IRC Bridge Slab Design Suite &nbsp;·&nbsp; All reports generated from Attached_Assets source files &nbsp;·&nbsp; Binary files tracked via Git LFS &nbsp;·&nbsp; IRC:6-2016 | IRC:112-2015 | IRC:78-1983 | IRC SP-13 | IRC:5-2015
+</footer>
+<script src="_nav.js"></script>
+</body>
+</html>

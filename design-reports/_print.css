@@ -1,0 +1,87 @@
+/* _print.css — Print stylesheet for IRC Bridge Design Reports */
+@media print {
+  * { box-shadow: none !important; }
+
+  body { background: #fff; font-size: 11pt; color: #000; }
+
+  nav, footer, #btt-btn, #section-toc,
+  .nav-prev-next, .nav-btn { display: none !important; }
+
+  .cover {
+    padding: 24pt 32pt 20pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .container { max-width: 100%; padding: 0; margin: 0; }
+
+  .section {
+    border: 1pt solid #c8d5e8;
+    border-radius: 0;
+    margin-bottom: 14pt;
+    padding: 14pt 18pt;
+    page-break-inside: avoid;
+  }
+
+  .section-title {
+    font-size: 11pt;
+    border-bottom: 2pt solid #0a2a5e;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  table { page-break-inside: avoid; font-size: 9pt; }
+
+  th {
+    background: #0a2a5e !important;
+    color: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  tr:nth-child(even) td {
+    background: #f4f7fb !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .verdict-box {
+    page-break-inside: avoid;
+    border: 1.5pt solid #0a6e3a;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .narrative {
+    border-left: 3pt solid #1a4a9e;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .two-col, .three-col {
+    display: block;
+  }
+
+  .data-block {
+    margin-bottom: 10pt;
+    border: 1pt solid #c8d5e8;
+  }
+
+  .cover-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8pt;
+  }
+
+  a { color: #000; text-decoration: none; }
+  a[href]:after { content: ""; } /* suppress URL printing */
+
+  @page {
+    margin: 18mm 15mm;
+    size: A4 portrait;
+  }
+
+  @page :first {
+    margin-top: 10mm;
+  }
+}

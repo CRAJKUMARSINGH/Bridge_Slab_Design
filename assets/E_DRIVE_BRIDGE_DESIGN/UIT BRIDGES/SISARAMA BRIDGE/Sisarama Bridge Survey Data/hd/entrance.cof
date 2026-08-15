@@ -1,0 +1,10 @@
+Concrete Pipe Projecting from Fill (no headwall):, 
+ Socket end of pipe,0.20
+ Square cut end of pipe,0.50
+Concrete Pipe with Headwall or Wingwalls:, 
+ Socket end of pipe,0.10
+ Square cut end of pipe,0.50
+ Round entrance w/rounding radius = 1/12 of dia.,0.10
+Corrugated Metal Pipe:, 
+ Projecting from fill (no headwall),0.80
+ w/ Headwall or headwall and wingwalls (sq. edge),0.50

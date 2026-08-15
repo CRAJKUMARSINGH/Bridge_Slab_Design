@@ -1,0 +1,34 @@
+PROJECT : BRIDGE SLIP LINE	
+	
+PLAN : PINTOO	
+	
+OWNER NAME :SHRI PINTOO OJHA	
+	
+ANALYST NAME :	
+	
+BEAM DESIGN SCHEDULE for Floor1Default Level	
+	
+L1 = Left Length of Extra Bar.	
+	
+L2 = Right Length of Extra Bar.	
+	
+Group 	Beams 	Size in 	 	Bottom Steel	 	 	 	 	  Top Steel	 	 	 	Stirrups	 	
+ 	 	mm	Str	Bent/Curt 	Left	Right 	Str	 	    Extra    	 	 	Left	Mid	Right 	
+ 	 	 	 	 	At	At	 	Left	L1,L2	Right 	L1,L2	dia-Spac	
+ 	 	 	 	 	 	 	 	 	m	 	m	Nos 	
+BG1	B1	300 x 300	  6-#20	---	---	---	  4-#32	---	---	  6-#20	0.940,1.720	#16-@ 100	#16-@ 100	#16-@ 100		
+BG2	B2	300 x 400	  3-#25	---	---	---	  2-#20	  6-#20	0.940,1.720	  9-#25	1.720,2.000	#16-@ 125	#16-@ 125	#16-@ 125	M20	
+BG3	B3	300 x 550	  3-#32	---	---	---	  6-#20	  9-#25	1.720,2.000	  4-#32	2.000,0.000	#16-@ 175	#16-@ 175	#16-@ 175		
+BG4	B4	1500 x 1200	  2-#25	---	---	---	 10-#32	---	---	  4-#20	0.788,0.788	#16-@ 225	#16-@ 225	#16-@ 225		
+BG5	B5	1500 x 1200	  2-#25	---	---	---	  6-#32	  4-#20	0.788,0.788	---	---	#16-@ 225	#16-@ 225	#16-@ 225		
+BG6	B6	1500 x 1200	  4-#32	---	---	---	 15-#32	---	---	  6-#32	1.688,1.688	#16-@ 225	#16-@ 225	#16-@ 175		
+BG7	B7	1500 x 1200	  4-#32	---	---	---	 12-#32	  6-#32	1.688,1.688	---	---	#16-@ 175	#16-@ 225	#16-@ 225		
+BG8	B10, B8	300 x 300	  5-#20	---	---	---	  2-#25	  3-#20	0.000,1.919	  4-#32	1.919,2.193	#16-@ 100	#16-@ 100	#16-@ 100		
+BG9	B11, B9	300 x 400	  4-#25	---	---	---	  3-#20	  4-#32	1.919,2.193	  4-#25	2.193,0.000	#16-@ 125	#16-@ 125	#16-@ 125		
+NOTES : 	
+1. All Diameters are in mm	
+	
+2. Stirrups are 2-Legged and Spacings are in mm	
+	
+3. Grade of Concrete is M35	
+	

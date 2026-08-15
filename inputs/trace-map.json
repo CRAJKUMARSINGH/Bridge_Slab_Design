@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "trace-map.v1",
+  "rules": [
+    { "output": "Calc!B3", "source": ["Inputs!B9", "Factors!B7", "Factors!B2"], "formula": "Inputs!B9*Factors!B7*Factors!B2" },
+    { "output": "Calc!B4", "source": ["Factors!B9", "Factors!B8", "Factors!B2"], "formula": "Factors!B9*Factors!B8*Factors!B2" },
+    { "output": "Calc!B5", "source": ["Calc!B3", "Calc!B4", "Inputs!B10", "Factors!B3"], "formula": "B3+B4+Inputs!B10*Factors!B3" },
+    { "output": "Calc!B6", "source": ["Calc!B5", "Inputs!B3"], "formula": "B5*Inputs!B3^2/8" },
+    { "output": "Calc!B7", "source": ["Calc!B5", "Inputs!B3", "Inputs!B11", "Factors!B3"], "formula": "B5*Inputs!B3/2+Inputs!B11*Factors!B3" },
+    { "output": "Calc!B10", "source": ["Calc!B6", "Calc!B9"], "formula": "B6*1000000/B9" },
+    { "output": "Calc!B11", "source": ["Calc!B10", "Inputs!B8", "Factors!B4"], "formula": "B10/(Inputs!B8/Factors!B4)" },
+    { "output": "Calc!B14", "source": ["Inputs!B10", "Inputs!B3", "Factors!B5", "Inputs!B12"], "formula": "5*Inputs!B10*(Inputs!B3*1000)^4/(384*Factors!B5*Inputs!B12)" },
+    { "output": "Calc!B15", "source": ["Inputs!B3", "Factors!B10"], "formula": "Inputs!B3*1000/Factors!B10" },
+    { "output": "Calc!B18", "source": ["Calc!B7", "Inputs!B6", "Inputs!B4", "Inputs!B9"], "formula": "B7*1000/(Inputs!B6*Inputs!B4*1000*Inputs!B9*1000)" },
+    { "output": "Calc!B22", "source": ["Calc!B11", "Calc!B18", "Calc!B19"], "formula": "MAX(B11,B18/B19)" },
+    { "output": "Calc!B23", "source": ["Calc!B22", "Calc!B13", "Calc!B21"], "formula": "B22*B13*B21" }
+  ]
+}

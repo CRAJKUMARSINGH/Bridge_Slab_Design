@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IRC Quick Reference — Bridge Design Formulas & Standards</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+.hero{background:linear-gradient(135deg,#0a2a5e 0%,#1a4a9e 55%,#6e3a0a 100%);color:#fff;padding:36px 40px 28px}
+.hero h1{font-size:22px;font-weight:800;margin-bottom:6px}
+.hero p{opacity:.85;font-size:13px;max-width:800px;line-height:1.6}
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.35);border-radius:11px;padding:2px 11px;font-size:11px;font-weight:600}
+.tabs{display:flex;gap:0;background:#fff;border-bottom:2px solid #e8edf5;padding:0 24px;position:sticky;top:56px;z-index:90;box-shadow:0 2px 8px rgba(10,42,94,.06);overflow-x:auto}
+.tab-btn{padding:12px 18px;border:none;background:none;font-size:12.5px;font-weight:600;color:#6a8099;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:color .15s}
+.tab-btn.active{color:#0a2a5e;border-bottom-color:#1a4a9e}
+.tab-btn:hover{color:#1a4a9e}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.formula-box{background:#0a2a5e;color:#e8f0fc;border-radius:8px;padding:16px 20px;font-family:'Consolas','Courier New',monospace;font-size:13px;line-height:1.8;margin:12px 0;overflow-x:auto}
+.formula-box .sym{color:#58a6ff;font-weight:700}
+.formula-box .val{color:#3fb950}
+.badge-code{display:inline-block;background:#e8f0fd;color:#0a40a0;border-radius:4px;padding:1px 7px;font-size:11px;font-weight:700;letter-spacing:.3px;margin-right:4px}
+.clause{font-size:11px;color:#8b949e;margin-left:8px}
+h3{font-size:14px;font-weight:800;color:#0a2a5e;margin:20px 0 8px;padding-bottom:5px;border-bottom:2px solid #e8edf5}
+h4{font-size:12.5px;font-weight:700;color:#1a4a9e;margin:14px 0 6px}
+.bedach-grid{display:grid;grid-template-columns:auto 1fr 1fr;gap:0;border:1px solid #e0e8f0;border-radius:8px;overflow:hidden;margin:12px 0}
+.bg-head{background:#0a2a5e;color:#fff;font-size:11px;font-weight:700;padding:8px 12px}
+.bg-cell{padding:7px 12px;font-size:12px;border-bottom:1px solid #f0f4f8}
+.bg-cell:nth-child(3n+1){background:#f7f9fc;font-weight:700;color:#0a2a5e}
+.bg-cell.ok{color:#0a6e3a;font-weight:700}
+.alert-box{background:#fff3e0;border:1.5px solid #b45309;border-radius:8px;padding:12px 16px;font-size:12.5px;color:#7a3808;margin:12px 0}
+.alert-box b{color:#b45309}
+.combo-table{width:100%;border-collapse:collapse;font-size:11.5px;margin:10px 0}
+.combo-table th{background:#0a2a5e;color:#fff;padding:6px 8px;font-size:11px}
+.combo-table td{padding:5px 8px;border:1px solid #e0e8f0;text-align:center}
+.combo-table td:first-child{text-align:left;font-weight:600}
+.combo-table tr:nth-child(even) td{background:#f4f7fb}
+.dot-yes{color:#0a6e3a;font-weight:800;font-size:14px}
+.dot-no{color:#ccc;font-size:12px}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">&#8592; All Projects</a>
+  <span style="color:#ddd">|</span>
+  <span class="bc">IRC Quick Reference — Formulas, Clauses &amp; Load Combinations</span>
+</nav>
+
+<div class="hero">
+  <h1>IRC Bridge Design — Quick Reference</h1>
+  <p>Key formulas, standard clauses, and load-combination tables drawn from the IRC suite applicable to the 16 bridge projects in this collection. All values and clause numbers are cross-referenced to the editions used in the design workbooks.</p>
+  <div class="chip-row">
+    <span class="chip">IRC:6-2016</span>
+    <span class="chip">IRC:112-2015</span>
+    <span class="chip">IRC:78-1983</span>
+    <span class="chip">IRC SP-13</span>
+    <span class="chip">IRC:5-2015</span>
+    <span class="chip">IS:1893-2016</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('hydraulics',this)">Hydraulics</button>
+  <button class="tab-btn" onclick="showTab('bedach',this)">BEDACH Cases</button>
+  <button class="tab-btn" onclick="showTab('loads',this)">IRC:6 Loads</button>
+  <button class="tab-btn" onclick="showTab('foundations',this)">Foundations IRC:78</button>
+  <button class="tab-btn" onclick="showTab('concrete',this)">Concrete IRC:112</button>
+  <button class="tab-btn" onclick="showTab('irc5',this)">Road Geometry IRC:5</button>
+</div>
+
+<div class="container">
+
+<!-- HYDRAULICS TAB -->
+<div id="tab-hydraulics" class="tab-panel active">
+  <div class="section">
+    <div class="section-title">Discharge — Manning's Formula <span class="badge-code">IRC SP-13</span></div>
+    <h4>Manning's Equation for Open Channel Flow</h4>
+    <div class="formula-box">
+Q = <span class="sym">A</span> × (<span class="sym">R</span><sup>2/3</sup> × <span class="sym">S</span><sup>1/2</sup>) / <span class="sym">n</span>
+
+Where:
+  <span class="sym">Q</span>  = Design discharge (m³/s = cumecs)
+  <span class="sym">A</span>  = Cross-sectional area of flow (m²)
+  <span class="sym">R</span>  = Hydraulic radius = A / P (m)  [P = wetted perimeter]
+  <span class="sym">S</span>  = Bed slope (dimensionless)
+  <span class="sym">n</span>  = Manning's roughness coefficient
+
+Typical n values:
+  Sandy alluvial river (clean): <span class="val">0.020 – 0.025</span>
+  Rocky / boulder bed:          <span class="val">0.030 – 0.050</span>
+  Vegetated banks:              <span class="val">0.025 – 0.035</span>
+    </div>
+
+    <h4>Lacey's Regime Width</h4>
+    <div class="formula-box">
+W = <span class="val">4.75</span> × <span class="sym">Q</span><sup>0.5</sup>          (Lacey waterway width, m)
+
+Silt factor:  <span class="sym">f</span> = <span class="val">1.76</span> × (<span class="sym">m</span>)<sup>0.5</sup>   [m = median grain size in mm]
+  Sandy alluvial: m ≈ 0.15–0.30 mm → f ≈ 0.85–1.20
+  Standard f = <span class="val">1.00</span> for sandy silt (adopted in most projects)
+    </div>
+
+    <h4>Molesworth Afflux Formula <span class="clause">IRC SP-13 Cl. 7</span></h4>
+    <div class="formula-box">
+h* = [ (<span class="sym">V</span>² / 17.88) + 0.015 ] × [ (<span class="sym">A</span>/<span class="sym">a</span>)² − 1 ]
+
+Where:
+  <span class="sym">h*</span> = Afflux (rise in HFL upstream), m
+  <span class="sym">V</span>  = Mean velocity in natural channel, m/s
+  <span class="sym">A</span>  = Natural waterway area (m²)
+  <span class="sym">a</span>  = Constricted waterway area at bridge (m²)
+
+Limit: Afflux h* ≤ <span class="val">0.30 m</span> for submersible bridges (IRC SP-13 Cl. 7.6)
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Scour Depth — IRC:78-1983</div>
+    <h4>Lacey's Normal Scour Depth</h4>
+    <div class="formula-box">
+d<sub>sn</sub> = 1.34 × (<span class="sym">q</span>² / <span class="sym">f</span>)<sup>1/3</sup>     [Normal scour depth, m below HFL]
+
+Where:
+  <span class="sym">q</span>  = Discharge intensity = Q / L  (cumecs/m of waterway width)
+  <span class="sym">f</span>  = Lacey silt factor (dimensionless)
+  <span class="sym">L</span>  = Effective waterway width (m)
+
+Design scour depths (IRC:78-1983 Cl. 703):
+  Piers (in-stream):    D<sub>s</sub> = <span class="val">2.00</span> × d<sub>sn</sub>   below HFL
+  Abutments (in-bank):  D<sub>s</sub> = <span class="val">1.27</span> × d<sub>sn</sub>   below HFL
+
+Foundation depth criterion:
+  Foundation level ≤ HFL − <span class="val">1.33</span> × d<sub>s</sub>  (for open foundations)
+    </div>
+
+    <div class="alert-box">
+      <b>Submersible Bridge Note:</b> For submersible bridges, the bridge deck level is set BELOW HFL. The afflux therefore acts directly on the structure. Scour is still computed per the full design flood, but the critical check shifts to drag force and buoyancy rather than freeboard.
+    </div>
+  </div>
+</div>
+
+<!-- BEDACH TAB -->
+<div id="tab-bedach" class="tab-panel">
+  <div class="section">
+    <div class="section-title">The BEDACH Load-Accumulation Sequence</div>
+    <div class="narrative">
+      <b>WHAT IS BEDACH?</b> BEDACH is the mnemonic for the standard load-accumulation sequence used in IRC pier stability analysis. Each letter represents a force group. The 9 load cases are combinations of these groups applied simultaneously. The sequence builds forces progressively so that the checking engineer can trace every contribution and verify arithmetic at each step. All projects in this suite follow the BEDACH sequence.
+    </div>
+    <div class="bedach-grid">
+      <div class="bg-head">Letter</div><div class="bg-head">Force Group</div><div class="bg-head">IRC:6-2016 Clause</div>
+      <div class="bg-cell">B</div><div class="bg-cell">Buoyancy — hydrostatic uplift on submerged elements</div><div class="bg-cell">Cl. 213.3</div>
+      <div class="bg-cell">E</div><div class="bg-cell">Earth Pressure — active pressure on abutment backs</div><div class="bg-cell">Cl. 214</div>
+      <div class="bg-cell">D</div><div class="bg-cell">Dead Load — superstructure + pier cap + pier shaft + footing</div><div class="bg-cell">Cl. 203</div>
+      <div class="bg-cell">A</div><div class="bg-cell">Afflux / Axial (Water Current) force</div><div class="bg-cell">Cl. 213.5</div>
+      <div class="bg-cell">C</div><div class="bg-cell">Centrifugal force (on curved alignments only)</div><div class="bg-cell">Cl. 211</div>
+      <div class="bg-cell">H</div><div class="bg-cell">Horizontal forces — Braking, Temperature, Wind</div><div class="bg-cell">Cl. 212, 215, 218</div>
+    </div>
+
+    <h3>Standard 9 Load Cases — Foundation Level Check</h3>
+    <table class="combo-table">
+      <tr>
+        <th style="text-align:left">Case</th><th>Condition</th><th>Dead Load</th><th>Live Load</th><th>Buoyancy</th><th>Water Current</th><th>Wind</th><th>One Span Off</th>
+      </tr>
+      <tr><td>1</td><td>Service + Buoyancy</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-no">—</td><td class="dot-no">—</td></tr>
+      <tr><td>2</td><td>Service, No LL + Buoyancy</td><td class="dot-yes">●</td><td class="dot-no">—</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-no">—</td><td class="dot-no">—</td></tr>
+      <tr><td>3</td><td>Wind + Service + Buoyancy</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-no">—</td></tr>
+      <tr><td>4</td><td>Wind + No LL + Buoyancy</td><td class="dot-yes">●</td><td class="dot-no">—</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-no">—</td></tr>
+      <tr><td>5</td><td>One Span Dislodged</td><td class="dot-yes">●</td><td class="dot-no">—</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-yes">●</td></tr>
+      <tr><td>6</td><td>Pier Cap Level — Service</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-no">—</td><td class="dot-no">—</td></tr>
+      <tr><td>7</td><td>Pier Cap Level — No LL</td><td class="dot-yes">●</td><td class="dot-no">—</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-no">—</td><td class="dot-no">—</td></tr>
+      <tr><td>8</td><td>Pier Cap Level — Wind + Service</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-no">—</td></tr>
+      <tr><td>9</td><td>Pier Cap Level — Wind + No LL</td><td class="dot-yes">●</td><td class="dot-no">—</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-yes">●</td><td class="dot-no">—</td></tr>
+    </table>
+
+    <h3>Base Pressure Acceptance Criteria</h3>
+    <div class="formula-box">
+p = V/A ± M<sub>L</sub>/Z<sub>xx</sub> ± M<sub>T</sub>/Z<sub>yy</sub>
+
+Acceptance:  p<sub>max</sub> ≤ SBC (soil) or allowable rock stress
+             p<sub>min</sub> ≥ 0 (no tension at foundation contact)
+
+Typical limits in these projects:
+  Soil (sandy alluvial):  SBC = <span class="val">100 – 200 kN/m²</span>
+  Hard rock (top):        Allowable = <span class="val">8,000 kN/m²</span> (8 N/mm²)
+  Tension limit (rock):   <span class="val">−3,600 kN/m²</span> (3.6 N/mm² tensile)
+    </div>
+  </div>
+</div>
+
+<!-- IRC:6 LOADS TAB -->
+<div id="tab-loads" class="tab-panel">
+  <div class="section">
+    <div class="section-title">IRC:6-2016 — Design Vehicle Loading</div>
+    <h4>Standard Vehicle Classes</h4>
+    <table>
+      <tr><th>Class</th><th>Total Load</th><th>Axle Config</th><th>Typical Use</th></tr>
+      <tr><td><b>IRC:A</b></td><td>554 kN (55.4 T)</td><td>Single lane tracked / wheeled</td><td>Rural bridges, NABARD schemes</td></tr>
+      <tr><td><b>IRC:B</b></td><td>—</td><td>Lighter rural vehicle</td><td>Very light rural traffic</td></tr>
+      <tr><td><b>IRC:70R</b></td><td>1,000 kN (70R wheeled = 100T)</td><td>Tracked 70T or Wheeled 100T</td><td>National Highways, major SH</td></tr>
+      <tr><td><b>SV/MLC</b></td><td>varies (40–75T)</td><td>Special / Military vehicles</td><td>Parwan HL project (75T)</td></tr>
+    </table>
+
+    <h4>Water Current Force <span class="clause">Cl. 213.5</span></h4>
+    <div class="formula-box">
+P = <span class="val">52</span> × K × V²      (Force intensity, N/m²)
+
+Where:
+  <span class="sym">K</span>  = Shape coefficient: 0.66 (circular pier), 1.50 (square pier)
+  <span class="sym">V</span>  = Design velocity at 20° skew = 1.414 × mean velocity
+
+Longitudinal component: P<sub>L</sub> = P × sin²(20°)  = <span class="val">0.117</span> × P
+Transverse component:   P<sub>T</sub> = P × cos²(20°)  = <span class="val">0.883</span> × P
+    </div>
+
+    <h4>Wind Pressure <span class="clause">Cl. 209</span></h4>
+    <div class="formula-box">
+Design wind speed V<sub>z</sub> = V<sub>b</sub> × k₁ × k₂ × k₃   [varies with height, terrain, topography]
+Wind pressure p<sub>z</sub> = 0.6 × V<sub>z</sub>²              (N/m²)
+
+Transverse wind on exposed area of deck + pier + parapet
+Applies in Cases 3, 4, 8, 9 of BEDACH sequence
+    </div>
+
+    <h4>Impact Factor <span class="clause">Cl. 208</span></h4>
+    <div class="formula-box">
+I = <span class="val">4.5</span> / (6 + L)      for IRC Class A/B  (L = span in m, I max = 0.50)
+I = <span class="val">9</span>   / (13.5 + L)   for IRC 70R
+
+For L = 7.60 m (SOM Kherwara):  I = 4.5/(6+7.60) = <span class="val">0.331</span> (33.1%)
+    </div>
+  </div>
+</div>
+
+<!-- FOUNDATIONS IRC:78 TAB -->
+<div id="tab-foundations" class="tab-panel">
+  <div class="section">
+    <div class="section-title">IRC:78-1983 — Foundations and Substructure</div>
+    <h4>Scour and Foundation Depth <span class="clause">Cl. 703</span></h4>
+    <div class="formula-box">
+Minimum founding depth below design scour level:
+
+  Open foundation on soil:  ≥ 1.33 × d<sub>s</sub>  below HFL
+  Open foundation on rock:  ≥ 0.60 m embedment in hard rock
+  Well foundation:          ≥ 2.00 × d<sub>s</sub>  below HFL (for piers)
+
+Typical check in these projects:
+  Foundation level RL < HFL − 1.33 × (Lacey scour depth)
+    </div>
+
+    <h4>Buoyancy on Substructure <span class="clause">Cl. 706</span></h4>
+    <div class="formula-box">
+Buoyancy on footing = 100% of displaced water weight  (submerged in flood)
+Buoyancy on pier    = 15% reduction factor (per IRC:78-1983 Cl. 706.1)
+
+Effective unit weight of pier (with 15% buoyancy):
+  γ<sub>eff</sub> = (24 − 10) × (15/100) correction = 24 × (22.5/24.0) = <span class="val">22.5 kN/m³</span>
+
+Effective unit weight of footing (100% buoyancy):
+  γ<sub>eff</sub> = 24 − 10 = <span class="val">14 kN/m³</span>
+    </div>
+
+    <h4>Safe Bearing Capacity (SBC) — Typical Values</h4>
+    <table>
+      <tr><th>Foundation Type</th><th>SBC (kN/m²)</th><th>Notes</th></tr>
+      <tr><td>Loose sandy alluvial</td><td>100 – 150</td><td>Scour governs, not bearing</td></tr>
+      <tr><td>Compact sandy alluvial</td><td>150 – 250</td><td>SOM Kherwara: 200 kN/m²</td></tr>
+      <tr><td>Hard murum / laterite</td><td>250 – 400</td><td>Common in Rajasthan</td></tr>
+      <tr><td>Soft rock (weathered)</td><td>400 – 1,000</td><td>Embedment check governs</td></tr>
+      <tr><td>Hard rock (basalt/quartzite)</td><td>8,000+</td><td>SOM Kherwara pier cap level</td></tr>
+    </table>
+
+    <h4>Abutment Stability <span class="clause">Cl. 706</span></h4>
+    <div class="formula-box">
+Three failure modes for gravity abutments:
+
+1. Sliding:     FOS = (μ × V + passive) / H  ≥ <span class="val">1.50</span>
+2. Overturning: FOS = Stabilising moments / Overturning moments  ≥ <span class="val">1.80</span>
+3. Bearing:     p<sub>max</sub> ≤ SBC with adequate p<sub>min</sub> ≥ 0
+
+Active earth pressure (Rankine):
+  K<sub>a</sub> = (1 − sin φ) / (1 + sin φ)
+  For φ = 30°:  K<sub>a</sub> = <span class="val">0.333</span>
+  For φ = 35°:  K<sub>a</sub> = <span class="val">0.271</span>
+    </div>
+  </div>
+</div>
+
+<!-- CONCRETE IRC:112 TAB -->
+<div id="tab-concrete" class="tab-panel">
+  <div class="section">
+    <div class="section-title">IRC:112-2015 — Concrete Bridge Design (LSM)</div>
+    <h4>Characteristic Material Strengths</h4>
+    <table>
+      <tr><th>Grade</th><th>f<sub>ck</sub> (N/mm²)</th><th>f<sub>cm</sub></th><th>E<sub>cm</sub> (GPa)</th><th>Use in suite</th></tr>
+      <tr><td>M20</td><td>20</td><td>28</td><td>30</td><td>PCC footings, levelling</td></tr>
+      <tr><td>M25</td><td>25</td><td>33</td><td>31</td><td>Pier shafts, abutments</td></tr>
+      <tr><td>M30</td><td>30</td><td>38</td><td>33</td><td>Decks, caps (bridge-grade)</td></tr>
+      <tr><td>M35</td><td>35</td><td>43</td><td>34</td><td>Prestressed elements</td></tr>
+    </table>
+
+    <h4>Partial Safety Factors <span class="clause">IRC:112 Cl. 6.4</span></h4>
+    <div class="formula-box">
+Material: γ<sub>c</sub> = <span class="val">1.50</span> (concrete), γ<sub>s</sub> = <span class="val">1.15</span> (reinforcement)
+Design compressive strength: f<sub>cd</sub> = α<sub>cc</sub> × f<sub>ck</sub> / γ<sub>c</sub>  (α<sub>cc</sub> = 0.67)
+Design yield strength (Fe500): f<sub>yd</sub> = 500 / 1.15 = <span class="val">435 N/mm²</span>
+    </div>
+
+    <h4>Minimum Reinforcement <span class="clause">Cl. 16.3</span></h4>
+    <div class="formula-box">
+A<sub>s,min</sub> = max( 0.26 × f<sub>ctm</sub>/f<sub>yk</sub> × b × d,  0.0013 × b × d )
+
+Nominal cover (IRC:112 Annex B, exposure class Moderate):
+  Deck slab:  <span class="val">40 mm</span>  clear cover
+  Substructure, pier:  <span class="val">50 mm</span>  clear cover
+    </div>
+
+    <h4>Slab Design — Effective Width Method <span class="clause">IRC SP-13</span></h4>
+    <div class="formula-box">
+Effective width b<sub>eff</sub> = α × a × (1 − a/L₀) + b₁
+
+Where:
+  α   = Constant depending on b/L₀ ratio (Table 2, IRC SP-13)
+  a   = Distance of load from near support
+  L₀  = Effective span of slab
+  b₁  = Width of concentrated load in direction of span
+    </div>
+  </div>
+</div>
+
+<!-- IRC:5 TAB -->
+<div id="tab-irc5" class="tab-panel">
+  <div class="section">
+    <div class="section-title">IRC:5-2015 — Standard Specifications for Road Bridges</div>
+    <h4>Freeboard Requirements <span class="clause">Cl. 106.6</span></h4>
+    <table>
+      <tr><th>Bridge Type</th><th>Minimum Freeboard</th><th>Condition</th></tr>
+      <tr><td><b>Submersible</b></td><td>Not required</td><td>Deck designed to be overtopped; accepted seasonal closure</td></tr>
+      <tr><td><b>High-Level (Q &lt; 3,000 cumecs)</b></td><td>0.60 m</td><td>Soffit above HFL by ≥ 0.60 m</td></tr>
+      <tr><td><b>High-Level (Q 3,000–30,000)</b></td><td>0.90 m</td><td>Minimum for major rivers</td></tr>
+      <tr><td><b>High-Level (Q &gt; 30,000)</b></td><td>1.20 m</td><td>Large flood rivers</td></tr>
+    </table>
+
+    <h4>Road Geometry — Carriageway Width <span class="clause">Cl. 112</span></h4>
+    <table>
+      <tr><th>Road Class</th><th>Carriageway</th><th>Footpath</th><th>Total Width</th></tr>
+      <tr><td>Single Lane</td><td>3.75 m</td><td>Optional</td><td>4.25 – 7.50 m</td></tr>
+      <tr><td>Two Lane</td><td>7.50 m</td><td>1.50 m each</td><td>10.50 m</td></tr>
+      <tr><td>Rural (submersible)</td><td>4.25 – 7.50 m</td><td>—</td><td>5.50 – 8.40 m</td></tr>
+    </table>
+
+    <h4>Seismic Compliance <span class="clause">IS:1893 + IRC:6 Cl. 222</span></h4>
+    <div class="formula-box">
+Seismic Zones (India):   II (Low) → III → IV → V (High)
+
+Rajasthan projects: Zone II (most projects) — seismic declared non-governing
+Zone II horizontal coefficient: A<sub>h</sub> = (Z/2) × (I/R) × (S<sub>a</sub>/g)
+  Z = 0.10 (Zone II), I = 1.5 (bridges), R = 2.5 (confined masonry pier)
+  → A<sub>h</sub> = (0.10/2) × (1.5/2.5) × S<sub>a</sub>/g = <span class="val">0.03 × S<sub>a</sub>/g</span>
+
+Per IRC:6-2016 Cl. 222.1: If Zone II and bridge not on active fault,
+seismic need only be declared — formal check is advisory only.
+    </div>
+  </div>
+</div>
+
+</div><!-- container -->
+
+<footer>IRC Bridge Slab Design Suite &nbsp;·&nbsp; Quick Reference — IRC:6-2016 | IRC:78-1983 | IRC:112-2015 | IRC SP-13 | IRC:5-2015 &nbsp;·&nbsp; <a href="index.html">← Back to Projects</a></footer>
+
+<script src="_nav.js"></script>
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

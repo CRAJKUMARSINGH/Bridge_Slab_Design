@@ -1,0 +1,18 @@
+{
+  "projectKey": "kherwara",
+  "status": "provisional-demo-only",
+  "identityDecision": "open",
+  "inputContract": "inputs/schema.json",
+  "inputFixture": "inputs/KHERWARA.json",
+  "goldenExpected": "tests/golden/kherwara/expected.json",
+  "sourceEvidence": [
+    "attached_assets/bridge_trae_slab_design_comprehensive_impl_plan_1786678996817.md",
+    "attached_assets/COMPREHENSIVE_IMPLEMENTATION_PLAN_1786678996818.md",
+    "attached_assets/text1308_1786678996818.txt",
+    "attached_assets/Weekly-Plan-Record_1786679006232.zip"
+  ],
+  "authoritativeWorkbook": null,
+  "authoritativeReports": [],
+  "authoritativeDrawings": [],
+  "engineeringOwner": null
+}

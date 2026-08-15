@@ -1,0 +1,148 @@
+﻿[
+  {
+    "id": "Inputs!B3",
+    "sheet": "Inputs",
+    "cell": "B3",
+    "label": "Span length L (m)",
+    "units": "m",
+    "value": 45,
+    "defined_name": [
+      "SpanL"
+    ],
+    "referenced_by": [
+      "Calc!B15"
+    ],
+    "confidence": 0.95,
+    "status": "auto"
+  },
+  {
+    "id": "Inputs!B4",
+    "sheet": "Inputs",
+    "cell": "B4",
+    "label": "Deck width W (m)",
+    "units": "m",
+    "value": 12,
+    "defined_name": null,
+    "referenced_by": [
+      "Calc!B18"
+    ],
+    "confidence": 0.95,
+    "status": "auto"
+  },
+  {
+    "id": "Inputs!B5",
+    "sheet": "Inputs",
+    "cell": "B5",
+    "label": "Girder spacing s (m)",
+    "units": "m",
+    "value": 3,
+    "defined_name": null,
+    "referenced_by": [],
+    "confidence": 0.95,
+    "status": "auto"
+  },
+  {
+    "id": "Inputs!B6",
+    "sheet": "Inputs",
+    "cell": "B6",
+    "label": "Number of girders n (-)",
+    "units": "-",
+    "value": 4,
+    "defined_name": null,
+    "referenced_by": [],
+    "confidence": 0.95,
+    "status": "auto"
+  },
+  {
+    "id": "Inputs!B7",
+    "sheet": "Inputs",
+    "cell": "B7",
+    "label": "Concrete strength fck (MPa)",
+    "units": "MPa",
+    "value": 40,
+    "defined_name": null,
+    "referenced_by": [],
+    "confidence": 0.95,
+    "status": "auto"
+  },
+  {
+    "id": "Inputs!B8",
+    "sheet": "Inputs",
+    "cell": "B8",
+    "label": "Steel grade fy (MPa)",
+    "units": "MPa",
+    "value": 355,
+    "defined_name": [
+      "steelgrade_fy"
+    ],
+    "referenced_by": [],
+    "confidence": 0.95,
+    "status": "auto"
+  },
+  {
+    "id": "Inputs!B9",
+    "sheet": "Inputs",
+    "cell": "B9",
+    "label": "Deck thickness t (m)",
+    "units": "m",
+    "value": 0.25,
+    "defined_name": null,
+    "referenced_by": [
+      "Calc!B3"
+    ],
+    "confidence": 0.95,
+    "status": "auto"
+  },
+  {
+    "id": "Inputs!B10",
+    "sheet": "Inputs",
+    "cell": "B10",
+    "label": "Live load UDL wl (kN/m)",
+    "units": "kN/m",
+    "value": 25,
+    "defined_name": null,
+    "referenced_by": [],
+    "confidence": 0.95,
+    "status": "auto"
+  },
+  {
+    "id": "Inputs!B11",
+    "sheet": "Inputs",
+    "cell": "B11",
+    "label": "Live load concentrated Q (kN)",
+    "units": "kN",
+    "value": 150,
+    "defined_name": null,
+    "referenced_by": [],
+    "confidence": 0.95,
+    "status": "auto"
+  },
+  {
+    "id": "Inputs!B12",
+    "sheet": "Inputs",
+    "cell": "B12",
+    "label": "Second moment of area I (mm4)",
+    "units": "mm4",
+    "value": 65000000000,
+    "defined_name": null,
+    "referenced_by": [
+      "Calc!B14"
+    ],
+    "confidence": 0.95,
+    "status": "auto"
+  },
+  {
+    "id": "Calc!B9",
+    "sheet": "Calc",
+    "cell": "B9",
+    "label": "Chosen section modulus Wc (mm3)",
+    "units": "mm3",
+    "value": 45000000,
+    "defined_name": null,
+    "referenced_by": [
+      "Calc!B10"
+    ],
+    "confidence": 0.85,
+    "status": "auto"
+  }
+]

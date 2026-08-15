@@ -1,0 +1,25 @@
+ ANAS BHAIRAVJI GHAT                                                             
+ ************************************************************
+
+ DOUBLE Precision Execution Mode
+
+ CONTROLS_
+ --------
+ NUMBER OF ELEMENTS                     =     97
+ NUMBER OF NODES                        =   5611
+ NUMBER OF MATERIAL TYPES               =      3
+ NUMBER OF SECTION TYPES                =     20
+ NUMBER OF RELEASES                     =      0
+ NUMBER OF NODES WITH SPRINGS           =    300
+ NODES FOR SUBSTRUCTURING               =      0
+ NUMBER OF SUPER ELEMENTS               =      0
+ MODEL TYPE (PROBLEM CATEGORY)          =      0
+
+ PROGRAM EXECUTION EXTENT CONTROLS (REFER SAFE Input Ref MANUAL) -
+ IDPR =   0,  IDATA =   1
+
+
+ NUMBER OF BOUNDARY NODES               =     56
+ NUMBER OF BOUNDARY CONDITION GROUPS    =     10
+ NUMBER OF GROUPS WITH INCLINED BOUNDARY=      0
+

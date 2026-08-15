@@ -1,0 +1,1166 @@
+PROJECT NAME : frm_RCC_T_Girder_WS : IndianStandard
+ASTRA INPUT DATA CREATED AT 21/07/2015 12:08:00 AM
+
+
+txt_ana_cross_girder_mem_load = 1
+1.0
+txt_ana_long_girder_mem_load = 1
+5.5
+chk_ana_active_LL = true
+txt_LL_load_gen = 1
+190
+txt_Y = 1
+0.0
+dgv_live_load = 2
+TYPE 1 : IRCCLASSA$-18.8$0.0$1.5$0.2$1.179
+TYPE 1 : IRCCLASSA$-18.8$0.0$4.5$0.2$1.179
+txt_Load_Impact = 1
+1.179
+txt_XINCR = 1
+0.2
+cmb_load_type = 16
+0
+TYPE 1 : IRCCLASSA
+TYPE 2 : IRCCLASSB
+TYPE 3 : LRFD_HTL57
+TYPE 4 : LRFD_HL93_HS20
+TYPE 5 : LRFD_HL93_H20
+TYPE 6 : IRC70RTRACK
+TYPE 7 : IRC70RWHEEL
+TYPE 8 : IRCCLASSAATRACK
+TYPE 9 : IRC24RTRACK
+TYPE 10 : BG_RAIL_1
+TYPE 11 : BG_RAIL_2
+TYPE 12 : MG_RAIL_1
+TYPE 13 : MG_RAIL_2
+TYPE 14 : IRC70RW40TBM
+TYPE 15 : IRC70RW40TBL
+TYPE 16 : IRC40RWHEEL
+txt_Ana_X = 1
+-18.8000
+txt_Z = 1
+0.5
+txt_member_load = 13
+131 TO 200 UNI GY -0.5364
+121 TO 130 UNI GY -2.0088
+201 TO 210 UNI GY -2.0088
+JOINT LOAD
+13 TO 21 FZ -0.4617
+24 TO 32 FZ -0.4617
+35 TO 43 FZ -0.4617
+46 TO 54 FZ -0.4617
+57 TO 65 FZ -0.4617
+68 TO 76 FZ -0.4617
+79 TO 87 FZ -0.4617
+90 TO 98 FZ -0.4617
+101 TO 109 FZ -0.4617
+chk_ana_active_SIDL = true
+chk_WC = true
+chk_swf = true
+txt_Ana_swf = 1
+1.400
+chk_sw_fp = true
+txt_Ana_gamma_w = 1
+22
+txt_Ana_Dw = 1
+0.080
+chk_parapet = true
+txt_Ana_Hp = 1
+1.200
+txt_Ana_Wp = 1
+ 0.500
+txt_Ana_Hps = 1
+1.000
+txt_Ana_Wps = 1
+0.500
+txt_Ana_Hs = 1
+0.250
+txt_Ana_Bs = 1
+1.000
+txt_Ana_ang = 1
+0
+txt_Ana_gamma_c = 1
+24
+txt_Ana_Ds = 1
+0.250
+txt_Ana_CR = 1
+2.075
+txt_Ana_CL = 1
+2.075
+txt_Ana_CW = 1
+10.100
+txt_Ana_B = 1
+12.1
+txt_Ana_L = 1
+19.2
+txt_Ana_Db = 1
+0.250
+txt_Ana_Bb = 1
+0.650
+txt_Ana_BMG = 1
+0.300
+txt_Ana_DMG = 1
+1.80
+txt_Ana_NMG = 1
+4
+txt_Ana_BCG = 1
+0.250
+txt_Ana_DCG = 1
+1.400
+txt_Ana_NCG = 1
+3
+txt_analysis_file = 0
+rbtn_ana_create_analysis_file = true
+rbtn_ana_select_analysis_file = false
+txt_sec_in_end_Izz = 1
+26.1649
+txt_sec_in_end_Ixx = 1
+25.7603
+txt_sec_in_end_Ds = 1
+250
+txt_sec_in_end_D = 1
+1800
+txt_sec_in_end_Ax = 1
+1.3550
+txt_sec_in_end_Dw = 1
+900
+txt_sec_in_end_Bw = 1
+300
+txt_sec_in_end_Iyy = 1
+0.4046
+txt_sec_in_end_Db = 1
+150.0
+txt_sec_in_end_Bf = 1
+2650
+txt_sec_in_end_Bb = 1
+650
+txt_sec_crs_end_Iyy = 1
+0.0041
+txt_sec_crs_end_Izz = 1
+0.1499
+txt_sec_crs_end_Ixx = 1
+0.1458
+txt_sec_crs_end_D = 1
+1400
+txt_sec_crs_b = 1
+250
+txt_sec_crs_end_Ax = 1
+0.5400
+txt_sec_out_end_Iyy = 1
+0.4046
+txt_sec_out_end_Izz = 1
+26.1649
+txt_sec_out_end_Ixx = 1
+25.7603
+txt_sec_out_end_Dw = 1
+900
+txt_sec_out_end_Db = 1
+150.0
+txt_sec_out_end_Bb = 1
+650
+txt_sec_out_end_Bf = 1
+2650
+txt_sec_out_end_Bc = 1
+2075
+txt_sec_out_end_Gs = 1
+2650
+txt_sec_out_end_Bw = 1
+300
+txt_sec_out_end_D = 1
+1800
+txt_sec_out_end_Ds = 1
+250
+txt_sec_out_end_Ax = 1
+1.3550
+rtb_calc_section = 134
+
+--------------------------------------------
+Section Properties of Inner Long Main Girder
+--------------------------------------------
+
+---------------
+USER INPUT DATA
+---------------
+
+
+Thickness of Deck Slab [Ds] = 250 mm
+Depth of Longitudinal Girder [D]= 1800 mm
+Web Thickness of Longitudinal Girder [Bw] = 300 mm 
+
+c/c distance of Longitudinal Girder [Bf] = 2650 mm
+Width of Bottom Flange [Bb] = 650 mm
+Depth of Bottom Flange [Db] = 650 mm
+
+Depth of Web [Dw] = D - Ds - Db 
+                  = 1800 - 250 - 650
+                  = 900 mm
+                  = 0.900 m
+
+Neutral Axis = n = 387.8348 mm.
+
+Moment of Inertia about Neutral Axis [Neutral Axis is lying outside the Top Flange of the Girder]
+
+Moment of Inertia about Neutral Axis [Neutral Axis is lying outside the Top Flange of the Girder]
+
+Ixx = ((Bf * n^3) / 3.0) - (((Bf - bw) * (n - Ds)^3) / 3.0) +  
+      (m * Ast / 10^4 * (eff_depth - n)^2)
+
+    = ((2.65 * 0.3878^3) / 3.0) - (((2.65 - 0.3) * (0.3878 - 0.25)^3) / 3.0) +  
+      (10 * 19301 / 10^4 * (1.542 - 0.3878)^2)
+
+    = 25.7603 sq.sq.m.
+
+
+Iyy = (Ds x Bf^3 / 12) + (Dw x Bw^3 / 12) + (Db x Bb^3 / 12)
+    = (250  x 2650^3 / 12) + (900 x 300^3 / 12) + (650 x 650^3 / 12)
+    = 4.046E+011 sq.sq.mm.
+
+    = 0.4046 sq.sq.m.
+
+
+Izz = Ixx + Iyy = 2.576E+013 + 4.046E+011 = 2.616E+013 sq.sq.mm.
+
+
+    = 26.1649 sq.sq.m.
+
+Area = Ax = (Ds x Bf) + (Dw x Bw) + (Db x Bb)
+          = (250 x 2650) + (900 x 300) + (650 x 650)
+          = 1355000.0000 sq. mm.
+
+    = 1.35500 sq.m.
+
+
+--------------------------------------------
+Section Properties of Outer Long Main Girder
+--------------------------------------------
+
+---------------
+USER INPUT DATA
+---------------
+
+
+Thickness of Deck Slab [Ds] = 250 mm
+Depth of Longitudinal Girder [D]= 1800 mm
+Web Thickness of Longitudinal Girder [Bw] = 300 mm 
+
+Girder Spacing [Gs] = 2650 mm
+Cantilever Breadth [Bc] = 2075 mm
+c/c distance of Longitudinal Girder [Bf] = Gs/2 + Bc = 1325 + 2075 = 2650 mm
+Width of Bottom Flange [Bb] = 650 mm
+Depth of Bottom Flange [Db] = 650 mm
+
+Depth of Web [Dw] = D - Ds - Db 
+                  = 1800 - 250 - 650
+                  = 900 mm
+                  = 0.900 m
+
+Neutral Axis = n = 387.8348 mm.
+
+Moment of Inertia about Neutral Axis [Neutral Axis is lying outside the Top Flange of the Girder]
+
+Moment of Inertia about Neutral Axis [Neutral Axis is lying outside the Top Flange of the Girder]
+
+Ixx = ((Bf * n^3) / 3.0) - (((Bf - bw) * (n - Ds)^3) / 3.0) +  
+      (m * Ast / 10^4 * (eff_depth - n)^2)
+
+    = ((2.65 * 0.3878^3) / 3.0) - (((2.65 - 0.3) * (0.3878 - 0.25)^3) / 3.0) +  
+      (10 * 19301 / 10^4 * (1.542 - 0.3878)^2)
+
+    = 25.7603 sq.sq.m.
+
+
+Iyy = (Ds x Bf^3 / 12) + (Dw x Bw^3 / 12) + (Db x Bb^3 / 12)
+    = (250  x 2650^3 / 12) + (900 x 300^3 / 12) + (650 x 650^3 / 12)
+    = 4.046E+011 sq.sq.mm.
+
+    = 0.4046 sq.sq.m.
+
+
+Izz = Ixx + Iyy = 2.576E+013 + 4.046E+011 = 2.616E+013 sq.sq.mm.
+
+
+    = 26.1649 sq.sq.m.
+
+Area = Ax = (Ds x Bf) + (Dw x Bw) + (Db x Bb)
+          = (250 x 2650) + (900 x 300) + (650 x 650)
+          = 1355000.0000 sq. mm.
+
+    = 1.35500 sq.m.
+
+
+----------------------------------
+Section Properties of Cross Girder
+----------------------------------
+
+
+
+Depth of Cross Girders [D] = 1800 mm
+
+Web thickness of Cross Girders [b] = 300 mm
+
+Ixx = b x D^3 / 12 = 300 x 1800^3 / 12 = 1.458E+011 sq.sq.mm. = 0.1458 sq.sq.m.
+
+Iyy = D x b^3 / 12 = 1800 x 300^3 / 12 = 4.050E+009 sq.sq.mm. = 0.0041 sq.sq.m.
+
+Izz = Ixx + Iyy = 1.458E+011 + 4.050E+009 =  1.499E+011 sq.sq.mm. = 0.1499 sq.sq.m.
+
+Area = Ax = b x D = 300 x 1800 = 540000 sq.mm. = 0.54 sq.m.
+
+
+rtb_calc_load = 169
+
+--------------------------------------------------------------------
+ASTRA Load Computation for RCC T - Girder Bridge
+--------------------------------------------------------------------
+
+
+//Spacing of main long girders 
+SMG = (B-CL-CR)/(NMG-1) = (12.100-2.075-2.075)/(4-1) = 2.650 m.
+
+//Spacing of cross girders 
+SCG = L/(NCG-1) = 19.200/(3-1) = 9.600 m.
+
+
+
+
+
+//UDL in all main long Inner Girder members
+
+//Load from RCC Deck Slab
+wi1 = SMG*SCG*(Ds*Y_c + Dw*Y_w) 
+   = 2.650*9.600*(0.250*24.000+0.080*22.000) 
+   = 197.414 kN.
+
+//Load of self weight of main long girder
+wi2 = SCG*BMG*DMG*Y_c = 9.600*0.300*1.800*24.000 = 124.416 kN.
+
+//Total load on main long girders
+wi3 = wi1 + wi2 = 197.414 + 124.416 = 321.830 kN.
+
+//UDL
+wi4 = wi3/SCG = 321.830 / 9.600 = 33.524 kN/m.
+
+
+//Total inner members segments of main long girders
+NIG = NMG*(NCG - 1) = 4 * (3-1) = 8 nos.
+
+
+//Total inner members segments of main long girders in model (constant value)
+NIM = 70 nos.
+
+//UDL in inner members segments of main long girders in model 
+wiu = wi4*NIG/NIM = 33.524 * 8/70 = 3.831 kN/m. = 0.383 Ton/m.
+
+
+//Factored UDL
+wiu = wiu*swf = 0.383 * 1.400 = 0.536 Ton/m.
+
+
+//In Analysis Input Data file UDL in all inner Girder members is to be mentioned as
+
+                **********************************
+                131 TO 200 UNI GY -0.5364
+                **********************************
+
+
+
+
+//UDL in all main long Outer Girder members
+
+
+
+//Load from RCC Deck Slab and Wearing Course
+wo1 = [(SMG/2) + C]*SCG*(Ds*Y_c + Dw*Y_w) 
+   = (2.650/2 + 2.075)*9.600*(0.250*24.000+0.080*22.000) 
+   = 253.286 kN.
+
+//Load of self weight of main long girder
+wo2 = SCG*BMG*DMG*Y_c = 9.600*0.300*1.800*24.000 = 124.416 kN.
+
+
+//Load of one side Parapet wall
+wo3 = SCG*Hp*Wp*Y_c = 9.600*1.200*0.500*24.000 = 138.240 kN.
+
+
+//Load of Side walk
+wo4 = SCG*Bs*Hs*Y_c = 9.600*1.000*0.250*24.000 = 57.600 kN.
+
+
+//Load of Side Walk Parapet wall
+wo5 = SCG*Hps*Wps*Y_c = 9.600*1.000*0.500*24.000 = 115.200 kN.
+
+
+
+//Total load on main long girders 
+wo6 = wo1 + wo2 + wo3 + wo4 + wo5 
+   = 253.286 + 124.416 + 138.240 + 57.600 + 115.200 
+   = 688.742 kN.
+
+//UDL
+wo7 = wo6/SCG = 688.742/9.600 = 71.744 kN/m.
+
+
+
+//Total outer members segments of main long girders
+NOG = 2*(NCG - 1) = 2*(3-1) = 4 nos.
+
+
+//Total inner members segments of main long girders in model (constant value)
+NOM = 20 nos.
+
+
+//UDL in inner members segments of main long girders in model 
+wou = wo7*NOG/NOM = 71.744*4/20 = 14.349 kN/m. = 1.435 Ton/m.
+
+
+//Factored UDL
+wou = wou*swf = 1.435*1.400 = 2.0088 Ton/m.
+
+
+//In Analysis Input Data file UDL in all inner Girder members is to be mentioned as
+
+                **********************************
+                MEMBER LOAD 
+                121 TO 130 UNI GY -2.0088
+                201 TO 210 UNI GY -2.0088
+                **********************************
+
+
+
+
+//Concentrated JOINT LOADS in all main long Inner and Outer Girder members
+
+
+
+//Self weight of Cross Girders
+
+wc1 = SMG*DCG*BCG*Y_c = 2.650*1.400*0.250*24.000 = 22.260 kN.
+
+
+//Total number of Inner Joints
+
+NIGJ = NMG*NCG = 4*3= 12 nos.
+
+
+//Total number of Inner Joints in model (Constant value, always)
+
+NIMJ = 81
+
+
+//Joint Loads applicable to all inner joints in model
+
+wjl = wc1*NIGJ/NIMJ = 22.260*12/81 = 3.298 kN. = 0.330 Ton.
+
+
+//Factored Joint Load
+wjl = wjl*swf = 0.330*1.400 = 0.4617 Ton.
+
+
+
+//In Analysis Input Data file UDL in all inner Girder members is to be mentioned as
+
+                ***********************************
+                JOINT LOAD
+                13 TO 21 FZ -0.4617
+                24 TO 32 FZ -0.4617
+                35 TO 43 FZ -0.4617
+                46 TO 54 FZ -0.4617
+                57 TO 65 FZ -0.4617
+                68 TO 76 FZ -0.4617
+                79 TO 87 FZ -0.4617
+                90 TO 98 FZ -0.4617
+                101 TO 109 FZ -0.4617
+
+                ***********************************
+
+
+
+//END OF LOAD COMPUTATION
+
+rbtn_esprt_pinned = false
+rbtn_esprt_fixed = true
+chk_esprt_fixed_MZ = true
+chk_esprt_fixed_FZ = false
+chk_esprt_fixed_MY = false
+chk_esprt_fixed_FY = false
+chk_esprt_fixed_MX = false
+chk_esprt_fixed_FX = true
+rbtn_ssprt_pinned = true
+rbtn_ssprt_fixed = false
+chk_ssprt_fixed_MZ = false
+chk_ssprt_fixed_FZ = false
+chk_ssprt_fixed_MY = false
+chk_ssprt_fixed_FY = false
+chk_ssprt_fixed_MX = false
+chk_ssprt_fixed_FX = false
+chk_R2 = true
+chk_R3 = true
+chk_M2 = true
+chk_M3 = true
+txt_node_displace = 1
+0
+txt_ana_TSRP = 1
+0
+txt_ana_MSTD = 1
+0
+txt_ana_MSLD = 1
+0
+txt_ana_DLSR = 1
+0
+txt_ana_LLSR = 1
+0
+txt_outer_long_L4_shear_joint_no = 1
+0
+txt_outer_long_L2_shear_joint_no = 1
+0
+txt_outer_long_deff_shear_joint_no = 1
+0
+txt_outer_long_L4_moment_joint_no = 1
+0
+txt_outer_long_L2_moment_joint_no = 1
+0
+txt_outer_long_deff_moment_joint_no = 1
+0
+txt_outer_long_L4_shear_load_case = 1
+0
+txt_outer_long_L2_shear_load_case = 1
+0
+txt_outer_long_deff_shear_load_case = 1
+0
+txt_outer_long_L4_shear_mem_no = 1
+0
+txt_outer_long_L2_shear_mem_no = 1
+0
+txt_outer_long_deff_shear_mem_no = 1
+0
+txt_outer_long_L4_moment_load_case = 1
+0
+txt_outer_long_L2_moment_load_case = 1
+0
+txt_outer_long_deff_moment_load_case = 1
+0
+txt_outer_long_L4_moment_mem_no = 1
+0
+txt_outer_long_L2_moment_mem_no = 1
+0
+txt_outer_long_deff_moment_mem_no = 1
+0
+txt_outer_long_L2_shear = 1
+0
+txt_outer_long_deff_shear = 1
+0
+txt_outer_long_L2_moment = 1
+0
+txt_outer_long_deff_moment = 1
+0
+txt_outer_long_L4_shear = 1
+0
+txt_outer_long_L4_moment = 1
+0
+txt_Ana_cross_max_shear_joint_no = 1
+0
+txt_Ana_cross_max_moment_joint_no = 1
+0
+txt_Ana_cross_max_shear_load_case = 1
+0
+txt_Ana_cross_max_shear_mem_no = 1
+0
+txt_Ana_cross_max_moment_load_case = 1
+0
+txt_Ana_cross_max_moment_mem_no = 1
+0
+txt_Ana_cross_max_shear = 1
+0
+txt_Ana_cross_max_moment = 1
+0
+txt_Ana_inner_long_L4_shear_joint_no = 1
+0
+txt_inner_long_L2_shear_joint_no = 1
+0
+txt_Ana_inner_long_deff_shear_joint_no = 1
+0
+txt_Ana_inner_long_L4_shear_load_case = 1
+0
+txt_Ana_inner_long_L4_moment_joint_no = 1
+0
+txt_inner_long_L2_shear_load_case = 1
+0
+txt_Ana_inner_long_deff_shear_load_case = 1
+0
+txt_Ana_inner_long_L2_moment_joint_no = 1
+0
+txt_inner_long_deff_moment_joint_no = 1
+0
+txt_Ana_inner_long_L4_shear_mem_no = 1
+0
+txt_inner_long_L2_shear_mem_no = 1
+0
+txt_Ana_inner_long_deff_shear_mem_no = 1
+0
+txt_Ana_inner_long_L4_moment_load_case = 1
+0
+txt_Ana_inner_long_L2_moment_load_case = 1
+0
+txt_inner_long_deff_moment_load_case = 1
+0
+txt_Ana_inner_long_L4_moment_mem_no = 1
+0
+txt_Ana_inner_long_L2_moment_mem_no = 1
+0
+txt_inner_long_deff_moment_mem_no = 1
+0
+txt_Ana_inner_long_L4_shear = 1
+0
+txt_Ana_inner_long_L2_moment = 1
+0
+txt_inner_long_L2_shear = 1
+0
+txt_Ana_inner_long_L4_moment = 1
+0
+txt_Ana_inner_long_deff_shear = 1
+0
+txt_inner_long_deff_moment = 1
+0
+txt_final_Mz = 0
+txt_max_Mz_kN = 0
+txt_left_total_Mz = 0
+txt_left_total_Mx = 0
+txt_left_total_vert_reac = 0
+dgv_left_des_frc = 0
+$$$
+dgv_right_des_frc = 0
+$$$
+txt_right_total_Mz = 0
+txt_right_total_Mx = 0
+txt_right_total_vert_reac = 0
+txt_final_Mx = 0
+txt_max_Mx_kN = 0
+txt_final_vert_rec_kN = 0
+txt_final_vert_reac = 0
+txt_dead_kN_m = 0
+txt_dead_vert_reac_kN = 0
+dgv_left_end_design_forces = 0
+$
+txt_dead_vert_reac_ton = 0
+txt_live_kN_m = 0
+txt_live_vert_rec_kN = 0
+dgv_right_end_design_forces = 0
+$
+txt_live_vert_rec_Ton = 0
+cmb_Long_Steel_Grade = 3
+1
+240
+415
+500
+cmb_Long_concrete_grade = 10
+2
+15
+20
+25
+30
+35
+40
+45
+50
+55
+60
+txt_Long_sigma_sv = 1
+200.00
+txt_Long_sigma_c = 1
+8.33
+txt_Long_modular_ratio = 1
+10
+txt_Long_bar_dia_Deff = 1
+32
+txt_Long_bar_dia_L4 = 1
+32
+rbtn_Long_outer_girder = false
+rbtn_long_inner_girder = true
+txt_Long_total_bar_Deff = 1
+22
+txt_Long_total_bar_L4 = 1
+22
+txt_Long_nl = 1
+6
+txt_Long_Db = 1
+250
+txt_Long_Bb = 1
+650
+txt_Long_SCG = 1
+9.600
+txt_Long_cover = 1
+50
+txt_Long_design_shear_deff = 1
+ 
+txt_Long_design_shear_quarter = 1
+ 
+txt_Long_design_shear_mid = 1
+ 
+txt_Long_design_moment_deff = 1
+ 
+txt_Long_design_moment_quarter = 1
+ 
+txt_Long_total_bar_L2 = 1
+24
+txt_Long_bar_dia_L2 = 1
+32
+txt_Long_design_moment_mid = 1
+ 
+txt_Long_SMG = 1
+2.650
+txt_Long_L = 1
+19.200
+txt_Long_BMG = 1
+300
+txt_Long_DMG = 1
+1800
+txt_Long_Ds = 1
+250
+cmb_cross_fy = 3
+1
+240
+415
+500
+cmb_cross_fck = 10
+2
+15
+20
+25
+30
+35
+40
+45
+50
+55
+60
+txt_cross_sigma_st = 1
+200
+txt_cross_sigma_c = 1
+8.33
+txt_Cross_modular_ratio = 1
+10
+txt_Cross_clear_cover = 1
+0.050
+txt_Cross_BCG = 1
+0.25
+txt_Cross_total_shear = 1
+ 
+txt_Cross_DCG = 1
+1.4
+txt_Cross_NCG = 1
+3
+txt_Cross_SCG = 1
+9.600
+txt_Cross_NMG = 1
+4
+txt_Cross_SMG = 1
+2.650
+txt_Cross_total_hogging_moment = 1
+ 
+txt_deck_m = 1
+10
+txt_Deck_Q = 1
+1.105
+cmb_deck_fy = 3
+1
+240
+415
+500
+cmb_deck_fck = 10
+2
+15
+20
+25
+30
+35
+40
+45
+50
+55
+60
+txt_Deck_j = 1
+0.902
+txt_Deck_sigma_st = 1
+200
+txt_deck_sigma_c = 1
+8.33
+cmb_deck_select_load = 14
+0
+IRC CLASS A
+IRC CLASS B
+IRC 70R TRACK
+IRC 70R WHEEL
+IRC CLASS AA TRACK
+IRC 24R TRACK
+LRFD HTL 57
+LRFD HL 93 HS 20
+LRFD HL 93 H 20
+BG RAIL 1
+BG RAIL 2
+MG RAIL 1
+MG RAIL 2
+USER DEFINE
+txt_Deck_mu = 1
+0.15
+txt_Deck_load_width = 1
+0.5
+txt_Deck_load_length = 1
+19.4
+txt_Deck_applied_load = 1
+57
+txt_Deck_continuity_factor = 1
+0.8
+txt_Deck_impact_factor = 1
+1.25
+txt_Deck_gamma_c = 1
+24
+txt_Deck_BMG = 1
+300
+txt_Deck_gamma_wc = 1
+22
+txt_Deck_Dwc = 1
+80
+txt_Deck_minimum_cover = 1
+30
+txt_Deck_Ds = 1
+250
+txt_Deck_BCG = 1
+250
+txt_Deck_SMG = 1
+2.650
+txt_Deck_NMG = 1
+4
+txt_Deck_L = 1
+19.200
+txt_Deck_SCG = 1
+9.600
+txt_Deck_CW = 1
+10.1
+txt_cant_m = 1
+10
+txt_cant_Q = 1
+1.105
+cmb_cant_fy = 3
+1
+240
+415
+500
+cmb_cant_fck = 10
+2
+15
+20
+25
+30
+35
+40
+45
+50
+55
+60
+txt_cant_j = 1
+0.902
+txt_cant_sigma_st = 1
+200
+txt_cant_sigma_c = 1
+8.33
+cmb_cant_select_load = 14
+0
+IRC CLASS A
+IRC CLASS B
+IRC 70R TRACK
+IRC 70R WHEEL
+IRC CLASS AA TRACK
+IRC 24R TRACK
+LRFD HTL 57
+LRFD HL 93 HS 20
+LRFD HL 93 H 20
+BG RAIL 1
+BG RAIL 2
+MG RAIL 1
+MG RAIL 2
+USER DEFINE
+txt_Cant_width_of_hand_rail = 1
+0.200
+txt_Cant_cover = 1
+0.03
+txt_Cant_gamma_wc = 1
+22
+txt_Cant_gamma_c = 1
+24
+txt_Cant_fact = 1
+1.5
+txt_Cant_RCC_Y = 1
+0.15
+txt_Cant_RCC_X = 1
+0.15
+txt_Cant_a7 = 1
+0.050
+txt_Cant_w2 = 1
+2.0
+txt_Cant_d4 = 1
+0.080
+txt_Cant_a6 = 1
+0.15
+txt_Cant_a5 = 1
+0.7
+txt_Cant_a4 = 1
+0.5
+txt_Cant_w1 = 1
+57
+txt_Cant_d3 = 1
+0.200
+txt_Cant_d2 = 1
+0.300
+txt_Cant_a3 = 1
+1.575
+txt_Cant_d1 = 1
+0.3
+txt_Cant_Wp = 1
+0.5
+txt_Cant_BMG = 1
+0.3
+cmb_abut_fy = 3
+1
+240
+415
+500
+cmb_abut_fck = 10
+2
+15
+20
+25
+30
+35
+40
+45
+50
+55
+60
+txt_abut_sigma_st = 1
+200
+txt_abut_sigma_c = 1
+8.33
+txt_abut_sc = 1
+0.18
+txt_abut_h1 = 1
+1.2
+txt_abut_cover = 1
+50
+txt_abut_fact = 1
+1.5
+txt_abut_F = 1
+200
+txt_abut_mu = 1
+0.6
+txt_abut_gamma_b = 1
+17
+txt_abut_gamma_c = 1
+24
+txt_abut_z = 1
+17.5
+txt_abut_delta = 1
+0
+txt_abut_theta = 1
+90
+txt_abut_w5 = 1
+ 
+txt_abut_phi = 1
+35
+txt_abut_w6 = 1
+ 
+txt_abut_p_bearing_capacity = 1
+280
+txt_abut_d4 = 1
+1.4
+txt_abut_L4 = 1
+0.3
+txt_abut_L = 1
+19.200
+txt_abut_t = 1
+1.0
+txt_abut_d3 = 1
+0.3
+txt_abut_L3 = 1
+1.8
+txt_abut_L2 = 1
+1.2
+txt_abut_L1 = 1
+3.0
+txt_abut_DMG = 1
+2
+txt_abut_d2 = 1
+1.2
+txt_abut_B = 1
+12.100
+txt_abut_a = 1
+1.25
+txt_abut_H = 1
+5.6
+txt_rcc_pier_m = 1
+10
+cmb_rcc_pier_fy = 3
+1
+240
+415
+500
+cmb_rcc_pier_fck = 10
+2
+15
+20
+25
+30
+35
+40
+45
+50
+55
+60
+txt_rcc_pier_sigma_st = 1
+200
+txt_rcc_pier_sigma_c = 1
+8.33
+txt_RCC_Pier_W1_supp_reac = 1
+ 
+txt_RCC_Pier_Mz1 = 1
+ 
+txt_RCC_Pier_Mx1 = 1
+ 
+txt_RCC_Pier_H7 = 1
+6.560
+txt_RCC_Pier_gama_c = 1
+24
+txt_RCC_Pier_vehi_load = 1
+1000.0
+txt_RCC_Pier_NR = 1
+2
+txt_RCC_Pier_NP = 1
+4
+txt_RCC_Pier_fck_2 = 1
+30
+txt_RCC_Pier_fy2 = 1
+415
+txt_RCC_Pier_D = 1
+6000
+txt_RCC_Pier_b = 1
+1000
+txt_RCC_Pier_d_dash = 1
+40
+txt_RCC_Pier_p1 = 1
+0.8
+txt_RCC_Pier_p2 = 1
+1.5
+txt_RCC_Pier_H2 = 1
+0.078
+txt_RCC_Pier_B4 = 1
+0.32
+txt_RCC_Pier_B3 = 1
+0.50
+txt_RCC_Pier_H1 = 1
+0.25
+txt_RCC_Pier_B2 = 1
+0.62
+txt_RCC_Pier_B1 = 1
+0.80
+txt_RCC_Pier_overall_height = 1
+7.760
+txt_RCC_Pier___B = 1
+12.100
+txt_RCC_Pier_B13 = 1
+1.75
+txt_RCC_Pier_B12 = 1
+5.0
+txt_RCC_Pier_B11 = 1
+1.0
+txt_RCC_Pier_B10 = 1
+5.0
+txt_RCC_Pier_B9 = 1
+0.9
+txt_RCC_Pier_H6 = 1
+0.80
+txt_RCC_Pier_H5 = 1
+0.80
+txt_RCC_Pier_B8 = 1
+0.15
+txt_RCC_Pier_H4 = 1
+0.60
+txt_RCC_Pier_H3 = 1
+0.60
+txt_RCC_Pier_B7 = 1
+9.50
+txt_RCC_Pier_Form_Lev = 1
+531.505
+txt_RCC_Pier_RL5 = 1
+520.42
+txt_RCC_Pier_RL4 = 1
+521.62
+txt_RCC_Pier_RL3 = 1
+523.417
+txt_RCC_Pier_RL2 = 1
+527.39
+txt_RCC_Pier_RL1 = 1
+529.377
+txt_RCC_Pier_B6 = 1
+5.50
+txt_RCC_Pier_B5 = 1
+2.65
+txt_RCC_Pier_Ds = 1
+0.25
+txt_RCC_Pier_DMG = 1
+1.8
+txt_RCC_Pier_NMG = 1
+4
+txt_RCC_Pier_Hp = 1
+1.2
+txt_RCC_Pier_Wp = 1
+0.5
+txt_RCC_Pier__B = 1
+12.100
+txt_RCC_Pier_CW = 1
+10.1
+txt_RCC_Pier_L = 1
+19.200
+cmb_pier_2_k = 4
+1
+Square End Piers
+Semi Circular End Piers
+Angular End Piers
+User Defined Value
+txt_pier_2_SBC = 1
+280
+txt_pier_2_ldia = 1
+25
+txt_pier_2_slegs = 1
+6
+txt_pier_2_sdia = 1
+16
+txt_pier_2_Itc = 1
+4.21
+txt_pier_2_Vr = 1
+2.5
+txt_pier_2_LL = 1
+1000
+txt_pier_2_CF = 1
+0.6
+txt_pier_2_k = 1
+0.66
+txt_pier_2_V = 1
+8.0
+txt_pier_2_HHF = 1
+6.0
+txt_pier_2_SC = 1
+0.18
+txt_pier_2_PD = 1
+2.0,0.5
+txt_pier_2_PML = 1
+195.56
+txt_pier_2_PL = 1
+306.4
+txt_pier_2_APD = 1
+0.5,2.0,3.5,6.5, 8.0, 9.5
+txt_pier_2_B16 = 1
+4.550
+txt_pier_2_P3 = 1
+ 
+txt_pier_2_P2 = 1
+ 
+NEW DATA

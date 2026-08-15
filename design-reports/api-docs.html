@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>API Documentation — IRC Bridge Design Suite</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+.hero{background:linear-gradient(135deg,#0a2a5e 0%,#1a4a9e 55%,#2d1a6e 100%);color:#fff;padding:36px 40px 28px}
+.hero h1{font-size:22px;font-weight:800;margin-bottom:6px}
+.hero p{opacity:.85;font-size:13px;max-width:800px;line-height:1.6}
+.method{display:inline-block;padding:2px 10px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:.5px;margin-right:8px;font-family:monospace}
+.get{background:#e8f7f0;color:#0a6e3a}
+.post{background:#fff3e0;color:#b45309}
+.endpoint-path{font-family:'Consolas',monospace;font-size:14px;font-weight:700;color:#0a2a5e}
+.code-block{background:#0a2a5e;color:#e8f0fc;border-radius:8px;padding:16px 20px;font-family:'Consolas','Courier New',monospace;font-size:12px;line-height:1.75;margin:10px 0;overflow-x:auto;white-space:pre}
+.code-block .key{color:#58a6ff}
+.code-block .str{color:#3fb950}
+.code-block .num{color:#d29922}
+.code-block .cmt{color:#6a8099;font-style:italic}
+.param-table{width:100%;font-size:12.5px;margin:10px 0}
+.param-table th{background:#f0f4f8;color:#0a2a5e;padding:7px 12px;text-align:left;font-size:11.5px;border-bottom:2px solid #e0e8f0}
+.param-table td{padding:7px 12px;border-bottom:1px solid #f0f4f8;vertical-align:top}
+.param-table td:first-child{font-family:monospace;font-size:12px;color:#1a4a9e;font-weight:700}
+.param-table td:nth-child(2){color:#b45309;font-size:11.5px}
+.required{background:#fde8e8;color:#b91c1c;border-radius:3px;padding:1px 5px;font-size:10px;font-weight:700}
+.optional{background:#e8f7f0;color:#0a6e3a;border-radius:3px;padding:1px 5px;font-size:10px;font-weight:700}
+.sse-event{border-left:3px solid #1a4a9e;padding:6px 12px;margin:6px 0;background:#f7f9fc;border-radius:0 6px 6px 0}
+.sse-name{font-family:monospace;font-weight:700;color:#0a2a5e;font-size:12px}
+.sse-desc{font-size:12px;color:#4a6080;margin-top:2px}
+.try-btn{background:#1a4a9e;color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;margin-left:12px}
+.try-btn:hover{background:#0a2a5e}
+.response-live{background:#0d2113;border:1px solid #238636;border-radius:6px;padding:12px 16px;font-family:monospace;font-size:11.5px;color:#3fb950;margin-top:8px;max-height:200px;overflow-y:auto;display:none}
+h3{font-size:13.5px;font-weight:700;color:#6a8099;text-transform:uppercase;letter-spacing:.5px;margin:6px 0 12px;padding-bottom:4px;border-bottom:1px solid #e8edf5}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">&#8592; All Projects</a>
+  <span style="color:#ddd">|</span>
+  <span class="bc">API Documentation</span>
+</nav>
+
+<div class="hero">
+  <h1>API Documentation — IRC Bridge Design Suite</h1>
+  <p>All REST endpoints exposed by the API server. Base URL: <code style="background:rgba(255,255,255,.15);padding:2px 8px;border-radius:4px">/api</code> — all paths below are relative to this base. The server runs on Express 5 with JSON responses and SSE streaming for the sync endpoint.</p>
+</div>
+
+<div class="container">
+
+  <!-- HEALTH -->
+  <div class="section" id="healthz">
+    <div class="section-title">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/healthz</span>
+    </div>
+    <div class="narrative">Health check endpoint. Returns server status. Use this to confirm the API server is running before making other requests.</div>
+    <h3>Response</h3>
+    <div class="code-block"><span class="cmt">// HTTP 200 OK</span>
+{
+  <span class="key">"status"</span>: <span class="str">"ok"</span>
+}</div>
+    <button class="try-btn" onclick="tryIt('/api/healthz','res-healthz')">▶ Try it</button>
+    <div class="response-live" id="res-healthz"></div>
+  </div>
+
+  <!-- REPORTS STATIC -->
+  <div class="section" id="reports-static">
+    <div class="section-title">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/reports/</span>
+      &nbsp;<span style="font-size:11px;color:#6a8099;font-weight:400">Static file server</span>
+    </div>
+    <div class="narrative">Serves all HTML design reports as static files. The index at <code>/api/reports/</code> is the main project registry. Individual reports are at <code>/api/reports/&lt;filename&gt;.html</code>. Also serves shared assets (<code>_shared.css</code>, <code>_nav.js</code>, <code>_print.css</code>) and supporting pages (<code>lfs-sync.html</code>, <code>irc-quick-reference.html</code>, <code>stats.html</code>, <code>api-docs.html</code>).</div>
+    <h3>Notable Paths</h3>
+    <table class="param-table">
+      <tr><th>Path</th><th>Type</th><th>Description</th></tr>
+      <tr><td>/api/reports/</td><td>HTML</td><td>Master project registry — 16 bridge projects</td></tr>
+      <tr><td>/api/reports/lfs-sync.html</td><td>HTML</td><td>Git LFS Live-Sync Control Panel (18 repos)</td></tr>
+      <tr><td>/api/reports/irc-quick-reference.html</td><td>HTML</td><td>IRC formulas and standards reference</td></tr>
+      <tr><td>/api/reports/stats.html</td><td>HTML</td><td>Live statistics dashboard</td></tr>
+      <tr><td>/api/reports/api-docs.html</td><td>HTML</td><td>This page</td></tr>
+      <tr><td>/api/reports/_shared.css</td><td>CSS</td><td>Shared stylesheet for all reports</td></tr>
+      <tr><td>/api/reports/_nav.js</td><td>JS</td><td>Prev/next navigation, print button, TOC</td></tr>
+      <tr><td>/api/reports/_print.css</td><td>CSS</td><td>Print-specific stylesheet</td></tr>
+      <tr><td>/api/reports/GIT_LFS_SETUP.md</td><td>Markdown</td><td>Full Git LFS push/pull guide</td></tr>
+      <tr><td>/api/reports/som-river-kherwara.html</td><td>HTML</td><td>SOM River full stability report (all 9 cases)</td></tr>
+    </table>
+  </div>
+
+  <!-- REPORTS LIST -->
+  <div class="section" id="reports-list">
+    <div class="section-title">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/reports-list</span>
+    </div>
+    <div class="narrative">Returns a JSON list of all 16 bridge design projects with metadata. Use this to build custom dashboards, search interfaces, or integrate the registry into other tools.</div>
+    <h3>Response Schema</h3>
+    <div class="code-block">{
+  <span class="key">"total"</span>:       <span class="num">16</span>,
+  <span class="key">"submersible"</span>: <span class="num">9</span>,
+  <span class="key">"highLevel"</span>:   <span class="num">7</span>,
+  <span class="key">"indexUrl"</span>:    <span class="str">"/api/reports/"</span>,
+  <span class="key">"projects"</span>: [
+    {
+      <span class="key">"id"</span>:    <span class="str">"som-river-kherwara"</span>,
+      <span class="key">"type"</span>:  <span class="str">"submersible"</span>,        <span class="cmt">// "submersible" | "high-level"</span>
+      <span class="key">"title"</span>: <span class="str">"SOM River — Kherwara-Jawas-Suveri Road"</span>,
+      <span class="key">"river"</span>: <span class="str">"Som"</span>,
+      <span class="key">"file"</span>:  <span class="str">"som-river-kherwara.html"</span>,
+      <span class="key">"q"</span>:     <span class="num">899.93</span>,               <span class="cmt">// design discharge (cumecs) — optional</span>
+      <span class="key">"hfl"</span>:   <span class="num">100.60</span>               <span class="cmt">// HFL (m MSL) — optional</span>
+    },
+    <span class="cmt">// ... 15 more projects</span>
+  ]
+}</div>
+    <button class="try-btn" onclick="tryIt('/api/reports-list','res-rl')">▶ Try it</button>
+    <div class="response-live" id="res-rl"></div>
+  </div>
+
+  <!-- LFS SYNC REPOS -->
+  <div class="section" id="lfs-repos">
+    <div class="section-title">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/lfs-sync/repos</span>
+    </div>
+    <div class="narrative">Returns all 18 GitHub repositories from the CRAJKUMARSINGH portfolio with their current sync state. State is persisted to <code>sync-state.json</code> in the workspace root and survives server restarts.</div>
+    <h3>Response Schema</h3>
+    <div class="code-block">{
+  <span class="key">"repos"</span>: [
+    {
+      <span class="key">"name"</span>:      <span class="str">"Bridge_Slab_Design"</span>,
+      <span class="key">"url"</span>:       <span class="str">"https://github.com/CRAJKUMARSINGH/Bridge_Slab_Design"</span>,
+      <span class="key">"label"</span>:     <span class="str">"Bridge Slab Design"</span>,
+      <span class="key">"desc"</span>:      <span class="str">"IRC submersible & high-level slab bridge design — 100+ LFS assets"</span>,
+      <span class="key">"primary"</span>:   <span class="num">true</span>,
+      <span class="key">"exists"</span>:    <span class="num">false</span>,            <span class="cmt">// whether local clone exists</span>
+      <span class="key">"status"</span>:    <span class="str">"never"</span>,          <span class="cmt">// "never" | "syncing" | "ok" | "error"</span>
+      <span class="key">"lastSync"</span>:  <span class="num">null</span>,             <span class="cmt">// ISO 8601 timestamp or null</span>
+      <span class="key">"lastError"</span>: <span class="num">null</span>,             <span class="cmt">// error message string or null</span>
+      <span class="key">"fileCount"</span>: <span class="num">0</span>,               <span class="cmt">// total files in clone</span>
+      <span class="key">"lfsFiles"</span>:  <span class="num">0</span>,               <span class="cmt">// files tracked by Git LFS</span>
+      <span class="key">"lastCommit"</span>:<span class="num">null</span>             <span class="cmt">// "hash  date  message" or null</span>
+    },
+    <span class="cmt">// ... 17 more repos</span>
+  ],
+  <span class="key">"reposDir"</span>:  <span class="str">"/home/runner/workspace/git-repos"</span>,
+  <span class="key">"stateFile"</span>: <span class="str">"/home/runner/workspace/sync-state.json"</span>
+}</div>
+    <button class="try-btn" onclick="tryIt('/api/lfs-sync/repos','res-lr')">▶ Try it</button>
+    <div class="response-live" id="res-lr"></div>
+  </div>
+
+  <!-- LFS SYNC STATUS -->
+  <div class="section" id="lfs-status">
+    <div class="section-title">
+      <span class="method get">GET</span>
+      <span class="endpoint-path">/api/lfs-sync/status</span>
+    </div>
+    <div class="narrative">Quick summary of sync state across all 18 repos. Lightweight alternative to <code>/api/lfs-sync/repos</code> when you only need aggregate counts.</div>
+    <h3>Response Schema</h3>
+    <div class="code-block">{
+  <span class="key">"total"</span>:  <span class="num">18</span>,
+  <span class="key">"ok"</span>:     <span class="num">0</span>,     <span class="cmt">// repos with status "ok"</span>
+  <span class="key">"never"</span>: <span class="num">18</span>,    <span class="cmt">// repos never synced</span>
+  <span class="key">"errors"</span>:<span class="num">0</span>,     <span class="cmt">// repos with last sync error</span>
+  <span class="key">"repos"</span>: [ { <span class="key">"name"</span>: <span class="str">"..."</span>, <span class="key">"status"</span>: <span class="str">"never"</span>, <span class="key">"lastSync"</span>: <span class="num">null</span> }, ... ]
+}</div>
+    <button class="try-btn" onclick="tryIt('/api/lfs-sync/status','res-ls')">▶ Try it</button>
+    <div class="response-live" id="res-ls"></div>
+  </div>
+
+  <!-- LFS SYNC PULL -->
+  <div class="section" id="lfs-pull">
+    <div class="section-title">
+      <span class="method post">POST</span>
+      <span class="endpoint-path">/api/lfs-sync/pull</span>
+      &nbsp;<span style="font-size:11px;color:#58a6ff;font-weight:600">SSE Streaming</span>
+    </div>
+    <div class="narrative">Triggers a full Git clone + <code>git lfs pull</code> for a single repository and streams real-time progress as Server-Sent Events (SSE). The response body is a stream — consume it with <code>ReadableStream</code> (Fetch API) or <code>EventSource</code>. The connection closes automatically when the <code>done</code> event is emitted.</div>
+
+    <h3>Request Body</h3>
+    <table class="param-table">
+      <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+      <tr><td>repoUrl</td><td>string</td><td><span class="required">REQUIRED</span></td><td>Full GitHub URL — must match exactly one of the 18 registered repos</td></tr>
+    </table>
+    <div class="code-block">POST /api/lfs-sync/pull
+Content-Type: application/json
+
+{ <span class="key">"repoUrl"</span>: <span class="str">"https://github.com/CRAJKUMARSINGH/Bridge_Slab_Design"</span> }</div>
+
+    <h3>SSE Event Stream</h3>
+    <div class="narrative">Response content-type is <code>text/event-stream</code>. Events arrive in order:</div>
+    <div class="sse-event"><div class="sse-name">event: start</div><div class="sse-desc">data: {"repo":"Bridge_Slab_Design","url":"..."} — sync job started</div></div>
+    <div class="sse-event"><div class="sse-name">event: phase</div><div class="sse-desc">data: {"n":1,"total":4,"label":"Initialising Git LFS"} — step progress (4 phases total)</div></div>
+    <div class="sse-event"><div class="sse-name">event: cmd</div><div class="sse-desc">data: {"line":"$ git clone --depth=1 ..."} — git command being executed</div></div>
+    <div class="sse-event"><div class="sse-name">event: log</div><div class="sse-desc">data: {"line":"Cloning into 'Bridge_Slab_Design'..."} — stdout/stderr line from git</div></div>
+    <div class="sse-event"><div class="sse-name">event: warn</div><div class="sse-desc">data: {"line":"LFS pull returned non-zero..."} — non-fatal warning</div></div>
+    <div class="sse-event"><div class="sse-name">event: error</div><div class="sse-desc">data: {"line":"FATAL: git clone exited with code 128"} — fatal error</div></div>
+    <div class="sse-event"><div class="sse-name">event: done</div><div class="sse-desc">data: {"success":true,"fileCount":312,"lfsFiles":87,"lastCommit":"abc1234  2026-05-01  ..."} — stream ends after this event</div></div>
+
+    <h3>Error Response (non-SSE)</h3>
+    <div class="code-block"><span class="cmt">// HTTP 400 — unknown or unregistered repo URL</span>
+{
+  <span class="key">"error"</span>:     <span class="str">"Unknown repo"</span>,
+  <span class="key">"available"</span>: [ <span class="str">"https://github.com/CRAJKUMARSINGH/Bridge_Slab_Design"</span>, <span class="cmt">/* 17 more */</span> ]
+}</div>
+
+    <h3>JavaScript Usage Example</h3>
+    <div class="code-block"><span class="cmt">// Consume SSE from a POST endpoint using Fetch + ReadableStream</span>
+const resp = await fetch('/api/lfs-sync/pull', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ repoUrl: 'https://github.com/CRAJKUMARSINGH/Bridge_Slab_Design' })
+});
+const reader = resp.body.getReader();
+const decoder = new TextDecoder();
+let buf = '';
+while (true) {
+  const { value, done } = await reader.read();
+  if (done) break;
+  buf += decoder.decode(value, { stream: true });
+  for (const block of buf.split('\n\n')) {
+    const dataLine = block.split('\n').find(l => l.startsWith('data: '));
+    if (dataLine) {
+      const event = JSON.parse(dataLine.slice(6));
+      console.log(event);
+    }
+  }
+  buf = buf.split('\n\n').pop();
+}</div>
+  </div>
+
+  <!-- QUICK LINKS -->
+  <div class="section">
+    <div class="section-title">Quick Links</div>
+    <div class="three-col">
+      <div class="data-block">
+        <h4>Live API Responses</h4>
+        <div class="kv"><span class="k">Health</span><span class="v"><a href="/api/healthz" target="_blank" style="color:#1a4a9e">/api/healthz ↗</a></span></div>
+        <div class="kv"><span class="k">Reports List</span><span class="v"><a href="/api/reports-list" target="_blank" style="color:#1a4a9e">/api/reports-list ↗</a></span></div>
+        <div class="kv"><span class="k">LFS Repos</span><span class="v"><a href="/api/lfs-sync/repos" target="_blank" style="color:#1a4a9e">/api/lfs-sync/repos ↗</a></span></div>
+        <div class="kv"><span class="k">LFS Status</span><span class="v"><a href="/api/lfs-sync/status" target="_blank" style="color:#1a4a9e">/api/lfs-sync/status ↗</a></span></div>
+      </div>
+      <div class="data-block">
+        <h4>Server Info</h4>
+        <div class="kv"><span class="k">Framework</span><span class="v">Express 5</span></div>
+        <div class="kv"><span class="k">Language</span><span class="v">TypeScript 5.9</span></div>
+        <div class="kv"><span class="k">Node.js</span><span class="v">24</span></div>
+        <div class="kv"><span class="k">Build</span><span class="v">esbuild (ESM bundle)</span></div>
+        <div class="kv"><span class="k">Logging</span><span class="v">Pino (structured JSON)</span></div>
+      </div>
+      <div class="data-block">
+        <h4>Related Pages</h4>
+        <div class="kv"><span class="k">Registry</span><span class="v"><a href="index.html" style="color:#1a4a9e">index.html</a></span></div>
+        <div class="kv"><span class="k">Sync Panel</span><span class="v"><a href="lfs-sync.html" style="color:#1a4a9e">lfs-sync.html</a></span></div>
+        <div class="kv"><span class="k">IRC Reference</span><span class="v"><a href="irc-quick-reference.html" style="color:#1a4a9e">irc-quick-reference.html</a></span></div>
+        <div class="kv"><span class="k">Statistics</span><span class="v"><a href="stats.html" style="color:#1a4a9e">stats.html</a></span></div>
+        <div class="kv"><span class="k">Git LFS Guide</span><span class="v"><a href="GIT_LFS_SETUP.md" style="color:#1a4a9e">GIT_LFS_SETUP.md</a></span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>IRC Bridge Slab Design Suite &nbsp;·&nbsp; API Documentation &nbsp;·&nbsp; Express 5 + TypeScript 5.9 &nbsp;·&nbsp; <a href="index.html">← Back to Projects</a></footer>
+<script src="_nav.js"></script>
+<script>
+async function tryIt(url, id) {
+  const el = document.getElementById(id);
+  el.style.display = 'block';
+  el.textContent = 'Fetching...';
+  try {
+    const r = await fetch(url);
+    const data = await r.json();
+    el.textContent = JSON.stringify(data, null, 2).slice(0, 1200) + (JSON.stringify(data).length > 1200 ? '\n  ... (truncated)' : '');
+  } catch(e) {
+    el.textContent = 'Error: ' + e.message;
+    el.style.borderColor = '#dc2626';
+  }
+}
+</script>
+</body>
+</html>

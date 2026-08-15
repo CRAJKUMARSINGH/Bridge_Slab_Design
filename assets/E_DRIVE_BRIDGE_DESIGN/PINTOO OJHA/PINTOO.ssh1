@@ -1,0 +1,20 @@
+PROJECT : BRIDGE SLIP LINE  JOBNO :1  REF.NO :	
+
+PLAN : PINTOO	
+
+DATE : 04/08/21    TIME : 12:12:06	
+
+
+S L A B   D E S I G N   S C H E D U L E	
+
+	
+Slab Group	Slab IDs	Concrete 	Thickness 	 Bottom Reinforcement	 	 Top Reinforcement ( Extra Steel )	 	 	 	Remark 	
+ 	 	Grade 	mm	 Main Steel 	 Other Steel 	 @ Left Edge	 @ Right Edge	 @ Up Edge	 @ Down Edge	 	
+ 	 	 	 	 	 	 	 	 	 	 	
+SG1	S1	M20	300	#8 @ 135 c/c 	#8 @ 135 c/c 	--	--	--	--	Triangular	
+SG2	S3	M20	300	#8 @ 135 c/c 	#8 @ 135 c/c 	--	--	--	--	Triangular	
+NOTES : 	
+
+1. All Diameters in Schedule are in mm	
+
+1. All Spacings in Schedule are in mm	

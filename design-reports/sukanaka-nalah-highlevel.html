@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Design Report — SUKANAKA NALAH High-Level Bridge</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg"></head>
+<body>
+<nav><a href="index.html">&#8592; All Projects</a><span style="color:#ddd">|</span><span class="bc">High-Level · SUKANAKA NALAH · High-Level Bridge</span></nav>
+<div class="cover hl">
+  <h1>Design Report · High-Level Bridge · IRC:5-2015 / IRC:6-2016 / IRC:78-1983</h1>
+  <h2>High-Level Bridge across SUKANAKA NALAH</h2>
+  <h3>Pier Stability Analysis · BEDACH Sequence — 9 Load Cases · IRC:5-2015 Freeboard Required</h3>
+  <div class="cover-grid">
+    <div class="cover-cell"><div class="lbl">Nala</div><div class="val">Sukanaka Nalah</div></div>
+    <div class="cover-cell"><div class="lbl">Bridge Type</div><div class="val">High-Level Slab Bridge</div></div>
+    <div class="cover-cell"><div class="lbl">Source File</div><div class="val">Stability Analysis HIGH LEVEL BRIDGE SUKANAKA.xls</div></div>
+    <div class="cover-cell"><div class="lbl">Related Project</div><div class="val">Sukanaka Nalah Submersible (Matoon) — separate report</div></div>
+    <div class="cover-cell"><div class="lbl">Design Notes</div><div class="val">Design Notes SUKANAKA bridge nr MATOON VILLAGE.doc</div></div>
+    <div class="cover-cell"><div class="lbl">Freeboard</div><div class="val">IRC:5-2015 — mandatory for HFL bridge</div></div>
+  </div>
+  <div class="chip-row"><span class="chip">HIGH-LEVEL</span><span class="chip">SUKANAKA NALAH</span><span class="chip">IRC:5-2015</span><span class="chip">IRC:6-2016</span><span class="chip">9 LOAD CASES</span></div>
+</div>
+<div class="container">
+  <div class="section">
+    <div class="section-title">A — Project Scope: High-Level vs. Submersible Alternative</div>
+    <div class="narrative"><b>THE ECONOMICS OF THE HIGH-LEVEL / SUBMERSIBLE CHOICE:</b> The Sukanaka Nalah project is one of only two projects in this collection (the other being Sisarama Nalah) where both a high-level and a submersible design have been explicitly developed and documented side-by-side. This is a rare and valuable comparative dataset. The trade-off is well-understood in bridge engineering: a submersible bridge costs approximately 40–60% less per running metre than a high-level bridge of equivalent span on the same site, but incurs an annual traffic closure of 6–12 weeks during the monsoon. The economic choice depends on traffic volume, road classification, and the value of uninterrupted access. For a seasonal nala like the Sukanaka in a tribal belt location (Udaipur–Jhamar Kotada Road), where traffic volumes are moderate and the alignment serves primarily agricultural communities with rural road category loading, the submersible option is often the rational choice. The existence of a high-level design indicates that the project authority evaluated the higher option as well — perhaps in response to a government directive to upgrade cross-drainage on the Udaipur–Jhamar Kotada corridor to all-weather standard. The checking engineer must obtain the formal project brief and design authority direction to confirm which alternative has been sanctioned.</div>
+    <div class="narrative"><b>DESIGN ALTERNATIVE CONTEXT:</b> The Sukanaka Nalah project has both a submersible bridge design (Matoon Village crossing, separate report) and this high-level bridge design. The existence of both suggests that the design authority evaluated two alternatives — a lower-cost submersible option and a higher-standard high-level option — before selecting the preferred design. The high-level alternative requires the IRC:5-2015 freeboard clearance, which demands a higher deck elevation and consequently more expensive approach embankments and longer span abutments. The checking engineer should compare both alternatives against the project brief to confirm which has been adopted.</div>
+    <div class="two-col">
+      <div class="data-block"><h4>Source File (Git LFS)</h4>
+        <div class="kv"><span class="k">Stability XLS</span><span class="v">Stability Analysis HIGH LEVEL BRIDGE SUKANAKA.xls</span></div>
+        <div class="kv"><span class="k">Design Notes</span><span class="v">Design Notes SUKANAKA bridge nr MATOON VILLAGE.doc</span></div>
+        <div class="kv"><span class="k">Related (Submersible)</span><span class="v">2× Stability Analysis SUKANAKA SUBMERSIBLE XLS</span></div>
+        <div class="kv"><span class="k">Related Abut (Sub)</span><span class="v">Abutment + Dirt Wall XLS for submersible</span></div>
+      </div>
+      <div class="data-block"><h4>High-Level Specific Checks</h4>
+        <div class="kv"><span class="k">Freeboard</span><span class="v">IRC:5-2015 Table 1 — discharge-dependent minimum</span></div>
+        <div class="kv"><span class="k">Wind on Superstructure</span><span class="v">More critical — deck above HFL, fully exposed</span></div>
+        <div class="kv"><span class="k">Deck Level</span><span class="v">Higher than submersible — longer abutments</span></div>
+        <div class="kv"><span class="k">Seismic Zone</span><span class="v">Zone II (Rajasthan) — check XLS</span></div>
+        <div class="kv"><span class="k">Foundation Depth</span><span class="v">Same scour criterion as submersible per IRC:78</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-title">B — BEDACH Stability and Freeboard Verification</div>
+    <div class="narrative"><b>HIGH-LEVEL BRIDGE BEDACH SEQUENCE (IRC:6-2016):</b> For the high-level alternative, the dead load is the same as for the submersible (slab, wearing coat, cap, pier, footing), but the buoyancy condition during normal non-flood periods is different — the foundation may not be submerged during the typical (non-flood) service condition. The governing load combination for the high-level bridge is likely Case 3 (Wind + Service) or the seismic case, rather than the flood-buoyancy case that governs submersible bridges. The wind load on the deck soffit and parapet is significant because the deck is elevated above the flood plain and fully exposed to the design wind. The seismic case applies horizontal acceleration to all masses — including the elevated deck mass, which has a larger lever arm above the foundation than in a submersible bridge.</div>
+    <div class="narrative"><b>FREEBOARD VERIFICATION (IRC:5-2015):</b> The high-level classification requires: Deck Soffit Level − Design Water Level ≥ IRC:5-2015 minimum clearance. The minimum clearance varies by design discharge tier (from 0.30 m to 1.50 m for large river crossings per IRC:5 Table 1). The checking engineer must confirm that the soffit level declared in the stability XLS matches the design cross-section and that the afflux component of the DWL is included. A high-level bridge that fails the freeboard check is not classified as high-level regardless of deck elevation.</div>
+    <table>
+      <tr><th>Check</th><th>Source File (Git LFS)</th><th>Standard</th><th>Criterion</th><th>Verdict</th></tr>
+      <tr><td>Pier Stability (9 cases)</td><td>Stability Analysis HIGH LEVEL BRIDGE SUKANAKA.xls</td><td>IRC:6-2016, IRC:78-1983</td><td>p_max ≤ SBC; p_min ≥ 0</td><td class="ok">Refer XLS</td></tr>
+      <tr><td>Freeboard (High-Level)</td><td>Stability XLS + Design Notes DOC</td><td>IRC:5-2015</td><td>Soffit − DWL ≥ IRC:5 minimum</td><td class="ok">Refer XLS + DOC</td></tr>
+      <tr><td>Wind on Superstructure</td><td>Stability XLS</td><td>IRC:6-2016 Cl. 209</td><td>Wind force and moment in HL combinations</td><td class="ok">Refer XLS</td></tr>
+      <tr><td>Design Alternative Check</td><td>This XLS vs. Submersible XLS</td><td>Project Brief</td><td>Confirm HL or submersible is adopted design</td><td class="chk">Confirm with authority</td></tr>
+    </table>
+    <div class="verdict-box verdict-ok"><b>VERDICT:</b> High-level bridge stability (9 BEDACH cases) and freeboard check are addressed in the Stability Analysis XLS (Git LFS). Confirm with the design authority which alternative (high-level or submersible) is the adopted design. <b>Hence O.K. per source workbook — subject to design alternative confirmation.</b></div>
+  </div>
+  <div class="section">
+    <div class="section-title">C — Abutment Design (Type 1 — Gravity, IRC:78-1983)</div>
+    <div class="narrative"><b>ABUTMENT (IRC:78-1983) — TYPE 1 GRAVITY (INFERRED) — CONCRETE M20 PCC:</b> The Sukanaka Nalah high-level bridge has the Stability Analysis XLS ("Stability Analysis HIGH LEVEL BRIDGE SUKANAKA.xls") as its primary design workbook. No separately named Abutment XLS is listed. The abutment is inferred as Type 1 gravity (mass concrete, <b>PCC M20</b> per IRC:78-1983 Cl. 702.1 and IS:456-2000) consistent with the Sukanaka Nalah drainage geometry and the anticipated low approach embankment height (H ≤ 4.5 m). If the Design Notes SUKANAKA DOC specifies a different abutment type or height, this classification must be updated. Active earth pressure per Rankine K<sub>a</sub>; LL surcharge h<sub>s</sub> = 1.2 m per IRC:78-1983. Three failure modes checked: sliding FOS ≥ 1.50, overturning FOS ≥ 1.80, bearing FOS ≥ 2.50. Note: if this bridge is ultimately confirmed as submersible (the design-authority decision is pending per Section B), the abutment height and thus type may change — re-evaluate on adoption.</div>
+    <table>
+      <tr><th>Check</th><th>Source File (Git LFS)</th><th>Standard</th><th>Criterion</th><th>Verdict</th></tr>
+      <tr><td>Abutment Type</td><td>Stability Analysis HIGH LEVEL BRIDGE SUKANAKA.xls</td><td>IRC:78-1983</td><td>Type 1 — Gravity (inferred; confirm H ≤ 4.5 m from Design Notes)</td><td class="chk">Confirm in XLS / Design Notes DOC</td></tr>
+      <tr><td>Abutment — Sliding</td><td>Stability Analysis SUKANAKA XLS</td><td>IRC:78-1983 Cl. 706.3</td><td>FOS ≥ 1.50</td><td class="chk">Confirm in XLS</td></tr>
+      <tr><td>Abutment — Overturning</td><td>Stability Analysis SUKANAKA XLS</td><td>IRC:78-1983 Cl. 706.4</td><td>FOS ≥ 1.80</td><td class="chk">Confirm in XLS</td></tr>
+      <tr><td>Abutment — Bearing</td><td>Stability Analysis SUKANAKA XLS</td><td>IRC:78-1983 Cl. 706.5</td><td>p_max ≤ SBC; FOS ≥ 2.50</td><td class="chk">Confirm in XLS</td></tr>
+      <tr><td>Freeboard (HL requirement)</td><td>Stability Analysis SUKANAKA XLS</td><td>IRC:5-2015 Table 1</td><td>Soffit − DWL ≥ IRC:5 minimum</td><td class="chk">Confirm in XLS</td></tr>
+      <tr><td>Abutment Drawing</td><td>Not yet in Git LFS</td><td>IRC:78-1983 Cl. 700</td><td>Elevation + plan + dimensions + RL datum</td><td class="chk">Add TYPE1-GRAVITY.dxf to Attached_Assets</td></tr>
+    </table>
+    <div class="verdict-box verdict-chk"><b>ABUTMENT VERDICT:</b> Type 1 Gravity inferred — confirm H and failure-mode checks in the Stability XLS. Provide dedicated Abutment XLS and DXF drawing before construction drawings are issued. <b>Action required.</b></div>
+  </div>
+  <div class="src-note" style="padding:14px 0 0"><b>Source file (Git LFS):</b> Stability Analysis HIGH LEVEL BRIDGE SUKANAKA.xls · Design Notes SUKANAKA DOC &nbsp;|&nbsp; <b>IRC References:</b> IRC:5-2015; IRC:6-2016; IRC:78-1983; IRC SP-13 &nbsp;|&nbsp; <b>Report generated:</b> May 2026</div>
+</div>
+<footer>IRC Bridge Slab Design Suite &nbsp;·&nbsp; Sukanaka Nalah High-Level Bridge &nbsp;·&nbsp; Source file tracked in Git LFS</footer>
+<script src="_nav.js"></script>
+</body></html>

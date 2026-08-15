@@ -1,0 +1,24 @@
+{
+  "factor_and_limit_cells": [
+    { "id": "gammaG", "sheet": "Factors", "cell": "B3", "label": "Gamma_G (self weight)", "value": 1.35, "referencedBy": ["Calc!B5", "Calc!B7"] },
+    { "id": "gammaQ", "sheet": "Factors", "cell": "B4", "label": "Gamma_Q (live load)", "value": 1.5, "referencedBy": ["Calc!B11"] },
+    { "id": "gammaM", "sheet": "Factors", "cell": "B5", "label": "Gamma_M (steel)", "value": 1.1, "referencedBy": ["Calc!B14"] },
+    { "id": "gammaC", "sheet": "Factors", "cell": "B6", "label": "Gamma_c (concrete)", "value": 1.5, "referencedBy": [] },
+    { "id": "elasticModulus", "sheet": "Factors", "cell": "B7", "label": "Elastic modulus E (MPa)", "value": 210000, "referencedBy": ["Calc!B3"] },
+    { "id": "concreteUnitWeight", "sheet": "Factors", "cell": "B8", "label": "Unit weight concrete (kN/m3)", "value": 25, "referencedBy": ["Calc!B4"] },
+    { "id": "asphaltUnitWeight", "sheet": "Factors", "cell": "B9", "label": "Unit weight asphalt (kN/m3)", "value": 24, "referencedBy": ["Calc!B4"] },
+    { "id": "shearCapacity", "sheet": "Calc", "cell": "B19", "label": "Shear capacity vc (MPa)", "value": 2.5, "referencedBy": ["Calc!B20", "Calc!B22"] }
+  ],
+  "embeddedLiterals": [
+    { "literal": 1000, "meaning": "mm/m conversion", "usedIn": ["Calc!B14", "Calc!B15", "Calc!B18"] },
+    { "literal": 8, "meaning": "simply-supported moment divisor", "usedIn": ["Calc!B6"] },
+    { "literal": 2, "meaning": "shear divisor", "usedIn": ["Calc!B7"] },
+    { "literal": 1000000, "meaning": "kN*m to N*mm conversion", "usedIn": ["Calc!B10"] },
+    { "literal": 1, "meaning": "utilisation threshold", "usedIn": ["Calc!B12", "Calc!B22", "Calc!B23"] },
+    { "literal": 5, "meaning": "deflection numerator", "usedIn": ["Calc!B14"] },
+    { "literal": 384, "meaning": "deflection denominator", "usedIn": ["Calc!B14"] }
+  ],
+  "parityAssumptions": [
+    { "sourceCell": "Factors!B2", "value": 0, "reason": "Blank source cell in the attached demo workbook; Calc!B3 and Calc!B4 evaluate to zero in the verified registry." }
+  ]
+}

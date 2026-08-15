@@ -1,0 +1,103 @@
+while reading the instruction treat root app as>>>>>cursor-baseline appp >>>>>and the app in folder >>>>Bridge_Slab_Designv2  >>>>shud be treated as >>>>replit-baseline >>>>>
+################################
+“Treat  cursor-baseline  as the architecture base and  replit-baseline  as a feature reference. First create a module-wise diff summary. Then identify features present only in Replit, features present only in Cursor, conflicting implementations, and probable regressions. Propose a merge plan that preserves all business-critical behavior and avoids duplicate logic. Do not edit code until the plan is approved.”
+
+# App Merge Worksheet: Cursor + Replit Versions
+
+## Purpose
+This worksheet is designed to help consolidate two app versions—one developed in Cursor and one improvised in Replit—into a single production-ready version without losing important functionality. The recommended working model is to use Cursor as the primary merge/refactor environment and treat the Replit app as a feature-reference implementation during integration.[1][2]
+
+## Recommended Setup
+
+| Area | Recommended choice | Why |
+|---|---|---|
+| Primary merge workspace | Cursor | Better suited for controlled, local, multi-file refactoring and codebase-aware editing.[1] |
+| Secondary reference app | Replit version | Useful as a fast prototype and as a source of features or UI ideas to selectively port.[1] |
+| Diff and merge utility | 3-way diff/merge tool such as Code Compare | Supports file comparison, folder comparison, conflict review, and 3-way merge workflows.[2] |
+| Version control | Git branches | Keeps both originals frozen while merge work proceeds in a separate integration branch.[2][3] |
+
+## Branch Strategy
+Create and preserve the following branches before any merge begins.[2][3]
+
+| Branch | Purpose |
+|---|---|
+| `cursor-baseline` | Snapshot of the Cursor app before merge work. |
+| `replit-baseline` | Snapshot of the Replit app before merge work. |
+| `merge-integration` | Working branch where the final combined version is assembled. |
+| `release-candidate` | Final reviewed branch for pre-release validation. |
+
+## Feature Inventory Matrix
+Use this table to ensure no business-critical or hidden feature is lost during consolidation.[3]
+
+| Module | Feature | Present in Cursor? | Present in Replit? | Better source | Merge decision | Test case | Status |
+|---|---|---|---|---|---|---|---|
+| Auth | Login flow |  |  |  |  |  |  |
+| Auth | Signup / user creation |  |  |  |  |  |  |
+| Auth | Password reset |  |  |  |  |  |  |
+| Data | Database schema / models |  |  |  |  |  |  |
+| Data | Validation rules |  |  |  |  |  |  |
+| API | Endpoints and payloads |  |  |  |  |  |  |
+| Logic | Core business calculations |  |  |  |  |  |  |
+| UI | Main dashboard / home screen |  |  |  |  |  |  |
+| UI | Forms and dialogs |  |  |  |  |  |  |
+| UI | Reports / exports |  |  |  |  |  |  |
+| Settings | User settings / preferences |  |  |  |  |  |  |
+| Notifications | Alerts / emails / messages |  |  |  |  |  |  |
+| Security | Roles / permissions |  |  |  |  |  |  |
+| Other | Hidden utilities / edge-case logic |  |  |  |  |  |  |
+
+## Merge Rules
+Apply these rules throughout the integration effort.
+
+- Keep one source of truth for each concern, such as one auth flow, one data model, one report engine, and one export path.[3]
+- Prefer the better architecture from the base app, then port only proven features from the other version rather than mixing duplicate implementations.[1][3]
+- Merge in modules, not in one massive AI request, because incremental codebase migration reduces the chance of hidden regressions.[3]
+- Validate every merged module before moving to the next one.[3]
+
+## Merge Sequence
+Use this order so dependencies are stabilized before UI polish begins.[3]
+
+1. Data models and schema.
+2. Backend services and business rules.
+3. API contracts and payload compatibility.
+4. Authentication and authorization.
+5. UI screens and components.
+6. Styling and UX cleanup.
+7. Reports, exports, and background utilities.
+
+## Module Review Sheet
+Duplicate this section for each major module.
+
+### Module name
+**Owner:**  
+**Base source:** Cursor / Replit  
+**Reference source:** Cursor / Replit  
+**Files compared:**  
+**Conflicts found:**  
+**Chosen implementation:**  
+**Why chosen:**  
+**Risk if missed:**  
+**Test performed:**  
+**Result:** Pass / Fail / Partial  
+
+## QA Checklist
+Use this checklist before moving from `merge-integration` to `release-candidate`.[2][3]
+
+- [ ] All features from the Cursor version were listed and checked.
+- [ ] All features from the Replit version were listed and checked.
+- [ ] Duplicate features were resolved to one final implementation only.
+- [ ] API responses were compared against both older apps where relevant.
+- [ ] Calculations and business-rule outputs were checked side by side.
+- [ ] Reports, exports, and downloads were verified.
+- [ ] Validation messages and edge cases were tested.
+- [ ] Dead code from discarded implementations was removed.
+- [ ] Naming, folder structure, and types were standardized.
+- [ ] Final manual review was completed before release.[2]
+
+## Prompt Template for Cursor
+Use this prompt before asking for merge help in the main codebase.[1][3]
+
+Sources
+[1] Replit vs Cursor: AI Coding Platform Comparison (2026) | Fabricate https://fabricate.build/compare/replit-vs-cursor
+[2] Code Merge Tools: 7 Tool to Make Your Life 7x Easier - Stackify https://stackify.com/code-merge-tools/
+[3] Field Guide to Merging Codebases - DEV Community https://dev.to/jdsteinhauser/field-guide-to-merging-codebases-bb8

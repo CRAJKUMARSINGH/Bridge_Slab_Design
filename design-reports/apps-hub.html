@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bridge Apps Hub — Rajkumar Singh Chauhan</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="_shared.css">
+<style>
+:root{
+  --blue:#1a4a9e;--green:#1a7a3e;--teal:#0f6b5c;--orange:#c85000;
+  --purple:#6b1a9e;--red:#9e1a1a;--gold:#7a6000;
+  --bg:#f0f4f8;--card:#fff;--border:#dde3ee;--text:#1a2940;--sub:#4a6080;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);font-size:14px}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#0d1f3c 0%,#1a4a9e 55%,#0f6b5c 100%);
+  color:#fff;padding:48px 32px 36px;text-align:center}
+.hero h1{font-size:clamp(22px,4vw,34px);font-weight:700;letter-spacing:-0.5px;margin-bottom:10px}
+.hero p{font-size:15px;opacity:.85;max-width:680px;margin:0 auto 18px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.hchip{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);
+  border-radius:20px;padding:4px 14px;font-size:12px;font-weight:600;letter-spacing:.3px}
+
+/* ── SECTION HEADERS ── */
+.sec-hdr{display:flex;align-items:center;gap:10px;padding:24px 24px 14px;
+  font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--blue);
+  border-top:2px solid var(--border);margin-top:8px;text-transform:uppercase}
+.sec-hdr::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── GRID ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;padding:0 20px 24px}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+
+/* ── APP CARD ── */
+.app-card{background:var(--card);border:1px solid var(--border);border-radius:10px;
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:box-shadow .15s,transform .15s}
+.app-card:hover{box-shadow:0 4px 20px rgba(26,74,158,.12);transform:translateY(-2px)}
+.card-top{padding:18px 18px 12px;flex:1}
+.card-accent{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
+.app-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;
+  justify-content:center;font-size:22px;flex-shrink:0}
+.app-meta{flex:1}
+.app-name{font-size:15px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:3px}
+.app-tagline{font-size:12px;color:var(--sub)}
+.tech-chips{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0 8px}
+.tc{font-size:11px;font-weight:600;padding:2px 9px;border-radius:12px;letter-spacing:.2px}
+.tc.ts{background:#dbeafe;color:#1e40af}
+.tc.py{background:#d1fae5;color:#065f46}
+.tc.react{background:#fce7f3;color:#9d174d}
+.tc.vite{background:#fef3c7;color:#92400e}
+.tc.str{background:#ede9fe;color:#4c1d95}
+.tc.express{background:#ecfdf5;color:#064e3b}
+.tc.pg{background:#f0f9ff;color:#0c4a6e}
+.tc.dxf{background:#fff7ed;color:#7c2d12}
+.tc.irc{background:#f0fdf4;color:#14532d}
+.tc.ai{background:#fdf4ff;color:#581c87}
+
+.feature-list{list-style:none;margin:0;padding:0}
+.feature-list li{font-size:12.5px;color:var(--sub);padding:3px 0 3px 16px;position:relative;line-height:1.4}
+.feature-list li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:700}
+
+.card-bottom{padding:12px 18px;border-top:1px solid var(--border);background:#f8fafc;
+  display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:6px;
+  font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .15s}
+.btn:hover{opacity:.85;text-decoration:none}
+.btn-gh{background:#24292e;color:#fff}
+.btn-open{background:var(--blue);color:#fff}
+.btn-dxf{background:var(--orange);color:#fff}
+.btn-docs{background:#f1f5f9;color:var(--blue);border:1px solid var(--border)}
+
+/* ── STATUS BADGE ── */
+.status-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;letter-spacing:.4px;margin-left:auto}
+.sb-live{background:#d1fae5;color:#065f46}
+.sb-ts{background:#dbeafe;color:#1e40af}
+.sb-py{background:#ede9fe;color:#4c1d95}
+.sb-build{background:#fef3c7;color:#92400e}
+
+/* ── DXF REFERENCE TABLE ── */
+.dxf-table{width:100%;border-collapse:collapse;margin:0 0 8px}
+.dxf-table th{background:#f0f4f8;font-size:12px;font-weight:700;color:var(--blue);
+  padding:8px 12px;text-align:left;border-bottom:2px solid var(--border)}
+.dxf-table td{font-size:12.5px;padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+.dxf-table tr:last-child td{border-bottom:none}
+.dxf-table tr:hover td{background:#f8faff}
+
+/* ── INTEGRATION PANEL ── */
+.int-panel{background:var(--card);border:1px solid var(--border);border-radius:10px;
+  margin:0 20px 24px;overflow:hidden}
+.int-hdr{background:linear-gradient(90deg,#0d1f3c,#1a4a9e);color:#fff;
+  padding:16px 20px;font-size:14px;font-weight:700}
+.int-body{padding:20px}
+.int-steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.int-step{background:#f8fafc;border:1px solid var(--border);border-radius:8px;
+  padding:14px;display:flex;flex-direction:column;gap:6px}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;
+  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step-title{font-size:13px;font-weight:700;color:var(--text)}
+.step-body{font-size:12px;color:var(--sub);line-height:1.5}
+
+/* ── NARRATIVE ── */
+.narrative{background:#f0f8ff;border-left:3px solid var(--blue);
+  padding:12px 16px;border-radius:0 6px 6px 0;font-size:13px;color:#1e3a5f;
+  line-height:1.6;margin:0 20px 16px}
+
+/* ── WORKFLOW TABLE ── */
+.wf-table{width:100%;border-collapse:collapse;margin:0 20px 24px;width:calc(100% - 40px)}
+.wf-table th{background:#0d1f3c;color:#fff;font-size:12px;font-weight:700;padding:8px 12px;text-align:left}
+.wf-table td{font-size:12.5px;padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.wf-table tr:last-child td{border-bottom:none}
+.wf-table tr:nth-child(even) td{background:#f8fafc}
+.ok{color:var(--green);font-weight:600}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:28px;color:var(--sub);font-size:12px;
+  background:#fff;margin-top:40px;border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <h1>Bridge Engineering Apps Hub</h1>
+  <p>All 10 bridge design tools built by <strong>Rajkumar Singh Chauhan</strong> — organized, catalogued, and wired to the 16 IRC-compliant bridge design reports in this suite.</p>
+  <div class="hero-chips">
+    <span class="hchip">10 Apps</span>
+    <span class="hchip">GAD Drawing Generators</span>
+    <span class="hchip">DXF / DWG Output</span>
+    <span class="hchip">IRC / IS:456 Standards</span>
+    <span class="hchip">Python · TypeScript · React</span>
+    <span class="hchip">AutoCAD Compatible</span>
+  </div>
+  <div style="margin-top:20px">
+    <a href="/suite/" style="display:inline-flex;align-items:center;gap:8px;background:#1a7a3e;color:#fff;padding:10px 24px;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.3)">
+      ⚙ Open Bridge Design Suite (Live)
+    </a>
+    <a href="/api/reports/" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);color:#fff;padding:10px 20px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;margin-left:10px">
+      📋 IRC Reports (16 Projects)
+    </a>
+  </div>
+</div>
+
+<script src="_nav.js"></script>
+
+<!-- ══ SECTION A: GAD DRAWING GENERATORS ══ -->
+<div class="sec-hdr">A — GAD Drawing Generator Apps (TypeScript / React)</div>
+
+<div class="narrative">
+  These apps convert bridge design parameters (span, HFL, abutment dimensions, pier geometry) into professional AutoCAD-compatible DXF/DWG drawings — General Arrangement Drawings (GADs), sections, and substructure details. Feed in the parameter values from the 16 bridge design reports below to generate instant drawings.
+</div>
+
+<div class="grid">
+
+  <!-- BridgeGADdrafter -->
+  <div class="app-card">
+    <div class="card-top">
+      <div class="card-accent">
+        <div class="app-icon" style="background:#dbeafe">📐</div>
+        <div class="app-meta">
+          <div class="app-name">BridgeGADdrafter</div>
+          <div class="app-tagline">Professional Bridge GAD → DXF/DWG Generator</div>
+        </div>
+        <span class="status-badge sb-ts">TypeScript</span>
+      </div>
+      <div class="tech-chips">
+        <span class="tc ts">TypeScript</span>
+        <span class="tc react">React 18</span>
+        <span class="tc vite">Vite</span>
+        <span class="tc express">Express</span>
+        <span class="tc dxf">DXF / DWG</span>
+      </div>
+      <ul class="feature-list">
+        <li>40+ bridge parameters — span, HFL, abutment, pier, deck</li>
+        <li>Multi-view: elevation, plan, longitudinal section, cross-section</li>
+        <li>Professional DXF output (AutoCAD-compatible) + PDF + PNG + SVG</li>
+        <li>LISP integration for advanced engineering calculations</li>
+        <li>IS:456-2000 + IRC compliance checking built-in</li>
+        <li>Real-time preview — live updates as you type</li>
+        <li>Vercel production deployment ready</li>
+      </ul>
+    </div>
+    <div class="card-bottom">
+      <a class="btn btn-gh" href="https://github.com/CRAJKUMARSINGH/BridgeGADdrafter" target="_blank">⬡ GitHub</a>
+      <a class="btn btn-docs" href="https://raw.githubusercontent.com/CRAJKUMARSINGH/BridgeGADdrafter/main/HOW_TO_USE.md" target="_blank">📖 How To Use</a>
+      <a class="btn btn-dxf" href="https://raw.githubusercontent.com/CRAJKUMARSINGH/BridgeGADdrafter/main/sample-input.json" target="_blank">⬇ Sample Input</a>
+    </div>
+  </div>
+
+  <!-- BridgeDraw -->
+  <div class="app-card">
+    <div class="card-top">
+      <div class="card-accent">
+        <div class="app-icon" style="background:#fce7f3">🏗</div>
+        <div class="app-meta">
+          <div class="app-name">BridgeDraw</div>
+          <div class="app-tagline">Full-Stack Bridge Design App with Batch Processing</div>
+        </div>
+        <span class="status-badge sb-ts">TypeScript</span>
+      </div>
+      <div class="tech-chips">
+        <span class="tc ts">TypeScript</span>
+        <span class="tc react">React 18</span>
+        <span class="tc express">Express</span>
+        <span class="tc pg">PostgreSQL</span>
+        <span class="tc dxf">DWG / PDF / LISP</span>
+      </div>
+      <ul class="feature-list">
+        <li>Batch processing — upload multiple design files at once</li>
+        <li>Real-time progress tracking for batch jobs</li>
+        <li>Multi-format export: DWG, PDF, PNG, SVG, LISP</li>
+        <li>Industry-standard CAD drawings with title block & annotations</li>
+        <li>IS:456-2000 compliance throughout</li>
+        <li>Docker + Vercel deployment, CI/CD pipeline</li>
+        <li>Rate limiting + comprehensive error handling (production-ready)</li>
+      </ul>
+    </div>
+    <div class="card-bottom">
+      <a class="btn btn-gh" href="https://github.com/CRAJKUMARSINGH/BridgeDraw" target="_blank">⬡ GitHub</a>
+      <a class="btn btn-docs" href="https://github.com/CRAJKUMARSINGH/BridgeDraw/blob/main/QUICK_START.md" target="_blank">📖 Quick Start</a>
+      <a class="btn btn-docs" href="https://github.com/CRAJKUMARSINGH/BridgeDraw/blob/main/DEPLOYMENT.md" target="_blank">🚀 Deploy</a>
+    </div>
+  </div>
+
+  <!-- D2_Bridge / BridgeMaster Pro -->
+  <div class="app-card">
+    <div class="card-top">
+      <div class="card-accent">
+        <div class="app-icon" style="background:#fef3c7">🏛</div>
+        <div class="app-meta">
+          <div class="app-name">D2_Bridge — BridgeMaster Pro 2026</div>
+          <div class="app-tagline">Parametric CAD Generator · Drawing Suite · BOQ Module</div>
+        </div>
+        <span class="status-badge sb-ts">TypeScript</span>
+      </div>
+      <div class="tech-chips">
+        <span class="tc ts">TypeScript</span>
+        <span class="tc dxf">DXF Reference Files</span>
+        <span class="tc irc">IRC / IS Standards</span>
+      </div>
+      <ul class="feature-list">
+        <li>Drawing Generator — GAD, plan, longitudinal section, substructure details</li>
+        <li>BOQ Module — instant volume calculations + Excel/PDF export</li>
+        <li>Design Auditor — IRC:112, IRC:SP-13, IRC:5-2015 real-time validation</li>
+        <li>Terrain Engine — NSL/FSL/bed level visualization</li>
+        <li>Reference DXF files: GAD_Gravity, GAD_Cantilever, GAD_Counterfort, Pier_Details</li>
+        <li>22 sorted drawing categories in COMPONENT_DRAWINGS_SORTED/</li>
+      </ul>
+    </div>
+    <div class="card-bottom">
+      <a class="btn btn-gh" href="https://github.com/CRAJKUMARSINGH/D2_Bridge" target="_blank">⬡ GitHub</a>
+      <a class="btn btn-dxf" href="https://raw.githubusercontent.com/CRAJKUMARSINGH/D2_Bridge/main/GAD_Gravity.dxf" download>⬇ GAD_Gravity.dxf</a>
+      <a class="btn btn-dxf" href="https://raw.githubusercontent.com/CRAJKUMARSINGH/D2_Bridge/main/GAD_Cantilever.dxf" download>⬇ GAD_Cantilever.dxf</a>
+    </div>
+  </div>
+
+  <!-- D3_Bridge -->
+  <div class="app-card">
+    <div class="card-top">
+      <div class="card-accent">
+        <div class="app-icon" style="background:#ecfdf5">🔬</div>
+        <div class="app-meta">
+          <div class="app-name">D3_Bridge</div>
+          <div class="app-tagline">Combined Suite — API Server + Bridge GAD Streamlit Dashboard</div>
+        </div>
+        <span class="status-badge sb-py">Python + TS</span>
+      </div>
+      <div class="tech-chips">
+        <span class="tc ts">TypeScript</span>
+        <span class="tc py">Python</span>
+        <span class="tc str">Streamlit</span>
+        <span class="tc express">Express</span>
+        <span class="tc ai">Expert Bridge Doctor</span>
+      </div>
+      <ul class="feature-list">
+        <li>Integrated api-server + Streamlit Bridge GAD dashboard</li>
+        <li>Expert Bridge Doctor layer — engineering score, NSL profile, FUTD</li>
+        <li>Abutment type recommendation engine (Cantilever / Spill-through / Counterfort)</li>
+        <li>Drawing tab — on-screen PNG preview after generation</li>
+        <li>Supports CANTILEVER, SPILL_THROUGH, COUNTERFORT abutment types</li>
+        <li>Bridge_GAD_Yogendra_Borse integrated as sub-module</li>
+      </ul>
+    </div>
+    <div class="card-bottom">
+      <a class="btn btn-gh" href="https://github.com/CRAJKUMARSINGH/D3_Bridge" target="_blank">⬡ GitHub</a>
+      <a class="btn btn-docs" href="https://github.com/CRAJKUMARSINGH/D3_Bridge/blob/main/replit.md" target="_blank">📖 Setup Guide</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ SECTION B: PYTHON / STREAMLIT APPS ══ -->
+<div class="sec-hdr">B — Python / Streamlit Bridge Design Apps</div>
+
+<div class="narrative">
+  Run locally or deploy on Streamlit Cloud. These apps accept Excel-format bridge parameter input files (matching the stability XLS files in the 16 design reports) and produce AutoCAD-compatible DXF drawings with full IRC/IS standards quality checking.
+</div>
+
+<div class="grid">
+
+  <!-- Bridge_GAD_Yogendra_Borse -->
+  <div class="app-card">
+    <div class="card-top">
+      <div class="card-accent">
+        <div class="app-icon" style="background:#ede9fe">🎯</div>
+        <div class="app-meta">
+          <div class="app-name">Bridge_GAD_Yogendra_Borse</div>
+          <div class="app-tagline">Ultimate Bridge GAD Generator — AI Cost Optimisation</div>
+        </div>
+        <span class="status-badge sb-py">Python</span>
+      </div>
+      <div class="tech-chips">
+        <span class="tc py">Python</span>
+        <span class="tc str">Streamlit</span>
+        <span class="tc dxf">ezdxf</span>
+        <span class="tc ai">AI Cost Optimiser</span>
+        <span class="tc irc">IRC / IS:456</span>
+      </div>
+      <ul class="feature-list">
+        <li>AutoCAD DXF drawing generation from bridge parameters</li>
+        <li>10+ export formats — DXF, PDF, Excel, PNG, SVG, ZIP</li>
+        <li>3D visualization of bridge geometry</li>
+        <li>AI-powered cost optimisation module</li>
+        <li>Complete project management and bill generation</li>
+        <li>IRC / IS:456-2000 quality checking with compliance score</li>
+        <li>Statutory-compliant bill generation</li>
+        <li>Integrated from 4 trial apps into one production platform</li>
+      </ul>
+    </div>
+    <div class="card-bottom">
+      <a class="btn btn-gh" href="https://github.com/CRAJKUMARSINGH/Bridge_GAD_Yogendra_Borse" target="_blank">⬡ GitHub</a>
+      <a class="btn btn-docs" href="https://github.com/CRAJKUMARSINGH/Bridge_GAD_Yogendra_Borse/blob/main/README.md" target="_blank">📖 README</a>
+      <a class="btn btn-open" href="https://github.com/CRAJKUMARSINGH/Bridge_GAD_Yogendra_Borse/blob/main/SAMPLE_INPUT_FILES" target="_blank">📂 Sample Inputs</a>
+    </div>
+  </div>
+
+  <!-- BridgeCanvas -->
+  <div class="app-card">
+    <div class="card-top">
+      <div class="card-accent">
+        <div class="app-icon" style="background:#d1fae5">🖼</div>
+        <div class="app-meta">
+          <div class="app-name">BridgeCanvas</div>
+          <div class="app-tagline">Excel → DXF Generator · 5 Bridge Templates · Batch Processing</div>
+        </div>
+        <span class="status-badge sb-py">Python</span>
+      </div>
+      <div class="tech-chips">
+        <span class="tc py">Python</span>
+        <span class="tc str">Streamlit</span>
+        <span class="tc dxf">ezdxf</span>
+        <span class="tc irc">IRC / IS</span>
+      </div>
+      <ul class="feature-list">
+        <li>5 ready-to-use bridge templates — Simple Span, Continuous, Girder, Box Culvert, Arch</li>
+        <li>Generate DXF directly from Excel parameter sheets</li>
+        <li>Quality validation — IRC/IS standards compliance scoring</li>
+        <li>Batch processing — multiple designs at once, download as ZIP</li>
+        <li>2–3 seconds per design, robust error handling</li>
+        <li>AutoCAD-compatible DXF with detailed geometry</li>
+      </ul>
+    </div>
+    <div class="card-bottom">
+      <a class="btn btn-gh" href="https://github.com/CRAJKUMARSINGH/BridgeCanvas" target="_blank">⬡ GitHub</a>
+      <a class="btn btn-docs" href="https://github.com/CRAJKUMARSINGH/BridgeCanvas/blob/main/PROJECT_GUIDE.md" target="_blank">📖 Project Guide</a>
+      <a class="btn btn-open" href="https://github.com/CRAJKUMARSINGH/BridgeCanvas/blob/main/SAMPLE_INPUT_FILES" target="_blank">📂 Sample Inputs</a>
+    </div>
+  </div>
+
+  <!-- BridgeGADdrafter (Python side) -->
+  <div class="app-card">
+    <div class="card-top">
+      <div class="card-accent">
+        <div class="app-icon" style="background:#fdf4ff">🔧</div>
+        <div class="app-meta">
+          <div class="app-name">BridgeGADdrafter — Python / Streamlit Layer</div>
+          <div class="app-tagline">Bridge Parameter Input → Professional DXF + LISP</div>
+        </div>
+        <span class="status-badge sb-build">Multi-Stack</span>
+      </div>
+      <div class="tech-chips">
+        <span class="tc py">Python</span>
+        <span class="tc str">Streamlit</span>
+        <span class="tc dxf">DXF / PDF / SVG</span>
+        <span class="tc irc">IS:456-2000</span>
+      </div>
+      <ul class="feature-list">
+        <li>One-click start (ONE_CLICK_START.bat or Streamlit CLI)</li>
+        <li>40+ bridge parameters — comprehensive specification form</li>
+        <li>Multi-format export: DXF, PDF, PNG, SVG</li>
+        <li>LISP integration for advanced engineering calculations</li>
+        <li>IS:456-2000 compliance throughout geometry generation</li>
+        <li>Cross-platform: Windows batch + Linux/Mac CLI supported</li>
+      </ul>
+    </div>
+    <div class="card-bottom">
+      <a class="btn btn-gh" href="https://github.com/CRAJKUMARSINGH/BridgeGADdrafter" target="_blank">⬡ GitHub</a>
+      <a class="btn btn-docs" href="https://github.com/CRAJKUMARSINGH/BridgeGADdrafter/blob/main/HOW_TO_USE.md" target="_blank">📖 How To Use</a>
+      <a class="btn btn-docs" href="https://github.com/CRAJKUMARSINGH/BridgeGADdrafter/blob/main/DEPLOYMENT_CHECKLIST.md" target="_blank">🚀 Deploy</a>
+    </div>
+  </div>
+
+  <!-- Bridge-Drawing-Manager -->
+  <div class="app-card">
+    <div class="card-top">
+      <div class="card-accent">
+        <div class="app-icon" style="background:#fef9c3">📁</div>
+        <div class="app-meta">
+          <div class="app-name">Bridge-Drawing-Manager</div>
+          <div class="app-tagline">Drawing Manager with Bridge Slab Design Integration</div>
+        </div>
+        <span class="status-badge sb-ts">TypeScript</span>
+      </div>
+      <div class="tech-chips">
+        <span class="tc ts">TypeScript</span>
+        <span class="tc py">Python</span>
+        <span class="tc express">Express</span>
+        <span class="tc dxf">Drawing Mgmt</span>
+      </div>
+      <ul class="feature-list">
+        <li>Manages the complete drawing output pipeline</li>
+        <li>bridge_slab_design module integrated directly</li>
+        <li>TypeScript api-server for drawing record management</li>
+        <li>Links to INSTRUCTION.MD for workflow guidance</li>
+        <li>Review and audit trail via REVIEW.md + REPLIT_LOGBOK.md</li>
+      </ul>
+    </div>
+    <div class="card-bottom">
+      <a class="btn btn-gh" href="https://github.com/CRAJKUMARSINGH/Bridge-Drawing-Manager" target="_blank">⬡ GitHub</a>
+      <a class="btn btn-docs" href="https://github.com/CRAJKUMARSINGH/Bridge-Drawing-Manager/blob/main/INSTRUCTION.MD" target="_blank">📖 Instructions</a>
+    </div>
+  </div>
+
+  <!-- Dwg-Dxf-Record-Keeper -->
+  <div class="app-card">
+    <div class="card-top">
+      <div class="card-accent">
+        <div class="app-icon" style="background:#fff7ed">📦</div>
+        <div class="app-meta">
+          <div class="app-name">Dwg-Dxf-Record-Keeper</div>
+          <div class="app-tagline">BridgeMaster Pro — DXF Catalogue · 22 Sorted Drawing Categories</div>
+        </div>
+        <span class="status-badge sb-ts">TypeScript</span>
+      </div>
+      <div class="tech-chips">
+        <span class="tc ts">TypeScript</span>
+        <span class="tc py">Python</span>
+        <span class="tc dxf">ezdxf generator</span>
+        <span class="tc irc">IRC Standards</span>
+      </div>
+      <ul class="feature-list">
+        <li>22 sorted drawing categories in COMPONENT_DRAWINGS_SORTED/</li>
+        <li>src/generators/dxf_builder.py — parametric DXF generation engine</li>
+        <li>Reads XLS parameters → selects template → inserts IRC title block</li>
+        <li>All 22 categories wired to design parameters in drawings.html (Section G)</li>
+        <li>GAD, Abutment, Pier, Deck Slab, Foundation, Wing Wall, Bearings, Scour Protection…</li>
+      </ul>
+    </div>
+    <div class="card-bottom">
+      <a class="btn btn-gh" href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper" target="_blank">⬡ GitHub</a>
+      <a class="btn btn-open" href="drawings.html#dxf-catalogue">📐 View DXF Catalogue</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ SECTION C: REFERENCE DXF FILES (direct download) ══ -->
+<div class="sec-hdr">C — Reference DXF Files (Direct Download from D2_Bridge)</div>
+
+<div class="narrative">
+  These 4 DXF files from the <strong>D2_Bridge / BridgeMaster Pro</strong> repository are production-ready AutoCAD template drawings for each abutment type used across the 16 bridge design reports. Open in AutoCAD, BricsCAD, LibreCAD, or any DXF-compatible viewer.
+</div>
+
+<div class="int-panel">
+  <table class="dxf-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>DXF File</th>
+        <th>Abutment / Component Type</th>
+        <th>IRC Reference</th>
+        <th>Applicable Reports (from 16)</th>
+        <th>Download</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><strong>GAD_Gravity.dxf</strong></td>
+        <td>Type 1 — Gravity / Masonry Abutment (H ≤ 4.5 m, PCC M20)</td>
+        <td>IRC:78-1983 Cl. 706, IRC SP-13</td>
+        <td>Submersible bridges: Som-Kherwara, Bedach-Bedla, Jakham-Mandvi, T01-Jethliya, Som-Larathi, Sukanaka-Matoon, Ayad-Maharashtra, Gumaniya-Udaipur, Katumbi-Chandrod</td>
+        <td><a class="btn btn-dxf" href="https://raw.githubusercontent.com/CRAJKUMARSINGH/D2_Bridge/main/GAD_Gravity.dxf" download>⬇ Download</a></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>GAD_Cantilever.dxf</strong></td>
+        <td>Type 2 — Cantilever RCC Abutment (H 4.5–7.5 m, IRC:112-2015)</td>
+        <td>IRC:78-1983, IRC:112-2015</td>
+        <td>HL bridges: Ayad-Fatehpura, Parwan-HL, Sisarama-HL, Kherka, Kumbhalgarh</td>
+        <td><a class="btn btn-dxf" href="https://raw.githubusercontent.com/CRAJKUMARSINGH/D2_Bridge/main/GAD_Cantilever.dxf" download>⬇ Download</a></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>GAD_Counterfort.dxf</strong></td>
+        <td>Type 3 — Counterfort RCC Abutment (H > 7.5 m)</td>
+        <td>IRC:78-1983, IRC:112-2015</td>
+        <td>Banas-HL, Sukanaka-HL (high abutment wall cases)</td>
+        <td><a class="btn btn-dxf" href="https://raw.githubusercontent.com/CRAJKUMARSINGH/D2_Bridge/main/GAD_Counterfort.dxf" download>⬇ Download</a></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>Pier_Details.dxf</strong></td>
+        <td>Pier Geometry, Cap, Shaft, Footing — all pier bridges</td>
+        <td>IRC:78-1983, IRC:112-2015, IS:456</td>
+        <td>Som-Kherwara (9-case stability), Bedach-Bedla, Jakham-Mandvi, Som-Larathi, Parwan-HL</td>
+        <td><a class="btn btn-dxf" href="https://raw.githubusercontent.com/CRAJKUMARSINGH/D2_Bridge/main/Pier_Details.dxf" download>⬇ Download</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ SECTION D: INTEGRATION WORKFLOW ══ -->
+<div class="sec-hdr">D — How to Wire Design Reports → Drawing Apps</div>
+
+<div class="narrative">
+  Each of the 16 bridge design reports contains the exact parameter values needed by all the drawing apps above. Follow this 5-step workflow to go from a design report to a finished AutoCAD drawing.
+</div>
+
+<div class="int-panel">
+  <div class="int-hdr">5-Step Integration Workflow: Design Report → AutoCAD Drawing</div>
+  <div class="int-body">
+    <div class="int-steps">
+      <div class="int-step">
+        <div class="step-num">1</div>
+        <div class="step-title">Open the Design Report</div>
+        <div class="step-body">Go to <a href="index.html">All Projects</a> and open any of the 16 bridge design reports. The cover card shows all key parameters: span, HFL, pier cap, SBC, seismic zone.</div>
+      </div>
+      <div class="int-step">
+        <div class="step-num">2</div>
+        <div class="step-title">Note the Abutment Type</div>
+        <div class="step-body">Section C of each report specifies the IRC abutment type:<br>• <strong>Type 1</strong> — Gravity (H ≤ 4.5 m) → use GAD_Gravity.dxf<br>• <strong>Type 2</strong> — Cantilever (4.5–7.5 m) → GAD_Cantilever.dxf<br>• <strong>Type 3</strong> — Counterfort (H > 7.5 m) → GAD_Counterfort.dxf</div>
+      </div>
+      <div class="int-step">
+        <div class="step-num">3</div>
+        <div class="step-title">Download the Stability XLS</div>
+        <div class="step-body">Each report's source-files panel (bottom of page) links to the Git LFS-stored Stability XLS. This contains the actual computed values. Download it for use as the Excel input to BridgeCanvas or Bridge_GAD_Yogendra_Borse.</div>
+      </div>
+      <div class="int-step">
+        <div class="step-num">4</div>
+        <div class="step-title">Choose Your Drawing App</div>
+        <div class="step-body">
+          <strong>For DXF from Excel →</strong> BridgeCanvas or Bridge_GAD_Yogendra_Borse<br>
+          <strong>For parameter form entry →</strong> BridgeGADdrafter (React UI)<br>
+          <strong>For batch jobs →</strong> BridgeDraw<br>
+          <strong>For catalogue + record →</strong> Dwg-Dxf-Record-Keeper
+        </div>
+      </div>
+      <div class="int-step">
+        <div class="step-num">5</div>
+        <div class="step-title">Generate + Download DXF</div>
+        <div class="step-body">The app outputs an AutoCAD-compatible DXF. Open in AutoCAD, BricsCAD, or LibreCAD. File is saved into COMPONENT_DRAWINGS_SORTED/ in Dwg-Dxf-Record-Keeper for record keeping.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION E: WHICH APP FOR WHICH REPORT ══ -->
+<div class="sec-hdr">E — Quick Reference: 16 Reports × Best Drawing App</div>
+
+<div class="narrative">
+  Each bridge project type maps to a specific recommended drawing app based on its abutment type, bridge category (submersible / high-level), and the format of the available source files.
+</div>
+
+<table class="wf-table">
+  <thead>
+    <tr>
+      <th>Bridge Project</th>
+      <th>Type</th>
+      <th>Abutment</th>
+      <th>Best Drawing App</th>
+      <th>Reference DXF</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="som-river-kherwara.html">SOM RIVER, Kherwara</a></td>
+      <td>Submersible</td>
+      <td>Type 1 Gravity</td>
+      <td class="ok">BridgeCanvas / BridgeDraw</td>
+      <td>GAD_Gravity.dxf</td>
+    </tr>
+    <tr>
+      <td><a href="bedach-river-bedla.html">BEDACH RIVER, Bedla</a></td>
+      <td>Submersible</td>
+      <td>Type 1 Gravity</td>
+      <td class="ok">BridgeCanvas / BridgeDraw</td>
+      <td>GAD_Gravity.dxf + Pier_Details.dxf</td>
+    </tr>
+    <tr>
+      <td><a href="jakham-river-mandvi.html">JAKHAM RIVER, Mandvi</a></td>
+      <td>Submersible</td>
+      <td>Type 1 Gravity</td>
+      <td class="ok">BridgeCanvas</td>
+      <td>GAD_Gravity.dxf + Pier_Details.dxf</td>
+    </tr>
+    <tr>
+      <td><a href="t01-road-jethliya.html">T01 ROAD, Jethliya</a></td>
+      <td>Submersible</td>
+      <td>Type 1 Gravity</td>
+      <td class="ok">BridgeCanvas</td>
+      <td>GAD_Gravity.dxf</td>
+    </tr>
+    <tr>
+      <td><a href="som-river-larathi.html">SOM RIVER, Larathi</a></td>
+      <td>Submersible</td>
+      <td>Type 1 Gravity</td>
+      <td class="ok">BridgeCanvas</td>
+      <td>GAD_Gravity.dxf</td>
+    </tr>
+    <tr>
+      <td><a href="sukanaka-nalah-matoon.html">SUKANAKA NALAH, Matoon</a></td>
+      <td>Submersible</td>
+      <td>Type 1 Gravity</td>
+      <td class="ok">BridgeCanvas</td>
+      <td>GAD_Gravity.dxf</td>
+    </tr>
+    <tr>
+      <td><a href="ayad-river-maharashtra.html">AYAD RIVER, Maharashtra</a></td>
+      <td>Submersible</td>
+      <td>Type 1 Gravity</td>
+      <td class="ok">BridgeCanvas</td>
+      <td>GAD_Gravity.dxf</td>
+    </tr>
+    <tr>
+      <td><a href="gumaniya-nalah-udaipur.html">GUMANIYA NALAH, Udaipur</a></td>
+      <td>Submersible</td>
+      <td>Type 1 Gravity</td>
+      <td class="ok">BridgeCanvas</td>
+      <td>GAD_Gravity.dxf</td>
+    </tr>
+    <tr>
+      <td><a href="katumbi-chandrod.html">KATUMBI–CHANDROD</a></td>
+      <td>Submersible</td>
+      <td>Type 1 Gravity</td>
+      <td class="ok">BridgeCanvas</td>
+      <td>GAD_Gravity.dxf</td>
+    </tr>
+    <tr>
+      <td><a href="ayad-river-fatehpura.html">AYAD RIVER, Fatehpura</a></td>
+      <td>High-Level</td>
+      <td>Type 2 Cantilever</td>
+      <td class="ok">BridgeGADdrafter / Bridge_GAD_Yogendra_Borse</td>
+      <td>GAD_Cantilever.dxf</td>
+    </tr>
+    <tr>
+      <td><a href="banas-river-highlevel.html">BANAS RIVER, High-Level</a></td>
+      <td>High-Level</td>
+      <td>Type 3 Counterfort</td>
+      <td class="ok">BridgeGADdrafter / Bridge_GAD_Yogendra_Borse</td>
+      <td>GAD_Counterfort.dxf</td>
+    </tr>
+    <tr>
+      <td><a href="kherka-bridge.html">KHERKA BRIDGE</a></td>
+      <td>High-Level</td>
+      <td>Type 2 Cantilever</td>
+      <td class="ok">BridgeGADdrafter / D3_Bridge</td>
+      <td>GAD_Cantilever.dxf</td>
+    </tr>
+    <tr>
+      <td><a href="kumbhalgarh-bridge.html">KUMBHALGARH BRIDGE</a></td>
+      <td>High-Level</td>
+      <td>Type 2 Cantilever</td>
+      <td class="ok">BridgeGADdrafter / D3_Bridge</td>
+      <td>GAD_Cantilever.dxf</td>
+    </tr>
+    <tr>
+      <td><a href="parwan-river-highlevel.html">PARWAN RIVER, High-Level</a></td>
+      <td>High-Level</td>
+      <td>Type 2 Cantilever</td>
+      <td class="ok">BridgeGADdrafter</td>
+      <td>GAD_Cantilever.dxf + Pier_Details.dxf</td>
+    </tr>
+    <tr>
+      <td><a href="sisarama-nalah-highlevel.html">SISARAMA NALAH, High-Level</a></td>
+      <td>High-Level</td>
+      <td>Type 2 Cantilever</td>
+      <td class="ok">BridgeGADdrafter / D3_Bridge</td>
+      <td>GAD_Cantilever.dxf</td>
+    </tr>
+    <tr>
+      <td><a href="sukanaka-nalah-highlevel.html">SUKANAKA NALAH, High-Level</a></td>
+      <td>High-Level</td>
+      <td>Type 3 Counterfort</td>
+      <td class="ok">BridgeGADdrafter / Bridge_GAD_Yogendra_Borse</td>
+      <td>GAD_Counterfort.dxf</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══ SECTION F: SETUP GUIDE ══ -->
+<div class="sec-hdr">F — Running Any App Locally (Quick Setup)</div>
+
+<div class="int-panel">
+  <div class="int-hdr">Setup Instructions by App Type</div>
+  <div class="int-body">
+    <div class="int-steps">
+      <div class="int-step">
+        <div class="step-num" style="background:#065f46">Py</div>
+        <div class="step-title">Python / Streamlit Apps</div>
+        <div class="step-body" style="font-family:monospace;font-size:11.5px;line-height:1.8;white-space:pre-wrap">git clone &lt;repo-url&gt;
+pip install -r requirements.txt
+streamlit run app.py
+
+<span style="font-family:sans-serif;font-size:12px">Applies to: BridgeCanvas, Bridge_GAD_Yogendra_Borse, BridgeDraw, BridgeGADdrafter</span></div>
+      </div>
+      <div class="int-step">
+        <div class="step-num" style="background:#1e40af">TS</div>
+        <div class="step-title">TypeScript / React Apps</div>
+        <div class="step-body" style="font-family:monospace;font-size:11.5px;line-height:1.8;white-space:pre-wrap">git clone &lt;repo-url&gt;
+npm install
+npm run dev
+
+<span style="font-family:sans-serif;font-size:12px">Applies to: BridgeGADdrafter, BridgeDraw, D2_Bridge, D3_Bridge, Bridge-Drawing-Manager</span></div>
+      </div>
+      <div class="int-step">
+        <div class="step-num" style="background:#7c2d12">DXF</div>
+        <div class="step-title">Viewing DXF Files</div>
+        <div class="step-body">Download any DXF from Section C above. Open with:<br><br>
+          <strong>Free:</strong> LibreCAD, FreeCAD, QCAD, A360 Viewer (browser)<br>
+          <strong>Commercial:</strong> AutoCAD, BricsCAD, ZWCAD<br><br>
+          Online: <a href="https://sharecad.org" target="_blank">sharecad.org</a> or <a href="https://www.autodesk.com/viewer" target="_blank">Autodesk Viewer</a>
+        </div>
+      </div>
+      <div class="int-step">
+        <div class="step-num" style="background:#4c1d95">AI</div>
+        <div class="step-title">Expert Bridge Doctor (D3_Bridge)</div>
+        <div class="step-body" style="font-family:monospace;font-size:11.5px;line-height:1.8;white-space:pre-wrap">git clone https://github.com/
+  CRAJKUMARSINGH/D3_Bridge
+pnpm install
+streamlit run Bridge_GAD_Yogendra_Borse/
+  streamlit_app_ultimate.py \
+  --server.port 8501
+
+<span style="font-family:sans-serif;font-size:12px">Expert Bridge Doctor: engineering score + abutment recommendation</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Bridge Engineering Apps Hub &nbsp;·&nbsp; All repositories by Rajkumar Singh Chauhan (crajkumarsingh@hotmail.com) &nbsp;·&nbsp; IRC:6-2016 | IRC:112-2015 | IRC:78-1983 | IRC SP-13 | IS:456-2000
+</footer>
+
+</body>
+</html>

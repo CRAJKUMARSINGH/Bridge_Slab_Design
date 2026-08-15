@@ -1,0 +1,462 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   STRUDS Report Design System
+   Single source of truth for the design-report visual language.
+   Tone reference: Attached_Assets/DETAILED SLAB DESIGN.htm
+   Surfaces: React /report page, server design-report.ts HTML, comprehensive PDF cover.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --struds-orchid:        #9932cc;
+  --struds-orchid-soft:   #dda0dd;
+  --struds-orchid-rule:   #da70d6;
+  --struds-magenta:       #fe00cc;
+  --struds-royal:         #4169e1;
+  --struds-clause:        #0000ff;
+  --struds-formula:       #006400;
+  --struds-formula-soft:  #005a00;
+  --struds-note:          #b00020;
+  --struds-ok:            #2e7d32;
+  --struds-warn:          #b07a00;
+  --struds-gov:           #007a3d;
+  --struds-ink:           #1a202c;
+  --struds-ink-soft:      #4a5568;
+  --struds-paper:         #ffffff;
+  --struds-paper-tint:    #fafafa;
+  --struds-paper-soft:    #f8f5fc;
+  --struds-rule:          #c8b8d0;
+  --struds-header-bg:     #ede0f5;
+  --struds-screen-bg:     #d8d8d8;
+  --struds-cover-grad-a:  #5a3b82;
+  --struds-cover-grad-b:  #1e3a5f;
+  --struds-font-sans:     Verdana, Geneva, "Segoe UI", Arial, sans-serif;
+  --struds-font-serif:    "Times New Roman", Georgia, serif;
+  --struds-font-mono:     Consolas, "Courier New", monospace;
+}
+
+/* ─── A4 LANDSCAPE PRINT MASTER ───────────────────────────────────────────── */
+@page {
+  size: A4 landscape;
+  margin: 14mm 12mm 16mm 12mm;
+  @top-left {
+    content: "Submersible Bridge Slab Designer";
+    font: 9pt Verdana, sans-serif;
+    color: #555;
+  }
+  @top-right {
+    content: "IRC:6 · IRC:78 · IRC:112 · IRC:SP:13";
+    font: 9pt Verdana, sans-serif;
+    color: var(--struds-royal);
+  }
+  @bottom-left {
+    content: string(struds-project-name);
+    font: 8.5pt Verdana, sans-serif;
+    color: #777;
+  }
+  @bottom-right {
+    content: "Page " counter(page) " of " counter(pages);
+    font: 8.5pt Verdana, sans-serif;
+    color: #555;
+  }
+}
+@page :first {
+  margin: 0;
+  @top-left { content: ""; }
+  @top-right { content: ""; }
+  @bottom-left { content: ""; }
+  @bottom-right { content: ""; }
+}
+
+/* ─── COVER PAGE ─────────────────────────────────────────────────────────── */
+.struds-cover {
+  width: 297mm;
+  height: 210mm;
+  margin: 0 auto 6mm;
+  padding: 0;
+  background: linear-gradient(135deg, var(--struds-cover-grad-a) 0%, var(--struds-cover-grad-b) 100%);
+  color: #fff;
+  font-family: var(--struds-font-sans);
+  display: grid;
+  grid-template-rows: 28mm 1fr 48mm;
+  page-break-after: always;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+.struds-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 16% 18%, rgba(218, 112, 214, 0.25), transparent 38%),
+    radial-gradient(circle at 84% 82%, rgba(65, 105, 225, 0.32), transparent 42%);
+  pointer-events: none;
+}
+.struds-cover-firm {
+  display: flex;
+  align-items: center;
+  gap: 12mm;
+  padding: 8mm 18mm 0;
+  position: relative;
+  z-index: 1;
+}
+.struds-cover-firm img {
+  height: 16mm;
+  background: #fff;
+  padding: 1.5mm;
+  border-radius: 2mm;
+  object-fit: contain;
+}
+.struds-cover-firm .firm-name {
+  font-size: 12pt;
+  font-weight: 600;
+  letter-spacing: 0.6pt;
+}
+.struds-cover-body {
+  padding: 4mm 18mm 0;
+  position: relative;
+  z-index: 1;
+}
+.struds-cover-eyebrow {
+  font-size: 10pt;
+  font-weight: 600;
+  letter-spacing: 6pt;
+  color: rgba(255, 255, 255, 0.78);
+  text-transform: uppercase;
+  margin-bottom: 4mm;
+}
+.struds-cover-title {
+  font-size: 38pt;
+  font-weight: 700;
+  letter-spacing: -0.5pt;
+  line-height: 1.05;
+  margin-bottom: 3mm;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.struds-cover-subtitle {
+  font-size: 15pt;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 8mm;
+}
+.struds-cover-project {
+  border-left: 3pt solid var(--struds-orchid-soft);
+  padding-left: 6mm;
+  margin: 5mm 0 7mm;
+  max-width: 200mm;
+}
+.struds-cover-project .lbl {
+  font-size: 8pt;
+  letter-spacing: 1.5pt;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  margin-bottom: 1mm;
+}
+.struds-cover-project .name {
+  font-size: 13pt;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.35;
+}
+.struds-cover-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3mm 14mm;
+  margin-top: 6mm;
+  max-width: 200mm;
+  font-size: 9.5pt;
+}
+.struds-cover-meta dt {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 7.5pt;
+  letter-spacing: 1pt;
+  text-transform: uppercase;
+  margin: 0;
+}
+.struds-cover-meta dd {
+  font-weight: 600;
+  margin: 0 0 2mm;
+}
+.struds-cover-codes {
+  position: absolute;
+  right: 16mm;
+  top: 38mm;
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+  z-index: 1;
+}
+.struds-cover-codes span {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1pt solid rgba(255, 255, 255, 0.28);
+  border-radius: 2mm;
+  padding: 1.5mm 5mm;
+  font-size: 9pt;
+  font-weight: 600;
+  letter-spacing: 0.4pt;
+  text-align: center;
+  min-width: 32mm;
+}
+.struds-cover-stamp {
+  position: absolute;
+  right: 22mm;
+  bottom: 70mm;
+  border: 2.5pt solid #ffd700;
+  color: #ffd700;
+  padding: 3mm 7mm;
+  font-weight: 700;
+  font-size: 13pt;
+  letter-spacing: 2.5pt;
+  transform: rotate(-12deg);
+  background: rgba(255, 255, 255, 0.04);
+  z-index: 2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+.struds-cover-foot {
+  background: rgba(0, 0, 0, 0.28);
+  padding: 6mm 18mm;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10mm;
+  align-items: end;
+  position: relative;
+  z-index: 1;
+}
+.struds-cover-sign {
+  border-top: 1pt solid rgba(255, 255, 255, 0.42);
+  padding-top: 1.5mm;
+  font-size: 9pt;
+}
+.struds-cover-sign .role {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 7.5pt;
+  letter-spacing: 1.2pt;
+  text-transform: uppercase;
+  margin-bottom: 1mm;
+}
+.struds-cover-sign .name {
+  font-weight: 600;
+  font-size: 10pt;
+}
+.struds-cover-sign .qual {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 8pt;
+  margin-top: 0.5mm;
+}
+
+/* ─── FOREWORD PAGE ──────────────────────────────────────────────────────── */
+.struds-foreword {
+  width: 297mm;
+  min-height: 210mm;
+  padding: 16mm 22mm;
+  margin: 0 auto 6mm;
+  background: var(--struds-paper);
+  font-family: var(--struds-font-sans);
+  page-break-after: always;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+  string-set: struds-project-name attr(data-proj);
+}
+.struds-foreword .eyebrow {
+  font-size: 9pt;
+  color: var(--struds-royal);
+  letter-spacing: 4pt;
+  text-transform: uppercase;
+  margin-bottom: 1mm;
+  font-weight: 600;
+}
+.struds-foreword h1 {
+  color: var(--struds-orchid);
+  font-size: 22pt;
+  letter-spacing: -0.3pt;
+  margin: 0 0 3mm;
+  border-bottom: 2pt solid var(--struds-orchid);
+  padding-bottom: 3mm;
+  font-weight: 700;
+}
+.struds-foreword .lead {
+  font-family: var(--struds-font-serif);
+  font-size: 11.5pt;
+  line-height: 1.7;
+  color: var(--struds-ink);
+  margin: 6mm 0 8mm;
+}
+.struds-foreword h2 {
+  color: var(--struds-royal);
+  font-size: 13pt;
+  margin: 7mm 0 3mm;
+  border-left: 4pt solid var(--struds-orchid-soft);
+  padding-left: 4mm;
+  font-weight: 700;
+}
+.struds-foreword .scope-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3mm 10mm;
+  margin: 4mm 0 6mm;
+  font-size: 10pt;
+}
+.struds-foreword .scope-grid dt {
+  color: var(--struds-orchid);
+  font-weight: 700;
+  font-size: 8.5pt;
+  letter-spacing: 0.8pt;
+  text-transform: uppercase;
+  margin: 0 0 0.5mm;
+}
+.struds-foreword .scope-grid dd {
+  margin: 0 0 3mm;
+  color: var(--struds-ink-soft);
+  line-height: 1.5;
+}
+.struds-foreword .codes-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2mm 3mm;
+  margin: 3mm 0 6mm;
+}
+.struds-foreword .codes-strip span {
+  border: 1pt solid var(--struds-rule);
+  padding: 1.5mm 4mm;
+  border-radius: 2mm;
+  font-size: 9pt;
+  color: var(--struds-clause);
+  background: var(--struds-paper-soft);
+  font-weight: 600;
+  font-family: var(--struds-font-mono);
+}
+.struds-foreword .deliverables {
+  list-style: none;
+  padding: 0;
+  margin: 4mm 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3mm;
+}
+.struds-foreword .deliverables li {
+  background: var(--struds-paper-soft);
+  border-left: 3pt solid var(--struds-orchid);
+  padding: 3mm 4mm;
+  font-size: 9.5pt;
+  color: var(--struds-ink);
+  line-height: 1.4;
+}
+.struds-foreword .deliverables li b {
+  display: block;
+  color: var(--struds-orchid);
+  font-size: 9pt;
+  margin-bottom: 1mm;
+  letter-spacing: 0.4pt;
+}
+
+/* ─── ToC LEADER STYLE ───────────────────────────────────────────────────── */
+.struds-toc {
+  width: 297mm;
+  min-height: 210mm;
+  padding: 16mm 22mm;
+  margin: 0 auto 6mm;
+  background: var(--struds-paper);
+  font-family: var(--struds-font-sans);
+  page-break-after: always;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+.struds-toc h1 {
+  color: var(--struds-orchid);
+  font-size: 18pt;
+  margin: 0 0 2mm;
+  letter-spacing: 1pt;
+  font-weight: 700;
+  border-bottom: 2pt solid var(--struds-orchid);
+  padding-bottom: 3mm;
+}
+.struds-toc .toc-eyebrow {
+  font-size: 9pt;
+  color: var(--struds-royal);
+  letter-spacing: 4pt;
+  text-transform: uppercase;
+  margin-bottom: 1mm;
+  font-weight: 600;
+}
+.struds-toc-list {
+  margin-top: 8mm;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 14mm;
+  row-gap: 2.5mm;
+}
+.struds-toc-leader {
+  display: flex;
+  align-items: baseline;
+  font-size: 10pt;
+  color: var(--struds-ink);
+}
+.struds-toc-leader .sn {
+  color: var(--struds-orchid);
+  font-weight: 700;
+  font-size: 8.5pt;
+  letter-spacing: 0.6pt;
+  min-width: 14mm;
+}
+.struds-toc-leader .lbl {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--struds-royal);
+  text-decoration: none;
+}
+.struds-toc-leader .lbl:hover { text-decoration: underline; }
+.struds-toc-leader .dots {
+  flex: 1;
+  border-bottom: 1.5pt dotted var(--struds-rule);
+  margin: 0 2mm;
+  position: relative;
+  top: -3px;
+  min-width: 6mm;
+}
+.struds-toc-leader .pg {
+  font-variant-numeric: tabular-nums;
+  color: var(--struds-orchid);
+  font-weight: 600;
+  min-width: 10mm;
+  text-align: right;
+  font-size: 9.5pt;
+}
+
+/* ─── PRINT REFINEMENTS ──────────────────────────────────────────────────── */
+@media print {
+  body, html { background: #fff !important; }
+  .no-print, .toolbar, button { display: none !important; }
+  .report-outer { background: #fff !important; padding: 0 !important; }
+  .report-body {
+    box-shadow: none !important;
+    border: 0 !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .page-section,
+  .struds-cover,
+  .struds-foreword,
+  .struds-toc {
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+  .page-section,
+  .struds-foreword,
+  .struds-toc { break-before: page; }
+  .struds-cover { break-before: auto; }
+  /* Avoid orphan section heads */
+  h1, h2, h3, .struds-section-title { break-after: avoid; }
+  table, .calc-row, .glass-card { break-inside: avoid; }
+}
+
+/* ─── SCREEN VIEW SCALING ────────────────────────────────────────────────── */
+@media screen and (max-width: 900px) {
+  .struds-cover,
+  .struds-foreword,
+  .struds-toc {
+    transform: scale(0.65);
+    transform-origin: top center;
+    margin-bottom: -56mm; /* compensate for scale */
+  }
+}

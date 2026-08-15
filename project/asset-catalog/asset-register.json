@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "asset-register.v1",
+  "sourceRoot": "attached_assets",
+  "sourceFilesAreImmutable": true,
+  "reviewRequiredBeforeAssimilation": true,
+  "files": [],
+  "summary": {
+    "fileCount": 0,
+    "supportedOfficeFilesPresent": false,
+    "note": "The uploaded workspace contains planning text files and a project archive, but no .xls, .xlsx, .doc, or .docx files at the source root."
+  }
+}

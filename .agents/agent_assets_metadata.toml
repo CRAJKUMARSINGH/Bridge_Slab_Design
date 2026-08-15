@@ -1,0 +1,9 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "-TAxsowB7aYV4QIRVWGkT"
+uri = "file://out/KHERWARA-report.html"
+type = "text"
+title = "KHERWARA demo design report"
+description = "Printable narrative HTML report generated from the attached Week 0 demo fixture. The visible deflection failure is intentionally preserved for engineering review."

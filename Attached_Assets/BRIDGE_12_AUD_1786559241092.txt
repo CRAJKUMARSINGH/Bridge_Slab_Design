@@ -1,0 +1,431 @@
+Preview limits intentionally truncate large sheets >>>>THINK A WAY OUT FOR ALLLARGE SHEETS
+
+>>>>
+the result design does not contain all excel sheets storeys >>>>>recheck the sheetwise implementation thrice>>>line by line >>>>>les created, 1,374 insertions across engine, routes, schemas, tests, golden fixtures, and docs.
+
+Est. Credits Used: 5.16
+Elapsed time: 9m 26s
+
+
+Checkpoint
+Restore
+the result design does not contain all excel sheets storeys >>>>>recheck the sheetwise implementation thrice>>>line by line
+
+Kiro
+Let me thoroughly audit the existing sheet implementation before writing anything.
+
+
+2 tool calls
+Command
+
+Get-ChildItem "E:\Rajkumar\Bridge_Slab_Design\bridge-excel-generator" -Recurse -File -ErrorAction SilentlyContinue |
+  Where-Object { $_.FullName -notmatch 'node_modules' } |
+  Select-Object -ExpandProperty FullName |
+  ForEach-Object { $_.Replace("E:\Rajkumar\Bridge_Slab_Design\","") } | Sort-Object
+bridge-excel-generator\design-engine.ts
+bridge-excel-generator\index.ts
+bridge-excel-generator\material-rates.ts
+bridge-excel-generator\narrative-engine.ts
+bridge-excel-generator\report-model.ts
+bridge-excel-generator\sheets\01-index.ts
+bridge-excel-generator\sheets\02-insert-hydraulics.ts
+bridge-excel-generator\sheets\03-afflux-calculation.ts
+bridge-excel-generator\sheets\04-hydraulics.ts
+bridge-excel-generator\sheets\05-deck-anchorage.ts
+bridge-excel-generator\sheets\06-cross-section.ts
+bridge-excel-generator\sheets\07-bed-slope.ts
+bridge-excel-generator\sheets\08-sbc.ts
+bridge-excel-generator\sheets\09-stability-check-pier.ts
+bridge-excel-generator\sheets\10-abstract-of-stresses.ts
+bridge-excel-generator\sheets\11-steel-flared-pier.ts
+bridge-excel-generator\sheets\12-18-pier-remaining.ts
+bridge-excel-generator\sheets\19-28-abutment-type1.ts
+bridge-excel-generator\sheets\29-46-estimation.ts
+bridge-excel-generator\sheets\46-estimation.ts
+bridge-excel-generator\sheets-extracted\01-index.ts
+bridge-excel-generator\sheets-extracted\02-insert--hydraulics.ts
+bridge-excel-generator\sheets-extracted\03-afflux-calculation.ts
+bridge-excel-generator\sheets-extracted\04-hydraulics.ts
+bridge-excel-generator\sheets-extracted\05-deck-anchorage.ts
+bridge-excel-generator\sheets-extracted\06-cross-section.ts
+bridge-excel-generator\sheets-extracted\07-bed-slope.ts
+bridge-excel-generator\sheets-extracted\08-sbc.ts
+bridge-excel-generator\sheets-extracted\09-stability-check-for-pier.ts
+bridge-excel-generator\sheets-extracted\10-abstract-of-stresses.ts
+bridge-excel-generator\sheets-extracted\11-steel-in-flared--pier-base-.ts
+bridge-excel-generator\sheets-extracted\12-steel-in-pier.ts
+bridge-excel-generator\sheets-extracted\13-footing-design.ts
+bridge-excel-generator\sheets-extracted\14-footing-stress-diagram.ts
+bridge-excel-generator\sheets-extracted\15-pier-cap-ll-tracked-vehicle.ts
+bridge-excel-generator\sheets-extracted\16-pier-cap.ts
+bridge-excel-generator\sheets-extracted\17-lload.ts
+bridge-excel-generator\sheets-extracted\18-loadsumm-.ts
+bridge-excel-generator\sheets-extracted\19-ll-abstract.ts
+bridge-excel-generator\sheets-extracted\20-type1-abutment-drawing.ts
+bridge-excel-generator\sheets-extracted\21-type1-stability-check-abutment.ts
+bridge-excel-generator\sheets-extracted\22-type1-abutment-footing-design.ts
+bridge-excel-generator\sheets-extracted\23-type1--abut-footing-stress.ts
+bridge-excel-generator\sheets-extracted\24-type1-steel-in-abutment.ts
+bridge-excel-generator\sheets-extracted\25-type1-abutment-cap.ts
+bridge-excel-generator\sheets-extracted\26-type1-dirt-wall-reinforcement.ts
+bridge-excel-generator\sheets-extracted\27-type1-dirt-directload-bm.ts
+bridge-excel-generator\sheets-extracted\28-type1-dirt-ll-bm.ts
+bridge-excel-generator\sheets-extracted\29-technote.ts
+bridge-excel-generator\sheets-extracted\30-insert-c1-abut.ts
+bridge-excel-generator\sheets-extracted\31-c1-abutment-drawing.ts
+bridge-excel-generator\sheets-extracted\32-c1-stability-check-abutment.ts
+bridge-excel-generator\sheets-extracted\33-c1-abutment-footing-design.ts
+bridge-excel-generator\sheets-extracted\34-c1-abut-footing-stress-diagram.ts
+bridge-excel-generator\sheets-extracted\35-can-return-footing-design.ts
+bridge-excel-generator\sheets-extracted\36-steel-in-cant-abutment.ts
+bridge-excel-generator\sheets-extracted\37-steel-in-cant-returns.ts
+bridge-excel-generator\sheets-extracted\38-c1-abutment-cap.ts
+bridge-excel-generator\sheets-extracted\39-c1-dirt-wall-reinforcement.ts
+bridge-excel-generator\sheets-extracted\40-c1-dirt-directload-bm.ts
+bridge-excel-generator\sheets-extracted\41-c1-dirt-ll-bm.ts
+bridge-excel-generator\sheets-extracted\42-insert-estimate.ts
+bridge-excel-generator\sheets-extracted\43-tech-report.ts
+bridge-excel-generator\sheets-extracted\44-general-abs--.ts
+bridge-excel-generator\sheets-extracted\45-abstract.ts
+bridge-excel-generator\sheets-extracted\46-bridge-measurements.ts
+bridge-excel-generator\sheets-extracted\index.ts
+bridge-excel-generator\types.ts
+bridge-excel-generator\utils.ts
+Sub-agent: context-gatherer
+
+3 tool calls
+List Directory
+Get full directory listing of the bridge-excel-generator root
+List Directory
+List all files in the sheets/ directory
+List Directory
+List all files in the sheets-extracted/ directory
+
+3 tool calls
+Read Files
+
+01-index.ts
+
+02-insert--hydraulics.ts
+
+03-afflux-calculation.ts
+
+04-hydraulics.ts
+
+05-deck-anchorage.ts
+
+06-cross-section.ts
+
+07-bed-slope.ts
+
+08-sbc.ts
+
+09-stability-check-for-pier.ts
+
+10-abstract-of-stresses.ts
+
+11-steel-in-flared--pier-base-.ts
+
+12-steel-in-pier.ts
+
+13-footing-design.ts
+
+14-footing-stress-diagram.ts
+
+15-pier-cap-ll-tracked-vehicle.ts
+
+16-pier-cap.ts
+
+17-lload.ts
+
+18-loadsumm-.ts
+
+19-ll-abstract.ts
+
+20-type1-abutment-drawing.ts
+
+21-type1-stability-check-abutment.ts
+
+22-type1-abutment-footing-design.ts
+
+23-type1--abut-footing-stress.ts
+Read Files
+
+24-type1-steel-in-abutment.ts
+
+25-type1-abutment-cap.ts
+
+26-type1-dirt-wall-reinforcement.ts
+
+27-type1-dirt-directload-bm.ts
+
+28-type1-dirt-ll-bm.ts
+
+29-technote.ts
+
+30-insert-c1-abut.ts
+
+31-c1-abutment-drawing.ts
+
+32-c1-stability-check-abutment.ts
+
+33-c1-abutment-footing-design.ts
+
+34-c1-abut-footing-stress-diagram.ts
+
+35-can-return-footing-design.ts
+
+36-steel-in-cant-abutment.ts
+
+37-steel-in-cant-returns.ts
+
+38-c1-abutment-cap.ts
+
+39-c1-dirt-wall-reinforcement.ts
+
+40-c1-dirt-directload-bm.ts
+
+41-c1-dirt-ll-bm.ts
+
+42-insert-estimate.ts
+
+43-tech-report.ts
+
+44-general-abs--.ts
+
+45-abstract.ts
+
+46-bridge-measurements.ts
+Read Files
+
+narrative-engine.ts
+
+material-rates.ts
+
+report-model.ts
+
+46-estimation.ts
+I now have everything needed. Here is the complete, exhaustive audit:
+
+Bridge Excel Generator — Complete Audit Report
+1. design-engine.ts — Summary
+Entry point: calculateCompleteDesign(input: ProjectInput) — exported as default.
+
+Orchestration flow:
+
+Calls calculateHydraulics(input) → Area-Velocity method (Manning's equation, Lacey scour, Molesworth afflux)
+Calls calculatePierDesign(input, hydraulics) → 5 IRC load cases (Service, Construction, Flood, Seismic, ULS)
+Calls calculateAbutmentDesign(input, hydraulics, 'TYPE1') → Rankine earth pressure, 5 load cases
+Calls calculateAbutmentDesign(input, hydraulics, 'C1') → same model for cantilever abutment
+Calls calculateDetailedEstimation(input, {hydraulics, pier, abutmentType1, abutmentC1}) → BOQ quantities and costs
+Returns { input, hydraulics, pier, abutmentType1, abutmentC1, estimation }
+design-engine.ts does NOT directly call any sheet generators. It is a pure calculation engine. Sheet generation is orchestrated entirely by index.ts.
+
+Inputs accepted: ProjectInput (from types.ts) — 60+ fields including geometry, hydraulics, materials, soil, design levels, cross-section data array.
+
+Key bugs/gaps in design-engine.ts:
+
+Sheet 9 (Stability Check Pier) says 468 rows × 836 formulas in the extracted version. The engine only generates 5 simplified load cases — not the full IRC detail.
+Sheet 11 (Steel in Flared Pier Base) references 173 rows × 128 formulas — the engine produces only simplified SteelDetails objects.
+Seismic load case uses a liveLoadFactor: 0.25 proxy — no actual IS:1893 zone-based seismic force is calculated.
+Wind force in PierDesignResult is always 0 (hardcoded windForce: 0).
+2. index.ts (root) — Summary
+Main export: generateCompleteExcel(input: ProjectInput, _options?): Promise<Buffer>
+
+What it does:
+
+Calls calculateCompleteDesign(input) to get designResults
+Builds EnhancedProjectInput merging raw input with calculated hydraulics, pier, abutment, estimation
+Creates an ExcelJS.Workbook
+Sequentially awaits all sheet generator functions (imported from sheets/ directory — NOT sheets-extracted/)
+Calls applyDetailedNarrativeToAllSheets() — appends narrative paragraphs from narrative-engine.ts to every sheet
+Returns workbook.xlsx.writeBuffer() as Buffer
+Critical finding: index.ts imports exclusively from sheets/, NOT from sheets-extracted/. The 
+index.ts
+ is a dead-code parallel universe.
+
+Also exports: saveExcelToFile() as a file-write helper.
+
+3 & 4. Complete Sheet-by-Sheet Inventory
+Legend
+COMPLETE = Real content, dynamic input binding, real formulas
+PARTIAL = Sheet created, some real content, but key calculations are hardcoded/simplified
+STUB = Sheet created with function scaffold only (TODO comment, no cells written)
+STUB-COMMENTS = TODO comment body, only cell addresses listed in comments, nothing actually written
+PLACEHOLDER = Minimal title cell only
+Sheets — sheets/ directory (USED by index.ts)
+#	Sheet Name	File	Status	Notes
+1	INDEX	01-index.ts	PARTIAL	18 static index entries written; does NOT use dynamic input.* data; title hardcoded "BEDACH RIVER"
+2	INSERT- HYDRAULICS	02-insert-hydraulics.ts	PLACEHOLDER	Single cell "HYDRAULICS SECTION" — correct, section divider
+3	afflux calculation	03-afflux-calculation.ts	COMPLETE	88 rows, real Manning/Molesworth formulas with setCellFormula, cross-sheet refs to HYDRAULICS!B28
+4	HYDRAULICS	04-hydraulics.ts	COMPLETE	49 rows, Manning formula chain, cross-section loop, SUM() formulas, critical levels table
+5	Deck Anchorage	05-deck-anchorage.ts	PARTIAL	Uplift calculation present; formulas use hardcoded fallback result: 0
+6	CROSS SECTION	06-cross-section.ts	PARTIAL	Writes chainage/GL data from input, but only 3 columns (missing depth, flow columns from the 10-col original)
+7	Bed Slope	07-bed-slope.ts	PARTIAL	20 static rows, references input.bedLevel/input.bedSlope, but slope profile is synthetic (i×0.05), not from cross-section data
+8	SBC	08-sbc.ts	PARTIAL	Uses input fields (sbc, phi, gamma), but only 7 rows vs 78 in original; hardcodes "Hard Rock"
+9	STABILITY CHECK FOR PIER	09-stability-check-pier.ts	PARTIAL	Framework with 5 case labels; actual case data is placeholder strings like "[Similar structure to Case 1]"; 468 rows NOT generated
+10	abstract of stresses	10-abstract-of-stresses.ts	PARTIAL	Hardcoded 5 cases with fixed P/Mx/My values; uses area=10, Zx=5, Zy=5 hardcoded — not from design engine
+11	STEEL IN FLARED PIER BASE	11-steel-flared-pier.ts	STUB	2 sections (vertical/horizontal), hardcoded "32 nos 25mm φ"; no engine data
+12	STEEL IN PIER	12-18-pier-remaining.ts	STUB	Hardcoded "24 nos 25mm φ"
+13	FOOTING DESIGN	12-18-pier-remaining.ts	STUB	Hardcoded "8m x 6m x 1.5m", "20mm @ 150mm"
+14	Footing STRESS DIAGRAM	12-18-pier-remaining.ts	STUB	Hardcoded "180/120 kN/m²"
+15	Pier Cap LL tracked vehicle	12-18-pier-remaining.ts	STUB	"IRC Class 70R Tracked Vehicle, Load: 700 kN" hardcoded
+16	Pier Cap	12-18-pier-remaining.ts	STUB	Hardcoded "12m x 1.5m x 1.2m"
+17	LLOAD	12-18-pier-remaining.ts	STUB	"IRC Class 70R Loading" only
+18	loadsumm	12-18-pier-remaining.ts	STUB	Hardcoded DL=2500, LL=700, Total=3200 kN
+19	INSERT TYPE1-ABUT	19-28-abutment-type1.ts	PLACEHOLDER	Title only, bold centered
+20	TYPE1-AbutMENT Drawing	19-28-abutment-type1.ts	STUB	5 static text lines, no engine data
+21	TYPE1-STABILITY CHECK ABUTMENT	19-28-abutment-type1.ts	STUB	Hardcoded FOS values (1.875, 1.667), hardcoded pressures
+22	TYPE1-ABUTMENT FOOTING DESIGN	19-28-abutment-type1.ts	STUB	Hardcoded "10m x 5m x 1.2m"
+23	TYPE1- Abut Footing STRESS	19-28-abutment-type1.ts	STUB	Hardcoded "220/150 kN/m²"
+24	TYPE1-STEEL IN ABUTMENT	19-28-abutment-type1.ts	STUB	Hardcoded "16mm @ 150, 12mm @ 200"
+25	TYPE1-Abutment Cap	19-28-abutment-type1.ts	STUB	Hardcoded "12m x 1.5m x 1.0m"
+26	TYPE1-DIRT WALL REINFORCEMENT	19-28-abutment-type1.ts	STUB	Hardcoded "12mm @ 150, 10mm @ 200"
+27	TYPE1-DIRT DirectLoad_BM	19-28-abutment-type1.ts	STUB	Hardcoded "Max BM: 45 kN-m/m"
+28	TYPE1-DIRT LL_BM	19-28-abutment-type1.ts	STUB	Hardcoded "Max BM: 25 kN-m/m"
+29	TechNote	29-46-estimation.ts	COMPLETE	Fully dynamic; uses input.hydraulics, h.*, input.bridgeType; outputs 10 narrative paragraphs
+30	INSERT ESTIMATE	29-46-estimation.ts	PLACEHOLDER	Title only
+31	Tech Report	29-46-estimation.ts	COMPLETE	Dynamic; uses hydraulics + pier engine outputs; 7 paragraphs
+32	General Abs.	29-46-estimation.ts	STUB	Hardcoded 4 items: Earthwork=500k, Concrete=6M, Steel=2.5M
+33	Abstract	29-46-estimation.ts	STUB	Hardcoded 5 BOQ items with fixed quantities/rates
+34	Bridge measurements	29-46-estimation.ts	STUB	Hardcoded 5 items (pier footing, pier body, pier cap, abut footing, abut body)
+35	INSERT C1-ABUT	29-46-estimation.ts (C1 loop)	PLACEHOLDER	Title + "[Framework implementation]"
+36	C1-AbutMENT Drawing	29-46-estimation.ts (C1 loop)	PLACEHOLDER	Same
+37	C1-STABILITY CHECK ABUTMENT	29-46-estimation.ts (C1 loop)	PLACEHOLDER	Same
+38	C1-ABUTMENT FOOTING DESIGN	29-46-estimation.ts (C1 loop)	PLACEHOLDER	Same
+39	C1-Abut Footing STRESS DIAGRAM	29-46-estimation.ts (C1 loop)	PLACEHOLDER	Same
+40	CAN-RETURN FOOTING DESIGN	29-46-estimation.ts (C1 loop)	PLACEHOLDER	Same
+41	STEEL IN CANT-ABUTMENT	29-46-estimation.ts (C1 loop)	PLACEHOLDER	Same
+42	STEEL IN CANT-RETURNS	29-46-estimation.ts (C1 loop)	PLACEHOLDER	Same
+43	C1-Abutment Cap	29-46-estimation.ts (C1 loop)	PLACEHOLDER	Same
+44	C1-DIRT WALL REINFORCEMENT	29-46-estimation.ts (C1 loop)	PLACEHOLDER	Same
+45	C1-DIRT DirectLoad_BM	29-46-estimation.ts (C1 loop)	PLACEHOLDER	Same
+46	C1-DIRT LL_BM	29-46-estimation.ts (C1 loop)	PLACEHOLDER	Same
+⚠️ Sheet count mismatch: index.ts wires up only 34 unique sheet function calls (sheets 1–34), then calls generateC1AbutmentPlaceholderSheets() which loops over 12 names to produce sheets 35–46. Total = 46. But the original FINAL_RESULT.xls sheet ordering differs from the sheets-extracted/ numbering (original sheet 19 = INSERT TYPE1-ABUT in sheets/, but sheets-extracted/ calls sheet 19 LL-ABSTRACT).
+
+Sheets — sheets-extracted/ directory (NOT used by index.ts)
+Every single file in sheets-extracted/ is a STUB-COMMENTS skeleton. The pattern is:
+
+Worksheet is created with correct name
+Column widths are set
+Body is entirely a // TODO: Implement sheet generation block
+Comments show the actual cell content from FINAL_RESULT.xls (A1, B3, etc.)
+Zero cells are actually written
+Only console.log() is called
+These were auto-generated by parsing FINAL_RESULT.xls and extracting metadata + sample cell values as comments. The intent was for a developer to fill them in. None have been.
+
+Critical numbering discrepancy between sheets/ and sheets-extracted/:
+
+sheets/ number	sheets-extracted/ number	Sheet name
+19	—	INSERT TYPE1-ABUT (not in extracted!)
+—	19	LL-ABSTRACT (not in sheets/!)
+20–28	20–28	Type1 abutment group
+29–34	29	TechNote
+30	30	INSERT C1-ABUT
+31–46	31–46	C1 abutment + estimate group
+The sheets/ numbering is shifted for sheets 19–46 because sheets/ is missing LL-ABSTRACT (sheet 19 in extracted) and has INSERT TYPE1-ABUT as sheet 19 instead.
+
+5. types.ts and utils.ts — Summary
+types.ts
+Defines 10 interfaces:
+
+ProjectInput — 60+ input fields (geometry, hydraulics, material, soil, levels, cross-section)
+CrossSectionPoint — { chainage, gl }
+HydraulicsResult — velocity, area, scour, afflux, DWL, Froude
+PierDesignResult — geometry, loads, 5 load cases, reinforcement, footing, pierCap
+AbutmentDesignResult — geometry, earth pressure, loads, load cases, reinforcement
+LoadCase — per-case FOS values (sliding ≥1.5, overturning ≥1.8, bearing ≥2.5)
+SteelDetails — diameter, spacing, bars, area, weight
+EstimationResult — concrete/steel/formwork quantities, BOQ items, cost
+BOQItem — line item for bill of quantities
+CompleteDesignResult / EnhancedProjectInput — merged types with computed results
+utils.ts
+Provides helpers used by all sheet generators:
+
+COLORS / BORDERS — styling constants
+setCellValue(ws, row, col, value) — static cell write
+setCellFormula(ws, row, col, formula, result) — formula + cached result
+mergeCells(ws, startRow, startCol, endRow, endCol) — uses columnToLetter() helper
+styleHeader() / styleSubheader() — colored header bands
+addCalcRow() — label = value unit row pattern
+addTableHeader() / addTableRow() — table formatting
+setColumnWidths() / setRowHeight()
+addTitle() / addProjectHeader() — standard top-of-sheet header
+formatNumber() / cellRef() / rangeRef() / addEmptyRows() / addSectionDivider()
+6. 
+index.ts
+ — Does it register all 46 sheets?
+Yes — it imports and calls all 46 functions. It exports one function generateAll46Sheets(workbook, input) that awaits all 46 generators sequentially. However:
+
+It is never called by anything. Neither index.ts nor design-engine.ts nor any file in api/ imports from 
+index.ts
+.
+It is dead code.
+7. sheets/ vs sheets-extracted/ — Relationship
+Dimension	sheets/	sheets-extracted/
+Used by runtime?	✅ Yes — index.ts imports from here	❌ No — dead code
+File count	15 files (multi-sheet bundles)	47 files (one per sheet + index)
+Content quality	Partial/complete for sheets 1–11, 29–31; stubs/placeholders for 12–28, 32–46	All 46 are TODO skeletons — zero cells written
+Formula fidelity	Sheets 3 & 4 have real Excel formulas; rest are simplified	Files list formula counts in comments but none are implemented
+Sheet numbering	Off by 1 vs extracted for sheets 19+ (missing LL-ABSTRACT)	Matches FINAL_RESULT.xls numbering exactly
+Input binding	Sheets 3,4,7,8,29,31 use dynamic input	Zero sheets use input (all stubs)
+Purpose	Runtime production code	Auto-generated scaffolding for future development
+They are not duplicates of the same logic — sheets/ is the working code, sheets-extracted/ is a separate auto-parsed skeleton set that was never filled in.
+
+8. Complete Gap Analysis
+Gaps Table
+Sheet #	Name	Gap Type	Severity
+1	INDEX	Hardcoded project title "BEDACH RIVER"; page numbers blank	Medium
+6	CROSS SECTION	Only 3 cols written; missing depth/flow area columns	Medium
+7	Bed Slope	Synthetic slope profile (×0.05); not from survey data	Medium
+9	STABILITY CHECK FOR PIER	468-row / 838-formula sheet reduced to ~30 rows; Cases 2–5 are literal placeholder strings	Critical
+10	abstract of stresses	All stress values hardcoded; not from design engine	Critical
+11	STEEL IN FLARED PIER BASE	Full stub; 173 rows / 128 formulas unimplemented	Critical
+12	STEEL IN PIER	Full stub; hardcoded bars	Critical
+13	FOOTING DESIGN	Full stub; hardcoded dimensions	Critical
+14	Footing STRESS DIAGRAM	Full stub; hardcoded pressures	Critical
+15	Pier Cap LL tracked vehicle	Full stub	Critical
+16	Pier Cap	Full stub	Critical
+17	LLOAD (Live Load)	Full stub; 334-row / 228-formula sheet	Critical
+18	loadsumm	Full stub; hardcoded totals	Critical
+19	LL-ABSTRACT	Completely missing from sheets/	Critical
+20	TYPE1-AbutMENT Drawing	Static text; no engine data	High
+21	TYPE1-STABILITY CHECK ABUTMENT	Hardcoded FOS; 161-row / 148-formula sheet not implemented	Critical
+22	TYPE1-ABUTMENT FOOTING DESIGN	Stub	Critical
+23	TYPE1-Abut Footing STRESS	Stub	High
+24	TYPE1-STEEL IN ABUTMENT	Stub	High
+25	TYPE1-Abutment Cap	Stub	High
+26	TYPE1-DIRT WALL REINFORCEMENT	Stub	High
+27	TYPE1-DIRT DirectLoad_BM	Stub	High
+28	TYPE1-DIRT LL_BM	Stub	High
+32	General Abs.	Hardcoded cost values (not from estimation engine)	High
+33	Abstract	Hardcoded BOQ items (not from estimation engine)	High
+34	Bridge measurements	Hardcoded measurements	High
+35–46	C1 Abutment group (12 sheets)	All placeholder — title only, "[Framework implementation]"	Critical
+—	sheets-extracted/ (all 46)	All TODO stubs — never called	Low (dead code)
+—	material-rates.ts	MATERIAL_RATES = [] — empty array, rates in RATE_LOOKUP are hardcoded	Medium
+—	Design engine wind force	Always windForce: 0 — no wind calculation	High
+—	Design engine seismic	Proxy-factor only, no IS:1893 calculation	High
+Summary Counts
+Status	Count	Sheets
+COMPLETE (real formulas + engine data)	4	3 (afflux calc), 4 (hydraulics), 29 (TechNote), 31 (Tech Report)
+PARTIAL (some real content, some hardcoded)	6	1, 2, 5, 6, 7, 8
+STUB (function exists, mostly hardcoded junk)	18	9–18, 20–28
+PLACEHOLDER (title only)	13	19 (wrong INSERT), 30, 32–34 (in sheets/), 35–46
+MISSING (not in sheets/ at all)	1	LL-ABSTRACT (sheet 19 per FINAL_RESULT.xls)
+Dead code (sheets-extracted/)	46+1	All 46 + index
+Priority Fix List
+Add LL-ABSTRACT sheet (missing entirely from sheets/) — wire it between loadSumm and INSERT TYPE1-ABUT.
+Sheet 9 (Stability Check Pier) — implement all 5 full load cases using input.pier.loadCases from engine; this is the largest sheet (468 rows) and the most technically critical.
+Sheet 17 (LLOAD) + Sheet 18 (loadsumm) — 334-row live load influence line calculation; currently completely hardcoded.
+Sheets 11–16 (Pier reinforcement group) — bind all to input.pier.reinforcement.* and input.pier.footing.* from design engine.
+Sheet 10 (Abstract of stresses) — bind to input.pier.loadCases instead of hardcoded numbers.
+Sheets 21–28 (Type1 Abutment group) — bind to input.abutmentType1.* from design engine; sheet 21 is 161 rows / 148 formulas.
+Sheets 35–46 (C1 Abutment group) — implement using input.abutmentC1.* from design engine; currently 12 title-only placeholders.
+Sheets 32–34 (BOQ/Estimate sheets) — bind to input.estimation.* from design engine; currently hardcoded dummy data.
+Fix sheet numbering in sheets/ — the off-by-one vs FINAL_RESULT.xls means the sheet sequence is wrong; LL-ABSTRACT must be inserted as sheet 19 and the abutment group renumbered 20–29.
+Design engine: wind force — windForce is always 0; IRC:6-2017 wind pressure formula needs implementing.
+Design engine: seismic — replace liveLoadFactor: 0.25 proxy with actual IS:1893 zone-based horizontal seismic coefficient.
+material-rates.ts — MATERIAL_RATES[] is empty; populate from FINAL_RESULT.xls Abstract sheet rates so BOQ amounts are accurate.
+Decide on sheets-extracted/ — either delete it (it's dead code), or adopt it as the target and redirect index.ts to import from it.
+Excellent — comprehensive audit complete. Now I know exactly what to fix. Let me read the critical files before writing:

@@ -1,0 +1,15 @@
+{
+  "crossSectionalArea": 40,
+  "wettedPerimeter": 80,
+  "hydraulicRadius": 0.5,
+  "velocity": 4.454493590701697,
+  "discharge": 178.17974362806785,
+  "regimeWidth": 64.07231300016164,
+  "effectiveWaterway": 8,
+  "scourDepth": 9.98213130243457,
+  "designScourDepth": 19.96426260486914,
+  "afflux": 0.590634431380089,
+  "designWaterLevel": 101.0906344313801,
+  "froudeNumber": 2.011309164821232,
+  "flowType": "Supercritical"
+}

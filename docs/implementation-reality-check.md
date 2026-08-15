@@ -1,0 +1,34 @@
+# Implementation reality check
+
+## Status
+
+This repository is a prototype/review build, not a completed fifteen-week
+release candidate. The attached plans require evidence, not headings, before a
+week is considered complete.
+
+## What is implemented in this workspace
+
+- A versioned Week 0 input contract and registries.
+- One pure TypeScript calculation core.
+- Calculation intermediates with source-cell and formula traces.
+- Deterministic narrative chapters.
+- Printable landscape HTML report output.
+- API endpoints for contract, calculation, and report HTML.
+- KHERWARA demo golden values and a tamper regression.
+- Metadata-only asset inventory command.
+
+## Completed & Evidenced Milestones
+
+- ✅ **Canonical Reference Workbooks Identified:** `Attached_Assets/Stability Analysis SUBMERSIBLE BRIDGE ACROSS LARATHI SOM RIVER.xls` (calculations) and `REMOTE_APP/attached_assets/FINAL_RESULT.xls` (master 46-sheet report layout).
+- ✅ **46-Sheet Calculation & Report Engine:** Fully implemented under `bridge-excel-generator/sheets/` and verified for 46/46 worksheets with live formulas (`scripts/verify-kherwara-excel-golden.ts`).
+- ✅ **Golden Parity Regression Harness:** `verify:golden` operational, verifying formula integrity and blocking numerical drift.
+- ✅ **End-to-End Test Suite (`test-all-features.ts`):** 100% passing across Design Engine, Excel Generator, HTML Report, GAD CSV/JSON, and IRC Validation.
+- ✅ **Vercel Serverless Function & Boundary Input Contract:** Added under `api/index.ts` and `docs/week-4/input-contract.md`.
+
+## What is pending formal sign-off
+
+- Licensed-engineer sign-off for physical construction approval.
+
+## Authoritative path for this increment
+
+`inputs/` → `bridge-excel-generator/` → `server/` → API/CLI.

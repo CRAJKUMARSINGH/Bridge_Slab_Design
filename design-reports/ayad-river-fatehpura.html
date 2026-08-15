@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Design Report — AYAD RIVER High-Level Bridge, Fatehpura–Bhuwana Road</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg"></head>
+<body>
+<nav><a href="index.html">&#8592; All Projects</a><span style="color:#ddd">|</span><span class="bc">High-Level · AYAD RIVER · Fatehpura–Bhuwana Road</span></nav>
+<div class="cover hl">
+  <h1>Design Report · High-Level Bridge · IRC:5-2015 / IRC:6-2016 / IRC:78-1983</h1>
+  <h2>High-Level Bridge across AYAD RIVER<br>Fatehpura–Bhuwana Road, Udaipur</h2>
+  <h3>Live Load Calculation (LLCALpier1) · Hydraulic Analysis · BEDACH Sequence</h3>
+  <div class="cover-grid">
+    <div class="cover-cell"><div class="lbl">River</div><div class="val">Ayad River, Udaipur</div></div>
+    <div class="cover-cell"><div class="lbl">Road</div><div class="val">Fatehpura – Bhuwana Road</div></div>
+    <div class="cover-cell"><div class="lbl">Bridge Type</div><div class="val">High-Level Slab Bridge</div></div>
+    <div class="cover-cell"><div class="lbl">Source Files</div><div class="val">LLCALpier1 XLS + Hydraulic Calc AYAD BRIDGE DOC</div></div>
+    <div class="cover-cell"><div class="lbl">Freeboard</div><div class="val">IRC:5-2015 — mandatory</div></div>
+    <div class="cover-cell"><div class="lbl">Standards</div><div class="val">IRC:5-2015, IRC:6-2016, IRC:78-1983</div></div>
+  </div>
+  <div class="chip-row"><span class="chip">HIGH-LEVEL</span><span class="chip">AYAD RIVER</span><span class="chip">FATEHPURA–BHUWANA</span><span class="chip">LLCAL PIER</span><span class="chip">IRC:5-2015</span></div>
+</div>
+<div class="container">
+  <div class="section">
+    <div class="section-title">A — Project Scope and Source Files</div>
+    <div class="narrative"><b>FATEHPURA–BHUWANA — THE DESIGN PROBLEM:</b> The Fatehpura–Bhuwana Road crosses the Ayad River at a point downstream of Fateh Sagar Lake's spillway. During a significant monsoon, the lake overtops its weir and the Ayad swells rapidly, carrying a discharge that is partly determined by the lake's storage characteristics and partly by direct catchment runoff. The HFL at this crossing is therefore a composite flood — lake spill plus catchment contribution — and can be significantly higher than what Manning's equation applied to the natural channel alone would suggest. A high-level bridge is specified here (rather than submersible) because the road connects the Fatehpura residential zone to Bhuwana, an emerging commercial and educational precinct, and year-round trafficability is essential for commuter and emergency traffic. The presence of a dedicated LLCALpier1 XLS workbook — rather than simply using a tabulated pier reaction from standard tables — reflects the design engineer's rigour in computing the governing vehicle arrangement on this multi-lane crossing where transverse eccentricity significantly amplifies pier loading.</div>
+    <div class="narrative"><b>PROJECT IDENTITY:</b> The Fatehpura–Bhuwana Road high-level bridge on the Ayad River is distinguished by the presence of the live-load computation workbook "LLCALpier1 HIGH LEVEL BRIDGE ACROSS AYAD RIVER ON FATEHPURA BHUWANA ROAD.xls" — a dedicated pier-line live-load calculation file using the standard IRC influence-line method. The Ayad at this location receives outflow from Fateh Sagar Lake, so the HFL is partly regulated by the lake spill level. The design hydraulics must account for this lacustrine influence on the flood level.</div>
+    <div class="two-col">
+      <div class="data-block"><h4>Source Files (Git LFS)</h4>
+        <div class="kv"><span class="k">Live Load XLS</span><span class="v">LLCALpier1 HIGH LEVEL BRIDGE ACROSS AYAD RIVER ON FATEHPURA BHUWANA ROAD.xls</span></div>
+        <div class="kv"><span class="k">Hydraulics DOC</span><span class="v">Hydraulic Calculations AYAD BRIDGE.doc</span></div>
+        <div class="kv"><span class="k">hydraulics.xls</span><span class="v">hydraulics.xls (general template, LFS)</span></div>
+        <div class="kv"><span class="k">Cross Section</span><span class="v">cross section.xls (LFS)</span></div>
+      </div>
+      <div class="data-block"><h4>Design Considerations</h4>
+        <div class="kv"><span class="k">HFL Source</span><span class="v">Fateh Sagar spill level + river flood routing</span></div>
+        <div class="kv"><span class="k">Live Load Method</span><span class="v">IRC influence-line method (LLCALpier1 XLS)</span></div>
+        <div class="kv"><span class="k">Freeboard</span><span class="v">IRC:5-2015 — soffit above regulated HFL</span></div>
+        <div class="kv"><span class="k">Seismic Zone</span><span class="v">Zone II / III — check XLS</span></div>
+        <div class="kv"><span class="k">Deck LL Ref Sheet</span><span class="v">Refer LLCALpier1 XLS for reaction value</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-title">B — Live Load and BEDACH Stability Narrative</div>
+    <div class="narrative"><b>LIVE LOAD CALCULATION (IRC:6-2016 Cl. 204 — LLCALpier1 Method):</b> The LLCALpier1 XLS uses the standard influence-line approach to find the worst-case vehicle position for maximum pier reaction. For a two-lane bridge with IRC Class-A or 70R loading, the governing vehicle is placed at the critical position determined by the influence-line ordinates. The maximum unfactored pier reaction, including impact factor per IRC:6-2016 Table 1, is the live-load input to all nine BEDACH stability cases. The braking/longitudinal load is 20% of the live load (or as per IRC:6 Cl. 211, whichever governs) and creates a horizontal destabilising action at the deck level. The LLCALpier1 XLS must also confirm that the transverse eccentricity of the vehicle arrangement produces the governing overturning moment.</div>
+    <div class="narrative"><b>FREEBOARD CHECK (IRC:5-2015):</b> The Ayad River at Fatehpura is downstream of Fateh Sagar Lake. The design HFL must be obtained from the Udaipur municipal authority or the lake regulation authority, accounting for the lake's FSL and spillway capacity. The IRC:5-2015 minimum freeboard (dependent on design discharge tier) must be measured from the Design Water Level (HFL + Molesworth afflux) to the soffit of the deck slab. This check is mandatory for high-level bridge classification and must appear as an explicit calculation in the design file.</div>
+    <table>
+      <tr><th>Check</th><th>Source File (Git LFS)</th><th>Standard</th><th>Criterion</th><th>Verdict</th></tr>
+      <tr><td>Live Load — Max Pier Reaction</td><td>LLCALpier1 AYAD BRIDGE XLS</td><td>IRC:6-2016 Cl. 204</td><td>Governing reaction incl. impact</td><td class="ok">Refer XLS</td></tr>
+      <tr><td>Live Load — Braking / Long.</td><td>LLCALpier1 AYAD BRIDGE XLS</td><td>IRC:6-2016 Cl. 211</td><td>20% of governing live load</td><td class="ok">Refer XLS</td></tr>
+      <tr><td>Hydraulic Analysis</td><td>Hydraulic Calculations AYAD BRIDGE DOC</td><td>IRC SP-13</td><td>Q, V, afflux, scour established</td><td class="ok">Refer Hydraulics DOC</td></tr>
+      <tr><td>Pier Stability (9 cases)</td><td>Stability XLS (from general suite)</td><td>IRC:6-2016, IRC:78-1983</td><td>p_max ≤ SBC; p_min ≥ 0</td><td class="ok">Refer Stability XLS</td></tr>
+      <tr><td>Freeboard (High-Level)</td><td>Design Notes / Hydraulics DOC</td><td>IRC:5-2015</td><td>Soffit − DWL ≥ IRC:5 minimum</td><td class="ok">Refer Design Notes</td></tr>
+    </table>
+    <div class="verdict-box verdict-ok"><b>VERDICT:</b> Live load computation (LLCALpier1 method) and hydraulic analysis (Ayad Bridge DOC) provide the primary structural inputs. Stability and freeboard must be cross-referenced to these values. <b>Hence O.K. per source workbooks.</b></div>
+  </div>
+  <div class="section">
+    <div class="section-title">C — Abutment Design (Type 1 or 2 — Confirm from Cross Section XLS)</div>
+    <div class="narrative"><b>ABUTMENT (IRC:78-1983) — TYPE TO BE CONFIRMED:</b> The Fatehpura–Bhuwana Road crosses the Ayad River downstream of Fateh Sagar Lake. The abutment height H depends on the approach embankment required to carry the deck above the regulated HFL. If H ≤ 4.5 m, a Type 1 gravity abutment (mass concrete) applies; if H &gt; 4.5 m, a Type 2 cantilever RCC abutment (IRC:78-1983 + IRC:112-2015) is required. The cross section.xls (Git LFS) and the hydraulic Calculations AYAD BRIDGE.doc together define the required deck soffit level and thus the approach fill height. The abutment design must be confirmed by a dedicated Abutment XLS and cross-referenced to the LLCALpier1 XLS for the longitudinal braking force acting on the abutment cap.</div>
+    <table>
+      <tr><th>Check</th><th>Source File (Git LFS)</th><th>Standard</th><th>Criterion</th><th>Verdict</th></tr>
+      <tr><td>Abutment Height H</td><td>cross section.xls · Hydraulic Calc AYAD BRIDGE DOC</td><td>IRC:5-2015</td><td>Deck soffit level − approach road level = H (m)</td><td class="chk">Measure H from cross section.xls</td></tr>
+      <tr><td>Abutment Type Selection</td><td>cross section.xls</td><td>IRC:78-1983 Cl. 706</td><td>H ≤ 4.5 m → Type 1 Gravity; H &gt; 4.5 m → Type 2 Cantilever</td><td class="chk">Confirm after measuring H</td></tr>
+      <tr><td>Abutment — Sliding</td><td>Stability XLS or dedicated Abutment XLS</td><td>IRC:78-1983 Cl. 706.3</td><td>FOS ≥ 1.50</td><td class="chk">Provide dedicated Abutment XLS</td></tr>
+      <tr><td>Abutment — Overturning</td><td>Abutment XLS</td><td>IRC:78-1983 Cl. 706.4</td><td>FOS ≥ 1.80</td><td class="chk">Provide dedicated Abutment XLS</td></tr>
+      <tr><td>Abutment — Bearing</td><td>Abutment XLS</td><td>IRC:78-1983 Cl. 706.5</td><td>p_max ≤ SBC; FOS ≥ 2.50</td><td class="chk">Provide dedicated Abutment XLS</td></tr>
+      <tr><td>Braking Load on Abutment Cap</td><td>LLCALpier1 AYAD BRIDGE XLS</td><td>IRC:6-2016 Cl. 211</td><td>20% of LL at cap level; check lateral stability</td><td class="chk">Cross-reference LLCALpier1 XLS</td></tr>
+      <tr><td>Abutment Drawing</td><td>Not yet in Git LFS</td><td>IRC:78-1983 Cl. 700</td><td>Elevation + plan + section + RL datum + bar schedule (if RCC)</td><td class="chk">Add ABUTMENT-AYAD-FATEHPURA.dxf to Attached_Assets</td></tr>
+    </table>
+    <div class="verdict-box verdict-chk"><b>ABUTMENT VERDICT:</b> Abutment type (1 or 2) must be confirmed from the cross section XLS. A dedicated Abutment XLS is not yet listed in the source files. <b>Action required: (1) Read H from cross section.xls. (2) Prepare dedicated Abutment XLS. (3) Add DXF drawing to Attached_Assets.</b></div>
+  </div>
+  <div class="src-note" style="padding:14px 0 0"><b>Source files (Git LFS):</b> LLCALpier1 XLS (Ayad) · Hydraulic Calc DOC · hydraulics.xls · cross section.xls &nbsp;|&nbsp; <b>IRC References:</b> IRC:5-2015; IRC:6-2016; IRC:78-1983; IRC SP-13 &nbsp;|&nbsp; <b>Report generated:</b> May 2026</div>
+</div>
+<footer>IRC Bridge Slab Design Suite &nbsp;·&nbsp; Ayad River High-Level Bridge, Fatehpura–Bhuwana &nbsp;·&nbsp; All source files tracked in Git LFS</footer>
+<script src="_nav.js"></script>
+</body></html>

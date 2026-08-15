@@ -1,0 +1,22 @@
+[General]
+pointLabelOnEntity = 1
+pointLabelAngle = 0.000000
+spiralLabelAngle = 0.000000
+curveLabelAngle = 0.000000
+lineLabelAngle = 0.000000
+pointLabelStyle = active desckeys only
+spiralLabelOnEntity = 1
+spiralTagLabelStyle = tag number
+spiralLabelStyle = radius, length, p, k, a above
+curveLabelOnEntity = 1
+curveTagLabelStyle = tag number
+curveLabelStyle = length above, radius below
+lineBearFlag = 0
+lineLabelOnEntity = 1
+lineTagLabelStyle = tag number
+lineLabelStyle = stacked above - direction, distance
+updateLabelOnStyleChange = 1
+updateLabelOnEntChange = 1
+trackCoordinates = 0
+doubleClickCommand = _.ddmodify
+stylePath = C:\Documents and Settings\All Users.WINDOWS\Application Data\Autodesk\LDT2009\R17.2\Data\labels\

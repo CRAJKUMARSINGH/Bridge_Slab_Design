@@ -1,0 +1,140 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API specification
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: design
+    description: Traceable bridge design calculations and reports
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /design/contract:
+    get:
+      operationId: getDesignContract
+      tags: [design]
+      summary: Return the versioned bridge input contract
+      responses:
+        "200":
+          description: Input, coefficient, and constraint registries
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DesignContract"
+  /design/calculate:
+    post:
+      operationId: calculateDesign
+      tags: [design]
+      summary: Run the single traceable calculation core
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BridgeDesignInput"
+      responses:
+        "200":
+          description: Calculation result with intermediates, checks, and trace records
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BridgeCalculationResult"
+        "400":
+          description: Invalid or incomplete input
+  /design/report/html:
+    post:
+      operationId: renderDesignReport
+      tags: [design]
+      summary: Render a draft narrative HTML report
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BridgeDesignInput"
+      responses:
+        "200":
+          description: Printable landscape HTML report
+          content:
+            text/html:
+              schema:
+                type: string
+        "400":
+          description: Invalid or incomplete input
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    BridgeDesignInput:
+      type: object
+      required:
+        - spanLength
+        - deckWidth
+        - girderSpacing
+        - numberOfGirders
+        - concreteStrength
+        - steelGrade
+        - deckThickness
+        - liveLoadUdl
+        - liveLoadPoint
+        - secondMoment
+        - sectionModulus
+      properties:
+        projectName: { type: string, default: "KHERWARA / KHARKA DEMO" }
+        projectCode: { type: string, default: KHERWARA }
+        revision: { type: string, default: draft }
+        spanLength: { type: number, exclusiveMinimum: 0, description: "Inputs!B3, m" }
+        deckWidth: { type: number, exclusiveMinimum: 0, description: "Inputs!B4, m" }
+        girderSpacing: { type: number, exclusiveMinimum: 0, description: "Inputs!B5, m" }
+        numberOfGirders: { type: number, minimum: 1, description: "Inputs!B6; integer required" }
+        concreteStrength: { type: number, exclusiveMinimum: 0, description: "Inputs!B7, MPa" }
+        steelGrade: { type: number, exclusiveMinimum: 0, description: "Inputs!B8, MPa" }
+        deckThickness: { type: number, exclusiveMinimum: 0, description: "Inputs!B9, m" }
+        liveLoadUdl: { type: number, minimum: 0, description: "Inputs!B10, kN/m" }
+        liveLoadPoint: { type: number, minimum: 0, description: "Inputs!B11, kN" }
+        secondMoment: { type: number, exclusiveMinimum: 0, description: "Inputs!B12, mm4" }
+        sectionModulus: { type: number, exclusiveMinimum: 0, description: "Calc!B9, mm3" }
+        alpha: { type: number, exclusiveMinimum: 0, default: 0.9, description: "Calc!B13" }
+        correctionK3: { type: number, exclusiveMinimum: 0, default: 1.2, description: "Calc!B21" }
+    DesignContract:
+      type: object
+      required: [schemaVersion, description, variables, coefficients, constraints]
+      properties:
+        schemaVersion: { type: string }
+        description: { type: string }
+        variables:
+          type: array
+          items: { type: object, additionalProperties: true }
+        coefficients:
+          type: array
+          items: { type: object, additionalProperties: true }
+        constraints:
+          type: array
+          items: { type: object, additionalProperties: true }
+    BridgeCalculationResult:
+      type: object
+      required: [schemaVersion, input, intermediates, coefficients, constraints, overallStatus, failedChecks, traceRecords, assumptions, reviewStatus]
+      additionalProperties: true
+

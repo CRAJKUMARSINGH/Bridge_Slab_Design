@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KHERWARA / KHARKA DEMO — Draft design report</title>
+  <style>
+    @page { size: A4 landscape; margin: 16mm 14mm 16mm; }
+    :root { color-scheme: light; font-family: Georgia, "Times New Roman", serif; color: #1d2b2f; background: #f4f1ea; }
+    body { margin: 0; background: #f4f1ea; }
+    main { max-width: 1200px; margin: 0 auto; padding: 42px 52px 72px; background: #fffdf8; }
+    header { border-bottom: 4px solid #b56d3c; padding-bottom: 24px; margin-bottom: 28px; }
+    .eyebrow { color: #b56d3c; font: 700 12px/1.2 Arial, sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { margin: 10px 0 8px; font: 700 34px/1.05 Georgia, serif; }
+    h2 { margin: 30px 0 12px; color: #244b51; font: 700 22px/1.15 Georgia, serif; break-after: avoid; }
+    p { max-width: 940px; font-size: 15px; line-height: 1.65; }
+    .meta { color: #5d6a6c; font: 13px/1.5 Arial, sans-serif; }
+    .status { display: inline-block; margin-top: 16px; padding: 8px 13px; border-radius: 999px; font: 700 12px Arial, sans-serif; letter-spacing: .08em; }
+    .status.pass, tr.pass td:last-child { color: #135d42; background: #dff2e8; }
+    .status.fail, tr.fail td:last-child { color: #8a301d; background: #f8dfd8; }
+    .callout { border-left: 4px solid #b56d3c; background: #f4eee5; padding: 12px 16px; margin: 18px 0; font: 13px/1.5 Arial, sans-serif; }
+    table { width: 100%; border-collapse: collapse; margin: 14px 0 26px; font: 12px/1.35 Arial, sans-serif; break-inside: avoid; }
+    th { text-align: left; color: #fffdf8; background: #244b51; padding: 9px 8px; }
+    td { border-bottom: 1px solid #e3ded3; padding: 8px; vertical-align: top; }
+    tr.fail td { background: #fff0eb; }
+    section { break-inside: avoid; }
+    .trace td, .trace th { font-size: 10px; }
+    footer { margin-top: 42px; border-top: 1px solid #d9d1c4; padding-top: 14px; color: #6b7778; font: 11px/1.45 Arial, sans-serif; }
+    @media print { main { max-width: none; padding: 0; } body { background: #fffdf8; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Bridge Report Studio · DRAFT</div>
+    <h1>KHERWARA / KHARKA DEMO</h1>
+    <div class="meta">Project KHERWARA · Revision week-0-demo · Schema bridge-calculation.v1</div>
+    <div class="status fail">OVERALL FAIL · 1 FAILED CHECK</div>
+  </header>
+  <div class="callout"><strong>Review notice.</strong> This report is a draft calculation record. Failed checks remain visible and must be resolved or accepted by a qualified engineer. Excel remains the parity reference until an approved canonical workbook is selected.</div>
+  
+        <section>
+          <h2>Project summary</h2>
+          <p>This draft calculation record describes KHERWARA / KHARKA DEMO (KHERWARA), revision week-0-demo. The report follows the attached report-first direction: the design is read from controlled inputs through the calculation chain to visible checks, rather than presenting an isolated spreadsheet screen.</p><p>The governing utilisation is 0.8663 after the visible alpha and k3 adjustments. The overall software result is FAIL; 1 generated constraint remains visible for engineering review.</p>
+        </section>
+        <section>
+          <h2>Design basis and controlled inputs</h2>
+          <p>The adopted span is 45.00 m with a deck width of 12.00 m, girder spacing of 3.00 m, and 4 girders. The material inputs are concrete strength 40.00 MPa and steel grade 355.00 MPa, with deck thickness 0.250 m.</p><p>The live action set contains a UDL of 25.00 kN/m and a concentrated load of 150.00 kN. The section properties supplied for the run are I = 65,00,00,00,000 mm4 and Wc = 4,50,00,000 mm3.</p>
+        </section>
+        <section>
+          <h2>Loads and actions</h2>
+          <p>The migrated formula sequence produces a slab dead-load intermediate of 0.000 kN/m and asphalt dead-load intermediate of 0.000 kN/m. The attached demo workbook references a blank Factors!B2 in both source formulas, so those zero results are retained as an explicit parity assumption rather than silently replaced.</p><p>With Gamma_G = 1.35, the resulting design UDL is 33.750 kN/m. For the simply supported span, the source formula gives a maximum bending moment of 8,542.9688 kN*m and maximum shear of 961.875 kN.</p>
+        </section>
+        <section>
+          <h2>Detailed calculation narrative</h2>
+          <p>The bending stress demand is 189.8438 MPa, obtained from the source moment-to-section-modulus conversion. Compared with the steel resistance expression using Gamma_Q = 1.50, the bending utilisation is 0.8022.</p><p>The serviceability sequence gives a live-load deflection of 1,86,69,075.0656 mm against a source limit of 180.000 mm. The shear demand is 0.0802 MPa against the registered capacity of 2.500 MPa.</p>
+        </section>
+        <section>
+          <h2>Governing checks</h2>
+          <p>The governing utilisation is the maximum of bending utilisation and the shear-demand-to-capacity ratio, resulting in 0.8022. Applying the visible engineer-controlled alpha value 0.900 and correction k3 value 1.200 gives an adjusted governing utilisation of 0.8663.</p><p>Utilisation (bending): 0.8022. Utilisation (bending) is within the stated limit. Source Calc!B11; formula B10/(Inputs!B8/Factors!B4).</p><p>Bending check: OK. Bending check is within the stated limit. Source Calc!B12; formula IF(B11&lt;=1,&quot;OK&quot;,&quot;NOT OK&quot;).</p><p>Deflection check: NOT OK. Deflection check is outside the stated limit and remains a review stop-point. Source Calc!B16; formula IF(B14&lt;=B15,&quot;OK&quot;,&quot;NOT OK&quot;).</p><p>Shear check: OK. Shear check is within the stated limit. Source Calc!B20; formula IF(B18&lt;=B19,&quot;OK&quot;,&quot;NOT OK&quot;).</p><p>Governing utilisation: 0.8022. Governing utilisation is within the stated limit. Source Calc!B22; formula MAX(B11,B18/B19).</p><p>Adjusted governing utilisation: 0.8663. Adjusted governing utilisation is within the stated limit. Source Calc!B23; formula B22*B13*B21.</p>
+        </section>
+        <section>
+          <h2>Assumptions, limitations, and review status</h2>
+          <p>The formula sequence is migrated from the attached Week 0 demo workbook and is not a substitute for licensed engineering review.</p><p>Excel remains the parity reference until an approved canonical workbook is selected.</p><p>Factors!B2 is blank in the attached demo workbook and is retained as zero rather than silently corrected.</p><p>Alpha and correction k3 use the attached demo decisions as visible engineer-controlled defaults.</p><p>This output is marked DRAFT. A passing software result does not constitute structural approval, and the visible failed check must be resolved or accepted by a qualified engineer before any design reliance.</p>
+        </section>
+  <section>
+    <h2>Constraint register</h2>
+    <table>
+      <thead><tr><th>Check</th><th>Value</th><th>Inequality</th><th>Status</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr class="pass">
+          <td>Utilisation (bending)</td>
+          <td>0.802</td>
+          <td>bending utilisation &lt;= 1.0</td>
+          <td>PASS</td>
+          <td>Calc!B11</td>
+        </tr>
+        <tr class="pass">
+          <td>Bending check</td>
+          <td>OK</td>
+          <td>bending utilisation &lt;= 1.0</td>
+          <td>PASS</td>
+          <td>Calc!B12</td>
+        </tr>
+        <tr class="fail">
+          <td>Deflection check</td>
+          <td>NOT OK</td>
+          <td>deflection live load &lt;= deflection limit</td>
+          <td>FAIL</td>
+          <td>Calc!B16</td>
+        </tr>
+        <tr class="pass">
+          <td>Shear check</td>
+          <td>OK</td>
+          <td>shear stress &lt;= shear capacity</td>
+          <td>PASS</td>
+          <td>Calc!B20</td>
+        </tr>
+        <tr class="pass">
+          <td>Governing utilisation</td>
+          <td>0.802</td>
+          <td>governing utilisation &lt;= 1.0</td>
+          <td>PASS</td>
+          <td>Calc!B22</td>
+        </tr>
+        <tr class="pass">
+          <td>Adjusted governing utilisation</td>
+          <td>0.866</td>
+          <td>adjusted governing utilisation &lt;= 1.0</td>
+          <td>PASS</td>
+          <td>Calc!B23</td>
+        </tr></tbody>
+    </table>
+  </section>
+  <section>
+    <h2>Calculation trace</h2>
+    <table class="trace">
+      <thead><tr><th>Field</th><th>Value</th><th>Units</th><th>Source cell</th><th>Formula / provenance</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Span length L</td>
+          <td>45</td>
+          <td>m</td>
+          <td>Inputs!B3</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Deck width W</td>
+          <td>12</td>
+          <td>m</td>
+          <td>Inputs!B4</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Girder spacing s</td>
+          <td>3</td>
+          <td>m</td>
+          <td>Inputs!B5</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Number of girders n</td>
+          <td>4</td>
+          <td>-</td>
+          <td>Inputs!B6</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Concrete strength fck</td>
+          <td>40</td>
+          <td>MPa</td>
+          <td>Inputs!B7</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Steel grade fy</td>
+          <td>355</td>
+          <td>MPa</td>
+          <td>Inputs!B8</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Deck thickness t</td>
+          <td>0.25</td>
+          <td>m</td>
+          <td>Inputs!B9</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Live load UDL wl</td>
+          <td>25</td>
+          <td>kN/m</td>
+          <td>Inputs!B10</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Live load concentrated Q</td>
+          <td>150</td>
+          <td>kN</td>
+          <td>Inputs!B11</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Second moment of area I</td>
+          <td>65,00,00,00,000</td>
+          <td>mm4</td>
+          <td>Inputs!B12</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Chosen section modulus Wc</td>
+          <td>4,50,00,000</td>
+          <td>mm3</td>
+          <td>Calc!B9</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Gamma_G (self weight)</td>
+          <td>1.35</td>
+          <td>-</td>
+          <td>Factors!B3</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Gamma_Q (live load)</td>
+          <td>1.5</td>
+          <td>-</td>
+          <td>Factors!B4</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Gamma_M (steel)</td>
+          <td>1.1</td>
+          <td>-</td>
+          <td>Factors!B5</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Gamma_c (concrete)</td>
+          <td>1.5</td>
+          <td>-</td>
+          <td>Factors!B6</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Elastic modulus E</td>
+          <td>2,10,000</td>
+          <td>MPa</td>
+          <td>Factors!B7</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Unit weight concrete</td>
+          <td>25</td>
+          <td>kN/m3</td>
+          <td>Factors!B8</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Unit weight asphalt</td>
+          <td>24</td>
+          <td>kN/m3</td>
+          <td>Factors!B9</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Shear capacity vc</td>
+          <td>2.5</td>
+          <td>MPa</td>
+          <td>Calc!B19</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Dead load slab g_slab</td>
+          <td>0</td>
+          <td>kN/m</td>
+          <td>Calc!B3</td>
+          <td>Inputs!B9*Factors!B7*Factors!B2</td>
+        </tr>
+        <tr>
+          <td>Dead load asphalt g_asph</td>
+          <td>0</td>
+          <td>kN/m</td>
+          <td>Calc!B4</td>
+          <td>Factors!B9*Factors!B8*Factors!B2</td>
+        </tr>
+        <tr>
+          <td>Design UDL including live load</td>
+          <td>33.75</td>
+          <td>kN/m</td>
+          <td>Calc!B5</td>
+          <td>B3+B4+Inputs!B10*Factors!B3</td>
+        </tr>
+        <tr>
+          <td>Maximum bending moment M</td>
+          <td>8,542.969</td>
+          <td>kN*m</td>
+          <td>Calc!B6</td>
+          <td>B5*Inputs!B3^2/8</td>
+        </tr>
+        <tr>
+          <td>Maximum shear V</td>
+          <td>961.875</td>
+          <td>kN</td>
+          <td>Calc!B7</td>
+          <td>B5*Inputs!B3/2+Inputs!B11*Factors!B3</td>
+        </tr>
+        <tr>
+          <td>Bending stress demand</td>
+          <td>189.844</td>
+          <td>MPa</td>
+          <td>Calc!B10</td>
+          <td>B6*1000000/B9</td>
+        </tr>
+        <tr>
+          <td>Bending utilisation U_b</td>
+          <td>0.802</td>
+          <td>-</td>
+          <td>Calc!B11</td>
+          <td>B10/(Inputs!B8/Factors!B4)</td>
+        </tr>
+        <tr>
+          <td>Deflection live load</td>
+          <td>1,86,69,075.066</td>
+          <td>mm</td>
+          <td>Calc!B14</td>
+          <td>5*Inputs!B10*(Inputs!B3*1000)^4/(384*Factors!B5*Inputs!B12)</td>
+        </tr>
+        <tr>
+          <td>Deflection limit</td>
+          <td>180</td>
+          <td>mm</td>
+          <td>Calc!B15</td>
+          <td>Inputs!B3*1000/Factors!B10</td>
+        </tr>
+        <tr>
+          <td>Shear stress demand</td>
+          <td>0.08</td>
+          <td>MPa</td>
+          <td>Calc!B18</td>
+          <td>B7*1000/(Inputs!B6*Inputs!B4*1000*Inputs!B9*1000)</td>
+        </tr>
+        <tr>
+          <td>Governing utilisation</td>
+          <td>0.802</td>
+          <td>-</td>
+          <td>Calc!B22</td>
+          <td>MAX(B11,B18/B19)</td>
+        </tr>
+        <tr>
+          <td>Adjusted governing utilisation</td>
+          <td>0.866</td>
+          <td>-</td>
+          <td>Calc!B23</td>
+          <td>B22*B13*B21</td>
+        </tr>
+        <tr>
+          <td>Blank source factor retained for workbook parity</td>
+          <td>Factors!B2 is blank in the attached demo workbook; Calc!B3 and Calc!B4 therefore remain zero.</td>
+          <td>-</td>
+          <td>Factors!B2</td>
+          <td></td>
+        </tr></tbody>
+    </table>
+  </section>
+  <footer>
+    Software-calculated draft only. This record states what the migrated formula path calculated, what it did not assess, and what a qualified engineer must confirm before reliance.
+  </footer>
+</main>
+</body>
+</html>

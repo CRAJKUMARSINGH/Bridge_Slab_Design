@@ -1,0 +1,18 @@
+{
+  "projectName": "KHERWARA / KHARKA DEMO",
+  "projectCode": "KHERWARA",
+  "revision": "week-0-demo",
+  "spanLength": 45,
+  "deckWidth": 12,
+  "girderSpacing": 3,
+  "numberOfGirders": 4,
+  "concreteStrength": 40,
+  "steelGrade": 355,
+  "deckThickness": 0.25,
+  "liveLoadUdl": 25,
+  "liveLoadPoint": 150,
+  "secondMoment": 65000000000,
+  "sectionModulus": 45000000,
+  "alpha": 0.9,
+  "correctionK3": 1.2
+}

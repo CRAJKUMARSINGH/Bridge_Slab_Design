@@ -1,0 +1,22 @@
+[General]
+pointLabelOnEntity = 1
+pointLabelAngle = 0.000000
+spiralLabelAngle = 0.000000
+curveLabelAngle = 0.000000
+lineLabelAngle = 0.000000
+pointLabelStyle = Z-all point data
+spiralLabelOnEntity = 1
+spiralTagLabelStyle = tag number
+spiralLabelStyle = radius, length, p, k, a above
+curveLabelOnEntity = 1
+curveTagLabelStyle = tag number
+curveLabelStyle = L, r below
+lineBearFlag = 0
+lineLabelOnEntity = 1
+lineTagLabelStyle = tag number
+lineLabelStyle = stacked above - direction, distance
+updateLabelOnStyleChange = 1
+updateLabelOnEntChange = 1
+trackCoordinates = 0
+doubleClickCommand = _.ddmodify
+stylePath = C:\Avalanche\Autodesk\Content 2006\Marello Content\COMPANY SET\LDTData\labels\

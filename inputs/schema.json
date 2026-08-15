@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "bridge-input.v1",
+  "description": "The attached Week 0 demo input contract. Engineering values are explicit; alpha and correctionK3 remain visible engineer-controlled defaults.",
+  "projectMetadata": ["projectName", "projectCode", "revision"],
+  "variables": [
+    { "id": "spanLength", "label": "Span length L", "units": "m", "sourceCell": "Inputs!B3", "required": true, "minimum": 0 },
+    { "id": "deckWidth", "label": "Deck width W", "units": "m", "sourceCell": "Inputs!B4", "required": true, "minimum": 0 },
+    { "id": "girderSpacing", "label": "Girder spacing s", "units": "m", "sourceCell": "Inputs!B5", "required": true, "minimum": 0 },
+    { "id": "numberOfGirders", "label": "Number of girders n", "units": "-", "sourceCell": "Inputs!B6", "required": true, "integer": true, "minimum": 1 },
+    { "id": "concreteStrength", "label": "Concrete strength fck", "units": "MPa", "sourceCell": "Inputs!B7", "required": true, "minimum": 0 },
+    { "id": "steelGrade", "label": "Steel grade fy", "units": "MPa", "sourceCell": "Inputs!B8", "required": true, "minimum": 0 },
+    { "id": "deckThickness", "label": "Deck thickness t", "units": "m", "sourceCell": "Inputs!B9", "required": true, "minimum": 0 },
+    { "id": "liveLoadUdl", "label": "Live load UDL wl", "units": "kN/m", "sourceCell": "Inputs!B10", "required": true, "minimum": 0 },
+    { "id": "liveLoadPoint", "label": "Live load concentrated Q", "units": "kN", "sourceCell": "Inputs!B11", "required": true, "minimum": 0 },
+    { "id": "secondMoment", "label": "Second moment of area I", "units": "mm4", "sourceCell": "Inputs!B12", "required": true, "minimum": 0 },
+    { "id": "sectionModulus", "label": "Chosen section modulus Wc", "units": "mm3", "sourceCell": "Calc!B9", "required": true, "minimum": 0 },
+    { "id": "alpha", "label": "Parameter alpha", "units": "-", "sourceCell": "Calc!B13", "required": false, "default": 0.9, "minimum": 0 },
+    { "id": "correctionK3", "label": "Correction k3", "units": "-", "sourceCell": "Calc!B21", "required": false, "default": 1.2, "minimum": 0 }
+  ],
+  "notes": [
+    "No final engineering values may be silently filled.",
+    "The attached demo workbook's blank Factors!B2 is retained as an explicit parity assumption.",
+    "This contract is a prototype/review build and requires licensed-engineer review."
+  ]
+}

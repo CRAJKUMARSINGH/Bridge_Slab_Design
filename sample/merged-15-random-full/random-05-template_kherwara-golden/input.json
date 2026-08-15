@@ -1,0 +1,77 @@
+{
+  "projectName": "Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD",
+  "location": "KM 9/000, KHERWARA - JAWAS - SUVERI ROAD",
+  "riverName": "SOM",
+  "bridgeType": "submersible",
+  "spanLength": 7.824,
+  "numberOfSpans": 12,
+  "skew": 0,
+  "carriageWidth": 7.5,
+  "numberOfLanes": 2,
+  "totalLength": 96,
+  "hfl": 100.685,
+  "bedLevel": 96.6,
+  "foundationLevel": 92.6,
+  "discharge": 837.79,
+  "manningN": 0.03273,
+  "bedSlope": 957.345,
+  "laceysSiltFactor": 1.5,
+  "crossSectionData": [
+    {
+      "chainage": 0,
+      "gl": 100.5
+    },
+    {
+      "chainage": 10,
+      "gl": 98.2
+    },
+    {
+      "chainage": 20,
+      "gl": 96.6
+    },
+    {
+      "chainage": 30,
+      "gl": 96.8
+    },
+    {
+      "chainage": 40,
+      "gl": 97.5
+    },
+    {
+      "chainage": 50,
+      "gl": 99.8
+    },
+    {
+      "chainage": 60,
+      "gl": 101.2
+    }
+  ],
+  "pierWidth": 1.2,
+  "pierLength": 3.5,
+  "pierDepth": 4,
+  "numberOfPiers": 11,
+  "pierBaseWidth": 2.5,
+  "pierBaseLength": 4.5,
+  "abutmentHeight": 5,
+  "abutmentWidth": 0.575,
+  "abutmentDepth": 3,
+  "dirtWallHeight": 3.5,
+  "returnWallLength": 6,
+  "concreteGrade": "M25",
+  "fck": 25,
+  "steelGrade": "Fe415",
+  "fy": 415,
+  "sbc": 158.873,
+  "phi": 30,
+  "gamma": 18,
+  "rtl": 101.6,
+  "agl": 96.6,
+  "nbl": 96.6,
+  "ofl": 100.6,
+  "dwl": 100.83,
+  "deckSlabThickness": 0.25,
+  "freeboardAboveHfl": 1,
+  "issuingAuthority": "PWD / Employer records (Kherwara sample)",
+  "jobNumber": "KHERWARA-SUBM-REF",
+  "hardRockAvailable": false
+}

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IRC Bridge Drawings — Abutment Type Reference (All Three Types × Both Bridge Categories)</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+.cover-drg{background:linear-gradient(135deg,#2d0a5e 0%,#5a1a9e 45%,#0a5e3a 100%);color:#fff;padding:36px 40px 28px}
+.cover-drg h1{font-size:22px;font-weight:800;margin-bottom:6px}
+.cover-drg h2{font-size:16px;font-weight:600;opacity:.9;margin-bottom:4px}
+.cover-drg h3{font-size:13px;font-weight:500;opacity:.8;margin-bottom:14px}
+.abut-type-badge{display:inline-block;padding:3px 14px;border-radius:14px;font-size:11.5px;font-weight:800;letter-spacing:.4px;margin-right:8px;margin-bottom:4px}
+.t1{background:#e8f5e9;color:#1b5e20;border:1.5px solid #2e7d32}
+.t2{background:#e3f2fd;color:#0d47a1;border:1.5px solid #1565c0}
+.t3{background:#fce4ec;color:#880e4f;border:1.5px solid #ad1457}
+.type-header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.type-num{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;flex-shrink:0}
+.t1-num{background:#2e7d32;color:#fff}
+.t2-num{background:#1565c0;color:#fff}
+.t3-num{background:#ad1457;color:#fff}
+.formula-inline{background:#f0f4ff;border-left:3px solid #1565c0;padding:8px 14px;border-radius:0 6px 6px 0;font-family:'Consolas','Courier New',monospace;font-size:12.5px;margin:8px 0;color:#0d2060}
+.matrix-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0;border:1px solid #e0e8f0;border-radius:8px;overflow:hidden;margin:14px 0;font-size:12px}
+.mg-head{background:#2d0a5e;color:#fff;font-weight:700;padding:9px 12px;font-size:11.5px}
+.mg-cell{padding:8px 12px;border-bottom:1px solid #f0f4f8}
+.mg-cell:nth-child(4n+1){background:#f7f9fc;font-weight:700;color:#2d0a5e}
+.ok-dot::before{content:"✓ ";color:#2e7d32;font-weight:900}
+.chk-dot::before{content:"▲ ";color:#b45309;font-weight:900}
+.no-dot::before{content:"✗ ";color:#b71c1c;font-weight:900}
+.project-chip{display:inline-block;background:#e8edf5;color:#1a4a9e;border-radius:10px;padding:2px 9px;font-size:11px;font-weight:600;margin:2px}
+/* ── Calculator ──────────────────────────────────────────────── */
+.calc-wrap{background:linear-gradient(135deg,#f0f4ff 0%,#e8f5e9 100%);border:1.5px solid #c5d8f0;border-radius:12px;padding:24px 28px;margin:18px 0}
+.calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 24px;margin:18px 0}
+@media(max-width:700px){.calc-grid{grid-template-columns:1fr 1fr}}
+.calc-field label{display:block;font-size:11.5px;font-weight:700;color:#1a4a6e;margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px}
+.calc-field input,.calc-field select{width:100%;padding:8px 10px;border:1.5px solid #bcd0e8;border-radius:6px;font-size:13px;font-family:inherit;background:#fff;color:#0d1b2a;box-sizing:border-box;transition:border .15s}
+.calc-field input:focus,.calc-field select:focus{outline:none;border-color:#1565c0}
+.calc-field .unit{font-size:11px;color:#5a7a99;margin-top:2px}
+.calc-btn{display:inline-flex;align-items:center;gap:8px;background:#2d0a5e;color:#fff;padding:10px 28px;border-radius:8px;font-size:13px;font-weight:800;border:none;cursor:pointer;transition:background .15s;margin-top:6px}
+.calc-btn:hover{background:#5a1a9e}
+.calc-result{margin-top:18px;display:none}
+.type-rec{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:10px;margin-bottom:14px;font-weight:700;font-size:14px}
+.type-rec-t1{background:#e8f5e9;border:2px solid #2e7d32;color:#1b5e20}
+.type-rec-t2{background:#e3f2fd;border:2px solid #1565c0;color:#0d47a1}
+.type-rec-t3{background:#fce4ec;border:2px solid #ad1457;color:#880e4f}
+.type-rec-badge{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;flex-shrink:0}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;margin-bottom:10px}
+@media(max-width:600px){.res-grid{grid-template-columns:1fr}}
+.res-card{background:#fff;border-radius:8px;padding:12px 14px;border-left:4px solid #ccc}
+.res-card.pass{border-left-color:#2e7d32}
+.res-card.warn{border-left-color:#b45309}
+.res-card.fail{border-left-color:#b71c1c}
+.res-card .rc-label{font-size:11px;font-weight:700;text-transform:uppercase;color:#5a7a99;margin-bottom:2px}
+.res-card .rc-val{font-size:20px;font-weight:900;color:#0d1b2a;font-variant-numeric:tabular-nums}
+.res-card .rc-note{font-size:11px;color:#5a7a99;margin-top:2px}
+.formula-row{background:#f0f4ff;border-radius:6px;padding:10px 14px;font-family:'Consolas','Courier New',monospace;font-size:11.5px;color:#0d2060;margin-bottom:8px;line-height:1.7}
+.stem-block{background:#fff3e0;border:1.5px solid #ef9200;border-radius:8px;padding:14px 18px;margin-top:10px}
+.stem-block h4{font-size:12px;font-weight:800;color:#7a3800;margin:0 0 8px;text-transform:uppercase}
+.t3-block{background:#fce4ec;border:1.5px solid #ad1457;border-radius:8px;padding:14px 18px;margin-top:10px;color:#880e4f;font-size:13px}
+</style>
+</head>
+<body>
+
+<nav><a href="index.html">&#8592; All Projects</a><span style="color:#ddd">|</span><span class="bc">IRC Drawings Reference · All Abutment Types · Both Bridge Categories</span><span style="color:#ddd">|</span><a href="apps-hub.html" style="color:#5b21b6;font-weight:700;text-decoration:none">&#128736; Apps Hub</a></nav>
+
+<div class="cover-drg">
+  <h1>IRC Bridge Drawings — Abutment Type Reference</h1>
+  <h2>Both Bridge Categories: High-Level (IRC:5-2015) &amp; Submersible (IRC SP-13)</h2>
+  <h3>All Three IRC Abutment Types: Gravity · Cantilever · Counterfort — Checks, Dimensions, Criteria, Source DXF/DWG</h3>
+  <div class="cover-grid">
+    <div class="cover-cell"><div class="lbl">Type 1 — Gravity</div><div class="val">Mass concrete / PCC · H &lt; 5 m · IRC:78-1983</div></div>
+    <div class="cover-cell"><div class="lbl">Type 2 — Cantilever</div><div class="val">RCC T-wall / L-wall · H 4–8 m · IRC:78 + IRC:112</div></div>
+    <div class="cover-cell"><div class="lbl">Type 3 — Counterfort</div><div class="val">RCC + counterforts · H &gt; 7 m · IRC:78 + IRC:112</div></div>
+    <div class="cover-cell"><div class="lbl">Bridge Categories</div><div class="val">High-Level (7 projects) · Submersible (9 projects)</div></div>
+    <div class="cover-cell"><div class="lbl">Governing Stability Standard</div><div class="val">IRC:78-1983 (all types)</div></div>
+    <div class="cover-cell"><div class="lbl">RC Design Standard</div><div class="val">IRC:112-2015 (Types 2 &amp; 3)</div></div>
+  </div>
+  <div class="chip-row">
+    <span class="chip">TYPE 1 GRAVITY</span>
+    <span class="chip">TYPE 2 CANTILEVER</span>
+    <span class="chip">TYPE 3 COUNTERFORT</span>
+    <span class="chip">HIGH-LEVEL</span>
+    <span class="chip">SUBMERSIBLE</span>
+    <span class="chip">IRC:78-1983</span>
+    <span class="chip">IRC:112-2015</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ──────────────────────────────────────────────────────────── -->
+  <!-- SECTION A: TYPE 1 — GRAVITY ABUTMENT                        -->
+  <!-- ──────────────────────────────────────────────────────────── -->
+  <div class="section" id="type1-gravity">
+    <div class="type-header">
+      <div class="type-num t1-num">1</div>
+      <div class="section-title" style="margin:0">A — Type 1: Gravity Abutment (Mass Concrete / PCC) — IRC:78-1983</div>
+    </div>
+    <div class="narrative">
+      <b>DEFINITION &amp; APPLICABILITY:</b> A gravity abutment relies entirely on its own dead weight to resist the active earth pressure, live-load surcharge, and braking/longitudinal forces transmitted from the superstructure. No tensile stress is permitted in the body; the material is plain cement concrete (PCC) grade M15 to M20, or well-burnt brick masonry in cement mortar. Gravity abutments are economical for abutment heights <b>H ≤ 4–5 m</b> (wall height above foundation). Beyond this height, the base width required for overturning stability becomes excessive and a cantilever type becomes more economical. In the collection, all submersible bridges with dedicated abutment workbooks (Bedach, T01, Jakham, Som-Larathi) use the gravity type; kumbhalgarh bridge uses PCC gravity abutments with and without bearings.
+    </div>
+    <div class="narrative">
+      <b>DESIGN BASIS (IRC:78-1983):</b> Active earth pressure is calculated by Rankine's theory: K<sub>a</sub> = (1 − sin φ)/(1 + sin φ). For typical cohesionless backfill φ = 30°, K<sub>a</sub> = 0.333. The resultant horizontal force per unit length = ½ · K<sub>a</sub> · γ · H² (kN/m), acting at H/3 from the base. Live-load surcharge is represented by an equivalent fill height h<sub>s</sub> = 1.2 m (IRC:78 Cl. 706.2) producing a uniform horizontal pressure K<sub>a</sub> · γ · h<sub>s</sub> over the full height. Three failure modes are checked at the base of the abutment:
+    </div>
+    <div class="formula-inline">
+      FOS(sliding)     = ΣV · μ / ΣH  ≥ 1.50   (μ = 0.50 for PCC on soil)<br>
+      FOS(overturning) = ΣM_restoring / ΣM_overturning  ≥ 1.80<br>
+      Bearing pressure = ΣV / B  ± 6·ΣM_net / B²  ≤ Safe Bearing Capacity (SBC)
+    </div>
+    <div class="narrative">
+      <b>PROPORTIONING RULES (IRC:78-1983 Cl. 706.1):</b> Top width ≥ 0.6 m; base width B ≈ 0.5–0.7 × H for gravity; batter on back face ≈ 1 in 4 to 1 in 6. No reinforcement required. Minimum cover: not applicable (unreinforced). Self-weight density: 22 kN/m³ (PCC), 19 kN/m³ (brick masonry). The drawing DXF/DWG file must show: front elevation, side elevation, plan at foundation, material note, founding level, and HFL / road level datum.
+    </div>
+    <table>
+      <tr><th>Check</th><th>Standard &amp; Clause</th><th>Acceptance Criterion</th><th>Applicable Bridge Type</th><th>Status in Collection</th></tr>
+      <tr><td>Active Earth Pressure</td><td>IRC:78-1983 Cl. 706.1; Rankine</td><td>K<sub>a</sub> = (1−sinφ)/(1+sinφ); φ ≥ 28° for compacted fill</td><td>Both HL &amp; SUB</td><td class="ok">Adopted in all gravity XLS</td></tr>
+      <tr><td>Live-Load Surcharge</td><td>IRC:78-1983 Cl. 706.2</td><td>h<sub>s</sub> = 1.2 m equivalent fill</td><td>Both</td><td class="ok">Applied per IRC:78</td></tr>
+      <tr><td>Sliding FOS</td><td>IRC:78-1983 Cl. 706.3</td><td>FOS ≥ 1.50 (μ = 0.50 PCC/soil; 0.70 PCC/rock)</td><td>Both</td><td class="ok">Checked in all abutment XLS</td></tr>
+      <tr><td>Overturning FOS</td><td>IRC:78-1983 Cl. 706.4</td><td>FOS ≥ 1.80</td><td>Both</td><td class="ok">Checked in all abutment XLS</td></tr>
+      <tr><td>Bearing Pressure</td><td>IRC:78-1983 Cl. 706.5</td><td>p_max ≤ SBC; p_min ≥ 0 (no tension in soil)</td><td>Both</td><td class="ok">FOS ≥ 2.50 on SBC</td></tr>
+      <tr><td>Base Eccentricity</td><td>IRC:78-1983</td><td>e = B/2 − ΣM_net/ΣV ≤ B/6 (resultant in middle-third)</td><td>Both</td><td class="chk">Confirm e ≤ B/6 in each XLS</td></tr>
+      <tr><td>Material &amp; Grade</td><td>IS:456-2000 / IRC:112-2015</td><td>PCC M15 minimum; cement mortar 1:3 for brick</td><td>Both</td><td class="ok">M15/M20 adopted</td></tr>
+      <tr><td>DXF/DWG Drawing</td><td>IRC:78-1983 Cl. 700</td><td>Elevation, plan, section at base; all dimensions; RL datum</td><td>Both</td><td class="chk">Available in Attached_Assets (Git LFS)</td></tr>
+    </table>
+    <div class="verdict-box verdict-ok">
+      <b>TYPE 1 GRAVITY — APPLICABLE PROJECTS:</b>
+      <span class="project-chip">Bedach River (SUB)</span>
+      <span class="project-chip">T01 Road Jethliya (SUB)</span>
+      <span class="project-chip">Jakham River Mandvi (SUB)</span>
+      <span class="project-chip">Som River Larathi (SUB)</span>
+      <span class="project-chip">Kumbhalgarh Bridge (HL — PCC)</span>
+      <span class="project-chip">Banas River HL (implicit in R-1 XLS)</span>
+      <span class="project-chip">Sukanaka Nalah HL (implicit in Stability XLS)</span>
+      All gravity abutments pass the three-check (sliding/OT/bearing) matrix as documented in their respective source XLS files. <b>Hence O.K. per source workbooks.</b>
+    </div>
+  </div>
+
+  <!-- ──────────────────────────────────────────────────────────── -->
+  <!-- SECTION B: TYPE 2 — CANTILEVER ABUTMENT                     -->
+  <!-- ──────────────────────────────────────────────────────────── -->
+  <div class="section" id="type2-cantilever">
+    <div class="type-header">
+      <div class="type-num t2-num">2</div>
+      <div class="section-title" style="margin:0">B — Type 2: Cantilever Abutment (RCC T-Wall / L-Wall) — IRC:78-1983 + IRC:112-2015</div>
+    </div>
+    <div class="narrative">
+      <b>DEFINITION &amp; APPLICABILITY:</b> A cantilever abutment is an RCC wall shaped like an inverted T (or L). The vertical stem cantilevers from the base slab; the heel slab retains the backfill by its own weight and the weight of the fill above it; the toe slab provides additional bearing area and moment arm. This type becomes more economical than gravity when <b>H ≥ 4–5 m</b> because the weight of the retained soil, rather than the abutment concrete, provides the stabilising force. For high-level bridges where approach embankments are tall, and for any bridge where the founding level is deep, the cantilever type is preferred. In this collection, the Sisarama Nalah high-level bridge project explicitly uses the cantilever RCC retaining wall ("DESIGN OF CANTILEVER RCC RETAINING WALL.xls"). All high-level bridges with significant fill height should adopt Type 2 or Type 3.
+    </div>
+    <div class="narrative">
+      <b>DESIGN BASIS (IRC:78-1983 + IRC:112-2015):</b> Stability checks (sliding, overturning, bearing) are identical to Type 1 but with the self-weight of the T-section and the weight of the fill on the heel slab contributing to ΣV. <b>Stem design (IRC:112-2015):</b> The stem acts as a vertical cantilever fixed at the base slab. The bending moment at the base of the stem = K<sub>a</sub> · γ · H³/6 + K<sub>a</sub> · γ · h<sub>s</sub> · H²/2. The shear at the base = K<sub>a</sub> · γ · H²/2 + K<sub>a</sub> · γ · h<sub>s</sub> · H. <b>Toe and heel slab design:</b> The toe slab is a cantilever loaded by net upward soil pressure minus self-weight. The heel slab is a cantilever loaded by the weight of fill above it minus net upward pressure. All sections verified for flexure (M_Ed ≤ M_Rd), shear (V_Ed ≤ V_Rd), and minimum reinforcement per IRC:112-2015.
+    </div>
+    <div class="formula-inline">
+      Stem moment at base:  M = Ka·γ·H³/6  +  Ka·γ·hs·H²/2  (kN·m/m)<br>
+      Stem shear at base:   V = Ka·γ·H²/2  +  Ka·γ·hs·H     (kN/m)<br>
+      Heel net pressure:    p_heel = ΣV/B + 6·e·ΣV/B²  (upward, −γ·fill above heel)<br>
+      Toe moment:           M_toe = p_toe_net · L_toe²/2   (kN·m/m)
+    </div>
+    <table>
+      <tr><th>Check</th><th>Standard &amp; Clause</th><th>Acceptance Criterion</th><th>Applicable Bridge Type</th><th>Status in Collection</th></tr>
+      <tr><td>Stability — Sliding, OT, Bearing</td><td>IRC:78-1983 Cl. 706.3–706.5</td><td>FOS ≥ 1.50/1.80/2.50</td><td>Both HL &amp; SUB</td><td class="chk">Sisarama retaining wall XLS; other projects: provide dedicated Cantilever XLS</td></tr>
+      <tr><td>Stem — Flexure at base</td><td>IRC:112-2015 Cl. 6.4</td><td>M_Ed ≤ M_Rd (As_min per IRC:112 Cl. 16.3)</td><td>Both</td><td class="chk">Provide Cantilever Abutment XLS if H ≥ 4.5 m</td></tr>
+      <tr><td>Stem — Shear at d from base</td><td>IRC:112-2015 Cl. 10.3</td><td>V_Ed ≤ V_Rd,c (no stirrups in stem if V_Ed ≤ V_Rd,c)</td><td>Both</td><td class="chk">Check V_Ed at d from base in XLS</td></tr>
+      <tr><td>Heel Slab — Flexure</td><td>IRC:112-2015 Cl. 6.4</td><td>M_Ed ≤ M_Rd at junction with stem</td><td>Both</td><td class="chk">Heel slab sheet in Cantilever XLS</td></tr>
+      <tr><td>Toe Slab — Flexure</td><td>IRC:112-2015 Cl. 6.4</td><td>M_Ed ≤ M_Rd at junction with stem</td><td>Both</td><td class="chk">Toe slab sheet in Cantilever XLS</td></tr>
+      <tr><td>Crack Width (RCC)</td><td>IRC:112-2015 Annexure A</td><td>w_k ≤ 0.3 mm (moderate exposure — abutment in soil)</td><td>Both</td><td class="chk">Crack width check sheet required</td></tr>
+      <tr><td>DXF/DWG Drawing</td><td>IRC:78-1983 Cl. 700</td><td>Elevation, plan, section; reinforcement layout; all RL; bar schedule</td><td>Both</td><td class="chk">TYPE2-CANTILEVER-ABUTMENT.dxf — provide in Attached_Assets</td></tr>
+    </table>
+    <div class="verdict-box verdict-chk">
+      <b>TYPE 2 CANTILEVER — APPLICABLE PROJECTS:</b>
+      <span class="project-chip">Sisarama Nalah HL (Cantilever RetWall XLS confirmed)</span>
+      <span class="project-chip">Parwan River HL (H tall — recommend Type 2)</span>
+      <span class="project-chip">Ayad River Fatehpura HL (Fateh Sagar approach — check H)</span>
+      <b>CHECK:</b> For any high-level bridge where the approach embankment produces abutment height ≥ 4.5 m, confirm that the design uses Type 2 cantilever instead of Type 1 gravity. Provide the IRC:112-2015 stem/slab design in a dedicated Cantilever XLS and the drawing in TYPE2-CANTILEVER-ABUTMENT.dxf (Attached_Assets). <b>Action required — not yet confirmed for all projects.</b>
+    </div>
+  </div>
+
+  <!-- ──────────────────────────────────────────────────────────── -->
+  <!-- SECTION C: TYPE 3 — COUNTERFORT ABUTMENT                    -->
+  <!-- ──────────────────────────────────────────────────────────── -->
+  <div class="section" id="type3-counterfort">
+    <div class="type-header">
+      <div class="type-num t3-num">3</div>
+      <div class="section-title" style="margin:0">C — Type 3: Counterfort Abutment (RCC with Counterforts) — IRC:78-1983 + IRC:112-2015</div>
+    </div>
+    <div class="narrative">
+      <b>DEFINITION &amp; APPLICABILITY:</b> A counterfort abutment is an RCC wall in which vertical fins (counterforts) are cast monolithically with the stem and base slab at regular intervals of 3–4 m (typically 0.3–0.5 × H). The front wall (stem) spans horizontally between counterforts as a two-way or one-way slab, rather than cantilevereing over its full height. This eliminates the large bending moment at the base of the stem that makes a simple cantilever uneconomical for <b>H &gt; 7–8 m</b>. The counterforts act as deep T-beams resisting the total horizontal earth pressure from the tributary width. No project in the current collection explicitly uses counterfort abutments; however, any future bridge with approach embankments producing abutment walls taller than 7 m — such as valley crossings for the Parwan River or kumbhalgarh lake road approaches — should evaluate this type. A counterfort type must be designed and drawn before the project is submitted for regulatory approval if H exceeds 7 m.
+    </div>
+    <div class="narrative">
+      <b>DESIGN BASIS (IRC:78-1983 + IRC:112-2015):</b> <b>Counterfort spacing L_c = 0.4H to 0.5H</b> (equal to or less than the wall height × 0.5 to avoid wall spans that negate the advantage). <b>Front wall (stem panel):</b> horizontal span = L_c; vertical span = H; boundary conditions: fixed at base slab, pinned at top (if unrestrained). For L_c / H ≤ 2, two-way slab analysis (IS:456 / IRC:112). Bending moments: M_horiz = w·L_c²/8, M_vert = w·H²/8 (w = triangular earth pressure intensity at the level considered). <b>Counterfort:</b> acts as a T-beam with the front wall as flange and the counterfort rib as web. Tension force in the counterfort at any level = horizontal force from tributary area = K_a·γ·z·L_c (kN/m²·m·m = kN) — resisted by the reinforcement in the counterfort.
+    </div>
+    <div class="formula-inline">
+      Counterfort spacing:  L_c ≤ 0.5·H  (m)<br>
+      Front wall moment:    M_h = Ka·γ·z·L_c²/8  (horizontal, at mid-span between CFTs)<br>
+      Counterfort tension:  T_cft = Ka·γ·z·L_c   (kN/m height) → integrated over tributary height<br>
+      Stability checks:     same as Type 1 &amp; 2 — FOS ≥ 1.50/1.80; p_max ≤ SBC
+    </div>
+    <table>
+      <tr><th>Check</th><th>Standard &amp; Clause</th><th>Acceptance Criterion</th><th>When Required</th><th>Status in Collection</th></tr>
+      <tr><td>Stability — Sliding, OT, Bearing</td><td>IRC:78-1983 Cl. 706</td><td>FOS ≥ 1.50/1.80/2.50; p_max ≤ SBC</td><td>H &gt; 7 m approach fill</td><td class="no">NOT YET PROVIDED — no project has counterfort XLS</td></tr>
+      <tr><td>Front Wall — Two-Way Flexure</td><td>IRC:112-2015 / IS:456-2000</td><td>M_Ed ≤ M_Rd in both horizontal and vertical spans</td><td>H &gt; 7 m</td><td class="no">NOT YET PROVIDED</td></tr>
+      <tr><td>Counterfort Rib — Flexure + Tension</td><td>IRC:112-2015 Cl. 6.4 + 6.5</td><td>T_Ed ≤ T_Rd; M_Ed ≤ M_Rd at base of counterfort</td><td>H &gt; 7 m</td><td class="no">NOT YET PROVIDED</td></tr>
+      <tr><td>Counterfort Rib — Shear</td><td>IRC:112-2015 Cl. 10.3</td><td>V_Ed ≤ V_Rd at d from base</td><td>H &gt; 7 m</td><td class="no">NOT YET PROVIDED</td></tr>
+      <tr><td>Base Slab — Heel &amp; Toe</td><td>IRC:112-2015 Cl. 6.4</td><td>M_Ed ≤ M_Rd (same as cantilever heel/toe logic)</td><td>H &gt; 7 m</td><td class="no">NOT YET PROVIDED</td></tr>
+      <tr><td>Crack Width</td><td>IRC:112-2015 Annexure A</td><td>w_k ≤ 0.3 mm (moderate exposure)</td><td>H &gt; 7 m</td><td class="no">NOT YET PROVIDED</td></tr>
+      <tr><td>DXF/DWG Drawing</td><td>IRC:78-1983 Cl. 700</td><td>Plan showing counterforts, front wall, base slab; sections; bar schedule</td><td>H &gt; 7 m</td><td class="no">TYPE3-COUNTERFORT-ABUTMENT.dxf NOT YET IN Attached_Assets</td></tr>
+    </table>
+    <div class="verdict-box verdict-chk">
+      <b>TYPE 3 COUNTERFORT — STATUS: NOT YET DESIGNED IN COLLECTION.</b> None of the 16 current reports uses counterfort abutments. This type must be provided when H &gt; 7 m. Before any project with tall approach embankments (Parwan River 75T, Kumbhalgarh lake-bridge, or future projects) is submitted for regulatory approval, a dedicated Counterfort Abutment XLS and TYPE3-COUNTERFORT-ABUTMENT.dxf must be added to Attached_Assets. <b>Action: Design and file Type 3 drawings for projects where abutment height exceeds 7 m.</b>
+    </div>
+  </div>
+
+  <!-- ──────────────────────────────────────────────────────────── -->
+  <!-- SECTION D: SELECTION MATRIX                                  -->
+  <!-- ──────────────────────────────────────────────────────────── -->
+  <div class="section" id="selection-matrix">
+    <div class="section-title">D — Abutment Type Selection Matrix — Both Bridge Categories</div>
+    <div class="narrative">
+      <b>SELECTION RULE (IRC:78-1983 Cl. 706):</b> The choice of abutment type depends primarily on wall height H, soil conditions, and project economics. For submersible bridges the abutment height is generally low (H = 2–4 m) because the deck is near the ground level; gravity (Type 1) almost always suffices. For high-level bridges, approach embankments push the wall height up; cantilever (Type 2) may be required from H = 4.5 m; counterfort (Type 3) from H = 7.5 m.
+    </div>
+    <div class="matrix-grid">
+      <div class="mg-head">Parameter</div>
+      <div class="mg-head">Type 1 — Gravity</div>
+      <div class="mg-head">Type 2 — Cantilever RCC</div>
+      <div class="mg-head">Type 3 — Counterfort RCC</div>
+      <div class="mg-cell">Wall Height H</div>
+      <div class="mg-cell">≤ 4–5 m</div>
+      <div class="mg-cell">4.5–7.5 m</div>
+      <div class="mg-cell">&gt; 7.5 m</div>
+      <div class="mg-cell">Reinforcement</div>
+      <div class="mg-cell">None (plain concrete)</div>
+      <div class="mg-cell">Yes — stem, toe, heel</div>
+      <div class="mg-cell">Yes — wall, CFT rib, base slab</div>
+      <div class="mg-cell">Design Standard</div>
+      <div class="mg-cell">IRC:78-1983</div>
+      <div class="mg-cell">IRC:78 + IRC:112-2015</div>
+      <div class="mg-cell">IRC:78 + IRC:112-2015</div>
+      <div class="mg-cell">Submersible Bridges</div>
+      <div class="mg-cell"><span class="ok-dot">Preferred (all 9 projects)</span></div>
+      <div class="mg-cell"><span class="chk-dot">Only if deep scour forces high deck</span></div>
+      <div class="mg-cell"><span class="no-dot">Not applicable (deck near ground)</span></div>
+      <div class="mg-cell">High-Level Bridges</div>
+      <div class="mg-cell"><span class="ok-dot">If H ≤ 4.5 m</span></div>
+      <div class="mg-cell"><span class="ok-dot">Preferred for H 4.5–7.5 m</span></div>
+      <div class="mg-cell"><span class="ok-dot">Required for H &gt; 7.5 m</span></div>
+      <div class="mg-cell">Concrete Grade</div>
+      <div class="mg-cell">M15 / M20 PCC</div>
+      <div class="mg-cell">M25 RCC minimum</div>
+      <div class="mg-cell">M25 RCC minimum</div>
+      <div class="mg-cell">Stability Checks</div>
+      <div class="mg-cell">Sliding / OT / Bearing</div>
+      <div class="mg-cell">Sliding / OT / Bearing + stem flexure</div>
+      <div class="mg-cell">Sliding / OT / Bearing + CFT design</div>
+      <div class="mg-cell">DXF/DWG in Collection</div>
+      <div class="mg-cell"><span class="ok-dot">In Attached_Assets (abutment XLS + DOCX)</span></div>
+      <div class="mg-cell"><span class="chk-dot">Sisarama RetWall XLS only — need bridge abutment DXF</span></div>
+      <div class="mg-cell"><span class="no-dot">Not yet provided — required for H &gt; 7.5 m projects</span></div>
+    </div>
+    <div class="verdict-box verdict-chk">
+      <b>SELECTION MATRIX VERDICT:</b> Type 1 (Gravity) is confirmed and checked for all 9 submersible projects and for kumbhalgarh, banas, sukanaka-HL. Type 2 (Cantilever) is partially documented for sisarama (retaining wall); a dedicated bridge-abutment cantilever XLS and DXF must be provided for any HL bridge where H &gt; 4.5 m. Type 3 (Counterfort) is not yet designed or drawn for any project — action required when H &gt; 7.5 m. <b>Immediate action: (1) Survey all high-level bridge abutment heights. (2) Upgrade to Type 2 XLS + DXF where H &gt; 4.5 m. (3) Design Type 3 where H &gt; 7.5 m.</b>
+    </div>
+  </div>
+
+  <!-- ──────────────────────────────────────────────────────────── -->
+  <!-- SECTION E: PROJECT-WISE ABUTMENT TYPE REGISTER              -->
+  <!-- ──────────────────────────────────────────────────────────── -->
+  <div class="section" id="project-register">
+    <div class="section-title">E — Project-Wise Abutment Type Register — All 16 Reports</div>
+    <div class="narrative">
+      <b>REGISTER PURPOSE:</b> This table records the confirmed or inferred abutment type for every project in the collection. "Confirmed" means the source XLS/DOC explicitly labels the type. "Inferred" means it is deduced from the project height, context, or source file name. The DXF/DWG column lists drawing files available in Git LFS (Attached_Assets).
+    </div>
+    <table>
+      <tr><th>Project</th><th>Bridge Category</th><th>Abutment Type</th><th>Source File (Git LFS)</th><th>DXF/DWG Available</th><th>Action Required</th></tr>
+      <tr><td>Bedach River (Bedla)</td><td>Submersible</td><td><span class="abut-type-badge t1">Type 1 — Gravity</span></td><td>Design of ABUTMENT SUBMERSIBLE BRIDGE ACROSS BEDACH RIVER XLS</td><td class="chk">DRAWING NOTES BEDACH DOCX (sketches only)</td><td>Provide DXF with dimensions</td></tr>
+      <tr><td>T01 Road (Jethliya)</td><td>Submersible</td><td><span class="abut-type-badge t1">Type 1 — Gravity</span></td><td>Abutment Design XLS (Jethliya)</td><td class="chk">None confirmed in LFS</td><td>Add TYPE1-GRAVITY.dxf to Attached_Assets</td></tr>
+      <tr><td>Jakham River (Mandvi)</td><td>Submersible</td><td><span class="abut-type-badge t1">Type 1 — Gravity (inferred)</span></td><td>Stability Analysis XLS (abutment check embedded)</td><td class="chk">None confirmed</td><td>Confirm type; add dedicated Abutment XLS + DXF</td></tr>
+      <tr><td>Som River (Larathi)</td><td>Submersible</td><td><span class="abut-type-badge t1">Type 1 — Gravity (inferred)</span></td><td>Stability XLS (Larathi)</td><td class="chk">None confirmed</td><td>Confirm type; add dedicated Abutment XLS + DXF</td></tr>
+      <tr><td>Som River (Kherwara)</td><td>Submersible</td><td><span class="abut-type-badge t1">Type 1 — Gravity (inferred)</span></td><td>DESIGN OF PIER AND CHECK FOR STABIL.txt (pier only)</td><td class="chk">None confirmed — pier report only</td><td>Add separate Abutment XLS + DXF</td></tr>
+      <tr><td>Sukanaka Nalah (Matoon)</td><td>Submersible</td><td><span class="abut-type-badge t1">Type 1 — Gravity</span></td><td>Abutment Design XLS (both variants)</td><td class="chk">None confirmed</td><td>Add TYPE1-GRAVITY.dxf</td></tr>
+      <tr><td>Ayad River (Maharashtra)</td><td>Submersible</td><td><span class="abut-type-badge t1">Type 1 — Gravity</span></td><td>Abutment XLS — MH Bhawan</td><td class="chk">None confirmed</td><td>Add TYPE1-GRAVITY.dxf</td></tr>
+      <tr><td>Gumaniya Nalah (Udaipur)</td><td>Submersible</td><td><span class="abut-type-badge t1">Type 1 — Gravity</span></td><td>abutment design bridge near alu factory…XLS · abutment drawing.xls</td><td class="ok">abutment drawing.xls in LFS</td><td>Convert abutment drawing.xls to DXF</td></tr>
+      <tr><td>Katumbi–Chandrod</td><td>Submersible</td><td><span class="abut-type-badge t1">Type 1/2 — confirm in XLS</span></td><td>Detailed Design XLS — Abutment sheet</td><td class="chk">None confirmed</td><td>Confirm type and add DXF</td></tr>
+      <tr><td>Kumbhalgarh Bridge</td><td>High-Level</td><td><span class="abut-type-badge t1">Type 1 — Gravity PCC</span></td><td>3× Abutment XLS (with/without bearing)</td><td class="chk">None confirmed</td><td>Add TYPE1-GRAVITY.dxf</td></tr>
+      <tr><td>Banas River HL</td><td>High-Level</td><td><span class="abut-type-badge t1">Type 1 — Gravity (inferred)</span></td><td>HFL BRIDGE BANAS RIVER R-1.xls (combined)</td><td class="chk">None confirmed</td><td>Confirm H; if H &gt; 4.5 m upgrade to Type 2</td></tr>
+      <tr><td>Sisarama Nalah HL</td><td>High-Level</td><td><span class="abut-type-badge t2">Type 2 — Cantilever RCC</span></td><td>Abutment Design XLS · 2× Cantilever RetWall XLS</td><td class="chk">None — DESIGN OF CANTILEVER RCC RETAINING WALL.xls</td><td>Add TYPE2-CANTILEVER.dxf with bar schedule</td></tr>
+      <tr><td>Sukanaka Nalah HL</td><td>High-Level</td><td><span class="abut-type-badge t1">Type 1 — Gravity (inferred)</span></td><td>Stability Analysis HIGH LEVEL BRIDGE SUKANAKA.xls</td><td class="chk">None confirmed</td><td>Confirm H; add dedicated Abutment XLS + DXF</td></tr>
+      <tr><td>Ayad River (Fatehpura)</td><td>High-Level</td><td><span class="abut-type-badge t1">Type 1/2 — confirm</span></td><td>LLCALpier1 XLS · cross section.xls</td><td class="chk">None confirmed</td><td>Survey abutment H; provide Abutment XLS + DXF</td></tr>
+      <tr><td>Parwan River HL (75T)</td><td>High-Level</td><td><span class="abut-type-badge t2">Type 2 — Cantilever (likely)</span></td><td>Abutment PARWAN DOC</td><td class="chk">None confirmed</td><td>Convert Abutment DOC to XLS; add TYPE2-CANTILEVER.dxf</td></tr>
+      <tr><td>Kherka Bridge (19M T-Beam)</td><td>High-Level</td><td><span class="abut-type-badge t2">Type 2 — Cantilever (likely for T-beam)</span></td><td>6× DOCX design files</td><td class="chk">STRUDS HTM output only</td><td>Add dedicated Abutment XLS + TYPE2-CANTILEVER.dxf</td></tr>
+    </table>
+    <div class="verdict-box verdict-chk">
+      <b>PROJECT REGISTER SUMMARY:</b> 9 submersible + 7 high-level = 16 projects registered. Type 1 (Gravity) confirmed or inferred for 12 projects. Type 2 (Cantilever) confirmed for sisarama (retaining wall); likely required for parwan, kherka, sisarama bridge abutment. Type 3 (Counterfort) not yet required or designed for any current project. <b>Priority actions: (1) Confirm abutment heights for all high-level bridges. (2) Provide dedicated Abutment XLS where missing. (3) Add DXF drawings to Attached_Assets for all types. (4) Design Type 3 if any future project exceeds H = 7.5 m.</b>
+    </div>
+    <div class="src-note"><b>IRC References:</b> IRC:78-1983 Cl. 700–710 (abutment design); IRC:112-2015 Cl. 6.4, 10.3, 16.3, Annexure A (RCC design for Types 2 &amp; 3); IRC:5-2015 (freeboard — HL only); IRC:6-2016 Cl. 203–214 (loads — all types); IRC SP-13 (hydraulics — SUB) &nbsp;|&nbsp; <b>Report generated:</b> May 2026</div>
+  </div>
+
+  <!-- ──────────────────────────────────────────────────────────── -->
+  <!-- SECTION F: INTERACTIVE ABUTMENT CALCULATOR                  -->
+  <!-- ──────────────────────────────────────────────────────────── -->
+  <div class="section" id="calculator">
+    <div class="section-title">F — Interactive Abutment Calculator — IRC:78-1983 × IRC:112-2015</div>
+    <div class="narrative">
+      Enter the wall height H and soil parameters below. The calculator automatically recommends the IRC abutment type, sizes the base width to satisfy both sliding and overturning criteria, and computes all three FOS values live. For Type 2 Cantilever, the stem moment and shear demand are also computed for use in the IRC:112-2015 section design.
+    </div>
+
+    <div class="calc-wrap">
+      <b style="font-size:13px;color:#2d0a5e">&#9881; IRC Abutment Sizing Calculator</b>
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label>H — Wall Height</label>
+          <input type="number" id="c_H" value="5.0" min="0.5" max="15" step="0.1" oninput="calc()">
+          <div class="unit">metres &nbsp;|&nbsp; Type 1 ≤ 4.5 m · Type 2 ≤ 7.5 m · Type 3 &gt; 7.5 m</div>
+        </div>
+        <div class="calc-field">
+          <label>φ — Backfill Friction Angle</label>
+          <input type="number" id="c_phi" value="30" min="15" max="45" step="1" oninput="calc()">
+          <div class="unit">degrees &nbsp;|&nbsp; Compacted granular: 28–35° typical</div>
+        </div>
+        <div class="calc-field">
+          <label>γ — Backfill Unit Weight</label>
+          <input type="number" id="c_gamma" value="18" min="14" max="22" step="0.5" oninput="calc()">
+          <div class="unit">kN/m³ &nbsp;|&nbsp; Granular fill: 17–20 kN/m³</div>
+        </div>
+        <div class="calc-field">
+          <label>γ_c — Concrete Unit Weight</label>
+          <input type="number" id="c_gammac" value="22" min="18" max="25" step="0.5" oninput="calc()">
+          <div class="unit">kN/m³ &nbsp;|&nbsp; PCC M15/M20: 22–24 kN/m³</div>
+        </div>
+        <div class="calc-field">
+          <label>SBC — Safe Bearing Capacity</label>
+          <input type="number" id="c_SBC" value="150" min="50" max="1000" step="10" oninput="calc()">
+          <div class="unit">kN/m² &nbsp;|&nbsp; Hard soil: 100–200 · Rock: 300–500</div>
+        </div>
+        <div class="calc-field">
+          <label>μ — Base Friction Coefficient</label>
+          <input type="number" id="c_mu" value="0.50" min="0.30" max="0.80" step="0.05" oninput="calc()">
+          <div class="unit">dimensionless &nbsp;|&nbsp; PCC on soil: 0.45–0.55 · on rock: 0.65–0.75</div>
+        </div>
+        <div class="calc-field">
+          <label>h_s — LL Surcharge Height</label>
+          <input type="number" id="c_hs" value="1.2" min="0.5" max="3.0" step="0.1" oninput="calc()">
+          <div class="unit">metres &nbsp;|&nbsp; IRC:78-1983 Cl. 706.2 default = 1.2 m</div>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calc()">&#9654; Calculate / Refresh</button>
+    </div>
+
+    <!-- ── Results panel ── -->
+    <div id="calc-result" class="calc-result">
+
+      <!-- Type recommendation -->
+      <div id="type-rec-div" class="type-rec type-rec-t1">
+        <div id="type-rec-badge" class="type-rec-badge t1-num">1</div>
+        <div id="type-rec-text">Type 1 — Gravity Abutment</div>
+      </div>
+
+      <!-- Intermediate computed values -->
+      <div class="formula-row">
+        K<sub>a</sub> = (1−sinφ)/(1+sinφ) = <b id="r_Ka">—</b>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        EP (triangular) = ½·K<sub>a</sub>·γ·H² = <b id="r_EP">—</b>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        EP (surcharge) = K<sub>a</sub>·γ·h<sub>s</sub>·H = <b id="r_EP_s">—</b>
+        <br>
+        Total H = EP + EP_surch = <b id="r_H_total">—</b>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        M_overturning = EP·H/3 + EP_s·H/2 = <b id="r_MOT">—</b>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        Adopted base width B = <b id="r_B">—</b>
+      </div>
+
+      <!-- FOS result cards: Type 1 Gravity -->
+      <div style="font-size:12px;font-weight:800;text-transform:uppercase;color:#5a7a99;margin-bottom:8px">Type 1 — Gravity Abutment Stability Checks (IRC:78-1983)</div>
+      <div class="res-grid">
+        <div class="res-card" id="c_fos_slid">
+          <div class="rc-label">FOS — Sliding</div>
+          <div class="rc-val">—</div>
+          <div class="rc-note">≥ 1.50 required</div>
+        </div>
+        <div class="res-card" id="c_fos_ot">
+          <div class="rc-label">FOS — Overturning</div>
+          <div class="rc-val">—</div>
+          <div class="rc-note">≥ 1.80 required</div>
+        </div>
+        <div class="res-card" id="c_fos_bear">
+          <div class="rc-label">Bearing FOS on SBC</div>
+          <div class="rc-val">—</div>
+          <div class="rc-note">≥ 2.50 required</div>
+        </div>
+        <div class="res-card" id="c_eccen">
+          <div class="rc-label">Eccentricity e</div>
+          <div class="rc-val">—</div>
+          <div class="rc-note">Middle-third check</div>
+        </div>
+        <div class="res-card" id="c_pmin">
+          <div class="rc-label">p_min (at heel)</div>
+          <div class="rc-val">—</div>
+          <div class="rc-note">Must be ≥ 0 (no tension in soil)</div>
+        </div>
+      </div>
+
+      <!-- Type 2 Cantilever stem demand -->
+      <div class="stem-block">
+        <h4>Type 2 — Cantilever RCC: Stem Demand at Base (IRC:112-2015)</h4>
+        <div class="formula-row" style="background:#fff8ee;color:#5c3200">
+          M_stem = K<sub>a</sub>·γ·H³/6 + K<sub>a</sub>·γ·h<sub>s</sub>·H²/2 = <b id="r_Mstem">—</b>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          V_stem = K<sub>a</sub>·γ·H²/2 + K<sub>a</sub>·γ·h<sub>s</sub>·H = <b id="r_Vstem">—</b>
+          <br>
+          Estimated stem thickness (rule-of-thumb: 80mm/m of H + 100mm) = <b id="r_tstem">—</b>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          Est. A_s required (0.87·f_y·d, f_y=500) = <b id="r_Asreq">—</b>
+        </div>
+        <div style="font-size:12px;color:#7a3800"><b>Note:</b> Full stem + toe + heel slab design per IRC:112-2015 must be completed in a dedicated Cantilever XLS. This calculator provides demand values only. Stability (sliding/OT/bearing) same as Type 1 but with fill weight on heel slab contributing to ΣV.</div>
+      </div>
+
+      <!-- Type 3 Counterfort note -->
+      <div class="t3-block">
+        <b>Type 3 — Counterfort RCC: Preliminary Sizing (IRC:78-1983 + IRC:112-2015)</b><br>
+        Counterfort spacing L_c = 0.45·H = <b id="r_Lc">—</b>&nbsp;&nbsp;|&nbsp;&nbsp;
+        Front wall horizontal moment at base (z=H): M_wall = K<sub>a</sub>·γ·H·L<sub>c</sub>²/8 = <b id="r_Mwall">—</b>
+        <br><br>
+        <b>Note:</b> No project in the current collection uses Type 3. When H &gt; 7.5 m, provide a dedicated Counterfort XLS (stability + front wall + counterfort rib design) and TYPE3-COUNTERFORT.dxf before submission. Full IRC:112-2015 design is required for the counterfort rib, front wall panel, and base slab.
+      </div>
+
+    </div><!-- end calc-result -->
+
+    <div class="src-note" style="margin-top:14px"><b>Calculator basis:</b> IRC:78-1983 Cl. 706 (stability — gravity); IRC:112-2015 Cl. 6.4 + 10.3 (cantilever stem); rectangular abutment section assumed for gravity sizing. Base width B is sized to satisfy both FOS(sliding) ≥ 1.50 and FOS(OT) ≥ 1.80, then rounded up to nearest 0.1 m. All values are per unit length of abutment (kN/m or kN·m/m). This tool is for preliminary sizing only — full design must be done in project XLS workbooks.</div>
+  </div>
+
+  <!-- ═══════════════════════════════ SECTION G ═══════════════════════════════ -->
+  <div class="section" id="dxf-catalogue">
+    <div class="step-num">7</div>
+    <div class="section-title">G — DXF/DWG Drawing Catalogue — BridgeMaster Pro (Dwg-Dxf-Record-Keeper)</div>
+    <div class="narrative"><b>DRAWING REPOSITORY:</b> The <a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper" target="_blank" style="color:#1a4a9e"><b>Dwg-Dxf-Record-Keeper</b></a> (BridgeMaster Pro 2026) is the parametric CAD generator and drawing record system associated with this bridge design collection. It contains 22 sorted drawing categories in <code>COMPONENT_DRAWINGS_SORTED/</code>, covering all IRC bridge components. Each design report in this collection references specific drawing categories — the table below wires design parameters from the stability XLS workbooks to the corresponding DXF/DWG drawing folders. Generated drawings use <b>ezdxf</b> (Python) and follow IRC title-block conventions; source generators live in <code>src/generators/</code>.</div>
+
+    <div style="overflow-x:auto;margin-bottom:16px">
+    <table>
+      <tr><th>#</th><th>Drawing Category (COMPONENT_DRAWINGS_SORTED)</th><th>Design Parameters Wired</th><th>IRC Standard</th><th>Applicable Bridge Types</th><th>GitHub Link</th></tr>
+      <tr><td>1</td><td><b>General Arrangement Drawings (GAD)</b></td><td>Span, HFL, soffit level, overall dimensions, approach road RL</td><td>IRC:5-2015 · IRC SP-13</td><td>All 16 projects</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/General%20Arrangement%20Drawings%20(GAD)" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>2</td><td><b>Abutment Details</b></td><td>B (base width), H (wall height), abutment type (1/2/3), FOS sliding/OT/bearing, K_a, SBC</td><td>IRC:78-1983 Cl. 706</td><td>All — Type 1: submersible + HL ≤4.5 m; Type 2: HL 4.5–7.5 m; Type 3: H&gt;7.5 m</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Abutment%20Details" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>3</td><td><b>Pier Geometry &amp; Dimensions</b></td><td>Pier cap width, pier shaft size, pier cap top RL, bed level RL, effective span</td><td>IRC:78-1983 · IRC:6-2016</td><td>Som-Kherwara, Bedach, Jakham, T01, all HL piers</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Pier%20Geometry%20%26%20Dimensions" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>4</td><td><b>Pier Reinforcement Details</b></td><td>p_max, p_min, footing plan, bar dia, cover, bar bending schedule</td><td>IRC:112-2015 · IS:456</td><td>RCC piers — Som-Kherwara, Som-Larathi, Parwan-HL, Ayad-Fatehpura</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Pier%20Reinforcement%20Details" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>5</td><td><b>Deck Slab Details</b></td><td>Effective span, slab depth, M_udl, M_conc, A_s req, bar dia and spacing, wearing coat</td><td>IRC:112-2015 · IRC:6-2016</td><td>All slab bridges (M20/M25 RCC)</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Deck%20Slab%20Details" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>6</td><td><b>Foundation Details</b></td><td>Foundation RL, footing plan (L×B×D), SBC, scour depth, founding level datum</td><td>IRC:78-1983 Cl. 700 · IS:1904</td><td>Open foundation: Banas-HL, Kumbhalgarh; Pile/well: Som-Larathi, Jakham</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Foundation%20Details" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>7</td><td><b>Wing Wall Details</b></td><td>Wing wall height, earth pressure (K_a·γ·H), return length, stability check</td><td>IRC:78-1983 Cl. 714</td><td>All abutment projects with return wings</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Wing%20Wall%20Details" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>8</td><td><b>Cross Sections</b></td><td>Road width, kerb, crash barrier, wearing coat, parapet, HFL cross section</td><td>IRC:5-2015 · IRC SP-13</td><td>All projects</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Cross%20Sections" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>9</td><td><b>Bearing Details</b></td><td>Elastomeric pad size, pier cap groove, bearing reaction from LL + DL</td><td>IRC:83 (Part II)</td><td>Kumbhalgarh (with/without bearing variants), Kherka Tee-Beam</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Bearing%20Details" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>10</td><td><b>Bed Protection &amp; Anchorage</b></td><td>Lacey scour depth, apron width, stone size (Isbash), length of protection</td><td>IRC:89-1997 · IS:8237</td><td>Bedach, Jakham, Som-Kherwara (sandy/alluvial beds)</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Bed%20Protection%20%26%20Anchorage" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>11</td><td><b>Expansion Joints</b></td><td>Span thermal range, joint gap = (0.6×αL×ΔT), joint type (strip/compression seal)</td><td>IRC:SP:69</td><td>All HL bridges &gt;12 m span and multi-span bridges</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Expansion%20Joints" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>12</td><td><b>Girder Details (RCC-PC)</b></td><td>Kherka Tee-Beam: flange width, web width, depth, A_s req, stirrup spacing</td><td>IRC:112-2015</td><td>Kherka Bridge (Tee-Beam special)</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Girder%20Details%20(RCC-PC)" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>13</td><td><b>Survey Contours &amp; Levels</b></td><td>NSL, HFL, FSL, bed level — wired to Smart Terrain Engine (DXF repo src/)</td><td>IRC:5-2015 site survey</td><td>All projects (site-specific RL data)</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Survey%20Contours%20%26%20Levels" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>14</td><td><b>Guard Stone &amp; Kerb</b></td><td>Road width, kerb overhang, guard stone spacing, parapet height</td><td>IRC:5-2015 Cl. 112</td><td>All projects (road geometry)</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Guard%20Stone%20%26%20Kerb" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>15</td><td><b>Culvert Details</b></td><td>Box/pipe culvert span, HGL, discharge Q, vent sizes</td><td>IRC SP-13 · IS:783</td><td>Approach road cross-drainage (all projects with embankments)</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Culvert%20Details" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>16</td><td><b>False Work-Formwork</b></td><td>Slab soffit level, staging height, prop load, bearing capacity of staging ground</td><td>IS:14687</td><td>All cast-in-situ slab bridges</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/False%20Work-Formwork" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>17</td><td><b>Indexes &amp; Key Plans</b></td><td>Project location, chainage, alignment, north arrow, drawing index sheet</td><td>IRC:5-2015 App. A</td><td>All projects — mandatory for DPR submission</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Indexes%20%26%20Key%20Plans" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>18</td><td><b>Notes Title Blocks &amp; Legends</b></td><td>IRC title block: project no., drawing no., revision, scale, North arrow</td><td>IRC SP-69 · BIS SP-46</td><td>All drawings in all projects</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Notes%20Title%20Blocks%20%26%20Legends" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>19</td><td><b>Layouts &amp; Schematics</b></td><td>Plan view of full crossing, road alignment, river flow direction, chainage annotations</td><td>IRC:5-2015</td><td>All projects</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Layouts%20%26%20Schematics" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>20</td><td><b>Footbridge Details</b></td><td>Pedestrian load (IRC:6 5 kN/m²), handrail, walkway width ≥ 1.5 m</td><td>IRC:6-2016 Cl. 204.3</td><td>Projects with dedicated footbridge or foot-path integrated in bridge</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Footbridge%20Details" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>21</td><td><b>Aqueduct &amp; Trough</b></td><td>Flow, trough section, freeboard in channel, bank level, cut-off depth</td><td>IS:7784 · IRC:SP-13</td><td>Irrigation crossing variants (not in current 16-project collection)</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Aqueduct%20%26%20Trough" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+      <tr><td>22</td><td><b>Combined Drawing PDF Sets</b></td><td>Complete DPR drawing set: GAD + cross sections + substructure + BOQ in one PDF</td><td>PWD/NABARD DPR format</td><td>All projects — final submission sets</td><td><a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED/Combined%20Drawing%20PDF%20Sets" target="_blank" style="color:#1a4a9e">Open ↗</a></td></tr>
+    </table>
+    </div>
+
+    <div class="narrative" style="background:#f0f4ff;border-left-color:#1a4a9e"><b>PARAMETRIC GENERATOR — HOW DESIGN PARAMETERS WIRE TO DXF OUTPUT:</b> The <code>src/generators/dxf_builder.py</code> script in the repository accepts design parameters (span, HFL, pier dimensions, abutment type, SBC) from the stability XLS and produces audit-ready DXF drawings via the <b>ezdxf</b> library. The generators follow this pipeline: <b>(1)</b> Read pier geometry and RL data from the stability XLS → <b>(2)</b> Select template from <code>src/generators/templates.py</code> based on bridge type (slab/Tee-beam/box culvert) → <b>(3)</b> Insert IRC-standard title block from <code>src/generators/blocks.py</code> → <b>(4)</b> Write to <code>COMPONENT_DRAWINGS_SORTED/&lt;category&gt;/</code>. For bridge-specific drawing generation: run <code>python main_app.py</code> and select the bridge from the project list. The Smart Terrain Engine auto-calculates pier/abutment heights from NSL data input.</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:16px 0">
+      <div style="background:#e8f0fd;border:1.5px solid #a0b8e8;border-radius:8px;padding:14px 16px">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:#0a40a0;font-weight:800;margin-bottom:6px">GitHub Repository</div>
+        <a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper" target="_blank" style="color:#0a2a5e;font-weight:700;font-size:13px;text-decoration:none">Dwg-Dxf-Record-Keeper ↗</a>
+        <div style="font-size:11px;color:#3a5a8a;margin-top:4px">BridgeMaster Pro 2026 · ezdxf + PySide6</div>
+      </div>
+      <div style="background:#e8f7f0;border:1.5px solid #0a6e3a40;border-radius:8px;padding:14px 16px">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:#0a4a28;font-weight:800;margin-bottom:6px">Drawing Generator</div>
+        <a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/blob/main/src/generators/dxf_builder.py" target="_blank" style="color:#0a4a28;font-weight:700;font-size:13px;text-decoration:none">dxf_builder.py ↗</a>
+        <div style="font-size:11px;color:#2a5a40;margin-top:4px">GAD · Abutment · Pier · Slab · Culvert</div>
+      </div>
+      <div style="background:#fff3e0;border:1.5px solid #b4530940;border-radius:8px;padding:14px 16px">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:#7a3808;font-weight:800;margin-bottom:6px">Component Drawings</div>
+        <a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper/tree/main/COMPONENT_DRAWINGS_SORTED" target="_blank" style="color:#7a3808;font-weight:700;font-size:13px;text-decoration:none">22 Categories ↗</a>
+        <div style="font-size:11px;color:#7a3808;margin-top:4px">DXF/DWG sorted by component type</div>
+      </div>
+    </div>
+
+    <div class="src-note"><b>Repository:</b> <a href="https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper" target="_blank" style="color:#1a4a9e">github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper</a> &nbsp;·&nbsp; <b>Tech stack:</b> Python · ezdxf · PySide6 · Matplotlib · ReportLab · xlsxwriter &nbsp;·&nbsp; <b>IRC codes:</b> IRC:5-2015 · IRC:6-2016 · IRC:78-1983 · IRC:112-2015 · IRC SP-13 &nbsp;·&nbsp; <b>Drawing format:</b> DXF R2010 compatible (AutoCAD / LibreCAD / BricsCAD)</div>
+  </div>
+
+</div>
+<script>
+function calc() {
+  var H      = parseFloat(document.getElementById('c_H').value)      || 5.0;
+  var phi_d  = parseFloat(document.getElementById('c_phi').value)     || 30;
+  var gamma  = parseFloat(document.getElementById('c_gamma').value)   || 18;
+  var gc     = parseFloat(document.getElementById('c_gammac').value)  || 22;
+  var SBC    = parseFloat(document.getElementById('c_SBC').value)     || 150;
+  var mu     = parseFloat(document.getElementById('c_mu').value)      || 0.50;
+  var hs     = parseFloat(document.getElementById('c_hs').value)      || 1.2;
+
+  var phi = phi_d * Math.PI / 180;
+  var Ka  = (1 - Math.sin(phi)) / (1 + Math.sin(phi));
+
+  // ── Recommend type ─────────────────────────────────────────────
+  var type = H <= 4.5 ? 1 : H <= 7.5 ? 2 : 3;
+  var typeLabel = type === 1 ? 'Type 1 — Gravity Abutment (IRC:78-1983)'
+               : type === 2 ? 'Type 2 — Cantilever RCC Abutment (IRC:78-1983 + IRC:112-2015)'
+               :               'Type 3 — Counterfort RCC Abutment (IRC:78-1983 + IRC:112-2015)';
+  var typeCls   = ['','type-rec-t1','type-rec-t2','type-rec-t3'][type];
+  var badgeCls  = ['','t1-num','t2-num','t3-num'][type];
+
+  document.getElementById('type-rec-div').className   = 'type-rec ' + typeCls;
+  document.getElementById('type-rec-badge').className = 'type-rec-badge ' + badgeCls;
+  document.getElementById('type-rec-badge').textContent = type;
+  document.getElementById('type-rec-text').textContent  = typeLabel + '  (H = ' + H.toFixed(1) + ' m)';
+
+  // ── Earth pressure ─────────────────────────────────────────────
+  var EP      = 0.5 * Ka * gamma * H * H;          // triangular, kN/m
+  var EP_s    = Ka * gamma * hs * H;               // surcharge uniform, kN/m
+  var H_tot   = EP + EP_s;                         // total horizontal, kN/m
+  var M_OT    = EP * (H / 3) + EP_s * (H / 2);    // OT moment about toe, kN·m/m
+
+  // ── Size B: satisfy FOS_OT ≥ 1.80 and FOS_slid ≥ 1.50 ─────────
+  // OT: gc·B·H·(B/2) ≥ 1.80·M_OT  →  B = sqrt(3.60·M_OT / (gc·H))
+  var B_ot   = Math.sqrt(3.60 * M_OT / (gc * H));
+  // Sliding: gc·B·H·mu ≥ 1.50·H_tot  →  B = 1.50·H_tot / (gc·H·mu)
+  var B_sl   = (1.50 * H_tot) / (gc * H * mu);
+  var B_raw  = Math.max(B_ot, B_sl);
+  var B      = Math.ceil(B_raw * 10) / 10;        // round up to 0.1 m
+
+  // ── Checks with adopted B ──────────────────────────────────────
+  var W       = gc * B * H;
+  var M_stab  = W * (B / 2);
+  var FOS_ot  = M_stab / M_OT;
+  var FOS_sl  = (W * mu) / H_tot;
+  var M_net   = M_stab - M_OT;
+  var xR      = M_net / W;
+  var e       = (B / 2) - xR;
+  var p_max   = (W / B) * (1 + 6 * e / B);
+  var p_min   = (W / B) * (1 - 6 * e / B);
+  var FOS_br  = SBC / p_max;
+  var mid3    = e <= B / 6;
+
+  // ── Type 2 stem demand ─────────────────────────────────────────
+  var M_stem  = Ka * gamma * Math.pow(H, 3) / 6 + Ka * gamma * hs * H * H / 2;
+  var V_stem  = Ka * gamma * H * H / 2 + Ka * gamma * hs * H;
+  var t_stem  = Math.max(0.20, 0.08 * H + 0.10);
+  var d_stem  = t_stem - 0.06;
+  var As_req  = (M_stem * 1e6) / (0.87 * 500 * d_stem * 1000);
+
+  // ── Type 3 counterfort sizing ──────────────────────────────────
+  var Lc      = 0.45 * H;
+  var M_wall  = Ka * gamma * H * Lc * Lc / 8;
+
+  // ── Render intermediate values ─────────────────────────────────
+  document.getElementById('r_Ka').textContent     = Ka.toFixed(4);
+  document.getElementById('r_EP').textContent     = EP.toFixed(1) + ' kN/m';
+  document.getElementById('r_EP_s').textContent   = EP_s.toFixed(1) + ' kN/m';
+  document.getElementById('r_H_total').textContent= H_tot.toFixed(1) + ' kN/m';
+  document.getElementById('r_MOT').textContent    = M_OT.toFixed(1) + ' kN·m/m';
+  document.getElementById('r_B').textContent      = B.toFixed(2) + ' m  (B/H = ' + (B / H).toFixed(2) + ')';
+
+  // ── FOS cards ──────────────────────────────────────────────────
+  setCard('c_fos_slid', FOS_sl,  1.50, '≥ 1.50 (IRC:78-1983 Cl. 706.3)', 'FOS — Sliding');
+  setCard('c_fos_ot',   FOS_ot,  1.80, '≥ 1.80 (IRC:78-1983 Cl. 706.4)', 'FOS — Overturning');
+  setCard('c_fos_bear', FOS_br,  2.50,
+    '≥ 2.50 — p_max = ' + p_max.toFixed(1) + ' kN/m² vs SBC = ' + SBC + ' kN/m²', 'Bearing FOS on SBC');
+
+  var eCard = document.getElementById('c_eccen');
+  eCard.querySelector('.rc-val').textContent  = e.toFixed(3) + ' m';
+  eCard.querySelector('.rc-note').textContent = 'Limit B/6 = ' + (B / 6).toFixed(3) + ' m — ' + (mid3 ? 'Middle-third OK ✓' : 'OUTSIDE middle-third!');
+  eCard.className = 'res-card ' + (mid3 ? 'pass' : 'fail');
+
+  var pCard = document.getElementById('c_pmin');
+  pCard.querySelector('.rc-val').textContent  = p_min.toFixed(1) + ' kN/m²';
+  pCard.querySelector('.rc-note').textContent = p_min >= 0 ? 'p_min ≥ 0 — No tension in soil ✓' : 'p_min < 0 — Tension at heel! Increase B or use key.';
+  pCard.className = 'res-card ' + (p_min >= 0 ? 'pass' : 'fail');
+
+  // ── Type 2 stem block ──────────────────────────────────────────
+  document.getElementById('r_Mstem').textContent = M_stem.toFixed(1) + ' kN·m/m';
+  document.getElementById('r_Vstem').textContent = V_stem.toFixed(1) + ' kN/m';
+  document.getElementById('r_tstem').textContent = (t_stem * 1000).toFixed(0) + ' mm  (d = ' + (d_stem * 1000).toFixed(0) + ' mm)';
+  document.getElementById('r_Asreq').textContent = As_req.toFixed(0) + ' mm²/m  (' + (As_req / 100).toFixed(2) + ' cm²/m)';
+
+  // ── Type 3 block ───────────────────────────────────────────────
+  document.getElementById('r_Lc').textContent    = Lc.toFixed(2) + ' m';
+  document.getElementById('r_Mwall').textContent = M_wall.toFixed(1) + ' kN·m/m';
+
+  document.getElementById('calc-result').style.display = 'block';
+}
+
+function setCard(id, val, limit, note, label) {
+  var card = document.getElementById(id);
+  card.querySelector('.rc-label').textContent = label;
+  card.querySelector('.rc-val').textContent   = val.toFixed(2);
+  card.querySelector('.rc-note').textContent  = note;
+  var cls = val >= limit ? 'pass' : (val >= limit * 0.92 ? 'warn' : 'fail');
+  card.className = 'res-card ' + cls;
+}
+
+// Run on page load with defaults
+window.addEventListener('DOMContentLoaded', calc);
+</script>
+<script src="_nav.js"></script>
+</body>
+</html>

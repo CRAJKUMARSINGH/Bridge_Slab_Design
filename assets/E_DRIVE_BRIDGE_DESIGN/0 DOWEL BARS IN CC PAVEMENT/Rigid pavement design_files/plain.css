@@ -1,0 +1,510 @@
+/* Century Schoolbook font is very similar to Computer Modern Math: cmmi */
+.MATH    { font-family: "Century Schoolbook", serif; }
+.MATH I  { font-family: "Century Schoolbook", serif; font-shape: italic }
+.BOLDMATH { font-family: "Century Schoolbook", serif; font-weight: bold }
+
+/* implement both fixed-size and relative sizes */
+SMALL.XTINY		{ font-size : xx-small }
+SMALL.TINY		{ font-size : x-small  }
+SMALL.SCRIPTSIZE	{ font-size : smaller  }
+SMALL.FOOTNOTESIZE	{ font-size : small    }
+SMALL.SMALL		{  }
+BIG.LARGE		{  }
+BIG.XLARGE		{ font-size : large    }
+BIG.XXLARGE		{ font-size : x-large  }
+BIG.HUGE		{ font-size : larger   }
+BIG.XHUGE		{ font-size : xx-large }
+
+/*
+heading styles 
+H1		{ color = #ff0000 font-size : small}
+H2		{ color = #ff00ff font-size : small}
+H3		{ color = #ffff00 font-size : small}
+*/
+
+
+a:link, a:visited{
+	/*color: #005FA9;*/
+	color: #0000ff;
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: underline;
+}
+
+
+
+h1
+{
+	font-weight:bold;
+	font-size:18pt;
+	font-family:Arial, Helvetica, sans-serif;
+	color:red;
+}
+
+h2
+{
+	font-weight:bold;
+	font-size:16pt;
+	font-family:Arial, Helvetica, sans-serif;
+	color:fuchsia;
+}
+
+h3
+{
+	font-weight:bold;
+	font-size:14pt;
+	font-family:Arial, Helvetica, sans-serif;
+	color:purple;
+}
+
+H4		{ color = #00ff00 font-size : small}
+H5		{ color = #0000ff font-size : small}
+
+/* mathematics styles */
+DIV.displaymath		{ }	/* math displays */
+TD.eqno			{ }	/* equation-number cells */
+
+
+/* document-specific styles come next */
+
+
+body
+{
+	background-color:#ffffff;
+	color:#000063;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12pt;
+	margin-left: 3%;
+	margin-right: 10%;
+	text-align: justify;
+	line-height: 200%
+}
+
+
+
+
+/* ------------------
+ styling for the tables 
+
+Source
+
+http://www.smashingmagazine.com/2008/08/13/top-10-css-table-designs/
+
+
+tabHMA
+tabHMB
+tabVML
+tabBXA
+tabBXB
+tabHZ
+tabVZ
+tabOCE
+tabNPA
+tabNPB
+tabNPC
+tabRC
+
+
+*/
+
+
+
+#tabHMA
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	background: #fff;
+	margin: 45px;
+	width: 480px;
+	border-collapse: collapse;
+	text-align: left;
+}
+#tabHMA th
+{
+	font-size: 14px;
+	font-weight: normal;
+	color: #039;
+	padding: 10px 8px;
+	border-bottom: 2px solid #6678b1;
+}
+#tabHMA td
+{
+	color: #669;
+	padding: 9px 8px 0px 8px;
+}
+#tabHMA tbody tr:hover td
+{
+	color: #009;
+}
+
+
+#tabHMB
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	background: #fff;
+	margin: 45px;
+	width: 480px;
+	border-collapse: collapse;
+	text-align: left;
+}
+#tabHMB th
+{
+	font-size: 14px;
+	font-weight: normal;
+	color: #039;
+	padding: 10px 8px;
+	border-bottom: 2px solid #6678b1;
+}
+#tabHMB td
+{
+	border-bottom: 1px solid #ccc;
+	color: #669;
+	padding: 6px 8px;
+}
+#tabHMB tbody tr:hover td
+{
+	color: #009;
+}
+
+
+#tabVML
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 480px;
+	text-align: left;
+	border-collapse: collapse;
+}
+#tabVML th
+{
+	padding: 8px 2px;
+	font-weight: normal;
+	font-size: 14px;
+	border-bottom: 2px solid #6678b1;
+	border-right: 30px solid #fff;
+	border-left: 30px solid #fff;
+	color: #039;
+}
+#tabVML td
+{
+	padding: 12px 2px 0px 2px;
+	border-right: 30px solid #fff;
+	border-left: 30px solid #fff;
+	color: #669;
+}
+
+
+#tabBXA
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 480px;
+	text-align: left;
+	border-collapse: collapse;
+}
+#tabBXA th
+{
+	font-size: 13px;
+	font-weight: normal;
+	padding: 8px;
+	background: #b9c9fe;
+	border-top: 4px solid #aabcfe;
+	border-bottom: 1px solid #fff;
+	color: #039;
+}
+#tabBXA td
+{
+	padding: 8px;
+	background: #e8edff; 
+	border-bottom: 1px solid #fff;
+	color: #669;
+	border-top: 1px solid transparent;
+}
+#tabBXA tr:hover td
+{
+	background: #d0dafd;
+	color: #339;
+}
+
+
+#tabBXB
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 480px;
+	text-align: center;
+	border-collapse: collapse;
+	border-top: 7px solid #9baff1;
+	border-bottom: 7px solid #9baff1;
+}
+#tabBXB th
+{
+	font-size: 13px;
+	font-weight: normal;
+	padding: 8px;
+	background: #e8edff;
+	border-right: 1px solid #9baff1;
+	border-left: 1px solid #9baff1;
+	color: #039;
+}
+#tabBXB td
+{
+	padding: 8px;
+	background: #e8edff; 
+	border-right: 1px solid #aabcfe;
+	border-left: 1px solid #aabcfe;
+	color: #669;
+}
+
+
+#tabHZ
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 480px;
+	text-align: left;
+	border-collapse: collapse;
+}
+#tabHZ th
+{
+	font-size: 14px;
+	font-weight: normal;
+	padding: 10px 8px;
+	color: #039;
+}
+#tabHZ td
+{
+	padding: 8px;
+	color: #669;
+}
+#tabHZ .odd
+{
+	background: #e8edff; 
+}
+
+
+#tabVZ
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 480px;
+	text-align: left;
+	border-collapse: collapse;
+}
+#tabVZ th
+{
+	font-size: 14px;
+	font-weight: normal;
+	padding: 12px 15px;
+	border-right: 1px solid #fff;
+	border-left: 1px solid #fff;
+	color: #039;
+}
+#tabVZ td
+{
+	padding: 8px 15px;
+	border-right: 1px solid #fff;
+	border-left: 1px solid #fff;
+	color: #669;
+}
+.vzebra-odd
+{
+	background: #eff2ff;
+}
+.vzebra-even
+{
+	background: #e8edff;
+}
+#tabVZ #vzebra-adventure, #tabVZ #vzebra-children
+{
+	background: #d0dafd;
+	border-bottom: 1px solid #c8d4fd;
+}
+#tabVZ #vzebra-comedy, #tabVZ #vzebra-action
+{
+	background: #dce4ff;
+	border-bottom: 1px solid #d6dfff;
+}
+
+
+#tabOCE
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 480px;
+	text-align: left;
+	border-collapse: collapse;
+}
+#tabOCE th
+{
+	font-size: 14px;
+	font-weight: normal;
+	padding: 12px 15px;
+	color: #039;
+}
+#tabOCE td
+{
+	padding: 10px 15px;
+	color: #669;
+	border-top: 1px solid #e8edff;
+}
+.oce-first
+{
+	background: #d0dafd;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+}
+#tabOCE tr:hover td
+{
+	color: #339;
+	background: #eff2ff;
+}
+
+
+#tabNPA
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 480px;
+	text-align: left;
+	border-collapse: collapse;
+	border: 1px solid #69c;
+}
+#tabNPA th
+{
+	padding: 12px 17px 12px 17px;
+	font-weight: normal;
+	font-size: 14px;
+	color: #039;
+	border-bottom: 1px dashed #69c;
+}
+#tabNPA td
+{
+	padding: 7px 17px 7px 17px;
+	color: #669;
+}
+#tabNPA tbody tr:hover td
+{
+	color: #339;
+	background: #d0dafd;
+}
+
+
+#tabNPB
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 480px;
+	text-align: left;
+	border-collapse: collapse;
+	border: 1px solid #69c;
+}
+#tabNPB th
+{
+	padding: 15px 10px 10px 10px;
+	font-weight: normal;
+	font-size: 14px;
+	color: #039;
+}
+#tabNPB tbody
+{
+	background: #e8edff;
+}
+#tabNPB td
+{
+	padding: 10px;
+	color: #669;
+	border-top: 1px dashed #fff;
+}
+#tabNPB tbody tr:hover td
+{
+	color: #339;
+	background: #d0dafd;
+}
+
+
+#tabNPC
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 480px;
+	text-align: left;
+	border-collapse: collapse;
+	border: 1px solid #6cf;
+}
+#tabNPC th
+{
+	padding: 20px;
+	font-weight: normal;
+	font-size: 13px;
+	color: #039;
+	text-transform: uppercase;
+	border-right: 1px solid #0865c2;
+	border-top: 1px solid #0865c2;
+	border-left: 1px solid #0865c2;
+	border-bottom: 1px solid #fff;
+}
+#tabNPC td
+{
+	padding: 10px 20px;
+	color: #669;
+	border-right: 1px dashed #6cf;
+}
+
+
+#tabRC
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 480px;
+	text-align: left;
+	border-collapse: collapse;
+}
+#tabRC thead th.rounded-company
+{
+	background: #b9c9fe url('table-images/left.png') left -1px no-repeat;
+}
+#tabRC thead th.rounded-q4
+{
+	background: #b9c9fe url('table-images/right.png') right -1px no-repeat;
+}
+#tabRC th
+{
+	padding: 8px;
+	font-weight: normal;
+	font-size: 13px;
+	color: #039;
+	background: #b9c9fe;
+}
+#tabRC td
+{
+	padding: 8px;
+	background: #e8edff;
+	border-top: 1px solid #fff;
+	color: #669;
+}
+#tabRC tfoot td.rounded-foot-left
+{
+	background: #e8edff url('table-images/botleft.png') left bottom no-repeat;
+}
+#tabRC tfoot td.rounded-foot-right
+{
+	background: #e8edff url('table-images/botright.png') right bottom no-repeat;
+}
+#tabRC tbody tr:hover td
+{
+	background: #d0dafd;
+}

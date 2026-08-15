@@ -1,0 +1,81 @@
+# ============================================================
+# COMPLETE .gitattributes FOR Bridge_Slab_Design
+# Copy this file content to .gitattributes at the repo root.
+# This extends the existing configuration with coverage for
+# all binary file types found in Attached_Assets.
+# ============================================================
+
+# ── Existing coverage (already in repo) ──────────────────────
+*.dxf filter=lfs diff=lfs merge=lfs -text
+*.dwg filter=lfs diff=lfs merge=lfs -text
+*.xls filter=lfs diff=lfs merge=lfs -text
+*.XLS filter=lfs diff=lfs merge=lfs -text
+*.pdf filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
+*.xlsx filter=lfs diff=lfs merge=lfs -text
+*.XLSX filter=lfs diff=lfs merge=lfs -text
+*.doc filter=lfs diff=lfs merge=lfs -text
+*.DOC filter=lfs diff=lfs merge=lfs -text
+*.docx filter=lfs diff=lfs merge=lfs -text
+*.DOCX filter=lfs diff=lfs merge=lfs -text
+*.ppt filter=lfs diff=lfs merge=lfs -text
+*.pptx filter=lfs diff=lfs merge=lfs -text
+*.rar filter=lfs diff=lfs merge=lfs -text
+*.7z filter=lfs diff=lfs merge=lfs -text
+
+# STRUDS-style reference HTML — ONLY under Attached_Assets
+# (client/index.html stays in plain Git for Vite build)
+Attached_Assets/**/*.htm filter=lfs diff=lfs merge=lfs -text
+Attached_Assets/**/*.HTM filter=lfs diff=lfs merge=lfs -text
+
+# DXF/DWG record keeper folders
+Dwg-Dxf-Record-Keeper/COMPONENT_DRAWINGS_SORTED/** filter=lfs diff=lfs merge=lfs -text
+Dwg-Dxf-Record-Keeper/DRAWINGS_FROM_RAJKUMAR_DESIGNS/** filter=lfs diff=lfs merge=lfs -text
+Dwg-Dxf-Record-Keeper/GENERATED_DRAWINGS/** filter=lfs diff=lfs merge=lfs -text
+
+# ── NEW additions (add these to the repo .gitattributes) ─────
+
+# Python CAD outputs (DXF + SVG generated files)
+python_cad/**/*.dxf filter=lfs diff=lfs merge=lfs -text
+python_cad/**/*.svg filter=lfs diff=lfs merge=lfs -text
+
+# Sample / generated output folder
+sample/**/*.pdf filter=lfs diff=lfs merge=lfs -text
+sample/**/*.xlsx filter=lfs diff=lfs merge=lfs -text
+sample/**/*.xls filter=lfs diff=lfs merge=lfs -text
+
+# VARIABLE_SELECTION_SHEET at root (binary xlsx)
+VARIABLE_SELECTION_SHEET.xlsx filter=lfs diff=lfs merge=lfs -text
+
+# Attached_Assets: large text calculation files
+# (The main PIER STABIL txt is 31 KB — boundary case; track in LFS for safety)
+Attached_Assets/DESIGN OF PIER AND CHECK FOR STABIL.txt filter=lfs diff=lfs merge=lfs -text
+Attached_Assets/ESTIMATE--e12 and f12 are 0.3 m plus the abut.txt filter=lfs diff=lfs merge=lfs -text
+
+# Attached_Assets: workbook assessment matrix CSV (binary-equivalent large CSV)
+Attached_Assets/workbook-assessment-matrix-template.csv filter=lfs diff=lfs merge=lfs -text
+
+# Wildcard safety net for any new binary formats added under Attached_Assets
+Attached_Assets/**/*.mdb filter=lfs diff=lfs merge=lfs -text
+Attached_Assets/**/*.accdb filter=lfs diff=lfs merge=lfs -text
+Attached_Assets/**/*.dwf filter=lfs diff=lfs merge=lfs -text
+
+# ── Files that must NOT go through LFS ───────────────────────
+# (Override: keep these as plain text in Git)
+# client/index.html  — Vite entry point (plain Git)
+# *.ts *.tsx *.js *.jsx — source code (plain Git)
+# *.md — documentation (plain Git)
+# *.json *.yaml *.toml — configuration (plain Git)
+
+# ── Line-ending normalisation for text sources ───────────────
+*.ts text=auto eol=lf
+*.tsx text=auto eol=lf
+*.js text=auto eol=lf
+*.jsx text=auto eol=lf
+*.json text=auto eol=lf
+*.md text=auto eol=lf
+*.html text=auto eol=lf
+*.css text=auto eol=lf

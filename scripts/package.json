@@ -1,0 +1,22 @@
+{
+  "name": "@workspace/scripts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "hello": "tsx ./src/hello.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "design": "tsx ./src/design.ts",
+    "verify:golden": "tsx ./src/verify-golden.ts",
+    "assimilate": "python ./src/assimilate.py",
+    "assets:inventory": "python ./assimilate/inventory.py --root ../Attached_Assets --out ../asset-register.json"
+  },
+  "dependencies": {
+    "@workspace/engine": "workspace:*",
+    "@workspace/report": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "tsx": "catalog:"
+  }
+}

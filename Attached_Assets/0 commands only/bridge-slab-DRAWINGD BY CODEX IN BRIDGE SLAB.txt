@@ -1,0 +1,241 @@
+BRIDGE SLAB DESIGN — DRAWINGS + MERGE TASKS (CLEAN INSTRUCTIONS)
+
+============================================================
+SECTION A — WHAT THE APP PRESENTLY SHOWS (CURRENT CAPABILITIES)
+============================================================
+
+1) Live SVG / browser drawings (available now)
+- GAD (general arrangement drawing)
+- Pier elevation / details
+- Type-1 abutment section / details
+- Deck slab cross-section
+- Hydraulic profile and scour diagram
+- Pier stability free-body diagram
+- Abutment earth-pressure diagram
+- Slab reinforcement plan
+- Reinforcement detail SVGs + bar schedule for:
+  - Pier
+  - Type-1 abutment
+  - C1 cantilever abutment
+- Reinforcement section SVG for pier / abutment
+
+2) DXF / AutoCAD output (available now)
+- One downloadable DXF drawing set from endpoint: /api/design/dxf
+- DXF engine includes: bridge elevation, plan view, typical cross-section,
+  HFL/bed/foundation/scour levels, dimensions, hatching, title block, layers,
+  and AC1018/AC1021 compatibility.
+
+3) PDF / report annexure drawings (available now)
+- Comprehensive PDF includes annexure sketches:
+  - Hydraulic scour profile
+  - Pier stability free-body
+  - Abutment pressure diagram
+  - Slab reinforcement plan
+
+4) Important limitations (NOT implemented yet, per app notes)
+- Foundation plan
+- Wing wall / return wall drawings
+- Cross-section at every pier
+- Longitudinal section with soil strata
+- Native DWG output
+- Separate AutoCAD DXF drawings for individual pier / abutment (current outputs
+  are SVG-only or reference assets, not full CAD outputs yet)
+
+NOTE (INTENT):
+Certain better features might have been missed during earlier merges.
+It is better to incorporate missing better features and neglect inferior ones.
+
+
+============================================================
+SECTION B — HOW TO TREAT REPOS FOR ALL TASKS BELOW
+============================================================
+
+Base architecture (do not break):
+- "cursor-baseline": `https://github.com/CRAJKUMARSINGH/Bridge_Slab_Design`
+
+Feature reference (port selectively; do not duplicate logic):
+- "replit-baseline": (varies per TASK below)
+
+
+============================================================
+SECTION C — STANDARD INSTRUCTIONS (APPLY TO EVERY TASK)
+============================================================
+
+Treat cursor-baseline as the architecture base and replit-baseline as a feature
+reference. First create a module-wise diff summary. Then identify:
+- features present only in Replit,
+- features present only in Cursor,
+- conflicting implementations, and
+- probable regressions.
+
+Then propose a merge plan that preserves business-critical behavior and avoids
+duplicate logic. Do NOT edit code until the plan is approved.
+
+
+============================================================
+SECTION D — MERGE WORKSHEET (USE FOR PLANNING / QA)
+============================================================
+
+Purpose:
+Consolidate two app versions into one production-ready version without losing
+important functionality. Use Cursor as merge workspace and Replit as a feature
+reference.
+
+Branch strategy (recommended):
+- cursor-baseline: snapshot before merge work
+- replit-baseline: snapshot before merge work
+- merge-integration: working branch for combined version
+- release-candidate: final reviewed branch for validation
+
+Feature inventory matrix (fill during review):
+Module | Feature | In Cursor? | In Replit? | Better source | Decision | Test | Status
+Auth | Login flow |  |  |  |  |  |
+Auth | Signup / user creation |  |  |  |  |  |
+Auth | Password reset |  |  |  |  |  |
+Data | Database schema / models |  |  |  |  |  |
+Data | Validation rules |  |  |  |  |  |
+API | Endpoints and payloads |  |  |  |  |  |
+Logic | Core business calculations |  |  |  |  |  |
+UI | Main dashboard / home screen |  |  |  |  |  |
+UI | Forms and dialogs |  |  |  |  |  |
+UI | Reports / exports |  |  |  |  |  |
+Settings | User settings / preferences |  |  |  |  |  |
+Notifications | Alerts / emails / messages |  |  |  |  |  |
+Security | Roles / permissions |  |  |  |  |  |
+Other | Hidden utilities / edge-case logic |  |  |  |  |  |
+
+Merge rules:
+- Keep ONE source of truth per concern (auth, data model, report engine, exports).
+- Prefer Cursor architecture; port only proven features from Replit.
+- Merge module-by-module (avoid one massive merge).
+- Validate each merged module before the next one.
+
+Merge sequence:
+1) Data models and schema
+2) Backend services and business rules
+3) API contracts and payload compatibility
+4) Authentication and authorization
+5) UI screens and components
+6) Styling and UX cleanup
+7) Reports, exports, and background utilities
+
+Module review sheet (copy per module):
+Module name:
+Owner:
+Base source: Cursor
+Reference source: Replit
+Files compared:
+Conflicts found:
+Chosen implementation:
+Why chosen:
+Risk if missed:
+Test performed:
+Result: Pass / Fail / Partial
+
+QA checklist (before release-candidate):
+[ ] Cursor features listed and checked
+[ ] Replit features listed and checked
+[ ] Duplicates resolved to ONE final implementation
+[ ] API responses compared where relevant
+[ ] Calculations/business-rule outputs checked side-by-side
+[ ] Reports/exports/downloads verified
+[ ] Validation messages + edge cases tested
+[ ] Dead code removed
+[ ] Naming/folder structure/types standardized
+[ ] Final manual review completed
+
+
+============================================================
+SECTION E — TASK LIST (EACH TASK = DIFFERENT REPLIT-BASELINE)
+============================================================
+
+TASK-01
+replit-baseline: `https://github.com/CRAJKUMARSINGH/D4_Bridge`
+
+TASK-02
+replit-baseline: `https://github.com/CRAJKUMARSINGH/D3_Bridge`
+
+TASK-03
+replit-baseline: `https://github.com/CRAJKUMARSINGH/D2_Bridge`
+
+TASK-04
+replit-baseline: `https://github.com/CRAJKUMARSINGH/Dwg-Dxf-Record-Keeper`
+
+TASK-05
+replit-baseline: `https://github.com/CRAJKUMARSINGH/M2_Bridge`
+
+TASK-06
+replit-baseline: `https://github.com/CRAJKUMARSINGH/M3_Bridge`
+
+TASK-07
+replit-baseline: `https://github.com/CRAJKUMARSINGH/M4_Bridge`
+
+TASK-08
+replit-baseline: `https://github.com/CRAJKUMARSINGH/Bridge_GAD_Yogendra_Borse`
+
+TASK-09
+replit-baseline: `https://github.com/CRAJKUMARSINGH/BridgeCanvas`
+
+TASK-10
+replit-baseline: `https://github.com/CRAJKUMARSINGH/Bridge-Drawing-Manager`
+
+TASK-11
+replit-baseline: `https://github.com/CRAJKUMARSINGH/Bridge-Causeway-Design`
+
+TASK-12
+replit-baseline: `https://github.com/CRAJKUMARSINGH/LispCanvas`
+
+TASK-13
+replit-baseline: `https://github.com/CRAJKUMARSINGH/BAR_BENDING_SCHEDULE`
+
+TASK-14
+replit-baseline: `https://github.com/CRAJKUMARSINGH/BridgeDraw`
+
+TASK-15
+replit-baseline: `https://github.com/CRAJKUMARSINGH/BridgeGADdrafter`
+
+TASK-16
+replit-baseline: `https://github.com/CRAJKUMARSINGH/bridge-plotter-cad`
+
+TASK-17
+replit-baseline: `https://github.com/CRAJKUMARSINGH/Raj_Bridge_Design`
+
+
+============================================================
+SECTION F — BRIEF TABULATED REPORT OF TASK DONE (FILL AFTER WORK)
+============================================================
+
+Task | Replit baseline repo | Summary of diff | Plan prepared | Code merged | Tests done | Status
+-----|----------------------|-----------------|--------------|------------|-----------|-------
+01   | D4_Bridge            |                 |              |            |           |
+02   | D3_Bridge            |                 |              |            |           |
+03   | D2_Bridge            |                 |              |            |           |
+04   | Dwg-Dxf-Record-Keeper|                 |              |            |           |
+05   | M2_Bridge            |                 |              |            |           |
+06   | M3_Bridge            |                 |              |            |           |
+07   | M4_Bridge            |                 |              |            |           |
+08   | Bridge_GAD_Yogendra_Borse |            |              |            |           |
+09   | BridgeCanvas         |                 |              |            |           |
+10   | Bridge-Drawing-Manager |               |              |            |           |
+11   | Bridge-Causeway-Design |               |              |            |           |
+12   | LispCanvas           |                 |              |            |           |
+13   | BAR_BENDING_SCHEDULE |                 |              |            |           |
+14   | BridgeDraw           |                 |              |            |           |
+15   | BridgeGADdrafter     |                 |              |            |           |
+16   | bridge-plotter-cad   |                 |              |            |           |
+17   | Raj_Bridge_Design    |                 |              |            |           |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

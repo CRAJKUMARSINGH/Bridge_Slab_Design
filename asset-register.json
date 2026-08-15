@@ -1,0 +1,32 @@
+{
+  "assets": [
+    {
+      "path": "Attached_Assets/00 AUGUST ADDITIONS/COMPREHENSIVE_IMPLEMENTATION_PLAN.md",
+      "type": "markdown",
+      "description": "Implementation plan",
+      "sha256": "[PLACEHOLDER]",
+      "lastModified": "2026-08-14"
+    },
+    {
+      "path": "Attached_Assets/00 AUGUST ADDITIONS/bridge trae_slab_design_comprehensive_impl_plan.md",
+      "type": "markdown",
+      "description": "Detailed implementation plan",
+      "sha256": "[PLACEHOLDER]",
+      "lastModified": "2026-08-14"
+    },
+    {
+      "path": "Attached_Assets/00 AUGUST ADDITIONS/text trae.txt",
+      "type": "text",
+      "description": "Audit commentary",
+      "sha256": "[PLACEHOLDER]",
+      "lastModified": "2026-08-14"
+    },
+    {
+      "path": "Attached_Assets/00 AUGUST ADDITIONS/text1308.txt",
+      "type": "text",
+      "description": "Additional audit notes",
+      "sha256": "[PLACEHOLDER]",
+      "lastModified": "2026-08-14"
+    }
+  ]
+}

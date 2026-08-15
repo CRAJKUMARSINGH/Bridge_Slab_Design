@@ -1,0 +1,8 @@
+0 null null 2 NULL Structure (Not drawn on Plan OR Profile)
+2 null2 null 2 NULL Structure (drawn on Profile but not Plan)
+3 cb pw-cb1 1 Existing Catch Basin
+3 pcb pw-cb2 1 Proposed Catch Basin
+3 mh pw-dmh1 3 Existing Manhole
+3 pmh pw-dmh2 3 Proposed Manhole
+2 end null 5 Pipe End
+0 node . 1 PIPE VERTEX (NO STRUCTURE)

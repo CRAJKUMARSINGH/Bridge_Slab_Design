@@ -1,0 +1,123 @@
+/**
+ * Excel-fidelity layout primitives (CURSOR_110426_ACTION_PLAN.md Phase 3).
+ * Policy: readable grid at natural size; scroll horizontally — never shrink the whole sheet.
+ */
+
+.excel-fidelity-viewport {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Forbid shrinking the calculation grid to fit the viewport */
+.excel-fidelity-sheet {
+  width: max-content;
+  min-width: min(100%, max-content);
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-family: "Segoe UI", Calibri, "Helvetica Neue", Arial, sans-serif;
+  font-size: 11px;
+  line-height: 1.25;
+  background: #fff;
+  color: #000;
+}
+
+.excel-fidelity-sheet th,
+.excel-fidelity-sheet td {
+  border: 1px solid #bfbfbf;
+  padding: 2px 6px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.excel-fidelity-sheet th {
+  background: #d9d9d9;
+  font-weight: 600;
+  text-align: center;
+}
+
+.excel-fidelity-sheet .cell-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.excel-fidelity-sheet .cell-formula {
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 10px;
+  color: #006400;
+  white-space: pre;
+  max-width: 48ch;
+}
+
+.excel-fidelity-caption {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: inherit;
+}
+
+.excel-fidelity-spacer {
+  height: 0.35rem;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+tr.excel-fidelity-section-break td {
+  text-align: left;
+  background: #d9d9d9;
+  font-weight: 600;
+  padding: 4px 6px;
+}
+
+.excel-print-avoid-break {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 10mm 12mm;
+  }
+
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .excel-fidelity-print-root,
+  .excel-fidelity-viewport {
+    overflow: visible !important;
+    max-width: none !important;
+    max-height: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .excel-fidelity-sheet {
+    font-size: 9pt;
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .excel-fidelity-sheet th,
+  .excel-fidelity-sheet td {
+    border-color: #8c8c8c !important;
+  }
+
+  .excel-fidelity-caption {
+    color: #000 !important;
+    page-break-after: avoid;
+  }
+
+  tr.excel-fidelity-section-break {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .excel-fidelity-print-root {
+    break-inside: auto;
+  }
+}

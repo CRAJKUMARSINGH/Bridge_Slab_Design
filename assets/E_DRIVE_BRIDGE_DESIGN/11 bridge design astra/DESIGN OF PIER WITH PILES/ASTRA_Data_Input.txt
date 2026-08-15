@@ -1,0 +1,133 @@
+PROJECT NAME : frmPier_Design_with_Piles : IndianStandard
+ASTRA INPUT DATA CREATED AT 01/08/2015 11:03:14 PM
+
+
+txt_W1 = 1
+2.55
+txt_H3 = 1
+297
+txt_D3 = 1
+6.504
+txt_H5 = 1
+295.2
+txt_S1 = 1
+3.6
+txt_B3 = 1
+2.80
+txt_H2 = 1
+393
+txt_D2 = 1
+1.50
+txt_H4 = 1
+297
+txt_D4 = 1
+1.80
+txt_B2 = 1
+1.3
+txt_H1 = 1
+395
+txt_D1 = 1
+0.50
+txt_B1 = 1
+8.50
+txt_HLC = 1
+20
+txt_VLC = 1
+250
+txt_CF = 1
+0.05
+txt_WC = 1
+0.065
+txt_CS = 1
+0.09375
+txt_DSS = 1
+1.5
+txt_PL = 1
+20
+txt_DEN_S = 1
+1.800
+txt_DEN_Con = 1
+2.400
+txt_HSC = 1
+0.180
+txt_R = 1
+2.50
+txt_Sa_by_g = 1
+2.50
+txt_I = 1
+1.50
+txt_Z = 1
+0.24
+txt_H3_1 = 1
+297
+txt_D3_1 = 1
+6.504
+txt_H5_1 = 1
+295.2
+txt_S2 = 1
+3.60
+txt_B6 = 1
+1.75
+txt_H2_1 = 1
+393
+txt_D2_1 = 1
+1.50
+txt_H4_1 = 1
+297
+txt_D4_1 = 1
+1.80
+txt_B5 = 1
+1.3
+txt_H1_1 = 1
+395
+txt_D1_1 = 1
+0.50
+txt_B4 = 1
+2.20
+txt_LLR_1 = 1
+15.581
+txt_AHF_1 = 1
+20.0
+dgv1 = 5
+1$Dead Load + SIDL$479.01$0.000$0.000$0.000$0.000
+2$Live Load (Max Long Moment)$92.00$1.100$101.20$1.155$106.26
+3$Live Load (Max Trans Moment)$46.78$1.100$51.46$2.950$138.01
+4$Pier Cap$111.24$0.000$0.000$0.000$0.000
+5$Pier Shaft$168.58$0.000$0.000$0.000$0.000
+txt_LLR_2 = 1
+0.0
+txt_AHF_2 = 1
+0.0
+dgv2 = 5
+1$Dead Load + SIDL$239.51$1.100$263.456$0.000$0.000
+2$Live Load (Max Long Moment)$0.000$1.100$0.000$1.155$0.000
+3$Live Load (Max Trans Moment)$0.000$0.000$0.000$2.950$0.000
+4$Pier Cap$111.24$0.000$0.000$0.000$0.000
+5$Pier Shaft$168.58$0.000$0.000$0.000$0.000
+dgv3 = 5
+1$Dead Load + SIDL$479.01$0.000$0.000$0.000$0.000
+2$Live Load (Max Long Moment)$92.00$1.100$101.20$1.155$106.26
+3$Live Load (Max Trans Moment)$46.78$1.100$51.46$2.950$138.01
+4$Pier Cap$111.24$0.000$0.000$0.000$0.000
+5$Pier Shaft$168.58$0.000$0.000$0.000$0.000
+txt_pcdia = 1
+1.2
+txt_tr = 1
+3
+txt_tp = 1
+6
+txt_S8 = 1
+0.75
+txt_S5 = 1
+0.75
+txt_S7 = 1
+3.6
+txt_S4 = 1
+3.6
+txt_S6 = 1
+0.75
+txt_S3 = 1
+0.75
+txt_dp = 1
+1.8
+NEW DATA

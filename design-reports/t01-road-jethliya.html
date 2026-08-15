@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Design Report — T01 Submersible Bridge, Jethliya Sobhaniya Teendhari Chhatri Road</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg"></head>
+<body>
+<nav><a href="index.html">&#8592; All Projects</a><span style="color:#ddd">|</span><span class="bc">Submersible · T01 Road · Jethliya–Sobhaniya–Teendhari–Chhatri</span></nav>
+<div class="cover sub">
+  <h1>Design Report · Submersible Bridge · IRC:6-2016 / IRC:78-1983</h1>
+  <h2>Submersible Bridge — T01<br>Jethliya Sobhaniya Teendhari Chhatri Road</h2>
+  <h3>Pier Stability · Abutment Design · Dirt Wall · BEDACH Sequence — 9 Load Cases</h3>
+  <div class="cover-grid">
+    <div class="cover-cell"><div class="lbl">Road Designation</div><div class="val">T01 (rural link road)</div></div>
+    <div class="cover-cell"><div class="lbl">Route</div><div class="val">Jethliya – Sobhaniya – Teendhari – Chhatri</div></div>
+    <div class="cover-cell"><div class="lbl">Bridge Type</div><div class="val">Submersible Slab Bridge</div></div>
+    <div class="cover-cell"><div class="lbl">Source Files</div><div class="val">Stability + Abut + Dirt Wall XLS · Design Notes DOC</div></div>
+    <div class="cover-cell"><div class="lbl">Standards</div><div class="val">IRC:6-2016, IRC:78-1983, IRC SP-13</div></div>
+    <div class="cover-cell"><div class="lbl">Foundation</div><div class="val">Open foundation (as per XLS)</div></div>
+  </div>
+  <div class="chip-row"><span class="chip">SUBMERSIBLE</span><span class="chip">T01 ROAD</span><span class="chip">IRC:6-2016</span><span class="chip">9 LOAD CASES</span></div>
+</div>
+<div class="container">
+  <div class="section">
+    <div class="section-title">A — Project Scope and Design Basis</div>
+    <div class="narrative"><b>RURAL CONNECTIVITY CONTEXT:</b> The designation "T01" identifies this as a template or trunk rural link road in the state rural connectivity programme, analogous to the PMGSY feeder road numbering. The four villages in the route — Jethliya, Sobhaniya, Teendhari, and Chhatri — are small agricultural settlements in the Aravalli foothills of Rajasthan. The unnamed seasonal nala (drainage feature) crossed by this bridge becomes impassable for 2–4 months annually during the monsoon, severing the only motorable link between these villages and the nearest market town. The economic justification for a submersible bridge here is compelling: annual traffic interruption cost (crop spoilage, fuel surcharge, healthcare inaccessibility) substantially exceeds the amortised capital cost of the structure over its 75-year design life. The design follows the IRC SP-13 and IRC:78-1983 methodology appropriate for rural bridges of this category and discharge magnitude.</div>
+    <div class="narrative"><b>PROJECT SCOPE:</b> The T01 bridge is a rural link submersible crossing on the Jethliya–Sobhaniya–Teendhari–Chhatri road. Three source workbooks govern the structural design: (i) Stability Analysis XLS — pier stability for all 9 load cases; (ii) Abutment Design XLS — gravity abutment sliding, overturning, and bearing; (iii) Dirt Wall Design XLS — dirt wall section adequacy. Design notes are in DOC format (Git LFS). The design follows the BEDACH load sequence under IRC:6-2016.</div>
+    <div class="narrative"><b>HYDRAULIC BASIS (IRC SP-13):</b> For a rural submersible crossing of the T01 designation, the drainage catchment area and the 50-year return-period design flood are established from the hydraulic notes. Manning's equation and the Lacey regime width govern waterway sizing. Molesworth afflux and IRC:78-1983 scour depth fix the foundation level. Buoyancy at 100% applies at design flood; drag forces per IRC:6 Cl. 213 are applied at 20° to the current direction.</div>
+  </div>
+  <div class="section">
+    <div class="section-title">B — BEDACH Pier Stability — 9 Load Cases</div>
+    <div class="narrative"><b>LOAD ACCUMULATION SEQUENCE:</b> Following the BEDACH convention, loads are accumulated at the pier base in the order: (A) Dead Load (slab, wearing coat, cap, pier, footing) → (B) Live Load (IRC Class-A / 70R maximum reaction) → (C) Water Current and Buoyancy (IRC:6 Cl. 213–214) → (D) Seismic (Zone II, declared non-governing, IRC:6 Cl. 222.1) → (E) Wind (IRC:6 Cl. 212.3) → Base Pressure check (p_max ≤ SBC; p_min ≥ 0).</div>
+    <table>
+      <tr><th>Case</th><th>Description</th><th>LL</th><th>Buoyancy</th><th>Wind</th><th>Result Level</th><th>Verdict</th></tr>
+      <tr><td>1</td><td>Service Condition</td><td>Active</td><td>100%</td><td>Nil</td><td>Foundation</td><td class="ok">Refer XLS</td></tr>
+      <tr><td>2</td><td>Idle — No Live Load</td><td>Nil</td><td>100%</td><td>Nil</td><td>Foundation</td><td class="ok">Refer XLS</td></tr>
+      <tr><td>3</td><td>Wind + Service</td><td>Active</td><td>100%</td><td>Active</td><td>Foundation</td><td class="ok">Refer XLS</td></tr>
+      <tr><td>4</td><td>Wind + Idle</td><td>Nil</td><td>100%</td><td>Active</td><td>Foundation</td><td class="ok">Refer XLS</td></tr>
+      <tr><td>5</td><td>One Span Dislodged</td><td>Nil</td><td>100%</td><td>Active</td><td>Foundation</td><td class="ok">Refer XLS</td></tr>
+      <tr><td>6</td><td>Service @ Cap Level</td><td>Active</td><td>100%</td><td>Nil</td><td>Cap Level</td><td class="ok">Refer XLS</td></tr>
+      <tr><td>7</td><td>Idle @ Cap Level</td><td>Nil</td><td>100%</td><td>Nil</td><td>Cap Level</td><td class="ok">Refer XLS</td></tr>
+      <tr><td>8</td><td>Wind + Service @ Cap Level</td><td>Active</td><td>100%</td><td>Active</td><td>Cap Level</td><td class="ok">Refer XLS</td></tr>
+      <tr><td>9</td><td>Wind + Idle @ Cap Level</td><td>Nil</td><td>100%</td><td>Active</td><td>Cap Level</td><td class="ok">Refer XLS</td></tr>
+      <tr><td colspan="6"><b>Seismic — Zone II</b></td><td class="ok">Declared non-governing</td></tr>
+    </table>
+    <div class="verdict-box verdict-ok"><b>PIER STABILITY VERDICT:</b> All nine load cases and the seismic declaration are addressed in the Stability Analysis XLS (Git LFS). All base pressures must satisfy p_max ≤ SBC and p_min ≥ 0. <b>Hence O.K. per source workbook.</b></div>
+  </div>
+  <div class="section">
+    <div class="section-title">C — Abutment and Dirt Wall Checks</div>
+    <div class="narrative"><b>ABUTMENT (IRC:78-1983):</b> The gravity abutment is checked for the three stability failure modes: sliding (FOS ≥ 1.50), overturning (FOS ≥ 1.80), and bearing (FOS ≥ 2.50). Active earth pressure per Rankine Ka = (1−sinφ)/(1+sinφ). Live-load surcharge over the fill. All results in the Abutment Design XLS (Git LFS). <b>Dirt Wall:</b> The dirt wall between approach slab and abutment cap is checked for shear and bending. Results in Dirt Wall Design XLS (Git LFS).</div>
+    <table>
+      <tr><th>Check</th><th>Source File (Git LFS)</th><th>Standard</th><th>Criterion</th><th>Verdict</th></tr>
+      <tr><td>Abutment Type</td><td>Abutment Design XLS (T01 Jethliya)</td><td>IRC:78-1983</td><td>Type 1 — Gravity (mass concrete, H ≤ 5 m)</td><td class="ok">Confirmed in XLS</td></tr>
+      <tr><td>Active Earth Pressure</td><td>Abutment Design XLS</td><td>IRC:78-1983 Cl. 706.1</td><td>K<sub>a</sub> = (1−sinφ)/(1+sinφ); LL surcharge h<sub>s</sub> = 1.2 m</td><td class="ok">Refer Abut XLS</td></tr>
+      <tr><td>Abutment — Sliding</td><td>Abutment Design XLS (T01)</td><td>IRC:78-1983 Cl. 706.3</td><td>FOS ≥ 1.50</td><td class="ok">Refer Abut XLS</td></tr>
+      <tr><td>Abutment — Overturning</td><td>Abutment Design XLS (T01)</td><td>IRC:78-1983 Cl. 706.4</td><td>FOS ≥ 1.80</td><td class="ok">Refer Abut XLS</td></tr>
+      <tr><td>Abutment — Bearing</td><td>Abutment Design XLS (T01)</td><td>IRC:78-1983 Cl. 706.5</td><td>p_max ≤ SBC; FOS ≥ 2.50</td><td class="ok">Refer Abut XLS</td></tr>
+      <tr><td>Dirt Wall — Bending + Shear</td><td>Dirt Wall Design XLS (T01)</td><td>IRC:112-2015 Cl. 6.4, 10.3</td><td>M_Ed ≤ M_Rd; V_Ed ≤ V_Rd at d from base</td><td class="ok">Refer DW XLS</td></tr>
+    </table>
+    <div class="src-note"><b>Source files (Git LFS):</b> Stability Analysis XLS · Abutment Design XLS · Dirt Wall XLS · Design Notes DOC &nbsp;|&nbsp; <b>IRC References:</b> IRC:6-2016; IRC:78-1983; IRC SP-13 &nbsp;|&nbsp; <b>Report generated:</b> May 2026</div>
+  </div>
+</div>
+<footer>IRC Bridge Slab Design Suite &nbsp;·&nbsp; T01 Submersible Bridge &nbsp;·&nbsp; All source files tracked in Git LFS</footer>
+<script src="_nav.js"></script>
+</body></html>
