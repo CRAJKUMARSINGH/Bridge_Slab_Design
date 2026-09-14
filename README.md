@@ -89,3 +89,36 @@ Key paths:
 - Failed checks are **never suppressed** ΓÇö they appear in UI and report.
 - `creat.md` is the project charter. Keep it current.
 - The project is **not complete** until `creat.md` records launch evidence.
+
+---
+
+## Standing Instructions for AI Tools & Engineers
+
+> These instructions are **permanent**. Do not delete or move this section.
+> They apply to every work session — human or AI agent — on this repository.
+
+### Chat log continuity rule
+- `creat.md §8` is the **rolling 24-day chat log** for this project.
+- Every significant session (AI agent or human engineer) must **append a dated entry** to `creat.md §8` describing: what was triggered, what was done, key findings, and outcome.
+- Entries older than 24 days **must be deleted** from `creat.md §8` to keep it focused and readable.
+- Full session history lives in git commit messages and external session transcripts — not in this file.
+- This log exists so the **next agent or engineer can pick up immediately** without re-reading the entire project history.
+
+### Week gate rule
+- Do **not** start work on Week N+1 until the user explicitly instructs it.
+- Instructions for each week live in: `CODE-JUNCTION/Bridge_Slab_Design_Enrichment_Plan/docs/week-N/AGENT-INSTRUCTIONS.md`
+- Verify all deliverables against the **Exit Gate** checklist in that file before reporting done.
+
+### No engine code in documentation weeks
+- Weeks designated as "baseline / documentation / analysis" must **not** touch calculation engine code (`design-engine.ts`, `lib/engine/src/`, any `sheets/*.ts`).
+
+### Forbidden actions (all weeks)
+- Do not delete or move large directories without explicit user approval.
+- Do not mark a feature complete without evidence (passing tests or a confirmed real file in the tree).
+- Do not overstate completion. If a file exists but its content is unverified, mark it as partial.
+- Do not silently patch formula/calculation discrepancies — record them in the chat log and gap analysis.
+
+### Push & merge rule
+- After every instructed work session: **commit all edits → push to remote → merge with main → check for errors → report "OK" when done.**
+- Always push to `main` unless the user specifies a different branch.
+- If a push fails (rejected, non-fast-forward, object corruption), diagnose and fix before reporting done — do not leave the repo in a broken state.
