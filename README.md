@@ -98,11 +98,12 @@ Key paths:
 > They apply to every work session — human or AI agent — on this repository.
 
 ### Chat log continuity rule
-- `creat.md §8` is the **rolling 24-day chat log** for this project.
+- `creat.md §8` is the **rolling 24-hour chat log** for this project.
 - Every significant session (AI agent or human engineer) must **append a dated entry** to `creat.md §8` describing: what was triggered, what was done, key findings, and outcome.
-- Entries older than 24 days **must be deleted** from `creat.md §8` to keep it focused and readable.
+- Entries older than **24 hours must be deleted** from `creat.md §8` at the start of each new session to keep it focused and readable.
 - Full session history lives in git commit messages and external session transcripts — not in this file.
 - This log exists so the **next agent or engineer can pick up immediately** without re-reading the entire project history.
+- **Do not allow lengthy older records to accumulate** — the 24-hour rule is strict.
 
 ### Week gate rule
 - Do **not** start work on Week N+1 until the user explicitly instructs it.

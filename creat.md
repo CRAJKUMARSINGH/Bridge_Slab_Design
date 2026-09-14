@@ -833,15 +833,16 @@ review status to this file. Until then, retain the status **in progress** or
 
 ---
 
-## 8. Chat Log — Last 24 Days (Rolling — Oldest Entries Purged When Stale)
+## 8. Chat Log — Last 24 Hours (Rolling — Entries Older Than 24 Hours Are Deleted)
 
 > **Purpose:** Continuity record for AI tools and software engineers working on this repo.
-> Keeps the most recent ~24 days of significant sessions, decisions, and outcomes in one place.
-> When this section grows beyond 24 days of entries, delete the oldest — keep only the current window.
+> Keeps only the last 24 hours of significant sessions, decisions, and outcomes.
+> When a session entry is older than 24 hours, **delete it from this section** — keep only the current window.
 > Full history lives in git commit messages and session transcripts, not here.
 >
 > **Rule:** Every significant session (AI agent or human engineer) must append a dated entry
 > below describing: what was triggered, what was done, key findings, and the outcome.
+> Do not keep lengthy older records in this file.
 
 ---
 
@@ -888,5 +889,26 @@ Week 1 exit gate confirmed on the local enrichment-program branch. Chat log and 
 4. Committed both files, pushed to remote, verified merge with main.
 
 #### Standing rule confirmed (permanent)
-- `creat.md §8` is the **24-day rolling chat log**. Entries older than 24 days are deleted — full history is in git.
+- `creat.md §8` is the **24-hour rolling chat log**. Entries older than 24 hours are deleted — full history is in git.
 - `README.md` carries the permanent **Standing Instructions** block so every new contributor or agent sees the rule immediately.
+
+---
+
+### Session: 2026-09-14 — Chat Log Window Changed to 24 Hours + Instructions Confirmed
+
+**Operator:** Kiro AI agent
+**Triggered by:** User — "Save chat log in creat.md for continuity. Log record of immediate/last 24 HOUR work will be kept. Lengthy earlier old records shall be deleted. Save standing instructions in README as standing instructions."
+
+#### Actions taken
+1. Updated `creat.md §8` header — changed rolling window from "24 days" to **24 hours** (tighter continuity window per user correction).
+2. Updated README `## Standing Instructions` — changed wording to match 24-hour rule.
+3. Confirmed both prior session entries from today (2026-09-14) are within the 24-hour window — retained.
+4. Appended this entry as the current session record.
+5. Committed, pushed to `origin/main`, verified clean merge.
+
+#### Key rule clarification
+- **Window is 24 HOURS**, not 24 days. At the start of each session, delete any entry timestamped more than 24 hours ago.
+- This keeps the log laser-focused on what happened in the immediate prior working period.
+
+#### Outcome
+creat.md §8 and README standing instructions both updated to 24-hour rule. Committed and pushed clean.
