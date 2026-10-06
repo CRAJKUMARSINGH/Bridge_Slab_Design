@@ -1,0 +1,22 @@
+{
+  // Typecheck for the root-level tooling: `scripts/*.ts` and `scripts/phase-zero/*.ts`.
+  //
+  // Why this file exists: scripts/tsconfig.json compiles only `scripts/src`, and tsconfig.flat.json
+  // picks up root scripts by the single glob `scripts/verify-*.ts`. Every other tool in this directory
+  // — the release-candidate bundler, the narrative lint that runs inside `pnpm run check`, the asset
+  // readers, the smoke runners — was compiled by nothing at all. That gap is how
+  // `manifest.gates.map(g => g.cmd)` shipped in build-release-candidate.ts: it threw a TypeError at the
+  // first rebuild of the evidence bundle, weeks after it was written.
+  //
+  // Options are inherited from tsconfig.flat.json (allowImportingTsExtensions for the tsx-style `.ts`
+  // specifiers these tools use, noImplicitAny off, noEmit on).
+  //
+  // Two files previously carried an @ts-expect-error on an import for undeclared packages (august-due.md
+  // §P-4, §18a). sharp@0.35.5 and word-extractor@1.0.4 are now declared in root devDependencies;
+  // the markers have been removed from export-sample-output-bundle.ts and phase-zero/extract-word.ts.
+  //
+  // Run: pnpm run typecheck:tools
+  "extends": "../tsconfig.flat.json",
+  "include": ["*.ts", "phase-zero/*.ts"],
+  "exclude": ["src"]
+}

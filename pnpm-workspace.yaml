@@ -1,4 +1,3 @@
-
 packages:
   - artifacts/*
   - lib/*
@@ -11,12 +10,12 @@ catalog:
   '@replit/vite-plugin-cartographer': ^0.5.21
   '@replit/vite-plugin-dev-banner': ^0.1.1
   '@replit/vite-plugin-runtime-error-modal': ^0.0.6
-  '@tailwindcss/vite': ^4.1.14
+  '@tailwindcss/vite': ^4.3.3
   '@tanstack/react-query': ^5.90.21
   '@types/node': ^25.3.3
   '@types/react': ^19.2.0
   '@types/react-dom': ^19.2.0
-  '@vitejs/plugin-react': ^5.0.4
+  '@vitejs/plugin-react': ^5.2.0
   class-variance-authority: ^0.7.1
   clsx: ^2.1.1
   drizzle-orm: ^0.45.2
@@ -29,7 +28,7 @@ catalog:
   tailwind-merge: ^3.3.1
   tailwindcss: ^4.1.14
   tsx: ^4.23.1
-  vite: ^7.3.2
+  vite: ^7.3.6
   wouter: ^3.3.5
   zod: ^3.25.76
 # ============================================================================
@@ -72,12 +71,19 @@ onlyBuiltDependencies:
   - '@swc/core'
   - esbuild
   - msw
+  - sharp
   - unrs-resolver
 
 overrides:
   # replit uses linux-x64 only, we can exclude all other platforms
   # drizzle-kit uses esbuild internally on an older version that's vulnerable, this overrides it
   "@esbuild-kit/esm-loader": "npm:tsx@^4.21.0"
+  # express pins proxy-addr ^2.0.7; 2.0.8 (2026-09-15) fixes the critical
+  # IPv4-mapped-IPv6 spoofing advisory GHSA-jqcg-44mw-7w3h. Same major, no API change.
+  proxy-addr: "^2.0.8"
+  # tailwind/vite pin source-map-js ^1.0.x; 1.2.2 fixes the event-loop DoS in indexed
+  # source-map section offsets (GHSA-68fv-2mgg-jv7q). Same major, dev build tooling only.
+  source-map-js: "^1.2.2"
   "@expo/ngrok-bin>@expo/ngrok-bin-darwin-arm64": "-"
   "@expo/ngrok-bin>@expo/ngrok-bin-darwin-x64": "-"
   "@expo/ngrok-bin>@expo/ngrok-bin-freebsd-ia32": "-"
@@ -97,7 +103,10 @@ overrides:
   "@tailwindcss/oxide>@tailwindcss/oxide-linux-arm64-musl": "-"
   "@tailwindcss/oxide>@tailwindcss/oxide-linux-x64-musl": "-"
   "@tailwindcss/oxide>@tailwindcss/oxide-win32-arm64-msvc": "-"
-  "@tailwindcss/oxide>@tailwindcss/oxide-win32-x64-msvc": "-"
+  # Not excluded: win32-x64-msvc. The tailwind overrides above assume a Linux-only
+  # host, but this repo is also run locally on Windows, where Tailwind v4 needs the
+  # native oxide and lightningcss bindings. Keeping the win32-x64 optionals installed
+  # costs nothing on Linux (platform-mismatched optionals are skipped anyway).
   esbuild: "0.27.3"
   "esbuild>@esbuild/aix-ppc64": '-'
   "esbuild>@esbuild/android-arm": '-'
@@ -133,7 +142,7 @@ overrides:
   "lightningcss>lightningcss-linux-arm64-musl": "-"
   "lightningcss>lightningcss-linux-x64-musl": "-"
   "lightningcss>lightningcss-win32-arm64-msvc": "-"
-  "lightningcss>lightningcss-win32-x64-msvc": "-"
+  # Not excluded: lightningcss-win32-x64-msvc (see oxide note above).
   "rollup>@rollup/rollup-android-arm-eabi": "-"
   "rollup>@rollup/rollup-android-arm64": "-"
   "rollup>@rollup/rollup-darwin-arm64": "-"

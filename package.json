@@ -36,6 +36,7 @@
     "assets:inventory": "pnpm --filter @workspace/scripts run assets:inventory",
     "assimilate:normalize": "python scripts/assimilate/normalize.py",
     "assimilate:classify": "python scripts/assimilate/classify_cells.py",
+    "assimilate:classify:workbook": "python scripts/assimilate/classify_workbook.py",
     "assimilate:narrative": "python scripts/assimilate/mine_narrative.py",
     "assimilate:drawings": "python scripts/assimilate/map_drawings.py"
   },
@@ -69,6 +70,8 @@
   },
   "devDependencies": {
     "@neondatabase/serverless": "^1.1.0",
+    "sharp": "0.35.5",
+    "word-extractor": "1.0.4",
     "@replit/vite-plugin-runtime-error-modal": "catalog:",
     "@rollup/rollup-win32-x64-msvc": "^4.62.4",
     "@tailwindcss/vite": "^4.1.14",
