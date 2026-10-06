@@ -204,7 +204,8 @@ export interface LoadCase {
   // Stability Factors
   slidingFOS: number;           // ≥ 1.5
   overturningFOS: number;       // ≥ 1.8
-  bearingFOS: number;           // ≥ 2.5
+  bearingFOS: number;           // ≥ 1.0 (plain pressure ≤ SBC, per owner decision 2026-10-06; was 2.5)
+  passiveResistance?: number;   // kN — passive earth resistance included in sliding (IRC:78-2000 §706)
   
   // Status
   status: 'SAFE' | 'UNSAFE' | 'CHECK';

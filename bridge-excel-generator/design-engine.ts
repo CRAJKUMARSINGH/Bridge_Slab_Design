@@ -203,6 +203,9 @@ const DESIGN_CONSTANTS = {
   // Default longitudinal steel ratio when the pier-cap / abutment-cap
   // reinforcement is not parametrically derived.  8 bars = minimum cage.
   MIN_CAP_BAR_COUNT: 8,
+
+  /** Passive earth resistance cap as fraction of friction term — IRC:78-2000 §706 */
+  PASSIVE_RESISTANCE_CAP_FRACTION: 0.5,
 } as const;
 
 /**
@@ -222,7 +225,9 @@ const DESIGN_CONSTANTS = {
 export const STABILITY_ACCEPTANCE = {
   slidingFosMin: 1.5,
   overturningFosMin: 1.8,
-  bearingFosMin: 2.5,
+  /** bearingFosMin: 1.0 — plain pressure ≤ SBC check, per owner decision 2026-10-06 (was 2.5).
+   *  FOS = SBC / (V / (Bw × Bl)); SAFE when FOS ≥ 1.0, i.e. bearing pressure does not exceed SBC. */
+  bearingFosMin: 1.0,
 } as const;
 
 /**
@@ -579,7 +584,14 @@ function calculatePierDesign(input: ProjectInput, hydraulics: HydraulicsResult):
     const moment = horizontalForce * (waterDepth / 3) * pierSkew.momentFactor;
 
     const frictionCoeff   = DESIGN_CONSTANTS.BASE_FRICTION_COEFFICIENT;
-    const slidingFOS      = (frictionCoeff * Math.abs(verticalForce)) / Math.max(horizontalForce, 1);
+    const phi = input.phi ?? 30;
+    const gamma = input.gamma ?? 18;
+    const Kp = Math.tan((45 + phi / 2) * Math.PI / 180) ** 2;
+    const passiveResistance = Math.min(
+      0.5 * Kp * gamma * input.pierDepth ** 2 * input.pierBaseLength,
+      DESIGN_CONSTANTS.PASSIVE_RESISTANCE_CAP_FRACTION * frictionCoeff * Math.abs(verticalForce)
+    );
+    const slidingFOS = (frictionCoeff * Math.abs(verticalForce) + passiveResistance) / Math.max(horizontalForce, 1);
     const leverArm        = input.pierBaseLength / 2;
     const restoreMoment   = Math.abs(verticalForce) * leverArm;
     const overturningFOS  = restoreMoment / Math.max(moment, 1);
@@ -606,6 +618,7 @@ function calculatePierDesign(input: ProjectInput, hydraulics: HydraulicsResult):
       slidingFOS,
       overturningFOS,
       bearingFOS,
+      passiveResistance,
       status,
     });
   });

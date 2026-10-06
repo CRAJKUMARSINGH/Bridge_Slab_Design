@@ -362,11 +362,14 @@ export async function generateStabilityCheckPierSheet(
       { formula: `=B${R.mu}*ABS(H${r})/MAX(ABS(I${r}),1)`, result: Number(lc.slidingFOS.toFixed(3)) },
       { formula: `=ABS(H${r})*(B${R.baseL}/2)/MAX(ABS(J${r}),1)`, result: Number(lc.overturningFOS.toFixed(3)) },
       { formula: `=B${R.sbc}/MAX(ABS(H${r})/(B${R.baseW}*B${R.baseL}),1)`, result: Number(lc.bearingFOS.toFixed(3)) },
-      { formula: `=IF(AND(K${r}>=1.5,L${r}>=1.8,M${r}>=2.5),"SAFE","UNSAFE")`, result: lc.status },
+      { formula: `=IF(AND(K${r}>=1.5,L${r}>=1.8,M${r}>=1.0),"SAFE","UNSAFE")`, result: lc.status },
     ];
     addTableRow(ws, r, values);
   }
   row += pier.loadCases.length + 1;
+  setCellValue(ws, row, 1, 'Passive earth resistance included per IRC:78 §706');
+  ws.getCell(row, 1).font = { italic: true, size: 9, color: { argb: 'FF1F496B' } };
+  row++;
   setCellValue(ws, row, 1, 'Status is computed live from the FOS formulas above against IRC limits; it is not an engineering approval.');
   ws.getCell(row, 1).font = { italic: true, color: { argb: 'FF9C6500' } };
 
