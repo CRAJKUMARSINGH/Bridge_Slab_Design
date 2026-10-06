@@ -2,7 +2,7 @@
  * Runs the design engine on all Phase-1 quick templates plus six Kherwara
  * perturbations. Exit 1 if any case throws or returns invalid hydraulics.
  */
-import calculateCompleteDesign from '../bridge-excel-generator/design-engine';
+import { calculateCompleteDesign } from '../bridge-excel-generator/design-engine.ts';
 import { buildElevenBridgeCases, expectedDesignSmokeCaseCount } from './eleven-bridge-cases';
 
 function main() {

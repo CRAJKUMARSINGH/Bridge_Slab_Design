@@ -14,6 +14,29 @@ export function getHydraulicsTotalRow(crossSectionPoints: number): number {
   return lastDataRow + 2;
 }
 
+/**
+ * TS mirror of the sheet's Area-Velocity chain. Used as cached formula
+ * results so viewers that skip recalculation still display correct numbers,
+ * and by the afflux sheet for its cross-sheet references.
+ */
+export function computeCrossSectionHydraulics(input: ProjectInput) {
+  const pts = input.crossSectionData;
+  let area = 0;
+  let perimeter = 0;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const depth = Math.max(0, input.hfl - pts[i].gl);
+    const nextDepth = Math.max(0, input.hfl - pts[i + 1].gl);
+    const len = pts[i + 1].chainage - pts[i].chainage;
+    area += (depth > 0 ? (depth + nextDepth) / 2 : 0) * len;
+    perimeter += Math.sqrt(len * len + (pts[i + 1].gl - pts[i].gl) ** 2);
+  }
+  const hydraulicRadius = perimeter > 0 ? area / perimeter : 0;
+  const velocity = hydraulicRadius > 0 && input.manningN > 0 && input.bedSlope > 0
+    ? (1 / input.manningN) * Math.pow(hydraulicRadius, 2 / 3) * Math.sqrt(1 / input.bedSlope)
+    : 0;
+  return { area, perimeter, hydraulicRadius, velocity, discharge: area * velocity };
+}
+
 export async function generateHydraulicsSheet(
   workbook: ExcelJS.Workbook,
   input: ProjectInput
@@ -55,9 +78,11 @@ export async function generateHydraulicsSheet(
   row++;
   
   // Data rows with REAL FORMULAS
+  const hyd = computeCrossSectionHydraulics(input);
   const startDataRow = row;
   input.crossSectionData.forEach((point, idx) => {
     const nextPoint = input.crossSectionData[idx + 1];
+    const depth = Math.max(0, input.hfl - point.gl);
     
     // Chainage
     setCellValue(ws, row, 1, point.chainage);
@@ -66,20 +91,25 @@ export async function generateHydraulicsSheet(
     setCellValue(ws, row, 2, point.gl);
     
     // Depth of Flow = HFL - GL (if positive)
-    setCellFormula(ws, row, 3, `=IF($F$4-B${row}>0,$F$4-B${row},0)`, Math.max(0, input.hfl - point.gl));
+    setCellFormula(ws, row, 3, `=IF($F$4-B${row}>0,$F$4-B${row},0)`, depth);
     
     if (nextPoint) {
+      const len = nextPoint.chainage - point.chainage;
+      const nextDepth = Math.max(0, input.hfl - nextPoint.gl);
+      const avgDepth = depth > 0 ? (depth + nextDepth) / 2 : 0;
+      const stripArea = avgDepth * len;
+      const wetted = Math.sqrt(len * len + (nextPoint.gl - point.gl) ** 2);
       // Length of Flow
-      setCellFormula(ws, row, 4, `=A${row + 1}-A${row}`, nextPoint.chainage - point.chainage);
+      setCellFormula(ws, row, 4, `=A${row + 1}-A${row}`, len);
       
       // Average Depth
-      setCellFormula(ws, row, 5, `=IF(C${row}>0,(C${row}+C${row + 1})/2,0)`, 0);
+      setCellFormula(ws, row, 5, `=IF(C${row}>0,(C${row}+C${row + 1})/2,0)`, avgDepth);
       
       // Cross Sectional Area
-      setCellFormula(ws, row, 6, `=E${row}*D${row}`, 0);
+      setCellFormula(ws, row, 6, `=E${row}*D${row}`, stripArea);
       
       // Wetted Perimeter
-      setCellFormula(ws, row, 7, `=SQRT(POWER(D${row},2)+POWER(B${row + 1}-B${row},2))`, 0);
+      setCellFormula(ws, row, 7, `=SQRT(POWER(D${row},2)+POWER(B${row + 1}-B${row},2))`, wetted);
     }
     
     row++;
@@ -94,8 +124,8 @@ export async function generateHydraulicsSheet(
   setCellValue(ws, row, 3, 'TOTAL');
   ws.getCell(row, 3).font = { bold: true };
   setCellFormula(ws, row, 4, `=A${lastDataRow}`, input.crossSectionData[input.crossSectionData.length - 1].chainage);
-  setCellFormula(ws, row, 6, `=SUM(F${startDataRow}:F${lastDataRow})`, 490.30);
-  setCellFormula(ws, row, 7, `=SUM(G${startDataRow}:G${lastDataRow})`, 190.71);
+  setCellFormula(ws, row, 6, `=SUM(F${startDataRow}:F${lastDataRow})`, Number(hyd.area.toFixed(3)));
+  setCellFormula(ws, row, 7, `=SUM(G${startDataRow}:G${lastDataRow})`, Number(hyd.perimeter.toFixed(3)));
   const totalRow = row;
   row++;
   
@@ -104,19 +134,19 @@ export async function generateHydraulicsSheet(
   
   // Summary calculations
   setCellValue(ws, row, 2, 'A');
-  setCellFormula(ws, row, 3, `=F${totalRow}`, 490.30);
+  setCellFormula(ws, row, 3, `=F${totalRow}`, Number(hyd.area.toFixed(3)));
   setCellValue(ws, row, 4, 'SQM');
   const aRow = row;
   row++;
   
   setCellValue(ws, row, 2, 'P');
-  setCellFormula(ws, row, 3, `=G${totalRow}`, 190.71);
+  setCellFormula(ws, row, 3, `=G${totalRow}`, Number(hyd.perimeter.toFixed(3)));
   setCellValue(ws, row, 4, 'M');
   const pRow = row;
   row++;
   
   setCellValue(ws, row, 2, 'R');
-  setCellFormula(ws, row, 3, `=B${aRow}/B${pRow}`, 2.57);
+  setCellFormula(ws, row, 3, `=C${aRow}/C${pRow}`, Number(hyd.hydraulicRadius.toFixed(3)));
   setCellValue(ws, row, 4, 'M');
   row++;
   
@@ -131,14 +161,15 @@ export async function generateHydraulicsSheet(
   row++;
   
   setCellValue(ws, row, 2, 'V');
-  setCellFormula(ws, row, 3, `=(1/B${nRow})*POWER(B${aRow}/B${pRow},2/3)*SQRT(1/C${sRow})`, 1.84);
+  setCellFormula(ws, row, 3, `=(1/C${nRow})*POWER(C${aRow}/C${pRow},2/3)*SQRT(1/C${sRow})`, Number(hyd.velocity.toFixed(3)));
   setCellValue(ws, row, 4, 'M/SEC');
   const vRow = row;
   row++;
   
   setCellValue(ws, row, 2, 'Q');
-  setCellFormula(ws, row, 3, `=B${aRow}*B${vRow}`, 899.93);
+  setCellFormula(ws, row, 3, `=C${aRow}*C${vRow}`, Number(hyd.discharge.toFixed(3)));
   setCellValue(ws, row, 4, 'CUMECS');
+  const qRow = row;
   row++;
   
   // Additional notes
@@ -146,7 +177,7 @@ export async function generateHydraulicsSheet(
   row++;
   
   setCellValue(ws, row, 2, 'Design Discharge =');
-  setCellFormula(ws, row, 3, `=B${vRow - 1}`, 899.93);
+  setCellFormula(ws, row, 3, `=C${qRow}`, Number(hyd.discharge.toFixed(3)));
   setCellValue(ws, row, 4, 'CUMECS');
   row++;
   
@@ -156,15 +187,16 @@ export async function generateHydraulicsSheet(
   ws.getCell(row, 1).font = { bold: true };
   row++;
   
-  const levels = [
+  const levelsStart = row;
+  const levels: Array<[string, number | { formula: string; result: number }]> = [
     ['Road top level (RTL)', input.rtl],
     ['Average Ground Level(AGL)', input.agl],
-    ['Average Height Of Bridge', input.rtl - input.nbl],
+    ['Average Height Of Bridge', { formula: `=B${levelsStart}-B${levelsStart + 3}`, result: input.rtl - input.nbl }],
     ['Lowest Nala Bed level (NBL)', input.nbl],
     ['Ordinary flood level (OFL)', input.ofl],
     ['Foundation level (FL)', input.foundationLevel],
-    ['Ht. of bridge h= (RTL-NBL)', input.rtl - input.nbl],
-    ['Ht. of bridge H=(RTL-FL)', input.rtl - input.foundationLevel]
+    ['Ht. of bridge h= (RTL-NBL)', { formula: `=B${levelsStart}-B${levelsStart + 3}`, result: input.rtl - input.nbl }],
+    ['Ht. of bridge H=(RTL-FL)', { formula: `=B${levelsStart}-B${levelsStart + 5}`, result: input.rtl - input.foundationLevel }]
   ];
   
   levels.forEach(([label, value]) => {

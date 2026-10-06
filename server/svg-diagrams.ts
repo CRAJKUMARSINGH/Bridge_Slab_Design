@@ -1,4 +1,5 @@
 import type { EnhancedProjectInput } from '../bridge-excel-generator/types';
+import { deckSlabThicknessOf } from '../bridge-excel-generator/input-contract';
 
 const SCALE = 40;
 const TITLE_FILL = '#1F496B';
@@ -42,7 +43,7 @@ export function generateGADSvg(input: EnhancedProjectInput): string {
   const drawW = svgW - 2 * margin;
   const scaleX = drawW / Math.max(totalL + 2 * abtW, 1);
   const waterH = hfl - bed;
-  const slabThk = input.deckSlabThickness ?? 0.35;
+  const slabThk = deckSlabThicknessOf(input);
   const reqFb = input.hydraulics?.requiredFreeboardAboveHfl ?? (input.freeboardAboveHfl ?? 1.2);
   const soffitLevel = input.bridgeType === 'high-level' ? (input.deckSoffitLevel ?? input.hfl + reqFb) : input.hfl;
   const freeboardPx = input.bridgeType === 'high-level' ? (soffitLevel - hfl) * SCALE : 0;
@@ -178,7 +179,7 @@ export function generateAbutmentSvg(input: EnhancedProjectInput): string {
 
 export function generateSlabSvg(input: EnhancedProjectInput): string {
   const cW = input.carriageWidth;
-  const thk = input.deckSlabThickness ?? 0.25;
+  const thk = deckSlabThicknessOf(input);
   const spanL = input.spanLength;
   const svgW = 800;
   const svgH = 400;

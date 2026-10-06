@@ -44,8 +44,11 @@ export async function handleReportHtml(req: Request, res: Response): Promise<voi
 
 export async function handleReportPdf(req: Request, res: Response): Promise<void> {
   try {
-    let puppeteer: typeof import("puppeteer") | null = null;
-    try { puppeteer = await import("puppeteer"); } catch { /* not installed */ }
+    let puppeteer: any = null;
+    try {
+      const modName = "puppeteer";
+      puppeteer = await import(modName);
+    } catch { /* not installed */ }
     if (!puppeteer) {
       res.status(501).json({ error: "PDF not available", note: "Use /api/report/html and print from browser." });
       return;

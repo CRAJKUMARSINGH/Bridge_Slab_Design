@@ -1,0 +1,16 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+▶ API Integration — Pier Case Recommendation Engine
+  ✔ GET /api/design/pier-cases/catalog returns catalog listing (92.3617ms)
+  ✔ GET /api/design/pier-cases/master-schema returns JSON schema validation schema (6.5495ms)
+  ✔ POST /api/design/pier-cases/recommend outputs recommended pier profile config (25.8189ms)
+  ✔ POST /api/design/pier-cases/generate produces template payload (6.6696ms)
+✔ API Integration — Pier Case Recommendation Engine (133.9975ms)
+ℹ tests 4
+ℹ suites 1
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 140.7342

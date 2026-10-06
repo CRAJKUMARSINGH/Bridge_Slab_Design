@@ -89,7 +89,6 @@ const SCAN_FILES = [
   'bridge-excel-generator/sheets/22-c1-stability-check-abutment.ts',
   'bridge-excel-generator/sheets/29-31-technote-techreport.ts',
   'bridge-excel-generator/sheets/29-46-estimation.ts',
-  'bridge-excel-generator/sheets/46-estimation.ts',
   'bridge-excel-generator/sheets/c1-sheets-append.ts',
   'bridge-excel-generator/sheets/c1-sheets-38-46.ts',
 ];

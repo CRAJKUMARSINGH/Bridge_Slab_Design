@@ -1,0 +1,15 @@
+=== scripts/package.json targets:
+21:    "assimilate": "python ./src/assimilate.py",
+22:    "assets:inventory": "python ./assimilate/inventory.py --root ../Attached_Assets --out ../asset-register.json"
+=== run assets:inventory (metadata-only):
+
+> workspace@0.0.0 assets:inventory E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run assets:inventory
+
+
+> @workspace/scripts@0.0.0 assets:inventory E:\Rajkumar\Bridge_Slab_Design\scripts
+> python ./assimilate/inventory.py --root ../Attached_Assets --out ../asset-register.json
+
+Indexed 97 Office assets
+Register: ..\asset-register.json
+rc=0

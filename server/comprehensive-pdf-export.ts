@@ -748,6 +748,13 @@ function fosVerdict(value: number, min: number): string {
   return 'UNSAFE';
 }
 
+/** Failing checks have to be visible at a glance, not only in the number column (D12). */
+function verdictFill(verdict: string): [number, number, number] | undefined {
+  if (verdict === 'UNSAFE' || verdict === 'FAIL') return [231, 76, 60];
+  if (verdict === 'CHECK') return [243, 156, 18];
+  return undefined;
+}
+
 function addStabilityPierSheets(doc: jsPDF, input: EnhancedProjectInput, startPage: number, totalPages: number): number {
   let pagesAdded = 0;
   const p = input.pier;
@@ -862,6 +869,11 @@ function addStabilityPierSheets(doc: jsPDF, input: EnhancedProjectInput, startPa
     doc.setTextColor(...COLORS.text);
     doc.text('Load factors -> force resolution -> stability safety factors -> engineering verdict.', MARGIN, 48);
 
+    const slidingVerdict = fosVerdict(slidingFos, 1.5);
+    const overturningVerdict = fosVerdict(overturningFos, 1.8);
+    const basePressureVerdict = basePressure <= input.sbc ? 'OK' : 'CHECK';
+    const bearingVerdict = fosVerdict(bearingFos, 2.5);
+
     drawTable(doc, 54, [
       { header: 'Check item', width: 56, align: 'left' as const },
       { header: 'Equation / logic', width: 74, align: 'left' as const },
@@ -872,11 +884,11 @@ function addStabilityPierSheets(doc: jsPDF, input: EnhancedProjectInput, startPa
       { cells: [{ value: 'Vertical force V' }, { value: 'V = DLf*W_dead + LLf*W_live - Buoyf*W_buoy' }, { value: `${n(lc.verticalForce)} kN`, bold: true }, { value: lc.verticalForce > 0 ? 'OK' : 'CHECK' }] },
       { cells: [{ value: 'Horizontal force H' }, { value: 'H = hydrostatic + drag' }, { value: `${n(lc.horizontalForce)} kN`, bold: true }, { value: 'Driving' }] },
       { cells: [{ value: 'Overturning moment M_o' }, { value: 'M_o = H × (water depth/3)' }, { value: `${n(lc.moment)} kN-m`, bold: true }, { value: 'Driving' }] },
-      { cells: [{ value: 'Sliding FOS' }, { value: 'FOS_s = (μ × V) / H' }, { value: n(slidingFos, 3), bold: true }, { value: fosVerdict(slidingFos, 1.5) }] },
-      { cells: [{ value: 'Overturning FOS' }, { value: 'FOS_o = (V × (Bl/2)) / M_o' }, { value: n(overturningFos, 3), bold: true }, { value: fosVerdict(overturningFos, 1.8) }] },
-      { cells: [{ value: 'Base pressure q' }, { value: 'q = V / A_base' }, { value: `${n(basePressure, 3)} kN/m²`, bold: true }, { value: basePressure <= input.sbc ? 'OK' : 'CHECK' }] },
-      { cells: [{ value: 'Bearing FOS' }, { value: 'FOS_b = SBC / q' }, { value: n(bearingFos, 3), bold: true }, { value: fosVerdict(bearingFos, 2.5) }] },
-      { cells: [{ value: 'Case conclusion' }, { value: 'Minimum FOS against criteria governs' }, { value: lc.status, bold: true }, { value: lc.status === 'SAFE' ? 'Accept' : 'Review' }] },
+      { cells: [{ value: 'Sliding FOS' }, { value: 'FOS_s = (μ × V) / H' }, { value: n(slidingFos, 3), bold: true }, { value: slidingVerdict, bgColor: verdictFill(slidingVerdict) }] },
+      { cells: [{ value: 'Overturning FOS' }, { value: 'FOS_o = (V × (Bl/2)) / M_o' }, { value: n(overturningFos, 3), bold: true }, { value: overturningVerdict, bgColor: verdictFill(overturningVerdict) }] },
+      { cells: [{ value: 'Base pressure q' }, { value: 'q = V / A_base' }, { value: `${n(basePressure, 3)} kN/m²`, bold: true }, { value: basePressureVerdict, bgColor: verdictFill(basePressureVerdict) }] },
+      { cells: [{ value: 'Bearing FOS' }, { value: 'FOS_b = SBC / q' }, { value: n(bearingFos, 3), bold: true }, { value: bearingVerdict, bgColor: verdictFill(bearingVerdict) }] },
+      { cells: [{ value: 'Case conclusion' }, { value: 'Minimum FOS against criteria governs' }, { value: lc.status, bold: true }, { value: lc.status === 'SAFE' ? 'Accept' : 'Review', bgColor: verdictFill(lc.status === 'SAFE' ? 'OK' : 'UNSAFE') }] },
     ]);
   });
 
@@ -947,7 +959,7 @@ function addAbutmentStabilityDetailedSheet(
       { value: n(c.horizontalForce), bold: true },
       { value: n(c.moment), bold: true },
       { value: `${n(c.slidingFOS, 2)} / ${n(c.overturningFOS, 2)} / ${n(c.bearingFOS, 2)}` },
-      { value: c.status, bold: true },
+      { value: c.status, bold: true, bgColor: (c.status === 'SAFE' ? [39, 174, 96] : [231, 76, 60]) as [number, number, number] },
     ],
   }));
 
@@ -1063,7 +1075,7 @@ function addInsertEstimateSheet(doc: jsPDF, input: EnhancedProjectInput, pageNum
 
   const boq = input.estimation?.boq ?? [];
   const summary = boq.slice(0, 8).map((item: BOQItem) => {
-    const amount = (item as any).amount ?? item.quantity * item.rate;
+    const amount = item.amount ?? item.quantity * item.rate;
     return [
       item.description,
       n(item.quantity, 2),
@@ -1072,8 +1084,8 @@ function addInsertEstimateSheet(doc: jsPDF, input: EnhancedProjectInput, pageNum
       `Rs ${n(amount, 2)}`,
     ];
   });
-  const total = (input.estimation?.cost as any)?.total
-    ?? boq.reduce((sum: number, item: BOQItem) => sum + (((item as any).amount ?? item.quantity * item.rate) || 0), 0);
+  const total = input.estimation?.cost?.total
+    ?? boq.reduce((sum: number, item: BOQItem) => sum + ((item.amount ?? item.quantity * item.rate) || 0), 0);
   summary.push(['Total', '', '', '', `Rs ${n(total, 2)}`]);
 
   drawTable(doc, 55, [
@@ -1120,14 +1132,14 @@ function addEstimationSheet(doc: jsPDF, input: EnhancedProjectInput, pageNum: nu
   ];
 
   const rows = (e?.boq || []).map((item: BOQItem, idx: number) => ({
-    amount: ((item as any).amount ?? item.quantity * item.rate) || 0,
+    amount: (item.amount ?? item.quantity * item.rate) || 0,
     cells: [
       { value: (idx + 1).toString() },
       { value: item.description },
       { value: item.quantity.toFixed(2), bold: true },
       { value: item.unit },
       { value: `Rs ${item.rate.toFixed(2)}` },
-      { value: `Rs ${(((item as any).amount ?? item.quantity * item.rate) || 0).toFixed(2)}`, bold: true }
+      { value: `Rs ${((item.amount ?? item.quantity * item.rate) || 0).toFixed(2)}`, bold: true }
     ]
   }));
 
@@ -1141,7 +1153,7 @@ function addEstimationSheet(doc: jsPDF, input: EnhancedProjectInput, pageNum: nu
   doc.setFontSize(11);
   doc.setTextColor(...COLORS.value);
   doc.text('TOTAL COST', MARGIN + 5, totalY);
-  const totalCost = (e?.cost as any)?.total
+  const totalCost = e?.cost?.total
     ?? rows.reduce((sum, r) => sum + r.amount, 0);
   doc.text(`Rs ${totalCost.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`, PAGE_WIDTH - MARGIN - 5, totalY, { align: 'right' });
 }

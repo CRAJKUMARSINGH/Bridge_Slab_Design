@@ -3,7 +3,7 @@ import { join, relative, resolve } from 'node:path';
 import { Router, type Request, type Response } from 'express';
 import { generateCompleteExcel } from '../bridge-excel-generator/index';
 import calculateCompleteDesign from '../bridge-excel-generator/design-engine';
-import type { ProjectInput } from '../bridge-excel-generator/types';
+import type { EnhancedProjectInput, ProjectInput } from '../bridge-excel-generator/types';
 import { mergeProjectInput, PHASE1_QUICK_TEMPLATES } from './default-project-inputs';
 import { generateDesignPDF } from './pdf-export';
 import { generateBridgeDXF } from './dxf-export';
@@ -42,6 +42,11 @@ import { PIER_MASTER_SCHEMA, recommendPierType, type PierMasterVariables } from 
 import { generatePierPayload } from './pier-template-mapper';
 import { optimiseBridgeDesign } from './optimisation-engine';
 import logger from './logger';
+
+/** Route error payloads are strings only; `catch` binds `unknown`, never `any`. */
+function errorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
 import { db } from '../shared/db';
 import { analysisRecords } from '../shared/schema';
 
@@ -133,18 +138,85 @@ function parseMergedProjectInput(body: unknown):
   return { ok: true, input: mergeProjectInput(parsed.data) };
 }
 
+/**
+ * QODER-001: every export route re-runs the engine for the same merged input, and several
+ * panels post identical payloads, so results are memoised on a canonical key. Bounded LRU
+ * so the cache cannot grow with traffic; cached objects are only read and serialised.
+ */
+const RESULTS_CACHE_LIMIT = 16;
+const resultsCache = new Map<string, ReturnType<typeof calculateCompleteDesign>>();
+
+function canonicalJson(value: unknown): string {
+  if (Array.isArray(value)) return `[${value.map(canonicalJson).join(',')}]`;
+  if (value === null || typeof value !== 'object') return String(JSON.stringify(value));
+  const obj = value as Record<string, unknown>;
+  return `{${Object.keys(obj).sort().map((k) => `${JSON.stringify(k)}:${canonicalJson(obj[k])}`).join(',')}}`;
+}
+
+function calculateCached(input: ProjectInput): ReturnType<typeof calculateCompleteDesign> {
+  const key = canonicalJson(input);
+  const hit = resultsCache.get(key);
+  if (hit) {
+    resultsCache.delete(key);
+    resultsCache.set(key, hit);
+    return hit;
+  }
+  const results = calculateCompleteDesign(input);
+  resultsCache.set(key, results);
+  if (resultsCache.size > RESULTS_CACHE_LIMIT) {
+    const oldest = resultsCache.keys().next().value;
+    if (oldest !== undefined) resultsCache.delete(oldest);
+  }
+  return results;
+}
 
 /**
  * POST /api/design/optimise
  * Runs the iterative optimisation engine to find the smallest safe dimensions.
+ * The body is schema-validated first: every trial re-runs the whole design engine, so
+ * an unvalidated payload (e.g. an enormous crossSectionData) multiplied by the
+ * iteration count was an unbounded CPU cost.
+ *
+ * GENSPARK-001 fix: 30-second wall-clock timeout prevents a single bad call from
+ * tying up a worker indefinitely.  On timeout the server returns HTTP 504
+ * (Gateway Timeout) so the UI can show a "try narrower bounds" message instead
+ * of hanging.
  */
 router.post('/optimise', async (req, res) => {
+  const rawBody = req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? req.body : {};
+  const parsed = projectInputBodySchema.safeParse(rawBody);
+  if (!parsed.success) {
+    res.status(400).json({
+      success: false,
+      error: 'Invalid request body',
+      issues: formatZodIssues(parsed.error),
+    });
+    return;
+  }
   try {
-    const input = mergeProjectInput(req.body);
-    const result = await optimiseBridgeDesign(input);
-    res.json({ ...result, success: true });
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+    const OPTIMISE_TIMEOUT_MS = 30_000;
+    const timeoutRef: { timer: NodeJS.Timeout | null } = { timer: null };
+    const timeoutPromise = new Promise<never>((_, reject) => {
+      timeoutRef.timer = setTimeout(() => {
+        reject(Object.assign(new Error('Optimisation timed out after 30 seconds — try reducing the number of spans or starting with larger dimensions'), { code: 'OPTIMISE_TIMEOUT' }));
+      }, OPTIMISE_TIMEOUT_MS);
+    });
+
+    const result = await Promise.race([
+      optimiseBridgeDesign(mergeProjectInput(parsed.data)),
+      timeoutPromise,
+    ]);
+    if (timeoutRef.timer) clearTimeout(timeoutRef.timer);
+
+    res.json(result);
+  } catch (error) {
+    const isTimeout =
+      error instanceof Error && (error as { code?: string }).code === 'OPTIMISE_TIMEOUT';
+    res.status(isTimeout ? 504 : 500).json({
+      success: false,
+      error: errorMessage(error),
+      ...(isTimeout ? { retryable: true, suggestedAction: 'reduce scope / increase starting span dimensions' } : {}),
+    });
   }
 });
 
@@ -166,12 +238,11 @@ router.post('/calculate', async (req, res) => {
     }
 
     const input: ProjectInput = mergeProjectInput(parsed.data);
-    const model = (rawBody.model === 'model-a' || rawBody.model === 'model-b') ? rawBody.model : 'model-b';
-    
-    console.log(`📝 Design request: ${input.projectName} (Model: ${model})`);
-    
+
+    console.log(`📝 Design request: ${input.projectName}`);
+
     // Generate Excel using existing bridge-excel-generator
-    const buffer = await generateCompleteExcel(input, { model });
+    const buffer = await generateCompleteExcel(input);
     
     // Set response headers
     res.setHeader(
@@ -188,14 +259,14 @@ router.post('/calculate', async (req, res) => {
     // Fire-and-forget auto-save — Requirement 12.1 / 12.2
     const projectId = typeof parsed.data.projectId === 'number' ? parsed.data.projectId : null;
     if (projectId) {
-      const summary = calculateCompleteDesign(input);
+      const summary = calculateCached(input);
       void saveAnalysisRecord(projectId, input, summary).catch(() => { /* already logged inside */ });
     }
-  } catch (error: any) {
+  } catch (error) {
     console.error('❌ Calculation error:', error);
     res.status(500).json({
       success: false,
-      error: error.message,
+      error: errorMessage(error),
     });
   }
 });
@@ -248,17 +319,19 @@ router.post('/results', async (req, res) => {
       return;
     }
     const input = out.input;
-    const results = calculateCompleteDesign(input);
+    const results = calculateCached(input);
     res.json({ success: true, results });
 
     // Fire-and-forget auto-save — Requirement 12.4
-    const rawBody = req.body && typeof req.body === 'object' ? req.body : {};
-    const projectId = typeof (rawBody as any).projectId === 'number' ? (rawBody as any).projectId : null;
+    const rawBody: Record<string, unknown> =
+      req.body && typeof req.body === 'object' ? req.body : {};
+    const candidateProjectId = rawBody.projectId;
+    const projectId = typeof candidateProjectId === 'number' ? candidateProjectId : null;
     if (projectId) {
       void saveAnalysisRecord(projectId, input, results).catch(() => { /* already logged inside */ });
     }
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -268,9 +341,6 @@ router.post('/results', async (req, res) => {
  */
 router.post('/workbook-previews', async (req, res) => {
   try {
-    const raw = req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? (req.body as Record<string, any>) : {};
-    const model = (raw.model === 'model-a' || raw.model === 'model-b') ? raw.model : 'model-b';
-    
     const out = parseMergedProjectInput(req.body);
     if (!out.ok) {
       res.status(400).json({
@@ -280,10 +350,10 @@ router.post('/workbook-previews', async (req, res) => {
       });
       return;
     }
-    const sheets = await buildWorkbookSheetPreviews(out.input, { model } as any);
+    const sheets = await buildWorkbookSheetPreviews(out.input);
     res.json({ success: true, sheets });
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : 'Workbook preview failed';
+    const message = errorMessage(error);
     res.status(500).json({ success: false, error: message });
   }
 });
@@ -317,7 +387,7 @@ router.post('/workbook-sheet-preview', async (req, res) => {
     }
     res.json({ success: true, sheet, sheetName });
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : 'Sheet preview failed';
+    const message = errorMessage(error);
     res.status(500).json({ success: false, error: message });
   }
 });
@@ -328,11 +398,11 @@ router.post('/workbook-sheet-preview', async (req, res) => {
 async function svgGadHandler(req: Request, res: Response) {
   try {
     const input = mergeInputFromRequest(req);
-    const enhancedInput = { ...input, ...calculateCompleteDesign(input) };
+    const enhancedInput = { ...input, ...calculateCached(input) };
     res.setHeader('Content-Type', 'image/svg+xml');
-    res.send(generateGADSvg(enhancedInput as any));
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+    res.send(generateGADSvg(enhancedInput));
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 }
 router.get('/drawings/svg/gad', svgGadHandler);
@@ -341,11 +411,11 @@ router.post('/drawings/svg/gad', svgGadHandler);
 async function svgPierHandler(req: Request, res: Response) {
   try {
     const input = mergeInputFromRequest(req);
-    const enhancedInput = { ...input, ...calculateCompleteDesign(input) };
+    const enhancedInput = { ...input, ...calculateCached(input) };
     res.setHeader('Content-Type', 'image/svg+xml');
-    res.send(generatePierSvg(enhancedInput as any));
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+    res.send(generatePierSvg(enhancedInput));
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 }
 router.get('/drawings/svg/pier', svgPierHandler);
@@ -354,11 +424,11 @@ router.post('/drawings/svg/pier', svgPierHandler);
 async function svgAbutmentHandler(req: Request, res: Response) {
   try {
     const input = mergeInputFromRequest(req);
-    const enhancedInput = { ...input, ...calculateCompleteDesign(input) };
+    const enhancedInput = { ...input, ...calculateCached(input) };
     res.setHeader('Content-Type', 'image/svg+xml');
-    res.send(generateAbutmentSvg(enhancedInput as any));
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+    res.send(generateAbutmentSvg(enhancedInput));
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 }
 router.get('/drawings/svg/abutment', svgAbutmentHandler);
@@ -367,11 +437,11 @@ router.post('/drawings/svg/abutment', svgAbutmentHandler);
 async function svgSlabHandler(req: Request, res: Response) {
   try {
     const input = mergeInputFromRequest(req);
-    const enhancedInput = { ...input, ...calculateCompleteDesign(input) };
+    const enhancedInput = { ...input, ...calculateCached(input) };
     res.setHeader('Content-Type', 'image/svg+xml');
-    res.send(generateSlabSvg(enhancedInput as any));
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+    res.send(generateSlabSvg(enhancedInput));
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 }
 router.get('/drawings/svg/slab', svgSlabHandler);
@@ -380,11 +450,11 @@ router.post('/drawings/svg/slab', svgSlabHandler);
 async function svgScourProfileHandler(req: Request, res: Response) {
   try {
     const input = mergeInputFromRequest(req);
-    const enhancedInput = { ...input, ...calculateCompleteDesign(input) };
+    const enhancedInput = { ...input, ...calculateCached(input) };
     res.setHeader('Content-Type', 'image/svg+xml');
-    res.send(generateScourProfileSvg(enhancedInput as any));
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+    res.send(generateScourProfileSvg(enhancedInput));
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 }
 router.get('/drawings/svg/scour-profile', svgScourProfileHandler);
@@ -393,11 +463,11 @@ router.post('/drawings/svg/scour-profile', svgScourProfileHandler);
 async function svgPierStabilityHandler(req: Request, res: Response) {
   try {
     const input = mergeInputFromRequest(req);
-    const enhancedInput = { ...input, ...calculateCompleteDesign(input) };
+    const enhancedInput = { ...input, ...calculateCached(input) };
     res.setHeader('Content-Type', 'image/svg+xml');
-    res.send(generatePierStabilitySvg(enhancedInput as any));
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+    res.send(generatePierStabilitySvg(enhancedInput));
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 }
 router.get('/drawings/svg/pier-stability', svgPierStabilityHandler);
@@ -406,11 +476,11 @@ router.post('/drawings/svg/pier-stability', svgPierStabilityHandler);
 async function svgAbutmentPressureHandler(req: Request, res: Response) {
   try {
     const input = mergeInputFromRequest(req);
-    const enhancedInput = { ...input, ...calculateCompleteDesign(input) };
+    const enhancedInput = { ...input, ...calculateCached(input) };
     res.setHeader('Content-Type', 'image/svg+xml');
-    res.send(generateAbutmentPressureSvg(enhancedInput as any));
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+    res.send(generateAbutmentPressureSvg(enhancedInput));
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 }
 router.get('/drawings/svg/abutment-pressure', svgAbutmentPressureHandler);
@@ -419,11 +489,11 @@ router.post('/drawings/svg/abutment-pressure', svgAbutmentPressureHandler);
 async function svgSlabReinfPlanHandler(req: Request, res: Response) {
   try {
     const input = mergeInputFromRequest(req);
-    const enhancedInput = { ...input, ...calculateCompleteDesign(input) };
+    const enhancedInput = { ...input, ...calculateCached(input) };
     res.setHeader('Content-Type', 'image/svg+xml');
-    res.send(generateSlabReinfPlanSvg(enhancedInput as any));
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+    res.send(generateSlabReinfPlanSvg(enhancedInput));
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 }
 router.get('/drawings/svg/slab-reinf-plan', svgSlabReinfPlanHandler);
@@ -444,14 +514,14 @@ router.post('/pdf/comprehensive', async (req, res) => {
       return;
     }
     const input = out.input;
-    const designResults = calculateCompleteDesign(input);
-    const enhancedInput = { ...input, ...designResults } as any;
+    const designResults = calculateCached(input);
+    const enhancedInput = { ...input, ...designResults } as EnhancedProjectInput;
     const buffer = await generateComprehensivePDF(enhancedInput);
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', `attachment; filename="${input.projectName.replace(/\s+/g, '_')}_Complete_46_Sheets.pdf"`);
     res.send(buffer);
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -470,14 +540,14 @@ router.post('/pdf', async (req, res) => {
       return;
     }
     const input = out.input;
-    const designResults = calculateCompleteDesign(input);
-    const enhancedInput = { ...input, ...designResults } as any;
+    const designResults = calculateCached(input);
+    const enhancedInput = { ...input, ...designResults } as EnhancedProjectInput;
     const buffer = await generateDesignPDF(enhancedInput);
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', `attachment; filename="${input.projectName.replace(/\s+/g, '_')}_Report.pdf"`);
     res.send(buffer);
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -503,14 +573,14 @@ router.post('/dxf', async (req, res) => {
       return;
     }
     const input = out.input;
-    const designResults = calculateCompleteDesign(input);
-    const enhancedInput = { ...input, ...designResults } as any;
+    const designResults = calculateCached(input);
+    const enhancedInput = { ...input, ...designResults } as EnhancedProjectInput;
     const dxfContent = generateBridgeDXF(enhancedInput, profile);
     res.setHeader('Content-Type', 'application/dxf');
     res.setHeader('Content-Disposition', `attachment; filename="${input.projectName.replace(/\s+/g, '_')}_Drawings.dxf"`);
     res.send(dxfContent);
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -522,13 +592,13 @@ router.post('/dxf', async (req, res) => {
 router.post('/report-model', async (req, res) => {
   try {
     const input = mergeProjectInput(req.body);
-    const designResults = calculateCompleteDesign(input);
+    const designResults = calculateCached(input);
     const { buildReportModel } = await import('../bridge-excel-generator/report-model');
-    const enhancedInput = { ...input, ...designResults } as any;
+    const enhancedInput = { ...input, ...designResults } as EnhancedProjectInput;
     const model = buildReportModel(enhancedInput);
     res.json({ success: true, model });
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -567,8 +637,8 @@ router.post('/upload-excel', async (req, res) => {
         valueCount: parsed.metadata.values.length
       }
     });
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -588,16 +658,16 @@ router.post('/report/html', async (req, res) => {
       return;
     }
     const input = out.input;
-    const designResults = calculateCompleteDesign(input);
-    const enhancedInput = { ...input, ...designResults } as any;
+    const designResults = calculateCached(input);
+    const enhancedInput = { ...input, ...designResults } as EnhancedProjectInput;
     
     const html = await generateHTMLDesignReport(enhancedInput);
     
     res.setHeader('Content-Type', 'text/html');
     res.setHeader('Content-Disposition', `attachment; filename="${input.projectName.replace(/\s+/g, '_')}_Report.html"`);
     res.send(html);
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -622,8 +692,8 @@ router.post('/gad/csv', async (req, res) => {
     res.setHeader('Content-Type', 'text/csv');
     res.setHeader('Content-Disposition', `attachment; filename="${input.projectName.replace(/\s+/g, '_')}_GAD.csv"`);
     res.send(csv);
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -646,8 +716,8 @@ router.post('/gad/json', async (req, res) => {
     const gadData = generateGADJSON(input);
     
     res.json({ success: true, gad: gadData });
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -667,7 +737,7 @@ router.post('/validate', async (req, res) => {
       return;
     }
     const input = out.input;
-    const designResults = calculateCompleteDesign(input);
+    const designResults = calculateCached(input);
     
     const validationReport = validateDesign(input, designResults);
     
@@ -675,8 +745,8 @@ router.post('/validate', async (req, res) => {
       success: true,
       validation: validationReport
     });
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -692,13 +762,13 @@ router.post('/checklist/html', async (req, res) => {
       return;
     }
     const input = out.input;
-    const designResults = calculateCompleteDesign(input);
+    const designResults = calculateCached(input);
     const html = generateIrcChecklistHTML(input, designResults);
     res.setHeader('Content-Type', 'text/html');
     res.setHeader('Content-Disposition', `attachment; filename="${input.projectName.replace(/\s+/g, '_')}_IRC_Checklist.html"`);
     res.send(html);
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -718,7 +788,7 @@ router.post('/validate/html', async (req, res) => {
       return;
     }
     const input = out.input;
-    const designResults = calculateCompleteDesign(input);
+    const designResults = calculateCached(input);
     
     const validationReport = validateDesign(input, designResults);
     const html = generateValidationHTML(validationReport);
@@ -726,8 +796,8 @@ router.post('/validate/html', async (req, res) => {
     res.setHeader('Content-Type', 'text/html');
     res.setHeader('Content-Disposition', `attachment; filename="${input.projectName.replace(/\s+/g, '_')}_Validation.html"`);
     res.send(html);
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -743,12 +813,12 @@ router.post('/reinforcement/schedule', async (req, res) => {
       return;
     }
     const input = out.input;
-    const designResults = calculateCompleteDesign(input);
-    const enhancedInput = { ...input, ...designResults } as any;
+    const designResults = calculateCached(input);
+    const enhancedInput = { ...input, ...designResults } as EnhancedProjectInput;
     const reinforcement = calculateReinforcement(enhancedInput);
     res.json({ success: true, reinforcement });
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -769,14 +839,14 @@ router.post('/reinforcement/drawing/:element', async (req, res) => {
       return;
     }
     const input = out.input;
-    const designResults = calculateCompleteDesign(input);
-    const enhancedInput = { ...input, ...designResults } as any;
+    const designResults = calculateCached(input);
+    const enhancedInput = { ...input, ...designResults } as EnhancedProjectInput;
     const svg = generateReinforcementDetailSVG(enhancedInput, element);
     res.setHeader('Content-Type', 'image/svg+xml');
     res.setHeader('Content-Disposition', `attachment; filename="${input.projectName.replace(/\s+/g, '_')}_Reinforcement_${element}.svg"`);
     res.send(svg);
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -797,14 +867,14 @@ router.post('/reinforcement/section/:element', async (req, res) => {
       return;
     }
     const input = out.input;
-    const designResults = calculateCompleteDesign(input);
-    const enhancedInput = { ...input, ...designResults } as any;
+    const designResults = calculateCached(input);
+    const enhancedInput = { ...input, ...designResults } as EnhancedProjectInput;
     const svg = generateReinforcementSectionSVG(enhancedInput, element);
     res.setHeader('Content-Type', 'image/svg+xml');
     res.setHeader('Content-Disposition', `attachment; filename="${input.projectName.replace(/\s+/g, '_')}_Section_${element}.svg"`);
     res.send(svg);
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -827,8 +897,8 @@ router.post('/detailed-abutment/:type', async (req, res) => {
     const input = out.input;
     const design = calculateDetailedAbutmentDesign(input, type);
     res.json({ success: true, type, design });
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -844,11 +914,11 @@ router.post('/detailed-estimation', async (req, res) => {
       return;
     }
     const input = out.input;
-    const designResults = calculateCompleteDesign(input);
+    const designResults = calculateCached(input);
     const estimation = calculateDetailedEstimation(input, designResults);
     res.json({ success: true, estimation });
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -864,11 +934,11 @@ router.post('/deck-anchorage', async (req, res) => {
       return;
     }
     const input = out.input;
-    const designResults = calculateCompleteDesign(input);
+    const designResults = calculateCached(input);
     const anchorage = calculateDeckAnchorage(input, designResults);
     res.json({ success: true, anchorage });
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -903,8 +973,8 @@ router.get('/pier-cases/catalog', (req, res) => {
     }
     const catalog = buildPierCaseCatalog(resolvedRoot);
     res.json({ success: true, catalog });
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -956,8 +1026,8 @@ router.post('/pier-cases/recommend', (req, res) => {
 
     const recommendation = recommendPierType(body as PierMasterVariables);
     res.json({ success: true, recommendation });
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -1002,8 +1072,8 @@ router.post('/pier-cases/generate', (req, res) => {
     const recommendation = recommendPierType(body as PierMasterVariables);
     const payload = generatePierPayload({ ...(body as PierMasterVariables), pierType: recommendation.recommendedType });
     res.json({ success: true, recommendation, payload });
-  } catch (error: any) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (error) {
+    res.status(500).json({ success: false, error: errorMessage(error) });
   }
 });
 
@@ -1097,10 +1167,14 @@ router.get('/slabdraw-health', async (_req, res) => {
     }
 
     const data = await upstream.json();
+    // The proxied payload is not ours to trust: merge it only when it is a plain object.
+    const upstreamFields = data && typeof data === 'object' && !Array.isArray(data)
+      ? data as Record<string, unknown>
+      : { upstream: data };
     res.json({
       success: true,
       latency: `${duration}ms`,
-      ...data
+      ...upstreamFields
     });
   } catch (e: unknown) {
     const msg = e instanceof Error ? e.message : 'unknown proxy error';

@@ -1,0 +1,118 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+
+=== larathi-stabil -> sample/rock-check/larathi-stabil.xlsx (46 sheets) ===
+  r 4 | 1 | Concrete M25 | m³ | 1548.55 | 5500 | 8517025
+  r 5 | 2 | Steel Fe415 | MT | 97.5715 | 65000 | 6342147.5
+  r 6 | 3 | Formwork | m² | 873.6 | 350 | 305760
+  r 7 | 4 | Excavation in ordinary soil | m³ | 925.4300000000003 | 250 | 231357.5
+  r 8 | 5 | Excavation in hard rock (20% share) | m³ | 231.35750000000007 | 800 | 185086
+  r 9 | 6 | Backfill | m³ | 462.71500000000015 | 150 | 69407.25
+  r10 | 7 | PCC Blinding | m³ | 22.375 | 5000 | 111875
+  r11 | 8 | Wearing Coat | m² | 720 | 1200 | 864000
+  r12 | 9 | Expansion Joints | m | 15 | 5000 | 75000
+  r13 | 10 | Bearings | nos | 22 | 25000 | 550000
+  r15 |  |  |  |  | SUBTOTAL | 17251658.25
+  r16 |  |  |  |  | GST | 3105298.48
+  r17 |  |  |  |  | GRAND TOTAL | 20356956.73
+  CHECK soil+rock=1156.7875000000004 | rock share=20.0% | subtotal=17251658.25 | grand total=20356956.73
+  General Abs. rows:
+  r 4 | Concrete M25                         | 8517025 | 49.37
+  r 5 | Steel Fe415                          | 6342147.5 | 36.76
+  r 6 | Formwork                             | 305760 | 1.77
+  r 7 | Excavation in ordinary soil          | 231357.5 | 1.34
+  r 8 | Excavation in hard rock (20% share)  | 185086 | 1.07
+  r 9 | Backfill                             | 69407.25 | 0.4
+  r10 | PCC Blinding                         | 111875 | 0.65
+  r11 | Wearing Coat                         | 864000 | 5.01
+  r12 | Expansion Joints                     | 75000 | 0.43
+  r13 | Bearings                             | 550000 | 3.19
+  r15 | SUBTOTAL                             | 17251658.25 | 
+  r16 | GST                                  | 3105298.48 | 
+
+=== irc-gumaniya-udaipur -> sample/rock-check/irc-gumaniya-udaipur.xlsx (46 sheets) ===
+  r 4 | 1 | Concrete M25 | m³ | 818.1 | 5500 | 4499550
+  r 5 | 2 | Steel Fe415 | MT | 48.528 | 65000 | 3154320
+  r 6 | 3 | Formwork | m² | 438.70000000000005 | 350 | 153545
+  r 7 | 4 | Excavation in ordinary soil | m³ | 501.6 | 250 | 125400
+  r 8 | 5 | Excavation in hard rock (20% share) | m³ | 125.4 | 800 | 100320
+  r 9 | 6 | Backfill | m³ | 250.8 | 150 | 37620
+  r10 | 7 | PCC Blinding | m³ | 11.4 | 5000 | 57000
+  r11 | 8 | Wearing Coat | m² | 240 | 1200 | 288000
+  r12 | 9 | Expansion Joints | m | 15 | 5000 | 75000
+  r13 | 10 | Bearings | nos | 6 | 25000 | 150000
+  r15 |  |  |  |  | SUBTOTAL | 8640755
+  r16 |  |  |  |  | GST | 1555335.9
+  r17 |  |  |  |  | GRAND TOTAL | 10196090.9
+  CHECK soil+rock=627 | rock share=20.0% | subtotal=8640755 | grand total=10196090.9
+  General Abs. rows:
+  r 4 | Concrete M25                         | 4499550 | 52.07
+  r 5 | Steel Fe415                          | 3154320 | 36.51
+  r 6 | Formwork                             | 153545 | 1.78
+  r 7 | Excavation in ordinary soil          | 125400 | 1.45
+  r 8 | Excavation in hard rock (20% share)  | 100320 | 1.16
+  r 9 | Backfill                             | 37620 | 0.44
+  r10 | PCC Blinding                         | 57000 | 0.66
+  r11 | Wearing Coat                         | 288000 | 3.33
+  r12 | Expansion Joints                     | 75000 | 0.87
+  r13 | Bearings                             | 150000 | 1.74
+  r15 | SUBTOTAL                             | 8640755 | 
+  r16 | GST                                  | 1555335.9 | 
+
+=== irc-kumbhalgarh-kelwara -> sample/rock-check/irc-kumbhalgarh-kelwara.xlsx (46 sheets) ===
+  r 4 | 1 | Concrete M25 | m³ | 1647 | 5500 | 9058500
+  r 5 | 2 | Steel Fe415 | MT | 99.46 | 65000 | 6464900
+  r 6 | 3 | Formwork | m² | 754.5 | 350 | 264075
+  r 7 | 4 | Excavation in ordinary soil | m³ | 781.1999999999944 | 250 | 195300
+  r 8 | 5 | Excavation in hard rock (20% share) | m³ | 195.2999999999986 | 800 | 156240
+  r 9 | 6 | Backfill | m³ | 390.5999999999972 | 150 | 58590
+  r10 | 7 | PCC Blinding | m³ | 15.5 | 5000 | 77500
+  r11 | 8 | Wearing Coat | m² | 480 | 1200 | 576000
+  r12 | 9 | Expansion Joints | m | 15 | 5000 | 75000
+  r13 | 10 | Bearings | nos | 6 | 25000 | 150000
+  r15 |  |  |  |  | SUBTOTAL | 17076105
+  r16 |  |  |  |  | GST | 3073698.9
+  r17 |  |  |  |  | GRAND TOTAL | 20149803.9
+  CHECK soil+rock=976.499999999993 | rock share=20.0% | subtotal=17076105 | grand total=20149803.9
+  General Abs. rows:
+  r 4 | Concrete M25                         | 9058500 | 53.05
+  r 5 | Steel Fe415                          | 6464900 | 37.86
+  r 6 | Formwork                             | 264075 | 1.55
+  r 7 | Excavation in ordinary soil          | 195300 | 1.14
+  r 8 | Excavation in hard rock (20% share)  | 156240 | 0.91
+  r 9 | Backfill                             | 58590 | 0.34
+  r10 | PCC Blinding                         | 77500 | 0.45
+  r11 | Wearing Coat                         | 576000 | 3.37
+  r12 | Expansion Joints                     | 75000 | 0.44
+  r13 | Bearings                             | 150000 | 0.88
+  r15 | SUBTOTAL                             | 17076105 | 
+  r16 | GST                                  | 3073698.9 | 
+
+=== kherwara-golden -> sample/rock-check/kherwara-golden.xlsx (46 sheets) ===
+  r 4 | 1 | Concrete M25 | m³ | 670.55 | 5500 | 3688025
+  r 5 | 2 | Steel Fe415 | MT | 48.6465 | 65000 | 3162022.5
+  r 6 | 3 | Formwork | m² | 636.6 | 350 | 222810
+  r 7 | 4 | Excavation in ordinary soil | m³ | 826.25 | 250 | 206562.5
+  r 8 | 5 | Backfill | m³ | 330.5 | 150 | 49575
+  r 9 | 6 | PCC Blinding | m³ | 16.525 | 5000 | 82625
+  r10 | 7 | Wearing Coat | m² | 720 | 1200 | 864000
+  r11 | 8 | Expansion Joints | m | 15 | 5000 | 75000
+  r12 | 9 | Bearings | nos | 22 | 25000 | 550000
+  r14 |  |  |  |  | SUBTOTAL | 8900620
+  r15 |  |  |  |  | GST | 1602111.6
+  r16 |  |  |  |  | GRAND TOTAL | 10502731.6
+  r18 | STORY - Estimation is the quantity-traceability story: every amount should descend from verified geometry, reinforcement and material assumptions already accepted in design sheets. |  |  |  |  | 
+  CHECK soil+rock=826.25 | rock share=0.0% | subtotal=8900620 | grand total=10502731.6
+  General Abs. rows:
+  r 4 | Concrete M25                         | 3688025 | 41.44
+  r 5 | Steel Fe415                          | 3162022.5 | 35.53
+  r 6 | Formwork                             | 222810 | 2.5
+  r 7 | Excavation in ordinary soil          | 206562.5 | 2.32
+  r 8 | Backfill                             | 49575 | 0.56
+  r 9 | PCC Blinding                         | 82625 | 0.93
+  r10 | Wearing Coat                         | 864000 | 9.71
+  r11 | Expansion Joints                     | 75000 | 0.84
+  r12 | Bearings                             | 550000 | 6.18
+  r14 | SUBTOTAL                             | 8900620 | 
+  r15 | GST                                  | 1602111.6 | 
+  r16 | TOTAL                                | 10502731.6 | 

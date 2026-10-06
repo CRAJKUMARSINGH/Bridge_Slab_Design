@@ -1,0 +1,25 @@
+== integration lanes ==
+lanes=12 laneFails=0
+== golden ==
+Node.js v24.14.0
+== hydraulics ==
+verify:engine OK — all hydraulics fixtures passed
+== narrative ==
+OK ESTIMATION (5 paragraphs)
+== engine golden ==
+Golden regression passed; tamper input changed the result as expected.
+== smoke ==
+Done: 26/26 passed.
+== links ==
+== value sanity ==
+Node.js v24.14.0
+== regenerate ==
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'E:\\Rajkumar\\Bridge_Slab_Design\\bridge-excel-generator\\sheets\\03-afflux-calculation.ts',
+    'E:\\Rajkumar\\Bridge_Slab_Design\\bridge-excel-generator\\index.ts'
+  ]
+}
+
+Node.js v24.14.0
+GATE2 COMPLETE

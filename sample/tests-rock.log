@@ -1,0 +1,12 @@
+tests/integration/api-calculate.test.ts exit=0
+tests/integration/api-d4-crud.test.ts exit=0
+tests/integration/api-drawings.test.ts exit=0
+tests/integration/api-health.test.ts exit=0
+tests/integration/api-pier-cases.test.ts exit=0
+tests/integration/api-reports.test.ts exit=0
+tests/integration/api-specialty.test.ts exit=0
+tests/integration/deploy-readiness.test.ts exit=0
+tests/integration/excel-integrity.test.ts exit=0
+tests/integration/report-integrity.test.ts exit=0
+tests/integration/security.test.ts exit=0
+tests/integration/zod-contract.test.ts exit=0

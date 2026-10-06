@@ -1,0 +1,42 @@
+{
+  // Typecheck lane for the browser app. Before this file existed client/** was verified only by
+  // Vite's esbuild transform, which strips types without checking them: a type error was invisible
+  // until a runtime crash in the browser. Run: pnpm run typecheck:client
+  //
+  // "paths" here mirrors the aliases in vite.config.ts exactly. If an alias is added there, add it
+  // here too, otherwise the lane checks a module graph the browser never loads.
+  //
+  // Test files are excluded because `vitest` and `fast-check` are imported by client/src but
+  // declared by no package in this workspace and are absent from the pnpm store, so an offline
+  // install cannot provide them. To bring them into the lane: declare both at the root, install,
+  // then remove the *.test.* / *.spec.* entries from "exclude" below.
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "jsx": "react-jsx",
+    "types": ["node", "vite/client"],
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["client/src/*"],
+      "@shared/*": ["shared/*"],
+      "@assets/*": ["attached_assets/*"]
+    }
+  },
+  "include": ["client/**/*.ts", "client/**/*.tsx", "shared/**/*.ts"],
+  "exclude": [
+    "client/**/*.test.ts",
+    "client/**/*.test.tsx",
+    "client/**/*.spec.ts",
+    "client/**/*.spec.tsx"
+  ]
+}

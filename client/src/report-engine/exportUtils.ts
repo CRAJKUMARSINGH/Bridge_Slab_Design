@@ -1,9 +1,13 @@
 ﻿/**
- * DUAL-TRACK EXPORT ENGINE (v2.1 â€” A/B Testing Suite)
- * â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
- * Model A: "Data-Perfect" â€” Uses SheetJS (xlsx) for ultra-reliable calculation export.
- * Model B: "Style-Perfect" â€” Uses ExcelJS for Som-River-grade formatting (borders, fills, merges).
+ * SINGLE-TRACK EXPORT ENGINE (v2.2)
+ * ---------------------------------------------------------------------------
+ * ExcelJS workbook export for the narrative report page: Som-River-grade
+ * formatting (thick borders, orchid/blue header fills, merged title rows).
  *
+ * The SheetJS "Model A" track was removed on 2026-10-05. No page called it, and the
+ * Model A / Model B preference it implied reached neither this module nor the server
+ * generator, so offering two tracks promised two sets of numbers where one exists.
+ * See archive/20261005-model-a-b-toggle-removed/README.md.
  * Benchmark: "Stability Analysis SUBMERSIBLE BRIDGE ACROSS SOM RIVER.xls"
  *            26 sheets, thick borders, orchid/blue header fills, merged title rows.
  */
@@ -74,273 +78,11 @@ function buildManifest(i: Inputs, d: Derived) {
 }
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   MODEL A â€” DATA-PERFECT (SheetJS / xlsx)
-   Focus: 100% calculation fidelity, lightweight, instant.
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-export async function generateExcelModelA(i: Inputs, d: Derived) {
-  const XLSX = await import("xlsx");
-  const wb = XLSX.utils.book_new();
-  const firmName = i.firmName || i.engineer;
-
-  // --- Sheet 1: HYDRAULICS ---
-  const hydData = [
-    [firmName],
-    ["HYDRAULIC CALCULATIONS & WATERWAY DESIGN"],
-    ["Project:", i.name],
-    ["River:", i.river, "", "Engineer:", i.engineer],
-    ["Date:", new Date().toLocaleDateString("en-IN")],
-    [""],
-    ["Parameter", "Symbol", "Value", "Unit", "Reference"],
-    ["Catchment Area", "A", i.A, "mÂ²", "IRC:SP:13"],
-    ["Wetted Perimeter", "P", i.P_, "m", "Field Survey"],
-    ["Manning's n", "n", i.n, "", "IRC:SP:13 Table"],
-    ["Bed Slope", "S", "1 in " + i.S_denom, "", "Survey"],
-    ["Hydraulic Radius", "R = A/P", +d.R.toFixed(3), "m", ""],
-    ["Avg. Velocity", "V = (1/n)R^â…”S^Â½", +d.V.toFixed(3), "m/s", "Manning"],
-    ["Design Discharge", "Q = AV", +d.Q.toFixed(2), "cumecs", ""],
-    ["Lacey's Regime Width", "W = 4.75âˆšQ", +d.L_lacey.toFixed(2), "m", "Lacey"],
-    ["Design Scour Depth", "dsm", +d.dsm.toFixed(2), "m", "IRC:78"],
-    ["Afflux", "h", +d.afflux.toFixed(3), "m", "Molesworth"],
-    ["Froude Number", "Fr", +d.Fr.toFixed(3), "", ""],
-    ["Skew Angle", "Î¸", i.skewDeg, "deg", ""],
-    [
-      "Effective Span (Skew)",
-      "L_eff",
-      +(d.L_eff_skew?.toFixed(2) || i.spanL),
-      "m",
-      "L/cos(Î¸)",
-    ],
-  ];
-  XLSX.utils.book_append_sheet(
-    wb,
-    XLSX.utils.aoa_to_sheet(hydData),
-    "HYDRAULICS",
-  );
-
-  // --- Sheet 2: CROSS SECTION ---
-  const xsecData = [
-    ["CROSS SECTION OF RIVER"],
-    ["Chainage", "RL (m)", "Remarks"],
-    ...i.xsec.map((r: any) => [r.ch, r.gl, r.remarks]),
-  ];
-  XLSX.utils.book_append_sheet(
-    wb,
-    XLSX.utils.aoa_to_sheet(xsecData),
-    "CROSS_SECTION",
-  );
-
-  // --- Sheet 3: SBC ---
-  const sbcData = [
-    ["SAFE BEARING CAPACITY (Terzaghi's Equation)"],
-    ["Parameter", "Value", "Unit"],
-    ["Angle of Repose (Ï†)", i.phi, "deg"],
-    ["Unit Weight (Î³)", i.gamma, "kN/mÂ³"],
-    ["Foundation Depth (Df)", i.Df, "m"],
-    ["Footing Width (B)", i.ftgB, "m"],
-    ["Nc", i.Nc, ""],
-    ["Nq", i.Nq, ""],
-    ["NÎ³", i.Ny, ""],
-    ["FOS", i.FOS_sbc, ""],
-    ["qnu (kN/mÂ²)", +d.qnu.toFixed(1), "Gross"],
-    ["SBC (kN/mÂ²)", +d.SBC.toFixed(1), "Net Allowable"],
-  ];
-  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(sbcData), "SBC");
-
-  // --- Sheet 4: DECK ANCHORAGE ---
-  const ancData = [
-    ["ANCHORAGE OF DECK SLAB TO SUBSTRUCTURE"],
-    ["(Ref: Som River Workbook Sheet 'Deck Anchorage')"],
-    [""],
-    ["Parameter", "Value", "Unit"],
-    ["DL of Slab", +d.dl_slab.toFixed(1), "kN"],
-    ["Buoyancy Force", +d.buoyancy.toFixed(1), "kN"],
-    ["Total Uplift", +(d.totalUplift?.toFixed(1) || 0), "kN"],
-    ["Net Force", +(d.net_force?.toFixed(1) || 0), "kN"],
-    ["Bolt Diameter", i.ancBoltDia, "mm"],
-    ["Bolt Grade", i.ancBoltGrade, ""],
-    ["Anchor Capacity/Bolt", +(d.anchorCapacity?.toFixed(1) || 0), "kN"],
-    ["No. of Bolts Required", d.numBolts || 0, "nos"],
-    ["Anchorage Required?", i.ancIsRequired ? "YES" : "NO", ""],
-  ];
-  XLSX.utils.book_append_sheet(
-    wb,
-    XLSX.utils.aoa_to_sheet(ancData),
-    "DECK_ANCHORAGE",
-  );
-
-  // --- Sheet 5: STABILITY PIER ---
-  const pierData = [
-    ["STABILITY ANALYSIS FOR PIER"],
-    ["Project:", i.name],
-    [""],
-    [
-      "Case",
-      "Description",
-      "V (kN)",
-      "H (kN)",
-      "e (m)",
-      "qmax (kN/mÂ²)",
-      "qmin",
-      "FOS Slide",
-      "FOS OT",
-      "Status",
-    ],
-    ...d.pierLCs.map((lc, idx) => [
-      idx + 1,
-      ["DL+LL+Hydro", "DL+Hydro", "DL+LL+Seismic", "DL+Seismic", "DL+LL+Wind", "Dislodged (One-Span)"][
-        idx
-      ],
-      +lc.Vf.toFixed(1),
-      +lc.Hf.toFixed(1),
-      +lc.e.toFixed(3),
-      +lc.qmax.toFixed(1),
-      +lc.qmin.toFixed(1),
-      +lc.slidFOS.toFixed(2),
-      +lc.otFOS.toFixed(2),
-      lc.slidFOS >= 1.5 && lc.qmax <= d.SBC ? "SAFE âœ“" : "CHECK âœ—",
-    ]),
-  ];
-  XLSX.utils.book_append_sheet(
-    wb,
-    XLSX.utils.aoa_to_sheet(pierData),
-    "STABILITY_PIER",
-  );
-
-  // --- Sheet 6: ABSTRACT OF STRESSES ---
-  const aosData = [
-    ["ABSTRACT OF BASE PRESSURE AND STRESSES"],
-    ["Case", "qmax (kN/mÂ²)", "qmin (kN/mÂ²)", "FOS Sliding", "FOS Overturning"],
-    ...d.pierLCs.map((lc, idx) => [
-      idx + 1,
-      +lc.qmax.toFixed(1),
-      +lc.qmin.toFixed(1),
-      +lc.slidFOS.toFixed(2),
-      +lc.otFOS.toFixed(2),
-    ]),
-  ];
-  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(aosData), "AOS");
-
-  // --- Sheet 7: PIER STEEL ---
-  const steelData = [
-    ["REINFORCEMENT CALCULATION IN PIER"],
-    ["Parameter", "Value", "Unit"],
-    ["Effective Depth", d.d_pier, "mm"],
-    ["xu_lim", d.xu_lim, "mm"],
-    ["xu_actual", d.xu, "mm"],
-    ["Ast Required", d.Ast_req, "mmÂ²"],
-    ["Ast Provided", d.Ast_prov, "mmÂ²"],
-    ["No. of Main Bars", d.nos_main, "nos"],
-    ["Steel %", +d.pct.toFixed(3), "%"],
-  ];
-  XLSX.utils.book_append_sheet(
-    wb,
-    XLSX.utils.aoa_to_sheet(steelData),
-    "PIER_STEEL",
-  );
-
-  // --- Sheet 8: BBS ---
-  const bbsData = [
-    ["BAR BENDING SCHEDULE â€” PIER"],
-    ["Mark", "Description", "Dia (mm)", "Nos", "Length (m)", "Weight (kg)"],
-    ...d.bbs_pier.map((b) => [
-      b.mark,
-      b.desc,
-      b.dia,
-      b.nos,
-      +b.len.toFixed(2),
-      +b.wt.toFixed(1),
-    ]),
-    [
-      "",
-      "",
-      "",
-      "",
-      "TOTAL",
-      +d.bbs_pier.reduce((s, b) => s + b.wt, 0).toFixed(1),
-    ],
-  ];
-  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(bbsData), "BBS");
-
-  // --- Sheet 9: ABUTMENT STABILITY ---
-  const abtData = [
-    ["STABILITY ANALYSIS FOR ABUTMENT"],
-    [
-      "Case",
-      "V (kN)",
-      "H (kN)",
-      "qmax",
-      "FOS Slide",
-      "FOS OT",
-      "Slide OK?",
-      "OT OK?",
-      "Bearing OK?",
-    ],
-    ...d.abtCases.map((c, idx) => [
-      idx + 1,
-      +c.Vf.toFixed(1),
-      +c.Hf.toFixed(1),
-      +c.qmax.toFixed(1),
-      +c.slidFOS.toFixed(2),
-      +c.otFOS.toFixed(2),
-      c.slidOK ? "YES" : "NO",
-      c.otOK ? "YES" : "NO",
-      c.bearOK ? "YES" : "NO",
-    ]),
-  ];
-  XLSX.utils.book_append_sheet(
-    wb,
-    XLSX.utils.aoa_to_sheet(abtData),
-    "ABUTMENT_STABILITY",
-  );
-
-  // --- Sheet 10: PROJECT SUMMARY ---
-  const summData = [
-    ["PROJECT SUMMARY"],
-    ["Item", "Value"],
-    ["Name of Work", i.name],
-    ["Location", i.location],
-    ["River", i.river],
-    ["No. of Spans", i.spans],
-    ["Span Length", i.spanL + " m"],
-    ["Total Length", d.totalL + " m"],
-    ["Carriageway Width", i.cwWidth + " m"],
-    ["Total Width", i.totalW + " m"],
-    ["Grade of Concrete", i.grade],
-    ["Grade of Steel", i.steel],
-    ["SBC", d.SBC.toFixed(1) + " kN/mÂ²"],
-    ["Design Discharge", d.Q.toFixed(2) + " cumecs"],
-    ["Skew Angle", i.skewDeg + "Â°"],
-  ];
-  XLSX.utils.book_append_sheet(
-    wb,
-    XLSX.utils.aoa_to_sheet(summData),
-    "SUMMARY",
-  );
-
-  // --- Manifest Sheet ---
-  const manifest = buildManifest(i, d);
-  XLSX.utils.book_append_sheet(
-    wb,
-    XLSX.utils.aoa_to_sheet([
-      ["CALCULATION AUDIT MANIFEST"],
-      ["Generated", manifest.generatedAt],
-      ["Engine", manifest.engineVersion],
-      ["Total Variables Tracked", Object.keys(manifest.variables).length],
-    ]),
-    "_AUDIT",
-  );
-
-  const filename = `${i.river.replace(/\s+/g, "_")}_ModelA_DataPerfect.xlsx`;
-  XLSX.writeFile(wb, filename);
-  return filename;
-}
-
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   MODEL B â€” STYLE-PERFECT (ExcelJS)
+   EXCEL WORKBOOK EXPORT (ExcelJS)
    Benchmark: "Stability Analysis SUBMERSIBLE BRIDGE ACROSS SOM RIVER.xls"
    Features: Thick borders, orchid fills, cell merges, logo embedding.
 â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-export async function generateExcelModelB(i: Inputs, d: Derived) {
+export async function generateExcelWorkbook(i: Inputs, d: Derived) {
   const ExcelJS = (await import("exceljs")).default;
   const wb = new ExcelJS.Workbook();
   wb.creator = (i as any).firmName || i.engineer;
@@ -744,7 +486,7 @@ export async function generateExcelModelB(i: Inputs, d: Derived) {
   const blob = new Blob([buffer], {
     type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
   });
-  const filename = `${i.river.replace(/\s+/g, "_")}_ModelB_StylePerfect.xlsx`;
+  const filename = `${i.river.replace(/\s+/g, "_")}_ReportEngine.xlsx`;
   saveAs(blob, filename);
   return filename;
 }
@@ -824,7 +566,7 @@ export function generateSurveySMS(i: Inputs, d: Derived) {
   const fv = (n: number) => (isNaN(n) || !isFinite(n) ? "â€”" : n.toFixed(2));
   
   // Create Setting-Out Matrix points based on spans
-  let chainages = [];
+  const chainages: string[] = [];
   chainages.push(`Ch. 0.00m (Abutment 1)`);
   let currentCh = i.spanL / 2; // Assuming Abutment to Pier 1 is spanL spacing approx 
   for (let s = 1; s < i.spans; s++) {
@@ -868,11 +610,3 @@ Anchor Bolts Req: ${d.numBolts && d.numBolts > 0 ? `YES (${d.numBolts} nos, Dia 
   const blob = new Blob([smsText], { type: "text/plain;charset=utf-8;" });
   saveAs(blob, `${i.river.replace(/\s+/g, "_")}_Survey.txt`);
 }
-
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   LEGACY ALIAS (backward compatibility)
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-export const generateExcelWorkbook = generateExcelModelA;
-
-
-

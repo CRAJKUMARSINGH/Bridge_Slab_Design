@@ -3,16 +3,14 @@
  * ─────────────────────
  * MERGE NOTE: Ported from Repo B — DesignCheckDashboard.tsx (gift component).
  * Provides engineers a one-glance summary of all IRC/IS pass/fail verdicts.
- * Enhanced with SVG metrics cards and model toggle integration.
+ * Enhanced with SVG metrics cards.
  *
  * Styled to match Repo A's orchid/royal design language.
  */
 import { useMemo } from 'react';
 import { Link } from 'wouter';
 import { useQuery } from '@tanstack/react-query';
-import { useModelStore } from '@/stores/useModelStore';
 import { useDesignStore } from '@/stores/useDesignStore';
-import { ModelSwitcher } from '@/components/ModelSwitcher';
 import { SHEETS, CATEGORIES, sheetsByCategory } from '@/lib/sheet-definitions';
 import { apiClient } from '@/lib/api-client';
 import {
@@ -156,7 +154,6 @@ function SheetCategoryPanel({
 }
 
 export default function Dashboard() {
-  const { activeModel } = useModelStore();
   const results = useDesignStore((s) => s.results);
   const grouped = useMemo(() => sheetsByCategory(), []);
   const stabilityCases = results?.pier?.loadCases ?? [];
@@ -179,7 +176,6 @@ export default function Dashboard() {
             Engineering verdicts at a glance — {SHEETS.length} IRC-compliant design sheets
           </p>
         </div>
-        <ModelSwitcher compact />
       </div>
 
       {/* Key Metrics Strip */}
@@ -192,7 +188,6 @@ export default function Dashboard() {
           value={String(stabilitySafe)}
           status={stabilityCases.length > 0 && stabilitySafe === stabilityCases.length ? 'OK' : 'WARN'}
         />
-        <MetricCard icon={Building2} label="Active Model" value={activeModel === 'model-a' ? 'A' : 'B'} status="INFO" />
         <MetricCard icon={Ruler} label="Hydraulic Q" value={results?.hydraulics?.discharge?.toFixed(1) ?? '--'} />
         <MetricCard icon={TrendingUp} label="Engine Status" value={engineReady ? 'Ready' : 'No Run Yet'} status={engineReady ? 'OK' : 'WARN'} />
         {/* Live DB stats — Requirement 11 */}
@@ -236,29 +231,6 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Model Info Banner */}
-      <div className="rounded-xl bg-gradient-to-r from-orchid/10 to-royalblue/10 border border-orchid/30 p-4 shadow-[0_0_20px_rgba(139,92,246,0.1)] relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-orchid to-transparent opacity-40" />
-        <div className="flex items-center gap-3">
-          <div className="rounded-lg bg-orchid/20 p-2">
-            <Shield size={18} className="text-orchid" />
-          </div>
-          <div>
-            <div className="text-sm font-bold text-app-fg">
-              {activeModel === 'model-a' ? 'Model A — Industrial Core' : 'Model B — Premium Presentation'}
-            </div>
-            <div className="text-xs text-app-muted">
-              {activeModel === 'model-a'
-                ? 'SheetJS-based engine optimized for raw data precision and ultra-fast exports.'
-                : 'ExcelJS-based engine producing pixel-perfect, styled reports matching Som River benchmark.'}
-            </div>
-          </div>
-        </div>
-        <div className="mt-2 text-[10px] text-app-muted italic">
-          Trial period active. Final selection after April–May 2026 user evaluation.
-        </div>
-      </div>
-
       {/* ── ASTRA Knowledge Base ─────────────────────────────────── */}
       <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 overflow-hidden">
         {/* Header row */}
@@ -270,10 +242,11 @@ export default function Dashboard() {
               <p className="text-[10px] text-app-muted">CRAJKUMARSINGH/Bridge_Slab_Design → Attached_Assets/ASTRA 15 TUTORIALS</p>
             </div>
           </div>
-          <Link href="/astra-library">
-            <a className="inline-flex items-center gap-1 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-[11px] font-bold text-amber-400 hover:bg-amber-500/20 transition">
-              <ExternalLink className="h-3 w-3" /> Open Full Library
-            </a>
+          <Link
+            href="/astra-library"
+            className="inline-flex items-center gap-1 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-[11px] font-bold text-amber-400 hover:bg-amber-500/20 transition"
+          >
+            <ExternalLink className="h-3 w-3" /> Open Full Library
           </Link>
         </div>
 
@@ -299,19 +272,17 @@ export default function Dashboard() {
             { icon: Box,         label: 'Culvert',         total: 5,  live: 1, color: 'text-violet-400', page: '/design' },
             { icon: Zap,         label: 'Analysis',        total: 5,  live: 1, color: 'text-orange-400', page: '/interaction-diagram' },
           ].map(c => (
-            <Link key={c.label} href={c.page}>
-              <a className="flex flex-col items-center gap-1 px-3 py-4 hover:bg-amber-500/8 transition group">
-                <c.icon className={`h-5 w-5 ${c.color} group-hover:scale-110 transition-transform`} />
-                <span className="text-[10px] font-semibold text-app-muted text-center leading-tight">{c.label}</span>
-                <div className="flex items-center gap-1">
-                  <span className={`text-xs font-bold ${c.color}`}>{c.live}</span>
-                  <span className="text-[9px] text-app-muted">/{c.total}</span>
-                </div>
-                <div className="w-full h-1 rounded-full bg-app-card/50 overflow-hidden">
-                  <div className={`h-full rounded-full bg-gradient-to-r from-${c.color.replace('text-','')} to-transparent`}
-                    style={{ width: `${Math.round((c.live / c.total) * 100)}%` }} />
-                </div>
-              </a>
+            <Link key={c.label} href={c.page} className="flex flex-col items-center gap-1 px-3 py-4 hover:bg-amber-500/8 transition group">
+              <c.icon className={`h-5 w-5 ${c.color} group-hover:scale-110 transition-transform`} />
+              <span className="text-[10px] font-semibold text-app-muted text-center leading-tight">{c.label}</span>
+              <div className="flex items-center gap-1">
+                <span className={`text-xs font-bold ${c.color}`}>{c.live}</span>
+                <span className="text-[9px] text-app-muted">/{c.total}</span>
+              </div>
+              <div className="w-full h-1 rounded-full bg-app-card/50 overflow-hidden">
+                <div className={`h-full rounded-full bg-gradient-to-r from-${c.color.replace('text-','')} to-transparent`}
+                  style={{ width: `${Math.round((c.live / c.total) * 100)}%` }} />
+              </div>
             </Link>
           ))}
         </div>
@@ -331,13 +302,11 @@ export default function Dashboard() {
               { label: 'Section Properties',page: '/t-girder',           color: 'border-blue-500/30 text-blue-400 bg-blue-500/8' },
               { label: 'Seismic Coeff.',    page: '/design',             color: 'border-orange-500/30 text-orange-400 bg-orange-500/8' },
               { label: 'ASTRA Library',     page: '/astra-library',      color: 'border-amber-500/30 text-amber-400 bg-amber-500/8' },
-              { label: 'Narrative Report',  page: '/narrative-report',   color: 'border-purple-500/30 text-purple-400 bg-purple-500/8' },
+              { label: 'Narrative Report',  page: '/report',             color: 'border-purple-500/30 text-purple-400 bg-purple-500/8' },
             ].map(l => (
-              <Link key={l.label} href={l.page}>
-                <a className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[10px] font-semibold transition hover:opacity-80 ${l.color}`}>
-                  <CheckCircle2 className="h-2.5 w-2.5" />
-                  {l.label}
-                </a>
+              <Link key={l.label} href={l.page} className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[10px] font-semibold transition hover:opacity-80 ${l.color}`}>
+                <CheckCircle2 className="h-2.5 w-2.5" />
+                {l.label}
               </Link>
             ))}
           </div>

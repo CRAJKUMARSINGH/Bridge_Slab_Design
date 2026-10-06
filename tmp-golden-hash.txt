@@ -1,0 +1,1 @@
+00d09398c78122b893f88bba1203bef8af3275d8ebaeb0619a9f05ebf747fb9f *tests/golden/deliverable-engine/kherwara.json

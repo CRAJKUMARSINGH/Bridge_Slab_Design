@@ -1,0 +1,512 @@
+
+> workspace@0.0.0 assimilate:classify:workbook E:\Rajkumar\Bridge_Slab_Design
+> python scripts/assimilate/classify_workbook.py "--" "test-output/design-workbook.xlsx" "--outdir" "tmp-a3-pnpm" "--proposal"
+
+
+[info] 285 ambiguous cell(s) -- re-run with --confirm to resolve interactively, or supply --answers JSON.
+
+==========================================================================
+ WORKBOOK: design-workbook.xlsx
+==========================================================================
+
+ V A R I A B L E S   (independent design inputs)   [19]
+
+   1. Deck Anchorage!D6 Span length                          = 8        conf 0.80 
+   2. Deck Anchorage!D7 Carriage width                       = 7.5        conf 0.80 
+   3. Deck Anchorage!D8 Deck slab thickness                  = 0.25        conf 0.80 
+   4. STABILITY CHECK FOR PIER!B10 Footing base width                   = 2.5        conf 0.80 dn:PS_BASEW
+   5. STABILITY CHECK FOR PIER!B11 Footing base length                  = 4.5        conf 0.80 dn:PS_BASEL
+   6. STABILITY CHECK FOR PIER!B12 Span length                          = 8        conf 0.80 dn:PS_SPAN
+   7. STABILITY CHECK FOR PIER!B13 Bed level                            = 96.6        conf 0.75 dn:PS_BED
+   8. STABILITY CHECK FOR PIER!B14 Road top level                       = 101.6 RTL    conf 0.75 dn:PS_RTL
+   9. STABILITY CHECK FOR PIER!B16 Design water level                   = 100.8561406481468        conf 0.75 dn:PS_DWL
+  10. STABILITY CHECK FOR PIER!B20 Basic wind speed Vb                  = 33        conf 0.75 dn:PS_WINDVB
+  11. STABILITY CHECK FOR PIER!B21 Seismic zone                         = 3        conf 0.75 dn:PS_SEISMICZONE
+  12. STABILITY CHECK FOR PIER!B7 Pier width                           = 1.2        conf 0.80 dn:PS_PIERW
+  13. STABILITY CHECK FOR PIER!B8 Pier length                          = 3.5        conf 0.80 dn:PS_PIERL
+  14. STABILITY CHECK FOR PIER!B9 Pier body depth                      = 4        conf 0.80 dn:PS_PIERD
+  15. TYPE1-STABILITY CHECK ABUTMENT!B15 Live load LL                         = 100        conf 0.80 
+  16. TYPE1-STABILITY CHECK ABUTMENT!B5 Abutment width w                     = 0.575        conf 0.80 
+  17. TYPE1-STABILITY CHECK ABUTMENT!B6 Abutment depth d                     = 3        conf 0.80 
+  18. afflux calculation!B51 Thickness of Slab and Wearing Coat   = 0.25        conf 0.80 
+  19. afflux calculation!F18 Spans of                             = 8        conf 0.80 
+
+ C O E F F I C I E N T S
+  A. factor / property / limit cells   [15]
+
+   1. LLOAD!C8         Ultimate Limit State                 = 1.5 ULS    conf 0.82
+   2. STABILITY CHECK FOR PIER!B15 Safe bearing capacity                = 150 SBC    conf 0.82
+   3. STABILITY CHECK FOR PIER!B22 Friction coefficient μ               = 0.5        conf 0.82
+   4. STABILITY CHECK FOR PIER!B23 Drag coefficient Cd                  = 0.66        conf 0.82
+   5. STABILITY CHECK FOR PIER!B24 Wind force coefficient Cf            = 1.3        conf 0.82
+   6. STABILITY CHECK FOR PIER!B6 Unit weight of RC                    = 25        conf 0.82
+   7. STABILITY CHECK FOR PIER!C51 Ultimate Limit State                 = 1.35 ULS    conf 0.82
+   8. STABILITY CHECK FOR PIER!D51 Ultimate Limit State                 = 1.5 ULS    conf 0.82
+   9. STABILITY CHECK FOR PIER!E51 Ultimate Limit State                 = 0.9 ULS    conf 0.82
+  10. STABILITY CHECK FOR PIER!F51 Ultimate Limit State                 = 0 ULS    conf 0.82
+  11. STABILITY CHECK FOR PIER!G51 Ultimate Limit State                 = 1 ULS    conf 0.82
+  12. TYPE1-STABILITY CHECK ABUTMENT!B11 Soil unit weight γ                   = 18        conf 0.82
+  13. TYPE1-STABILITY CHECK ABUTMENT!B12 Safe bearing capacity SBC            = 150        conf 0.82
+  14. TYPE1-STABILITY CHECK ABUTMENT!B36 Seismic zone factor Z                = 0.16 IS:1893 conf 0.82
+  15. afflux calculation!G27 the silt factor                      = 1.5        conf 0.82
+
+  B. numeric literals embedded inside formulas   [54]
+
+     0          x68  e.g. HYDRAULICS!C6  = =IF($F$4-B6>0,$F$4-B6,0)
+     3          x62  e.g. afflux calculation!C13 = =(1/C10)*POWER(C6/C7,2/3)*SQRT(1/E8)
+     2          x53  e.g. afflux calculation!C13 = =(1/C10)*POWER(C6/C7,2/3)*SQRT(1/E8)
+     4          x30  e.g. HYDRAULICS!C6  = =IF($F$4-B6>0,$F$4-B6,0)
+     1          x29  e.g. afflux calculation!C13 = =(1/C10)*POWER(C6/C7,2/3)*SQRT(1/E8)
+     100        x25  e.g. General Abs.!D4 = =C4/$C26*100
+     1.5        x20  e.g. Deck Anchorage!D26 = =D6*2*1.5
+     2.5        x17  e.g. STABILITY CHECK FOR PIER!B26 = =(B25/2)*2.5/(3/1.5)
+     7          x17  e.g. abstract of stresses!E12 = =C12/$B$7
+     8          x17  e.g. abstract of stresses!F12 = =D12/$B$8
+     1.8        x15  e.g. STABILITY CHECK FOR PIER!N47 = =IF(AND(K47>=1.5,L47>=1.8,M47>=2.5),"SAFE","UNSAFE")
+     9          x15  e.g. abstract of stresses!H12 = =$B$9
+     11         x14  e.g. Footing STRESS DIAGRAM!C14 = =$B$11+($B$10-$B$11)*0/6
+     9.81       x10  e.g. Deck Anchorage!D11 = =D9*9.81
+     6          x10  e.g. abstract of stresses!B8 = =B6*B5^2/6
+     17         x10  e.g. TYPE1-STABILITY CHECK ABUTMENT!D21 = =L21*$B$17+M21*$B$32+N21*$B$35+O21*$B$38
+     32         x10  e.g. TYPE1-STABILITY CHECK ABUTMENT!D21 = =L21*$B$17+M21*$B$32+N21*$B$35+O21*$B$38
+     35         x10  e.g. TYPE1-STABILITY CHECK ABUTMENT!D21 = =L21*$B$17+M21*$B$32+N21*$B$35+O21*$B$38
+     38         x10  e.g. TYPE1-STABILITY CHECK ABUTMENT!D21 = =L21*$B$17+M21*$B$32+N21*$B$35+O21*$B$38
+     12         x10  e.g. TYPE1- Abut Footing STRESS!D4 = ='TYPE1-STABILITY CHECK ABUTMENT'!$B$12
+     0.5        x9   e.g. Deck Anchorage!D23 = =0.5*1000*POWER(D21,2)*D19*0.001
+     10         x8   e.g. Footing STRESS DIAGRAM!C14 = =$B$11+($B$10-$B$11)*0/6
+     1e-09      x7   e.g. Bed Slope!E9   = =IF(ABS(D9)<0.000000001,$E$4,ABS(C9/D9))
+     1000       x6   e.g. Deck Anchorage!D23 = =0.5*1000*POWER(D21,2)*D19*0.001
+     14         x5   e.g. TYPE1-STABILITY CHECK ABUTMENT!C21 = =J21*$B$14+K21*$B$15
+     15         x5   e.g. TYPE1-STABILITY CHECK ABUTMENT!C21 = =J21*$B$14+K21*$B$15
+     0.6        x3   e.g. Deck Anchorage!D27 = =D10*0.6
+     2.4        x2   e.g. afflux calculation!B29 = =((C18-1)*F18)+2.4
+     25         x2   e.g. Deck Anchorage!D10 = =D9*25
+     1.2        x2   e.g. Deck Anchorage!D30 = =IF(OR(D29<1.2,D20>0.1),"YES","NO")
+     0.1        x2   e.g. Deck Anchorage!D30 = =IF(OR(D29<1.2,D20>0.1),"YES","NO")
+     0.91       x2   e.g. STABILITY CHECK FOR PIER!B39 = =B20*1*0.91*1
+     1.1        x2   e.g. loadsumm!C13   = =C5/9.81*1.1
+     1.25       x2   e.g. loadsumm!C14   = =C5/9.81*1.25
+     4.8        x1   e.g. afflux calculation!C17 = =4.8*SQRT(C14)
+     1.34       x1   e.g. afflux calculation!B33 = =1.34*POWER(POWER(C32,2)/G27,1/3)
+     17.85      x1   e.g. afflux calculation!C74 = =((POWER(C47,2)/17.85)+0.0152)*(POWER(C46/C72,2)-1)
+     0.0152     x1   e.g. afflux calculation!C74 = =((POWER(C47,2)/17.85)+0.0152)*(POWER(C46/C72,2)-1)
+     0.001      x1   e.g. Deck Anchorage!D23 = =0.5*1000*POWER(D21,2)*D19*0.001
+     0.075      x1   e.g. Deck Anchorage!D25 = =D19*0.075*22
+     22         x1   e.g. Deck Anchorage!D25 = =D19*0.075*22
+     99         x1   e.g. Deck Anchorage!D29 = =IF(D24>0,D28/D24,99)
+     0.16       x1   e.g. STABILITY CHECK FOR PIER!B25 = =IF(B21=2,0.1,IF(B21=3,0.16,IF(B21=4,0.24,0.36)))
+     0.24       x1   e.g. STABILITY CHECK FOR PIER!B25 = =IF(B21=2,0.1,IF(B21=3,0.16,IF(B21=4,0.24,0.36)))
+     0.36       x1   e.g. STABILITY CHECK FOR PIER!B25 = =IF(B21=2,0.1,IF(B21=3,0.16,IF(B21=4,0.24,0.36)))
+     50         x1   e.g. STABILITY CHECK FOR PIER!B31 = =50*B12
+     5          x1   e.g. Footing STRESS DIAGRAM!C19 = =$B$11+($B$10-$B$11)*5/6
+     45         x1   e.g. TYPE1-STABILITY CHECK ABUTMENT!B16 = =TAN((45-B10/2)*PI()/180)^2
+     180        x1   e.g. TYPE1-STABILITY CHECK ABUTMENT!B16 = =TAN((45-B10/2)*PI()/180)^2
+     1.3        x1   e.g. TYPE1-STABILITY CHECK ABUTMENT!B35 = =B34*1.3*B5*B7
+     0.01       x1   e.g. Abstract!F27   = =F26*0.01
+     0.015      x1   e.g. Abstract!F29   = =F26*0.015
+     0.13       x1   e.g. Abstract!F31   = =F30*0.13
+     100000     x1   e.g. Abstract!F33   = =ROUND(F32/100000,2)
+
+ C O N S T R A I N T S   (design checks / optimisation inequalities)   [108]
+
+   1. HYDRAULICS!C6    DEPTH OF FLOW IN M             F4-B6>0
+   2. HYDRAULICS!E6    AVERAGE DEPTH OF FLOW          C6>0
+   3. HYDRAULICS!C7    DEPTH OF FLOW IN M             F4-B7>0
+   4. HYDRAULICS!E7    AVERAGE DEPTH OF FLOW          C7>0
+   5. HYDRAULICS!C8    DEPTH OF FLOW IN M             F4-B8>0
+   6. HYDRAULICS!E8    AVERAGE DEPTH OF FLOW          C8>0
+   7. HYDRAULICS!C9    DEPTH OF FLOW IN M             F4-B9>0
+   8. HYDRAULICS!E9    AVERAGE DEPTH OF FLOW          C9>0
+   9. HYDRAULICS!C10   DEPTH OF FLOW IN M             F4-B10>0
+  10. HYDRAULICS!E10   AVERAGE DEPTH OF FLOW          C10>0
+  11. HYDRAULICS!C11   DEPTH OF FLOW IN M             F4-B11>0
+  12. HYDRAULICS!E11   AVERAGE DEPTH OF FLOW          C11>0
+  13. HYDRAULICS!C12   DEPTH OF FLOW IN M             F4-B12>0
+  14. Deck Anchorage!D13 Anchorage required on this env D12>0
+  15. Deck Anchorage!D29 Factor of safety against uplif D24>0
+  16. Deck Anchorage!D30 Anchorage / hold-down required OR(D29<1.2
+  17. Deck Anchorage!D31 Verdict                        D29>=1.2
+  18. CROSS SECTION!G7 In flow?                       C7>0
+  19. CROSS SECTION!G8 In flow?                       C8>0
+  20. CROSS SECTION!G9 In flow?                       C9>0
+  21. CROSS SECTION!G10 In flow?                       C10>0
+  22. CROSS SECTION!G11 In flow?                       C11>0
+  23. CROSS SECTION!G12 In flow?                       C12>0
+  24. CROSS SECTION!G13 In flow?                       C13>0
+  25. Bed Slope!E9     Local slope                    ABS(D9)<0.000000001
+  26. Bed Slope!E10    Local slope                    ABS(D10)<0.000000001
+  27. Bed Slope!E11    Local slope                    ABS(D11)<0.000000001
+  28. Bed Slope!E12    Local slope                    ABS(D12)<0.000000001
+  29. Bed Slope!E13    Local slope                    ABS(D13)<0.000000001
+  30. Bed Slope!E14    Local slope                    ABS(D14)<0.000000001
+  31. Bed Slope!E15    Local slope                    ABS(D15)<0.000000001
+  32. STABILITY CHECK FOR PIER!B25 Zone factor Z                  B21=2
+  33. STABILITY CHECK FOR PIER!N47 Status                         AND(K47>=1.5
+  34. STABILITY CHECK FOR PIER!N48 Status                         AND(K48>=1.5
+  35. STABILITY CHECK FOR PIER!N49 Status                         AND(K49>=1.5
+  36. STABILITY CHECK FOR PIER!N50 Status                         AND(K50>=1.5
+  37. STABILITY CHECK FOR PIER!H51 Ultimate Limit State           
+  38. STABILITY CHECK FOR PIER!N51 Status                         AND(K51>=1.5
+  39. abstract of stresses!I12 Status                         G12<=H12
+  40. abstract of stresses!I13 Status                         G13<=H13
+  41. abstract of stresses!I14 Status                         G14<=H14
+  42. abstract of stresses!I15 Status                         G15<=H15
+  43. abstract of stresses!C16 Ultimate Limit State           
+  44. abstract of stresses!D16 Ultimate Limit State           
+  45. abstract of stresses!E16 Ultimate Limit State           
+  46. abstract of stresses!F16 Ultimate Limit State           
+  47. abstract of stresses!G16 Ultimate Limit State           
+  48. abstract of stresses!H16 Ultimate Limit State           
+  49. abstract of stresses!I16 Status                         G16<=H16
+  50. Footing STRESS DIAGRAM!E14 Min edge                       C14<=D14
+  51. Footing STRESS DIAGRAM!E15 Base section                   C15<=D15
+  52. Footing STRESS DIAGRAM!E16 Base section                   C16<=D16
+  53. Footing STRESS DIAGRAM!E17 Base section                   C17<=D17
+  54. Footing STRESS DIAGRAM!E18 Base section                   C18<=D18
+  55. Footing STRESS DIAGRAM!E19 Base section                   C19<=D19
+  56. Footing STRESS DIAGRAM!E20 Max edge                       C20<=D20
+  57. LLOAD!D8         Ultimate Limit State           
+  58. LLOAD!E8         Ultimate Limit State           
+  59. TYPE1-STABILITY CHECK ABUTMENT!I21 Status                         AND(F21>=1.5
+  60. TYPE1-STABILITY CHECK ABUTMENT!I22 Status                         AND(F22>=1.5
+  61. TYPE1-STABILITY CHECK ABUTMENT!I23 Status                         AND(F23>=1.5
+  62. TYPE1-STABILITY CHECK ABUTMENT!I24 Status                         AND(F24>=1.5
+  63. TYPE1-STABILITY CHECK ABUTMENT!C25 Ultimate Limit State           
+  64. TYPE1-STABILITY CHECK ABUTMENT!D25 Ultimate Limit State           
+  65. TYPE1-STABILITY CHECK ABUTMENT!E25 Ultimate Limit State           
+  66. TYPE1-STABILITY CHECK ABUTMENT!F25 Ultimate Limit State           
+  67. TYPE1-STABILITY CHECK ABUTMENT!G25 Ultimate Limit State           
+  68. TYPE1-STABILITY CHECK ABUTMENT!H25 Ultimate Limit State           
+  69. TYPE1-STABILITY CHECK ABUTMENT!I25 Status                         AND(F25>=1.5
+  70. TYPE1- Abut Footing STRESS!E4 (no label)                     C4<=D4
+  71. TYPE1- Abut Footing STRESS!E5 (no label)                     C5<=D5
+  72. TYPE1- Abut Footing STRESS!E6 (no label)                     C6<=D6
+  73. TYPE1- Abut Footing STRESS!E7 (no label)                     C7<=D7
+  74. TYPE1- Abut Footing STRESS!E8 (no label)                     C8<=D8
+  75. C1-STABILITY CHECK ABUTMENT!F5 Status                         AND(C5>=1.5
+  76. C1-STABILITY CHECK ABUTMENT!F6 Status                         AND(C6>=1.5
+  77. C1-STABILITY CHECK ABUTMENT!F7 Status                         AND(C7>=1.5
+  78. C1-STABILITY CHECK ABUTMENT!F8 Status                         AND(C8>=1.5
+  79. C1-STABILITY CHECK ABUTMENT!F9 Status                         AND(C9>=1.5
+  80. C1-Abut Footing STRESS DIAGRAM!E5 Status                         C5<=D5
+  81. C1-Abut Footing STRESS DIAGRAM!E6 Status                         C6<=D6
+  82. C1-Abut Footing STRESS DIAGRAM!E7 Status                         C7<=D7
+  83. C1-Abut Footing STRESS DIAGRAM!E8 Status                         C8<=D8
+  84. C1-Abut Footing STRESS DIAGRAM!E9 Status                         C9<=D9
+  85. General Abs.!C28 Add: Contingency provision @ 3 
+  86. Abstract!F28     Add: Contingency provision @ 3 
+  87. Bridge measurements!K7 Nos × L × B × H                ROUND(J7-'Abstract'!D4
+  88. Bridge measurements!K11 Nos × L × B × H                ROUND(J11-'Abstract'!D5
+  89. Bridge measurements!K15 Nos × L × B × H                ROUND(J15-'Abstract'!D6
+  90. Bridge measurements!K19 Nos × L × B × H                ROUND(J19-'Abstract'!D7
+  91. Bridge measurements!K22 Nos × L % × B RCC volume × H k ROUND(J22-'Abstract'!D8
+  92. Bridge measurements!K27 Nos × L × B × H                ROUND(J27-'Abstract'!D9
+  93. Bridge measurements!K30 Nos × L % × B RCC volume × H k ROUND(J30-'Abstract'!D10
+  94. Bridge measurements!K34 Nos × L × B × H                ROUND(J34-'Abstract'!D11
+  95. Bridge measurements!K38 Nos × L × B × H                ROUND(J38-'Abstract'!D12
+  96. Bridge measurements!K42 Nos × L × B                    ROUND(J42-'Abstract'!D13
+  97. Bridge measurements!K46 Nos × L × B × H                ROUND(J46-'Abstract'!D14
+  98. Bridge measurements!K49 Nos × L % × B RCC volume × H k ROUND(J49-'Abstract'!D15
+  99. Bridge measurements!K52 Nos × L × B × H                ROUND(J52-'Abstract'!D16
+  100. Bridge measurements!K56 Nos × L × B                    ROUND(J56-'Abstract'!D17
+  101. Bridge measurements!K59 Nos × L × B                    ROUND(J59-'Abstract'!D18
+  102. Bridge measurements!K62 Nos                            ROUND(J62-'Abstract'!D19
+  103. Bridge measurements!K66 Nos × L × B × H                ROUND(J66-'Abstract'!D20
+  104. Bridge measurements!K69 Nos × L × B × H                ROUND(J69-'Abstract'!D21
+  105. Bridge measurements!K72 Nos × L × B                    ROUND(J72-'Abstract'!D22
+  106. Bridge measurements!K75 Nos                            ROUND(J75-'Abstract'!D23
+  107. Bridge measurements!K78 Nos                            ROUND(J78-'Abstract'!D24
+  108. Bridge measurements!K81 Nos                            ROUND(J81-'Abstract'!D25
+
+ INTERMEDIATE / calculated cells: 569   (see registry.json)
+ AMBIGUOUS (need your confirmation): 285
+     afflux calculation!E8 IN value=960
+     afflux calculation!C10 A x V value=0.033
+     afflux calculation!C18 Looking to the built up Urban area const value=12
+     afflux calculation!B20 Effective linear water way proposed = value=12
+     afflux calculation!D20 Effective linear water way proposed = value=8
+     afflux calculation!D29 (no label) value=11
+     afflux calculation!F29 Where value=1.2
+     afflux calculation!C31 Db value=902.15
+     afflux calculation!B49 HFL : value=100.6
+     afflux calculation!B59 Average river bed level = value=96.6
+     afflux calculation!C60 Nos. of pier value=11
+     afflux calculation!B61 Height of Obstruction value=100.6
+     afflux calculation!D61 Height of Obstruction value=96.6
+     afflux calculation!B62 Area obstructed by one pier : = value=1.2
+     afflux calculation!B68 Area obstructed by one Abutment = value=0.575
+     HYDRAULICS!F4    HIGHEST FLOOD LEVEL value=100.6
+     HYDRAULICS!A6    CHAINAGE value=0
+     HYDRAULICS!B6    G.L. value=100.5
+     HYDRAULICS!A7    CHAINAGE value=10
+     HYDRAULICS!B7    G.L. value=98.2
+     HYDRAULICS!A8    CHAINAGE value=20
+     HYDRAULICS!B8    G.L. value=96.6
+     HYDRAULICS!A9    CHAINAGE value=30
+     HYDRAULICS!B9    G.L. value=96.8
+     HYDRAULICS!A10   CHAINAGE value=40
+     HYDRAULICS!B10   G.L. value=97.5
+     HYDRAULICS!A11   CHAINAGE value=50
+     HYDRAULICS!B11   G.L. value=99.8
+     HYDRAULICS!A12   CHAINAGE value=60
+     HYDRAULICS!B12   G.L. value=101.2
+     HYDRAULICS!C19   TOTAL value=0.033
+     HYDRAULICS!C20   S 1 IN value=960
+     HYDRAULICS!B27   Road top level value=101.6
+     HYDRAULICS!B30   Lowest Nala Bed level value=96.6
+     HYDRAULICS!B32   Foundation level value=92.6
+     Deck Anchorage!D17 Road top level value=101.6
+     CROSS SECTION!E4 HFL value=100.6
+     CROSS SECTION!A7 CHAINAGE value=0
+     CROSS SECTION!B7 R.L. value=100.5
+     CROSS SECTION!F7 Strip area value=0
+     CROSS SECTION!A8 CHAINAGE value=10
+     CROSS SECTION!B8 R.L. value=98.2
+     CROSS SECTION!A9 CHAINAGE value=20
+     CROSS SECTION!B9 R.L. value=96.6
+     CROSS SECTION!A10 CHAINAGE value=30
+     CROSS SECTION!B10 R.L. value=96.8
+     CROSS SECTION!A11 CHAINAGE value=40
+     CROSS SECTION!B11 R.L. value=97.5
+     CROSS SECTION!A12 CHAINAGE value=50
+     CROSS SECTION!B12 R.L. value=99.8
+     CROSS SECTION!A13 CHAINAGE value=60
+     CROSS SECTION!B13 R.L. value=101.2
+     Bed Slope!E4     1 in N value=960
+     Bed Slope!A8     CHAINAGE value=0
+     Bed Slope!B8     R.L. value=100.5
+     Bed Slope!A9     CHAINAGE value=10
+     Bed Slope!B9     R.L. value=98.2
+     Bed Slope!A10    CHAINAGE value=20
+     Bed Slope!B10    R.L. value=96.6
+     Bed Slope!A11    CHAINAGE value=30
+     Bed Slope!B11    R.L. value=96.8
+     Bed Slope!A12    CHAINAGE value=40
+     Bed Slope!B12    R.L. value=97.5
+     Bed Slope!A13    CHAINAGE value=50
+     Bed Slope!B13    R.L. value=99.8
+     Bed Slope!A14    CHAINAGE value=60
+     Bed Slope!B14    R.L. value=101.2
+     STABILITY CHECK FOR PIER!A47 Case value=1
+     STABILITY CHECK FOR PIER!C47 Service Condition value=1
+     STABILITY CHECK FOR PIER!D47 Service Condition value=1
+     STABILITY CHECK FOR PIER!E47 Service Condition value=0
+     STABILITY CHECK FOR PIER!F47 Service Condition value=0
+     STABILITY CHECK FOR PIER!G47 Service Condition value=1
+     STABILITY CHECK FOR PIER!A48 Case value=2
+     STABILITY CHECK FOR PIER!C48 Construction Stage value=1
+     STABILITY CHECK FOR PIER!D48 Construction Stage value=0
+     STABILITY CHECK FOR PIER!E48 Construction Stage value=1
+     STABILITY CHECK FOR PIER!F48 Construction Stage value=0
+     STABILITY CHECK FOR PIER!G48 Construction Stage value=0
+     STABILITY CHECK FOR PIER!A49 Case value=3
+     STABILITY CHECK FOR PIER!C49 Flood Condition value=1
+     STABILITY CHECK FOR PIER!D49 Flood Condition value=0
+     STABILITY CHECK FOR PIER!E49 Flood Condition value=0
+     STABILITY CHECK FOR PIER!F49 Flood Condition value=0
+     STABILITY CHECK FOR PIER!G49 Flood Condition value=1
+     STABILITY CHECK FOR PIER!A50 Case value=4
+     STABILITY CHECK FOR PIER!C50 Seismic Condition value=1
+     STABILITY CHECK FOR PIER!D50 Seismic Condition value=0.25
+     STABILITY CHECK FOR PIER!E50 Seismic Condition value=0
+     STABILITY CHECK FOR PIER!F50 Seismic Condition value=1
+     STABILITY CHECK FOR PIER!G50 Seismic Condition value=1
+     STABILITY CHECK FOR PIER!A51 Case value=5
+     LLOAD!C4         Service Condition value=1
+     LLOAD!C5         Construction Stage value=0
+     LLOAD!C6         Flood Condition value=0
+     LLOAD!C7         Seismic Condition value=0.25
+     TYPE1-STABILITY CHECK ABUTMENT!B7 Abutment height H value=5
+     TYPE1-STABILITY CHECK ABUTMENT!B10 Soil friction angle φ value=30
+     TYPE1-STABILITY CHECK ABUTMENT!A21 Case value=1
+     TYPE1-STABILITY CHECK ABUTMENT!J21 γ DL value=1
+     TYPE1-STABILITY CHECK ABUTMENT!K21 γ LL value=1
+     TYPE1-STABILITY CHECK ABUTMENT!L21 γ Ea value=1
+     TYPE1-STABILITY CHECK ABUTMENT!M21 γ Qs value=1
+     TYPE1-STABILITY CHECK ABUTMENT!N21 γ Wind value=0
+     TYPE1-STABILITY CHECK ABUTMENT!O21 γ Seis value=0
+     TYPE1-STABILITY CHECK ABUTMENT!A22 Case value=2
+     TYPE1-STABILITY CHECK ABUTMENT!J22 γ DL value=1
+     TYPE1-STABILITY CHECK ABUTMENT!K22 γ LL value=0
+     TYPE1-STABILITY CHECK ABUTMENT!L22 γ Ea value=1
+     TYPE1-STABILITY CHECK ABUTMENT!M22 γ Qs value=0
+     TYPE1-STABILITY CHECK ABUTMENT!N22 γ Wind value=1
+     TYPE1-STABILITY CHECK ABUTMENT!O22 γ Seis value=0
+     TYPE1-STABILITY CHECK ABUTMENT!A23 Case value=3
+     TYPE1-STABILITY CHECK ABUTMENT!J23 γ DL value=1
+     TYPE1-STABILITY CHECK ABUTMENT!K23 γ LL value=0
+     TYPE1-STABILITY CHECK ABUTMENT!L23 γ Ea value=1.5
+     TYPE1-STABILITY CHECK ABUTMENT!M23 γ Qs value=0
+     TYPE1-STABILITY CHECK ABUTMENT!N23 γ Wind value=0
+     TYPE1-STABILITY CHECK ABUTMENT!O23 γ Seis value=0
+     TYPE1-STABILITY CHECK ABUTMENT!A24 Case value=4
+     TYPE1-STABILITY CHECK ABUTMENT!J24 γ DL value=1
+     TYPE1-STABILITY CHECK ABUTMENT!K24 γ LL value=0.25
+     TYPE1-STABILITY CHECK ABUTMENT!L24 γ Ea value=1
+     TYPE1-STABILITY CHECK ABUTMENT!M24 γ Qs value=1
+     TYPE1-STABILITY CHECK ABUTMENT!N24 γ Wind value=0
+     TYPE1-STABILITY CHECK ABUTMENT!O24 γ Seis value=1
+     TYPE1-STABILITY CHECK ABUTMENT!A25 Case value=5
+     TYPE1-STABILITY CHECK ABUTMENT!J25 γ DL value=1.35
+     TYPE1-STABILITY CHECK ABUTMENT!K25 γ LL value=1.5
+     TYPE1-STABILITY CHECK ABUTMENT!L25 γ Ea value=1.5
+     TYPE1-STABILITY CHECK ABUTMENT!M25 γ Qs value=1
+     TYPE1-STABILITY CHECK ABUTMENT!N25 γ Wind value=0.9
+     TYPE1-STABILITY CHECK ABUTMENT!O25 γ Seis value=0
+     TYPE1-STABILITY CHECK ABUTMENT!B31 Surcharge intensity q value=10
+     TYPE1-STABILITY CHECK ABUTMENT!B33 Basic wind speed Vb value=33
+     Abstract!D4      m³ value=495.75
+     Abstract!E4      m³ value=51
+     Abstract!D5      m³ value=330.5
+     Abstract!E5      m³ value=57
+     Abstract!D6      m³ value=16.525
+     Abstract!E6      m³ value=4508
+     Abstract!D7      m³ value=248.25
+     Abstract!E7      m³ value=5372
+     Abstract!D8      MT value=29.231
+     Abstract!E8      MT value=88817
+     Abstract!D9      m³ value=242.3
+     Abstract!E9      m³ value=5696
+     Abstract!D10     MT value=27.58
+     Abstract!E10     MT value=89690
+     Abstract!D11     m³ value=231
+     Abstract!E11     m³ value=663
+     Abstract!D12     m³ value=92.4
+     Abstract!E12     m³ value=1214
+     Abstract!D13     Rmt value=46.6
+     Abstract!E13     Rmt value=128
+     Abstract!D14     m³ value=180
+     Abstract!E14     m³ value=6272
+     Abstract!D15     MT value=21.195
+     Abstract!E15     MT value=90000
+     Abstract!D16     m³ value=54
+     Abstract!E16     m³ value=10009
+     Abstract!D17     m² value=613.6
+     Abstract!E17     m² value=269
+     Abstract!D18     m² value=4.875
+     Abstract!E18     m² value=1227
+     Abstract!D19     Nos value=66
+     Abstract!E19     Nos value=25000
+     Abstract!D20     m³ value=13.5
+     Abstract!E20     m³ value=4335
+     Abstract!D21     m³ value=27
+     Abstract!E21     m³ value=8202
+     Abstract!D22     m² value=48.6
+     Abstract!E22     m² value=632
+     Abstract!D23     Nos value=72
+     Abstract!E23     Nos value=191
+     Abstract!D24     Nos value=2
+     Abstract!E24     Nos value=7040
+     Abstract!D25     Nos value=2
+     Abstract!E25     Nos value=3300
+     Bridge measurements!E5 Pier value=11
+     Bridge measurements!F5 Pier value=2.5
+     Bridge measurements!G5 Pier value=4.5
+     Bridge measurements!H5 Pier value=3
+     Bridge measurements!E6 Abutment value=2
+     Bridge measurements!F6 Abutment value=10
+     Bridge measurements!G6 Abutment value=2.075
+     Bridge measurements!H6 Abutment value=3
+     Bridge measurements!E9 Pier value=11
+     Bridge measurements!F9 Pier value=2.5
+     Bridge measurements!G9 Pier value=4.5
+     Bridge measurements!H9 Pier value=2
+     Bridge measurements!E10 Abutment value=2
+     Bridge measurements!F10 Abutment value=10
+     Bridge measurements!G10 Abutment value=2.075
+     Bridge measurements!H10 Abutment value=2
+     Bridge measurements!E13 Pier value=11
+     Bridge measurements!F13 Pier value=2.5
+     Bridge measurements!G13 Pier value=4.5
+     Bridge measurements!H13 Pier value=0.1
+     Bridge measurements!E14 Abutment value=2
+     Bridge measurements!F14 Abutment value=10
+     Bridge measurements!G14 Abutment value=2.075
+     Bridge measurements!H14 Abutment value=0.1
+     Bridge measurements!E17 Pier footing value=11
+     Bridge measurements!F17 Pier footing value=2.5
+     Bridge measurements!G17 Pier footing value=4.5
+     Bridge measurements!H17 Pier footing value=1
+     Bridge measurements!E18 Abutment footing value=2
+     Bridge measurements!F18 Abutment footing value=10
+     Bridge measurements!G18 Abutment footing value=2.075
+     Bridge measurements!H18 Abutment footing value=3
+     Bridge measurements!E21 1.50 % of RCC volume × 7850 kg/m³ value=1
+     Bridge measurements!F21 1.50 % of RCC volume × 7850 kg/m³ value=1.5
+     Bridge measurements!G21 1.50 % of RCC volume × 7850 kg/m³ value=248.25
+     Bridge measurements!H21 1.50 % of RCC volume × 7850 kg/m³ value=7850
+     Bridge measurements!E25 Pier body value=11
+     Bridge measurements!F25 Pier body value=3.5
+     Bridge measurements!G25 Pier body value=1.2
+     Bridge measurements!H25 Pier body value=4
+     Bridge measurements!E26 Abutment body and dirt wall value=2
+     Bridge measurements!F26 Abutment body and dirt wall value=10
+     Bridge measurements!G26 Abutment body and dirt wall value=0.575
+     Bridge measurements!H26 Abutment body and dirt wall value=5
+     Bridge measurements!E29 1.45 % of RCC volume × 7850 kg/m³ value=1
+     Bridge measurements!F29 1.45 % of RCC volume × 7850 kg/m³ value=1.45
+     Bridge measurements!G29 1.45 % of RCC volume × 7850 kg/m³ value=242.3
+     Bridge measurements!H29 1.45 % of RCC volume × 7850 kg/m³ value=7850
+     Bridge measurements!E32 Behind abutment value=2
+     Bridge measurements!F32 Behind abutment value=10
+     Bridge measurements!G32 Behind abutment value=1.5
+     Bridge measurements!H32 Behind abutment value=3.5
+     Bridge measurements!E33 Behind returns value=4
+     Bridge measurements!F33 Behind returns value=6
+     Bridge measurements!G33 Behind returns value=1.5
+     Bridge measurements!H33 Behind returns value=3.5
+     Bridge measurements!E36 Behind abutment value=2
+     Bridge measurements!F36 Behind abutment value=10
+     Bridge measurements!G36 Behind abutment value=0.6
+     Bridge measurements!H36 Behind abutment value=3.5
+     Bridge measurements!E37 Behind returns value=4
+     Bridge measurements!F37 Behind returns value=6
+     Bridge measurements!G37 Behind returns value=0.6
+     Bridge measurements!H37 Behind returns value=3.5
+     Bridge measurements!E40 Abutments value=2
+     Bridge measurements!F40 Abutments value=28
+     Bridge measurements!G40 Abutments value=0.575
+     Bridge measurements!E41 Returns value=4
+     Bridge measurements!F41 Returns value=12
+     Bridge measurements!G41 Returns value=0.3
+     Bridge measurements!E45 Deck slab value=1
+     Bridge measurements!F45 Deck slab value=96
+     Bridge measurements!G45 Deck slab value=7.5
+     Bridge measurements!H45 Deck slab value=0.25
+     Bridge measurements!E48 1.50 % of RCC volume × 7850 kg/m³ value=1
+     Bridge measurements!F48 1.50 % of RCC volume × 7850 kg/m³ value=1.5
+     Bridge measurements!G48 1.50 % of RCC volume × 7850 kg/m³ value=180
+     Bridge measurements!H48 1.50 % of RCC volume × 7850 kg/m³ value=7850
+     Bridge measurements!E51 Wearing coat value=1
+     Bridge measurements!F51 Wearing coat value=96
+     Bridge measurements!G51 Wearing coat value=7.5
+     Bridge measurements!H51 Wearing coat value=0.075
+     Bridge measurements!E54 Pier faces value=11
+     Bridge measurements!F54 Pier faces value=9.4
+     Bridge measurements!G54 Pier faces value=4
+     Bridge measurements!E55 Abutment faces value=2
+     Bridge measurements!F55 Abutment faces value=10
+     Bridge measurements!G55 Abutment faces value=10
+     Bridge measurements!E58 At abutments value=2
+     Bridge measurements!F58 At abutments value=7.5
+     Bridge measurements!G58 At abutments value=0.325
+     Bridge measurements!E61 Bearings value=66
+     Bridge measurements!E65 Approach slabs value=2
+     Bridge measurements!F65 Approach slabs value=6
+     Bridge measurements!G65 Approach slabs value=7.5
+     Bridge measurements!H65 Approach slabs value=0.15
+     Bridge measurements!E68 Approach slabs value=2
+     Bridge measurements!F68 Approach slabs value=6
+     Bridge measurements!G68 Approach slabs value=7.5
+     Bridge measurements!H68 Approach slabs value=0.3
+     Bridge measurements!E71 Centre and edge lines value=3
+     Bridge measurements!F71 Centre and edge lines value=108
+     Bridge measurements!G71 Centre and edge lines value=0.15
+     Bridge measurements!E74 Cats eyes value=72
+     Bridge measurements!E77 Information boards value=2
+     Bridge measurements!E80 Name boards value=2
+
+ outputs -> tmp-a3-pnpm/  (registry.json, variables.json, coefficients.json, constraints.json)
+
+ proposal -> tmp-a3-pnpm\catalogue-proposal.json
+            nothing was written to project/asset-catalog/; a human signs that file.

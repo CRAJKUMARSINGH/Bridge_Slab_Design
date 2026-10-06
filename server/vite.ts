@@ -38,7 +38,8 @@ export async function setupVite(app: Express, server: Server) {
   });
 
   app.use(vite.middlewares);
-  app.use("*", async (req, res, next) => {
+  // Express 5 / path-to-regexp 8 reject a bare "*"; a catch-all must be a named splat.
+  app.use("/{*splat}", async (req, res, next) => {
     const url = req.originalUrl;
     
     // Skip catch-all for API routes
@@ -79,7 +80,7 @@ export function serveStatic(app: Express) {
 
   app.use(express.static(distPath));
 
-  app.use("*", (_req, res) => {
+  app.use("/{*splat}", (_req, res) => {
     res.sendFile(path.resolve(distPath, "index.html"));
   });
 }

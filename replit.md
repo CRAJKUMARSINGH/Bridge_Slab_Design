@@ -7,7 +7,7 @@ A report-first bridge slab design pipeline that turns a controlled input set int
 - `pnpm --filter @workspace/api-server run dev` — run the API server
 - `pnpm run design -- --input inputs/KHERWARA.json --out out/KHERWARA-report.html` — generate a report
 - `pnpm run verify:golden` — run the KHERWARA demo parity and tamper checks
-- `pnpm run assimilate` — inventory supported uploaded Office assets without modifying them
+- `pnpm run assimilate` — inventory the uploaded Office assets and gate on classification (red until every asset has a decision record; see `scripts/assimilate/README.md`)
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
@@ -28,7 +28,7 @@ A report-first bridge slab design pipeline that turns a controlled input set int
 - `lib/engine/` — single pure calculation core
 - `lib/narrative/` — deterministic narrative chapters
 - `lib/report/` — printable landscape HTML report renderer
-- `scripts/src/` — design, golden, tamper, and metadata-only assimilation commands
+- `scripts/assimilate/` — the metadata-only asset inventory and its `--report` coverage gate
 - `tests/golden/kherwara/` — frozen Week 0 demo expectations
 - `artifacts/api-server/` — API routes for contract, calculation, and report HTML
 - `docs/` and `project/` — baseline, canonical-project, and assimilation decisions

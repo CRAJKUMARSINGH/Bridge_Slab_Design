@@ -1,0 +1,13 @@
+=== bridge-excel-generator/prose exists?
+ls: cannot access 'bridge-excel-generator/prose': No such file or directory
+=== fixtures?
+ls: cannot access 'bridge-excel-generator/fixtures': No such file or directory
+=== grep prose/ dir anywhere:
+=== is each script wired into package.json / CI / docs?
+debug-ctx                      pkg=0 ci=0 md=0 code=0
+debug-wind                     pkg=0 ci=0 md=0 code=0
+export-sample-output-bundle    pkg=0 ci=0 md=2 code=0
+stress-test-251-users          pkg=0 ci=0 md=0 code=1
+test-narratives-output         pkg=0 ci=0 md=0 code=0
+test-storytelling              pkg=0 ci=0 md=0 code=0
+extract-word                   pkg=0 ci=0 md=1 code=1

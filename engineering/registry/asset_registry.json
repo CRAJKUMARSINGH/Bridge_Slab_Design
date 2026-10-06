@@ -1,0 +1,38 @@
+{
+  "systemName": "Bridge Slab Design Engineering System",
+  "auditDate": "2026-08-16",
+  "assetCount": 134,
+  "categories": [
+    {
+      "id": "deck-slab-superstructure",
+      "name": "Deck Slab & Superstructure Analysis",
+      "assets": [
+        "Analysis-of-Deck-Slab-and-Tee-Beam-of-a-Bridge 19 M.docx",
+        "Analysis-of-Deck-Slab-and-Tee-Beam-of-a-Kherka Bridge.docx",
+        "DETAILED SLAB DESIGN.htm",
+        "attachment2 DECK SLAB ANCHORAGE.xls",
+        "Schedule of Reinforcement deck slab 10m 30 degree.xls"
+      ]
+    },
+    {
+      "id": "substructure-foundations",
+      "name": "Substructure & Foundation Stability (Piers & Abutments)",
+      "assets": [
+        "DESIGN OF PIER AND CHECK FOR STABIL.txt",
+        "3 Stability Analysis SUBMERSIBLE BRIDGE  ACROSS BEDACH RIVER ON SYPHON TIRAHA - BEDLA ROAD.xls",
+        "3 Stability Analysis SUBMERSIBLE BRIDGE  Mandvi Parsola Vai Bajpura road across Jakham River.xls",
+        "Design of ABUTMENT D JOHNSON VICTOR.xls",
+        "KUMBHALGARH ABUTMENT WITHOUT BEARING.xls"
+      ]
+    },
+    {
+      "id": "hydraulics-scour",
+      "name": "Hydraulic Analysis & Scour Estimation",
+      "assets": [
+        "Hydraulic Calculations AYAD BRIDGE.doc",
+        "Hydraulic Calculations CHAP BRIDGE.doc",
+        "HFL BRIDGE BANAS RIVER WITH OPEN FOUNDATION R-1.xls"
+      ]
+    }
+  ]
+}

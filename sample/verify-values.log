@@ -1,0 +1,30 @@
+
+> workspace@0.0.0 verify:values E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:values
+
+
+> @workspace/scripts@0.0.0 verify:values E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-workbook-value-sanity.ts
+
+OK   larathi-stabil                             cells:3286 formulas:713 nonFinite:0 placeholder:0 missingResult:0
+OK   kherwara-golden                            cells:3080 formulas:589 nonFinite:0 placeholder:0 missingResult:0
+OK   high-level-reference                       cells:3042 formulas:563 nonFinite:0 placeholder:0 missingResult:0
+OK   small-bridge                               cells:3042 formulas:563 nonFinite:0 placeholder:0 missingResult:0
+OK   medium-bridge                              cells:3042 formulas:563 nonFinite:0 placeholder:0 missingResult:0
+OK   large-bridge                               cells:3042 formulas:563 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-bedach-bedla                           cells:3099 formulas:602 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-jakham-mandvi                          cells:3080 formulas:589 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-t01-jethliya                           cells:3042 formulas:563 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-sukanaka-matoon                        cells:3061 formulas:576 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-ayad-maharashtra                       cells:3080 formulas:589 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-gumaniya-udaipur                       cells:3077 formulas:570 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-katumbi-chandrod                       cells:3061 formulas:576 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-sisarama-highlevel                     cells:3042 formulas:563 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-kumbhalgarh-kelwara                    cells:3077 formulas:570 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-parwan-highlevel                       cells:3061 formulas:576 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-banas-highlevel                        cells:3080 formulas:589 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-ayad-fatehpura                         cells:3061 formulas:576 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-kherka-teegirder                       cells:3042 formulas:563 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-sukanaka-highlevel                     cells:3042 formulas:563 nonFinite:0 placeholder:0 missingResult:0
+
+Templates: 20 | cells: 61439 | formulas: 11619 | defects: 0

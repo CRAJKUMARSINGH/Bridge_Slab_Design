@@ -1,0 +1,45 @@
+=== root scripts count:
+46
+=== base tsconfig:
+{
+  "compilerOptions": {
+    "incremental": true,
+    "isolatedModules": true,
+    "lib": ["es2022"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": false,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": false,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "useUnknownInCatchVariables": true,
+    "alwaysStrict": true,
+    "skipLibCheck": true,
+    "target": "es2022",
+    "types": [],
+    "customConditions": ["workspace"]
+  }
+}
+=== sample imports:
+import { createHash } from 'node:crypto';
+import { copyFileSync, mkdirSync, readFileSync, writeFileSync, existsSync, statSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import fs from 'node:fs';
+import * as XLSX from 'xlsx';
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { inflateSync } from 'node:zlib';
+import { calculateCompleteDesign } from '../bridge-excel-generator/design-engine.ts';
+import { generateComprehensivePDF } from '../server/comprehensive-pdf-export.ts';
+import { generateHTMLDesignReport } from '../server/design-report.ts';
+import { PHASE1_QUICK_TEMPLATES } from '../server/default-project-inputs.ts';
+import type { EnhancedProjectInput } from '../bridge-excel-generator/types.ts';

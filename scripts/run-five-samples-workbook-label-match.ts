@@ -4,9 +4,8 @@
  * 1) INPUT-* sheets: multiset of static strings (column D skipped) must match Kherwara across all five runs
  *    (row layout can shift with cross-section length).
  * 2) Reference design workbook (first file found, in order):
+ *      - assets/E_DRIVE_BRIDGE_DESIGN/KHERWARA BRIDGE II/Stability Analysis SUBMERSIBLE BRIDGE ACROSS LARATHI SOM RIVER.xls
  *      - Attached_Assets/Stability Analysis SUBMERSIBLE BRIDGE ACROSS LARATHI SOM RIVER.xls
- *      - REMOTE_APP/attached_assets/FINAL_RESULT.xls
- *      - REMOTE_APP/TEST_COMPLETE_46_SHEETS.xlsx
  *    Loaded with SheetJS for .xls/.xlsx. For each sheet name present in **both** reference and generated
  *    (Kherwara) workbook: compare static text cell-by-cell (skip formulas, skip numeric cells, skip col D on INPUT-*).
  *
@@ -18,6 +17,7 @@ import fs from 'fs';
 import path from 'path';
 import ExcelJS from 'exceljs';
 import * as XLSX from 'xlsx';
+import { readOfficeWorkbook } from './read-office-workbook';
 import { generateCompleteExcel } from '../bridge-excel-generator/index';
 import type { ProjectInput } from '../bridge-excel-generator/types';
 import { mergeProjectInput, PHASE1_QUICK_TEMPLATES } from '../server/default-project-inputs';
@@ -26,11 +26,16 @@ const REPORT_DIR = path.resolve('archive/test-outputs');
 const REPORT_JSON = path.join(REPORT_DIR, 'workbook-label-match-report.json');
 const REPORT_HTML = path.join(REPORT_DIR, 'workbook-label-match-report.html');
 
-/** User design samples — LARATHI workbook first (25 sheets); then full 46-sheet template. */
+/**
+ * User design samples — LARATHI workbook first (25 sheets).
+ * The old `REMOTE_APP/…` entries pointed at a checkout directory that is not part of this
+ * repository (`FINAL_RESULT.xls` and `TEST_COMPLETE_46_SHEETS.xlsx` are absent from the asset
+ * inventory too), so the sweep always ran on a missing reference. The relocated office workbook
+ * is listed first; the historical loose-asset path stays as a fallback for other checkouts.
+ */
 const REFERENCE_CANDIDATES = [
+  path.resolve('assets/E_DRIVE_BRIDGE_DESIGN/KHERWARA BRIDGE II/Stability Analysis SUBMERSIBLE BRIDGE ACROSS LARATHI SOM RIVER.xls'),
   path.resolve('Attached_Assets/Stability Analysis SUBMERSIBLE BRIDGE ACROSS LARATHI SOM RIVER.xls'),
-  path.resolve('REMOTE_APP/attached_assets/FINAL_RESULT.xls'),
-  path.resolve('REMOTE_APP/TEST_COMPLETE_46_SHEETS.xlsx'),
 ];
 
 const INPUT_TEMPLATE_SHEETS = ['INPUT-HYDRAULICS', 'INPUT-PIER-STABILITY', 'INPUT-ABUTMENT-STABILITY'] as const;
@@ -82,8 +87,7 @@ function pickReferencePath(): string | null {
 }
 
 function loadReferenceWorkbook(filePath: string): XLSX.WorkBook {
-  const buf = fs.readFileSync(filePath);
-  return XLSX.read(buf, { type: 'buffer', cellDates: true });
+  return readOfficeWorkbook(filePath);
 }
 
 /** Reference cell: skip formulas and numeric-only (treat as data). */
@@ -173,7 +177,9 @@ function multisetsEqual(a: Multiset, b: Multiset): boolean {
 
 function loadWorkbook(buffer: Buffer): Promise<ExcelJS.Workbook> {
   const wb = new ExcelJS.Workbook();
-  return wb.xlsx.load(buffer);
+  // ExcelJS pins a pre-generic @types/node Buffer; Node 24's Buffer<ArrayBufferLike> is the same value.
+  const load = wb.xlsx.load.bind(wb.xlsx) as (data: Uint8Array) => Promise<ExcelJS.Workbook>;
+  return load(buffer);
 }
 
 async function workbookFromInput(input: ProjectInput): Promise<ExcelJS.Workbook> {

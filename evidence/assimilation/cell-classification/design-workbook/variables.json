@@ -1,0 +1,333 @@
+[
+  {
+    "id": "afflux calculation!F18",
+    "sheet": "afflux calculation",
+    "cell": "F18",
+    "label": "Spans of ",
+    "units": "",
+    "value": 8,
+    "defined_name": null,
+    "referenced_by": [
+      "afflux calculation!B29",
+      "afflux calculation!C45"
+    ],
+    "confidence": 0.8,
+    "status": "auto"
+  },
+  {
+    "id": "afflux calculation!B51",
+    "sheet": "afflux calculation",
+    "cell": "B51",
+    "label": "Thickness of Slab and Wearing Coat",
+    "units": "",
+    "value": 0.25,
+    "defined_name": null,
+    "referenced_by": [
+      "afflux calculation!B53",
+      "afflux calculation!B58",
+      "afflux calculation!D54"
+    ],
+    "confidence": 0.8,
+    "status": "auto"
+  },
+  {
+    "id": "Deck Anchorage!D6",
+    "sheet": "Deck Anchorage",
+    "cell": "D6",
+    "label": "Span length (deck block considered)",
+    "units": "",
+    "value": 8,
+    "defined_name": null,
+    "referenced_by": [
+      "Deck Anchorage!D19",
+      "Deck Anchorage!D26",
+      "Deck Anchorage!D9"
+    ],
+    "confidence": 0.8,
+    "status": "auto"
+  },
+  {
+    "id": "Deck Anchorage!D7",
+    "sheet": "Deck Anchorage",
+    "cell": "D7",
+    "label": "Carriage width",
+    "units": "",
+    "value": 7.5,
+    "defined_name": null,
+    "referenced_by": [
+      "Deck Anchorage!D19",
+      "Deck Anchorage!D9"
+    ],
+    "confidence": 0.8,
+    "status": "auto"
+  },
+  {
+    "id": "Deck Anchorage!D8",
+    "sheet": "Deck Anchorage",
+    "cell": "D8",
+    "label": "Deck slab thickness",
+    "units": "",
+    "value": 0.25,
+    "defined_name": null,
+    "referenced_by": [
+      "Deck Anchorage!D18",
+      "Deck Anchorage!D20",
+      "Deck Anchorage!D9"
+    ],
+    "confidence": 0.8,
+    "status": "auto"
+  },
+  {
+    "id": "STABILITY CHECK FOR PIER!B7",
+    "sheet": "STABILITY CHECK FOR PIER",
+    "cell": "B7",
+    "label": "Pier width",
+    "units": "",
+    "value": 1.2,
+    "defined_name": [
+      "PS_PIERW"
+    ],
+    "referenced_by": [
+      "STABILITY CHECK FOR PIER!B29",
+      "STABILITY CHECK FOR PIER!B35",
+      "STABILITY CHECK FOR PIER!B38"
+    ],
+    "confidence": 0.8,
+    "status": "auto"
+  },
+  {
+    "id": "STABILITY CHECK FOR PIER!B8",
+    "sheet": "STABILITY CHECK FOR PIER",
+    "cell": "B8",
+    "label": "Pier length",
+    "units": "",
+    "value": 3.5,
+    "defined_name": [
+      "PS_PIERL"
+    ],
+    "referenced_by": [
+      "STABILITY CHECK FOR PIER!B29",
+      "STABILITY CHECK FOR PIER!B33",
+      "STABILITY CHECK FOR PIER!B34",
+      "STABILITY CHECK FOR PIER!B35"
+    ],
+    "confidence": 0.8,
+    "status": "auto"
+  },
+  {
+    "id": "STABILITY CHECK FOR PIER!B9",
+    "sheet": "STABILITY CHECK FOR PIER",
+    "cell": "B9",
+    "label": "Pier body depth",
+    "units": "",
+    "value": 4,
+    "defined_name": [
+      "PS_PIERD"
+    ],
+    "referenced_by": [
+      "STABILITY CHECK FOR PIER!B29",
+      "STABILITY CHECK FOR PIER!B38"
+    ],
+    "confidence": 0.8,
+    "status": "auto"
+  },
+  {
+    "id": "STABILITY CHECK FOR PIER!B10",
+    "sheet": "STABILITY CHECK FOR PIER",
+    "cell": "B10",
+    "label": "Footing base width",
+    "units": "",
+    "value": 2.5,
+    "defined_name": [
+      "PS_BASEW",
+      "PS_BASEAREA"
+    ],
+    "referenced_by": [
+      "Footing STRESS DIAGRAM!B4",
+      "STABILITY CHECK FOR PIER!M47",
+      "STABILITY CHECK FOR PIER!M48",
+      "STABILITY CHECK FOR PIER!M49",
+      "STABILITY CHECK FOR PIER!M50",
+      "STABILITY CHECK FOR PIER!M51",
+      "abstract of stresses!B5"
+    ],
+    "confidence": 0.8,
+    "status": "auto"
+  },
+  {
+    "id": "STABILITY CHECK FOR PIER!B11",
+    "sheet": "STABILITY CHECK FOR PIER",
+    "cell": "B11",
+    "label": "Footing base length",
+    "units": "",
+    "value": 4.5,
+    "defined_name": [
+      "PS_BASEL"
+    ],
+    "referenced_by": [
+      "Footing STRESS DIAGRAM!B5",
+      "STABILITY CHECK FOR PIER!L47",
+      "STABILITY CHECK FOR PIER!L48",
+      "STABILITY CHECK FOR PIER!L49",
+      "STABILITY CHECK FOR PIER!L50",
+      "STABILITY CHECK FOR PIER!L51",
+      "STABILITY CHECK FOR PIER!M47",
+      "STABILITY CHECK FOR PIER!M48",
+      "STABILITY CHECK FOR PIER!M49",
+      "STABILITY CHECK FOR PIER!M50",
+      "STABILITY CHECK FOR PIER!M51",
+      "abstract of stresses!B6"
+    ],
+    "confidence": 0.8,
+    "status": "auto"
+  },
+  {
+    "id": "STABILITY CHECK FOR PIER!B12",
+    "sheet": "STABILITY CHECK FOR PIER",
+    "cell": "B12",
+    "label": "Span length",
+    "units": "",
+    "value": 8,
+    "defined_name": [
+      "PS_SPAN"
+    ],
+    "referenced_by": [
+      "STABILITY CHECK FOR PIER!B31"
+    ],
+    "confidence": 0.8,
+    "status": "auto"
+  },
+  {
+    "id": "STABILITY CHECK FOR PIER!B13",
+    "sheet": "STABILITY CHECK FOR PIER",
+    "cell": "B13",
+    "label": "Bed level",
+    "units": "",
+    "value": 96.6,
+    "defined_name": [
+      "PS_BED"
+    ],
+    "referenced_by": [
+      "STABILITY CHECK FOR PIER!B17",
+      "STABILITY CHECK FOR PIER!B37"
+    ],
+    "confidence": 0.75,
+    "status": "auto"
+  },
+  {
+    "id": "STABILITY CHECK FOR PIER!B14",
+    "sheet": "STABILITY CHECK FOR PIER",
+    "cell": "B14",
+    "label": "Road top level (RTL)",
+    "units": "RTL",
+    "value": 101.6,
+    "defined_name": [
+      "PS_RTL"
+    ],
+    "referenced_by": [
+      "STABILITY CHECK FOR PIER!B37"
+    ],
+    "confidence": 0.75,
+    "status": "auto"
+  },
+  {
+    "id": "STABILITY CHECK FOR PIER!B16",
+    "sheet": "STABILITY CHECK FOR PIER",
+    "cell": "B16",
+    "label": "Design water level (HFL + afflux)",
+    "units": "",
+    "value": 100.8561406481468,
+    "defined_name": [
+      "PS_DWL"
+    ],
+    "referenced_by": [
+      "Deck Anchorage!D16",
+      "STABILITY CHECK FOR PIER!B17",
+      "STABILITY CHECK FOR PIER!B56"
+    ],
+    "confidence": 0.75,
+    "status": "auto"
+  },
+  {
+    "id": "STABILITY CHECK FOR PIER!B20",
+    "sheet": "STABILITY CHECK FOR PIER",
+    "cell": "B20",
+    "label": "Basic wind speed Vb",
+    "units": "",
+    "value": 33,
+    "defined_name": [
+      "PS_WINDVB"
+    ],
+    "referenced_by": [
+      "STABILITY CHECK FOR PIER!B39"
+    ],
+    "confidence": 0.75,
+    "status": "auto"
+  },
+  {
+    "id": "STABILITY CHECK FOR PIER!B21",
+    "sheet": "STABILITY CHECK FOR PIER",
+    "cell": "B21",
+    "label": "Seismic zone (IS:1893:2002)",
+    "units": "",
+    "value": 3,
+    "defined_name": [
+      "PS_SEISMICZONE"
+    ],
+    "referenced_by": [
+      "STABILITY CHECK FOR PIER!B25"
+    ],
+    "confidence": 0.75,
+    "status": "auto"
+  },
+  {
+    "id": "TYPE1-STABILITY CHECK ABUTMENT!B5",
+    "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+    "cell": "B5",
+    "label": "Abutment width w",
+    "units": "",
+    "value": 0.575,
+    "defined_name": null,
+    "referenced_by": [
+      "TYPE1-STABILITY CHECK ABUTMENT!B13",
+      "TYPE1-STABILITY CHECK ABUTMENT!B35",
+      "TYPE1-STABILITY CHECK ABUTMENT!B8"
+    ],
+    "confidence": 0.8,
+    "status": "auto"
+  },
+  {
+    "id": "TYPE1-STABILITY CHECK ABUTMENT!B6",
+    "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+    "cell": "B6",
+    "label": "Abutment depth d",
+    "units": "",
+    "value": 3,
+    "defined_name": null,
+    "referenced_by": [
+      "TYPE1-STABILITY CHECK ABUTMENT!B13",
+      "TYPE1-STABILITY CHECK ABUTMENT!B9"
+    ],
+    "confidence": 0.8,
+    "status": "auto"
+  },
+  {
+    "id": "TYPE1-STABILITY CHECK ABUTMENT!B15",
+    "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+    "cell": "B15",
+    "label": "Live load LL (deck reaction)",
+    "units": "",
+    "value": 100,
+    "defined_name": null,
+    "referenced_by": [
+      "TYPE1-STABILITY CHECK ABUTMENT!B38",
+      "TYPE1-STABILITY CHECK ABUTMENT!C21",
+      "TYPE1-STABILITY CHECK ABUTMENT!C22",
+      "TYPE1-STABILITY CHECK ABUTMENT!C23",
+      "TYPE1-STABILITY CHECK ABUTMENT!C24",
+      "TYPE1-STABILITY CHECK ABUTMENT!C25"
+    ],
+    "confidence": 0.8,
+    "status": "auto"
+  }
+]

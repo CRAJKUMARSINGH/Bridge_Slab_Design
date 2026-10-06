@@ -4,6 +4,7 @@
  */
 
 import type { ProjectInput, CompleteDesignResult } from '../bridge-excel-generator/types';
+import { deckSlabThicknessOf } from '../bridge-excel-generator/input-contract';
 
 type ClauseStatus = 'PASS' | 'WARN' | 'FAIL' | 'N/A';
 
@@ -246,7 +247,7 @@ function buildClauses(inp: ProjectInput, r: CompleteDesignResult): IrcClause[] {
 
   const wPierH   = r.pier.geometry.depth;
   const wPierL   = r.pier.geometry.length;
-  const wDeckD   = (inp.deckSlabThickness ?? 0.5) + 0.3;   // slab + kerb estimate
+  const wDeckD   = (deckSlabThicknessOf(inp)) + 0.3;   // slab + kerb estimate
   const wFwPier  = windPd * wPierH * wPierL * 1.3;         // kN
   const wFwDeck  = windPd * wDeckD * inp.spanLength * 1.3; // kN
   const wFwTotal = wFwPier + wFwDeck;
@@ -373,7 +374,7 @@ export function generateIrcChecklistHTML(inp: ProjectInput, r: CompleteDesignRes
 <style>
   * { box-sizing:border-box; margin:0; padding:0; }
   body { font-family:'Segoe UI',Arial,sans-serif; font-size:13px; color:#1f2937; background:#fff; }
-  @page { size:A4; margin:18mm 14mm; }
+  @page { size:A4; margin:15mm; }
   @media print {
     .no-print { display:none !important; }
     section { page-break-inside:avoid; }

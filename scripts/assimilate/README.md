@@ -79,6 +79,56 @@ pnpm run assimilate:classify
 
 ---
 
+### A3b — `classify_workbook.py`  *(deep per-workbook classifier)*
+
+**Purpose:** Ported 2026-10-06 from `docs/week-0/classify_cells.py` (the original
+stays untouched). Where A3 reads A2's summaries and sorts *headers* by pattern,
+this script opens one workbook twice (formulas, then Excel's cached values),
+builds the dependency graph, and sorts every **cell** into:
+
+- `variable` — a hard-coded number with no formula precedents: an input root
+- `coefficient` — a factor / property / code limit, as a cell **or** a numeric
+  literal embedded inside someone else's formula
+- `constraint` — a design check (`IF(...<=..., "OK", ...)`, utilisation, deflection)
+- `intermediate` — calculated, feeds only later formulas
+- `ambiguous` — a guess below `--min-confidence`, i.e. a question for a human
+
+**Refusals (each one is a measured failure, not a guess):** legacy BIFF `.xls`
+(points at A2, which has xlrd), a Git LFS pointer stub (would otherwise parse as
+a nearly-empty workbook and report a confident blank), a missing file, and an
+`--outdir` inside `project/asset-catalog/` — a proposal must never land in the
+ledger.
+
+**`--proposal`** writes `catalogue-proposal.json` with one suggested
+`asset-classification.v1` record (sha256, suggested bucket, evidence counts, the
+ambiguous cells needing a decision) and `decidedBy: null`. It grants nothing:
+`inventory.py --report` reads only `project/asset-catalog/asset-classification.json`,
+and a bucket there requires a human `reason` and name. Copy the record or reject
+it — do not edit the proposal in place.
+
+**`--answers`** applies previously reviewed decisions in batch. Keys match
+case-insensitively (`stability check for pier!b7` hits `STABILITY CHECK FOR
+PIER!B7`), and any key that matches no cell is **reported**, not dropped.
+
+**Inputs:** one `.xlsx` / `.xlsm` workbook
+
+**Outputs:** `<outdir>/registry.json`, `variables.json`, `coefficients.json`,
+`constraints.json`, and `catalogue-proposal.json` with `--proposal`
+
+**How to run:**
+```bash
+python scripts/assimilate/classify_workbook.py test-output/design-workbook.xlsx --outdir tmp-a3 --proposal
+# or via pnpm (the literal `--` pnpm forwards is filtered out):
+pnpm run assimilate:classify:workbook -- docs/week-0/demo_bridge_raw.xlsx
+```
+
+> **Known-broken fixture:** `docs/week-0/demo_bridge_raw.xlsx` carries a UTF-8
+> BOM (`EF BB BF`) before its `PK` signature, so no zip-based reader — openpyxl,
+> ExcelJS, `zipfile` — can open it. Use `test-output/design-workbook.xlsx` to
+> exercise this script until the fixture is regenerated.
+
+---
+
 ### A4 — `mine_narrative.py`
 
 **Purpose:** Scan normalized column headers for candidate narrative sentences:
@@ -124,9 +174,11 @@ git lfs pull            # REQUIRED before A2–A5 produce real data
                         # Without this, all workbooks are 42-byte pointer stubs
                         # and all outputs will carry status: lfs-stub
 
-pip install openpyxl    # A2, A3 (reads .xlsx / .xlsm)
-pip install xlrd        # A2 (reads legacy .xls BIFF8 files)
-pip install ezdxf       # A5 (reads .dxf drawing files)
+pip install -r requirements.txt
+                        # the pinned set: openpyxl (A2, A3, A3b), xlrd (A2 legacy .xls),
+                        # ezdxf (A5 + python_cad), pydantic (python_cad CLI models)
+                        # Versions are read back from the development host with
+                        # `python -m pip list`, not guessed.
 ```
 
 ---
@@ -138,6 +190,7 @@ pip install ezdxf       # A5 (reads .dxf drawing files)
 | A1 | `inventory.py` | `pnpm run assets:inventory` |
 | A2 | `normalize.py` | `pnpm run assimilate:normalize` |
 | A3 | `classify_cells.py` | `pnpm run assimilate:classify` |
+| A3b | `classify_workbook.py` | `pnpm run assimilate:classify:workbook -- <workbook>` |
 | A4 | `mine_narrative.py` | `pnpm run assimilate:narrative` |
 | A5 | `map_drawings.py` | `pnpm run assimilate:drawings` |
 

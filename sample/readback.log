@@ -1,0 +1,141 @@
+A4+15mm page setup: 46/46 sheets ok
+
+=== Bridge measurements (87 rows) ===
+  3 | Item | BSR code | Component | Nos | L (m) | B (m) | H (m) | Unit | Quantity | Tie vs Abstract
+  4 | FOUNDATION WORK | FOUNDATION WORK | FOUNDATION WORK | FOUNDATION WORK | FOUNDATION WORK | FOUNDATION WORK | FOUNDATION WORK | FOUNDATION WORK | FOUNDATION WORK | FOUNDATION WORK
+  5 | 1 | B-1/1.1.4 | Pier | 11 | 2.5 | 4.5 | 3 | m³ | 371.25  [=E5*F5*G5*H5] | Nos × L × B × H
+  6 | 1 | B-1/1.1.4 | Abutment | 2 | 10 | 2.075 | 3 | m³ | 124.5  [=E6*F6*G6*H6] | Nos × L × B × H
+  7 |  |  | Total:- |  |  |  |  |  | 495.75  [=ROUND(SUM(J5:J6),3)] | TIES  [=IF(ROUND(J7-'Abstract'!D4,3)=0,"TIES","CHECK")]
+  9 | 2 | B-1/1.1.5 | Pier | 11 | 2.5 | 4.5 | 2 | m³ | 247.5  [=E9*F9*G9*H9] | Nos × L × B × H
+ 10 | 2 | B-1/1.1.5 | Abutment | 2 | 10 | 2.075 | 2 | m³ | 83  [=E10*F10*G10*H10] | Nos × L × B × H
+ 11 |  |  | Total:- |  |  |  |  |  | 330.5  [=ROUND(SUM(J9:J10),3)] | TIES  [=IF(ROUND(J11-'Abstract'!D5,3)=0,"TIES","CHECK")]
+ 13 | 3 | B-2/6.3 | Pier | 11 | 2.5 | 4.5 | 0.1 | m³ | 12.375  [=E13*F13*G13*H13] | Nos × L × B × H
+ 14 | 3 | B-2/6.3 | Abutment | 2 | 10 | 2.075 | 0.1 | m³ | 4.15  [=E14*F14*G14*H14] | Nos × L × B × H
+ 15 |  |  | Total:- |  |  |  |  |  | 16.525  [=ROUND(SUM(J13:J14),3)] | TIES  [=IF(ROUND(J15-'Abstract'!D6,3)=0,"TIES","CHECK")]
+ 17 | 4 | B-2/6.6 | Pier footing | 11 | 2.5 | 4.5 | 1 | m³ | 123.75  [=E17*F17*G17*H17] | Nos × L × B × H
+ 18 | 4 | B-2/6.6 | Abutment footing | 2 | 10 | 2.075 | 3 | m³ | 124.5  [=E18*F18*G18*H18] | Nos × L × B × H
+ 19 |  |  | Total:- |  |  |  |  |  | 248.25  [=ROUND(SUM(J17:J18),3)] | TIES  [=IF(ROUND(J19-'Abstract'!D7,3)=0,"TIES","CHECK")]
+ 21 | 5 | B-2/13.3 | 1.50 % of RCC volume × 7850 kg/m³ | 1 | 1.5 | 248.25 | 7850 | MT | 29.231  [=E21*F21*G21*H21/100/1000] | Nos × L % × B RCC volume × H kg/m³ ÷ 100 ÷ 1000
+ 22 |  |  | Total:- |  |  |  |  |  | 29.231  [=ROUND(SUM(J21:J21),3)] | TIES  [=IF(ROUND(J22-'Abstract'!D8,3)=0,"TIES","CHECK")]
+ 24 | SUB STRUCTURE WORK | SUB STRUCTURE WORK | SUB STRUCTURE WORK | SUB STRUCTURE WORK | SUB STRUCTURE WORK | SUB STRUCTURE WORK | SUB STRUCTURE WORK | SUB STRUCTURE WORK | SUB STRUCTURE WORK | SUB STRUCTURE WORK
+ 25 | 6 | B-3/5.2.1.1 | Pier body | 11 | 3.5 | 1.2 | 4 | m³ | 184.8  [=E25*F25*G25*H25] | Nos × L × B × H
+ 26 | 6 | B-3/5.2.1.1 | Abutment body and dirt wall | 2 | 10 | 0.575 | 5 | m³ | 57.5  [=E26*F26*G26*H26] | Nos × L × B × H
+ 27 |  |  | Total:- |  |  |  |  |  | 242.3  [=ROUND(SUM(J25:J26),3)] | TIES  [=IF(ROUND(J27-'Abstract'!D9,3)=0,"TIES","CHECK")]
+ 29 | 7 | B-3/9.3 | 1.45 % of RCC volume × 7850 kg/m³ | 1 | 1.45 | 242.3 | 7850 | MT | 27.58  [=E29*F29*G29*H29/100/1000] | Nos × L % × B RCC volume × H kg/m³ ÷ 100 ÷ 1000
+ 30 |  |  | Total:- |  |  |  |  |  | 27.58  [=ROUND(SUM(J29:J29),3)] | TIES  [=IF(ROUND(J30-'Abstract'!D10,3)=0,"TIES","CHECK")]
+ 32 | 8 | B-1/3.1 | Behind abutment | 2 | 10 | 1.5 | 3.5 | m³ | 105  [=E32*F32*G32*H32] | Nos × L × B × H
+ 33 | 8 | B-1/3.1 | Behind returns | 4 | 6 | 1.5 | 3.5 | m³ | 126  [=E33*F33*G33*H33] | Nos × L × B × H
+ 34 |  |  | Total:- |  |  |  |  |  | 231  [=ROUND(SUM(J32:J33),3)] | TIES  [=IF(ROUND(J34-'Abstract'!D11,3)=0,"TIES","CHECK")]
+ 36 | 9 | B-1/4 | Behind abutment | 2 | 10 | 0.6 | 3.5 | m³ | 42  [=E36*F36*G36*H36] | Nos × L × B × H
+ 37 | 9 | B-1/4 | Behind returns | 4 | 6 | 0.6 | 3.5 | m³ | 50.4  [=E37*F37*G37*H37] | Nos × L × B × H
+ 38 |  |  | Total:- |  |  |  |  |  | 92.4  [=ROUND(SUM(J36:J37),3)] | TIES  [=IF(ROUND(J38-'Abstract'!D12,3)=0,"TIES","CHECK")]
+ 40 | 10 | B-3/15 | Abutments | 2 | 28 | 0.575 | - | Rmt | 32.2  [=E40*F40*G40] | Nos × L × B
+ 41 | 10 | B-3/15 | Returns | 4 | 12 | 0.3 | - | Rmt | 14.4  [=E41*F41*G41] | Nos × L × B
+ 42 |  |  | Total:- |  |  |  |  |  | 46.6  [=ROUND(SUM(J40:J41),3)] | TIES  [=IF(ROUND(J42-'Abstract'!D13,3)=0,"TIES","CHECK")]
+ 44 | SUPERSTRUCTURE | SUPERSTRUCTURE | SUPERSTRUCTURE | SUPERSTRUCTURE | SUPERSTRUCTURE | SUPERSTRUCTURE | SUPERSTRUCTURE | SUPERSTRUCTURE | SUPERSTRUCTURE | SUPERSTRUCTURE
+ 45 | 11 | B-4/1.1.3 | Deck slab | 1 | 96 | 7.5 | 0.25 | m³ | 180  [=E45*F45*G45*H45] | Nos × L × B × H
+ 46 |  |  | Total:- |  |  |  |  |  | 180  [=ROUND(SUM(J45:J45),3)] | TIES  [=IF(ROUND(J46-'Abstract'!D14,3)=0,"TIES","CHECK")]
+ 48 | 12 | B-4/3 | 1.50 % of RCC volume × 7850 kg/m³ | 1 | 1.5 | 180 | 7850 | MT | 21.195  [=E48*F48*G48*H48/100/1000] | Nos × L % × B RCC volume × H kg/m³ ÷ 100 ÷ 1000
+ 49 |  |  | Total:- |  |  |  |  |  | 21.195  [=ROUND(SUM(J48:J48),3)] | TIES  [=IF(ROUND(J49-'Abstract'!D15,3)=0,"TIES","CHECK")]
+ 51 | 13 | B-4/5 | Wearing coat | 1 | 96 | 7.5 | 0.075 | m³ | 54  [=E51*F51*G51*H51] | Nos × L × B × H
+ 52 |  |  | Total:- |  |  |  |  |  | 54  [=ROUND(SUM(J51:J51),3)] | TIES  [=IF(ROUND(J52-'Abstract'!D16,3)=0,"TIES","CHECK")]
+ 54 | 14 | B-4/7 | Pier faces | 11 | 9.4 | 4 | - | m² | 413.6  [=E54*F54*G54] | Nos × L × B
+ 55 | 14 | B-4/7 | Abutment faces | 2 | 10 | 10 | - | m² | 200  [=E55*F55*G55] | Nos × L × B
+ 56 |  |  | Total:- |  |  |  |  |  | 613.6  [=ROUND(SUM(J54:J55),3)] | TIES  [=IF(ROUND(J56-'Abstract'!D17,3)=0,"TIES","CHECK")]
+ 58 | 15 | B-4/11.2 | At abutments | 2 | 7.5 | 0.325 | - | m² | 4.875  [=E58*F58*G58] | Nos × L × B
+ 59 |  |  | Total:- |  |  |  |  |  | 4.875  [=ROUND(SUM(J58:J58),3)] | TIES  [=IF(ROUND(J59-'Abstract'!D18,3)=0,"TIES","CHECK")]
+ 61 | 16 | R-16 | Bearings | 66 | - | - | - | Nos | 66  [=E61] | Nos
+ 62 |  |  | Total:- |  |  |  |  |  | 66  [=ROUND(SUM(J61:J61),3)] | TIES  [=IF(ROUND(J62-'Abstract'!D19,3)=0,"TIES","CHECK")]
+ 64 | APPROACHES & ROAD FURNITURE | APPROACHES & ROAD FURNITURE | APPROACHES & ROAD FURNITURE | APPROACHES & ROAD FURNITURE | APPROACHES & ROAD FURNITURE | APPROACHES & ROAD FURNITURE | APPROACHES & ROAD FURNITURE | APPROACHES & ROAD FURNITURE | APPROACHES
+ 65 | 17 | B-4/16 | Approach slabs | 2 | 6 | 7.5 | 0.15 | m³ | 13.5  [=E65*F65*G65*H65] | Nos × L × B × H
+ 66 |  |  | Total:- |  |  |  |  |  | 13.5  [=ROUND(SUM(J65:J65),3)] | TIES  [=IF(ROUND(J66-'Abstract'!D20,3)=0,"TIES","CHECK")]
+ 68 | 18 | B-4/17 | Approach slabs | 2 | 6 | 7.5 | 0.3 | m³ | 27  [=E68*F68*G68*H68] | Nos × L × B × H
+ 69 |  |  | Total:- |  |  |  |  |  | 27  [=ROUND(SUM(J68:J68),3)] | TIES  [=IF(ROUND(J69-'Abstract'!D21,3)=0,"TIES","CHECK")]
+ 71 | 19 | 500-29 | Centre and edge lines | 3 | 108 | 0.15 | - | m² | 48.6  [=E71*F71*G71] | Nos × L × B
+ 72 |  |  | Total:- |  |  |  |  |  | 48.6  [=ROUND(SUM(J71:J71),3)] | TIES  [=IF(ROUND(J72-'Abstract'!D22,3)=0,"TIES","CHECK")]
+ 74 | 20 | 500-30 | Cats eyes | 72 | - | - | - | Nos | 72  [=E74] | Nos
+ 75 |  |  | Total:- |  |  |  |  |  | 72  [=ROUND(SUM(J74:J74),3)] | TIES  [=IF(ROUND(J75-'Abstract'!D23,3)=0,"TIES","CHECK")]
+ 77 | 21 | 500-31 | Information boards | 2 | - | - | - | Nos | 2  [=E77] | Nos
+ 78 |  |  | Total:- |  |  |  |  |  | 2  [=ROUND(SUM(J77:J77),3)] | TIES  [=IF(ROUND(J78-'Abstract'!D24,3)=0,"TIES","CHECK")]
+ 80 | 22 | 500-32 | Name boards | 2 | - | - | - | Nos | 2  [=E80] | Nos
+ 81 |  |  | Total:- |  |  |  |  |  | 2  [=ROUND(SUM(J80:J80),3)] | TIES  [=IF(ROUND(J81-'Abstract'!D25,3)=0,"TIES","CHECK")]
+ 83 | STORY - Estimation is the quantity-traceability story: every amount should descend from verified geometry, reinforcement and material assumptions already accepted in design sheets. |  |  |  |  |  |  |  |  | 
+ 84 | Design data: BOQ line count 22, project total Rs 1,61,18,979.903, and workbook-derived geometry driving concrete, steel, excavation, formwork and backfill items. |  |  |  |  |  |  |  |  | 
+ 85 | Step 1 - quantity extraction converts dimensions and reinforcement outputs into measurable line items. |  |  |  |  |  |  |  |  | 
+ 86 | Step 2 - each line amount is quantity x rate and the schedule rolls up to Rs 1,61,18,979.903. |  |  |  |  |  |  |  |  | 
+ 87 | Check: Hence O.K. If any governing design sheet remains in CHECK status, the estimate must be treated as provisional. |  |  |  |  |  |  |  |  | 
+tie checks: TIES=0 CHECK=0
+
+=== Abstract (64 rows) ===
+  3 | Item | Description | Unit | Quantity | Rate (₹) | Amount (₹)
+  4 | 1 | Earthwork in excavation for foundation of structure in ordinary soil by mechanical means, depth up to 3 m, including setting out, shoring, dewatering, refilling in layers and disposal within 1000 m lead | m³ | 495.75 | 51 | 25
+  5 | 2 | Earthwork in excavation for foundation of structure in ordinary soil by mechanical means, depth above 3 m (deeper lifts are billed in this band) | m³ | 330.5 | 57 | 18838.5  [=D5*E5]
+  6 | 3 | PCC M-15 grade blinding concrete in open foundations with 20 mm aggregate (100 mm thick) | m³ | 16.525 | 4508 | 74494.7  [=D6*E6]
+  7 | 4 | RCC M-25 in open foundations including formwork | m³ | 248.25 | 5372 | 1333599  [=D7*E7]
+  8 | 5 | TMT steel reinforcement in foundations at 1.50 % of RCC volume | MT | 29.231 | 88817 | 2596209.73  [=D8*E8]
+  9 | 6 | Design mix RCC M-25 for substructure up to 5 m height including formwork | m³ | 242.3 | 5696 | 1380140.8  [=D9*E9]
+ 10 | 7 | TMT steel reinforcement in substructure at 1.45 % of RCC volume | MT | 27.58 | 89690 | 2473650.2  [=D10*E10]
+ 11 | 8 | Back filling behind abutment, wing wall and return wall in 150 mm layers with mechanical compaction, gravelly material (1.5 m wide behind the walls up to 3.5 m high) | m³ | 231 | 663 | 153153  [=D11*E11]
+ 12 | 9 | Graded stone aggregate filter medium behind abutment, wing wall and return wall (0.6 m thick up to 3.5 m high) | m³ | 92.4 | 1214 | 112173.6  [=D12*E12]
+ 13 | 10 | 150 mm dia A.C. pipe weep holes in abutment, wing wall and return wall at 1.5 m c/c | Rmt | 46.6 | 128 | 5964.8  [=D13*E13]
+ 14 | 11 | Design mix RCC M-30 deck slab including steel formwork and scaffolding (no BSR superstructure rate for the project grade; billed at the M30 rate — SSR extension required) | m³ | 180 | 6272 | 1128960  [=D14*E14]
+ 15 | 12 | TMT steel reinforcement in superstructure at 1.50 % of RCC volume | MT | 21.195 | 90000 | 1907550  [=D15*E15]
+ 16 | 13 | RCC M-30 wearing coat 75 mm thick average, including formwork and reinforcement | m³ | 54 | 10009 | 540486  [=D16*E16]
+ 17 | 14 | 12 mm thick bitumen mastic wearing coat / damp-proof course to pier and abutment faces, including tack coat | m² | 613.6 | 269 | 165058.4  [=D17*E17]
+ 18 | 15 | 20 mm thick compressible fibre board in expansion joint, 325 mm deep (deck slab plus wearing coat) | m² | 4.875 | 1227 | 5981.63  [=D18*E18]
+ 19 | 16 | Elastomeric bearing pad at piers (6 per pier) | Nos | 66 | 25000 | 1650000  [=D19*E19]
+ 20 | 17 | PCC M-15 levelling course below approach slab (150 mm thick, 6 m long at each end) | m³ | 13.5 | 4335 | 58522.5  [=D20*E20]
+ 21 | 18 | RCC M-30 approach slab including reinforcement and formwork (300 mm thick, 6 m long at each end) | m³ | 27 | 8202 | 221454  [=D21*E21]
+ 22 | 19 | Road marking with hot-applied thermoplastic compound 2.5 mm thick with reflectorising glass beads, on deck and approach slabs | m² | 48.6 | 632 | 30715.2  [=D22*E22]
+ 23 | 20 | Raised pavement markers (cats eyes) along both edge lines at 3 m spacing | Nos | 72 | 191 | 13752  [=D23*E23]
+ 24 | 21 | Citizens information board, one at each end of the bridge | Nos | 2 | 7040 | 14080  [=D24*E24]
+ 25 | 22 | Village name board, one at each end of the bridge | Nos | 2 | 3300 | 6600  [=D25*E25]
+ 26 |  |  |  |  | SUBTOTAL (A) | 13916667.3  [=SUM(F4:F25)]
+ 27 |  | Add: Quality Control @ 1.00 % |  |  |  | 139166.67  [=F26*0.01]
+ 28 |  | Add: Contingency provision @ 3.00 % (booked nil — engineer to direct) |  |  |  | 0  [=0]
+ 29 |  | Add: Contingencies @ 1.50 % |  |  |  | 208750.01  [=F26*0.015]
+ 30 |  | G.TOTAL (B = A + quality control + contingency + contingencies) |  |  |  | 14264583.98  [=F26+F27+F28+F29]
+ 31 |  | Add: Prorata Overheads & Profit @ 13.00 % |  |  |  | 1854395.92  [=F30*0.13]
+ 32 |  | GRAND TOTAL |  |  |  | 16118979.9  [=F30+F31]
+ 33 |  | SAY (₹ Lakh) |  |  |  | 161.19  [=ROUND(F32/100000,2)]
+ 35 |  | ESTIMATION ASSUMPTIONS (change the rule, not the number) |  |  |  | 
+ 36 |  | Rate register |  | PWD BSR Road 2022 (Rajasthan), per BEDACH HL bridge detailed estimate |  | 
+ 37 |  | Abutment band length billed per abutment |  | 10 |  | m
+ 38 |  | Abutment footing widening beyond the stem |  | 1.5 |  | m
+ 39 |  | Pier footing thickness |  | 1 |  | m
+ 40 |  | PCC blinding thickness |  | 0.1 |  | m
+ 41 |  | Trench over-dig added to (bed − foundation) |  | 1 |  | m
+ 42 |  | Rock head assumed below bed where hard rock is reported |  | 1.5 |  | m
+ 43 |  | Soft rock (no blasting) band inside the rock zone |  | 1 |  | m
+ 44 |  | Soil band rates up to 3 m / deeper lifts |  | 51 / 57 |  | ₹/m³
+ 45 |  | Rock band rates soft / blasted hard |  | 63 / 514 |  | ₹/m³
+ 46 |  | Steel as % of RCC volume (foundation / sub / super) |  | 1.5 / 1.45 / 1.5 |  | %
+ 47 |  | Wearing coat thickness billed |  | 0.075 |  | m
+ 48 |  | Weep hole spacing (horizontal and vertical) |  | 1.5 |  | m
+ 49 |  | Return wall thickness used for weep hole length |  | 0.3 |  | m
+ 50 |  | Backfill width behind abutment and returns |  | 1.5 |  | m
+ 51 |  | Filter medium thickness behind walls |  | 0.6 |  | m
+ 52 |  | Approach slab length / thickness at each end |  | 6 / 0.3 |  | m
+ 53 |  | Levelling course thickness below approach slab |  | 0.15 |  | m
+ 54 |  | Road marking lines × width |  | 3 × 0.15 |  | m
+ 55 |  | Cat eye spacing along each edge line |  | 3 |  | m
+ 56 |  | Bearings per pier |  | 6 |  | nos
+ 58 |  | Earthwork for the approach roadway, river-bed pitching, approach culverts and slope protection are NOT billed here: they need the approach and river-training survey geometry, which the project input does not yet carry. |  |  | 
+ 60 | STORY - Estimation is the quantity-traceability story: every amount should descend from verified geometry, reinforcement and material assumptions already accepted in design sheets. |  |  |  |  | 
+ 61 | Design data: BOQ line count 22, project total Rs 1,61,18,979.903, and workbook-derived geometry driving concrete, steel, excavation, formwork and backfill items. |  |  |  |  | 
+ 62 | Step 1 - quantity extraction converts dimensions and reinforcement outputs into measurable line items. |  |  |  |  | 
+ 63 | Step 2 - each line amount is quantity x rate and the schedule rolls up to Rs 1,61,18,979.903. |  |  |  |  | 
+ 64 | Check: Hence O.K. If any governing design sheet remains in CHECK status, the estimate must be treated as provisional. |  |  |  |  | 
+
+=== General Abs. tail ===
+ 31 | Add: Prorata Overheads & Profit @ 13.00 % | 1854395.92  [='Abstract'!F31] | 
+ 32 | GRAND TOTAL | 16118979.9  [='Abstract'!F32] | 
+ 33 | SAY (₹ LAKH) | 161.19  [='Abstract'!F33] | 
+ 34 |  |  | 
+ 35 |  |  | 
+ 36 |  |  | 
+ 37 |  |  | 
+ 38 |  |  | 
+ 39 |  |  | 
+
+scientific-notation numeric cells: 0

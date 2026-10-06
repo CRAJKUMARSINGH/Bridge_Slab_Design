@@ -66,10 +66,15 @@ export const LARATHI_STABIL_REFERENCE_INPUT: ProjectInput = {
   phi: 30,
   gamma: 18,
 
+  // rtl/agl/nbl/dwl below were inherited from the Kherwara sample; the Larathi
+  // source workbook is no longer present in Attached_Assets, so none of these
+  // levels are site-sourced. ofl is derived from this file's own HFL (99.5 − 0.5)
+  // because the inherited 100.6 sat above HFL, which the input contract rejects.
+  // Confirming the governing levels for Larathi is a licensed-engineer sign-off item.
   rtl: 101.6,
   agl: 96.6,
   nbl: 96.6,
-  ofl: 100.6,
+  ofl: 99.0,
   dwl: 100.83,
 
   issuingAuthority: 'PWD / Employer records (Larathi Som sample)',

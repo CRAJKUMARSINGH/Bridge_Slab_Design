@@ -346,12 +346,12 @@ function Field({
   children: React.ReactNode;
 }) {
   return (
-    <div>
-      <label className="block text-[11px] font-medium text-slate-500 mb-1">
+    <label className="block">
+      <span className="block text-[11px] font-medium text-slate-500 mb-1">
         {label}
-      </label>
+      </span>
       {children}
-    </div>
+    </label>
   );
 }
 
@@ -372,7 +372,8 @@ function Num({
       value={v}
       step={step}
       min={min}
-      onChange={(e) => onChange(parseFloat(e.target.value) || 0)}
+      // Discard non-finite input: a cleared or malformed box must not silently become 0.
+      onChange={(e) => { const n = parseFloat(e.target.value); if (Number.isFinite(n)) onChange(n); }}
       className={cx()}
     />
   );

@@ -3,7 +3,7 @@
  * All formulas sourced from CRAJKUMARSINGH/Bridge_Slab_Design ASTRA 15 TUTORIALS
  * Engineers type in values → every formula recomputes instantly → pass/fail badge shown.
  */
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useId } from 'react';
 import { Calculator, Waves, GitBranch, Shield, Zap, BookOpen, CheckCircle2, XCircle, AlertTriangle } from 'lucide-react';
 import { Link } from 'wouter';
 
@@ -13,12 +13,14 @@ const N = (v: number, d = 3) => isNaN(v) || !isFinite(v) ? '—' : v.toFixed(d);
 function NumInput({
   label, unit, value, onChange, step = 0.01, min = 0,
 }: { label: string; unit: string; value: number; onChange: (v: number) => void; step?: number; min?: number }) {
+  const inputId = useId();
   return (
     <div>
-      <label className="block text-[10px] font-semibold text-app-muted uppercase tracking-wide mb-1">{label} {unit && <span className="font-normal normal-case text-app-muted/70">({unit})</span>}</label>
+      <label htmlFor={inputId} className="block text-[10px] font-semibold text-app-muted uppercase tracking-wide mb-1">{label} {unit && <span className="font-normal normal-case text-app-muted/70">({unit})</span>}</label>
       <input
+        id={inputId}
         type="number" value={value} step={step} min={min}
-        onChange={e => onChange(parseFloat(e.target.value) || 0)}
+        onChange={e => { const n = parseFloat(e.target.value); if (Number.isFinite(n)) onChange(n); }}
         className="w-full rounded-md border border-[var(--app-glass-border)] bg-app-card/50 px-2.5 py-1.5 text-sm font-mono text-app-fg focus:outline-none focus:border-app-accent/60 transition"
       />
     </div>
@@ -317,8 +319,8 @@ function SeismicTab() {
       <div className="space-y-3">
         <p className="text-[10px] font-bold text-app-muted uppercase tracking-wide mb-2">Seismic Parameters (IRC:6 Cl.219)</p>
         <div>
-          <label className="block text-[10px] font-semibold text-app-muted uppercase tracking-wide mb-1">Seismic Zone</label>
-          <select value={v.zone} onChange={e => s('zone', parseInt(e.target.value))}
+          <label htmlFor="seismic-zone-select" className="block text-[10px] font-semibold text-app-muted uppercase tracking-wide mb-1">Seismic Zone</label>
+          <select id="seismic-zone-select" value={v.zone} onChange={e => s('zone', parseInt(e.target.value))}
             className="w-full rounded-md border border-[var(--app-glass-border)] bg-app-card/50 px-2.5 py-1.5 text-sm text-app-fg focus:outline-none">
             <option value={2}>Zone II — Z=0.10 (Low)</option>
             <option value={3}>Zone III — Z=0.16 (Moderate)</option>
@@ -413,15 +415,17 @@ export default function FormulaEvaluator() {
 
       {/* ASTRA Library link */}
       <div className="flex items-center justify-center gap-4">
-        <Link href="/astra-library">
-          <a className="inline-flex items-center gap-2 rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-sm font-semibold text-amber-400 hover:bg-amber-500/20 transition">
-            <BookOpen className="h-4 w-4" /> Open Full ASTRA Library (32 modules)
-          </a>
+        <Link
+          href="/astra-library"
+          className="inline-flex items-center gap-2 rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-sm font-semibold text-amber-400 hover:bg-amber-500/20 transition"
+        >
+          <BookOpen className="h-4 w-4" /> Open Full ASTRA Library (32 modules)
         </Link>
-        <Link href="/report">
-          <a className="inline-flex items-center gap-2 rounded-lg border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm font-semibold text-purple-400 hover:bg-purple-500/20 transition">
-            <CheckCircle2 className="h-4 w-4" /> Narrative Report
-          </a>
+        <Link
+          href="/report"
+          className="inline-flex items-center gap-2 rounded-lg border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm font-semibold text-purple-400 hover:bg-purple-500/20 transition"
+        >
+          <CheckCircle2 className="h-4 w-4" /> Narrative Report
         </Link>
       </div>
     </div>

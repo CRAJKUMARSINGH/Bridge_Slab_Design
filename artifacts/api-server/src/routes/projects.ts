@@ -21,13 +21,13 @@ export function handleCreateProject(req: Request, res: Response): void {
 }
 
 export function handleListRuns(req: Request, res: Response): void {
-  const p = store.get(req.params["id"] ?? "");
+  const p = store.get(String(req.params["id"] ?? ""));
   if (!p) { res.status(404).json({ error: "Project not found" }); return; }
   res.json({ runs: runs.get((p as Record<string,string>)["projectCode"]) ?? [] });
 }
 
 export function handleSaveRun(req: Request, res: Response): void {
-  const p = store.get(req.params["id"] ?? "");
+  const p = store.get(String(req.params["id"] ?? ""));
   if (!p) { res.status(404).json({ error: "Project not found" }); return; }
   const body = req.body as Record<string,unknown>;
   if (!body["inputs"] || !body["result"]) { res.status(400).json({ error: "inputs and result required" }); return; }
@@ -49,10 +49,10 @@ export function handleSaveRun(req: Request, res: Response): void {
 }
 
 export function handleGetRun(req: Request, res: Response): void {
-  const p = store.get(req.params["id"] ?? "");
+  const p = store.get(String(req.params["id"] ?? ""));
   if (!p) { res.status(404).json({ error: "Project not found" }); return; }
   const pc  = (p as Record<string,string>)["projectCode"];
-  const run = (runs.get(pc) ?? []).find(r => (r as Record<string,string>)["id"] === req.params["runId"]);
+  const run = (runs.get(pc) ?? []).find(r => (r as Record<string,string>)["id"] === String(req.params["runId"]));
   if (!run) { res.status(404).json({ error: "Run not found" }); return; }
   res.json(run);
 }

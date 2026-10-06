@@ -1,0 +1,23 @@
+CONFIRMED from the live repo (2026-09-24) — Week-0 clarification answers
+
+Canonical workbook location
+- Layout/report contract: REMOTE_APP/attached_assets/FINAL_RESULT.xls (46-sheet names/order).
+- Hydraulics/stability reference: Attached_Assets/Stability Analysis SUBMERSIBLE BRIDGE ACROSS LARATHI SOM RIVER.xls
+- Golden project inputs: inputs/KHERWARA.json plus tests/golden/kherwara/
+
+Calculation-engine preference
+- Already chosen: pure TypeScript in bridge-excel-generator/design-engine.ts (ExcelJS export).
+- xlwings was NOT adopted (would require Microsoft Excel on the machine).
+- Headless Python formula evaluator is NOT the runtime path.
+
+Branch name
+- reorient-week0 was NOT created. Current work is on master.
+- Do not treat Week-0 checklist items (git mv archive of client/api, uninstall drizzle, etc.) as done.
+
+CI / npm check
+- Not gated as a Day-0 freeze. Integration Excel test now asserts the real 46-sheet contract.
+
+Archiving policy
+- archive/ already exists for some outputs. Full git mv quarantine of client/, api/, ETERNAL_RESEARCH_CHILD/ was NOT executed.
+
+What this folder asked vs current state is summarised in the agent reply (DONE vs DUE).

@@ -1,0 +1,35 @@
+# Python dependencies for the non-TypeScript parts of this repository.
+#
+# There is no Python package manager wiring here (pnpm owns the JS workspace), so this file is the
+# manual counterpart of the root `package.json`. Install with:
+#
+#     python -m pip install -r requirements.txt
+#
+# The four pins below are the versions on the development host on 2026-10-06, read back with
+# `python -m pip list` rather than guessed — that is the only reason they are exact. Nothing in CI
+# installs this file yet; `pnpm run assimilate` and `pnpm run assets:inventory` deliberately use the
+# standard library only (argparse, hashlib, json, datetime, pathlib, typing) and need none of it.
+#
+# What each package belongs to:
+#   ezdxf     -> python_cad/pier_engine.py, python_cad/scanner.py   (parametric DXF drawing output)
+#   openpyxl  -> docs/week-0/make_demo.py, scripts/assimilate/classify_workbook.py,
+#                scripts/assimilate/normalize.py (xlsx/xlsm side of stage A2)
+#   pydantic  -> python_cad/main.py                                  (CLI argument models)
+#   xlrd      -> scripts/assimilate/normalize.py                     (legacy BIFF .xls, stage A2)
+
+ezdxf==1.4.4
+openpyxl==3.1.5
+pydantic==2.13.5
+xlrd==2.0.2
+
+# NOT pinned, because they are not installed anywhere in this project and nothing can therefore verify
+# a version for them: `scripts/ingest_bridge_documents.py` imports langchain, langchain-community,
+# FAISS (faiss-cpu) and HuggingFaceEmbeddings (sentence-transformers), and cannot run as shipped. That
+# script is referenced by no pnpm script, gate or CI step, so it is dead tooling with a live-looking
+# header — see august-due.md §R-6 and the summary row it points at. Pin these here only once the script
+# is either repaired or archived.
+#
+#   langchain==
+#   langchain-community==
+#   faiss-cpu==
+#   sentence-transformers==

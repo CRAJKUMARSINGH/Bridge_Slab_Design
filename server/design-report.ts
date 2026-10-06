@@ -12,6 +12,7 @@ import { WORKBOOK_LINE_REPORT_CSS, buildHydraulicsWorkbookHtmlFragment } from '.
 import { getFullTechnicalComputationNarrativeChunks } from '../bridge-excel-generator/narrative-engine';
 import { buildWorkbookSheetPreviews, buildSingleWorkbookSheetPreview, STABILITY_CHECK_PIER_SHEET_NAME, MAX_ROWS, MAX_COLS } from './workbook-sheets-preview';
 import type { WorkbookSheetPreview } from './workbook-sheets-preview';
+import { deckSlabThicknessOf } from '../bridge-excel-generator/input-contract';
 import {
   generateAbutmentPressureSvg,
   generatePierStabilitySvg,
@@ -44,7 +45,7 @@ interface ReportSection {
  */
 export async function generateHTMLDesignReport(input: EnhancedProjectInput): Promise<string> {
   const bridgeType = input.bridgeType === 'high-level' ? 'High-Level Slab Bridge' : 'Submersible Slab Bridge';
-  const deckSlabThickness = input.deckSlabThickness ?? 0.25;
+  const deckSlabThickness = deckSlabThicknessOf(input);
   const deckSoffitLevel = input.deckSoffitLevel ?? (input.rtl - deckSlabThickness);
   const governingFreeboardAboveHfl =
     input.bridgeType === 'high-level'
@@ -188,6 +189,10 @@ export async function generateHTMLDesignReport(input: EnhancedProjectInput): Pro
       font-size: 9px;
       color: #555;
       text-align: center;
+    }
+    @page {
+      size: A4;
+      margin: 15mm;
     }
     @media print {
       body { background: #fff; padding: 0; }

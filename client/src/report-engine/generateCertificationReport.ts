@@ -244,7 +244,7 @@ export function generateCertificationReport(i: Inputs, d: Derived): void {
       body { background: #fff; }
       .page { padding: 20px; box-shadow: none; }
       .no-print { display: none !important; }
-      @page { size: A4; margin: 18mm 15mm; }
+      @page { size: A4; margin: 15mm; }
     }
     .header-band { background: linear-gradient(135deg, #1F496B 0%, #0a2a45 100%); color: #fff; padding: 18px 24px; border-radius: 4px 4px 0 0; }
     .header-band h1 { font-size: 15px; letter-spacing: 0.5px; }

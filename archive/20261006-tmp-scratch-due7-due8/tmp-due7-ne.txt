@@ -1,0 +1,12 @@
+=== narrative-engine.ts exports:
+125:export function getHydraulicNarrativeParagraphs(input: EnhancedProjectInput): string[] {
+148:export function getStructuralNarrativeParagraphs(input: EnhancedProjectInput): string[] {
+171:export function getClosingNarrativeParagraphs(input: EnhancedProjectInput): string[] {
+189:export function getVerificationNarrativeParagraphs(input: EnhancedProjectInput): string[] {
+222:export interface FullComputationNarrativeChunk {
+227:export function getFullTechnicalComputationNarrativeChunks(
+368:export function getSheetNarrativeParagraphs(sheetName: string, input: EnhancedProjectInput): string[] {
+389:export function getSheetNarrativeText(sheetName: string, input: EnhancedProjectInput): string {
+393:export function assertNarrativeHasNoPlaceholders(text: string, context: string): void {
+=== files matching *narrative* in bridge-excel-generator:
+narrative-engine.ts

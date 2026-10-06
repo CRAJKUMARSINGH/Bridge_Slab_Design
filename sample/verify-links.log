@@ -1,0 +1,37 @@
+
+> workspace@0.0.0 verify:links E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:links
+
+
+> @workspace/scripts@0.0.0 verify:links E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-workbook-links.ts
+
+OK   larathi-stabil           pts=16 formulas:713 cross:216 same:1246 re-eval:712 broken:0 diverge:0
+OK   kherwara-golden          pts= 7 formulas:589 cross:214 same:953 re-eval:588 broken:0 diverge:0
+OK   high-level-reference     pts= 5 formulas:563 cross:214 same:891 re-eval:562 broken:0 diverge:0
+OK   small-bridge             pts= 5 formulas:563 cross:214 same:891 re-eval:562 broken:0 diverge:0
+OK   medium-bridge            pts= 5 formulas:563 cross:214 same:891 re-eval:562 broken:0 diverge:0
+OK   large-bridge             pts= 5 formulas:563 cross:214 same:891 re-eval:562 broken:0 diverge:0
+OK   irc-bedach-bedla         pts= 8 formulas:602 cross:214 same:984 re-eval:601 broken:0 diverge:0
+OK   irc-jakham-mandvi        pts= 7 formulas:589 cross:214 same:953 re-eval:588 broken:0 diverge:0
+OK   irc-t01-jethliya         pts= 5 formulas:563 cross:214 same:891 re-eval:562 broken:0 diverge:0
+OK   irc-sukanaka-matoon      pts= 6 formulas:576 cross:214 same:922 re-eval:575 broken:0 diverge:0
+OK   irc-ayad-maharashtra     pts= 7 formulas:589 cross:214 same:953 re-eval:588 broken:0 diverge:0
+OK   irc-gumaniya-udaipur     pts= 5 formulas:570 cross:216 same:905 re-eval:569 broken:0 diverge:0
+OK   irc-katumbi-chandrod     pts= 6 formulas:576 cross:214 same:922 re-eval:575 broken:0 diverge:0
+OK   irc-sisarama-highlevel   pts= 5 formulas:563 cross:214 same:891 re-eval:562 broken:0 diverge:0
+OK   irc-kumbhalgarh-kelwara  pts= 5 formulas:570 cross:216 same:905 re-eval:569 broken:0 diverge:0
+OK   irc-parwan-highlevel     pts= 6 formulas:576 cross:214 same:922 re-eval:575 broken:0 diverge:0
+OK   irc-banas-highlevel      pts= 7 formulas:589 cross:214 same:953 re-eval:588 broken:0 diverge:0
+OK   irc-ayad-fatehpura       pts= 6 formulas:576 cross:214 same:922 re-eval:575 broken:0 diverge:0
+OK   irc-kherka-teegirder     pts= 5 formulas:563 cross:214 same:891 re-eval:562 broken:0 diverge:0
+OK   irc-sukanaka-highlevel   pts= 5 formulas:563 cross:214 same:891 re-eval:562 broken:0 diverge:0
+
+Golden spot-checks:
+  S9 B18 velocity xref: {"formula":"=HYDRAULICS!C21","result":1.718}
+  S9 H47 service V:     {"formula":"=C47*B30+D47*B31-G47*B36","result":644.638}
+  S9 N51 ULS status:    {"formula":"=IF(AND(K51>=1.5,L51>=1.8,M51>=2.5),\"SAFE\",\"UNSAFE\")","result":"UNSAFE"}
+  S10 C12 retrieved V:  {"formula":"='STABILITY CHECK FOR PIER'!H47","result":644.638}
+  S10 I12 status link:  {"formula":"=IF(G12<=H12,'STABILITY CHECK FOR PIER'!N47,\"UNSAFE\")","result":"UNSAFE"}
+
+Done: 20/20 workbooks fully linked.

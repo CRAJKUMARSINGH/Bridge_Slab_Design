@@ -1,0 +1,77 @@
+{
+  "projectName": "Construction of Submersible Bridge across JAKHAM River, Mandvi Area",
+  "location": "Mandvi Area, JAKHAM River, Pratapgarh",
+  "riverName": "JAKHAM",
+  "bridgeType": "submersible",
+  "spanLength": 8,
+  "numberOfSpans": 10,
+  "skew": 0,
+  "carriageWidth": 7.5,
+  "numberOfLanes": 2,
+  "totalLength": 80,
+  "hfl": 253.6,
+  "bedLevel": 249.2,
+  "foundationLevel": 244.5,
+  "discharge": 612.5,
+  "manningN": 0.033,
+  "bedSlope": 1050,
+  "laceysSiltFactor": 1.5,
+  "crossSectionData": [
+    {
+      "chainage": 0,
+      "gl": 253
+    },
+    {
+      "chainage": 10,
+      "gl": 251.4
+    },
+    {
+      "chainage": 20,
+      "gl": 249.5
+    },
+    {
+      "chainage": 40,
+      "gl": 249
+    },
+    {
+      "chainage": 60,
+      "gl": 249.4
+    },
+    {
+      "chainage": 80,
+      "gl": 252.1
+    },
+    {
+      "chainage": 90,
+      "gl": 253.8
+    }
+  ],
+  "pierWidth": 1.2,
+  "pierLength": 3.5,
+  "pierDepth": 4,
+  "numberOfPiers": 9,
+  "pierBaseWidth": 2.5,
+  "pierBaseLength": 4.5,
+  "abutmentHeight": 7,
+  "abutmentWidth": 3.5,
+  "abutmentDepth": 5,
+  "dirtWallHeight": 2.5,
+  "returnWallLength": 6,
+  "concreteGrade": "M25",
+  "fck": 25,
+  "steelGrade": "Fe415",
+  "fy": 415,
+  "sbc": 170,
+  "phi": 30,
+  "gamma": 18,
+  "rtl": 254.8,
+  "agl": 249.8,
+  "nbl": 249.2,
+  "ofl": 253.2,
+  "dwl": 253.9,
+  "deckSlabThickness": 0.25,
+  "freeboardAboveHfl": 1,
+  "issuingAuthority": "PWD Rajasthan, Pratapgarh Division",
+  "jobNumber": "JAKHAM-MANDVI-SUBM",
+  "hardRockAvailable": false
+}

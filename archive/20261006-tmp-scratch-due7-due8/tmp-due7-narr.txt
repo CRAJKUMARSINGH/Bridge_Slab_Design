@@ -1,0 +1,12 @@
+=== getComprehensiveNarrative exists somewhere?
+=== narrative module locations:
+bridge-excel-generator/design-engine.ts
+bridge-excel-generator/index.ts
+bridge-excel-generator/input-contract.ts
+bridge-excel-generator/material-rates.ts
+bridge-excel-generator/narrative-engine.ts
+bridge-excel-generator/report-model.ts
+bridge-excel-generator/robotic-input.ts
+bridge-excel-generator/sheet-contract.ts
+bridge-excel-generator/types.ts
+bridge-excel-generator/utils.ts

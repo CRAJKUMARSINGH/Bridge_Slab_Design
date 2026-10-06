@@ -5,7 +5,7 @@
 
 import { writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';
-import calculateCompleteDesign from '../bridge-excel-generator/design-engine';
+import { calculateCompleteDesign } from '../bridge-excel-generator/design-engine.ts';
 import { generateComprehensivePDF } from '../server/comprehensive-pdf-export';
 import { KHERWARA_REFERENCE_PROJECT_INPUT } from './fixtures/kherwara-project-input';
 

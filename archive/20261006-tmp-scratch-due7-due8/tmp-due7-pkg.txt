@@ -1,0 +1,4 @@
+14:    "typecheck:libs": "tsc --build",
+15:    "typecheck:flat": "tsc -p tsconfig.flat.json --noEmit",
+16:    "typecheck:client": "tsc -p tsconfig.client.json --noEmit",
+17:    "typecheck": "pnpm run typecheck:libs && pnpm run typecheck:flat && pnpm run typecheck:client && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck",

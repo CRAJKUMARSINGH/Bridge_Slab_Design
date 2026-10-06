@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
-import { Download, FileSpreadsheet, Loader2, BookOpen } from 'lucide-react';
+import { Download, FileSpreadsheet, FileText, Loader2, BookOpen } from 'lucide-react';
 import { toast } from 'sonner';
 import type { CompleteDesignResult } from '../../../bridge-excel-generator/types';
 import { useDesignStore } from '@/stores/useDesignStore';
@@ -17,7 +17,7 @@ export function Estimate() {
   const results = useDesignStore((s) => s.results);
   const hydrateFromStorage = useDesignStore((s) => s.hydrateFromStorage);
   const setResults = useDesignStore((s) => s.setResults);
-  const [downloading, setDownloading] = useState(false);
+  const [downloading, setDownloading] = useState<'excel' | 'pdf' | null>(null);
 
   useEffect(() => {
     hydrateFromStorage();
@@ -48,15 +48,20 @@ export function Estimate() {
       ? estimation.cost.ratePerSqm ?? estimation.cost.total / deckArea
       : 0;
 
-  const handleDownloadBOQ = async () => {
+  const download = async (
+    endpoint: string,
+    filename: string,
+    label: string,
+    kind: 'excel' | 'pdf',
+  ) => {
     const inputRaw = localStorage.getItem('lastDesignInput');
     if (!inputRaw) {
       toast.error('No design input. Run a design on the Design page first.');
       return;
     }
-    setDownloading(true);
+    setDownloading(kind);
     try {
-      const response = await fetch('/api/design/calculate', {
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: inputRaw,
@@ -69,18 +74,29 @@ export function Estimate() {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'Bridge_Design_BOQ.xlsx';
+      a.download = filename;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-      toast.success('Excel workbook downloaded');
+      toast.success(`${label} downloaded`);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : 'Download failed');
     } finally {
-      setDownloading(false);
+      setDownloading(null);
     }
   };
+
+  const handleDownloadBOQ = () =>
+    download('/api/design/calculate', 'Bridge_Design_BOQ.xlsx', 'Excel workbook', 'excel');
+
+  const handleDownloadEstimatePdf = () =>
+    download(
+      '/api/design/pdf/comprehensive',
+      'Bridge_Design_Complete_Report.pdf',
+      '46-sheet PDF report',
+      'pdf',
+    );
 
   if (!results || !estimation) {
     return (
@@ -93,10 +109,8 @@ export function Estimate() {
           Run a calculation from the <strong className="text-app-fg">Design</strong> page (Excel, PDF, or DXF) to
           populate BOQ and costs here.
         </p>
-        <Link href="/design">
-          <a className="rounded-lg bg-app-accent px-4 py-2 text-sm font-semibold text-white hover:opacity-90">
-            Go to Design
-          </a>
+        <Link href="/design" className="rounded-lg bg-app-accent px-4 py-2 text-sm font-semibold text-white hover:opacity-90">
+          Go to Design
         </Link>
       </div>
     );
@@ -114,25 +128,31 @@ export function Estimate() {
         <div className="flex flex-wrap items-center gap-3 rounded-xl border border-emerald-500/25 bg-emerald-500/8 px-4 py-3">
           <BookOpen className="h-4 w-4 shrink-0 text-emerald-400" />
           <p className="flex-1 text-[11px] text-app-muted">
-            <strong className="text-emerald-400">ASTRA 15 Reference:</strong> BOQ item quantities and rates follow
-            <strong className="text-app-fg"> Worksheet_Design/Abutment_Worksheet_sheet.xls</strong> and
-            <strong className="text-app-fg"> T-Beam Worksheet Design 1 &amp; 2</strong> from ASTRA tutorials.
-            Quantity computation method: volume of each structural element × unit rate per CPWD DSR / MoRTH SOR.
+            <strong className="text-emerald-400">Estimate basis:</strong> rates are the location-specific items of the
+            <strong className="text-app-fg"> Rajasthan PWD BSR 2022</strong> register (the same schedule the reference
+            detailed estimate uses). Structural concrete rates include formwork and scaffolding; reinforcement is billed
+            as a percentage of the RCC volume it reinforces. Every quantity comes from the dimensional build-up on the
+            workbook <strong className="text-app-fg">Bridge measurements</strong> sheet, and the cost follows the PWD
+            overhead ladder — Quality Control, contingency provision, Contingencies, G.Total, prorata overheads and
+            profit — with no GST line, because this is a departmental estimate.
           </p>
-          <Link href="/astra-library">
-            <a className="flex shrink-0 items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-[11px] font-semibold text-emerald-400 hover:bg-emerald-500/20 transition">
-              <BookOpen className="h-3.5 w-3.5" /> ASTRA Library
-            </a>
+          <Link
+            href="/astra-library"
+            className="flex shrink-0 items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-[11px] font-semibold text-emerald-400 hover:bg-emerald-500/20 transition"
+          >
+            <BookOpen className="h-3.5 w-3.5" /> ASTRA Library
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {(
             [
-              ['Subtotal', c.subtotal],
-              ['Profit (10%)', c.profit],
-              ['Overhead (8%)', c.overhead],
-              ['GST (18%)', c.gst],
+              ['Subtotal (A)', c.subtotal],
+              ['Quality Control (1%)', c.qualityControl],
+              ['Contingency provision (3%, booked nil)', c.contingencyProvision],
+              ['Contingencies (1.5%)', c.contingencies],
+              ['G.Total (B)', c.gTotal],
+              ['Prorata Overheads & Profit (13%)', c.prorataOverheads],
             ] as const
           ).map(([label, value]) => (
             <div
@@ -146,6 +166,7 @@ export function Estimate() {
           <div className="rounded-xl border border-cyan-500/35 bg-gradient-to-br from-cyan-600/25 to-violet-600/20 p-4 shadow-sm md:col-span-1 col-span-2 dark:from-cyan-500/20 dark:to-violet-500/15">
             <p className="text-xs font-medium text-cyan-800 dark:text-cyan-200 mb-1">Grand total</p>
             <p className="text-xl font-bold text-app-fg">₹{fmt(c.total)}</p>
+            <p className="text-xs font-medium text-cyan-800 dark:text-cyan-200 mt-1">₹{c.totalInLacs.toFixed(2)} Lakh</p>
           </div>
         </div>
 
@@ -194,28 +215,49 @@ export function Estimate() {
               <tfoot>
                 <tr className="border-t border-[var(--app-glass-border)] bg-app-card/35 font-semibold">
                   <td colSpan={5} className="p-3 text-right text-app-muted">
-                    Subtotal:
+                    Subtotal (A):
                   </td>
                   <td className="p-3 text-right text-app-fg">₹{fmt(c.subtotal)}</td>
+                </tr>
+                <tr className="font-semibold">
+                  <td colSpan={5} className="p-3 text-right text-app-muted">G.Total (B):</td>
+                  <td className="p-3 text-right text-app-fg">₹{fmt(c.gTotal)}</td>
+                </tr>
+                <tr className="font-bold">
+                  <td colSpan={5} className="p-3 text-right text-app-muted">Grand total:</td>
+                  <td className="p-3 text-right text-app-fg">₹{fmt(c.total)}</td>
                 </tr>
               </tfoot>
             </table>
           </div>
         </div>
 
-        <div className="flex justify-center">
+        <div className="flex flex-wrap justify-center gap-3">
           <button
             type="button"
             onClick={handleDownloadBOQ}
-            disabled={downloading}
+            disabled={!!downloading}
             className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-6 py-3 rounded-lg font-semibold transition-all disabled:opacity-50 flex items-center gap-2"
           >
-            {downloading ? (
+            {downloading === 'excel' ? (
               <Loader2 className="w-5 h-5 animate-spin" />
             ) : (
               <Download className="w-5 h-5" />
             )}
             Download full BOQ Excel
+          </button>
+          <button
+            type="button"
+            onClick={handleDownloadEstimatePdf}
+            disabled={!!downloading}
+            className="rounded-lg border border-app-accent/40 bg-app-card px-6 py-3 font-semibold text-app-fg transition-all hover:border-app-accent disabled:opacity-50 flex items-center gap-2"
+          >
+            {downloading === 'pdf' ? (
+              <Loader2 className="w-5 h-5 animate-spin" />
+            ) : (
+              <FileText className="w-5 h-5" />
+            )}
+            Download complete report PDF
           </button>
         </div>
     </div>

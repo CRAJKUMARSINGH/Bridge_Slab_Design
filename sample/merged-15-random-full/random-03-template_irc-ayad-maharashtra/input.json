@@ -1,0 +1,77 @@
+{
+  "projectName": "Construction of Submersible Bridge across AYAD River, Maharashtra Alignment",
+  "location": "Maharashtra Alignment, AYAD River",
+  "riverName": "AYAD",
+  "bridgeType": "submersible",
+  "spanLength": 10.137,
+  "numberOfSpans": 8,
+  "skew": 0,
+  "carriageWidth": 7.5,
+  "numberOfLanes": 2,
+  "totalLength": 80,
+  "hfl": 579.499,
+  "bedLevel": 574.5,
+  "foundationLevel": 569.8,
+  "discharge": 549.357,
+  "manningN": 0.03271,
+  "bedSlope": 1027.198,
+  "laceysSiltFactor": 1.5,
+  "crossSectionData": [
+    {
+      "chainage": 0,
+      "gl": 578.4
+    },
+    {
+      "chainage": 15,
+      "gl": 576.2
+    },
+    {
+      "chainage": 30,
+      "gl": 574.6
+    },
+    {
+      "chainage": 45,
+      "gl": 574.3
+    },
+    {
+      "chainage": 60,
+      "gl": 575.1
+    },
+    {
+      "chainage": 75,
+      "gl": 577.9
+    },
+    {
+      "chainage": 90,
+      "gl": 579.5
+    }
+  ],
+  "pierWidth": 1.2,
+  "pierLength": 3.5,
+  "pierDepth": 4.5,
+  "numberOfPiers": 7,
+  "pierBaseWidth": 2.5,
+  "pierBaseLength": 4.5,
+  "abutmentHeight": 7,
+  "abutmentWidth": 3.5,
+  "abutmentDepth": 5,
+  "dirtWallHeight": 2.5,
+  "returnWallLength": 6,
+  "concreteGrade": "M25",
+  "fck": 25,
+  "steelGrade": "Fe415",
+  "fy": 415,
+  "sbc": 167.132,
+  "phi": 30,
+  "gamma": 18,
+  "rtl": 580.5,
+  "agl": 575.2,
+  "nbl": 574.5,
+  "ofl": 578.8,
+  "dwl": 579.5,
+  "deckSlabThickness": 0.25,
+  "freeboardAboveHfl": 1,
+  "issuingAuthority": "PWD / State Highway Authority",
+  "jobNumber": "AYAD-MAHARASHTRA-SUBM",
+  "hardRockAvailable": false
+}

@@ -1,6 +1,6 @@
 import { getSheetNarrativeParagraphs } from '../bridge-excel-generator/narrative-engine';
 import { KHERWARA_REFERENCE_PROJECT_INPUT } from './fixtures/kherwara-project-input';
-import calculateCompleteDesign from '../bridge-excel-generator/design-engine';
+import { calculateCompleteDesign } from '../bridge-excel-generator/design-engine.ts';
 
 const SHEETS_TO_VERIFY = [
   'HYDRAULICS',

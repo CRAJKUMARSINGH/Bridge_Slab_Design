@@ -1,0 +1,8 @@
+  workbook [executive-56]: 56 sheets, 19 landscape / 37 portrait
+  workbook [legacy-46]: 46 sheets, 13 landscape / 33 portrait
+  @page      : 5 print rules scanned in client/server/pipeline sources
+  pdf pages  : comprehensive-report.pdf — 225 pages, 0 landscape / 225 portrait
+  pdf pages  : sheet-book.pdf — 118 pages, 50 landscape / 68 portrait
+  pdf pages  : short-design-report.pdf — 14 pages, 0 landscape / 14 portrait
+verify-presentation-policy: OK (A4 / 15 mm / orientation proven on artefacts)
+exit=0

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "buildCommand": "npm run build:vercel",
+  "buildCommand": "pnpm run build:vercel",
   "outputDirectory": "dist/public",
-  "installCommand": "npm install",
+  "installCommand": "pnpm install --frozen-lockfile",
   "framework": null,
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/index" },

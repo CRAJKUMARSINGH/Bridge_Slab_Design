@@ -1,0 +1,55 @@
+# Build context exclusions for the headless image.
+#
+# The rule is "exclude what no code path in the image reads". `assets/` and `Attached_Assets/` STAY IN:
+# `server/pier-case-engine.ts` walks Attached_Assets at runtime and scores pier cases from the file
+# *names* it finds, and the authoring tools (`scripts/draft-descriptive-lines-from-workbook.ts`,
+# `run-five-samples-workbook-label-match.ts`, `workbook-standards-config.ts`, `phase-zero/extract-excel.ts`)
+# default to reference workbooks under those two roots. Excluding them would change what those paths
+# report, not just the image size. They are mostly Git LFS pointer stubs (~132 B each; 3.1 MB and 13 MB
+# total on disk right now), so keeping them costs little. The six workbook gates read none of them.
+#
+# `sample/` is excluded on the other side of the same test: 19 MB, and no `.ts`/`.tsx` in the repo
+# references that directory.
+
+# Dependencies and build output
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+build/
+out/
+*.tsbuildinfo
+**/*.tsbuildinfo
+.local/
+.npm-cache/
+_tmp/
+tmp-frb*.mts
+
+# Generated evidence — regenerated inside the container, never an input
+tmp/
+test-output/
+evidence/
+**/manifest.json.bak
+
+# Version control and agent/tooling state
+# Note: `pnpm run candidate` shells out to git for the commit stamp, so it cannot run in this image.
+.git/
+.github/
+.qoder/
+.agents/
+.memory/
+
+# Retired code: archived instead of deleted, and imported by nothing
+archive/
+
+# Unused sample corpus (assets/ and Attached_Assets/ are deliberately absent from this file — see header)
+sample/
+
+# Editor / OS noise
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Scratch logs from local runs
+*.log

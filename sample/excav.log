@@ -1,0 +1,20 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+bed 96.6 - foundation 92.6 + 1 = depth 5.00 m
+estimation quantities: {"ordinary":826.25,"hardRock":0,"total":826.25} backfill=330.50
+costs: excavation=undefined backfill=undefined total=undefined
+projectTotal(narrative)=n/a
+--- Abstract ---
+  7: 4 | Excavation | m³ | 826.25 | 250 | 206562.5
+  8: 5 | Backfill | m³ | 330.5 | 150 | 49575
+  14: SUBTOTAL | 8.0798e+6
+  16: GRAND TOTAL | 9.5342e+6
+  19: Design data: BOQ line count 10, project total Rs 95,34,187.60, and workbook-derived geometry driving concrete, steel, ex
+--- General Abs. ---
+  3: S.No. | Category / item | Amount (₹) | % of subtotal
+  7: 4 | Excavation | 206562.5 | 2.56
+  8: 5 | Backfill | 49575 | 0.61
+  14: SUBTOTAL | 8.0798e+6
+  16: TOTAL | 9.5342e+6
+--- Estimation Summary: not in workbook ---
+--- SUB TOTAL: not in workbook ---

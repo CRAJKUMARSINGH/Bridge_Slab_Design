@@ -1,12 +1,14 @@
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import type { ProjectInput } from '../bridge-excel-generator/types';
+import { EXPECTED_SHEET_NAMES, isLandscapeSheet } from '../bridge-excel-generator/sheet-contract';
 import { buildWorkbookSheetPreviews } from './workbook-sheets-preview';
 
 /**
- * Generates an Elegant A4 Landscape PDF containing all 55 generated sheets.
- * Includes a Cover Page, File Topic Index Page, Design Reports Section, and Drawing Section.
- * Enforces "Separate sheet on separate page".
+ * Generates an A4 PDF book containing all workbook sheets (cover, topic index,
+ * design reports, drawings). Enforces "Separate sheet on separate page" and
+ * honours the owner-confirmed orientation table (sheet-contract §isLandscapeSheet):
+ * listed sheets print landscape, everything else portrait — 15 mm margins.
  */
 export async function generateLandscapeBookPDF(input: ProjectInput): Promise<Buffer> {
   const doc = new jsPDF({
@@ -108,7 +110,14 @@ export async function generateLandscapeBookPDF(input: ProjectInput): Promise<Buf
   
   for (let idx = 0; idx < sheets.length; idx++) {
     const sheet = sheets[idx];
-    doc.addPage();
+
+    // Per-sheet A4 orientation from the owner-confirmed contract table.
+    const knownSheet = (EXPECTED_SHEET_NAMES as readonly string[]).includes(sheet.name);
+    const landscape = !knownSheet || isLandscapeSheet(sheet.name); // unknown extras stay landscape
+    const pageW = landscape ? PAGE_WIDTH : PAGE_HEIGHT; // A4 swap: 297x210 ↔ 210x297
+    const pageH = landscape ? PAGE_HEIGHT : PAGE_WIDTH;
+
+    doc.addPage([pageW, pageH], landscape ? 'landscape' : 'portrait');
     pageNumber++;
 
     // Section Dividers Logic
@@ -116,28 +125,28 @@ export async function generateLandscapeBookPDF(input: ProjectInput): Promise<Buf
       doc.setFontSize(30);
       doc.setTextColor(...COLORS.header);
       doc.setFont('helvetica', 'bold');
-      doc.text('SECTION 1: DESIGN REPORTS', PAGE_WIDTH / 2, PAGE_HEIGHT / 2, { align: 'center' });
-      doc.addPage();
+      doc.text('SECTION 1: DESIGN REPORTS', pageW / 2, pageH / 2, { align: 'center' });
+      doc.addPage([pageW, pageH], landscape ? 'landscape' : 'portrait');
       pageNumber++;
     } else if (sheet.name.toLowerCase().includes('drawing') || sheet.name.toLowerCase().includes('sketch')) {
       // Naive catch for drawing section start if it exists
       doc.setFontSize(30);
       doc.setTextColor(...COLORS.header);
       doc.setFont('helvetica', 'bold');
-      doc.text('SECTION 2: DRAWING SECTION', PAGE_WIDTH / 2, PAGE_HEIGHT / 2, { align: 'center' });
-      doc.addPage();
+      doc.text('SECTION 2: DRAWING SECTION', pageW / 2, pageH / 2, { align: 'center' });
+      doc.addPage([pageW, pageH], landscape ? 'landscape' : 'portrait');
       pageNumber++;
     }
 
     // Sheet Heading
     doc.setFillColor(...COLORS.header);
-    doc.rect(0, 0, PAGE_WIDTH, 20, 'F');
+    doc.rect(0, 0, pageW, 20, 'F');
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(14);
     doc.text(`SHEET: ${sheet.name.toUpperCase()}`, MARGIN, 14);
     doc.setFontSize(10);
-    doc.text(`Page ${pageNumber}`, PAGE_WIDTH - MARGIN, 14, { align: 'right' });
+    doc.text(`Page ${pageNumber}`, pageW - MARGIN, 14, { align: 'right' });
 
     if (sheet.rows.length === 0) {
       doc.setTextColor(...COLORS.text);

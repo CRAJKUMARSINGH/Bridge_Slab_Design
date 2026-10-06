@@ -1,8 +1,9 @@
 ﻿#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-classify_cells.py -- classify every interesting cell in a bridge-design Excel
-workbook as one of:
+classify_workbook.py -- deep per-workbook cell classifier (stage A3's detailed
+half): classify every interesting cell in a bridge-design Excel workbook as one
+of:
 
     VARIABLE     an independent design input the user changes per run
                  (hard-coded number, has a label, feeds formulas, has NO formula
@@ -14,6 +15,37 @@ workbook as one of:
     INTERMEDIATE a calculated value that only feeds later formulas
     AMBIGUOUS    low-confidence item -> the script ASKS YOU to confirm
 
+Name and provenance
+-------------------
+This is `docs/week-0/classify_cells.py` (the original analysis script, left
+untouched beside the evidence it produced), ported into the pipeline on
+2026-10-06 and renamed because `scripts/assimilate/classify_cells.py` is now the
+corpus-wide header-pattern classifier that reads A2's normalized output. This
+file is the one-workbook-at-a-time dependency-graph classifier; the two are
+complementary, not duplicates.
+
+What the port adds over the week-0 original:
+
+  * It refuses legacy BIFF `.xls`. openpyxl cannot read that container -- A2
+    normalizes those with xlrd -- so pointing at A2 beats an openpyxl traceback.
+  * It refuses a Git LFS pointer stub. A 132-byte pointer parses as a nearly
+    empty workbook and would return a confident-looking blank classification,
+    which is the same false green `inventory.py` guards against.
+  * `--confirm` arrives as a parameter. The original read the module-global
+    `args` from inside the function, so it worked only under its own `__main__`
+    block and raised NameError for any importer.
+  * `--min-confidence` does what its help text claims; it used to be accepted,
+    documented, and never consulted.
+  * `--answers` keys match case-insensitively, and a key that matches no cell is
+    reported instead of vanishing. The original upper-cased the key but not the
+    cell id, so an override aimed at a sheet named `Calc` was silently dropped.
+  * Date-formatted cells reach JSON as real `datetime` objects; they are now
+    serialized as ISO text rather than crashing the registry write.
+  * `--proposal` emits a suggested catalogue record for a human to sign. It
+    never writes `project/asset-catalog/asset-classification.json`, and the
+    script refuses an `--outdir` inside that directory: A1's coverage gate is
+    only honest while buckets are granted by a person.
+
 Two passes over the workbook:
     pass 1  openpyxl(data_only=False)   -> formulas, labels, defined names
     pass 2  openpyxl(data_only=True)    -> cached values written by Excel
@@ -21,16 +53,19 @@ Two passes over the workbook:
 Usage
 -----
   # read-only report
-  python classify_cells.py workbook.xlsx
+  python classify_workbook.py workbook.xlsx
 
   # ask you to confirm every ambiguous cell (type v/c/k/s per prompt)
-  python classify_cells.py workbook.xlsx --confirm
+  python classify_workbook.py workbook.xlsx --confirm
 
   # batch mode: apply previously-supplied answers, never prompt
-  python classify_cells.py workbook.xlsx --answers my_answers.json
+  python classify_workbook.py workbook.xlsx --answers my_answers.json
 
-  # write JSON outputs to ./out
-  python classify_cells.py workbook.xlsx --confirm --outdir ./out
+  # write JSON outputs to ./out, plus a catalogue proposal for review
+  python classify_workbook.py workbook.xlsx --confirm --outdir ./out --proposal
+
+  # through pnpm (the literal `--` pnpm leaves in argv is filtered out)
+  pnpm run assets:classify:workbook -- docs/week-0/demo_bridge_raw.xlsx
 
 answers.json format:
   {"overrides": {"Calc!B23": "coefficient", "Inputs!B12": "variable"},
@@ -39,13 +74,61 @@ answers.json format:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import re
 import sys
 from collections import Counter, defaultdict
+from datetime import date, datetime, time
 
 import openpyxl
+
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ASSET_CATALOG_DIR = os.path.normpath(os.path.join(REPO_ROOT, "project", "asset-catalog"))
+LFS_POINTER_PREFIX = b"version https://git-lfs.github.com/spec/v1"
+
+# Redirected to a log file on Windows this stream is cp1252, and workbook labels
+# carry degree signs and superscripts that would raise mid-report.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
+
+def ensure_readable(path: str) -> None:
+    """Refuse the two inputs that would produce a confident-looking wrong answer."""
+    if path.lower().endswith(".xls"):
+        sys.exit(
+            f"refusing to read {os.path.basename(path)}: legacy BIFF .xls is not an "
+            "openpyxl container. Stage A2 (scripts/assimilate/normalize.py, xlrd/SheetJS) "
+            "reads those; run it and classify the normalized copy."
+        )
+    if not os.path.exists(path):
+        sys.exit(f"no such workbook: {path}")
+    with open(path, "rb") as fh:
+        head = fh.read(len(LFS_POINTER_PREFIX))
+    if head.startswith(LFS_POINTER_PREFIX):
+        sys.exit(
+            f"refusing to read {os.path.basename(path)}: this is a Git LFS pointer stub, "
+            "not the workbook. Materialise it first (git lfs pull --include=\"<path>\"), "
+            "then re-run -- classifying a 132-byte placeholder would claim coverage of "
+            "bytes nobody has read."
+        )
+
+
+def sha256_of(path: str) -> str:
+    h = hashlib.sha256()
+    with open(path, "rb") as fh:
+        for chunk in iter(lambda: fh.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def jsonable(value):
+    """openpyxl hands back real datetimes for date-formatted cells."""
+    if isinstance(value, (datetime, date, time)):
+        return value.isoformat()
+    return value
+
 
 # ---------------------------------------------------------------------------
 # regexes & keyword sets
@@ -159,7 +242,8 @@ class Cell:
         self.status = "auto"      # auto | confirmed-by-user | skipped
 
 
-def classify_workbook(path: str, answers: dict | None, min_conf: float, outdir: str):
+def classify_workbook(path: str, answers: dict | None, min_conf: float, outdir: str,
+                      confirm: bool = False) -> dict:
     answers = answers or {}
     overrides = {k.upper(): v for k, v in answers.get("overrides", {}).items()}
     skip_ids = {k.upper() for k in answers.get("skip", [])}
@@ -263,7 +347,7 @@ def classify_workbook(path: str, answers: dict | None, min_conf: float, outdir: 
 
     # ---- classification: constants ----------------------------------------
     for cid, cell in cells.items():
-        if cid in skip_ids:
+        if cid.upper() in skip_ids:
             cell.kind, cell.status = "skipped", "skipped"
             continue
         if cell.is_formula:
@@ -295,7 +379,7 @@ def classify_workbook(path: str, answers: dict | None, min_conf: float, outdir: 
 
     # ---- classification: formulas -----------------------------------------
     for cid, cell in cells.items():
-        if cid in skip_ids or not cell.is_formula:
+        if cid.upper() in skip_ids or not cell.is_formula:
             continue
         lab = (cell.label or "").lower()
         up = cell.formula.upper()
@@ -307,6 +391,17 @@ def classify_workbook(path: str, answers: dict | None, min_conf: float, outdir: 
             cell.kind, cell.detail, cell.confidence = "intermediate", "calculated value feeding other cells", 0.9
         else:
             cell.kind, cell.detail, cell.confidence = "intermediate", "calculated leaf result", 0.85
+
+    # ---- keep the --min-confidence promise --------------------------------
+    # Below the threshold an auto guess is not a classification, it is a question.
+    demoted = 0
+    for cell in cells.values():
+        if cell.kind in ("variable", "coefficient") and cell.confidence < min_conf:
+            cell.kind = "ambiguous"
+            cell.detail = f"{cell.detail} (confidence {cell.confidence:.2f} < {min_conf:.2f})"
+            demoted += 1
+    if demoted:
+        print(f"[info] {demoted} cell(s) demoted to ambiguous by --min-confidence {min_conf:.2f}")
 
     # ---- numeric literals inside formulas -> embedded coefficients --------
     literals: Counter = Counter()
@@ -328,18 +423,35 @@ def classify_workbook(path: str, answers: dict | None, min_conf: float, outdir: 
             literal_usage[key].append({"cell": cid, "label": short_label(cell.label), "formula": cell.formula})
 
     # ---- apply user overrides (answers file) ------------------------------
+    # Cell ids keep the sheet's own spelling ("Calc!B23"), so match on the
+    # upper-cased key against an upper-cased index -- and say so when a key in
+    # the answers file points at nothing. A silently discarded decision is the
+    # worst possible outcome for a review input.
+    by_upper = {cid.upper(): cell for cid, cell in cells.items()}
+    unresolved = []
     for cid, kind in overrides.items():
-        if cid in cells and kind in ("variable", "coefficient", "constraint", "intermediate", "skip"):
-            cells[cid].kind = "skipped" if kind == "skip" else kind
-            cells[cid].detail = "assigned by user"
-            cells[cid].confidence = 1.0
-            cells[cid].status = "confirmed-by-user"
+        cell = by_upper.get(cid)
+        if cell is None:
+            unresolved.append(f"{cid} -> '{kind}' (no such cell)")
+            continue
+        if kind in ("variable", "coefficient", "constraint", "intermediate", "skip"):
+            cell.kind = "skipped" if kind == "skip" else kind
+            cell.detail = "assigned by user"
+            cell.confidence = 1.0
+            cell.status = "confirmed-by-user"
+        else:
+            unresolved.append(f"{cid} -> '{kind}' (not a kind this script knows)")
+    unresolved += [f"{cid} (skip) -> no such cell" for cid in sorted(skip_ids) if cid not in by_upper]
+    if unresolved:
+        print(f"[warn] {len(unresolved)} answers-file entr(ies) matched no cell and were ignored:")
+        for note in unresolved:
+            print(f"         {note}")
 
     # ---- confirmation stage -----------------------------------------------
     ambiguous = [c for c in cells.values()
-                 if c.kind == "ambiguous" and c.id not in skip_ids]
+                 if c.kind == "ambiguous" and c.id.upper() not in skip_ids]
     if ambiguous:
-        if args.confirm and sys.stdin.isatty():
+        if confirm and sys.stdin.isatty():
             print("\n= CONFIRMATION REQUIRED =============================================")
             print("Enter: <Enter> keep guess | v variable | c coefficient | k constraint | s skip")
             for c in ambiguous:
@@ -387,7 +499,7 @@ def classify_workbook(path: str, answers: dict | None, min_conf: float, outdir: 
         constraints.append({
             "id": cid, "label": cell.label, "kind": "if_check" if m else "pairwise",
             "inequality": labeled_cond, "inequality_raw": raw_cond, "g_form": g_form,
-            "value": cell.value, "formula": raw_formula,
+            "value": jsonable(cell.value), "formula": raw_formula,
             "confidence": cell.confidence, "status": cell.status,
         })
 
@@ -397,7 +509,7 @@ def classify_workbook(path: str, answers: dict | None, min_conf: float, outdir: 
         if c.kind == "variable":
             variables.append({
                 "id": c.id, "sheet": c.sheet, "cell": c.cell, "label": c.label,
-                "units": c.units, "value": c.value,
+                "units": c.units, "value": jsonable(c.value),
                 "defined_name": c.defined_names or None,
                 "referenced_by": sorted(c.refd_by), "confidence": c.confidence,
                 "status": c.status,
@@ -407,7 +519,7 @@ def classify_workbook(path: str, answers: dict | None, min_conf: float, outdir: 
         if c.kind == "coefficient":
             coeff_cells.append({
                 "id": c.id, "sheet": c.sheet, "cell": c.cell, "label": c.label,
-                "units": c.units, "value": c.value,
+                "units": c.units, "value": jsonable(c.value),
                 "referenced_by": sorted(c.refd_by), "confidence": c.confidence,
                 "status": c.status,
             })
@@ -419,21 +531,20 @@ def classify_workbook(path: str, answers: dict | None, min_conf: float, outdir: 
         "workbook": os.path.basename(path),
         "cells": [{
             "id": c.id, "kind": c.kind, "detail": c.detail, "confidence": c.confidence,
-            "label": c.label, "units": c.units, "value": c.value,
+            "label": c.label, "units": c.units, "value": jsonable(c.value),
             "formula": c.formula, "precedents": c.precedent_ids,
             "referenced_by": sorted(c.refd_by)[:10],
             "refd_by_count": len(c.refd_by),
             "defined_name": c.defined_names or None, "status": c.status,
         } for c in sorted(cells.values(), key=lambda x: x.id)],
     }
-    with open(os.path.join(outdir, "registry.json"), "w") as fh:
-        json.dump(registry, fh, indent=2)
-    with open(os.path.join(outdir, "variables.json"), "w") as fh:
-        json.dump(variables, fh, indent=2)
-    with open(os.path.join(outdir, "coefficients.json"), "w") as fh:
-        json.dump({"factor_and_limit_cells": coeff_cells, "embedded_literals": embedded}, fh, indent=2)
-    with open(os.path.join(outdir, "constraints.json"), "w") as fh:
-        json.dump(constraints, fh, indent=2)
+    for name, payload in (("registry.json", registry),
+                          ("variables.json", variables),
+                          ("coefficients.json", {"factor_and_limit_cells": coeff_cells,
+                                                 "embedded_literals": embedded}),
+                          ("constraints.json", constraints)):
+        with open(os.path.join(outdir, name), "w", encoding="utf-8") as fh:
+            json.dump(payload, fh, indent=2)
 
     # ---- console report ------------------------------------------------------
     def _val(c):
@@ -467,21 +578,103 @@ def classify_workbook(path: str, answers: dict | None, min_conf: float, outdir: 
     print(f"\n INTERMEDIATE / calculated cells: {len(interm)}   (see registry.json)")
     print(f" AMBIGUOUS (need your confirmation): {len(amb)}")
     for c in amb:
-        print(f"     {c.id:<16} {short_label(c.label, 40)} value={c.value!r}")
+        print(f"     {c.id:<16} {short_label(c.label, 40)} value={_val(c)!r}")
     print(f"\n outputs -> {outdir}/  (registry.json, variables.json, coefficients.json, constraints.json)\n")
 
+    return {"path": path, "outdir": outdir, "cells": cells, "variables": variables,
+            "coeff_cells": coeff_cells, "constraints": constraints, "embedded": embedded,
+            "intermediate": len(interm), "ambiguous": len(amb)}
 
-if __name__ == "__main__":
+
+# ---------------------------------------------------------------------------
+# the catalogue PROPOSAL -- stage A3's handover to a human reviewer
+# ---------------------------------------------------------------------------
+def refuse_catalog_dir(outdir: str) -> None:
+    """A proposal is not a decision, so keep it physically out of the ledger."""
+    target = os.path.normpath(os.path.abspath(outdir))
+    if target == ASSET_CATALOG_DIR or target.startswith(ASSET_CATALOG_DIR + os.sep):
+        sys.exit(
+            f"refusing to write into {ASSET_CATALOG_DIR}: that directory holds "
+            "asset-classification.json, and a bucket there is granted only by a human "
+            "with a reason and a name. Point --outdir somewhere else "
+            "(e.g. evidence/assimilation/classified)."
+        )
+
+
+def write_proposal(result: dict) -> str:
+    """Suggest one catalogue record for this workbook. Grants nothing, signs nothing."""
+    counts = Counter(c.kind for c in result["cells"].values())
+    design_bearing = (len(result["variables"]) + len(result["coeff_cells"])
+                      + len(result["constraints"]) + len(result["embedded"]))
+    suggested = "used:numbers" if design_bearing else None
+    proposal = {
+        "schemaVersion": "asset-classification-proposal.v1",
+        "generatedBy": "scripts/assimilate/classify_workbook.py (stage A3, deep pass)",
+        "grantsNothing": (
+            "This is a proposal. inventory.py --report reads only "
+            "project/asset-catalog/asset-classification.json, and a bucket there needs "
+            "both `reason` and `decidedBy` from a human. Copy this record into that file "
+            "or reject it; do not edit this file in place."
+        ),
+        "asset": {
+            "relativePath": os.path.relpath(result["path"], REPO_ROOT).replace(os.sep, "/"),
+            "sha256": sha256_of(result["path"]),
+            "bytes": os.path.getsize(result["path"]),
+            "suggestedBucket": suggested,
+            "reason": (
+                f"{len(result['variables'])} variable(s), {len(result['coeff_cells'])} "
+                f"coefficient cell(s), {len(result['constraints'])} constraint(s) and "
+                f"{len(result['embedded'])} embedded literal(s) recovered from this workbook."
+                if suggested else
+                "No design-bearing cells found, so no bucket is proposed: the file is "
+                "superseded (duplicate hash), out of scope, or still awaiting a reader. "
+                "A machine does not get to decide which."
+            ),
+            "decidedBy": None,
+        },
+        "cellKindCounts": {str(k): v for k, v in sorted(counts.items(), key=lambda kv: str(kv[0]))},
+        "ambiguousNeedingADecision": [
+            {"id": c.id, "label": short_label(c.label, 60), "value": jsonable(c.value),
+             "detail": c.detail}
+            for c in sorted(result["cells"].values(), key=lambda x: x.id) if c.kind == "ambiguous"
+        ],
+    }
+    out = os.path.join(result["outdir"], "catalogue-proposal.json")
+    with open(out, "w", encoding="utf-8") as fh:
+        json.dump(proposal, fh, indent=2)
+    print(f" proposal -> {out}")
+    print("            nothing was written to project/asset-catalog/; a human signs that file.")
+    return out
+
+
+def main(argv: list) -> int:
     ap = argparse.ArgumentParser(description="Identify variables, coefficients and constraints in an Excel bridge-design workbook")
     ap.add_argument("workbook", help="path to the .xlsx workbook")
     ap.add_argument("--confirm", action="store_true", help="ask you to confirm ambiguous cells in the terminal")
     ap.add_argument("--answers", help="JSON file with previously-supplied {'overrides': {...}, 'skip': [...]}")
     ap.add_argument("--outdir", default="classify_out", help="output directory for JSON files")
-    ap.add_argument("--min-confidence", type=float, default=0.7, help="confidence below which a cell is ambiguous")
-    args = ap.parse_args()
+    ap.add_argument("--min-confidence", dest="min_confidence", type=float, default=0.7,
+                    help="confidence below which a cell is treated as ambiguous (default: 0.7)")
+    ap.add_argument("--proposal", action="store_true",
+                    help="also write catalogue-proposal.json -- a suggestion, never a decision")
+    # pnpm leaves a literal `--` in argv for `pnpm run x -- --flag`; argparse would
+    # otherwise read it as the workbook path and the real arguments shift (§Q lesson).
+    args = ap.parse_args([a for a in argv if a != "--"])
+
+    ensure_readable(args.workbook)
+    refuse_catalog_dir(args.outdir)
 
     ans = None
     if args.answers:
-        with open(args.answers) as fh:
+        with open(args.answers, encoding="utf-8") as fh:
             ans = json.load(fh)
-    classify_workbook(args.workbook, ans, args.min_confidence, args.outdir)
+
+    result = classify_workbook(args.workbook, ans, args.min_confidence, args.outdir,
+                               confirm=args.confirm)
+    if args.proposal:
+        write_proposal(result)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

@@ -1,7 +1,12 @@
 /**
  * Office reference workbooks used for assimilation / parity checks.
- * First standard: Stability analysis `stabil*.xls` under Attached_Assets (LARATHI SOM RIVER sample).
+ * First standard: Stability analysis `stabil*.xls` (LARATHI SOM RIVER sample).
  * Add more entries here as standards are adopted.
+ *
+ * Paths are tried in order, so the historical `Attached_Assets/` location still works for a
+ * checkout that has the loose assets. The bulk of those files now live under `assets/`
+ * (see `asset-register.json` / `pnpm run assets:inventory`), which is why the relocated copy
+ * is listed first.
  */
 
 import fs from 'fs';
@@ -24,6 +29,7 @@ export const WORKBOOK_STANDARDS: WorkbookStandardDef[] = [
     id: 'larathi-som-river',
     label: 'Stability — SUBMERSIBLE BRIDGE ACROSS LARATHI SOM RIVER (stabil*.xls)',
     paths: [
+      path.resolve('assets/E_DRIVE_BRIDGE_DESIGN/KHERWARA BRIDGE II/Stability Analysis SUBMERSIBLE BRIDGE ACROSS LARATHI SOM RIVER.xls'),
       path.resolve('Attached_Assets/Stability Analysis SUBMERSIBLE BRIDGE ACROSS LARATHI SOM RIVER.xls'),
     ],
     tryStabilGlob: true,
@@ -31,7 +37,14 @@ export const WORKBOOK_STANDARDS: WorkbookStandardDef[] = [
   {
     id: 'final-result-46',
     label: 'FINAL_RESULT.xls — full 46-sheet template',
-    paths: [path.resolve('REMOTE_APP/attached_assets/FINAL_RESULT.xls')],
+    // Not present in this checkout (and never in the `assets/` inventory). Kept as an optional
+    // standard so a dropped-in golden is picked up without code changes; nothing warns when it
+    // is absent. The 46-sheet contract itself is generated, not imported — see
+    // `generateCompleteExcel(input, { book: 'legacy-46' })`.
+    paths: [
+      path.resolve('Attached_Assets/FINAL_RESULT.xls'),
+      path.resolve('assets/FINAL_RESULT.xls'),
+    ],
     optional: true,
   },
 ];

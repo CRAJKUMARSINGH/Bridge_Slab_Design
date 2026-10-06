@@ -5,7 +5,7 @@
  * Methods: Coulomb active pressure, Mononobe-Okabe seismic increment,
  *          Sliding / Overturning / Bearing stability checks
  */
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useId } from 'react';
 import { Link } from 'wouter';
 import {
   ArrowLeft, BookOpen, CheckCircle2, XCircle, Info,
@@ -393,16 +393,19 @@ function Field({
   label: string; unit?: string; value: number; min?: number; max?: number; step?: number;
   onChange: (v: number) => void; tooltip?: string;
 }) {
+  const inputId = useId();
   return (
     <div className="flex flex-col gap-0.5">
-      <label className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-app-muted">
+      <label htmlFor={inputId} className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-app-muted">
         {label}
         {tooltip && <span title={tooltip}><Info className="h-3 w-3 text-app-muted/50 cursor-help" /></span>}
       </label>
       <div className="flex items-center gap-1">
         <input
+          id={inputId}
           type="number" value={value} min={min} max={max} step={step}
-          onChange={e => onChange(parseFloat(e.target.value) || 0)}
+          // Discard non-finite input: a cleared or malformed box must not silently become 0.
+          onChange={e => { const n = parseFloat(e.target.value); if (Number.isFinite(n)) onChange(n); }}
           className="w-full rounded-lg border border-[var(--app-glass-border)] bg-app-card/60 px-2.5 py-1.5 text-sm text-app-fg focus:border-app-accent focus:outline-none"
         />
         {unit && <span className="shrink-0 text-[10px] text-app-muted w-8">{unit}</span>}
@@ -523,10 +526,11 @@ export default function AbutmentStability() {
     <div className="mx-auto max-w-[1400px] px-4 py-8 md:px-8">
 
       {/* Back */}
-      <Link href="/astra-library">
-        <a className="mb-5 inline-flex items-center gap-2 text-sm text-app-muted hover:text-app-accent transition">
-          <ArrowLeft className="h-4 w-4" /> ASTRA Library
-        </a>
+      <Link
+        href="/astra-library"
+        className="mb-5 inline-flex items-center gap-2 text-sm text-app-muted hover:text-app-accent transition"
+      >
+        <ArrowLeft className="h-4 w-4" /> ASTRA Library
       </Link>
 
       {/* ASTRA banner */}
@@ -537,10 +541,11 @@ export default function AbutmentStability() {
           pressure (IRC:78 / IS:456 Annex B), Mononobe-Okabe seismic increment, sliding/overturning/bearing
           checks. Benchmark: Typical highway bridge — H=6m, B=3.8m, φ=30°, SBC=200 kN/m².
         </p>
-        <Link href="/astra-library">
-          <a className="flex shrink-0 items-center gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-[11px] font-semibold text-amber-400 hover:bg-amber-500/20 transition">
-            <BookOpen className="h-3.5 w-3.5" /> Library
-          </a>
+        <Link
+          href="/astra-library"
+          className="flex shrink-0 items-center gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-[11px] font-semibold text-amber-400 hover:bg-amber-500/20 transition"
+        >
+          <BookOpen className="h-3.5 w-3.5" /> Library
         </Link>
       </div>
 

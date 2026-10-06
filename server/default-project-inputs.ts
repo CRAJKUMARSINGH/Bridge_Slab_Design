@@ -91,6 +91,16 @@ export function mergeProjectInput(partial: Partial<ProjectInput> | null | undefi
         ? cloneCrossSection(partial.crossSectionData as ProjectInput['crossSectionData'])
         : cloneCrossSection(base.crossSectionData),
   };
+  // Overriding the span geometry must not leave the default totalLength standing:
+  // {spanLength: 8} alone used to merge into 8 m × 4 spans with totalLength 40 m, so the
+  // engine calculated one bridge while the deck length said another, and the workbook
+  // contract — which enforces that agreement — threw inside the report lane as an HTTP 500.
+  if (
+    partial.totalLength === undefined &&
+    (partial.spanLength !== undefined || partial.numberOfSpans !== undefined)
+  ) {
+    merged.totalLength = merged.spanLength * merged.numberOfSpans;
+  }
   return merged;
 }
 
@@ -597,7 +607,11 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
       freeboardAboveHfl: 1.5,
       pierWidth: 1.5, pierLength: 4.5, pierDepth: 7.0, pierBaseWidth: 3.0, pierBaseLength: 5.5,
       abutmentHeight: 12.0, abutmentWidth: 4.5, abutmentDepth: 6.0, dirtWallHeight: 3.0, returnWallLength: 7,
-      fck: 30, fy: 500, sbc: 260, phi: 32, gamma: 18,
+      // Fe500 declared explicitly: this template overrides fy to 500 while every
+      // other template inherits the base Fe415, and the input contract rejects a
+      // fy that disagrees with steelGrade. The source PARWAN record does not state
+      // a bar grade, so the grade here follows fy — confirm at sign-off.
+      fck: 30, steelGrade: 'Fe500', fy: 500, sbc: 260, phi: 32, gamma: 18,
       issuingAuthority: 'PWD / NHAI, Rajasthan',
       jobNumber: 'PARWAN-HIGHLEVEL-70R',
       hardRockAvailable: false,

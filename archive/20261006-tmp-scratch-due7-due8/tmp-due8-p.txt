@@ -1,0 +1,9 @@
+322:| P-1 | **`pnpm run candidate` threw** `TypeError: Cannot read properties of
+323:| P-2 | **Nothing could have caught it: 39 of the 46 root-level `scripts/*.t
+324:| P-3 | **The first run of that lane found four more latent defects**, all i
+325:| P-4 | **Two tools import packages that no `package.json` declares and that
+326:| P-5 | **Three scripts import a module layer that is gone.** `debug-ctx.ts`
+```
+
+---
+*Last updated: 2026-10-05 — §O added (DUE-7): Model A/B retired and archived, J-8's root cause corrected from "xlsx not installed" to stale reference paths + Git LFS pointer stubs, new `read-office-workbook.ts` guard, `BackwaterCurvePanel` polyline fix. J-7/J-8 closed, KERO-001/LOVABLE-002/CURSOR-001 residuals re-worded, SUMMARY row 15 struck, LFS materialization added as an A2–A5 prerequisite, next-actions 7/8 updated. `CODE-JUNCTION/august-due.md` re-synced to this copy.*

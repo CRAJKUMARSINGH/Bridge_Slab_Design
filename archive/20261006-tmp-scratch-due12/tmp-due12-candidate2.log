@@ -1,0 +1,14 @@
+
+> workspace@0.0.0 candidate E:\Rajkumar\Bridge_Slab_Design
+> tsx scripts/build-release-candidate.ts
+
+  check: exit 0 in 48.2 s
+  verify: exit 0 in 85.4 s
+  test: exit 0 in 59.5 s
+  audit:policy: exit 0 in 6.4 s
+  pnpm --version: exit 0 in 0.7 s
+
+Bundle: 6 deliverables + gate transcripts at E:\Rajkumar\Bridge_Slab_Design\evidence\release-candidate
+Commit 63a0a0dbde0c | gates check=0 verify=0 test=0 audit:policy=0
+(node:6680) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)

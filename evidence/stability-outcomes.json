@@ -1,0 +1,3568 @@
+{
+  "generatedAt": "2026-10-06T12:53:45.956Z",
+  "thresholds": {
+    "sliding": 1.5,
+    "overturning": 1.8,
+    "bearing": 2.5
+  },
+  "totals": {
+    "templates": 20,
+    "cases": 300,
+    "safe": 4,
+    "unsafe": 296,
+    "templatesWithUnsafe": 20
+  },
+  "attribution": {
+    "unsafe": 296,
+    "byThreshold": {
+      "sliding": 106,
+      "overturning": 82,
+      "bearing": 218
+    },
+    "bearingOnly": 190,
+    "bearingWouldPassAtSbcLimit": 184
+  },
+  "templates": [
+    {
+      "template": "larathi-stabil",
+      "name": "Larathi / Som (stabil*.xls seed)",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.5689132825202606,
+              "overturningFOS": 1.8479059920183554,
+              "bearingFOS": 3.4681821345841626,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.36537394051032157,
+              "overturningFOS": 1.1867831438306002,
+              "bearingFOS": 5.357142857142857,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.21814085895325622,
+              "overturningFOS": 0.7085505168345184,
+              "bearingFOS": 9.04504957041175,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.26738022494297997,
+              "overturningFOS": 0.868486525100163,
+              "bearingFOS": 6.451523079080961,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 0.866936281560613,
+              "overturningFOS": 2.815924322063822,
+              "bearingFOS": 2.259592295525327,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.21814085895325622,
+          "worstOverturning": 0.7085505168345184,
+          "worstBearing": 2.259592295525327,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.231707317073168,
+              "overturningFOS": 15.434451219512189,
+              "bearingFOS": 1.6666666666666667,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.26659703031954,
+              "overturningFOS": 14.810894667239364,
+              "bearingFOS": 1.7142857142857142,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.076388888888887,
+              "overturningFOS": 11.393229166666663,
+              "bearingFOS": 1.7142857142857142,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.0457949308755756,
+              "overturningFOS": 4.355914982425307,
+              "bearingFOS": 1.702127659574468,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.3331987199174264,
+              "overturningFOS": 13.392646612325729,
+              "bearingFOS": 1.2307692307692308,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.0457949308755756,
+          "worstOverturning": 4.355914982425307,
+          "worstBearing": 1.2307692307692308,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.231707317073168,
+              "overturningFOS": 15.434451219512189,
+              "bearingFOS": 1.6666666666666667,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.26659703031954,
+              "overturningFOS": 14.810894667239364,
+              "bearingFOS": 1.7142857142857142,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.076388888888887,
+              "overturningFOS": 11.393229166666663,
+              "bearingFOS": 1.7142857142857142,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.0457949308755756,
+              "overturningFOS": 4.355914982425307,
+              "bearingFOS": 1.702127659574468,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.3331987199174264,
+              "overturningFOS": 13.392646612325729,
+              "bearingFOS": 1.2307692307692308,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.0457949308755756,
+          "worstOverturning": 4.355914982425307,
+          "worstBearing": 1.2307692307692308,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "kherwara-golden",
+      "name": "Kherwara worksheet (reference)",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.7109955949752323,
+              "overturningFOS": 2.255198153835669,
+              "bearingFOS": 2.617746253574389,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.4589607057750061,
+              "overturningFOS": 1.4557717989560337,
+              "bearingFOS": 4.017857142857142,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.26982082636976684,
+              "overturningFOS": 0.8558413495047181,
+              "bearingFOS": 6.897933269627161,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.32189044250996834,
+              "overturningFOS": 1.021000322387532,
+              "bearingFOS": 4.896435059348649,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 1.0846268795343819,
+              "overturningFOS": 3.440314614623863,
+              "bearingFOS": 1.701729019079517,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.26982082636976684,
+          "worstOverturning": 0.8558413495047181,
+          "worstBearing": 1.701729019079517,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 1.7215909090909085,
+              "overturningFOS": 2.143380681818181,
+              "bearingFOS": 3.944554455445545,
+              "status": "SAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 1.3997571621681224,
+              "overturningFOS": 1.720116080026119,
+              "bearingFOS": 5.773913043478261,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 0.9583333333333329,
+              "overturningFOS": 1.1931249999999995,
+              "bearingFOS": 5.773913043478261,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 0.9763313609467453,
+              "overturningFOS": 1.0775384038965903,
+              "bearingFOS": 5.174025974025975,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 1.6837345368809504,
+              "overturningFOS": 2.081786295250432,
+              "bearingFOS": 2.822529224229543,
+              "status": "SAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 2,
+          "unsafeCases": 3,
+          "worstSliding": 0.9583333333333329,
+          "worstOverturning": 1.0775384038965903,
+          "worstBearing": 2.822529224229543,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 1.7215909090909085,
+              "overturningFOS": 2.143380681818181,
+              "bearingFOS": 3.944554455445545,
+              "status": "SAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 1.3997571621681224,
+              "overturningFOS": 1.720116080026119,
+              "bearingFOS": 5.773913043478261,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 0.9583333333333329,
+              "overturningFOS": 1.1931249999999995,
+              "bearingFOS": 5.773913043478261,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 0.9763313609467453,
+              "overturningFOS": 1.0775384038965903,
+              "bearingFOS": 5.174025974025975,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 1.6837345368809504,
+              "overturningFOS": 2.081786295250432,
+              "bearingFOS": 2.822529224229543,
+              "status": "SAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 2,
+          "unsafeCases": 3,
+          "worstSliding": 0.9583333333333329,
+          "worstOverturning": 1.0775384038965903,
+          "worstBearing": 2.822529224229543,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "high-level-reference",
+      "name": "High-level slab bridge (starter)",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.3578441246837215,
+              "overturningFOS": 0.7989288769759437,
+              "bearingFOS": 3.0059637413209166,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.20429030237287013,
+              "overturningFOS": 0.4561020025020346,
+              "bearingFOS": 5.238095238095237,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.09707649708517897,
+              "overturningFOS": 0.21673463792529502,
+              "bearingFOS": 11.080606492219774,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.14843100830625078,
+              "overturningFOS": 0.3313895928271319,
+              "bearingFOS": 6.6289335288258044,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 0.5574883168926642,
+              "overturningFOS": 1.2446578949309948,
+              "bearingFOS": 1.9204831145467087,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.09707649708517897,
+          "worstOverturning": 0.21673463792529502,
+          "worstBearing": 1.9204831145467087,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.770486229173747,
+              "overturningFOS": 16.405968358101475,
+              "bearingFOS": 1.681600372179577,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.76727876804285,
+              "overturningFOS": 15.657220669570581,
+              "bearingFOS": 1.7216480114312935,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.457516339869278,
+              "overturningFOS": 12.079354094579,
+              "bearingFOS": 1.7216480114312935,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.1289661473122785,
+              "overturningFOS": 4.439301467834118,
+              "bearingFOS": 1.7114583333333337,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.7808930675775,
+              "overturningFOS": 14.167456155702292,
+              "bearingFOS": 1.2424187741142707,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.1289661473122785,
+          "worstOverturning": 4.439301467834118,
+          "worstBearing": 1.2424187741142707,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.770486229173747,
+              "overturningFOS": 16.405968358101475,
+              "bearingFOS": 1.681600372179577,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.76727876804285,
+              "overturningFOS": 15.657220669570581,
+              "bearingFOS": 1.7216480114312935,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.457516339869278,
+              "overturningFOS": 12.079354094579,
+              "bearingFOS": 1.7216480114312935,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.1289661473122785,
+              "overturningFOS": 4.439301467834118,
+              "bearingFOS": 1.7114583333333337,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.7808930675775,
+              "overturningFOS": 14.167456155702292,
+              "bearingFOS": 1.2424187741142707,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.1289661473122785,
+          "worstOverturning": 4.439301467834118,
+          "worstBearing": 1.2424187741142707,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "small-bridge",
+      "name": "Small bridge (8 m span)",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.14990387530984567,
+              "overturningFOS": 0.22453911775363977,
+              "bearingFOS": 2.3016249275045775,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.08593781395712322,
+              "overturningFOS": 0.12872516396073108,
+              "bearingFOS": 4,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.018466733922158543,
+              "overturningFOS": 0.027661087040625355,
+              "bearingFOS": 18.683460626932,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.0491845932451293,
+              "overturningFOS": 0.0736729797779124,
+              "bearingFOS": 6.722175244759848,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 0.24499648621236744,
+              "overturningFOS": 0.3669771362025196,
+              "bearingFOS": 1.4036036331360893,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.018466733922158543,
+          "worstOverturning": 0.027661087040625355,
+          "worstBearing": 1.4036036331360893,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 7.421874999999998,
+              "overturningFOS": 16.699218749999996,
+              "bearingFOS": 1.7763157894736843,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 7.458896221062439,
+              "overturningFOS": 15.945895527150403,
+              "bearingFOS": 1.875,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 5.555555555555554,
+              "overturningFOS": 12.499999999999996,
+              "bearingFOS": 1.875,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 2.869496855345912,
+              "overturningFOS": 4.971246973365617,
+              "bearingFOS": 1.8493150684931505,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 6.6702808153583915,
+              "overturningFOS": 14.578633473534824,
+              "bearingFOS": 1.3081395348837208,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 2.869496855345912,
+          "worstOverturning": 4.971246973365617,
+          "worstBearing": 1.3081395348837208,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 7.421874999999998,
+              "overturningFOS": 16.699218749999996,
+              "bearingFOS": 1.7763157894736843,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 7.458896221062439,
+              "overturningFOS": 15.945895527150403,
+              "bearingFOS": 1.875,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 5.555555555555554,
+              "overturningFOS": 12.499999999999996,
+              "bearingFOS": 1.875,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 2.869496855345912,
+              "overturningFOS": 4.971246973365617,
+              "bearingFOS": 1.8493150684931505,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 6.6702808153583915,
+              "overturningFOS": 14.578633473534824,
+              "bearingFOS": 1.3081395348837208,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 2.869496855345912,
+          "worstOverturning": 4.971246973365617,
+          "worstBearing": 1.3081395348837208,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "medium-bridge",
+      "name": "Medium bridge (12 m span)",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.2072476954387451,
+              "overturningFOS": 0.39170906488013824,
+              "bearingFOS": 2.7085322944177355,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.13053881850861537,
+              "overturningFOS": 0.2467252454620463,
+              "bearingFOS": 4.285714285714286,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.05755780849488047,
+              "overturningFOS": 0.10878729094839783,
+              "bearingFOS": 9.752579028255061,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.08993206025620412,
+              "overturningFOS": 0.16997633267344986,
+              "bearingFOS": 5.910038111860484,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 0.3269437340991896,
+              "overturningFOS": 0.6179408850906427,
+              "bearingFOS": 1.7117318692559964,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.05755780849488047,
+          "worstOverturning": 0.10878729094839783,
+          "worstBearing": 1.7117318692559964,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.231707317073168,
+              "overturningFOS": 15.434451219512189,
+              "bearingFOS": 1.6666666666666667,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.26659703031954,
+              "overturningFOS": 14.810894667239364,
+              "bearingFOS": 1.7142857142857142,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.076388888888887,
+              "overturningFOS": 11.393229166666663,
+              "bearingFOS": 1.7142857142857142,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.0457949308755756,
+              "overturningFOS": 4.355914982425307,
+              "bearingFOS": 1.702127659574468,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.3331987199174264,
+              "overturningFOS": 13.392646612325729,
+              "bearingFOS": 1.2307692307692308,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.0457949308755756,
+          "worstOverturning": 4.355914982425307,
+          "worstBearing": 1.2307692307692308,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.231707317073168,
+              "overturningFOS": 15.434451219512189,
+              "bearingFOS": 1.6666666666666667,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.26659703031954,
+              "overturningFOS": 14.810894667239364,
+              "bearingFOS": 1.7142857142857142,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.076388888888887,
+              "overturningFOS": 11.393229166666663,
+              "bearingFOS": 1.7142857142857142,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.0457949308755756,
+              "overturningFOS": 4.355914982425307,
+              "bearingFOS": 1.702127659574468,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.3331987199174264,
+              "overturningFOS": 13.392646612325729,
+              "bearingFOS": 1.2307692307692308,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.0457949308755756,
+          "worstOverturning": 4.355914982425307,
+          "worstBearing": 1.2307692307692308,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "large-bridge",
+      "name": "Large bridge (16 m span)",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.15216631156644883,
+              "overturningFOS": 0.30179808301220973,
+              "bearingFOS": 3.6619648991568923,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.12180967852667093,
+              "overturningFOS": 0.24159044859038598,
+              "bearingFOS": 4.562962962962962,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.055676667966361025,
+              "overturningFOS": 0.11042596411635688,
+              "bearingFOS": 10.008280167325662,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.0764562678800782,
+              "overturningFOS": 0.15163905100242467,
+              "bearingFOS": 6.9828837588907415,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 0.2425973233285248,
+              "overturningFOS": 0.4811538531146553,
+              "bearingFOS": 2.291674882184591,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.055676667966361025,
+          "worstOverturning": 0.11042596411635688,
+          "worstBearing": 2.291674882184591,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 11.146964938802029,
+              "overturningFOS": 20.06453688984365,
+              "bearingFOS": 1.7167883211678832,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 10.951182967617603,
+              "overturningFOS": 18.74927725846062,
+              "bearingFOS": 1.7422222222222221,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 8.136470758249656,
+              "overturningFOS": 14.645647364849381,
+              "bearingFOS": 1.7422222222222221,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.4139288464468054,
+              "overturningFOS": 4.5682420362750475,
+              "bearingFOS": 1.7357933579335796,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 9.77030679099091,
+              "overturningFOS": 17.0734985609202,
+              "bearingFOS": 1.2696356275303644,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.4139288464468054,
+          "worstOverturning": 4.5682420362750475,
+          "worstBearing": 1.2696356275303644,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 11.146964938802029,
+              "overturningFOS": 20.06453688984365,
+              "bearingFOS": 1.7167883211678832,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 10.951182967617603,
+              "overturningFOS": 18.74927725846062,
+              "bearingFOS": 1.7422222222222221,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 8.136470758249656,
+              "overturningFOS": 14.645647364849381,
+              "bearingFOS": 1.7422222222222221,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.4139288464468054,
+              "overturningFOS": 4.5682420362750475,
+              "bearingFOS": 1.7357933579335796,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 9.77030679099091,
+              "overturningFOS": 17.0734985609202,
+              "bearingFOS": 1.2696356275303644,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.4139288464468054,
+          "worstOverturning": 4.5682420362750475,
+          "worstBearing": 1.2696356275303644,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "irc-bedach-bedla",
+      "name": "BEDACH River — Syphon Tiraha–Bedla Road",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.536451421195149,
+              "overturningFOS": 1.5036678364894183,
+              "bearingFOS": 3.257934859962447,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.35960910038730226,
+              "overturningFOS": 1.007980623402197,
+              "bearingFOS": 4.821428571428571,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.1912220314098505,
+              "overturningFOS": 0.5359933945529859,
+              "bearingFOS": 9.139761631556656,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.24311753795386865,
+              "overturningFOS": 0.6814559676126616,
+              "bearingFOS": 6.297437024473728,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 0.8299521125635786,
+              "overturningFOS": 2.3263472668372596,
+              "bearingFOS": 2.090733953554297,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.1912220314098505,
+          "worstOverturning": 0.5359933945529859,
+          "worstBearing": 2.090733953554297,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.959152161706903,
+              "overturningFOS": 20.674966527015933,
+              "bearingFOS": 1.8613396004700353,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.964381609659082,
+              "overturningFOS": 19.589073335569076,
+              "bearingFOS": 1.934065934065934,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.730769230769229,
+              "overturningFOS": 15.532544378698221,
+              "bearingFOS": 1.934065934065934,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.118557996882698,
+              "overturningFOS": 5.448284848014593,
+              "bearingFOS": 1.9153567110036274,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.96917291226255,
+              "overturningFOS": 17.822986635474855,
+              "bearingFOS": 1.3730334156806658,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.118557996882698,
+          "worstOverturning": 5.448284848014593,
+          "worstBearing": 1.3730334156806658,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.959152161706903,
+              "overturningFOS": 20.674966527015933,
+              "bearingFOS": 1.8613396004700353,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.964381609659082,
+              "overturningFOS": 19.589073335569076,
+              "bearingFOS": 1.934065934065934,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.730769230769229,
+              "overturningFOS": 15.532544378698221,
+              "bearingFOS": 1.934065934065934,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.118557996882698,
+              "overturningFOS": 5.448284848014593,
+              "bearingFOS": 1.9153567110036274,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.96917291226255,
+              "overturningFOS": 17.822986635474855,
+              "bearingFOS": 1.3730334156806658,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.118557996882698,
+          "worstOverturning": 5.448284848014593,
+          "worstBearing": 1.3730334156806658,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "irc-jakham-mandvi",
+      "name": "JAKHAM River — Mandvi Area",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.4952155006274547,
+              "overturningFOS": 1.3773590282257588,
+              "bearingFOS": 3.084606718164463,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.33294683693167026,
+              "overturningFOS": 0.9260358998981251,
+              "bearingFOS": 4.553571428571428,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.17572895209419984,
+              "overturningFOS": 0.48876066759001446,
+              "bearingFOS": 8.69262032220952,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.22599731707534124,
+              "overturningFOS": 0.6285737111098485,
+              "bearingFOS": 5.976297100062379,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 0.7671566498146002,
+              "overturningFOS": 2.133717818498725,
+              "bearingFOS": 1.977737223129446,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.17572895209419984,
+          "worstOverturning": 0.48876066759001446,
+          "worstBearing": 1.977737223129446,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 9.283268101761248,
+              "overturningFOS": 19.89271736091696,
+              "bearingFOS": 1.6126482213438735,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 9.323620276328048,
+              "overturningFOS": 18.983208960893336,
+              "bearingFOS": 1.6653061224489796,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.944444444444442,
+              "overturningFOS": 14.880952380952374,
+              "bearingFOS": 1.6653061224489796,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.1726323000513785,
+              "overturningFOS": 5.131057787297689,
+              "bearingFOS": 1.651821862348178,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 8.260042253155483,
+              "overturningFOS": 17.18617944572573,
+              "bearingFOS": 1.1903719912472648,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.1726323000513785,
+          "worstOverturning": 5.131057787297689,
+          "worstBearing": 1.1903719912472648,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 9.283268101761248,
+              "overturningFOS": 19.89271736091696,
+              "bearingFOS": 1.6126482213438735,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 9.323620276328048,
+              "overturningFOS": 18.983208960893336,
+              "bearingFOS": 1.6653061224489796,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.944444444444442,
+              "overturningFOS": 14.880952380952374,
+              "bearingFOS": 1.6653061224489796,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.1726323000513785,
+              "overturningFOS": 5.131057787297689,
+              "bearingFOS": 1.651821862348178,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 8.260042253155483,
+              "overturningFOS": 17.18617944572573,
+              "bearingFOS": 1.1903719912472648,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.1726323000513785,
+          "worstOverturning": 5.131057787297689,
+          "worstBearing": 1.1903719912472648,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "irc-t01-jethliya",
+      "name": "T01 Road — Jethliya Bridge",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.6391121328045848,
+              "overturningFOS": 1.7598953408829412,
+              "bearingFOS": 2.5512451628893644,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.39584821409586857,
+              "overturningFOS": 1.0900300462566257,
+              "bearingFOS": 4.081632653061225,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.20430366950815756,
+              "overturningFOS": 0.5625821473845058,
+              "bearingFOS": 7.980922424384047,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.26824673866637866,
+              "overturningFOS": 0.7386594016207624,
+              "bearingFOS": 5.209270287546753,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 0.9881742655060269,
+              "overturningFOS": 2.721092585448104,
+              "bearingFOS": 1.6365305038602025,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.20430366950815756,
+          "worstOverturning": 0.5625821473845058,
+          "worstBearing": 1.6365305038602025,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.021390374331547,
+              "overturningFOS": 19.688867282450165,
+              "bearingFOS": 1.9285714285714288,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.060089967027269,
+              "overturningFOS": 18.722390303466597,
+              "bearingFOS": 2.0454545454545454,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.060606060606058,
+              "overturningFOS": 14.876033057851235,
+              "bearingFOS": 2.0454545454545454,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 2.9480786154297443,
+              "overturningFOS": 5.532222879161654,
+              "bearingFOS": 2.014925373134328,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.208744300904876,
+              "overturningFOS": 17.15099023821952,
+              "bearingFOS": 1.419558359621451,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 2.9480786154297443,
+          "worstOverturning": 5.532222879161654,
+          "worstBearing": 1.419558359621451,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.021390374331547,
+              "overturningFOS": 19.688867282450165,
+              "bearingFOS": 1.9285714285714288,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.060089967027269,
+              "overturningFOS": 18.722390303466597,
+              "bearingFOS": 2.0454545454545454,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.060606060606058,
+              "overturningFOS": 14.876033057851235,
+              "bearingFOS": 2.0454545454545454,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 2.9480786154297443,
+              "overturningFOS": 5.532222879161654,
+              "bearingFOS": 2.014925373134328,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.208744300904876,
+              "overturningFOS": 17.15099023821952,
+              "bearingFOS": 1.419558359621451,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 2.9480786154297443,
+          "worstOverturning": 5.532222879161654,
+          "worstBearing": 1.419558359621451,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "irc-sukanaka-matoon",
+      "name": "SUKANAKA Nalah — Matoon (Submersible)",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.5083616221177598,
+              "overturningFOS": 1.2888975077557627,
+              "bearingFOS": 2.649044640565112,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.3332693870630872,
+              "overturningFOS": 0.8449695329231605,
+              "bearingFOS": 4.010025062656641,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.17169346448275022,
+              "overturningFOS": 0.4353107489662294,
+              "bearingFOS": 7.843470539761497,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.22552732079053273,
+              "overturningFOS": 0.5718008383221675,
+              "bearingFOS": 5.263307974688791,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 0.78878799970633,
+              "overturningFOS": 1.9998891394158693,
+              "bearingFOS": 1.6955594741040745,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.17169346448275022,
+          "worstOverturning": 0.4353107489662294,
+          "worstBearing": 1.6955594741040745,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.300781249999998,
+              "overturningFOS": 18.676757812499996,
+              "bearingFOS": 1.8635294117647059,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.391258248695245,
+              "overturningFOS": 17.939132468044203,
+              "bearingFOS": 1.9555555555555557,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.249999999999998,
+              "overturningFOS": 14.062499999999995,
+              "bearingFOS": 1.9555555555555557,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.0102790014684286,
+              "overturningFOS": 5.162283156127588,
+              "bearingFOS": 1.931707317073171,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.455590039259597,
+              "overturningFOS": 16.29501328655273,
+              "bearingFOS": 1.3732119635890767,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.0102790014684286,
+          "worstOverturning": 5.162283156127588,
+          "worstBearing": 1.3732119635890767,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.300781249999998,
+              "overturningFOS": 18.676757812499996,
+              "bearingFOS": 1.8635294117647059,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.391258248695245,
+              "overturningFOS": 17.939132468044203,
+              "bearingFOS": 1.9555555555555557,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.249999999999998,
+              "overturningFOS": 14.062499999999995,
+              "bearingFOS": 1.9555555555555557,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.0102790014684286,
+              "overturningFOS": 5.162283156127588,
+              "bearingFOS": 1.931707317073171,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.455590039259597,
+              "overturningFOS": 16.29501328655273,
+              "bearingFOS": 1.3732119635890767,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.0102790014684286,
+          "worstOverturning": 5.162283156127588,
+          "worstBearing": 1.3732119635890767,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "irc-ayad-maharashtra",
+      "name": "AYAD River — Maharashtra Alignment",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.5635676004304487,
+              "overturningFOS": 1.500340034031909,
+              "bearingFOS": 2.5783613871340223,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.3461516098580772,
+              "overturningFOS": 0.921531184046059,
+              "bearingFOS": 4.166666666666666,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.19453117122672955,
+              "overturningFOS": 0.5178844629032184,
+              "bearingFOS": 7.469656049600672,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.25078831857919076,
+              "overturningFOS": 0.6676532755689252,
+              "bearingFOS": 5.0667022168588005,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 0.8643290929010639,
+              "overturningFOS": 2.301032812509936,
+              "bearingFOS": 1.6699303961949727,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.19453117122672955,
+          "worstOverturning": 0.5178844629032184,
+          "worstBearing": 1.6699303961949727,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 9.283268101761248,
+              "overturningFOS": 19.89271736091696,
+              "bearingFOS": 1.6600790513833992,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 9.323620276328048,
+              "overturningFOS": 18.983208960893336,
+              "bearingFOS": 1.7142857142857144,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.944444444444442,
+              "overturningFOS": 14.880952380952374,
+              "bearingFOS": 1.7142857142857144,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.1726323000513785,
+              "overturningFOS": 5.131057787297689,
+              "bearingFOS": 1.700404858299595,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 8.260042253155483,
+              "overturningFOS": 17.18617944572573,
+              "bearingFOS": 1.225382932166302,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.1726323000513785,
+          "worstOverturning": 5.131057787297689,
+          "worstBearing": 1.225382932166302,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 9.283268101761248,
+              "overturningFOS": 19.89271736091696,
+              "bearingFOS": 1.6600790513833992,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 9.323620276328048,
+              "overturningFOS": 18.983208960893336,
+              "bearingFOS": 1.7142857142857144,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.944444444444442,
+              "overturningFOS": 14.880952380952374,
+              "bearingFOS": 1.7142857142857144,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.1726323000513785,
+              "overturningFOS": 5.131057787297689,
+              "bearingFOS": 1.700404858299595,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 8.260042253155483,
+              "overturningFOS": 17.18617944572573,
+              "bearingFOS": 1.225382932166302,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.1726323000513785,
+          "worstOverturning": 5.131057787297689,
+          "worstBearing": 1.225382932166302,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "irc-gumaniya-udaipur",
+      "name": "GUMANIYA Nalah — Udaipur",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.6057544803134858,
+              "overturningFOS": 1.6491299277339615,
+              "bearingFOS": 2.048168299816356,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.3767383728371289,
+              "overturningFOS": 1.0256474293842264,
+              "bearingFOS": 3.2653061224489797,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.19219210563021497,
+              "overturningFOS": 0.5232313809795822,
+              "bearingFOS": 6.455453099811198,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.25509755392117167,
+              "overturningFOS": 0.6944876585071565,
+              "bearingFOS": 4.197428086906567,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 0.9382994841621409,
+              "overturningFOS": 2.5544635835104956,
+              "bearingFOS": 1.3121718604774035,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.19219210563021497,
+          "worstOverturning": 0.5232313809795822,
+          "worstBearing": 1.3121718604774035,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.021390374331547,
+              "overturningFOS": 19.688867282450165,
+              "bearingFOS": 1.9285714285714288,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.060089967027269,
+              "overturningFOS": 18.722390303466597,
+              "bearingFOS": 2.0454545454545454,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.060606060606058,
+              "overturningFOS": 14.876033057851235,
+              "bearingFOS": 2.0454545454545454,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 2.9480786154297443,
+              "overturningFOS": 5.532222879161654,
+              "bearingFOS": 2.014925373134328,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.208744300904876,
+              "overturningFOS": 17.15099023821952,
+              "bearingFOS": 1.419558359621451,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 2.9480786154297443,
+          "worstOverturning": 5.532222879161654,
+          "worstBearing": 1.419558359621451,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.021390374331547,
+              "overturningFOS": 19.688867282450165,
+              "bearingFOS": 1.9285714285714288,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.060089967027269,
+              "overturningFOS": 18.722390303466597,
+              "bearingFOS": 2.0454545454545454,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.060606060606058,
+              "overturningFOS": 14.876033057851235,
+              "bearingFOS": 2.0454545454545454,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 2.9480786154297443,
+              "overturningFOS": 5.532222879161654,
+              "bearingFOS": 2.014925373134328,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.208744300904876,
+              "overturningFOS": 17.15099023821952,
+              "bearingFOS": 1.419558359621451,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 2.9480786154297443,
+          "worstOverturning": 5.532222879161654,
+          "worstBearing": 1.419558359621451,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "irc-katumbi-chandrod",
+      "name": "Katumbi to Chandrod Road Bridge",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.5131370981826832,
+              "overturningFOS": 1.4547735074432773,
+              "bearingFOS": 2.9756941759381554,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.34291775136449326,
+              "overturningFOS": 0.9721917625598812,
+              "bearingFOS": 4.419642857142857,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.18409972185513765,
+              "overturningFOS": 0.5219334151263839,
+              "bearingFOS": 8.294086808678161,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.23469716833221427,
+              "overturningFOS": 0.6653801176544575,
+              "bearingFOS": 5.732634138614355,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 0.7932235736030001,
+              "overturningFOS": 2.2488349496537525,
+              "bearingFOS": 1.9120748934337206,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.18409972185513765,
+          "worstOverturning": 0.5219334151263839,
+          "worstBearing": 1.9120748934337206,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.959152161706903,
+              "overturningFOS": 20.674966527015933,
+              "bearingFOS": 1.7062279670975324,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.964381609659082,
+              "overturningFOS": 19.589073335569076,
+              "bearingFOS": 1.772893772893773,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.730769230769229,
+              "overturningFOS": 15.532544378698221,
+              "bearingFOS": 1.772893772893773,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.118557996882698,
+              "overturningFOS": 5.448284848014593,
+              "bearingFOS": 1.7557436517533251,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.96917291226255,
+              "overturningFOS": 17.822986635474855,
+              "bearingFOS": 1.2586139643739436,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.118557996882698,
+          "worstOverturning": 5.448284848014593,
+          "worstBearing": 1.2586139643739436,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.959152161706903,
+              "overturningFOS": 20.674966527015933,
+              "bearingFOS": 1.7062279670975324,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.964381609659082,
+              "overturningFOS": 19.589073335569076,
+              "bearingFOS": 1.772893772893773,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.730769230769229,
+              "overturningFOS": 15.532544378698221,
+              "bearingFOS": 1.772893772893773,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.118557996882698,
+              "overturningFOS": 5.448284848014593,
+              "bearingFOS": 1.7557436517533251,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.96917291226255,
+              "overturningFOS": 17.822986635474855,
+              "bearingFOS": 1.2586139643739436,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.118557996882698,
+          "worstOverturning": 5.448284848014593,
+          "worstBearing": 1.2586139643739436,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "irc-sisarama-highlevel",
+      "name": "SISARAMA Nalah — High-Level Bridge",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.9100683041914858,
+              "overturningFOS": 2.58788964149404,
+              "bearingFOS": 2.0623389732994464,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.528965103717617,
+              "overturningFOS": 1.504176451721159,
+              "bearingFOS": 3.5064935064935066,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.35395887245855623,
+              "overturningFOS": 1.006524999641865,
+              "bearingFOS": 5.30250681120698,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.4046599159905896,
+              "overturningFOS": 1.1506995684793704,
+              "bearingFOS": 3.807143519215621,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 1.3608975006258048,
+              "overturningFOS": 3.8698771606308164,
+              "bearingFOS": 1.3645370115097397,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.35395887245855623,
+          "worstOverturning": 1.006524999641865,
+          "worstBearing": 1.3645370115097397,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.770486229173747,
+              "overturningFOS": 16.405968358101475,
+              "bearingFOS": 1.3758548499651084,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.76727876804285,
+              "overturningFOS": 15.657220669570581,
+              "bearingFOS": 1.4086211002619673,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.457516339869278,
+              "overturningFOS": 12.079354094579,
+              "bearingFOS": 1.4086211002619673,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.1289661473122785,
+              "overturningFOS": 4.439301467834118,
+              "bearingFOS": 1.4002840909090912,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.7808930675775,
+              "overturningFOS": 14.167456155702292,
+              "bearingFOS": 1.0165244515480396,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.1289661473122785,
+          "worstOverturning": 4.439301467834118,
+          "worstBearing": 1.0165244515480396,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.770486229173747,
+              "overturningFOS": 16.405968358101475,
+              "bearingFOS": 1.3758548499651084,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.76727876804285,
+              "overturningFOS": 15.657220669570581,
+              "bearingFOS": 1.4086211002619673,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.457516339869278,
+              "overturningFOS": 12.079354094579,
+              "bearingFOS": 1.4086211002619673,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.1289661473122785,
+              "overturningFOS": 4.439301467834118,
+              "bearingFOS": 1.4002840909090912,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.7808930675775,
+              "overturningFOS": 14.167456155702292,
+              "bearingFOS": 1.0165244515480396,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.1289661473122785,
+          "worstOverturning": 4.439301467834118,
+          "worstBearing": 1.0165244515480396,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "irc-kumbhalgarh-kelwara",
+      "name": "KUMBHALGARH — Kelwara Lake Road Bridge",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.8381481647170083,
+              "overturningFOS": 2.368701058939751,
+              "bearingFOS": 2.461383522200879,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.5531118245205439,
+              "overturningFOS": 1.5631562766665132,
+              "bearingFOS": 3.6923076923076925,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.37970281320648547,
+              "overturningFOS": 1.0730828910521786,
+              "bearingFOS": 5.433207261162623,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.41075263711774374,
+              "overturningFOS": 1.16083318852294,
+              "bearingFOS": 4.1734675757771225,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 1.2514852342433627,
+              "overturningFOS": 3.5368381443639048,
+              "bearingFOS": 1.6335108866507029,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.37970281320648547,
+          "worstOverturning": 1.0730828910521786,
+          "worstBearing": 1.6335108866507029,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 9.551216707121393,
+              "overturningFOS": 16.588955333421367,
+              "bearingFOS": 1.6112676056338027,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 9.455298264807974,
+              "overturningFOS": 15.664657661580836,
+              "bearingFOS": 1.6421052631578947,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.978649383294052,
+              "overturningFOS": 12.120812086773881,
+              "bearingFOS": 1.6421052631578947,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.2357062360081903,
+              "overturningFOS": 4.231245438361449,
+              "bearingFOS": 1.6342857142857143,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 8.423426718592442,
+              "overturningFOS": 14.229883131231908,
+              "bearingFOS": 1.1910463300364391,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.2357062360081903,
+          "worstOverturning": 4.231245438361449,
+          "worstBearing": 1.1910463300364391,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 9.551216707121393,
+              "overturningFOS": 16.588955333421367,
+              "bearingFOS": 1.6112676056338027,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 9.455298264807974,
+              "overturningFOS": 15.664657661580836,
+              "bearingFOS": 1.6421052631578947,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.978649383294052,
+              "overturningFOS": 12.120812086773881,
+              "bearingFOS": 1.6421052631578947,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.2357062360081903,
+              "overturningFOS": 4.231245438361449,
+              "bearingFOS": 1.6342857142857143,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 8.423426718592442,
+              "overturningFOS": 14.229883131231908,
+              "bearingFOS": 1.1910463300364391,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.2357062360081903,
+          "worstOverturning": 4.231245438361449,
+          "worstBearing": 1.1910463300364391,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "irc-parwan-highlevel",
+      "name": "PARWAN River — High-Level (70R Loading)",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.5807903197210054,
+              "overturningFOS": 1.427793306905662,
+              "bearingFOS": 2.4700421842671942,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.3919676255473571,
+              "overturningFOS": 0.963598622905871,
+              "bearingFOS": 3.6317460317460317,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.24639018220937034,
+              "overturningFOS": 0.6057164541151394,
+              "bearingFOS": 5.8223772435294565,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.2879792154092342,
+              "overturningFOS": 0.7079573855273016,
+              "bearingFOS": 4.34733067168215,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 0.8800956033553833,
+              "overturningFOS": 2.163594277038825,
+              "bearingFOS": 1.6187152504515991,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.24639018220937034,
+          "worstOverturning": 0.6057164541151394,
+          "worstBearing": 1.6187152504515991,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 9.423596075938868,
+              "overturningFOS": 14.135394113908301,
+              "bearingFOS": 1.3317073170731708,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 9.284925440481803,
+              "overturningFOS": 13.346285531265137,
+              "bearingFOS": 1.348148148148148,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.780392298541381,
+              "overturningFOS": 10.17058844781207,
+              "bearingFOS": 1.348148148148148,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.236850435652276,
+              "overturningFOS": 3.6597383072560823,
+              "bearingFOS": 1.3439999999999999,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 8.292598941113443,
+              "overturningFOS": 12.12872006739686,
+              "bearingFOS": 0.9851150202976995,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.236850435652276,
+          "worstOverturning": 3.6597383072560823,
+          "worstBearing": 0.9851150202976995,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 9.423596075938868,
+              "overturningFOS": 14.135394113908301,
+              "bearingFOS": 1.3317073170731708,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 9.284925440481803,
+              "overturningFOS": 13.346285531265137,
+              "bearingFOS": 1.348148148148148,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.780392298541381,
+              "overturningFOS": 10.17058844781207,
+              "bearingFOS": 1.348148148148148,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.236850435652276,
+              "overturningFOS": 3.6597383072560823,
+              "bearingFOS": 1.3439999999999999,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 8.292598941113443,
+              "overturningFOS": 12.12872006739686,
+              "bearingFOS": 0.9851150202976995,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.236850435652276,
+          "worstOverturning": 3.6597383072560823,
+          "worstBearing": 0.9851150202976995,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "irc-banas-highlevel",
+      "name": "BANAS River — High-Level Bridge",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.7281281163743714,
+              "overturningFOS": 2.102610965406627,
+              "bearingFOS": 2.7793553706806917,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.5316003001528874,
+              "overturningFOS": 1.5350988310691993,
+              "bearingFOS": 3.7714285714285714,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.3647203873887418,
+              "overturningFOS": 1.0532007603956242,
+              "bearingFOS": 5.548707614832921,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.38607810912714735,
+              "overturningFOS": 1.1148753186407914,
+              "bearingFOS": 4.442163633667321,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 1.088437523990285,
+              "overturningFOS": 3.143074167356195,
+              "bearingFOS": 1.8437072859519439,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.3647203873887418,
+          "worstOverturning": 1.0532007603956242,
+          "worstBearing": 1.8437072859519439,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 9.541182557213526,
+              "overturningFOS": 14.832201975304665,
+              "bearingFOS": 1.532432432432432,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 9.438797937541663,
+              "overturningFOS": 14.051110652837629,
+              "bearingFOS": 1.5545454545454545,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.903672158514861,
+              "overturningFOS": 10.732072173691284,
+              "bearingFOS": 1.5545454545454545,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.2457442199090707,
+              "overturningFOS": 3.7992273041311067,
+              "bearingFOS": 1.548957584471603,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 8.412649619257166,
+              "overturningFOS": 12.747868102795218,
+              "bearingFOS": 1.133343853558466,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.2457442199090707,
+          "worstOverturning": 3.7992273041311067,
+          "worstBearing": 1.133343853558466,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 9.541182557213526,
+              "overturningFOS": 14.832201975304665,
+              "bearingFOS": 1.532432432432432,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 9.438797937541663,
+              "overturningFOS": 14.051110652837629,
+              "bearingFOS": 1.5545454545454545,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.903672158514861,
+              "overturningFOS": 10.732072173691284,
+              "bearingFOS": 1.5545454545454545,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.2457442199090707,
+              "overturningFOS": 3.7992273041311067,
+              "bearingFOS": 1.548957584471603,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 8.412649619257166,
+              "overturningFOS": 12.747868102795218,
+              "bearingFOS": 1.133343853558466,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.2457442199090707,
+          "worstOverturning": 3.7992273041311067,
+          "worstBearing": 1.133343853558466,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "irc-ayad-fatehpura",
+      "name": "AYAD River — Fatehpura High-Level",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.8092062891117191,
+              "overturningFOS": 2.2359495628956636,
+              "bearingFOS": 2.187232054542248,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.49017535681447705,
+              "overturningFOS": 1.3544227097081312,
+              "bearingFOS": 3.571428571428571,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.3372271066364301,
+              "overturningFOS": 0.9318054145476304,
+              "bearingFOS": 5.248456898782204,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.3814139333180717,
+              "overturningFOS": 1.053899764448219,
+              "bearingFOS": 3.888042129593979,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 1.206678065312896,
+              "overturningFOS": 3.334219381381574,
+              "bearingFOS": 1.4523649161780279,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.3372271066364301,
+          "worstOverturning": 0.9318054145476304,
+          "worstBearing": 1.4523649161780279,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.372141085698537,
+              "overturningFOS": 14.01232034343229,
+              "bearingFOS": 1.3606516909405084,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.380666625314566,
+              "overturningFOS": 13.449953198812905,
+              "bearingFOS": 1.3880634600856205,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.11111111111111,
+              "overturningFOS": 10.228070175438594,
+              "bearingFOS": 1.3880634600856205,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.0840760393591258,
+              "overturningFOS": 3.931146847009628,
+              "bearingFOS": 1.3811074918566772,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.436375359334902,
+              "overturningFOS": 12.144877082794117,
+              "bearingFOS": 1.0056834250161926,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.0840760393591258,
+          "worstOverturning": 3.931146847009628,
+          "worstBearing": 1.0056834250161926,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.372141085698537,
+              "overturningFOS": 14.01232034343229,
+              "bearingFOS": 1.3606516909405084,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.380666625314566,
+              "overturningFOS": 13.449953198812905,
+              "bearingFOS": 1.3880634600856205,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.11111111111111,
+              "overturningFOS": 10.228070175438594,
+              "bearingFOS": 1.3880634600856205,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.0840760393591258,
+              "overturningFOS": 3.931146847009628,
+              "bearingFOS": 1.3811074918566772,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.436375359334902,
+              "overturningFOS": 12.144877082794117,
+              "bearingFOS": 1.0056834250161926,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.0840760393591258,
+          "worstOverturning": 3.931146847009628,
+          "worstBearing": 1.0056834250161926,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "irc-kherka-teegirder",
+      "name": "KHERKA Bridge — 19m Tee Beam (Courbon)",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.7583170939103276,
+              "overturningFOS": 1.970672140159721,
+              "bearingFOS": 1.6519826901912582,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.4950510671923382,
+              "overturningFOS": 1.2865110834329196,
+              "bearingFOS": 2.507122507122507,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.3255569567557094,
+              "overturningFOS": 0.846039249102732,
+              "bearingFOS": 3.8479494503814826,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.3655729529938105,
+              "overturningFOS": 0.9500305867376544,
+              "bearingFOS": 2.888150785322382,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 1.1400136873040934,
+              "overturningFOS": 2.962603943669765,
+              "bearingFOS": 1.0897249386828283,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.3255569567557094,
+          "worstOverturning": 0.846039249102732,
+          "worstBearing": 1.0897249386828283,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.749145591250851,
+              "overturningFOS": 13.748657357679908,
+              "bearingFOS": 1.3234375,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.742884324694334,
+              "overturningFOS": 13.197730123240754,
+              "bearingFOS": 1.3444444444444446,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.349206349206347,
+              "overturningFOS": 9.977324263038545,
+              "bearingFOS": 1.3444444444444446,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.144419587372607,
+              "overturningFOS": 3.748552032542227,
+              "bearingFOS": 1.3391304347826087,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.759357565665479,
+              "overturningFOS": 11.909389339272137,
+              "bearingFOS": 0.9786250722125939,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.144419587372607,
+          "worstOverturning": 3.748552032542227,
+          "worstBearing": 0.9786250722125939,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.749145591250851,
+              "overturningFOS": 13.748657357679908,
+              "bearingFOS": 1.3234375,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.742884324694334,
+              "overturningFOS": 13.197730123240754,
+              "bearingFOS": 1.3444444444444446,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 6.349206349206347,
+              "overturningFOS": 9.977324263038545,
+              "bearingFOS": 1.3444444444444446,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.144419587372607,
+              "overturningFOS": 3.748552032542227,
+              "bearingFOS": 1.3391304347826087,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.759357565665479,
+              "overturningFOS": 11.909389339272137,
+              "bearingFOS": 0.9786250722125939,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.144419587372607,
+          "worstOverturning": 3.748552032542227,
+          "worstBearing": 0.9786250722125939,
+          "verdict": "UNSAFE"
+        }
+      ]
+    },
+    {
+      "template": "irc-sukanaka-highlevel",
+      "name": "SUKANAKA Nalah — High-Level Bridge",
+      "members": [
+        {
+          "member": "Pier",
+          "sheet": "STABILITY CHECK FOR PIER",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL)",
+              "slidingFOS": 0.8155931704456921,
+              "overturningFOS": 2.294913549308793,
+              "bearingFOS": 2.0667028503194715,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+Wind)",
+              "slidingFOS": 0.4754271193774295,
+              "overturningFOS": 1.3377553632185086,
+              "bearingFOS": 3.5064935064935066,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+Hydro)",
+              "slidingFOS": 0.3161594726497791,
+              "overturningFOS": 0.8896085497256055,
+              "bearingFOS": 5.331450979260685,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+LL+Seismic)",
+              "slidingFOS": 0.36873551287291195,
+              "overturningFOS": 1.0375468496639642,
+              "bearingFOS": 3.822041556929722,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (ULS)",
+              "slidingFOS": 1.2213540924131872,
+              "overturningFOS": 3.436642380969279,
+              "bearingFOS": 1.3664460391729607,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 0.3161594726497791,
+          "worstOverturning": 0.8896085497256055,
+          "worstBearing": 1.3664460391729607,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment Type 1",
+          "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.01282051282051,
+              "overturningFOS": 14.1559829059829,
+              "bearingFOS": 1.308342857142857,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.003926037243758,
+              "overturningFOS": 13.530840367910232,
+              "bearingFOS": 1.3389473684210527,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 5.864197530864196,
+              "overturningFOS": 10.360082304526745,
+              "bearingFOS": 1.3389473684210527,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.0260380014074593,
+              "overturningFOS": 4.087525782441036,
+              "bearingFOS": 1.3311627906976744,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.114308138494857,
+              "overturningFOS": 12.249951074862821,
+              "bearingFOS": 0.9666877770740975,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.0260380014074593,
+          "worstOverturning": 4.087525782441036,
+          "worstBearing": 0.9666877770740975,
+          "verdict": "UNSAFE"
+        },
+        {
+          "member": "Abutment cantilever (C1)",
+          "sheet": "C1-STABILITY CHECK ABUTMENT",
+          "cases": [
+            {
+              "caseNumber": 1,
+              "description": "Service Condition (DL+LL+EP×1.0+Surcharge)",
+              "slidingFOS": 8.01282051282051,
+              "overturningFOS": 14.1559829059829,
+              "bearingFOS": 1.308342857142857,
+              "status": "UNSAFE",
+              "governing": true
+            },
+            {
+              "caseNumber": 2,
+              "description": "Construction Stage (DL+EP×1.0+Wind, no LL)",
+              "slidingFOS": 8.003926037243758,
+              "overturningFOS": 13.530840367910232,
+              "bearingFOS": 1.3389473684210527,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 3,
+              "description": "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)",
+              "slidingFOS": 5.864197530864196,
+              "overturningFOS": 10.360082304526745,
+              "bearingFOS": 1.3389473684210527,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 4,
+              "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
+              "slidingFOS": 3.0260380014074593,
+              "overturningFOS": 4.087525782441036,
+              "bearingFOS": 1.3311627906976744,
+              "status": "UNSAFE",
+              "governing": false
+            },
+            {
+              "caseNumber": 5,
+              "description": "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)",
+              "slidingFOS": 7.114308138494857,
+              "overturningFOS": 12.249951074862821,
+              "bearingFOS": 0.9666877770740975,
+              "status": "UNSAFE",
+              "governing": false
+            }
+          ],
+          "safeCases": 0,
+          "unsafeCases": 5,
+          "worstSliding": 3.0260380014074593,
+          "worstOverturning": 4.087525782441036,
+          "worstBearing": 0.9666877770740975,
+          "verdict": "UNSAFE"
+        }
+      ]
+    }
+  ],
+  "note": "UNSAFE counts are reported, never suppressed. Defects (non-finite factors, status disagreeing with its own numbers, sheet/engine divergence, verdicts copied rather than derived) fail the gate. Attribution is reporting only: no threshold was changed by this script."
+}

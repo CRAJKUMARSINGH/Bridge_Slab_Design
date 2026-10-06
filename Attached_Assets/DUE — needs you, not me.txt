@@ -1,0 +1,6 @@
+DUE — needs you, not me
+
+large-bridge reads UNSAFE, FOS 1.11 on hydrodynamic uplift alone — genuine review item; licensed-engineer sign-off on every CHECK/UNSAFE outcome.
+Which water level governs: sheet 3 surveyed section (AFL 101.375) vs engine spans × span (DWL 100.856) — decides the sheet-9 DWL link and can move freeboard/scour verdicts.
+Declare zod in a package.json instead of resolving it from the pnpm store via tsconfig.flat.json's baseUrl.
+SSR/DSR rates for unpriced concrete grades; IRC impact-factor configuration; assumption register (abutment band 10 m, steel ratios 80/60/50/100 kg/m³, backfill = 0.4 × excavation); engine decoupling before quarantining client/api/netlify.

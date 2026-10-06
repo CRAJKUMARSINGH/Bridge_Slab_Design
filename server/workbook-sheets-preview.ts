@@ -5,6 +5,7 @@
 import ExcelJS from 'exceljs';
 import type { ProjectInput } from '../bridge-excel-generator/types';
 import { generateCompleteExcel } from '../bridge-excel-generator/index';
+import { readCellValue } from '../bridge-excel-generator/utils';
 
 export type WorkbookSheetPreview = {
   name: string;
@@ -23,20 +24,30 @@ export const STABILITY_CHECK_PIER_SHEET_NAME = 'STABILITY CHECK FOR PIER';
 const SINGLE_SHEET_MAX_ROWS = 500;
 const SINGLE_SHEET_MAX_COLS = 36;
 
+/** Presentation spec §5: readable numbers — grouped digits, up to 3 decimals. */
+function numberDisplay(n: number): string {
+  // Exponential only for sub-0.0001 coefficients; money and quantities must never
+  // print as "8.9006e+6" in a client-facing abstract.
+  if (n !== 0 && Math.abs(n) < 1e-4) return n.toExponential(4);
+  return n.toLocaleString('en-IN', { maximumFractionDigits: 3 });
+}
+
 function cellDisplay(cell: ExcelJS.Cell): string {
-  const v = cell.value;
+  // readCellValue recovers cached results of 0/FALSE that cell.value hides.
+  const v = readCellValue(cell);
   if (v == null || v === '') return '';
   if (typeof v === 'number' && Number.isFinite(v)) {
-    const n = v;
-    if (Math.abs(n) >= 1e6 || (Math.abs(n) < 1e-4 && n !== 0)) return n.toExponential(4);
-    return Number.isInteger(n) ? String(n) : String(Number(n.toPrecision(12)));
+    return numberDisplay(v);
   }
   if (typeof v === 'string') return v;
   if (typeof v === 'boolean') return v ? 'TRUE' : 'FALSE';
   if (typeof v === 'object' && v !== null && 'formula' in v) {
     const f = (v as { formula?: string; result?: unknown }).formula;
     const r = (v as { result?: unknown }).result;
-    if (r != null && r !== '') return String(r);
+    if (r != null && r !== '') {
+      if (typeof r === 'number' && Number.isFinite(r)) return numberDisplay(r);
+      return String(r);
+    }
     if (f) return `=${f}`;
   }
   if (typeof v === 'object' && v !== null && 'richText' in v) {
@@ -49,12 +60,13 @@ function cellDisplay(cell: ExcelJS.Cell): string {
 }
 
 export async function buildWorkbookSheetPreviews(
-  input: ProjectInput,
-  options: { model?: 'model-a' | 'model-b' } = {}
+  input: ProjectInput
 ): Promise<WorkbookSheetPreview[]> {
-  const buffer = await generateCompleteExcel(input, options);
+  const buffer = await generateCompleteExcel(input);
   const wb = new ExcelJS.Workbook();
-  await wb.xlsx.load(buffer as any);
+  // ExcelJS 4.4 still types `load()` against the pre-v50 Node `Buffer`, which @types/node 25
+  // no longer considers assignable. Narrow to the parameter type instead of `as any`.
+  await wb.xlsx.load(buffer as unknown as Parameters<typeof wb.xlsx.load>[0]);
 
   const out: WorkbookSheetPreview[] = [];
 
@@ -95,13 +107,13 @@ export async function buildWorkbookSheetPreviews(
 export async function buildSingleWorkbookSheetPreview(
   input: ProjectInput,
   sheetName: string,
-  options?: { maxRows?: number; maxCols?: number; model?: 'model-a' | 'model-b' }
+  options?: { maxRows?: number; maxCols?: number }
 ): Promise<WorkbookSheetPreview | null> {
   const maxRows = options?.maxRows ?? SINGLE_SHEET_MAX_ROWS;
   const maxCols = options?.maxCols ?? SINGLE_SHEET_MAX_COLS;
-  const buffer = await generateCompleteExcel(input, { model: options?.model });
+  const buffer = await generateCompleteExcel(input);
   const wb = new ExcelJS.Workbook();
-  await wb.xlsx.load(buffer as any);
+  await wb.xlsx.load(buffer as unknown as Parameters<typeof wb.xlsx.load>[0]);
   const ws = wb.getWorksheet(sheetName);
   if (!ws) return null;
 

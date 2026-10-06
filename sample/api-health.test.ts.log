@@ -1,0 +1,16 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+▶ API Integration — Health & Metadata
+  ✔ GET /api/health returns 200 with system features (103.1378ms)
+  ✔ GET /health (legacy) returns 200 with deprecation note (11.8831ms)
+  ✔ GET /api/openapi.yaml returns spec or status check (9.831ms)
+  ✔ GET /api/design/feature-flags returns 200 and valid flag object (8.9165ms)
+✔ API Integration — Health & Metadata (137.9472ms)
+ℹ tests 4
+ℹ suites 1
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 150.4979

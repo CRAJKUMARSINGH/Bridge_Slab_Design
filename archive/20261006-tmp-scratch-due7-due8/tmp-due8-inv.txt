@@ -1,0 +1,28 @@
+{
+ "total": 97,
+ "pointerSized": 96,
+ "byKind": {
+  "drawing-cad": 32,
+  "workbook-legacy": 49,
+  "workbook": 14,
+  "workbook-macro": 2
+ },
+ "byProj": {
+  "unassigned": 93,
+  "bridge-general-review": 4
+ },
+ "summary": {
+  "fileCount": 97,
+  "byKind": {
+   "archive": 0,
+   "document": 0,
+   "document-legacy": 0,
+   "drawing-cad": 32,
+   "pdf": 0,
+   "workbook": 14,
+   "workbook-legacy": 49,
+   "workbook-macro": 2
+  }
+ }
+}
+rc=0

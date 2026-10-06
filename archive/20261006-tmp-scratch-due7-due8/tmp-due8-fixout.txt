@@ -1,0 +1,11 @@
+august-due.md rewritten
+scripts/tsconfig.tools.json trimmed
+rc=0
+ **DONE (§N-3)** — refresh the bundle whenever tracked code moves; it re-runs both chains itself.
+8. ~~Fix or remove vercel.json / netlify.toml~~ **DONE (§N-1)** — vercel repaired and built locally, netlify archived. **Still due:** `Dockerfile` + `lib/log.ts` for headless runs.
+9. Get a real visual pass: run the app where a screenshot surface exists (or headless Chrome), check A4/15 mm/landscape on rendered output
+10. Re-run check/test/verify/audit/pipeline, regenerate test-output, then ask for the merge
+```
+
+---
+*Last updated: 2026-10-06 — §P added (DUE-8): root `scripts/*.ts` given a real typecheck lane (`scripts/tsconfig.tools.json` + `pnpm run typecheck:tools`, wired into `check` and CI); five latent defects fixed by its first run, including the release-bundler crash and a QA field that logged 0 for all 251 load tests; sharp/word-extractor imports marked rather than excluded; three scripts importing a deleted prose layer archived; repo-wide LFS pointer census; §J-9 re-scoped (A1 works, corpus empty). §O-8's stale "lane not yet wired" note corrected. Earlier same day: §O added (DUE-7) — Model A/B retired and archived, J-8's root cause corrected from "xlsx not installed" to stale reference paths + Git LFS pointer stubs, new `read-office-workbook.ts` guard, `BackwaterCurvePanel` polyline fix, J-7/J-8 closed, LFS materialization added as an A2–A5 prerequisite.*

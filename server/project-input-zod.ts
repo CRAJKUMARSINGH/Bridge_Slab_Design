@@ -25,7 +25,7 @@ export const projectInputBodySchema = z
     foundationLevel: z.number().finite().optional(),
     discharge: z.number().finite().optional(),
     manningN: z.number().finite().positive().optional(),
-    bedSlope: z.number().finite().positive().optional(),
+    bedSlope: z.number().finite().min(1).max(100_000).optional(),
     laceysSiltFactor: z.number().finite().positive().optional(),
     crossSectionData: z.array(crossSectionPoint).min(1).max(200).optional(),
     pierWidth: z.number().finite().positive().optional(),

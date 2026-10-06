@@ -1,0 +1,113 @@
+{
+  "quantities": {
+    "concrete": {
+      "m20": 0,
+      "m25": 1504.35,
+      "m30": 0,
+      "m35": 0,
+      "total": 1504.35
+    },
+    "steel": {
+      "fe415": 89.2055,
+      "fe500": 0,
+      "total": 89.2055
+    },
+    "formwork": 701.2,
+    "excavation": {
+      "ordinary": 0,
+      "hardRock": 0,
+      "total": 0
+    },
+    "backfill": 0
+  },
+  "boq": [
+    {
+      "itemNo": "1",
+      "description": "Concrete M25",
+      "unit": "m³",
+      "quantity": 1504.35,
+      "rate": 5500,
+      "amount": 8273924.999999999
+    },
+    {
+      "itemNo": "2",
+      "description": "Steel Fe415",
+      "unit": "MT",
+      "quantity": 89.2055,
+      "rate": 65000,
+      "amount": 5798357.5
+    },
+    {
+      "itemNo": "3",
+      "description": "Formwork",
+      "unit": "m²",
+      "quantity": 701.2,
+      "rate": 350,
+      "amount": 245420.00000000003
+    },
+    {
+      "itemNo": "4",
+      "description": "Excavation",
+      "unit": "m³",
+      "quantity": 0,
+      "rate": 250,
+      "amount": 0
+    },
+    {
+      "itemNo": "5",
+      "description": "Backfill",
+      "unit": "m³",
+      "quantity": 0,
+      "rate": 150,
+      "amount": 0
+    },
+    {
+      "itemNo": "6",
+      "description": "PCC Blinding",
+      "unit": "m³",
+      "quantity": 13.975000000000001,
+      "rate": 5000,
+      "amount": 69875
+    },
+    {
+      "itemNo": "7",
+      "description": "Wearing Coat",
+      "unit": "m²",
+      "quantity": 18,
+      "rate": 1200,
+      "amount": 21600
+    },
+    {
+      "itemNo": "8",
+      "description": "Expansion Joints",
+      "unit": "m",
+      "quantity": 15,
+      "rate": 5000,
+      "amount": 75000
+    },
+    {
+      "itemNo": "9",
+      "description": "Bearings",
+      "unit": "nos",
+      "quantity": 6,
+      "rate": 25000,
+      "amount": 150000
+    },
+    {
+      "itemNo": "10",
+      "description": "TOTAL",
+      "unit": "",
+      "quantity": 0,
+      "rate": 0,
+      "amount": 14634177.5
+    }
+  ],
+  "cost": {
+    "subtotal": 14634177.5,
+    "gst": 2634151.9499999997,
+    "total": 17268329.45,
+    "ratePerMeter": 359756.86354166665,
+    "profit": 0,
+    "overhead": 0
+  }
+}

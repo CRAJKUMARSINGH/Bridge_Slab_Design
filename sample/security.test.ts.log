@@ -1,0 +1,70 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+▶ Security & Hardening Integration Tests
+  ✔ SEC-001: enforces body parser size limit below 200 KB (107.1547ms)
+  ✔ SEC-002: rejects or safely handles path traversal attempts in pier cases catalog (14.3401ms)
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+  → Calculating pier design...
+  → Calculating TYPE1 abutment design...
+  → Calculating C1 abutment design...
+✅ Design Engine: All calculations complete
+🚀 Starting Excel generation...
+Project: <script>alert('xss')</script> Safe Bridge
+Generating 46 sheets with real formulas...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+  → Calculating pier design...
+  → Calculating TYPE1 abutment design...
+  → Calculating C1 abutment design...
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+[2026-10-04 12:54:39.131 +0530] [31mERROR[39m: [36mServer error[39m
+    err: {
+      "type": "PayloadTooLargeError",
+      "message": "request entity too large",
+      "stack":
+          PayloadTooLargeError: request entity too large
+              at readStream (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\raw-body@3.0.2\node_modules\raw-body\index.js:163:17)
+              at getRawBody (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\raw-body@3.0.2\node_modules\raw-body\index.js:116:12)
+              at read (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\body-parser@2.3.0\node_modules\body-parser\lib\read.js:113:3)
+              at jsonParser (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\body-parser@2.3.0\node_modules\body-parser\lib\types\json.js:60:5)
+              at Layer.handleRequest (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+              at trimPrefix (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:342:13)
+              at E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+              at processParams (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+              at next (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+              at router.handle (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3)
+              at app.handle (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\application.js:177:15)
+              at Server.app (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\express.js:38:9)
+              at Server.emit (node:events:508:28)
+              at parserOnIncoming (node:_http_server:1210:12)
+              at HTTPParser.parserOnHeadersComplete (node:_http_common:125:17)
+      "expected": 250018,
+      "length": 250018,
+      "limit": 204800,
+      "status": 413,
+      "statusCode": 413,
+      "expose": true
+    }
+  ✔ SEC-003: escapes HTML characters in report payload inputs to prevent XSS (913.0243ms)
+  ✔ SEC-010: response headers contain standard security metadata (10.6969ms)
+✔ Security & Hardening Integration Tests (1049.6406ms)
+ℹ tests 4
+ℹ suites 1
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1060.4846

@@ -1,0 +1,61 @@
+=== root scripts/*.ts:
+scripts/assimilate-sheet-by-sheet.ts
+scripts/audit_excel_workbooks.ts
+scripts/batch-eleven-comprehensive-pdf.ts
+scripts/build-release-candidate.ts
+scripts/build-variable-audit-matrix.ts
+scripts/create-variable-selection-sheet.ts
+scripts/debug-ctx.ts
+scripts/debug-hydraulics.ts
+scripts/debug-wind.ts
+scripts/draft-descriptive-lines-from-workbook.ts
+scripts/eleven-bridge-cases.ts
+scripts/emit-w16-demo-workbook.ts
+scripts/export-sample-output-bundle.ts
+scripts/generate-11-tutorial-designs.ts
+scripts/generate-56sheet-book.ts
+scripts/generate-gad-csv.ts
+scripts/lint-narrative-no-hardcoded-numbers.ts
+scripts/qa-gate-static.ts
+scripts/qa-ultra-strict.ts
+scripts/read-office-workbook.ts
+scripts/regenerate-test-output.ts
+scripts/run-eleven-design-smoke.ts
+scripts/run-eleven-full-artifacts.ts
+scripts/run-fifteen-random-full-artifacts.ts
+scripts/run-five-samples-workbook-label-match.ts
+scripts/run-integration-tests.ts
+scripts/stress-test-15-users.ts
+scripts/stress-test-251-users.ts
+scripts/test-15-users.ts
+scripts/test-all-features.ts
+scripts/test-comprehensive-pdf.ts
+scripts/test-excel-generator.ts
+scripts/test-narratives-output.ts
+scripts/test-storytelling.ts
+scripts/tmp-due7-probe.ts
+scripts/verify-engine-hydraulics.ts
+scripts/verify-estimation-consistency.ts
+scripts/verify-html-pdf-parity.ts
+scripts/verify-kherwara-excel-golden.ts
+scripts/verify-load-case-diversity.ts
+scripts/verify-narrative-depth.ts
+scripts/verify-stability-outcomes.ts
+scripts/verify-uplift-sanity.ts
+scripts/verify-workbook-links.ts
+scripts/verify-workbook-value-sanity.ts
+scripts/workbook-standards-config.ts
+
+=== referenced in root package.json:
+scripts/build-release-candidate.ts
+scripts/generate-56sheet-book.ts
+scripts/lint-narrative-no-hardcoded-numbers.ts
+
+=== referenced in scripts/package.json:
+src/design.ts
+src/hello.ts
+src/verify-golden.ts
+
+=== referenced in .github/workflows:
+
+=== referenced anywhere in pipeline/ or CI:

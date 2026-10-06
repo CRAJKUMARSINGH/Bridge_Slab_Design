@@ -74,10 +74,8 @@ export function PierStability() {
   return (
     <>
         <div className="mb-6 flex flex-wrap items-center gap-4">
-          <Link href="/design">
-            <a className="inline-flex items-center gap-2 text-sm text-app-muted transition-colors hover:text-app-accent">
-              <ArrowLeft className="h-4 w-4" /> Back to Design
-            </a>
+          <Link href="/design" className="inline-flex items-center gap-2 text-sm text-app-muted transition-colors hover:text-app-accent">
+            <ArrowLeft className="h-4 w-4" /> Back to Design
           </Link>
         </div>
 
@@ -101,20 +99,22 @@ export function PierStability() {
             <strong className="text-app-fg"> Pier with Pile Foundation</strong> tutorial.
             Benchmark: BEDACH River pier W_DL=479 kN, W_LL=92 kN → SBC check 7.8 kg/cm². Seismic: Zone III Z=0.24, I=1.5 (frmPier_Design_with_Piles).
           </p>
-          <Link href="/astra-library">
-            <a className="flex shrink-0 items-center gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-[11px] font-semibold text-amber-400 hover:bg-amber-500/20 transition">
-              <BookOpen className="h-3.5 w-3.5" /> Open ASTRA Library
-            </a>
+          <Link
+            href="/astra-library"
+            className="flex shrink-0 items-center gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-[11px] font-semibold text-amber-400 hover:bg-amber-500/20 transition"
+          >
+            <BookOpen className="h-3.5 w-3.5" /> Open ASTRA Library
           </Link>
         </div>
 
         {!projectInput && (
           <div className="rounded-xl border border-[var(--app-glass-border)] bg-app-card/40 px-6 py-10 text-center text-app-muted">
             <p className="mb-4">No design input found. Run a calculation on Design first (input is saved automatically).</p>
-            <Link href="/design">
-              <a className="inline-flex items-center gap-2 rounded-lg bg-app-accent px-4 py-2 text-sm font-semibold text-white hover:opacity-90">
-                Go to Design
-              </a>
+            <Link
+              href="/design"
+              className="inline-flex items-center gap-2 rounded-lg bg-app-accent px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
+            >
+              Go to Design
             </Link>
           </div>
         )}

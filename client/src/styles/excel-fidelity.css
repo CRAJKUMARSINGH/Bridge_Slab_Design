@@ -79,7 +79,7 @@ tr.excel-fidelity-section-break td {
 @media print {
   @page {
     size: A4 landscape;
-    margin: 10mm 12mm;
+    margin: 15mm;
   }
 
   body {

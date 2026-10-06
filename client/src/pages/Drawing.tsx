@@ -12,14 +12,78 @@ import {
 } from "lucide-react";
 import { toast } from 'sonner';
 
-type SvgKey = 'gad' | 'pier' | 'abutment' | 'decking' | 'xsec';
+type SvgKey = 'gad' | 'pier' | 'abutment' | 'decking' | 'xsec'
+            | 'foundation' | 'wingwall' | 'longitudinal' | 'xsec-pier';
+
+// Coming-soon placeholder panel shown for drawing types not yet generated
+function ComingSoonPanel({ label, note }: { label: string; note?: string }) {
+  return (
+    <div className="flex min-h-[500px] flex-col items-center justify-center gap-4 text-center px-8">
+      <div className="rounded-full border-2 border-dashed border-app-accent/30 p-6">
+        <Layers className="h-12 w-12 text-app-accent/40" />
+      </div>
+      <h3 className="text-xl font-bold text-app-fg">{label}</h3>
+      <p className="max-w-sm text-sm text-app-muted leading-relaxed">
+        {note ?? 'This drawing type is planned for the next release. The SVG generator is being developed based on IRC SP-13 detailing requirements.'}
+      </p>
+      <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-400 uppercase tracking-widest">
+        Coming Soon
+      </span>
+    </div>
+  );
+}
 
 const DRAWING_PANELS: { key: SvgKey; label: string; Component: any; Icon: any }[] = [
-  { key: 'gad',      label: 'GAD Elevation', Component: GADDrawing, Icon: LayoutTemplate },
-  { key: 'decking',  label: 'Decking Layout', Component: DeckingDrawing, Icon: Maximize2 },
-  { key: 'xsec',     label: 'Typical X-Sec', Component: CrossSectionDrawing, Icon: MoveVertical },
-  { key: 'pier',     label: 'Pier Details',  Component: PierDrawing, Icon: Columns3 },
-  { key: 'abutment', label: 'Abutment Details', Component: AbutmentDrawing, Icon: Building2 },
+  { key: 'gad',          label: 'GAD Elevation',         Component: GADDrawing,                                            Icon: LayoutTemplate },
+  { key: 'decking',      label: 'Decking Layout',         Component: DeckingDrawing,                                        Icon: Maximize2 },
+  { key: 'xsec',         label: 'Typical X-Sec',          Component: CrossSectionDrawing,                                   Icon: MoveVertical },
+  { key: 'pier',         label: 'Pier Details',           Component: PierDrawing,                                           Icon: Columns3 },
+  { key: 'abutment',     label: 'Abutment Details',       Component: AbutmentDrawing,                                       Icon: Building2 },
+  // ── Planned drawing types (CODE-JUNCTION: bridge-slab-DRAWINGD BY CODEX) ──
+  {
+    key: 'foundation',
+    label: 'Foundation Plan',
+    Component: () => (
+      <ComingSoonPanel
+        label="Foundation Plan"
+        note="Pier footing and abutment foundation layout. Shows founding levels, footing dimensions, pile arrangement (if applicable), and design scour level per IRC SP-13 §6.4."
+      />
+    ),
+    Icon: Layers,
+  },
+  {
+    key: 'wingwall',
+    label: 'Wing / Return Walls',
+    Component: () => (
+      <ComingSoonPanel
+        label="Wing Wall & Return Wall Drawings"
+        note="Cantilever and return wing wall layout, reinforcement schedule, and earth-fill extent per IRC SP-13 §7. Tied to abutment geometry from the design engine."
+      />
+    ),
+    Icon: Building2,
+  },
+  {
+    key: 'longitudinal',
+    label: 'Longitudinal Section',
+    Component: () => (
+      <ComingSoonPanel
+        label="Longitudinal Section with Soil Strata"
+        note="Full-length longitudinal profile showing HFL, LWL, bed level, scour level, founding level, and soil strata layers (from bore log data where provided). Scale 1:100 per IRC SP-13."
+      />
+    ),
+    Icon: MoveVertical,
+  },
+  {
+    key: 'xsec-pier',
+    label: 'X-Sec at Each Pier',
+    Component: () => (
+      <ComingSoonPanel
+        label="Cross-Section at Every Pier"
+        note="Individual cross-sectional views at each pier location, showing waterway section, scour hole, pier geometry, and protection works. Auto-generated once multi-pier geometry is supported."
+      />
+    ),
+    Icon: Maximize2,
+  },
 ];
 
 export function Drawing() {

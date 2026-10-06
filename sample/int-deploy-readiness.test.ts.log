@@ -1,0 +1,15 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+▶ Deployment Configuration Readiness (Vercel & Netlify)
+  ✔ DEP-001: vercel.json exists and has valid rewrites (1.7543ms)
+  ✔ DEP-002: netlify.toml exists and configures publish and build commands (1.4444ms)
+  ✔ DEP-004: node version is pinned (0.3327ms)
+✔ Deployment Configuration Readiness (Vercel & Netlify) (5.1071ms)
+ℹ tests 3
+ℹ suites 1
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19.1052

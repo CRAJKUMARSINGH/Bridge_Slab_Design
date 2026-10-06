@@ -10,29 +10,110 @@ on:
 jobs:
   quality-gates:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # The repo is a pnpm workspace and package.json's preinstall script rejects npm,
+      # so pnpm must be the only installer here.
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: npm
+          # Node 24 = .nvmrc = the Dockerfile base image (node:24-slim-bookworm).
+          # DEP-004 in tests/integration/deploy-readiness.test.ts fails if these three drift.
+          node-version: 24
+          cache: pnpm
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
-      - name: Type check
-        run: npm run check
+      - name: Type check (libs, flat generator/server, workspaces)
+        run: pnpm run check
 
-      - name: Unit tests
-        run: npm run test
+      - name: Integration tests (node:test via tsx)
+        run: pnpm run test
 
-      - name: Production build
-        run: npm run build
+      - name: Workbook gates (sheets, links, values, costing, uplift, load cases)
+        run: pnpm run verify
+
+      # Action 1.6 / august-due.md §Q: index the legacy Office corpus and fail while any indexed asset is
+      # still unclassified. EXPECTED RED right now — the register has 97 assets and the decision file has
+      # zero records, because classification is an engineer's claim about provenance, not a filename
+      # guess. It reports without blocking the build until A3 (classify_cells.py) supplies real decisions;
+      # remove continue-on-error the moment the tally is clean.
+      - name: Assimilation coverage report (A1 gate, expected red until A3)
+        continue-on-error: true
+        run: pnpm run assimilate
+
+      - name: Upload assimilation coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: assimilation-coverage
+          path: |
+            evidence/assimilation-coverage.md
+            asset-register.json
+          if-no-files-found: warn
+          retention-days: 30
+
+      # End-to-end single-command entry (inputs → calculate → workbook → PDF → HTML).
+      # Two projects only, to keep the step short; a non-zero exit means a stage failed.
+      - name: Pipeline smoke run (2 projects, all artefact stages)
+        run: pnpm run pipeline --only=kherwara-golden,high-level-reference
+
+      # Reviewer evidence: the workbook, the three PDFs and both HTML reports. Uploaded even
+      # when the run fails, because a half-finished bundle is what makes a failure reviewable.
+      - name: Upload pipeline artefacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-artefacts
+          path: tmp/pipeline/**
+          if-no-files-found: warn
+          retention-days: 30
+
+      # The deployable bundle. `pnpm run build` is deliberately not used here: it also
+      # builds artifacts/mockup-sandbox, whose vite dev-preview needs the @tailwindcss/oxide
+      # native binding that pnpm-workspace.yaml excludes from the install graph.
+      - name: Production build (api-server bundle)
+        run: pnpm --filter ./artifacts/api-server run build
 
       - name: Audit policy gate
-        run: npm run audit:policy
+        run: pnpm run audit:policy
+
+  # The headless container image (Dockerfile, august-due.md §R). This is its FIRST build attempt: no
+  # Docker engine exists on the machine the Dockerfile was written on, so nothing about it is proven
+  # yet. continue-on-error keeps an unverified image from reddening the gate chain — remove the flag
+  # once this job has gone green, and update the Dockerfile header.
+  container-image-build:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -t bridge-design:candidate .
+
+      # The image's real entry point, one project, artefacts copied out of the container.
+      - name: Cold run of the batch pipeline inside the image
+        run: |
+          mkdir -p tmp/container-out
+          docker run --rm -v "$PWD/tmp/container-out:/app/tmp/pipeline" bridge-design:candidate \
+            pnpm run pipeline --only=kherwara-golden
+
+      - name: Upload container artefacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: container-pipeline-artefacts
+          path: tmp/container-out/**
+          if-no-files-found: warn
+          retention-days: 30

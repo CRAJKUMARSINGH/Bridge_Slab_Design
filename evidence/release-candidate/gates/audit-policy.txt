@@ -1,0 +1,5 @@
+
+> workspace@0.0.0 audit:policy E:\Rajkumar\Bridge_Slab_Design
+> node scripts/check-audit-threshold.mjs
+
+Audit policy OK (pnpm): critical=0, high=19, accepted-high=[brace-expansion, braces, fast-uri, js-yaml, nanoid, xlsx], next review=2027-01-31, import scan=xlsx confined to [scripts]

@@ -1,0 +1,10 @@
+OK   irc-sukanaka-highlevel                     cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+
+Templates: 20 | cells: 48234 | formulas: 9118 | defects: 0
+sanity_exit=0
+  S9 N51 ULS status:    {"formula":"=IF(AND(K51>=1.5,L51>=1.8,M51>=2.5),\"SAFE\",\"UNSAFE\")","result":"UNSAFE"}
+  S10 C12 retrieved V:  {"formula":"='STABILITY CHECK FOR PIER'!H47","result":644.638}
+  S10 I12 status link:  {"formula":"=IF(G12<=H12,'STABILITY CHECK FOR PIER'!N47,\"UNSAFE\")","result":"UNSAFE"}
+
+Done: 20/20 workbooks fully linked.
+links_exit=0

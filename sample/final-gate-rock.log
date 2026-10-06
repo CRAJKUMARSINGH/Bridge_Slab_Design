@@ -1,0 +1,157 @@
+
+> workspace@0.0.0 deliverables E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run deliverables
+
+
+> @workspace/scripts@0.0.0 deliverables E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./regenerate-test-output.ts
+
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 46 sheets with real formulas...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+  → Calculating pier design...
+  → Calculating TYPE1 abutment design...
+  → Calculating C1 abutment design...
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 46 sheets with real formulas...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+  → Calculating pier design...
+  → Calculating TYPE1 abutment design...
+  → Calculating C1 abutment design...
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 46 sheets with real formulas...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+  → Calculating pier design...
+  → Calculating TYPE1 abutment design...
+  → Calculating C1 abutment design...
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 46 sheets with real formulas...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+  → Calculating pier design...
+  → Calculating TYPE1 abutment design...
+  → Calculating C1 abutment design...
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+  design-workbook.xlsx         69,530 bytes
+  sheet-book.pdf               1,611,057 bytes
+  comprehensive-report.pdf     4,528,506 bytes
+  short-design-report.pdf      202,761 bytes
+  design-report.html           274,586 bytes
+  irc-checklist.html           39,467 bytes
+
+Wrote 6 deliverables to E:\Rajkumar\Bridge_Slab_Design\scripts\test-output
+deliverables=0
+Golden regression passed; tamper input changed the result as expected.
+golden=0
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+— Kherwara reference
+  OK (snapshot + identities)
+— High-level reference
+  OK (snapshot + identities)
+— Minimal channel (synthetic)
+  OK (snapshot + identities)
+— Supercritical slot (synthetic)
+  OK (snapshot + identities)
+verify:engine OK — all hydraulics fixtures passed
+hydraulics=0
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+  → Calculating pier design...
+  → Calculating TYPE1 abutment design...
+  → Calculating C1 abutment design...
+✅ Design Engine: All calculations complete
+OK HYDRAULICS (5 paragraphs)
+OK STABILITY CHECK FOR PIER (10 paragraphs)
+OK TYPE1-STABILITY CHECK ABUTMENT (7 paragraphs)
+OK TechNote (21 paragraphs)
+OK Tech Report (13 paragraphs)
+OK ESTIMATION (5 paragraphs)
+narrative=0
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+OK   template:larathi-stabil  v=2.410 m/s  Q=1062.58 cumecs
+OK   template:kherwara-golden  v=1.718 m/s  Q=243.11 cumecs
+OK   template:high-level-reference  v=2.762 m/s  Q=1240.26 cumecs
+OK   template:small-bridge  v=3.425 m/s  Q=804.85 cumecs
+OK   template:medium-bridge  v=3.734 m/s  Q=2636.10 cumecs
+OK   template:large-bridge  v=4.648 m/s  Q=5883.93 cumecs
+OK   template:irc-bedach-bedla  v=1.822 m/s  Q=375.27 cumecs
+OK   template:irc-jakham-mandvi  v=2.007 m/s  Q=572.03 cumecs
+OK   template:irc-t01-jethliya  v=1.647 m/s  Q=159.76 cumecs
+OK   template:irc-sukanaka-matoon  v=1.976 m/s  Q=276.70 cumecs
+OK   template:irc-ayad-maharashtra  v=2.027 m/s  Q=556.31 cumecs
+OK   template:irc-gumaniya-udaipur  v=1.733 m/s  Q=170.74 cumecs
+OK   template:irc-katumbi-chandrod  v=2.013 m/s  Q=385.93 cumecs
+OK   template:irc-sisarama-highlevel  v=1.684 m/s  Q=255.12 cumecs
+OK   template:irc-kumbhalgarh-kelwara  v=2.157 m/s  Q=567.31 cumecs
+OK   template:irc-parwan-highlevel  v=2.263 m/s  Q=778.60 cumecs
+OK   template:irc-banas-highlevel  v=2.137 m/s  Q=822.66 cumecs
+OK   template:irc-ayad-fatehpura  v=2.020 m/s  Q=452.93 cumecs
+OK   template:irc-kherka-teegirder  v=2.076 m/s  Q=418.74 cumecs
+OK   template:irc-sukanaka-highlevel  v=1.944 m/s  Q=306.23 cumecs
+OK   var:kherwara-discharge+3%  v=1.718 m/s  Q=243.11 cumecs
+OK   var:kherwara-discharge-3%  v=1.718 m/s  Q=243.11 cumecs
+OK   var:kherwara-span+0.25m  v=1.718 m/s  Q=243.11 cumecs
+OK   var:kherwara-manning+0.0005  v=1.692 m/s  Q=239.48 cumecs
+OK   var:kherwara-bedSlope+40  v=1.683 m/s  Q=238.20 cumecs
+OK   var:kherwara-sbc+8  v=1.718 m/s  Q=243.11 cumecs
+
+Done: 26/26 passed.
+smoke=0

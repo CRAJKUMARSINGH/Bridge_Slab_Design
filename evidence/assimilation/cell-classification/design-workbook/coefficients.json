@@ -1,0 +1,1390 @@
+{
+  "factor_and_limit_cells": [
+    {
+      "id": "afflux calculation!G27",
+      "sheet": "afflux calculation",
+      "cell": "G27",
+      "label": "the silt factor",
+      "units": "",
+      "value": 1.5,
+      "referenced_by": [
+        "afflux calculation!B33"
+      ],
+      "confidence": 0.82,
+      "status": "auto"
+    },
+    {
+      "id": "STABILITY CHECK FOR PIER!B6",
+      "sheet": "STABILITY CHECK FOR PIER",
+      "cell": "B6",
+      "label": "Unit weight of RC",
+      "units": "",
+      "value": 25,
+      "referenced_by": [
+        "STABILITY CHECK FOR PIER!B30"
+      ],
+      "confidence": 0.82,
+      "status": "auto"
+    },
+    {
+      "id": "STABILITY CHECK FOR PIER!B15",
+      "sheet": "STABILITY CHECK FOR PIER",
+      "cell": "B15",
+      "label": "Safe bearing capacity (SBC)",
+      "units": "SBC",
+      "value": 150,
+      "referenced_by": [
+        "Footing STRESS DIAGRAM!D14",
+        "Footing STRESS DIAGRAM!D15",
+        "Footing STRESS DIAGRAM!D16",
+        "Footing STRESS DIAGRAM!D17",
+        "Footing STRESS DIAGRAM!D18",
+        "Footing STRESS DIAGRAM!D19",
+        "Footing STRESS DIAGRAM!D20",
+        "STABILITY CHECK FOR PIER!M47",
+        "STABILITY CHECK FOR PIER!M48",
+        "STABILITY CHECK FOR PIER!M49",
+        "STABILITY CHECK FOR PIER!M50",
+        "STABILITY CHECK FOR PIER!M51",
+        "abstract of stresses!B9"
+      ],
+      "confidence": 0.82,
+      "status": "auto"
+    },
+    {
+      "id": "STABILITY CHECK FOR PIER!B22",
+      "sheet": "STABILITY CHECK FOR PIER",
+      "cell": "B22",
+      "label": "Friction coefficient \u03bc",
+      "units": "",
+      "value": 0.5,
+      "referenced_by": [
+        "STABILITY CHECK FOR PIER!K47",
+        "STABILITY CHECK FOR PIER!K48",
+        "STABILITY CHECK FOR PIER!K49",
+        "STABILITY CHECK FOR PIER!K50",
+        "STABILITY CHECK FOR PIER!K51"
+      ],
+      "confidence": 0.82,
+      "status": "auto"
+    },
+    {
+      "id": "STABILITY CHECK FOR PIER!B23",
+      "sheet": "STABILITY CHECK FOR PIER",
+      "cell": "B23",
+      "label": "Drag coefficient Cd (rect. pier)",
+      "units": "",
+      "value": 0.66,
+      "referenced_by": [
+        "STABILITY CHECK FOR PIER!B34"
+      ],
+      "confidence": 0.82,
+      "status": "auto"
+    },
+    {
+      "id": "STABILITY CHECK FOR PIER!B24",
+      "sheet": "STABILITY CHECK FOR PIER",
+      "cell": "B24",
+      "label": "Wind force coefficient Cf",
+      "units": "",
+      "value": 1.3,
+      "referenced_by": [
+        "STABILITY CHECK FOR PIER!B41"
+      ],
+      "confidence": 0.82,
+      "status": "auto"
+    },
+    {
+      "id": "STABILITY CHECK FOR PIER!C51",
+      "sheet": "STABILITY CHECK FOR PIER",
+      "cell": "C51",
+      "label": "Ultimate Limit State (ULS)",
+      "units": "ULS",
+      "value": 1.35,
+      "referenced_by": [
+        "STABILITY CHECK FOR PIER!H51"
+      ],
+      "confidence": 0.82,
+      "status": "auto"
+    },
+    {
+      "id": "STABILITY CHECK FOR PIER!D51",
+      "sheet": "STABILITY CHECK FOR PIER",
+      "cell": "D51",
+      "label": "Ultimate Limit State (ULS)",
+      "units": "ULS",
+      "value": 1.5,
+      "referenced_by": [
+        "STABILITY CHECK FOR PIER!H51"
+      ],
+      "confidence": 0.82,
+      "status": "auto"
+    },
+    {
+      "id": "STABILITY CHECK FOR PIER!E51",
+      "sheet": "STABILITY CHECK FOR PIER",
+      "cell": "E51",
+      "label": "Ultimate Limit State (ULS)",
+      "units": "ULS",
+      "value": 0.9,
+      "referenced_by": [
+        "STABILITY CHECK FOR PIER!I51"
+      ],
+      "confidence": 0.82,
+      "status": "auto"
+    },
+    {
+      "id": "STABILITY CHECK FOR PIER!F51",
+      "sheet": "STABILITY CHECK FOR PIER",
+      "cell": "F51",
+      "label": "Ultimate Limit State (ULS)",
+      "units": "ULS",
+      "value": 0,
+      "referenced_by": [
+        "STABILITY CHECK FOR PIER!I51"
+      ],
+      "confidence": 0.82,
+      "status": "auto"
+    },
+    {
+      "id": "STABILITY CHECK FOR PIER!G51",
+      "sheet": "STABILITY CHECK FOR PIER",
+      "cell": "G51",
+      "label": "Ultimate Limit State (ULS)",
+      "units": "ULS",
+      "value": 1,
+      "referenced_by": [
+        "STABILITY CHECK FOR PIER!H51"
+      ],
+      "confidence": 0.82,
+      "status": "auto"
+    },
+    {
+      "id": "LLOAD!C8",
+      "sheet": "LLOAD",
+      "cell": "C8",
+      "label": "Ultimate Limit State (ULS)",
+      "units": "ULS",
+      "value": 1.5,
+      "referenced_by": [
+        "LLOAD!D8"
+      ],
+      "confidence": 0.82,
+      "status": "auto"
+    },
+    {
+      "id": "TYPE1-STABILITY CHECK ABUTMENT!B11",
+      "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+      "cell": "B11",
+      "label": "Soil unit weight \u03b3",
+      "units": "",
+      "value": 18,
+      "referenced_by": [
+        "TYPE1-STABILITY CHECK ABUTMENT!B17"
+      ],
+      "confidence": 0.82,
+      "status": "auto"
+    },
+    {
+      "id": "TYPE1-STABILITY CHECK ABUTMENT!B12",
+      "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+      "cell": "B12",
+      "label": "Safe bearing capacity SBC",
+      "units": "",
+      "value": 150,
+      "referenced_by": [
+        "C1-Abut Footing STRESS DIAGRAM!D5",
+        "C1-Abut Footing STRESS DIAGRAM!D6",
+        "C1-Abut Footing STRESS DIAGRAM!D7",
+        "C1-Abut Footing STRESS DIAGRAM!D8",
+        "C1-Abut Footing STRESS DIAGRAM!D9",
+        "TYPE1- Abut Footing STRESS!D4",
+        "TYPE1- Abut Footing STRESS!D5",
+        "TYPE1- Abut Footing STRESS!D6",
+        "TYPE1- Abut Footing STRESS!D7",
+        "TYPE1- Abut Footing STRESS!D8",
+        "TYPE1-STABILITY CHECK ABUTMENT!H21",
+        "TYPE1-STABILITY CHECK ABUTMENT!H22",
+        "TYPE1-STABILITY CHECK ABUTMENT!H23",
+        "TYPE1-STABILITY CHECK ABUTMENT!H24",
+        "TYPE1-STABILITY CHECK ABUTMENT!H25"
+      ],
+      "confidence": 0.82,
+      "status": "auto"
+    },
+    {
+      "id": "TYPE1-STABILITY CHECK ABUTMENT!B36",
+      "sheet": "TYPE1-STABILITY CHECK ABUTMENT",
+      "cell": "B36",
+      "label": "Seismic zone factor Z (IS:1893)",
+      "units": "IS:1893",
+      "value": 0.16,
+      "referenced_by": [
+        "TYPE1-STABILITY CHECK ABUTMENT!B37"
+      ],
+      "confidence": 0.82,
+      "status": "auto"
+    }
+  ],
+  "embedded_literals": [
+    {
+      "literal": "0",
+      "occurrences": 68,
+      "used_in": [
+        {
+          "cell": "HYDRAULICS!C6",
+          "label": "DEPTH OF FLOW IN M",
+          "formula": "=IF($F$4-B6>0,$F$4-B6,0)"
+        },
+        {
+          "cell": "HYDRAULICS!C6",
+          "label": "DEPTH OF FLOW IN M",
+          "formula": "=IF($F$4-B6>0,$F$4-B6,0)"
+        },
+        {
+          "cell": "HYDRAULICS!E6",
+          "label": "AVERAGE DEPTH OF FLOW",
+          "formula": "=IF(C6>0,(C6+C7)/2,0)"
+        },
+        {
+          "cell": "HYDRAULICS!E6",
+          "label": "AVERAGE DEPTH OF FLOW",
+          "formula": "=IF(C6>0,(C6+C7)/2,0)"
+        },
+        {
+          "cell": "HYDRAULICS!C7",
+          "label": "DEPTH OF FLOW IN M",
+          "formula": "=IF($F$4-B7>0,$F$4-B7,0)"
+        }
+      ]
+    },
+    {
+      "literal": "3",
+      "occurrences": 62,
+      "used_in": [
+        {
+          "cell": "afflux calculation!C13",
+          "label": "I/nx",
+          "formula": "=(1/C10)*POWER(C6/C7,2/3)*SQRT(1/E8)"
+        },
+        {
+          "cell": "afflux calculation!B33",
+          "label": "dsm =",
+          "formula": "=1.34*POWER(POWER(C32,2)/G27,1/3)"
+        },
+        {
+          "cell": "HYDRAULICS!C21",
+          "label": "TOTAL",
+          "formula": "=(1/C19)*POWER(C16/C17,2/3)*SQRT(1/C20)"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!B25",
+          "label": "Zone factor Z",
+          "formula": "=IF(B21=2,0.1,IF(B21=3,0.16,IF(B21=4,0.24,0.36)))"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!B26",
+          "label": "Seismic coefficient Ah",
+          "formula": "=(B25/2)*2.5/(3/1.5)"
+        }
+      ]
+    },
+    {
+      "literal": "2",
+      "occurrences": 53,
+      "used_in": [
+        {
+          "cell": "afflux calculation!C13",
+          "label": "I/nx",
+          "formula": "=(1/C10)*POWER(C6/C7,2/3)*SQRT(1/E8)"
+        },
+        {
+          "cell": "afflux calculation!B33",
+          "label": "dsm =",
+          "formula": "=1.34*POWER(POWER(C32,2)/G27,1/3)"
+        },
+        {
+          "cell": "afflux calculation!B70",
+          "label": "Total Area obstructed by Abu",
+          "formula": "=2*C69"
+        },
+        {
+          "cell": "afflux calculation!C74",
+          "label": "m2",
+          "formula": "=((POWER(C47,2)/17.85)+0.0152)*(POWER(C46/C72,2)-1)"
+        },
+        {
+          "cell": "afflux calculation!C74",
+          "label": "m2",
+          "formula": "=((POWER(C47,2)/17.85)+0.0152)*(POWER(C46/C72,2)-1)"
+        }
+      ]
+    },
+    {
+      "literal": "4",
+      "occurrences": 30,
+      "used_in": [
+        {
+          "cell": "HYDRAULICS!C6",
+          "label": "DEPTH OF FLOW IN M",
+          "formula": "=IF($F$4-B6>0,$F$4-B6,0)"
+        },
+        {
+          "cell": "HYDRAULICS!C6",
+          "label": "DEPTH OF FLOW IN M",
+          "formula": "=IF($F$4-B6>0,$F$4-B6,0)"
+        },
+        {
+          "cell": "HYDRAULICS!C7",
+          "label": "DEPTH OF FLOW IN M",
+          "formula": "=IF($F$4-B7>0,$F$4-B7,0)"
+        },
+        {
+          "cell": "HYDRAULICS!C7",
+          "label": "DEPTH OF FLOW IN M",
+          "formula": "=IF($F$4-B7>0,$F$4-B7,0)"
+        },
+        {
+          "cell": "HYDRAULICS!C8",
+          "label": "DEPTH OF FLOW IN M",
+          "formula": "=IF($F$4-B8>0,$F$4-B8,0)"
+        }
+      ]
+    },
+    {
+      "literal": "1",
+      "occurrences": 29,
+      "used_in": [
+        {
+          "cell": "afflux calculation!C13",
+          "label": "I/nx",
+          "formula": "=(1/C10)*POWER(C6/C7,2/3)*SQRT(1/E8)"
+        },
+        {
+          "cell": "afflux calculation!C13",
+          "label": "I/nx",
+          "formula": "=(1/C10)*POWER(C6/C7,2/3)*SQRT(1/E8)"
+        },
+        {
+          "cell": "afflux calculation!B29",
+          "label": "1.34x",
+          "formula": "=((C18-1)*F18)+2.4"
+        },
+        {
+          "cell": "afflux calculation!B33",
+          "label": "dsm =",
+          "formula": "=1.34*POWER(POWER(C32,2)/G27,1/3)"
+        },
+        {
+          "cell": "afflux calculation!C45",
+          "label": "Unobstructed Area of Flow af",
+          "formula": "=((C18-1)*F18)+2.4"
+        }
+      ]
+    },
+    {
+      "literal": "100",
+      "occurrences": 25,
+      "used_in": [
+        {
+          "cell": "General Abs.!D4",
+          "label": "Earthwork in excavation for ",
+          "formula": "=C4/$C26*100"
+        },
+        {
+          "cell": "General Abs.!D5",
+          "label": "Earthwork in excavation for ",
+          "formula": "=C5/$C26*100"
+        },
+        {
+          "cell": "General Abs.!D6",
+          "label": "PCC M-15 grade blinding conc",
+          "formula": "=C6/$C26*100"
+        },
+        {
+          "cell": "General Abs.!D7",
+          "label": "RCC M-25 in open foundations",
+          "formula": "=C7/$C26*100"
+        },
+        {
+          "cell": "General Abs.!D8",
+          "label": "TMT steel reinforcement in f",
+          "formula": "=C8/$C26*100"
+        }
+      ]
+    },
+    {
+      "literal": "1.5",
+      "occurrences": 20,
+      "used_in": [
+        {
+          "cell": "Deck Anchorage!D26",
+          "label": "Parapet weight",
+          "formula": "=D6*2*1.5"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!B26",
+          "label": "Seismic coefficient Ah",
+          "formula": "=(B25/2)*2.5/(3/1.5)"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!N47",
+          "label": "Status",
+          "formula": "=IF(AND(K47>=1.5,L47>=1.8,M47>=2.5),\"SAFE\",\"UNSAFE\")"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!N48",
+          "label": "Status",
+          "formula": "=IF(AND(K48>=1.5,L48>=1.8,M48>=2.5),\"SAFE\",\"UNSAFE\")"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!N49",
+          "label": "Status",
+          "formula": "=IF(AND(K49>=1.5,L49>=1.8,M49>=2.5),\"SAFE\",\"UNSAFE\")"
+        }
+      ]
+    },
+    {
+      "literal": "2.5",
+      "occurrences": 17,
+      "used_in": [
+        {
+          "cell": "STABILITY CHECK FOR PIER!B26",
+          "label": "Seismic coefficient Ah",
+          "formula": "=(B25/2)*2.5/(3/1.5)"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!N47",
+          "label": "Status",
+          "formula": "=IF(AND(K47>=1.5,L47>=1.8,M47>=2.5),\"SAFE\",\"UNSAFE\")"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!N48",
+          "label": "Status",
+          "formula": "=IF(AND(K48>=1.5,L48>=1.8,M48>=2.5),\"SAFE\",\"UNSAFE\")"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!N49",
+          "label": "Status",
+          "formula": "=IF(AND(K49>=1.5,L49>=1.8,M49>=2.5),\"SAFE\",\"UNSAFE\")"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!N50",
+          "label": "Status",
+          "formula": "=IF(AND(K50>=1.5,L50>=1.8,M50>=2.5),\"SAFE\",\"UNSAFE\")"
+        }
+      ]
+    },
+    {
+      "literal": "7",
+      "occurrences": 17,
+      "used_in": [
+        {
+          "cell": "abstract of stresses!E12",
+          "label": "Service Condition",
+          "formula": "=C12/$B$7"
+        },
+        {
+          "cell": "abstract of stresses!E13",
+          "label": "Construction Stage",
+          "formula": "=C13/$B$7"
+        },
+        {
+          "cell": "abstract of stresses!E14",
+          "label": "Flood Condition",
+          "formula": "=C14/$B$7"
+        },
+        {
+          "cell": "abstract of stresses!E15",
+          "label": "Seismic Condition",
+          "formula": "=C15/$B$7"
+        },
+        {
+          "cell": "abstract of stresses!E16",
+          "label": "Ultimate Limit State",
+          "formula": "=C16/$B$7"
+        }
+      ]
+    },
+    {
+      "literal": "8",
+      "occurrences": 17,
+      "used_in": [
+        {
+          "cell": "abstract of stresses!F12",
+          "label": "Service Condition",
+          "formula": "=D12/$B$8"
+        },
+        {
+          "cell": "abstract of stresses!F13",
+          "label": "Construction Stage",
+          "formula": "=D13/$B$8"
+        },
+        {
+          "cell": "abstract of stresses!F14",
+          "label": "Flood Condition",
+          "formula": "=D14/$B$8"
+        },
+        {
+          "cell": "abstract of stresses!F15",
+          "label": "Seismic Condition",
+          "formula": "=D15/$B$8"
+        },
+        {
+          "cell": "abstract of stresses!F16",
+          "label": "Ultimate Limit State",
+          "formula": "=D16/$B$8"
+        }
+      ]
+    },
+    {
+      "literal": "1.8",
+      "occurrences": 15,
+      "used_in": [
+        {
+          "cell": "STABILITY CHECK FOR PIER!N47",
+          "label": "Status",
+          "formula": "=IF(AND(K47>=1.5,L47>=1.8,M47>=2.5),\"SAFE\",\"UNSAFE\")"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!N48",
+          "label": "Status",
+          "formula": "=IF(AND(K48>=1.5,L48>=1.8,M48>=2.5),\"SAFE\",\"UNSAFE\")"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!N49",
+          "label": "Status",
+          "formula": "=IF(AND(K49>=1.5,L49>=1.8,M49>=2.5),\"SAFE\",\"UNSAFE\")"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!N50",
+          "label": "Status",
+          "formula": "=IF(AND(K50>=1.5,L50>=1.8,M50>=2.5),\"SAFE\",\"UNSAFE\")"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!N51",
+          "label": "Status",
+          "formula": "=IF(AND(K51>=1.5,L51>=1.8,M51>=2.5),\"SAFE\",\"UNSAFE\")"
+        }
+      ]
+    },
+    {
+      "literal": "9",
+      "occurrences": 15,
+      "used_in": [
+        {
+          "cell": "abstract of stresses!H12",
+          "label": "Service Condition",
+          "formula": "=$B$9"
+        },
+        {
+          "cell": "abstract of stresses!H13",
+          "label": "Construction Stage",
+          "formula": "=$B$9"
+        },
+        {
+          "cell": "abstract of stresses!H14",
+          "label": "Flood Condition",
+          "formula": "=$B$9"
+        },
+        {
+          "cell": "abstract of stresses!H15",
+          "label": "Seismic Condition",
+          "formula": "=$B$9"
+        },
+        {
+          "cell": "abstract of stresses!H16",
+          "label": "Ultimate Limit State",
+          "formula": "=$B$9"
+        }
+      ]
+    },
+    {
+      "literal": "11",
+      "occurrences": 14,
+      "used_in": [
+        {
+          "cell": "Footing STRESS DIAGRAM!C14",
+          "label": "Min edge",
+          "formula": "=$B$11+($B$10-$B$11)*0/6"
+        },
+        {
+          "cell": "Footing STRESS DIAGRAM!C14",
+          "label": "Min edge",
+          "formula": "=$B$11+($B$10-$B$11)*0/6"
+        },
+        {
+          "cell": "Footing STRESS DIAGRAM!C15",
+          "label": "Base section",
+          "formula": "=$B$11+($B$10-$B$11)*1/6"
+        },
+        {
+          "cell": "Footing STRESS DIAGRAM!C15",
+          "label": "Base section",
+          "formula": "=$B$11+($B$10-$B$11)*1/6"
+        },
+        {
+          "cell": "Footing STRESS DIAGRAM!C16",
+          "label": "Base section",
+          "formula": "=$B$11+($B$10-$B$11)*2/6"
+        }
+      ]
+    },
+    {
+      "literal": "9.81",
+      "occurrences": 10,
+      "used_in": [
+        {
+          "cell": "Deck Anchorage!D11",
+          "label": "Buoyancy if totally submerge",
+          "formula": "=D9*9.81"
+        },
+        {
+          "cell": "Deck Anchorage!D22",
+          "label": "Static buoyancy",
+          "formula": "=D19*D20*9.81"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!B32",
+          "label": "Water pressure",
+          "formula": "=9.81*B17"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!B34",
+          "label": "Drag / current force",
+          "formula": "=0.5*B23*9.81*B18^2*B17*B8"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!B36",
+          "label": "Buoyancy",
+          "formula": "=9.81*B35"
+        }
+      ]
+    },
+    {
+      "literal": "6",
+      "occurrences": 10,
+      "used_in": [
+        {
+          "cell": "abstract of stresses!B8",
+          "label": "Section modulus Z = L\u00b7B\u00b2/6",
+          "formula": "=B6*B5^2/6"
+        },
+        {
+          "cell": "Footing STRESS DIAGRAM!B9",
+          "label": "Modulus Sx = Bl\u00b7Bw\u00b2/6",
+          "formula": "=B5*B4*B4/6"
+        },
+        {
+          "cell": "Footing STRESS DIAGRAM!C14",
+          "label": "Min edge",
+          "formula": "=$B$11+($B$10-$B$11)*0/6"
+        },
+        {
+          "cell": "Footing STRESS DIAGRAM!C15",
+          "label": "Base section",
+          "formula": "=$B$11+($B$10-$B$11)*1/6"
+        },
+        {
+          "cell": "Footing STRESS DIAGRAM!C16",
+          "label": "Base section",
+          "formula": "=$B$11+($B$10-$B$11)*2/6"
+        }
+      ]
+    },
+    {
+      "literal": "17",
+      "occurrences": 10,
+      "used_in": [
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!D21",
+          "label": "Service Condition",
+          "formula": "=L21*$B$17+M21*$B$32+N21*$B$35+O21*$B$38"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!E21",
+          "label": "Service Condition",
+          "formula": "=(L21*$B$17+M21*$B$32)*$B$7/3+(N21*$B$35+O21*$B$38)*$B$7/2"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!D22",
+          "label": "Construction Stage",
+          "formula": "=L22*$B$17+M22*$B$32+N22*$B$35+O22*$B$38"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!E22",
+          "label": "Construction Stage",
+          "formula": "=(L22*$B$17+M22*$B$32)*$B$7/3+(N22*$B$35+O22*$B$38)*$B$7/2"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!D23",
+          "label": "Flood Condition",
+          "formula": "=L23*$B$17+M23*$B$32+N23*$B$35+O23*$B$38"
+        }
+      ]
+    },
+    {
+      "literal": "32",
+      "occurrences": 10,
+      "used_in": [
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!D21",
+          "label": "Service Condition",
+          "formula": "=L21*$B$17+M21*$B$32+N21*$B$35+O21*$B$38"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!E21",
+          "label": "Service Condition",
+          "formula": "=(L21*$B$17+M21*$B$32)*$B$7/3+(N21*$B$35+O21*$B$38)*$B$7/2"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!D22",
+          "label": "Construction Stage",
+          "formula": "=L22*$B$17+M22*$B$32+N22*$B$35+O22*$B$38"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!E22",
+          "label": "Construction Stage",
+          "formula": "=(L22*$B$17+M22*$B$32)*$B$7/3+(N22*$B$35+O22*$B$38)*$B$7/2"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!D23",
+          "label": "Flood Condition",
+          "formula": "=L23*$B$17+M23*$B$32+N23*$B$35+O23*$B$38"
+        }
+      ]
+    },
+    {
+      "literal": "35",
+      "occurrences": 10,
+      "used_in": [
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!D21",
+          "label": "Service Condition",
+          "formula": "=L21*$B$17+M21*$B$32+N21*$B$35+O21*$B$38"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!E21",
+          "label": "Service Condition",
+          "formula": "=(L21*$B$17+M21*$B$32)*$B$7/3+(N21*$B$35+O21*$B$38)*$B$7/2"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!D22",
+          "label": "Construction Stage",
+          "formula": "=L22*$B$17+M22*$B$32+N22*$B$35+O22*$B$38"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!E22",
+          "label": "Construction Stage",
+          "formula": "=(L22*$B$17+M22*$B$32)*$B$7/3+(N22*$B$35+O22*$B$38)*$B$7/2"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!D23",
+          "label": "Flood Condition",
+          "formula": "=L23*$B$17+M23*$B$32+N23*$B$35+O23*$B$38"
+        }
+      ]
+    },
+    {
+      "literal": "38",
+      "occurrences": 10,
+      "used_in": [
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!D21",
+          "label": "Service Condition",
+          "formula": "=L21*$B$17+M21*$B$32+N21*$B$35+O21*$B$38"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!E21",
+          "label": "Service Condition",
+          "formula": "=(L21*$B$17+M21*$B$32)*$B$7/3+(N21*$B$35+O21*$B$38)*$B$7/2"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!D22",
+          "label": "Construction Stage",
+          "formula": "=L22*$B$17+M22*$B$32+N22*$B$35+O22*$B$38"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!E22",
+          "label": "Construction Stage",
+          "formula": "=(L22*$B$17+M22*$B$32)*$B$7/3+(N22*$B$35+O22*$B$38)*$B$7/2"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!D23",
+          "label": "Flood Condition",
+          "formula": "=L23*$B$17+M23*$B$32+N23*$B$35+O23*$B$38"
+        }
+      ]
+    },
+    {
+      "literal": "12",
+      "occurrences": 10,
+      "used_in": [
+        {
+          "cell": "TYPE1- Abut Footing STRESS!D4",
+          "label": "(no label)",
+          "formula": "='TYPE1-STABILITY CHECK ABUTMENT'!$B$12"
+        },
+        {
+          "cell": "TYPE1- Abut Footing STRESS!D5",
+          "label": "(no label)",
+          "formula": "='TYPE1-STABILITY CHECK ABUTMENT'!$B$12"
+        },
+        {
+          "cell": "TYPE1- Abut Footing STRESS!D6",
+          "label": "(no label)",
+          "formula": "='TYPE1-STABILITY CHECK ABUTMENT'!$B$12"
+        },
+        {
+          "cell": "TYPE1- Abut Footing STRESS!D7",
+          "label": "(no label)",
+          "formula": "='TYPE1-STABILITY CHECK ABUTMENT'!$B$12"
+        },
+        {
+          "cell": "TYPE1- Abut Footing STRESS!D8",
+          "label": "(no label)",
+          "formula": "='TYPE1-STABILITY CHECK ABUTMENT'!$B$12"
+        }
+      ]
+    },
+    {
+      "literal": "0.5",
+      "occurrences": 9,
+      "used_in": [
+        {
+          "cell": "Deck Anchorage!D23",
+          "label": "Hydrodynamic uplift",
+          "formula": "=0.5*1000*POWER(D21,2)*D19*0.001"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!B33",
+          "label": "Hydrostatic force",
+          "formula": "=0.5*B32*B17*B8"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!B34",
+          "label": "Drag / current force",
+          "formula": "=0.5*B23*9.81*B18^2*B17*B8"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!B17",
+          "label": "Active force Pa",
+          "formula": "=0.5*B16*B11*B7^2"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!F21",
+          "label": "Service Condition",
+          "formula": "=0.5*C21/D21"
+        }
+      ]
+    },
+    {
+      "literal": "10",
+      "occurrences": 8,
+      "used_in": [
+        {
+          "cell": "Footing STRESS DIAGRAM!C14",
+          "label": "Min edge",
+          "formula": "=$B$11+($B$10-$B$11)*0/6"
+        },
+        {
+          "cell": "Footing STRESS DIAGRAM!C15",
+          "label": "Base section",
+          "formula": "=$B$11+($B$10-$B$11)*1/6"
+        },
+        {
+          "cell": "Footing STRESS DIAGRAM!C16",
+          "label": "Base section",
+          "formula": "=$B$11+($B$10-$B$11)*2/6"
+        },
+        {
+          "cell": "Footing STRESS DIAGRAM!C17",
+          "label": "Base section",
+          "formula": "=$B$11+($B$10-$B$11)*3/6"
+        },
+        {
+          "cell": "Footing STRESS DIAGRAM!C18",
+          "label": "Base section",
+          "formula": "=$B$11+($B$10-$B$11)*4/6"
+        }
+      ]
+    },
+    {
+      "literal": "1e-09",
+      "occurrences": 7,
+      "used_in": [
+        {
+          "cell": "Bed Slope!E9",
+          "label": "Local slope",
+          "formula": "=IF(ABS(D9)<0.000000001,$E$4,ABS(C9/D9))"
+        },
+        {
+          "cell": "Bed Slope!E10",
+          "label": "Local slope",
+          "formula": "=IF(ABS(D10)<0.000000001,$E$4,ABS(C10/D10))"
+        },
+        {
+          "cell": "Bed Slope!E11",
+          "label": "Local slope",
+          "formula": "=IF(ABS(D11)<0.000000001,$E$4,ABS(C11/D11))"
+        },
+        {
+          "cell": "Bed Slope!E12",
+          "label": "Local slope",
+          "formula": "=IF(ABS(D12)<0.000000001,$E$4,ABS(C12/D12))"
+        },
+        {
+          "cell": "Bed Slope!E13",
+          "label": "Local slope",
+          "formula": "=IF(ABS(D13)<0.000000001,$E$4,ABS(C13/D13))"
+        }
+      ]
+    },
+    {
+      "literal": "1000",
+      "occurrences": 6,
+      "used_in": [
+        {
+          "cell": "Deck Anchorage!D23",
+          "label": "Hydrodynamic uplift",
+          "formula": "=0.5*1000*POWER(D21,2)*D19*0.001"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!B40",
+          "label": "Design wind pressure Pz",
+          "formula": "=0.6*B39*B39/1000"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!B34",
+          "label": "Design wind pressure Pz",
+          "formula": "=0.6*(0.91*B33)^2/1000"
+        },
+        {
+          "cell": "Bridge measurements!J21",
+          "label": "MT",
+          "formula": "=E21*F21*G21*H21/100/1000"
+        },
+        {
+          "cell": "Bridge measurements!J29",
+          "label": "MT",
+          "formula": "=E29*F29*G29*H29/100/1000"
+        }
+      ]
+    },
+    {
+      "literal": "14",
+      "occurrences": 5,
+      "used_in": [
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!C21",
+          "label": "Service Condition",
+          "formula": "=J21*$B$14+K21*$B$15"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!C22",
+          "label": "Construction Stage",
+          "formula": "=J22*$B$14+K22*$B$15"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!C23",
+          "label": "Flood Condition",
+          "formula": "=J23*$B$14+K23*$B$15"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!C24",
+          "label": "Seismic Condition",
+          "formula": "=J24*$B$14+K24*$B$15"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!C25",
+          "label": "Ultimate Limit State",
+          "formula": "=J25*$B$14+K25*$B$15"
+        }
+      ]
+    },
+    {
+      "literal": "15",
+      "occurrences": 5,
+      "used_in": [
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!C21",
+          "label": "Service Condition",
+          "formula": "=J21*$B$14+K21*$B$15"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!C22",
+          "label": "Construction Stage",
+          "formula": "=J22*$B$14+K22*$B$15"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!C23",
+          "label": "Flood Condition",
+          "formula": "=J23*$B$14+K23*$B$15"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!C24",
+          "label": "Seismic Condition",
+          "formula": "=J24*$B$14+K24*$B$15"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!C25",
+          "label": "Ultimate Limit State",
+          "formula": "=J25*$B$14+K25*$B$15"
+        }
+      ]
+    },
+    {
+      "literal": "0.6",
+      "occurrences": 3,
+      "used_in": [
+        {
+          "cell": "Deck Anchorage!D27",
+          "label": "Base friction resistance",
+          "formula": "=D10*0.6"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!B40",
+          "label": "Design wind pressure Pz",
+          "formula": "=0.6*B39*B39/1000"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!B34",
+          "label": "Design wind pressure Pz",
+          "formula": "=0.6*(0.91*B33)^2/1000"
+        }
+      ]
+    },
+    {
+      "literal": "2.4",
+      "occurrences": 2,
+      "used_in": [
+        {
+          "cell": "afflux calculation!B29",
+          "label": "1.34x",
+          "formula": "=((C18-1)*F18)+2.4"
+        },
+        {
+          "cell": "afflux calculation!C45",
+          "label": "Unobstructed Area of Flow af",
+          "formula": "=((C18-1)*F18)+2.4"
+        }
+      ]
+    },
+    {
+      "literal": "25",
+      "occurrences": 2,
+      "used_in": [
+        {
+          "cell": "Deck Anchorage!D10",
+          "label": "Deck self-weight",
+          "formula": "=D9*25"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!B14",
+          "label": "Dead load DL",
+          "formula": "=B13*25"
+        }
+      ]
+    },
+    {
+      "literal": "1.2",
+      "occurrences": 2,
+      "used_in": [
+        {
+          "cell": "Deck Anchorage!D30",
+          "label": "Anchorage / hold-down requir",
+          "formula": "=IF(OR(D29<1.2,D20>0.1),\"YES\",\"NO\")"
+        },
+        {
+          "cell": "Deck Anchorage!D31",
+          "label": "Verdict",
+          "formula": "=IF(D29>=1.2,\"Hence O.K.\",\"CHECK - licensed engineer sign-off\")"
+        }
+      ]
+    },
+    {
+      "literal": "0.1",
+      "occurrences": 2,
+      "used_in": [
+        {
+          "cell": "Deck Anchorage!D30",
+          "label": "Anchorage / hold-down requir",
+          "formula": "=IF(OR(D29<1.2,D20>0.1),\"YES\",\"NO\")"
+        },
+        {
+          "cell": "STABILITY CHECK FOR PIER!B25",
+          "label": "Zone factor Z",
+          "formula": "=IF(B21=2,0.1,IF(B21=3,0.16,IF(B21=4,0.24,0.36)))"
+        }
+      ]
+    },
+    {
+      "literal": "0.91",
+      "occurrences": 2,
+      "used_in": [
+        {
+          "cell": "STABILITY CHECK FOR PIER!B39",
+          "label": "Design wind speed Vz",
+          "formula": "=B20*1*0.91*1"
+        },
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!B34",
+          "label": "Design wind pressure Pz",
+          "formula": "=0.6*(0.91*B33)^2/1000"
+        }
+      ]
+    },
+    {
+      "literal": "1.1",
+      "occurrences": 2,
+      "used_in": [
+        {
+          "cell": "loadsumm!C13",
+          "label": "IRC Class AA Tracked",
+          "formula": "=C5/9.81*1.1"
+        },
+        {
+          "cell": "loadsumm!C15",
+          "label": "IRC Class 70R Tracked",
+          "formula": "=C5/9.81*1.1"
+        }
+      ]
+    },
+    {
+      "literal": "1.25",
+      "occurrences": 2,
+      "used_in": [
+        {
+          "cell": "loadsumm!C14",
+          "label": "IRC Class AA Wheeled",
+          "formula": "=C5/9.81*1.25"
+        },
+        {
+          "cell": "loadsumm!C16",
+          "label": "IRC Class 70R Wheeled",
+          "formula": "=C5/9.81*1.25"
+        }
+      ]
+    },
+    {
+      "literal": "4.8",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "afflux calculation!C17",
+          "label": "I/nx",
+          "formula": "=4.8*SQRT(C14)"
+        }
+      ]
+    },
+    {
+      "literal": "1.34",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "afflux calculation!B33",
+          "label": "dsm =",
+          "formula": "=1.34*POWER(POWER(C32,2)/G27,1/3)"
+        }
+      ]
+    },
+    {
+      "literal": "17.85",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "afflux calculation!C74",
+          "label": "m2",
+          "formula": "=((POWER(C47,2)/17.85)+0.0152)*(POWER(C46/C72,2)-1)"
+        }
+      ]
+    },
+    {
+      "literal": "0.0152",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "afflux calculation!C74",
+          "label": "m2",
+          "formula": "=((POWER(C47,2)/17.85)+0.0152)*(POWER(C46/C72,2)-1)"
+        }
+      ]
+    },
+    {
+      "literal": "0.001",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "Deck Anchorage!D23",
+          "label": "Hydrodynamic uplift",
+          "formula": "=0.5*1000*POWER(D21,2)*D19*0.001"
+        }
+      ]
+    },
+    {
+      "literal": "0.075",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "Deck Anchorage!D25",
+          "label": "Wearing coat weight",
+          "formula": "=D19*0.075*22"
+        }
+      ]
+    },
+    {
+      "literal": "22",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "Deck Anchorage!D25",
+          "label": "Wearing coat weight",
+          "formula": "=D19*0.075*22"
+        }
+      ]
+    },
+    {
+      "literal": "99",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "Deck Anchorage!D29",
+          "label": "Factor of safety against upl",
+          "formula": "=IF(D24>0,D28/D24,99)"
+        }
+      ]
+    },
+    {
+      "literal": "0.16",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "STABILITY CHECK FOR PIER!B25",
+          "label": "Zone factor Z",
+          "formula": "=IF(B21=2,0.1,IF(B21=3,0.16,IF(B21=4,0.24,0.36)))"
+        }
+      ]
+    },
+    {
+      "literal": "0.24",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "STABILITY CHECK FOR PIER!B25",
+          "label": "Zone factor Z",
+          "formula": "=IF(B21=2,0.1,IF(B21=3,0.16,IF(B21=4,0.24,0.36)))"
+        }
+      ]
+    },
+    {
+      "literal": "0.36",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "STABILITY CHECK FOR PIER!B25",
+          "label": "Zone factor Z",
+          "formula": "=IF(B21=2,0.1,IF(B21=3,0.16,IF(B21=4,0.24,0.36)))"
+        }
+      ]
+    },
+    {
+      "literal": "50",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "STABILITY CHECK FOR PIER!B31",
+          "label": "Live load LL",
+          "formula": "=50*B12"
+        }
+      ]
+    },
+    {
+      "literal": "5",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "Footing STRESS DIAGRAM!C19",
+          "label": "Base section",
+          "formula": "=$B$11+($B$10-$B$11)*5/6"
+        }
+      ]
+    },
+    {
+      "literal": "45",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!B16",
+          "label": "Earth pressure Ka",
+          "formula": "=TAN((45-B10/2)*PI()/180)^2"
+        }
+      ]
+    },
+    {
+      "literal": "180",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!B16",
+          "label": "Earth pressure Ka",
+          "formula": "=TAN((45-B10/2)*PI()/180)^2"
+        }
+      ]
+    },
+    {
+      "literal": "1.3",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "TYPE1-STABILITY CHECK ABUTMENT!B35",
+          "label": "Wind force = Pz \u00d7 Cf 1.3 \u00d7 w",
+          "formula": "=B34*1.3*B5*B7"
+        }
+      ]
+    },
+    {
+      "literal": "0.01",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "Abstract!F27",
+          "label": "Add: Quality Control @ 1.00 ",
+          "formula": "=F26*0.01"
+        }
+      ]
+    },
+    {
+      "literal": "0.015",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "Abstract!F29",
+          "label": "Add: Contingencies @ 1.50 %",
+          "formula": "=F26*0.015"
+        }
+      ]
+    },
+    {
+      "literal": "0.13",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "Abstract!F31",
+          "label": "Add: Prorata Overheads & Pro",
+          "formula": "=F30*0.13"
+        }
+      ]
+    },
+    {
+      "literal": "100000",
+      "occurrences": 1,
+      "used_in": [
+        {
+          "cell": "Abstract!F33",
+          "label": "SAY",
+          "formula": "=ROUND(F32/100000,2)"
+        }
+      ]
+    }
+  ]
+}

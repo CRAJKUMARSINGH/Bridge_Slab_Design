@@ -1,0 +1,31 @@
+25
+scripts/debug-wind.ts(4,43): error TS2307: Cannot find module '../bridge-excel-generator/prose/sheet-narratives' or its corresponding type declarations.
+scripts/debug-wind.ts(7,13): error TS2352: Conversion of type 'HydraulicsResult' to type 'Record<string, unknown>' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Index signature for type 'string' is missing in type 'HydraulicsResult'.
+scripts/export-sample-output-bundle.ts(3,19): error TS2307: Cannot find module 'sharp' or its corresponding type declarations.
+scripts/lint-narrative-no-hardcoded-numbers.ts(97,5): error TS2322: Type 'string' is not assignable to type 'number'.
+scripts/lint-narrative-no-hardcoded-numbers.ts(120,16): error TS2339: Property 'trim' does not exist on type 'number'.
+scripts/lint-narrative-no-hardcoded-numbers.ts(120,80): error TS2322: Type 'number' is not assignable to type 'string'.
+scripts/lint-narrative-no-hardcoded-numbers.ts(121,20): error TS2339: Property 'length' does not exist on type 'number'.
+scripts/lint-narrative-no-hardcoded-numbers.ts(121,59): error TS2339: Property 'length' does not exist on type 'number'.
+scripts/phase-zero/extract-word.ts(7,27): error TS2307: Cannot find module 'word-extractor' or its corresponding type declarations.
+scripts/phase-zero/extract-word.ts(24,55): error TS7006: Parameter 'p' implicitly has an 'any' type.
+scripts/run-five-samples-workbook-label-match.ts(180,23): error TS2345: Argument of type 'Buffer<ArrayBufferLike>' is not assignable to parameter of type 'Buffer'.
+  The types of 'slice(...)[Symbol.toStringTag]' are incompatible between these types.
+    Type '"Uint8Array"' is not assignable to type '"ArrayBuffer"'.
+scripts/stress-test-251-users.ts(125,40): error TS2339: Property 'maxMoment' does not exist on type 'PierDesignResult'.
+scripts/test-narratives-output.ts(2,43): error TS2307: Cannot find module '../bridge-excel-generator/prose/sheet-narratives' or its corresponding type declarations.
+scripts/test-narratives-output.ts(3,32): error TS2307: Cannot find module '../bridge-excel-generator/fixtures/kherwara-design' or its corresponding type declarations.
+scripts/test-narratives-output.ts(5,44): error TS2307: Cannot find module '../bridge-excel-generator/prose/deck-narrative-math' or its corresponding type declarations.
+scripts/test-narratives-output.ts(13,13): error TS2352: Conversion of type 'HydraulicsResult' to type 'Record<string, unknown>' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Index signature for type 'string' is missing in type 'HydraulicsResult'.
+scripts/test-storytelling.ts(41,24): error TS2345: Argument of type 'Buffer<ArrayBufferLike>' is not assignable to parameter of type 'Buffer'.
+  The types of 'slice(...)[Symbol.toStringTag]' are incompatible between these types.
+    Type '"Uint8Array"' is not assignable to type '"ArrayBuffer"'.
+scripts/test-storytelling.ts(52,27): error TS2723: Cannot invoke an object which is possibly 'null' or 'undefined'.
+scripts/test-storytelling.ts(52,38): error TS2349: This expression is not callable.
+  Not all constituents of type 'string | number | boolean | Date | CellErrorValue | CellRichTextValue | CellHyperlinkValue | CellFormulaValue | CellSharedFormulaValue | (<U>(callbackfn: (value: CellValue, index: number, array: CellValue[]) => U, thisArg?: any) => U[])' are callable.
+    Type 'string' has no call signatures.
+scripts/test-storytelling.ts(52,42): error TS7006: Parameter 'v' implicitly has an 'any' type.
+scripts/test-storytelling.ts(52,110): error TS7006: Parameter 'r' implicitly has an 'any' type.
+TSC_EXIT=2

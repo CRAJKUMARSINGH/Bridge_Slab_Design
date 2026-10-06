@@ -1,0 +1,24 @@
+13:### Turn 1 — user
+29:### Turn 2 — user
+82:## Turn 3 — 2026-10-04 (orientation tabulation returned by user)
+125:## Turn 4 — 2026-10-04 (full test run + elegance/readability review)
+151:## Turn 5 — 2026-10-04 ("DATA ARE GENERATED AS PER FORMULA CALCULATION AND RETRIEVED A
+194:## Turn 6 — 2026-10-04 (action plan for DUE + auto-mode bug removal)
+235:## Turn 7 — 2026-10-04 ("AUTO MODE MEANS I PERMIT TO RUN ACCEPTING ALLOW ONCE FOR ALL 
+288:## Turn 8 — 2026-10-04 (auto mode continued: read-side cache loss + cost-model bugs)
+370:## Turn 9 — 2026-10-04 ("MODIFY NOW >>>> ordinary soli now 80% rock 20% >>>>")
+437:## Turn 10 — 2026-10-04 ("MODIFY NOW >>>> 6 Bearings/pier")
+478:## Turn 11 — 2026-10-04 (BEDACH estimate enrichment + "ask me in lucid manner for deci
+517:## Turn 12 — 2026-10-04 ("continue" — finish the verdict check, keep removing bugs)
+580:## Turn 13 — 2026-10-04 ("continue" — close the documentation, re-prove the gates, rea
+642:## Turn 14 — 2026-10-05 ("CODE-JUNCTION august-due.* apply fixes … indicate what is du
+712:## Turn 15 — 2026-10-05 ("test run the repo in browser")
+813:## Turn 16 — 2026-10-05 ("take up due tasks and complete them one by one" — DUE-1: cli
+862:## Turn 17 — 2026-10-05 ("take up due tasks… complete them one by one" — DUE-2 outcome
+938:## Turn 18 — 2026-10-05 · DUE-4: HTML/PDF parity gate (`take up due tasks and complete
+990:## Turn 19 — 2026-10-05 · DUE-5, DUE-6, DUE-7: release bundle, deployment surface, Mod
+1078:## Turn 20 — 2026-10-06 · DUE-8: a real typecheck lane for the root tooling (`take up
+`CODE-JUNCTION/august-due.md` re-synced byte-identical.
+**Still DUE:** engineer sign-off (`engineering/review/` empty), Kherwara/Kharka identity, governing water
+level, `git lfs pull` then A2–A5 and `assimilate --report`, `Dockerfile` + `lib/log.ts`, engine decoupling
+(J-5), the 18a package decision, and a real visual pass for the A4/15 mm/landscape policy.

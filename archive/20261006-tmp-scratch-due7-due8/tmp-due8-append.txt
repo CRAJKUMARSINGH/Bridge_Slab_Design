@@ -1,0 +1,4 @@
+chatlog bytes=87760 turns=18
+cj resynced same=true
+rc=0
+cmp=0

@@ -1,0 +1,65 @@
+=== scripts/fixtures dir:
+high-level-hydraulics-snapshot.json
+high-level-project-input.ts
+kherwara-hydraulics-snapshot.json
+kherwara-project-input.ts
+larathi-stabil-project-input.ts
+=== PierDesignResult definition:
+130:export interface PierDesignResult {
+370:  pier: PierDesignResult;
+379:  pier?: PierDesignResult;
+130:export interface PierDesignResult {
+131-  // Geometry
+132-  geometry: {
+133-    width: number;
+134-    length: number;
+135-    depth: number;
+136-    baseWidth: number;
+137-    baseLength: number;
+138-    spacing: number;
+139-  };
+140-  
+141-  // Loads
+142-  loads: {
+143-    deadLoad: number;           // kN
+144-    liveLoad: number;           // kN
+145-    hydrostaticForce: number;   // kN
+146-    dragForce: number;          // kN
+147-    /** IRC:6-2017 §209 wind force on pier (kN) */
+148-    windForce: number;
+149-    /** IS:1893:2002 horizontal seismic force on pier (kN) */
+150-    seismicForce: number;
+151-    totalHorizontalForce: number; // kN
+152-    buoyancy: number;           // kN
+153-  };
+154-  
+155-  // Stability (5 Load Cases)
+=== test-storytelling 1-20:
+import fs from 'fs';
+import path from 'path';
+import ExcelJS from 'exceljs';
+import { generateCompleteExcel } from '../bridge-excel-generator/index';
+import { PHASE1_QUICK_TEMPLATES } from '../server/default-project-inputs';
+
+function assertNoNarrativePlaceholders(text: string, context: string) {
+  const forbiddenPatterns: Array<{ name: string; re: RegExp }> = [
+    { name: 'NaN token', re: /\bNaN\b/ },
+    { name: 'insert placeholder', re: /\[INSERT HERE\]/i },
+    { name: 'em-dash placeholder', re: /—/ },
+    { name: 'colon dash placeholder', re: /:\s-\s*([.,;:]|$)/ },
+    { name: 'equals dash placeholder', re: /=\s-\s*([.,;:]|$)/ },
+  ];
+
+  for (const pattern of forbiddenPatterns) {
+    if (pattern.re.test(text)) {
+      throw new Error(`Narrative placeholder violation (${pattern.name}) in ${context}`);
+    }
+  }
+=== grep who references these 6 scripts:
+debug-ctx                      refs=
+debug-wind                     refs=
+test-narratives-output         refs=
+export-sample-output-bundle    refs=./docs/week-0/WEEK0_REORIENT_CHECKLIST.md ./docs/week-3/archive-manifest.md 
+extract-word                   refs=./CODE-JUNCTION/bridge_slab_design_comprehensive_impl_plan.md ./scripts/phase-zero/cli.ts 
+stress-test-251-users          refs=./scripts/qa-ultra-strict.ts 
+test-storytelling              refs=./august-due.md 

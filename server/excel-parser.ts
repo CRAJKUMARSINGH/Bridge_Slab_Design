@@ -53,7 +53,7 @@ export async function parseExcelToProjectInput(buffer: Buffer): Promise<ParsedEx
   }
 
   const workbook = new ExcelJS.Workbook();
-  await workbook.xlsx.load(buffer);
+  await workbook.xlsx.load(buffer as any);
   
   const sheetNames = workbook.worksheets.map(ws => ws.name);
   const formulas: ParsedExcelResult['metadata']['formulas'] = [];

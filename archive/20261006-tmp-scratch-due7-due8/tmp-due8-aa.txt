@@ -1,0 +1,8 @@
+=== files on disk under Attached_Assets:
+715
+=== tracked in git index:
+857
+=== deleted-in-worktree entries for Attached_Assets:
+144
+=== pointer stubs among on-disk Attached_Assets:
+disk files=715 pointer stubs=710

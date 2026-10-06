@@ -1,10 +1,9 @@
-import { useCallback, useEffect, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'wouter';
 import { Loader2, Plus, Trash2, FileText, Layers, FileSpreadsheet, FileCheck, FileOutput, Calculator, Ruler, Building2, FileBarChart, FileJson, Grid3X3, SquareStack, Anchor, HardHat, Truck, Info, Maximize2, Zap } from 'lucide-react';
 import { toast } from 'sonner';
 import type { ProjectInput, CrossSectionPoint, CompleteDesignResult } from '../../../bridge-excel-generator/types';
 import { useDesignStore } from '@/stores/useDesignStore';
-import { useModelStore } from '@/stores/useModelStore';
 import { HydraulicsSheetPreview } from '@/components/HydraulicsSheetPreview';
 import { WorkbookInputTabs } from '@/components/WorkbookInputTabs';
 import { WorkbookSheetsViewer } from '@/components/WorkbookSheetsViewer';
@@ -48,7 +47,6 @@ export function Design() {
   const [templateDetail, setTemplateDetail] = useState<TemplateItem | null>(null);
   const [hydModalOpen, setHydModalOpen] = useState(false);
   const [dxfAcadVersion, setDxfAcadVersion] = useState<'AC1018' | 'AC1021'>('AC1021');
-  const activeModel = useModelStore((s) => s.activeModel);
 
   useEffect(() => {
     let cancelled = false;
@@ -86,15 +84,19 @@ export function Design() {
 
   const setNum = useCallback((key: keyof ProjectInput, raw: string) => {
     const n = parseFloat(raw);
-    set(key, (Number.isFinite(n) ? n : 0) as any);
+    // An emptied or half-typed box must not overwrite the stored value with 0 —
+    // the design inputs are validated downstream, so the previous number stays.
+    if (!Number.isFinite(n)) return;
+    set(key, n as any);
   }, [set]);
 
   const updateCrossSection = useCallback((idx: number, field: keyof CrossSectionPoint, raw: string) => {
     const n = parseFloat(raw);
+    if (!Number.isFinite(n)) return;
     setDraft(prev => {
       if (!prev) return prev;
       const pts = [...prev.crossSectionData];
-      pts[idx] = { ...pts[idx], [field]: Number.isFinite(n) ? n : 0 };
+      pts[idx] = { ...pts[idx], [field]: n };
       return { ...prev, crossSectionData: pts };
     });
   }, []);
@@ -226,13 +228,33 @@ export function Design() {
     }
   }, []);
 
+  // Workbook edits can commit several fields in one interaction; each POST re-runs the
+  // whole design engine and appends a history entry, so bursts are coalesced into one
+  // call 300 ms after the last change.
+  const persistTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const persistSoon = useCallback((body: ProjectInput) => {
+    if (persistTimer.current) clearTimeout(persistTimer.current);
+    persistTimer.current = setTimeout(() => {
+      persistTimer.current = null;
+      void persistResults(body);
+    }, 300);
+  }, [persistResults]);
+  useEffect(() => () => {
+    if (persistTimer.current) clearTimeout(persistTimer.current);
+  }, []);
+
   const applyHydraulicsDraft = useCallback((next: ProjectInput) => {
     setDraft(next);
-    void persistResults(next);
-  }, [persistResults]);
+    persistSoon(next);
+  }, [persistSoon]);
+
+  // The draft updater must stay pure (it can run twice under StrictMode); the persist is
+  // scheduled from an effect after the new draft has committed.
+  const persistAfterDraftChange = useRef(false);
 
   const applyWorkbookChange = useCallback(
     (fn: (prev: ProjectInput) => ProjectInput) => {
+      persistAfterDraftChange.current = true;
       setDraft((prev) => {
         if (!prev) return prev;
         let next = fn(prev);
@@ -242,11 +264,10 @@ export function Design() {
         if (next.steelGrade !== prev.steelGrade && STEEL_GRADES[next.steelGrade]) {
           next = { ...next, fy: STEEL_GRADES[next.steelGrade] };
         }
-        void persistResults(next);
         return next;
       });
     },
-    [persistResults],
+    [],
   );
 
   const handleLoadById = (id: string) => {
@@ -261,16 +282,21 @@ export function Design() {
 
   const applyOptimisationUpdates = useCallback(
     (updates: Partial<ProjectInput>) => {
+      persistAfterDraftChange.current = true;
       setDraft((prev) => {
         if (!prev) return prev;
-        const next = { ...prev, ...updates };
-        void persistResults(next);
-        return next;
+        return { ...prev, ...updates };
       });
       toast.success('Applied optimisation update');
     },
-    [persistResults],
+    [],
   );
+
+  useEffect(() => {
+    if (!persistAfterDraftChange.current || !draft) return;
+    persistAfterDraftChange.current = false;
+    persistSoon(draft);
+  }, [draft, persistSoon]);
 
   const handleGenerate = async (mode: 'excel' | 'pdf' | 'pdf-comprehensive' | 'pdf-short' | 'dxf' | 'html' | 'csv' | 'validate') => {
     if (!draft) return;
@@ -600,38 +626,6 @@ export function Design() {
             Pier stability — sliding, overturning, bearing
           </Link>
         </p>
-        <div className="mb-4 flex flex-col items-center gap-2 rounded-xl border border-[var(--app-glass-border)] bg-app-card/40 px-6 py-4 backdrop-blur-sm">
-          <div className="flex items-center gap-3">
-            <span className="text-sm font-medium text-app-muted">Model Selection</span>
-            <div className="flex rounded-lg bg-black/20 p-1">
-              <button
-                type="button"
-                onClick={() => useModelStore.getState().setModel('model-a')}
-                className={`rounded-md px-4 py-1.5 text-sm font-semibold transition-all ${
-                  activeModel === 'model-a'
-                    ? 'bg-app-accent text-white shadow-lg'
-                    : 'text-app-muted hover:text-app-fg'
-                }`}
-              >
-                Model A (Industrial)
-              </button>
-              <button
-                type="button"
-                onClick={() => useModelStore.getState().setModel('model-b')}
-                className={`rounded-md px-4 py-1.5 text-sm font-semibold transition-all ${
-                  activeModel === 'model-b'
-                    ? 'bg-app-accent text-white shadow-lg'
-                    : 'text-app-muted hover:text-app-fg'
-                }`}
-              >
-                Model B (Premium)
-              </button>
-            </div>
-          </div>
-          <p className="text-[11px] uppercase tracking-widest text-app-accent/70 font-bold mt-1">
-            Final model selection will be made after 1-month user trial (April-May 2026).
-          </p>
-        </div>
 
         <details className="mb-4 w-full rounded-xl border border-[var(--app-glass-border)] bg-app-card/40 px-4 py-3 text-sm text-app-muted backdrop-blur-sm open:bg-app-card/60">
           <summary className="cursor-pointer select-none font-medium text-app-fg">
@@ -791,11 +785,13 @@ export function Design() {
                       <tr key={i} className="border-b border-[var(--app-glass-border)]/60">
                         <td className="py-1 pr-4">
                           <input type="number" value={pt.chainage}
+                            aria-label={`Chainage row ${i + 1} (m)`}
                             onChange={e => updateCrossSection(i, 'chainage', e.target.value)}
                             className="app-field !mt-0 py-1.5"/>
                         </td>
                         <td className="py-1 pr-4">
                           <input type="number" value={pt.gl}
+                            aria-label={`Ground level row ${i + 1} (m MSL)`}
                             onChange={e => updateCrossSection(i, 'gl', e.target.value)}
                             className="app-field !mt-0 py-1.5"/>
                         </td>
@@ -954,8 +950,9 @@ export function Design() {
                 </button>
               </div>
               <div className="flex items-center gap-3 rounded-lg border border-[var(--app-glass-border)] bg-app-card/35 px-3 py-2">
-                <label className="text-xs font-semibold text-app-muted uppercase tracking-wide">DXF Compatibility</label>
+                <label htmlFor="dxf-compatibility-select" className="text-xs font-semibold text-app-muted uppercase tracking-wide">DXF Compatibility</label>
                 <select
+                  id="dxf-compatibility-select"
                   value={dxfAcadVersion}
                   onChange={(e) => setDxfAcadVersion(e.target.value as 'AC1018' | 'AC1021')}
                   className="app-field !mt-0 !h-9 !w-auto min-w-[220px] !py-1.5"

@@ -1,0 +1,70 @@
+{
+  "projectName": "Construction of High-Level Bridge on KUMBHALGARH Road across Kelwara Lake",
+  "location": "KUMBHALGARH Road, Kelwara Lake, Rajasthan",
+  "riverName": "Kelwara Lake",
+  "bridgeType": "high-level",
+  "spanLength": 16.18,
+  "numberOfSpans": 4,
+  "skew": 0,
+  "carriageWidth": 7.5,
+  "numberOfLanes": 2,
+  "totalLength": 64,
+  "hfl": 698.194,
+  "bedLevel": 693.5,
+  "foundationLevel": 688.2,
+  "discharge": 500.953,
+  "manningN": 0.03491,
+  "bedSlope": 820.888,
+  "laceysSiltFactor": 1.5,
+  "crossSectionData": [
+    {
+      "chainage": 0,
+      "gl": 697.8
+    },
+    {
+      "chainage": 20,
+      "gl": 695.2
+    },
+    {
+      "chainage": 40,
+      "gl": 693.5
+    },
+    {
+      "chainage": 60,
+      "gl": 694.1
+    },
+    {
+      "chainage": 80,
+      "gl": 697.5
+    }
+  ],
+  "pierWidth": 1.5,
+  "pierLength": 4,
+  "pierDepth": 6.5,
+  "numberOfPiers": 3,
+  "pierBaseWidth": 3,
+  "pierBaseLength": 5,
+  "abutmentHeight": 9.5,
+  "abutmentWidth": 4,
+  "abutmentDepth": 5.5,
+  "dirtWallHeight": 2.5,
+  "returnWallLength": 6.5,
+  "concreteGrade": "M25",
+  "fck": 30,
+  "steelGrade": "Fe415",
+  "fy": 415,
+  "sbc": 232.618,
+  "phi": 32,
+  "gamma": 18,
+  "rtl": 701.9,
+  "agl": 694.5,
+  "nbl": 693.5,
+  "ofl": 697.5,
+  "dwl": 699,
+  "deckSlabThickness": 0.25,
+  "freeboardAboveHfl": 1.5,
+  "issuingAuthority": "PWD Rajasthan / Forest Dept.",
+  "jobNumber": "KUMBHALGARH-KELWARA-HL",
+  "hardRockAvailable": true,
+  "deckSoffitLevel": 701.2
+}

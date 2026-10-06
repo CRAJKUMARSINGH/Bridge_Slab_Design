@@ -1,0 +1,41 @@
+{
+  // Typecheck for the FLAT tree (bridge-excel-generator + server + scripts).
+  // The root tsconfig.json has "files": [] and only references lib/*, so
+  // `npx tsc --noEmit` at the repo root checks nothing. Run: pnpm run typecheck:flat
+  //
+  // Every dependency the flat tree imports is declared in the root package.json. This lane
+  // used to resolve zod through a `baseUrl` pointing into node_modules/.pnpm, and it excluded
+  // api-routes/app-factory/d4-routes because express, cors, pino, pino-http and drizzle-zod
+  // were declared only by artifacts/api-server. Both hacks are gone: if a bare specifier ever
+  // fails with TS2307 here, the fix is to declare that package at the root, not to re-add a
+  // baseUrl or to drop files from "include".
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["es2022"],
+    "types": ["node"],
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  },
+  "include": [
+    "bridge-excel-generator/**/*.ts",
+    "pipeline/run.ts",
+    "server/api-routes.ts",
+    "server/app-factory.ts",
+    "server/comprehensive-pdf-export.ts",
+    "server/d4-routes.ts",
+    "server/estimation-module.ts",
+    "server/landscape-pdf-export.ts",
+    "server/pdf-export.ts",
+    "server/remote-app-adapter.ts",
+    "server/workbook-sheets-preview.ts",
+    "scripts/verify-*.ts"
+  ]
+}

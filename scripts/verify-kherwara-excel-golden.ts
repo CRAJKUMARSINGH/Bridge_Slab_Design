@@ -181,9 +181,9 @@ function verifyWorkbook(tag: string, wb: ExcelJS.Workbook, failedRef: { v: boole
 }
 
 async function verifyInput(tag: string, input: ProjectInput, failedRef: { v: boolean }) {
-  const buffer = await generateCompleteExcel(input);
+  const buffer = await generateCompleteExcel(input, { book: 'legacy-46' });
   const wb = new ExcelJS.Workbook();
-  await wb.xlsx.load(buffer);
+  await wb.xlsx.load(buffer as unknown as ArrayBuffer);
   verifyWorkbook(tag, wb, failedRef);
 }
 

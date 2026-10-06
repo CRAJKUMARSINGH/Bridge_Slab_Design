@@ -1,0 +1,27 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+OK   larathi-stabil             excavation=1156.8 m3 coat=720.0 m2 warn=1
+       ! hardRockAvailable = true but 100% of excavation is billed as ordinary soil (split rule pending engineering)
+OK   kherwara-golden            excavation=826.3 m3 coat=720.0 m2 warn=0
+OK   high-level-reference       excavation=656.8 m3 coat=360.0 m2 warn=0
+OK   small-bridge               excavation=520.0 m3 coat=108.0 m2 warn=0
+OK   medium-bridge              excavation=668.8 m3 coat=360.0 m2 warn=0
+OK   large-bridge               excavation=1116.0 m3 coat=840.0 m2 warn=0
+OK   irc-bedach-bedla           excavation=1054.6 m3 coat=480.0 m2 warn=0
+OK   irc-jakham-mandvi          excavation=1147.1 m3 coat=600.0 m2 warn=0
+OK   irc-t01-jethliya           excavation=689.0 m3 coat=300.0 m2 warn=0
+OK   irc-sukanaka-matoon        excavation=784.0 m3 coat=360.0 m2 warn=0
+OK   irc-ayad-maharashtra       excavation=1018.9 m3 coat=600.0 m2 warn=0
+OK   irc-gumaniya-udaipur       excavation=627.0 m3 coat=240.0 m2 warn=1
+       ! hardRockAvailable = true but 100% of excavation is billed as ordinary soil (split rule pending engineering)
+OK   irc-katumbi-chandrod       excavation=938.0 m3 coat=420.0 m2 warn=0
+OK   irc-sisarama-highlevel     excavation=732.4 m3 coat=270.0 m2 warn=0
+OK   irc-kumbhalgarh-kelwara    excavation=976.5 m3 coat=480.0 m2 warn=1
+       ! hardRockAvailable = true but 100% of excavation is billed as ordinary soil (split rule pending engineering)
+OK   irc-parwan-highlevel       excavation=1135.6 m3 coat=840.0 m2 warn=0
+OK   irc-banas-highlevel        excavation=1296.9 m3 coat=720.0 m2 warn=0
+OK   irc-ayad-fatehpura         excavation=796.6 m3 coat=360.0 m2 warn=0
+OK   irc-kherka-teegirder       excavation=771.8 m3 coat=285.0 m2 warn=0
+OK   irc-sukanaka-highlevel     excavation=732.4 m3 coat=270.0 m2 warn=0
+
+Templates: 20 | defects: 0 | warnings: 3

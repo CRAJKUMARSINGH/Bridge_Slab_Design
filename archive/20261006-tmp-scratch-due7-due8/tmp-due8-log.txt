@@ -1,0 +1,30 @@
+712:## Turn 15 — 2026-10-05 ("test run the repo in browser")
+813:## Turn 16 — 2026-10-05 ("take up due tasks and complete them one by one" — DUE-1: client typecheck lane)
+862:## Turn 17 — 2026-10-05 ("take up due tasks… complete them one by one" — DUE-2 outcome gate, DUE-3 narrative lint)
+938:## Turn 18 — 2026-10-05 · DUE-4: HTML/PDF parity gate (`take up due tasks and complete them one by one`)
+990:## Turn 19 — 2026-10-05 · DUE-5, DUE-6, DUE-7: release bundle, deployment surface, Model A/B (`take up due tasks and complete them one by one`)
+1075 CREAT-CHATLOG.MD
+**Tooling notes for future turns.** The Edit tool fails on this repo's box-drawing/em-dash comment headers
+(byte mojibake between read and write) — for those regions rewrite with a script that preserves the BOM.
+An earlier script truncated a block comment one line wrong and produced `TS1010: '*/' expected`; the fix
+was to detect the last unclosed opener rather than match on `/*`. Bash stdout is still dropped regularly
+("bash output unavailable"), so every probe redirects to `tmp-*.txt` and is read back.
+
+**Evidence.** `pnpm run check` exit 0 (typecheck:libs / flat / client, artifacts + scripts lanes,
+lint:narrative). `pnpm run verify` exit 0 across all **eight** gates. `pnpm run build:client` exit 0.
+Browser snapshots of `/merge`, `/dashboard`, `/design`, `/` — no model UI anywhere, no error overlay;
+`grep` over `client/src` for `useModelStore|ModelSwitcher|activeModel|model-selection|generateExcelModel[AB]`
+returns nothing outside `archive/`. The 503 on `/api/stats/summary` is the database offline in dev
+(pre-existing, §K), not a regression from this batch. No delivered number moved, so `test-output/` was
+not regenerated.
+
+**Register.** `august-due.md` — new §O (7 rows: removal, moved/unmoved numbers, J-8's corrected root
+cause, the pointer guard, the polyline fix, the doc corrections, gate evidence), J-7 and J-8 closed,
+KERO-001 / LOVABLE-002 / CURSOR-001 residuals re-worded so they no longer assert a Model A/B chip or an
+uninstalled package, SUMMARY row 15 struck, BLOCKING #4 gained the LFS prerequisite, next-actions 5b/7/8
+updated, and the count corrected to 1,876 stubs of 2,080. `README.md` and
+`docs/implementation-reality-check.md` no longer credit `REMOTE_APP/…FINAL_RESULT.xls`; README gained a
+Git LFS paragraph. `CODE-JUNCTION/august-due.md` re-synced byte-identical (66,766 B each).
+**Still DUE:** engineer sign-off (`engineering/review/` empty), Kherwara/Kharka identity, governing water
+level, the assimilation scripts A2–A5 (+ `git lfs pull` first), `assimilate --report`, `Dockerfile` +
+`lib/log.ts`, engine decoupling (J-5), and a real visual pass for the A4/15 mm/landscape policy.

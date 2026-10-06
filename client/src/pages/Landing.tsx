@@ -1,9 +1,16 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { motion, useReducedMotion } from 'framer-motion';
-import { Landmark, Calculator, Loader2, Sparkles, Layers, Gauge, PencilRuler, Waves, ArrowUpFromLine, FolderKanban, BookOpen, FileText } from 'lucide-react';
+import {
+  Landmark, Calculator, Loader2, Sparkles, Layers, Gauge, PencilRuler, Waves,
+  ArrowUpFromLine, FolderKanban, BookOpen, FileText, Droplets, LayoutDashboard,
+  GalleryHorizontalEnd, Library, GitFork, Blocks, FlaskConical, Columns3,
+  Info, ChevronRight,
+  CheckCircle2,
+} from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
 import { applyKherwaraDemoSeed } from '@/lib/demo-seed';
-import { useModelStore } from '@/stores/useModelStore';
+import { useDesignStore } from '@/stores/useDesignStore';
 import { useTheme } from '@/lib/theme-context';
 
 const stagger = {
@@ -41,8 +48,12 @@ const QUICK_REPORTS = [
 export function Landing() {
   const [, setLocation] = useLocation();
   const [demoBusy, setDemoBusy]   = useState(false);
-  const { activeModel, setModel } = useModelStore();
+  const designLoaded              = useDesignStore(s => !!s.results);
   const { theme }                 = useTheme();
+  const { data: projectsData }    = useQuery<{ projects?: { id: string; name: string }[] }>({
+    queryKey: ['projects'],
+    queryFn: () => fetch('/api/projects').then(r => r.json()),
+  });
   const fadeUp                    = useFadeUpVariants();
   const statPanel                 = theme === 'light' ? 'auspicious-card' : 'glass-panel';
   const [templates, setTemplates] = useState<TemplateItem[]>([]);
@@ -111,8 +122,13 @@ export function Landing() {
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <button onClick={() => setLocation('/design')}
-                  className="auspicious-btn px-6 py-3 rounded-lg text-sm transition">
+                  className="auspicious-btn px-6 py-3 rounded-lg text-sm transition inline-flex items-center gap-2">
                   Start new design
+                  {designLoaded && (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-bold text-emerald-700 uppercase tracking-wider">
+                      <CheckCircle2 className="h-3 w-3" />✓ Design loaded
+                    </span>
+                  )}
                 </button>
                 <button onClick={() => setLocation('/projects')}
                   className="inline-flex items-center gap-2 rounded-lg border-2 border-[var(--auspicious-maroon)] bg-white/50 px-6 py-3 text-sm font-bold text-[var(--auspicious-maroon)] backdrop-blur-sm transition hover:bg-[var(--auspicious-maroon)] hover:text-white">
@@ -217,10 +233,10 @@ export function Landing() {
           </div>
           <svg viewBox="0 0 340 160" className="h-[160px] w-full">
             {[
-              { label: 'Hydraulics Mastery',    value: activeModel === 'model-a' ? 94 : 92, y: 14,  fill: 'var(--auspicious-orange)' },
-              { label: 'Stability Precision',  value: activeModel === 'model-a' ? 96 : 95, y: 52,  fill: 'var(--auspicious-maroon)' },
-              { label: 'Structural Integrity', value: activeModel === 'model-a' ? 91 : 90, y: 90,  fill: 'var(--auspicious-maroon)' },
-              { label: 'Rule Compliance',      value: activeModel === 'model-a' ? 89 : 93, y: 128, fill: 'var(--auspicious-orange)' },
+              { label: 'Hydraulics Mastery',    value: 94, y: 14,  fill: 'var(--auspicious-orange)' },
+              { label: 'Stability Precision',  value: 96, y: 52,  fill: 'var(--auspicious-maroon)' },
+              { label: 'Structural Integrity', value: 91, y: 90,  fill: 'var(--auspicious-maroon)' },
+              { label: 'Rule Compliance',      value: 89, y: 128, fill: 'var(--auspicious-orange)' },
             ].map(s => {
               const w = Math.max(12, (s.value / 100) * 200);
               return (
@@ -254,26 +270,173 @@ export function Landing() {
           </motion.div>
         ))}
 
-        {/* ── MODEL SELECTOR ── */}
+        {/* ── QUICK ACCESS — all feature modules ── */}
+        <motion.div variants={fadeUp} className="auspicious-card auspicious-border depth-lift p-6 md:col-span-12">
+          <div className="mb-5 flex items-center justify-between">
+            <div>
+              <h2 className="text-sm font-black uppercase tracking-[0.2em] text-[var(--auspicious-maroon)]/60">
+                Module Quick Access
+              </h2>
+              <p className="mt-0.5 text-[11px] font-bold text-[var(--auspicious-maroon)]/40 uppercase tracking-widest">
+                All engineering workspaces at a glance
+              </p>
+            </div>
+            <span className="rounded-full border-2 border-[var(--auspicious-gold)]/40 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-[var(--auspicious-maroon)]">
+              10 Modules
+            </span>
+          </div>
+
+          <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
+            {[
+              {
+                path: '/hydraulics',
+                icon: <Droplets className="h-6 w-6" />,
+                label: 'Hydraulics',
+                desc: 'Flood discharge & HFL calculations',
+                color: 'text-blue-600',
+                border: 'border-blue-300/40',
+                bg: 'bg-blue-50/60',
+              },
+              {
+                path: '/slab-design',
+                icon: <Columns3 className="h-6 w-6" />,
+                label: 'Slab Design',
+                desc: 'RC slab design to IRC:112',
+                color: 'text-amber-700',
+                border: 'border-amber-300/40',
+                bg: 'bg-amber-50/60',
+              },
+              {
+                path: '/dashboard',
+                icon: <LayoutDashboard className="h-6 w-6" />,
+                label: 'IRC Dashboard',
+                desc: 'Pass / fail rule-check verdicts',
+                color: 'text-emerald-700',
+                border: 'border-emerald-300/40',
+                bg: 'bg-emerald-50/60',
+              },
+              {
+                path: '/t-girder',
+                icon: <GalleryHorizontalEnd className="h-6 w-6" />,
+                label: 'T-Girder',
+                desc: 'Composite section & live-load analysis',
+                color: 'text-violet-700',
+                border: 'border-violet-300/40',
+                bg: 'bg-violet-50/60',
+              },
+              {
+                path: '/astra-library',
+                icon: <Library className="h-6 w-6" />,
+                label: 'ASTRA Library',
+                desc: 'Searchable ASTRA 15 reference cards',
+                color: 'text-[var(--auspicious-maroon)]',
+                border: 'border-[var(--auspicious-gold)]/40',
+                bg: 'bg-[var(--auspicious-cream)]/80',
+              },
+              {
+                path: '/interaction-diagram',
+                icon: <GitFork className="h-6 w-6" />,
+                label: 'P-M Diagram',
+                desc: 'IS:456 column interaction diagram',
+                color: 'text-rose-700',
+                border: 'border-rose-300/40',
+                bg: 'bg-rose-50/60',
+              },
+              {
+                path: '/abutment-stability',
+                icon: <Blocks className="h-6 w-6" />,
+                label: 'Abutment',
+                desc: 'Coulomb + seismic FOS checks',
+                color: 'text-stone-700',
+                border: 'border-stone-300/40',
+                bg: 'bg-stone-50/60',
+              },
+              {
+                path: '/formula-evaluator',
+                icon: <FlaskConical className="h-6 w-6" />,
+                label: 'Formula Eval',
+                desc: 'Live IRC formula recalculator',
+                color: 'text-cyan-700',
+                border: 'border-cyan-300/40',
+                bg: 'bg-cyan-50/60',
+              },
+              {
+                path: '/pier-stability',
+                icon: <Layers className="h-6 w-6" />,
+                label: 'Pier Stability',
+                desc: 'Pier sheet viewer & FOS gauges',
+                color: 'text-[var(--auspicious-orange)]',
+                border: 'border-orange-300/40',
+                bg: 'bg-orange-50/60',
+              },
+              {
+                path: '/about-scope',
+                icon: <Info className="h-6 w-6" />,
+                label: 'About Scope',
+                desc: 'Module scope & drawing coverage',
+                color: 'text-slate-600',
+                border: 'border-slate-300/40',
+                bg: 'bg-slate-50/60',
+              },
+            ].map(m => (
+              <button
+                key={m.path}
+                onClick={() => setLocation(m.path)}
+                className={`group flex flex-col gap-2 rounded-2xl border-2 ${m.border} ${m.bg} p-4 text-left
+                  transition-all duration-200 hover:scale-[1.03] hover:shadow-lg focus:outline-none
+                  focus-visible:ring-2 focus-visible:ring-[var(--auspicious-orange)]/50
+                  dark:bg-slate-900/60 dark:border-slate-700/50`}
+              >
+                <div className={`${m.color} flex items-center justify-between`}>
+                  {m.icon}
+                  <ChevronRight className="h-4 w-4 opacity-0 -translate-x-1 transition-all group-hover:opacity-70 group-hover:translate-x-0" />
+                </div>
+                <p className={`text-[13px] font-black uppercase tracking-tight ${m.color}`}>{m.label}</p>
+                <p className="text-[11px] font-medium text-[var(--auspicious-maroon)]/60 dark:text-slate-400 leading-snug">
+                  {m.desc}
+                </p>
+              </button>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* ── RECENT PROJECTS ── */}
+        <motion.div variants={fadeUp} className="auspicious-card depth-lift p-6 md:col-span-12">
+          <div className="mb-4 flex items-center justify-between">
+            <h2 className="text-sm font-black uppercase tracking-[0.2em] text-[var(--auspicious-maroon)]/60">Recent Projects</h2>
+            <button onClick={() => setLocation('/projects')}
+              className="text-[12px] font-black text-[var(--auspicious-orange)] hover:underline tracking-wider uppercase">
+              View All →
+            </button>
+          </div>
+          {(() => {
+            const recent = (projectsData?.projects ?? []).slice(0, 3);
+            if (recent.length === 0) {
+              return (
+                <p className="text-sm text-[var(--auspicious-maroon)]/60 font-medium italic">
+                  No projects yet — start a new design.
+                </p>
+              );
+            }
+            return (
+              <div className="flex flex-wrap gap-3">
+                {recent.map(p => (
+                  <button key={p.id} onClick={() => setLocation('/projects')}
+                    className="rounded-xl border-2 border-[var(--auspicious-gold)]/30 bg-white/60 px-4 py-2 text-sm font-bold text-[var(--auspicious-maroon)] transition hover:scale-[1.02] hover:shadow-md hover:bg-white/80">
+                    {p.name}
+                  </button>
+                ))}
+              </div>
+            );
+          })()}
+        </motion.div>
+
+        {/* ── ENGINEERING MANTRAS ── */}
         <motion.div variants={fadeUp} className="auspicious-card auspicious-border depth-lift p-8 md:col-span-12">
           <div className="flex flex-wrap items-center justify-between gap-6">
             <div>
               <h2 className="text-lg font-black text-[var(--auspicious-maroon)] uppercase tracking-widest">Engineering Mantras</h2>
-              <p className="mt-1 text-sm text-[var(--auspicious-maroon)]/70 font-bold italic">Trial period April–May 2026 — select Model A or B to compare paths.</p>
-            </div>
-            <div className="inline-flex rounded-2xl border-2 border-[var(--auspicious-gold)]/40 bg-white/40 p-1.5 shadow-inner">
-              {(['A', 'B'] as const).map(m => (
-                <button key={m} type="button"
-                  onClick={() => setModel(m === 'B' ? 'model-b' : 'model-a')}
-                  className={`rounded-xl px-8 py-3 text-sm font-black uppercase tracking-widest transition-all ${
-                    activeModel === (m === 'A' ? 'model-a' : 'model-b')
-                      ? 'bg-gradient-to-b from-[var(--auspicious-orange)] to-[var(--auspicious-maroon)] text-[var(--auspicious-gold)] shadow-lg'
-                      : 'text-[var(--auspicious-maroon)]/60 hover:text-[var(--auspicious-maroon)]'
-                  }`}
-                  aria-pressed={activeModel === (m === 'A' ? 'model-a' : 'model-b')}>
-                  Model {m}
-                </button>
-              ))}
+              <p className="mt-1 text-sm text-[var(--auspicious-maroon)]/70 font-bold italic">Engineering preview build — October 2026.  One design engine, one workbook, one set of verdicts.</p>
             </div>
           </div>
           <div className="mt-8 flex flex-wrap gap-4 border-t-2 border-[var(--auspicious-gold)]/20 pt-8">

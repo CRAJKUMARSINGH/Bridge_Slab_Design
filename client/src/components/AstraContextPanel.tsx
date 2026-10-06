@@ -456,11 +456,12 @@ export function AstraContextPanel({ pageKey, title, defaultOpen = true, compact 
 
               {/* App link */}
               {m.appPage && (
-                <Link href={m.appPage}>
-                  <a className={`inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[9px] font-semibold transition hover:opacity-80 ${m.borderColor} ${m.accentColor}`}>
-                    <CheckCircle2 className="h-2.5 w-2.5" />
-                    {m.appPageLabel} <ExternalLink className="h-2.5 w-2.5" />
-                  </a>
+                <Link
+                  href={m.appPage}
+                  className={`inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[9px] font-semibold transition hover:opacity-80 ${m.borderColor} ${m.accentColor}`}
+                >
+                  <CheckCircle2 className="h-2.5 w-2.5" />
+                  {m.appPageLabel} <ExternalLink className="h-2.5 w-2.5" />
                 </Link>
               )}
             </div>
@@ -472,10 +473,11 @@ export function AstraContextPanel({ pageKey, title, defaultOpen = true, compact 
           }`}>
             <BookOpen className="h-5 w-5 text-amber-400/60 mb-1" />
             <p className="text-[9px] text-app-muted mb-2">All 32 ASTRA modules</p>
-            <Link href="/astra-library">
-              <a className="rounded-md border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-[9px] font-bold text-amber-400 hover:bg-amber-500/20 transition">
-                Full Library →
-              </a>
+            <Link
+              href="/astra-library"
+              className="rounded-md border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-[9px] font-bold text-amber-400 hover:bg-amber-500/20 transition"
+            >
+              Full Library →
             </Link>
           </div>
         </div>

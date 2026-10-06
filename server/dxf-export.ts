@@ -12,6 +12,7 @@
  */
 
 import type { EnhancedProjectInput } from '../bridge-excel-generator/types';
+import { deckSlabThicknessOf } from '../bridge-excel-generator/input-contract';
 
 // ── Configuration ─────────────────────────────────────────────────────────────
 
@@ -151,7 +152,7 @@ export function generateBridgeDXF(
   const agl = _agl * S_SCALE;
   const rtl = (input.rtl ?? _agl + 4) * S_SCALE;
   const foundationLevel = (input.foundationLevel ?? _agl - 4) * S_SCALE;
-  const deckThk = (input.deckSlabThickness ?? 0.25) * S_SCALE;
+  const deckThk = (deckSlabThicknessOf(input)) * S_SCALE;
   const soffitLevel = (input.hydraulics?.soffitLevel ?? (_L * S_SCALE - deckThk / S_SCALE)) * S_SCALE; // Scaled
 
   const skewRad = (skew * Math.PI) / 180;

@@ -15,18 +15,41 @@ export interface OptimisationResult {
 }
 
 /**
+ * Bounded because this runs inside the API process: every trial is a full synchronous
+ * recalculation (~4 ms measured), so without a budget a caller-supplied input could pin
+ * the event loop for the whole request.
+ */
+export interface OptimisationBudget {
+  maxIterations?: number;
+  deadlineMs?: number;
+}
+
+const DEFAULT_MAX_ITERATIONS = 50;
+const DEFAULT_DEADLINE_MS = 5_000;
+
+/**
  * Iteratively optimises bridge dimensions based on structural and stability compliance.
  * Follows the 1:2 ratio increment logic defined in PIER ABUT OPTIMISATION.md
  */
-export async function optimiseBridgeDesign(input: ProjectInput): Promise<OptimisationResult> {
+export async function optimiseBridgeDesign(
+  input: ProjectInput,
+  budget: OptimisationBudget = {}
+): Promise<OptimisationResult> {
   let currentInput = { ...input };
   const trials: OptimisationResult['trials'] = [];
-  const MAX_ITERATIONS = 50;
-  
+  const maxIterations = budget.maxIterations ?? DEFAULT_MAX_ITERATIONS;
+  const deadline = Date.now() + (budget.deadlineMs ?? DEFAULT_DEADLINE_MS);
+
   let success = false;
   let message = '';
 
-  for (let i = 1; i <= MAX_ITERATIONS; i++) {
+  for (let i = 1; i <= maxIterations; i++) {
+    // Yield between trials so the bounded loop cannot starve other requests.
+    await new Promise<void>((resolve) => setImmediate(resolve));
+    if (Date.now() > deadline) {
+      message = `Stopped at iteration ${i - 1}: ${DEFAULT_DEADLINE_MS} ms compute budget exhausted before a safe design was reached.`;
+      break;
+    }
     const design = calculateCompleteDesign(currentInput);
     
     // Check if everything is safe
@@ -66,8 +89,8 @@ export async function optimiseBridgeDesign(input: ProjectInput): Promise<Optimis
     }
   }
 
-  if (!success) {
-    message = 'Could not reach a safe design within maximum iterations.';
+  if (!success && !message) {
+    message = `Could not reach a safe design within ${maxIterations} iterations.`;
   }
 
   return {

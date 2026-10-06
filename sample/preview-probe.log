@@ -1,0 +1,32 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+--- LLOAD ---
+  row 1: ["LIVE LOAD ANALYSIS","","","",""]
+  row 2: ["","","","",""]
+  row 3: ["S.No.","Load case","Live-load factor","Live load (kN)","Status"]
+  row 4: ["1","Service Condition (DL+LL)","1","400","UNSAFE"]
+  row 5: ["2","Construction Stage (DL+Wind)","0","0","UNSAFE"]
+  row 6: ["3","Flood Condition (DL+Hydro)","0","0","UNSAFE"]
+  row 7: ["4","Seismic Condition (DL+LL+Seismic)","0.25","100","UNSAFE"]
+  row 8: ["5","Ultimate Limit State (ULS)","1.5","600","UNSAFE"]
+  row 9: ["","","","",""]
+--- General Abs. ---
+  row 1: ["GENERAL ABSTRACT OF COST","","",""]
+  row 2: ["","","",""]
+  row 3: ["S.No.","Category / item","Amount (₹)","% of subtotal"]
+  row 4: ["1","Concrete M25","3.6880e+6","47.14"]
+  row 5: ["2","Steel Fe415","3.1620e+6","40.42"]
+  row 6: ["3","Formwork","222810","2.85"]
+  row 7: ["4","Excavation","0","0"]
+  row 8: ["5","Backfill","0","0"]
+  row 9: ["6","PCC Blinding","82625","1.06"]
+--- Abstract ---
+  row 1: ["DETAILED ABSTRACT OF COST","","","","",""]
+  row 2: ["","","","","",""]
+  row 3: ["Item","Description","Unit","Quantity","Rate (₹)","Amount (₹)"]
+  row 4: ["1","Concrete M25","m³","670.55","5500","3.6880e+6"]
+  row 5: ["2","Steel Fe415","MT","48.647","65000","3.1620e+6"]
+  row 6: ["3","Formwork","m²","636.6","350","222810"]
+  row 7: ["4","Excavation","m³","0","250","0"]
+  row 8: ["5","Backfill","m³","0","150","0"]
+  row 9: ["6","PCC Blinding","m³","16.525","5000","82625"]

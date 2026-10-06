@@ -1,0 +1,113 @@
+
+> workspace@0.0.0 deliverables E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run deliverables
+
+
+> @workspace/scripts@0.0.0 deliverables E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./regenerate-test-output.ts
+
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+  design-workbook.xlsx         109,040 bytes
+  sheet-book.pdf               3,203,059 bytes
+  comprehensive-report.pdf     4,913,586 bytes
+  short-design-report.pdf      221,114 bytes
+  design-report.html           416,957 bytes
+  irc-checklist.html           39,743 bytes
+
+Wrote 6 deliverables to E:\Rajkumar\Bridge_Slab_Design\test-output
+deliver_exit=0

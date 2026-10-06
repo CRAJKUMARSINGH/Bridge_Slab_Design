@@ -9,6 +9,10 @@ export interface ProjectInput {
   location: string;
   riverName: string;
   bridgeType?: string;
+  /** IS:1893:2002 seismic zone — II | III | IV | V (default III) */
+  seismicZone?: 2 | 3 | 4 | 5;
+  /** Basic wind speed in m/s per IS:875 Part-3 / IRC:6-2017 §209 (default 33) */
+  designWindSpeed?: number;
   jobNumber?: string;
   issuingAuthority?: string;
   hardRockAvailable?: boolean;
@@ -37,7 +41,7 @@ export interface ProjectInput {
   foundationLevel: number;      // Foundation level (m MSL)
   discharge: number;            // Design discharge (cumecs)
   manningN: number;             // Rugosity coefficient (0.033)
-  bedSlope: number;             // Bed slope (1 in X)
+  bedSlope: number;             // Bed slope as the 1-in-N denominator (Manning S = 1/N); 1500 ⇒ 1 in 1500
   laceysSiltFactor: number;     // Silt factor (1.5)
   
   // Cross Section Data
@@ -140,7 +144,10 @@ export interface PierDesignResult {
     liveLoad: number;           // kN
     hydrostaticForce: number;   // kN
     dragForce: number;          // kN
-    windForce?: number;         // kN
+    /** IRC:6-2017 §209 wind force on pier (kN) */
+    windForce: number;
+    /** IS:1893:2002 horizontal seismic force on pier (kN) */
+    seismicForce: number;
     totalHorizontalForce: number; // kN
     buoyancy: number;           // kN
   };
@@ -184,6 +191,10 @@ export interface LoadCase {
   liveLoadFactor: number;
   windLoadFactor: number;
   buoyancyFactor: number;
+  // Retaining actions — set only where the structure carries them (abutments).
+  earthPressureFactor?: number;
+  surchargeFactor?: number;
+  seismicLoadFactor?: number;
   
   // Forces
   verticalForce: number;
@@ -205,6 +216,12 @@ export interface SteelDetails {
   numberOfBars: number;         // count
   area: number;                 // mm²
   weight: number;               // kg
+  /** IS 456:2000 §26.2.1 tension development length Ld in mm. */
+  developmentLengthTension?: number;
+  /** IS 456:2000 §26.2.1.1 compression development length in mm. */
+  developmentLengthCompression?: number;
+  /** IS 456:2000 §25.2.5.1(c) tension lap length = 1.3·Ld in mm (≥ 300 mm). */
+  lapLengthTension?: number;
 }
 
 export interface AbutmentDesignResult {
@@ -234,6 +251,22 @@ export interface AbutmentDesignResult {
     soilSurcharge: number;
     waterPressure: number;
   };
+
+  // Retaining and environmental actions that the load combinations factor.
+  // Each entry is the magnitude of one action, so a stability sheet can show the
+  // combination arithmetic as live formulas instead of a single blended number.
+  additionalActions: {
+    surchargeIntensity: number;   // kN/m²
+    surchargeThrust: number;      // ka · q · H (kN)
+    basicWindSpeed: number;       // m/s
+    designWindPressure: number;   // Pz (kN/m²)
+    windForce: number;            // Pz · Cf · w · H (kN)
+    seismicZoneFactor: number;    // Z (IS:1893)
+    seismicCoefficient: number;   // Ah
+    seismicForce: number;         // Ah · (DL + LL) (kN)
+    earthResultantHeight: number; // H/3 (m)
+    lateralResultantHeight: number; // H/2 (m) for wind and seismic
+  };
   
   // Stability
   loadCases: LoadCase[];
@@ -252,6 +285,8 @@ export interface EstimationResult {
   // Quantities
   quantities: {
     concrete: {
+      m15: number;              // m³ (PCC — blinding and levelling courses)
+      m20: number;              // m³
       m25: number;              // m³
       m30: number;              // m³
       m35: number;              // m³
@@ -262,25 +297,38 @@ export interface EstimationResult {
       fe500: number;            // MT
       total: number;            // MT
     };
-    formwork: number;           // m²
+    formwork: number;           // m² (reported only — the BSR concrete rates already include it)
     excavation: {
-      ordinary: number;         // m³
-      hardRock: number;         // m³
+      soilUpto3m: number;       // m³
+      soil3to6m: number;        // m³ (also carries digs deeper than 6 m)
+      softRock: number;         // m³, ordinary/soft rock without blasting
+      hardRock: number;         // m³, hard rock requiring blasting
       total: number;            // m³
     };
-    backfill: number;           // m³
+    backfill: number;           // m³ of gravelly backfill behind the walls
   };
-  
+
+  /**
+   * Quantity build-up behind the BOQ: one row per measured component, grouped by
+   * BOQ item so sheet 46 can bill the same numbers the Abstract uses.
+   */
+  measurements: EstimationMeasurement[];
+
   // Bill of Quantities
   boq: BOQItem[];
-  
-  // Cost Summary
+
+  // Cost summary — PWD overhead ladder, not a flat tax:
+  // subtotal + QC + contingency provision + contingencies = G.Total,
+  // G.Total + prorata overheads & profit = grand total.
   cost: {
     subtotal: number;           // ₹
-    profit: number;             // ₹
-    overhead: number;           // ₹
-    gst: number;                // ₹
+    qualityControl: number;     // ₹ (1.00 % of subtotal)
+    contingencyProvision: number; // ₹ (3 % band, booked nil unless the engineer directs)
+    contingencies: number;      // ₹ (1.50 % of subtotal)
+    gTotal: number;             // ₹
+    prorataOverheads: number;   // ₹ (13.00 % of G.Total)
     total: number;              // ₹
+    totalInLacs: number;        // ₹ lakh
     ratePerMeter: number;       // ₹/m
     ratePerSqm?: number;        // ₹/m²
   };
@@ -293,6 +341,27 @@ export interface BOQItem {
   quantity: number;
   rate: number;
   amount: number;
+}
+
+/** How a measurement row multiplies into its quantity. */
+export type MeasurementBasis = 'volume' | 'plan' | 'count' | 'steel';
+
+export interface EstimationMeasurement {
+  /** BOQ item this row builds up, e.g. '6'. */
+  item: string;
+  /** 'FOUNDATION WORK', 'SUB STRUCTURE WORK', 'SUPERSTRUCTURE', 'APPROACHES & ROAD FURNITURE'. */
+  section: string;
+  /** BSR / estimate clause reference, e.g. 'B-1/1.1.4'. */
+  bsrCode: string;
+  description: string;
+  basis: MeasurementBasis;
+  nos: number;
+  length: number;
+  breadth: number;
+  height: number;
+  unit: string;
+  /** nos×L×B×H (volume), nos×L×B (plan), nos (count) or the steel product in MT. */
+  quantity: number;
 }
 
 export interface CompleteDesignResult {
