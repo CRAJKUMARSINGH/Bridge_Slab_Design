@@ -2,12 +2,52 @@
  * REMOTE_APP Adapter
  * Wires valuable modules from REMOTE_APP to main app
  * Abutment Design, Estimation Module, Deck Anchorage
+ *
+ * Pure constants, the DetailedEstimationResult type, buildOverheadLadder and
+ * calculateDetailedEstimation now live in shared/design-engine-types.ts so the
+ * bridge-excel-generator can import them without pulling in the server layer.
+ * Everything is re-exported here so existing callers (api-routes, scripts) need
+ * no changes.
  */
 
-import type { ProjectInput, EnhancedProjectInput, BOQItem } from '../bridge-excel-generator/types';
-import { RATE_LOOKUP } from '../bridge-excel-generator/material-rates';
+import type {
+  ProjectInput,
+  CompleteDesignResult,
+} from '../bridge-excel-generator/types';
+import {
+  WEARING_COAT_THICKNESS_M,
+} from '../bridge-excel-generator/material-rates';
+import { deckSlabThicknessOf } from '../bridge-excel-generator/input-contract';
 
-// Types from REMOTE_APP modules
+// ── Re-export everything that moved to shared/ ────────────────────────────────
+export {
+  BEARINGS_PER_PIER,
+  OVERHEAD_RATES,
+  ABUTMENT_BAND_LENGTH_M,
+  ABUTMENT_FOOTING_EXTRA_WIDTH_M,
+  PIER_FOOTING_THICKNESS_M,
+  BLINDING_THICKNESS_M,
+  EXCAVATION_OVERDIG_M,
+  SOFT_ROCK_BAND_THICKNESS_M,
+  WEEP_HOLE_SPACING_M,
+  RETURN_WALL_THICKNESS_M,
+  WALL_BACKFILL_WIDTH_M,
+  WALL_FILTER_THICKNESS_M,
+  APPROACH_SLAB_LENGTH_M,
+  APPROACH_SLAB_THICKNESS_M,
+  APPROACH_LEVELLING_THICKNESS_M,
+  MARKING_LINES,
+  MARKING_LINE_WIDTH_M,
+  CATS_EYE_SPACING_M,
+  INFO_BOARDS,
+  NAME_BOARDS,
+  buildOverheadLadder,
+  calculateDetailedEstimation,
+  type DetailedEstimationResult,
+} from '../shared/design-engine-types';
+
+// ── Private types used only within this adapter ───────────────────────────────
+
 interface AbutmentDesignInput {
   geometry: {
     abutmentHeight: number;
@@ -38,43 +78,6 @@ interface AbutmentDesignInput {
     hfl: number;
     foundationLevel: number;
   };
-}
-
-interface DetailedEstimationResult {
-  quantities: {
-    concrete: {
-      m25: number;
-      m30: number;
-      m35: number;
-    };
-    steel: {
-      fe415: number;
-      fe500: number;
-    };
-    formwork: number;
-    excavation: {
-      ordinary: number;
-      hardRock: number;
-    };
-    backfill: number;
-    pccBlinding: number;
-    wearingCoat: number;
-    expansionJoints: number;
-    bearings: number;
-  };
-  costs: {
-    concrete: number;
-    steel: number;
-    formwork: number;
-    excavation: number;
-    backfill: number;
-    pccBlinding: number;
-    wearingCoat: number;
-    expansionJoints: number;
-    bearings: number;
-    total: number;
-  };
-  boqItems: BOQItem[];
 }
 
 interface DeckAnchorageInput {
@@ -144,20 +147,24 @@ function toAbutmentInput(input: ProjectInput): AbutmentDesignInput {
 /**
  * Convert ProjectInput to DeckAnchorageInput format
  */
-function toDeckAnchorageInput(input: ProjectInput, designResults: any): DeckAnchorageInput {
-  const deckVolume = input.totalLength * input.carriageWidth * 0.25;
-  
+function toDeckAnchorageInput(
+  input: ProjectInput,
+  designResults: Partial<CompleteDesignResult>,
+): DeckAnchorageInput {
+  const deckThk = deckSlabThicknessOf(input);
+  const deckVolume = input.totalLength * input.carriageWidth * deckThk;
+
   return {
     deckGeometry: {
       length: input.totalLength,
       width: input.carriageWidth,
-      thickness: 0.25,
+      thickness: deckThk,
       volume: deckVolume,
     },
     waterLevels: {
       hfl: input.hfl,
       deckTopLevel: input.rtl,
-      deckBottomLevel: input.rtl - 0.25,
+      deckBottomLevel: input.rtl - deckThk,
     },
     hydraulics: {
       velocity: designResults.hydraulics?.velocity || 1.8,
@@ -165,7 +172,8 @@ function toDeckAnchorageInput(input: ProjectInput, designResults: any): DeckAnch
     },
     loads: {
       deckDeadLoad: deckVolume * 25,
-      wearingCoatLoad: input.totalLength * input.carriageWidth * 0.05 * 22,
+      wearingCoatLoad:
+        input.totalLength * input.carriageWidth * WEARING_COAT_THICKNESS_M * 22,
       parapetLoad: input.totalLength * 2 * 1.5,
     },
     materials: {
@@ -180,7 +188,7 @@ function toDeckAnchorageInput(input: ProjectInput, designResults: any): DeckAnch
  */
 export function calculateDetailedAbutmentDesign(
   input: ProjectInput,
-  type: 'TYPE1' | 'C1'
+  type: 'TYPE1' | 'C1',
 ): {
   earthPressure: {
     ka: number;
@@ -210,41 +218,42 @@ export function calculateDetailedAbutmentDesign(
   const B = t + 1.5;
   const phi = input.phi;
   const gamma = input.gamma;
-  
+
   // Earth pressure coefficient (Rankine)
-  const phiRad = phi * Math.PI / 180;
+  const phiRad = (phi * Math.PI) / 180;
   const Ka = Math.pow(Math.tan(Math.PI / 4 - phiRad / 2), 2);
   const Kp = Math.pow(Math.tan(Math.PI / 4 + phiRad / 2), 2);
-  
+
   // Active earth pressure force
   const Pa = 0.5 * Ka * gamma * H * H * 10; // 10m width
   const resultantLocation = H / 3;
-  
+
   // Stability calculations
   const abutmentWeight = t * H * 10 * 25;
   const footingWeight = B * input.abutmentDepth * 10 * 25;
   const totalWeight = abutmentWeight + footingWeight;
-  
+
   // Overturning stability
   const overturningMoment = Pa * resultantLocation;
   const resistingMoment = totalWeight * (B / 2);
   const overturningFOS = resistingMoment / overturningMoment;
-  
+
   // Sliding stability
   const slidingForce = Pa;
   const resistingForce = totalWeight * 0.5; // mu = 0.5
   const slidingFOS = resistingForce / slidingForce;
-  
+
   // Base pressure
   const area = B * 10;
   const moment = overturningMoment - resistingMoment;
   const eccentricity = Math.abs(moment) / totalWeight;
-  const basePressureMax = (totalWeight / area) * (1 + 6 * eccentricity / B);
-  
-  const status = (overturningFOS >= 1.5 && slidingFOS >= 1.5 && basePressureMax <= input.sbc) 
-    ? 'SAFE' 
-    : 'UNSAFE';
-  
+  const basePressureMax = (totalWeight / area) * (1 + (6 * eccentricity) / B);
+
+  const status =
+    overturningFOS >= 1.5 && slidingFOS >= 1.5 && basePressureMax <= input.sbc
+      ? 'SAFE'
+      : 'UNSAFE';
+
   return {
     earthPressure: {
       ka: Ka,
@@ -265,121 +274,20 @@ export function calculateDetailedAbutmentDesign(
       distributionSteelSpacing: 150,
     },
     quantities: {
-      concrete: (t * H * 10) + (B * input.abutmentDepth * 10),
-      steel: (t * H * 10 * 80), // 80 kg/m³ typical
+      concrete: t * H * 10 + B * input.abutmentDepth * 10,
+      steel: t * H * 10 * 80, // 80 kg/m³ typical
     },
   };
 }
 
 /**
- * Calculate detailed estimation with all items
+ * Calculate deck anchorage (submersible: uplift / buoyancy critical;
+ * high-level: typically not required when soffit is above DWL).
  */
-export function calculateDetailedEstimation(input: ProjectInput, designResults: any): DetailedEstimationResult {
-  // Concrete quantities
-  const pierConcrete = input.numberOfPiers * input.pierWidth * input.pierLength * input.pierDepth;
-  const abutmentConcrete = 2 * input.abutmentWidth * input.abutmentHeight * 10;
-  const footingConcrete = input.numberOfPiers * input.pierBaseWidth * input.pierBaseLength * 1.0 + 
-                          2 * (input.abutmentWidth + 1.5) * input.abutmentDepth * 10;
-  const deckConcrete = input.totalLength * input.carriageWidth * 0.25;
-  
-  const totalConcrete = pierConcrete + abutmentConcrete + footingConcrete + deckConcrete;
-  
-  // Steel quantities (kg)
-  const pierSteel = pierConcrete * 80;
-  const abutmentSteel = abutmentConcrete * 60;
-  const footingSteel = footingConcrete * 50;
-  const deckSteel = deckConcrete * 100;
-  
-  const totalSteel = pierSteel + abutmentSteel + footingSteel + deckSteel;
-  
-  // Formwork
-  const formwork = (input.numberOfPiers * 2 * (input.pierWidth + input.pierLength) * input.pierDepth) +
-                   (2 * 2 * (input.abutmentWidth + input.abutmentHeight) * 10);
-  
-  // Excavation
-  // NOTE: keep excavation depth non-negative. Some templates have foundationLevel
-  // above bedLevel by inputs noise; negative excavation makes BOQ invalid.
-  const excavationDepth = Math.max(0, input.foundationLevel - input.bedLevel + 1);
-  const excavation =
-    input.numberOfPiers * input.pierBaseWidth * input.pierBaseLength * excavationDepth +
-    2 * (input.abutmentWidth + 1.5) * 10 * excavationDepth;
-  
-  // Backfill
-  const backfill = excavation * 0.4;
-  
-  // PCC Blinding
-  const pccBlinding = (input.numberOfPiers * input.pierBaseWidth * input.pierBaseLength * 0.1) +
-                      (2 * (input.abutmentWidth + 1.5) * 10 * 0.1);
-  
-  // Wearing coat
-  const wearingCoat = input.totalLength * input.carriageWidth * 0.05;
-  
-  // Expansion joints (at abutments)
-  const expansionJoints = 2 * input.carriageWidth;
-  
-  // Bearings (at piers)
-  const bearings = input.numberOfPiers * 2;
-  
-  // Costs
-  const concreteRate =
-    input.concreteGrade === 'M25' ? RATE_LOOKUP.concreteM25 :
-    input.concreteGrade === 'M30' ? RATE_LOOKUP.concreteM30 :
-    input.concreteGrade === 'M35' ? RATE_LOOKUP.concreteM35 :
-    RATE_LOOKUP.concreteM20;
-  const steelRate = input.steelGrade === 'Fe415'
-    ? RATE_LOOKUP.steelFe415
-    : RATE_LOOKUP.steelFe500;
-  
-  const costs = {
-    concrete: totalConcrete * concreteRate,
-    steel: (totalSteel / 1000) * steelRate,
-    formwork: formwork * RATE_LOOKUP.formwork,
-    excavation: excavation * RATE_LOOKUP.excavationOrdinary,
-    backfill: backfill * RATE_LOOKUP.backfill,
-    pccBlinding: pccBlinding * RATE_LOOKUP.concreteM20,
-    wearingCoat: wearingCoat * RATE_LOOKUP.concreteM35,
-    expansionJoints: expansionJoints * RATE_LOOKUP.expansionJoint,
-    bearings: bearings * RATE_LOOKUP.bearing,
-    total: 0,
-  };
-  
-  costs.total = Object.values(costs).reduce((a, b) => a + b, 0) - costs.total;
-  
-  // BOQ Items
-  const boqItems: BOQItem[] = [
-    { itemNo: '1', description: `Concrete ${input.concreteGrade}`, unit: 'm³', quantity: totalConcrete, rate: concreteRate, amount: costs.concrete },
-    { itemNo: '2', description: `Steel ${input.steelGrade}`, unit: 'MT', quantity: totalSteel / 1000, rate: steelRate, amount: costs.steel },
-    { itemNo: '3', description: 'Formwork', unit: 'm²', quantity: formwork, rate: RATE_LOOKUP.formwork, amount: costs.formwork },
-    { itemNo: '4', description: 'Excavation', unit: 'm³', quantity: excavation, rate: RATE_LOOKUP.excavationOrdinary, amount: costs.excavation },
-    { itemNo: '5', description: 'Backfill', unit: 'm³', quantity: backfill, rate: RATE_LOOKUP.backfill, amount: costs.backfill },
-    { itemNo: '6', description: 'PCC Blinding', unit: 'm³', quantity: pccBlinding, rate: RATE_LOOKUP.concreteM20, amount: costs.pccBlinding },
-    { itemNo: '7', description: 'Wearing Coat', unit: 'm³', quantity: wearingCoat, rate: RATE_LOOKUP.concreteM35, amount: costs.wearingCoat },
-    { itemNo: '8', description: 'Expansion Joints', unit: 'm', quantity: expansionJoints, rate: RATE_LOOKUP.expansionJoint, amount: costs.expansionJoints },
-    { itemNo: '9', description: 'Bearings', unit: 'nos', quantity: bearings, rate: RATE_LOOKUP.bearing, amount: costs.bearings },
-    { itemNo: '10', description: 'TOTAL', unit: '', quantity: 0, rate: 0, amount: costs.total },
-  ];
-  
-  return {
-    quantities: {
-      concrete: { m25: input.concreteGrade === 'M25' ? totalConcrete : 0, m30: input.concreteGrade === 'M30' ? totalConcrete : 0, m35: input.concreteGrade === 'M35' ? totalConcrete : 0 },
-      steel: { fe415: input.steelGrade === 'Fe415' ? totalSteel / 1000 : 0, fe500: input.steelGrade === 'Fe500' ? totalSteel / 1000 : 0 },
-      formwork,
-      excavation: { ordinary: excavation, hardRock: 0 },
-      backfill,
-      pccBlinding,
-      wearingCoat,
-      expansionJoints,
-      bearings,
-    },
-    costs,
-    boqItems,
-  };
-}
-
-/**
- * Calculate deck anchorage (submersible: uplift / buoyancy critical; high-level: typically not required when soffit is above DWL).
- */
-export function calculateDeckAnchorage(input: ProjectInput, designResults: any): {
+export function calculateDeckAnchorage(
+  input: ProjectInput,
+  designResults: Partial<CompleteDesignResult>,
+): {
   upliftForces: {
     buoyancy: number;
     hydrodynamic: number;
@@ -401,14 +309,15 @@ export function calculateDeckAnchorage(input: ProjectInput, designResults: any):
     grade: string;
   };
 } {
-  const deckVolume = input.totalLength * input.carriageWidth * 0.25;
+  const deckThk = deckSlabThicknessOf(input);
+  const deckArea = input.totalLength * input.carriageWidth;
+  const deckVolume = deckArea * deckThk;
   const deckWeight = deckVolume * 25;
-  const deckThk = input.deckSlabThickness ?? 0.25;
-  const soffitLevel = input.deckSoffitLevel ?? (input.rtl - deckThk);
+  const soffitLevel = input.deckSoffitLevel ?? input.rtl - deckThk;
   const dwl = designResults.hydraulics?.designWaterLevel ?? input.hfl;
 
   if (input.bridgeType === 'high-level' && soffitLevel >= dwl - 0.05) {
-    const wearingCoat = input.totalLength * input.carriageWidth * 0.05 * 22;
+    const wearingCoat = deckArea * WEARING_COAT_THICKNESS_M * 22;
     const parapet = input.totalLength * 2 * 1.5;
     const friction = deckWeight * 0.6;
     const totalResisting = deckWeight + wearingCoat + parapet + friction;
@@ -428,34 +337,36 @@ export function calculateDeckAnchorage(input: ProjectInput, designResults: any):
     };
   }
 
-  const waterDepth = input.hfl - input.rtl + 0.25; // submersion depth
-  
-  // Buoyancy force (Archimedes)
-  const submergedVolume = input.totalLength * input.carriageWidth * Math.min(waterDepth, 0.25);
+  // Buoyancy can only act on the part of the deck below the design water level
+  const submergedDepth = Math.max(0, Math.min(dwl - soffitLevel, deckThk));
+  const submergedVolume = deckArea * submergedDepth;
   const buoyancy = submergedVolume * 9.81;
-  
+
   // Hydrodynamic uplift (simplified)
   const velocity = designResults.hydraulics?.velocity || 1.8;
-  const hydrodynamic = 0.5 * 1000 * velocity * velocity * input.carriageWidth * input.totalLength * 0.001;
-  
+  const hydrodynamic =
+    0.5 * 1000 * velocity * velocity * input.carriageWidth * input.totalLength * 0.001;
+
   const totalUplift = buoyancy + hydrodynamic;
-  
+
   // Resisting forces
-  const wearingCoat = input.totalLength * input.carriageWidth * 0.05 * 22;
+  const wearingCoat = deckArea * WEARING_COAT_THICKNESS_M * 22;
   const parapet = input.totalLength * 2 * 1.5;
-  const friction = deckWeight * 0.6; // friction coefficient
-  
+  const friction = deckWeight * 0.6;
   const totalResisting = deckWeight + wearingCoat + parapet + friction;
-  
-  const safetyFactor = totalResisting / totalUplift;
+
+  const safetyFactor = totalUplift > 0 ? totalResisting / totalUplift : 99;
   const status = safetyFactor >= 1.2 ? 'SAFE' : 'UNSAFE';
-  const anchorageRequired = status === 'UNSAFE' || waterDepth > 0.1;
-  
+  const anchorageRequired = status === 'UNSAFE' || submergedDepth > 0.1;
+
   // Bolt recommendation
-  const boltForce = anchorageRequired ? (totalUplift - totalResisting) * 1.5 : 0;
+  const boltForce = anchorageRequired
+    ? Math.max(0, totalUplift - totalResisting) * 1.5
+    : 0;
   const boltCapacity = 45.2; // 20mm grade 8.8 bolt capacity in kN
-  const numberOfBolts = Math.ceil(boltForce / boltCapacity);
-  
+  const minimumBolts = submergedDepth > 0.1 ? 4 : 0;
+  const numberOfBolts = Math.max(Math.ceil(boltForce / boltCapacity), minimumBolts);
+
   return {
     upliftForces: {
       buoyancy,
@@ -474,7 +385,7 @@ export function calculateDeckAnchorage(input: ProjectInput, designResults: any):
     anchorageRequired,
     boltRecommendation: {
       diameter: 20,
-      number: Math.max(numberOfBolts, 4),
+      number: numberOfBolts,
       grade: '8.8',
     },
   };
@@ -482,7 +393,6 @@ export function calculateDeckAnchorage(input: ProjectInput, designResults: any):
 
 export {
   type AbutmentDesignInput,
-  type DetailedEstimationResult,
   type DeckAnchorageInput,
   toAbutmentInput,
   toDeckAnchorageInput,

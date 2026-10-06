@@ -1,17 +1,19 @@
 /**
  * MAIN EXCEL GENERATOR
- * Generates all 46 sheets matching FINAL_RESULT.xls
+ * Generates all 56 sheets of the Executive Engineering Book
+ * (Expanded 2026-10-05 from 46 → 56 sheets with 10 new IRC/IS QA / Admin sheets)
  */
 
 import ExcelJS from 'exceljs';
 import { ProjectInput, EnhancedProjectInput } from './types';
-import calculateCompleteDesign from './design-engine';
+import { EXPECTED_SHEET_COUNT, isLandscapeSheet } from './sheet-contract';
+import calculateCompleteDesign, { mapDetailedEstimationToEstimationResult } from './design-engine';
 import { assertValidProjectInput } from './input-contract';
 import type { EstimationResult } from './types';
 import { assertNarrativeHasNoPlaceholders, getSheetNarrativeParagraphs } from './narrative-engine';
-import { calculateDetailedEstimation } from '../server/remote-app-adapter';
+import { calculateDetailedEstimation } from '../shared/design-engine-types';
 
-// Import all sheet generators
+// Import all sheet generators — legacy numbered originals
 import { generateIndexSheet } from './sheets/01-index';
 import { generateInsertHydraulicsSheet } from './sheets/02-insert-hydraulics';
 import { generateAffluxCalculationSheet } from './sheets/03-afflux-calculation';
@@ -54,17 +56,44 @@ import {
   generateC1AbutmentPlaceholderSheets
 } from './sheets/29-46-estimation';
 
+// 10 NEW 56-sheet book generators — Batches A / B / C
+import {
+  generateDesignCriteriaSheet,
+  generateInputDataSummarySheet,
+  generateSeismicAnalysisSheet,
+  generateWindLoadSheet,
+} from './sheets/A01-admin-substructure';
+import {
+  generateBearingDetailsSheet,
+  generateExpansionJointSheet,
+  generateApproachSlabSheet,
+} from './sheets/B01-superstructure-approaches';
+import {
+  generateComplianceChecklistSheet,
+  generateServiceabilitySheet,
+  generateRevisionSheet,
+} from './sheets/C01-qa-admin';
+
 /**
- * Generate complete Excel workbook with all 46 sheets
+ * Generate complete Excel workbook.
+ *
+ * Book variants:
+ *   'executive-56' (default) — 56-sheet Executive Engineering Book with the
+ *      10 new IRC/IS QA / Admin / Environmental sheets interleaved.
+ *   'legacy-46'             — original 46-sheet contract (sheet order matches
+ *      the LARATHI / FINAL_RESULT source workbooks; omits the 10 new sheets).
  */
 export async function generateCompleteExcel(
   input: ProjectInput,
-  _options?: { model?: 'model-a' | 'model-b' }
+  options: { book?: 'executive-56' | 'legacy-46' } = {}
 ): Promise<Buffer> {
   assertValidProjectInput(input);
+  const book: 'executive-56' | 'legacy-46' = options.book ?? 'executive-56';
   console.log('🚀 Starting Excel generation...');
   console.log(`Project: ${input.projectName}`);
-  console.log(`Generating 46 sheets with real formulas...`);
+  const sheetN = book === 'legacy-46' ? 46 : EXPECTED_SHEET_COUNT;
+  const sheetLabel = book === 'legacy-46' ? 'legacy 46-sheet contract' : `${EXPECTED_SHEET_COUNT}-sheet executive engineering book`;
+  console.log(`Generating ${sheetN} sheets with real formulas (${sheetLabel})...`);
   
   // Run design engine to calculate all results
   const designResults = calculateCompleteDesign(input);
@@ -103,128 +132,133 @@ export async function generateCompleteExcel(
   workbook.lastPrinted = new Date();
   
   // ==================== GENERATE ALL SHEETS ====================
-  
-  // Sheet 1: INDEX
-  await generateIndexSheet(workbook, enhancedInput);
-  
-  // Sheet 2: INSERT- HYDRAULICS
-  await generateInsertHydraulicsSheet(workbook, enhancedInput);
-  
-  // Sheet 3: afflux calculation
-  await generateAffluxCalculationSheet(workbook, enhancedInput);
-  
-  // Sheet 4: HYDRAULICS
-  await generateHydraulicsSheet(workbook, enhancedInput);
-  
-  // Sheet 5: Deck Anchorage
-  await generateDeckAnchorageSheet(workbook, enhancedInput);
-  
-  // Sheet 6: CROSS SECTION
-  await generateCrossSectionSheet(workbook, enhancedInput);
-  
-  // Sheet 7: Bed Slope
-  await generateBedSlopeSheet(workbook, enhancedInput);
-  
-  // Sheet 8: SBC
-  await generateSBCSheet(workbook, enhancedInput);
-  
-  // ==================== PIER DESIGN SECTION ====================
-  
-  // Sheet 9: STABILITY CHECK FOR PIER
-  await generateStabilityCheckPierSheet(workbook, enhancedInput);
-  
-  // Sheet 10: abstract of stresses
-  await generateAbstractOfStressesSheet(workbook, enhancedInput);
-  
-  // Sheet 11: STEEL IN FLARED PIER BASE
-  await generateSteelFlaredPierSheet(workbook, enhancedInput);
-  
-  // Sheet 12: STEEL IN PIER
-  await generateSteelInPierSheet(workbook, enhancedInput);
-  
-  // Sheet 13: FOOTING DESIGN
-  await generateFootingDesignSheet(workbook, enhancedInput);
-  
-  // Sheet 14: Footing STRESS DIAGRAM
-  await generateFootingStressDiagramSheet(workbook, enhancedInput);
-  
-  // Sheet 15: Pier Cap LL tracked vehicle
-  await generatePierCapLLSheet(workbook, enhancedInput);
-  
-  // Sheet 16: Pier Cap
-  await generatePierCapSheet(workbook, enhancedInput);
-  
-  // Sheet 17: LLOAD
-  await generateLLOADSheet(workbook, enhancedInput);
-  
-  // Sheet 18: loadsumm
-  await generateLoadSummSheet(workbook, enhancedInput);
-  
-  // ==================== LIVE LOAD ABSTRACT ====================
+  // Ordering below matches the contract for the selected book variant.
 
-  // Sheet 19: LL-ABSTRACT
-  await generateLLAbstractSheet(workbook, enhancedInput);
+  if (book === 'legacy-46') {
+    // ---- Legacy 46-sheet order (source-workbook parity) ----
+    await generateIndexSheet(workbook, enhancedInput);
+    await generateInsertHydraulicsSheet(workbook, enhancedInput);
+    await generateAffluxCalculationSheet(workbook, enhancedInput);
+    await generateHydraulicsSheet(workbook, enhancedInput);
+    await generateDeckAnchorageSheet(workbook, enhancedInput);
+    await generateCrossSectionSheet(workbook, enhancedInput);
+    await generateBedSlopeSheet(workbook, enhancedInput);
+    await generateSBCSheet(workbook, enhancedInput);
+    await generateStabilityCheckPierSheet(workbook, enhancedInput);
+    await generateAbstractOfStressesSheet(workbook, enhancedInput);
+    await generateSteelFlaredPierSheet(workbook, enhancedInput);
+    await generateSteelInPierSheet(workbook, enhancedInput);
+    await generateFootingDesignSheet(workbook, enhancedInput);
+    await generateFootingStressDiagramSheet(workbook, enhancedInput);
+    await generatePierCapLLSheet(workbook, enhancedInput);
+    await generatePierCapSheet(workbook, enhancedInput);
+    await generateLLOADSheet(workbook, enhancedInput);
+    await generateLoadSummSheet(workbook, enhancedInput);
+    await generateLLAbstractSheet(workbook, enhancedInput);
+    await generateType1AbutmentDrawingSheet(workbook, enhancedInput);
+    await generateType1StabilityCheckSheet(workbook, enhancedInput);
+    await generateType1FootingDesignSheet(workbook, enhancedInput);
+    await generateType1FootingStressSheet(workbook, enhancedInput);
+    await generateType1SteelInAbutmentSheet(workbook, enhancedInput);
+    await generateType1AbutmentCapSheet(workbook, enhancedInput);
+    await generateType1DirtWallReinforcementSheet(workbook, enhancedInput);
+    await generateType1DirtDirectLoadBMSheet(workbook, enhancedInput);
+    await generateType1DirtLLBMSheet(workbook, enhancedInput);
+    await generateC1AbutmentPlaceholderSheets(workbook, enhancedInput);
+    await generateTechNoteSheet(workbook, enhancedInput);
+    await generateInsertEstimateSheet(workbook, enhancedInput);
+    await generateTechReportSheet(workbook, enhancedInput);
+    await generateGeneralAbsSheet(workbook, enhancedInput);
+    await generateAbstractSheet(workbook, enhancedInput);
+    await generateBridgeMeasurementsSheet(workbook, enhancedInput);
+  } else {
+    // ===== Executive 56-sheet order (matches EXPECTED_SHEET_NAMES) =====
 
-  // ==================== TYPE1 ABUTMENT SECTION ====================
-  
-  // Sheets 20-28: TYPE1 abutment calculations
-  await generateType1AbutmentDrawingSheet(workbook, enhancedInput);
-  
-  // Sheet 21: TYPE1-STABILITY CHECK ABUTMENT
-  await generateType1StabilityCheckSheet(workbook, enhancedInput);
-  
-  // Sheet 22: TYPE1-ABUTMENT FOOTING DESIGN
-  await generateType1FootingDesignSheet(workbook, enhancedInput);
-  
-  // Sheet 23: TYPE1- Abut Footing STRESS
-  await generateType1FootingStressSheet(workbook, enhancedInput);
-  
-  // Sheet 24: TYPE1-STEEL IN ABUTMENT
-  await generateType1SteelInAbutmentSheet(workbook, enhancedInput);
-  
-  // Sheet 25: TYPE1-Abutment Cap
-  await generateType1AbutmentCapSheet(workbook, enhancedInput);
-  
-  // Sheet 26: TYPE1-DIRT WALL REINFORCEMENT
-  await generateType1DirtWallReinforcementSheet(workbook, enhancedInput);
-  
-  // Sheet 27: TYPE1-DIRT DirectLoad_BM
-  await generateType1DirtDirectLoadBMSheet(workbook, enhancedInput);
-  
-  // Sheet 28: TYPE1-DIRT LL_BM
-  await generateType1DirtLLBMSheet(workbook, enhancedInput);
-  
-  // ==================== C1 ABUTMENT SECTION ====================
+    // Sheet 1: INDEX
+    await generateIndexSheet(workbook, enhancedInput);
 
-  // Sheets 29-40: C1 abutment calculations
-  await generateC1AbutmentPlaceholderSheets(workbook, enhancedInput);
+    // ===== NEW ADMIN SHEETS =====
+    // Sheet 2: DESIGN CRITERIA      (Batch A — IRC/IS standards & factors)
+    await generateDesignCriteriaSheet(workbook, enhancedInput);
 
-  // ==================== ESTIMATION SECTION ====================
+    // Sheet 3: INPUT DATA SUMMARY   (Batch A — tabulated ProjectInput)
+    await generateInputDataSummarySheet(workbook, enhancedInput);
 
-  // Sheet 41: TechNote
-  await generateTechNoteSheet(workbook, enhancedInput);
+    // ===== HYDRAULICS & GEOTECH (sheets 4–10) =====
+    await generateInsertHydraulicsSheet(workbook, enhancedInput);
+    await generateAffluxCalculationSheet(workbook, enhancedInput);
+    await generateHydraulicsSheet(workbook, enhancedInput);
+    await generateDeckAnchorageSheet(workbook, enhancedInput);
+    await generateCrossSectionSheet(workbook, enhancedInput);
+    await generateBedSlopeSheet(workbook, enhancedInput);
+    await generateSBCSheet(workbook, enhancedInput);
 
-  // Sheet 42: INSERT ESTIMATE
-  await generateInsertEstimateSheet(workbook, enhancedInput);
+    // ===== NEW ENVIRONMENTAL SHEETS =====
+    await generateSeismicAnalysisSheet(workbook, enhancedInput);
+    await generateWindLoadSheet(workbook, enhancedInput);
 
-  // Sheet 43: Tech Report
-  await generateTechReportSheet(workbook, enhancedInput);
+    // ==================== PIER DESIGN SECTION (sheets 13–23) ====================
+    await generateStabilityCheckPierSheet(workbook, enhancedInput);
+    await generateAbstractOfStressesSheet(workbook, enhancedInput);
+    await generateSteelFlaredPierSheet(workbook, enhancedInput);
+    await generateSteelInPierSheet(workbook, enhancedInput);
+    await generateFootingDesignSheet(workbook, enhancedInput);
+    await generateFootingStressDiagramSheet(workbook, enhancedInput);
+    await generatePierCapLLSheet(workbook, enhancedInput);
+    await generatePierCapSheet(workbook, enhancedInput);
+    await generateLLOADSheet(workbook, enhancedInput);
+    await generateLoadSummSheet(workbook, enhancedInput);
+    await generateLLAbstractSheet(workbook, enhancedInput);
 
-  // Sheet 44: General Abs.
-  await generateGeneralAbsSheet(workbook, enhancedInput);
+    // ===== NEW SUPERSTRUCTURE SHEETS =====
+    await generateBearingDetailsSheet(workbook, enhancedInput);
+    await generateExpansionJointSheet(workbook, enhancedInput);
+    await generateApproachSlabSheet(workbook, enhancedInput);
 
-  // Sheet 45: Abstract
-  await generateAbstractSheet(workbook, enhancedInput);
+    // ==================== TYPE1 ABUTMENT SECTION (sheets 27–35) ====================
+    await generateType1AbutmentDrawingSheet(workbook, enhancedInput);
+    await generateType1StabilityCheckSheet(workbook, enhancedInput);
+    await generateType1FootingDesignSheet(workbook, enhancedInput);
+    await generateType1FootingStressSheet(workbook, enhancedInput);
+    await generateType1SteelInAbutmentSheet(workbook, enhancedInput);
+    await generateType1AbutmentCapSheet(workbook, enhancedInput);
+    await generateType1DirtWallReinforcementSheet(workbook, enhancedInput);
+    await generateType1DirtDirectLoadBMSheet(workbook, enhancedInput);
+    await generateType1DirtLLBMSheet(workbook, enhancedInput);
 
-  // Sheet 46: Bridge measurements
-  await generateBridgeMeasurementsSheet(workbook, enhancedInput);
+    // ==================== C1 ABUTMENT SECTION (sheets 36–47) ====================
+    await generateC1AbutmentPlaceholderSheets(workbook, enhancedInput);
+
+    // ==================== ESTIMATION SECTION (sheets 48–52) ====================
+    await generateTechNoteSheet(workbook, enhancedInput);
+    await generateInsertEstimateSheet(workbook, enhancedInput);
+    await generateTechReportSheet(workbook, enhancedInput);
+    await generateGeneralAbsSheet(workbook, enhancedInput);
+    await generateAbstractSheet(workbook, enhancedInput);
+    await generateBridgeMeasurementsSheet(workbook, enhancedInput);
+
+    // ===== NEW QA & ADMIN SHEETS (53–56) =====
+    await generateComplianceChecklistSheet(workbook, enhancedInput);
+    await generateServiceabilitySheet(workbook, enhancedInput);
+    await generateRevisionSheet(workbook, enhancedInput);
+  }
+
+  // ---- Post-processing (applies to BOTH book variants) ----
 
   // Add a detailed engineering story block to every sheet so reviewers get
   // context, assumptions, governing values, and decision trace in-place.
   applyDetailedNarrativeToAllSheets(workbook, enhancedInput);
+
+  // Per-sheet print setup per PRESENTATION-SPEC.md orientation table
+  // (A4, 15 mm margins; landscape list lives in sheet-contract.ts).
+  applyWorkbookPageSetup(workbook);
+
+  // Lock all formula-backed cells so reviewers cannot accidentally overwrite
+  // a calculated result; static/text cells remain editable for downstream tweaks.
+  await applyWorkbookProtection(workbook);
   
   console.log('✅ Excel generation complete!');
-  console.log(`Total sheets: ${workbook.worksheets.length}/46`);
+  console.log(`Total sheets: ${workbook.worksheets.length}/${sheetN}`);
   
   // Generate buffer
   const buffer = await workbook.xlsx.writeBuffer();
@@ -244,58 +278,6 @@ export async function saveExcelToFile(input: ProjectInput, filename: string): Pr
 // Export main function
 export default generateCompleteExcel;
 
-function mapDetailedEstimationToEstimationResult(
-  detailed: any,
-  input: ProjectInput,
-): EstimationResult {
-  const totalConcrete = Number(detailed?.quantities?.concrete?.m25 ?? 0) +
-    Number(detailed?.quantities?.concrete?.m30 ?? 0) +
-    Number(detailed?.quantities?.concrete?.m35 ?? 0);
-
-  const totalSteel = Number(detailed?.quantities?.steel?.fe415 ?? 0) + Number(detailed?.quantities?.steel?.fe500 ?? 0);
-
-  const excavationOrd = Number(detailed?.quantities?.excavation?.ordinary ?? 0);
-  const excavationHard = Number(detailed?.quantities?.excavation?.hardRock ?? 0);
-  const excavationTotal = excavationOrd + excavationHard;
-
-  const subtotal = Number(detailed?.costs?.total ?? 0);
-  const gst = subtotal * 0.18;
-  const total = subtotal + gst;
-
-  const ratePerMeter = input.totalLength > 0 ? total / input.totalLength : total;
-
-  return {
-    quantities: {
-      concrete: {
-        m25: Number(detailed?.quantities?.concrete?.m25 ?? 0),
-        m30: Number(detailed?.quantities?.concrete?.m30 ?? 0),
-        m35: Number(detailed?.quantities?.concrete?.m35 ?? 0),
-        total: totalConcrete,
-      },
-      steel: {
-        fe415: Number(detailed?.quantities?.steel?.fe415 ?? 0),
-        fe500: Number(detailed?.quantities?.steel?.fe500 ?? 0),
-        total: totalSteel,
-      },
-      formwork: Number(detailed?.quantities?.formwork ?? 0),
-      excavation: {
-        ordinary: excavationOrd,
-        hardRock: excavationHard,
-        total: excavationTotal,
-      },
-      backfill: Number(detailed?.quantities?.backfill ?? 0),
-    },
-    boq: Array.isArray(detailed?.boqItems) ? detailed.boqItems : [],
-    cost: {
-      subtotal,
-      gst,
-      total,
-      ratePerMeter,
-      profit: 0,
-      overhead: 0,
-    },
-  };
-}
 
 function applyDetailedNarrativeToAllSheets(
   workbook: ExcelJS.Workbook,
@@ -313,4 +295,73 @@ function applyDetailedNarrativeToAllSheets(
       cell.alignment = { wrapText: true, vertical: 'top' };
     }
   }
+}
+
+// ExcelJS pageSetup margins are in inches; 15 mm = 15/25.4 in.
+const PAGE_MARGIN_IN = 15 / 25.4; // A4 with 15 mm margins all around
+
+function applyWorkbookPageSetup(workbook: ExcelJS.Workbook): void {
+  workbook.worksheets.forEach((ws) => {
+    ws.pageSetup = {
+      orientation: isLandscapeSheet(ws.name) ? 'landscape' : 'portrait',
+      paperSize: 9, // A4
+      fitToPage: true,
+      fitToWidth: 1,
+      fitToHeight: 0,
+      margins: {
+        left: PAGE_MARGIN_IN,
+        right: PAGE_MARGIN_IN,
+        top: PAGE_MARGIN_IN,
+        bottom: PAGE_MARGIN_IN,
+        header: 0.3,
+        footer: 0.3,
+      },
+    };
+  });
+}
+
+async function applyWorkbookProtection(workbook: ExcelJS.Workbook): Promise<void> {
+  const protections: Promise<void>[] = [];
+  workbook.worksheets.forEach((ws) => {
+    let hasLockedFormula = false;
+    ws.eachRow({ includeEmpty: false }, (row) => {
+      row.eachCell({ includeEmpty: false }, (cell) => {
+        const v = cell.value;
+        const isFormula =
+          v !== null &&
+          v !== undefined &&
+          typeof v === 'object' &&
+          'formula' in (v as object);
+        if (isFormula) {
+          cell.protection = { locked: true };
+          hasLockedFormula = true;
+        } else {
+          cell.protection = { locked: false };
+        }
+      });
+    });
+    if (hasLockedFormula) {
+      // ExcelJS protects via `ws.protect(password, options)`; an empty password
+      // means no unlock credential is stored. The option flags are "allow"
+      // semantics, so `formatCells: false` blocks reformatting.
+      protections.push(
+        ws.protect('', {
+          selectLockedCells: true,
+          selectUnlockedCells: true,
+          formatCells: false,
+          formatColumns: false,
+          formatRows: false,
+          insertColumns: false,
+          insertRows: false,
+          insertHyperlinks: false,
+          deleteColumns: false,
+          deleteRows: false,
+          sort: false,
+          autoFilter: false,
+          pivotTables: false,
+        }),
+      );
+    }
+  });
+  await Promise.all(protections);
 }
