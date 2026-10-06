@@ -9,7 +9,7 @@ const finiteNonNegative = z.number().finite().nonnegative();
  * the engineer-chosen Calc!B9 section modulus.
  */
 export const bridgeDesignInputSchema = z.object({
-  projectName: z.string().trim().min(1).default("KHERWARA / KHARKA DEMO"),
+  projectName: z.string().trim().min(1).default("KHERWARA DEMO"),
   projectCode: z.string().trim().min(1).default("KHERWARA"),
   revision: z.string().trim().min(1).default("draft"),
   spanLength: finitePositive,

@@ -41,7 +41,7 @@ export const STANDARD_ASSUMPTIONS = [
 ];
 
 export const STANDARD_LIMITATIONS = [
-  { id: "L-001", statement: "Parity against canonical Kherwara/Kharka workbook not established.", impact: "HIGH" },
+  { id: "L-001", statement: "Parity against canonical Kherwara workbook not established.", impact: "HIGH" },
   { id: "L-002", statement: "No punching shear, fatigue, bearing, seismic, or thermal checks.", impact: "HIGH" },
   { id: "L-003", statement: "No multi-span or continuous beam model.", impact: "MEDIUM" },
   { id: "L-004", statement: "Licensed-engineer review not yet recorded.", impact: "HIGH" },

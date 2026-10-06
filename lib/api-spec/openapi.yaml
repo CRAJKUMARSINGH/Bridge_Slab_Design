@@ -102,7 +102,7 @@ components:
         - secondMoment
         - sectionModulus
       properties:
-        projectName: { type: string, default: "KHERWARA / KHARKA DEMO" }
+        projectName: { type: string, default: "KHERWARA DEMO" }
         projectCode: { type: string, default: KHERWARA }
         revision: { type: string, default: draft }
         spanLength: { type: number, exclusiveMinimum: 0, description: "Inputs!B3, m" }

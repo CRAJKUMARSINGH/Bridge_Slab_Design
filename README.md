@@ -1,55 +1,90 @@
 # Bridge Report Studio
 
-Bridge Report Studio is a report-first bridge slab design pipeline. It accepts the
-controlled Week 0 input contract recovered from the attached evidence, runs one
-traceable calculation core, keeps failed checks visible, and produces a printable
-narrative HTML report.
+Bridge Report Studio is a report-first bridge slab design pipeline for IRC-standard bridges.
+It accepts a controlled engineering input set, runs a TypeScript calculation core, and
+produces a narrative HTML report and a 46-sheet Excel workbook export.
 
-This is a **prototype/review build**. It is not an approved structural design
-tool, and all generated reports are marked `DRAFT` until a licensed engineer
-records review status.
+> **Status: Prototype / Review Build** — Not an approved structural design tool.
+> All generated reports are marked `DRAFT` until a licensed engineer records review status.
+
+---
+
+## What works today (2026-09-24)
+
+| Component | Location | Status |
+|---|---|---|
+| Design engine (hydraulics, pier, abutment) | `bridge-excel-generator/design-engine.ts` | Done — wind (IRC:6-2017 §209) and seismic (IS:1893:2002) implemented |
+| Material rates registry | `bridge-excel-generator/material-rates.ts` | Done — 17 BOQ items |
+| Narrative engine | `bridge-excel-generator/narrative-engine.ts` | Done |
+| Report model | `bridge-excel-generator/report-model.ts` | Done |
+| 46-sheet Excel contract | `bridge-excel-generator/sheet-contract.ts` | Done — names/order frozen |
+| Sheets 3 & 4 (Afflux, Hydraulics) | `bridge-excel-generator/sheets/` | Done — live Excel formulas |
+| Sheet 19 (LL-ABSTRACT) | `bridge-excel-generator/sheets/19-ll-abstract.ts` | Done — wired in `index.ts` |
+| Sheets 1, 5–11, 12–18, 20–28, 29–46 | `bridge-excel-generator/sheets/` | Done as engine-backed views (not 468-row workbook clones) |
+| `sheets-extracted/` | `bridge-excel-generator/sheets-extracted/` | Dead scaffolding — not imported |
+| API server | `server/` | Working prototype |
+| Client UI | `client/` | Working prototype |
+| Golden fixtures | `tests/golden/kherwara/` | Present |
+| Input contract | `inputs/` | Present (`schema.json`, variables, coefficients, constraints) |
+| Asset register | `project/asset-catalog/` | Present |
+| Canonical project note | `project/canonical-projects/` | Present |
+
+---
 
 ## Quick start
 
 ```bash
 pnpm install
-pnpm run verify:golden
-pnpm run design -- --input inputs/KHERWARA.json --out out/KHERWARA-report.html
+pnpm --filter @workspace/server run dev   # API + client
 ```
 
-Open the generated HTML in a browser and use the browser print dialog to save a
-PDF. The report uses landscape print CSS, narrative chapters, a constraint
-register, and a calculation trace.
-
-## API
+To generate an Excel report (requires a valid ProjectInput JSON):
 
 ```bash
-pnpm --filter @workspace/api-server run dev
+npx tsx bridge-excel-generator/index.ts --input <your-input.json>
 ```
 
-- `GET /api/design/contract`
-- `POST /api/design/calculate`
-- `POST /api/design/report/html`
+---
 
-The API and CLI call the same `@workspace/engine` calculation core.
+## Canonical Reference Workbooks
 
-## Canonical Reference Workbooks & Audit Findings
+| # | File | Role |
+|---|---|---|
+| 1 | `assets/E_DRIVE_BRIDGE_DESIGN/KHERWARA BRIDGE II/Stability Analysis SUBMERSIBLE BRIDGE ACROSS LARATHI SOM RIVER.xls` | Primary hydraulics & stability reference (Lacey scour, Molesworth afflux, 5 load cases), 25 sheets |
+| 2 | — | The 46-sheet contract is generated in code (`generateCompleteExcel(input, { book: 'legacy-46' })`). The `FINAL_RESULT.xls` workbook once cited as its source is not in this repository. |
 
-The design pipeline is benchmarked against two canonical Excel reference workbooks:
+Office workbooks are stored in Git LFS (`*.xls`, `*.xlsx`, `*.pdf`, `*.dwg` in `.gitattributes`). A
+checkout that skipped the smudge filter leaves 132-byte pointer files on disk; SheetJS parses those as
+nearly-empty sheets rather than failing, so the assimilation scripts read through
+`scripts/read-office-workbook.ts`, which refuses a pointer and names the fix:
+`git lfs pull --include="<path>"`.
 
-1. **Calculations & Stability Source:**
-   - **File:** `Attached_Assets/Stability Analysis SUBMERSIBLE BRIDGE ACROSS LARATHI SOM RIVER.xls`
-   - **Role:** Primary engineering reference for hydraulics ($Q$, HFL, bed slope, afflux), pier stability, abutment footing design, live load accumulation (75T / Class A / Class 70R), buoyancy, and current forces.
+The Kherwara identity is recorded and resolved in `project/canonical-projects/kherwara-kharka-decision.md`. Kherwara is the correct name (confirmed 2026-10-06).
 
-2. **Master 46-Sheet Structure Source:**
-   - **File:** `REMOTE_APP/attached_assets/FINAL_RESULT.xls` (and `attached_assets/for replit FINAL_RESULT_1763885256922.xls`)
-   - **Role:** Authoritative 46-sheet layout template that defines the complete structural report contract implemented in `bridge-excel-generator/sheets/` (`INDEX`, `HYDRAULICS`, `STABILITY CHECK FOR PIER`, `TYPE1-STABILITY CHECK ABUTMENT`, `Bridge measurements`, `Abstract`, etc.).
+---
 
-## Evidence and limitations
+## Known gaps (still due)
 
-- `inputs/` is the source-of-truth prototype contract and provenance map.
-- `tests/golden/kherwara/expected.json` freezes the attached Week 0 demo values.
-- `pnpm run verify:golden` proves that a tampered input changes the result and validates formula parity against the canonical workbooks.
-- The Kherwara/Kharka seed calculations are mapped line-by-line to `Attached_Assets/Stability Analysis SUBMERSIBLE BRIDGE ACROSS LARATHI SOM RIVER.xls` and the 46-sheet `FINAL_RESULT.xls` contract.
+1. Full FINAL_RESULT.xls row/formula clones (e.g. pier stability 468 rows, LLOAD 334 rows) — current sheets are engine views, not cell-level replicas.
+2. `sheets-extracted/` remains unused TODO skeletons.
+3. Week-0 reorient branch (`reorient-week0`), `xlwings` Excel driver, and archive-by-`git mv` of `client/`/`api/` were **not** executed; the live engine is TypeScript (`design-engine.ts`), not xlwings.
+4. Licensed-engineer sign-off is not recorded.
 
-See `docs/implementation-reality-check.md`, `project/`, and `creat.md` for the current evidence-led status.
+---
+
+## Standards implemented
+
+- IRC:6-2017 §209 — Wind pressure (Vb, k1/k2/k3 factors, Pz formula)
+- IS:1893:2002 — Seismic coefficient Ah (zone II–V, R=3, I=1.5)
+- IRC SP-13 — Hydraulics (Manning's, Lacey scour, Molesworth afflux)
+- IRC:6-2016 Table 5 — Current force on pier
+- Rankine — Active earth pressure for abutment
+
+---
+
+## Project documentation
+
+- Implementation plan: `CODE-JUNCTION/bridge_slab_design_comprehensive_impl_plan.md`
+- Audit findings: `CODE-JUNCTION/BRIDGE 12 AUD.txt`
+- Weekly plan: `origin-weekly-plan.md`
+- Audit report: `AUDIT-REPORT-v1.0.md`
