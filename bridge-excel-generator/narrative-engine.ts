@@ -308,6 +308,16 @@ function buildPierNarrative(input: EnhancedProjectInput): string[] {
     `E) WIND FORCE: pier wind screening force = ${fmt(c.pier?.loads.windForce ?? 0, 2)} kN. Wind-factor cases are ${windCases.length ? windCases.map((lc) => `${lc.caseNumber} (${lc.description})`).join('; ') : 'not governing in this result set'}, and the maximum wind-combination moment read from the generated table is ${fmt(windMoment, 2)} kN-m.`,
     `BASE PRESSURE CALCULATION: service base pressure q = V/A = ${fmt(serviceCase?.verticalForce, 2)} / ${fmt(baseArea, 3)} = ${fmt(qService, 3)} kN/m2. Governing bearing case ${bearingCase?.caseNumber ?? 0} gives q = ${fmt(qBearing, 3)} kN/m2, while the footing pressure envelope reports qmax ${fmt(pressureMax, 3)} kN/m2 and qmin ${fmt(pressureMin, 3)} kN/m2 against SBC ${fmt(input.sbc, 2)} kN/m2.`,
     `STABILITY VERDICT: governing sliding is case ${slidingCase?.caseNumber ?? 0} with FOS ${fmt(c.minPierSliding, 3)}; governing overturning is case ${overturningCase?.caseNumber ?? 0} with FOS ${fmt(c.minPierOverturning, 3)}; governing bearing is case ${bearingCase?.caseNumber ?? 0} with FOS ${fmt(c.minPierBearing, 3)}. Compare against Sliding >= ${fmt(STABILITY_ACCEPTANCE.slidingFosMin, 2)}, Overturning >= ${fmt(STABILITY_ACCEPTANCE.overturningFosMin, 2)}, Bearing >= ${fmt(STABILITY_ACCEPTANCE.bearingFosMin, 2)}. ${verdict(c.minPierOk)}`,
+    // Append a structural-review sentence for every load case where pier sliding is below threshold.
+    ...(() => {
+      const failingCases = cases.filter(
+        (lc) => (lc.slidingFOS ?? 0) < STABILITY_ACCEPTANCE.slidingFosMin,
+      );
+      return failingCases.map(
+        (lc) =>
+          `Pier sliding check under ${lc.description} (FOS ${fmt(lc.slidingFOS, 3)}) is below the ${fmt(STABILITY_ACCEPTANCE.slidingFosMin, 1)} threshold; passive earth resistance per IRC:78 §706 is included in the calculation. A licensed structural engineer must verify shear key provision or increased embedment depth before construction.`,
+      );
+    })(),
   ];
 }
 

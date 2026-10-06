@@ -205,6 +205,11 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
     }),
   },
   {
+    // STRUCTURAL REVIEW REQUIRED: Pier sliding FOS = 0.677 (worst case, all 5 load cases below 1.5 threshold).
+    // The iterative solver failed to converge after 200 × 100 mm increments — increasing pier depth and base
+    // dimensions alone cannot overcome the high horizontal hydraulic force at this discharge (1800 cumecs).
+    // Consider shear key provision at pier base or increased embedment depth — signing engineer must verify
+    // per IRC:78 §706 before issuing construction drawings.
     id: 'large-bridge',
     name: 'Large bridge (16 m span)',
     description: 'Wider waterway, higher discharge',
@@ -578,6 +583,12 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
   },
 
   {
+    // STRUCTURAL REVIEW REQUIRED: Abutment bearing FOS = 0.930 (below 2.5 threshold).
+    // Pier sliding and overturning pass (min FOS 1.505 and 6.006 respectively), but abutment
+    // bearing pressure exceeds SBC under the combined load envelope — increasing abutmentDepth
+    // alone could not converge after 200 × 100 mm solver iterations.
+    // Consider deeper abutment footing embedment or ground improvement to raise effective SBC —
+    // signing engineer must verify per IRC:78 §706 before issuing construction drawings.
     id: 'irc-parwan-highlevel',
     name: 'PARWAN River — High-Level (70R Loading)',
     description: 'High-level bridge across PARWAN River designed for 70R tracked loading. IRC:6-2016 + IRC:112-2015.',
@@ -698,6 +709,12 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
   },
 
   {
+    // STRUCTURAL REVIEW REQUIRED: Abutment bearing FOS = 0.902 (below 2.5 threshold).
+    // Pier sliding and overturning pass (min FOS 1.504 and 7.921 respectively), but abutment
+    // bearing pressure exceeds SBC under the combined load envelope — increasing abutmentDepth
+    // alone could not converge after 200 × 100 mm solver iterations.
+    // Consider deeper abutment footing embedment or ground improvement to raise effective SBC —
+    // signing engineer must verify per IRC:78 §706 before issuing construction drawings.
     id: 'irc-kherka-teegirder',
     name: 'KHERKA Bridge — 19m Tee Beam (Courbon)',
     description: 'High-level Tee Beam bridge, 19 m clear span, designed by Courbon method. IRC:6-2016 + IRC:21.',
@@ -737,6 +754,12 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
   },
 
   {
+    // STRUCTURAL REVIEW REQUIRED: Abutment bearing FOS = 0.871 (below 2.5 threshold).
+    // Pier sliding and overturning pass (min FOS 1.508 and 8.488 respectively), but abutment
+    // bearing pressure exceeds SBC under the combined load envelope — increasing abutmentDepth
+    // alone could not converge after 200 × 100 mm solver iterations.
+    // Consider deeper abutment footing embedment or ground improvement to raise effective SBC —
+    // signing engineer must verify per IRC:78 §706 before issuing construction drawings.
     id: 'irc-sukanaka-highlevel',
     name: 'SUKANAKA Nalah — High-Level Bridge',
     description: 'High-level bridge across SUKANAKA Nalah. IRC:6-2016 + IRC:112-2015. Deck above flood level.',
