@@ -52,7 +52,7 @@ export const WORKBOOK_LINE_REPORT_CSS = `
   }
   .wb-hyd-table td {
     border: 1px solid #000; padding: 2px 6px; vertical-align: middle;
-    overflow: hidden; text-overflow: ellipsis;
+    word-break: break-word; overflow-wrap: anywhere;
   }
   .wb-hyd-table td.wb-num { text-align: right; font-variant-numeric: tabular-nums; font-family: Consolas, "Courier New", monospace; }
   .wb-hyd-table td.wb-formula-cell { font-size: 9px; color: #006400; font-family: Consolas, monospace; white-space: pre-wrap; word-break: break-word; }
