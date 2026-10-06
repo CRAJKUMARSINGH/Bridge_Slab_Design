@@ -238,6 +238,7 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
       abutmentDepth: 6,
       sbc: 280,
       phi: 32,
+      seismicZone: 2, // Zone II — generic template, no site-specific study
     }),
   },
 
@@ -612,6 +613,7 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
       // fy that disagrees with steelGrade. The source PARWAN record does not state
       // a bar grade, so the grade here follows fy — confirm at sign-off.
       fck: 30, steelGrade: 'Fe500', fy: 500, sbc: 260, phi: 32, gamma: 18,
+      seismicZone: 2, // Zone II per IS:1893 Part-1 — PARWAN River, Rajasthan
       issuingAuthority: 'PWD / NHAI, Rajasthan',
       jobNumber: 'PARWAN-HIGHLEVEL-70R',
       hardRockAvailable: false,
@@ -727,6 +729,7 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
       pierWidth: 1.5, pierLength: 4.5, pierDepth: 6.5, pierBaseWidth: 2.5, pierBaseLength: 5.0,
       abutmentHeight: 10.5, abutmentWidth: 4.0, abutmentDepth: 6.0, dirtWallHeight: 3.0, returnWallLength: 7,
       fck: 30, fy: 415, sbc: 220, phi: 30, gamma: 18,
+      seismicZone: 2, // Zone II per IS:1893 Part-1 — KHERKA Bridge, Rajasthan
       issuingAuthority: 'PWD Rajasthan',
       jobNumber: 'KHERKA-TEEGIRDER-19M',
       hardRockAvailable: false,
@@ -765,6 +768,7 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
       pierWidth: 1.2, pierLength: 3.5, pierDepth: 5.5, pierBaseWidth: 2.5, pierBaseLength: 4.5,
       abutmentHeight: 9.0, abutmentWidth: 3.8, abutmentDepth: 5.0, dirtWallHeight: 2.5, returnWallLength: 6,
       fck: 25, fy: 415, sbc: 180, phi: 30, gamma: 18,
+      seismicZone: 2, // Zone II per IS:1893 Part-1 — SUKANAKA Nalah, Rajasthan
       issuingAuthority: 'PWD Rajasthan',
       jobNumber: 'SUKANAKA-HIGHLEVEL',
       hardRockAvailable: false,
