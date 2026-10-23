@@ -42,6 +42,12 @@
     "find": "from 'zod';",
     "replace": "from 'zod-from-the-future';"
   },
+  "readme": {
+    "gate": "gate-readme",
+    "file": "scripts/gen-readme-map.ts",
+    "find": "| Path | Purpose | Size |",
+    "replace": "| Path | Purpose | Size | (poisoned) |"
+  },
   "proven-red": {
     "gate": "gate-proven-red",
     "file": "scripts/gates/.proven.json",

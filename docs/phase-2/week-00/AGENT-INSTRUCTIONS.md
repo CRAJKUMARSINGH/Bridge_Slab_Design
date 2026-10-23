@@ -179,8 +179,12 @@ entries, `PATH-MANIFEST.json`, the `archive/MANIFEST.md` row count, and
   plain missing install rather than an allowlist entry.
 - `eslint-baseline.json` does not exist. A violation baseline that was not
   measured is a fabrication; it is produced by the first real eslint run.
-- `docs/phase-2/specs/` and `docs/phase-2/verification/` are empty placeholder
-  directories; their contents belong to later weeks.
+- `docs/phase-2/specs/` and `docs/phase-2/verification/` were empty placeholder
+  directories when this pass opened, and their contents belonged to later weeks.
+  The enrichment close-out filled them: E-01..E-12 (Set 4) and the verifier
+  protocol plus the nine V-scopes (Set 3) now exist, each with one owning week in
+  `PATH-MANIFEST.json`. The finding is kept here rather than deleted, because it is
+  the state this pass was opened against; it is no longer the state of the tree.
 - The Set-1 corpus and the duplicate week folders are exempted, not fixed. The
   exemptions expire with W00.
 

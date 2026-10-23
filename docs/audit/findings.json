@@ -1,0 +1,16 @@
+{
+  "_note": "One row per audit finding. `verifiedBy` says how the finding was established; `reCheck` is a portable command that re-establishes it against the tree. A finding with verifiedBy=INFERRED_FROM_CALLSITE may not be actioned until its reCheck confirms it — scripts/audit/recheck.ts acts on that rule, and docs/audit/finding-schema.ts is the shape. The v1.0 audit had neither field, which is how BOLT-004 was actioned against an alias that was real.",
+  "_source": "AUDIT-REPORT-v1.0.md (re-adjudicated). Only findings whose reCheck could be written down are migrated here; the remainder stay in the v1.0 report until they are re-derived under the new schema.",
+  "findings": [
+    {
+      "id": "BOLT-004",
+      "severity": "Medium",
+      "title": "Phantom Drawing_Module alias",
+      "file": "tsconfig.json",
+      "verifiedBy": "INFERRED_FROM_CALLSITE",
+      "reCheck": "node -e \"process.exit(require('fs').existsSync('Drawing_Module/src/components.tsx') ? 0 : 1)\"",
+      "status": "FALSE_POSITIVE",
+      "note": "Drawing_Module/src/components.tsx exists. Keep the @drawing/* alias. The reCheck is written portably rather than as the report's `test -f`, which does not exist on a Windows checkout and would have re-adjudicated this finding on the wrong grounds."
+    }
+  ]
+}

@@ -77,6 +77,14 @@
       "owner": "W00",
       "closingWeek": "W00",
       "reason": "H-16: three plan documents compete for authority. CANONICAL.md now declares creat.md canonical and points at both superseded plans; the files themselves are archived with a pointer at W00 close-out, not deleted here."
+    },
+    {
+      "id": "PR-07",
+      "assertion": "P-02",
+      "patterns": ["docs/phase-2/govt/**"],
+      "owner": "W11",
+      "closingWeek": "W11",
+      "reason": "G-11 names `npm run diag:bundle` as its single-attachment support bundle. That script is a W11 deliverable, not a W00 claim: it cannot be declared in PATH-MANIFEST.json because P-02 resolves npm targets against package.json, not against the manifest. The exemption retires when the script is wired in W11, which is why the closing week is W11 and not W00."
     }
   ]
 }

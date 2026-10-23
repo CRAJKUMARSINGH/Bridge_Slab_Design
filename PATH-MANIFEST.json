@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "_note": "One owner per path. `weeks` maps a week id to the paths that week writes or owns. gate:preflight P-15 fails if any path appears under two weeks. Paths that a later week will create are listed here on purpose: P-01 accepts a manifest entry as evidence that a referenced-but-absent path is planned rather than forgotten. Paths belonging to the legacy Set-1 instruction corpus are not enumerated — they are exempted wholesale by containment/PENDING-RESOLUTIONS.json (PR-01) and are archived at W00 close-out.",
+  "version": "1.1.0",
+  "_note": "One owner per path. `weeks` maps a week id to the paths that week writes or owns. gate:preflight P-15 fails if any path appears under two weeks. Paths that a later week will create are listed here on purpose: P-01 accepts a manifest entry as evidence that a referenced-but-absent path is planned rather than forgotten. Paths belonging to the legacy Set-1 instruction corpus are not enumerated — they are exempted wholesale by containment/PENDING-RESOLUTIONS.json (PR-01) and are archived at W00 close-out. Ownership rule for the Set-3/4/5 corpus added at W00 close-out: verification/V-<week>/** is owned by the week it verifies; verification/README.md and VERIFIER-PROTOCOL.md are owned by W01, the week that installs the verifier; govt/G-NN-*.md is owned by the week named in its own `Prereq:` line, or by the first week in its `Feeds:` line when the prerequisite is another G-file; specs/E-NN-*.md is owned by the week whose method-parity work the spec describes; the docs/phase-2/_templates/** kit is owned by W01, the week the guide assigns its installation to (T1.11). No path is claimed by two weeks.",
   "weeks": {
     "W00": [
       "CANONICAL.md",
@@ -24,8 +24,18 @@
       "archive/MANIFEST.md",
       "docs/adr/README.md",
       "docs/adr/0008-single-pdf-stack.md",
+      "docs/adr/0009-scrypt-not-argon2.md",
+      "docs/adr/0011-spec-corpus-placement.md",
+      "docs/adr/0012-no-dangling-references.md",
       "docs/phase-2/week-00/AGENT-INSTRUCTIONS.md",
       "docs/phase-2/week-00/EXIT-GATE-EVIDENCE.md",
+      "docs/phase-2/week-00/ENRICHMENT-CERTIFICATION.md",
+      "docs/phase-2/week-00/PATCH-PACK-CERTIFICATION.md",
+      "docs/phase-2/specs/README.md",
+      "docs/phase-2/verification/README.md",
+      "docs/phase-2/RISK-REGISTER.md",
+      "PHASE-2-MASTER-PLAN.md",
+      "PHASE-2-DOC-TEMPLATES.md",
       "scripts/gates/_lib.ts",
       "scripts/gates/preflight.ts",
       "scripts/gates/gate-deps.ts",
@@ -39,8 +49,109 @@
       "scripts/gates/.pills.json",
       "scripts/gates/.proven.json",
       "scripts/gates/.ratchet.json",
+      "scripts/gates/gate-readme.ts",
+      "scripts/gen-readme-map.ts",
+      "scripts/audit/recheck.ts",
+      "docs/audit/finding-schema.ts",
+      "docs/audit/findings.json",
+      "docs/decisions/dist-tracking.md",
+      "docs/week1/README.md",
+      "docs/week3/README.md",
+      "docs/plan-b/README.md",
       "lib/auth/scrypt.ts",
       "tests/auth/scrypt.test.ts"
-    ]
+    ],
+    "W01": [
+      "docs/phase-2/_templates/A11Y-REPORT.md",
+      "docs/phase-2/_templates/ARCHITECTURE.md",
+      "docs/phase-2/_templates/ASSUMPTION-REGISTER.md",
+      "docs/phase-2/_templates/CHATLOG-ENTRY.md",
+      "docs/phase-2/_templates/COMPUTE-TOPOLOGY.md",
+      "docs/phase-2/_templates/DATA-MODEL.md",
+      "docs/phase-2/_templates/DRAWING-REGISTER.md",
+      "docs/phase-2/_templates/EXIT-GATE-EVIDENCE.md",
+      "docs/phase-2/_templates/INPUT-DICTIONARY.md",
+      "docs/phase-2/_templates/KNOWN-LIMITATIONS.md",
+      "docs/phase-2/_templates/LAYER-STANDARD.md",
+      "docs/phase-2/_templates/MEASUREMENT-RULES.md",
+      "docs/phase-2/_templates/MODULE-MATRIX.md",
+      "docs/phase-2/_templates/ORACLE-TABLE.md",
+      "docs/phase-2/_templates/PARITY-DIFF.md",
+      "docs/phase-2/_templates/REALITY-AUDIT.md",
+      "docs/phase-2/_templates/REPORT-SPEC.md",
+      "docs/phase-2/_templates/RUNBOOK.md",
+      "docs/phase-2/_templates/SCORECARD.md",
+      "docs/phase-2/_templates/SECURITY.md",
+      "docs/phase-2/_templates/SOURCE-DEFECT-REGISTER.md",
+      "docs/phase-2/_templates/UAT-PLAN.md",
+      "docs/phase-2/verification/VERIFIER-PROTOCOL.md"
+    ],
+    "W02": [
+      "docs/phase-2/govt/G-02-unit-systems.md",
+      "docs/phase-2/govt/G-07-engine-versioning.md",
+      "docs/phase-2/verification/V-02/VERIFICATION-INSTRUCTIONS.md"
+    ],
+    "W02A": ["docs/phase-2/verification/V-02A/VERIFICATION-INSTRUCTIONS.md"],
+    "W03": ["docs/phase-2/verification/V-03/VERIFICATION-INSTRUCTIONS.md"],
+    "W04": [
+      "docs/phase-2/verification/V-04/VERIFICATION-INSTRUCTIONS.md",
+      "docs/phase-2/week-04/XLS-STRATEGY.md"
+    ],
+    "W05": [
+      "docs/phase-2/govt/G-01-digital-signature.md",
+      "docs/phase-2/govt/G-06-data-privacy.md"
+    ],
+    "W06A": [
+      "docs/phase-2/specs/E-01-hydraulics.md",
+      "docs/phase-2/specs/E-02-afflux.md",
+      "docs/phase-2/specs/E-03-scour.md",
+      "docs/phase-2/verification/V-06A/VERIFICATION-INSTRUCTIONS.md"
+    ],
+    "W07": [
+      "docs/phase-2/specs/E-04-deck-anchorage.md",
+      "docs/phase-2/specs/E-06-pier-stability.md",
+      "docs/phase-2/specs/E-08-footing-vkraina.md"
+    ],
+    "W07A": [
+      "docs/phase-2/specs/E-05-water-current.md",
+      "docs/phase-2/specs/E-07-abutment-dirt-wall.md",
+      "docs/phase-2/specs/E-09-pier-cap-rebar.md",
+      "docs/phase-2/specs/E-10-live-load-matrix.md",
+      "docs/phase-2/verification/V-07A/VERIFICATION-INSTRUCTIONS.md"
+    ],
+    "W08": ["docs/phase-2/specs/E-11-drawing-bbs.md"],
+    "W08A": [
+      "docs/phase-2/govt/G-05-plotting-scale.md",
+      "docs/phase-2/verification/V-08A/VERIFICATION-INSTRUCTIONS.md"
+    ],
+    "W09A": [
+      "docs/phase-2/specs/E-12-boq-dpr.md",
+      "docs/phase-2/govt/G-08-tender-pack.md",
+      "docs/phase-2/verification/V-09A/VERIFICATION-INSTRUCTIONS.md"
+    ],
+    "W10": [
+      "docs/phase-2/govt/G-03-localisation.md",
+      "docs/adr/0010-devanagari-shaping-admitted.md",
+      "lib/report/fonts/NotoSans-Regular.ttf",
+      "lib/report/fonts/NotoSans-Bold.ttf",
+      "lib/report/fonts/NotoSansDevanagari-Regular.ttf",
+      "lib/report/fonts/NotoSansDevanagari-Bold.ttf"
+    ],
+    "W11": [
+      "docs/phase-2/govt/G-04-gigw-accessibility.md",
+      "docs/phase-2/govt/G-09-offline-field.md",
+      "docs/phase-2/govt/G-10-training.md",
+      "docs/phase-2/verification/V-11/VERIFICATION-INSTRUCTIONS.md",
+      "docs/phase-2/week-11/DEMO-SCRIPT.md",
+      "docs/phase-2/week-11/TRAINING.md",
+      "docs/phase-2/week-11/COMPETENCY-CHECKLIST.md",
+      "docs/phase-2/week-11/FAQ.md"
+    ],
+    "W12": [
+      "docs/phase-2/govt/G-11-support-model.md",
+      "docs/phase-2/FINDING-BURN-DOWN.md",
+      "AUDIT-REPORT-v2.0.md"
+    ],
+    "W12A": ["docs/phase-2/govt/G-12-succession.md"]
   }
 }

@@ -61,20 +61,41 @@ wrong instruction cannot succeed quietly from week 1 onward.
 - `tests/auth/scrypt.test.ts` — round-trip, wrong-password rejection, per-call
   salt and NFKC normalisation. The four behaviours were exercised directly and
   all pass.
+- `docs/audit/finding-schema.ts` and `docs/audit/findings.json` — an audit finding
+  now carries `verifiedBy` and an executable `reCheck`; `scripts/audit/recheck.ts`
+  flips an `OPEN` finding to `FALSE_POSITIVE` when its `reCheck` finds nothing.
+  PATCH-12, closing H-12. BOLT-004 is re-adjudicated to `FALSE_POSITIVE` because
+  `Drawing_Module/src/components.tsx` exists — the v1.0 report's `test -f` is not
+  portable to a Windows checkout.
+- `scripts/gen-readme-map.ts` and `scripts/gates/gate-readme.ts` — the README
+  module map is generated between `<!-- GEN:module-map -->` markers, and the gate
+  re-runs the generator with `--check` and fails if the block is stale. PATCH-13,
+  closing H-13.
+- `docs/week1/README.md`, `docs/week3/README.md` — compatibility pointers to the
+  canonical `docs/week-1/` and `docs/week-3/`. PATCH-15, closing H-15.
+- `docs/plan-b/README.md` — a "MOVED → `creat.md` §6" pointer; PATCH-16, closing
+  H-16.
+- `docs/decisions/dist-tracking.md` — build output is not tracked. PATCH-18, closing
+  H-18. The guide's `git rm -r --cached artifacts/api-server/dist` was verified to be
+  a no-op here: `.gitignore` already ignores `dist`, and `git ls-files` returns zero
+  paths for that tree.
+- `docs/phase-2/week-00/PATCH-PACK-CERTIFICATION.md` — the evidence record for this
+  pass, in the same format as the Set-3/4/5 certification.
 
 ### Verified
 
-- The nine foundation gates were each observed passing: 9 PASS, 37 assertions
+- The ten foundation gates were each observed passing: 10 PASS, 38 assertions
   total (`preflight` 15, `deps` 4, `scripts` 2, `tiers` 3, `proven-red` 2,
-  `hygiene` 5, `chain` 1, `tasks` 2, `docs:strict` 3).
+  `hygiene` 5, `chain` 1, `tasks` 2, `docs:strict` 3, `readme` 1).
 - Every gate was also observed RED: `gate:prove` poisoned each guarded artefact,
   required exit 1, restored the original bytes and required exit 0, recording the
   pair in `scripts/gates/.proven.json`.
 
 ### Changed
 
-- `package.json` gains `gate:*` scripts, `gate:prove`, and `gate:foundation`.
-  No dependency was added, removed or upgraded, and no Node version was changed.
+- `package.json` gains `gate:*` scripts, `gate:prove`, `gate:foundation`,
+  `gate:readme` and `gen:readme`. No dependency was added, removed or upgraded,
+  and no Node version was changed.
 
 ### Recorded, not hidden
 
@@ -109,14 +130,26 @@ wrong instruction cannot succeed quietly from week 1 onward.
   `variables.json`, `schema.json`, `trace-map.json`, `KHERWARA.json`), and the
   patch exists to make exactly that directory generated output. Applying it would
   overwrite authoritative data, so the curated files stand.
-- PATCH-07 and PATCH-13 — both add a gate file (`gate-lint.ts`, `gate-readme.ts`).
-  A new file in `scripts/gates/` enters `gateFiles()`, and `gate-proven-red` then
-  requires a poison pill for it before the foundation can pass. `eslint-baseline.json`
-  also cannot be produced without an eslint run, and a baseline nobody measured
-  is a fabrication.
-- ADR-0009..0011 stay unwritten on purpose: `docs/adr/README.md` reserves the
-  numbers and records the opening decisions elsewhere until the records are
-  written. A reserved number that is cited is honest; an invented ADR is not.
+- PATCH-06 (`eslint.config.js` + `eslint-baseline.json` + `scripts/gates/gate-lint.ts`)
+  — the config is in the tree, but the baseline cannot be produced without an
+  eslint run and `eslint` is not installed. A baseline nobody measured is a
+  fabrication, so `eslint-baseline.json` is declared in `PATH-MANIFEST.json`
+  against W00 and allowlisted in `.deps-plan.json` rather than invented. Adding
+  `gate-lint.ts` now would also make `gate:proven-red` unsatisfiable — a gate that
+  can never go GREEN.
+- PATCH-07 (`archiver`) and PATCH-14 (`puppeteer` + `@axe-core/puppeteer` plus a
+  real `scripts/gates/gate-a11y.mjs`) — both need an install, and every install
+  path here writes `package-lock.json`, which `gate:preflight` P-13 fails on while
+  `pnpm-lock.yaml` exists. The packages stay allowlisted in `.deps-plan.json`
+  against W00/W11. `scripts/gates/gate-a11y.mjs` is an 840-byte NOT-IMPLEMENTED
+  stub and is honest about being one; the real a11y run belongs to W11, the week
+  the spec assigns it to.
+- ADR-0009..0012 were reserved by `docs/adr/README.md` and have since been written:
+  0009 (scrypt over argon2), 0010 (Devanagari shaping admitted, superseding the
+  shaping clause of 0008), 0011 (where the Set-3/4/5 corpus lives and who owns it),
+  0012 (no instruction may reference a path that does not resolve). Numbers
+  0001–0007 remain reserved and unwritten; the index says so rather than implying
+  the opening decisions live in `containment/claims.json`, which they never did.
 
 ## Before this entry
 

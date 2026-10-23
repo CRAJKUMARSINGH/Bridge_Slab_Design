@@ -24,6 +24,8 @@
     { "glob": "lib/engine/src/contracts.ts", "tier": 1, "trust": "VERIFIED", "derivedFrom": [] },
     { "glob": "docs/phase-2/containment/**", "tier": 1, "trust": "VERIFIED" },
     { "glob": "docs/phase-2/specs/**", "tier": 1, "trust": "VERIFIED" },
+    { "glob": "docs/phase-2/govt/**", "tier": 1, "trust": "VERIFIED" },
+    { "glob": "docs/phase-2/verification/**", "tier": 1, "trust": "VERIFIED" },
     { "glob": "docs/phase-2/week-*/**", "tier": 1, "trust": "VERIFIED" },
     { "glob": "docs/adr/**", "tier": 4, "trust": "ASSERTED", "assertedBy": "various" },
     { "glob": "lib/**", "tier": 2, "trust": "VERIFIED", "derivedFrom": ["lib/engine/src/contracts.ts"] },
