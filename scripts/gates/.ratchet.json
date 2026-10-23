@@ -1,0 +1,5 @@
+{
+  "_note": "Gate monotonicity (C-06). A gate's assertion count may never fall, and a gate that has gone GREEN may never go RED again without a recorded reason. `gate-monotonic` (owner: W00) updates this file on every green run and refuses any run that lowers a count or regresses a GREEN gate.",
+  "version": "1.0.0",
+  "gates": {}
+}

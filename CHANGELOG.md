@@ -1,0 +1,126 @@
+# Changelog
+
+Notable changes to this repository, newest first. Dates are ISO-8601.
+
+## Unreleased — Phase 2 / W00: foundation hardening (2026-10-23)
+
+The phase-2 plan's first week. No engine behaviour changes: this entry is the
+containment layer that makes the instruction set itself falsifiable, so that a
+wrong instruction cannot succeed quietly from week 1 onward.
+
+### Added — gates
+
+- `pnpm run gate:preflight` — 15 assertions (P-01..P-15). Verifies every path and
+  npm target an instruction doc names, that bare imports resolve, that the Node
+  version is agreed, that no gate exits 2, that every gate has been observed
+  RED and GREEN, that the lockfile story is singular, and that one week owns each
+  path.
+- `pnpm run gate:foundation` — `preflight && deps && scripts && tiers &&
+  proven-red && hygiene && chain && tasks && docs:strict`.
+- `pnpm run gate:deps` — unresolved-import detection, workspace-aware, honouring
+  `.deps-plan.json` and failing when an allowlisted package outlives its week.
+- `pnpm run gate:scripts` — every file and every nested script target named by
+  `package.json` exists.
+- `pnpm run gate:tiers` — every artefact carries a declared blast-radius tier, no
+  gate reads a narrative document, no derived artefact descends from prose.
+- `pnpm run gate:proven-red` / `pnpm run gate:prove -- <gate>` — no stub gates:
+  RED is recorded by poisoning the guarded artefact, GREEN by ordinary execution.
+- `pnpm run gate:chain` — the ledger may not mark a week GREEN out of order.
+- `pnpm run gate:hygiene` — one lockfile, `.gitignore` agrees with what is
+  tracked, licence and root documents present, foundation scripts wired.
+- `pnpm run gate:tasks`, `pnpm run gate:docs:strict` — no task closes without a
+  declared artefact and a MACHINE/MANUAL marker; no doc is a placeholder or a stub.
+
+### Added — containment layer
+
+- `containment/` — `ARTIFACT-TIERS.json` (blast radius, first match wins),
+  `CONTRACT.md` (the frozen inter-set contract), `GATE-LEDGER.json` (week order),
+  `claims.json` (claim ledger C-001..C-012), `escapes.json` (the escape register),
+  `PENDING-RESOLUTIONS.json` (owned, expiring exemptions), `REVIEW-LOG.md`.
+- `docs/phase-2/containment/C-01..C-12` — trust tiering, claim ledger, contract
+  freeze, re-derivation, circularity, gate monotonicity, blast radius, poison
+  pills, evidence-or-silence, reconciliation, recovery, governance.
+- `docs/phase-2/week-00/AGENT-INSTRUCTIONS.md` — the W00 task list.
+
+### Added — root documents
+
+- `CANONICAL.md` declares `creat.md` the single authoritative plan and labels
+  every competing plan superseded or reference.
+- `PATH-MANIFEST.json`, `LICENSE`, `SECURITY.md`, `CONTRIBUTING.md`,
+  `ARCHITECTURE.md`, `CHANGELOG.md`, `archive/MANIFEST.md`.
+- `eslint.config.js` (flat) and `drizzle.config.ts`. Both are **inert until the
+  packages they name are installed** — see `.deps-plan.json`.
+- `docs/adr/0008-single-pdf-stack.md` — one PDF stack, not two.
+- `docs/phase-2/week-00/EXIT-GATE-EVIDENCE.md` — the raw output of the foundation
+  run, the eight RED/GREEN proof pairs, and the environment limits below.
+
+### Added — PATCH PACK, additive only
+
+- `lib/auth/scrypt.ts` — password hashing on `node:crypto`: zero dependency, no
+  native build. PATCH-09, closing H-09.
+- `tests/auth/scrypt.test.ts` — round-trip, wrong-password rejection, per-call
+  salt and NFKC normalisation. The four behaviours were exercised directly and
+  all pass.
+
+### Verified
+
+- The nine foundation gates were each observed passing: 9 PASS, 37 assertions
+  total (`preflight` 15, `deps` 4, `scripts` 2, `tiers` 3, `proven-red` 2,
+  `hygiene` 5, `chain` 1, `tasks` 2, `docs:strict` 3).
+- Every gate was also observed RED: `gate:prove` poisoned each guarded artefact,
+  required exit 1, restored the original bytes and required exit 0, recording the
+  pair in `scripts/gates/.proven.json`.
+
+### Changed
+
+- `package.json` gains `gate:*` scripts, `gate:prove`, and `gate:foundation`.
+  No dependency was added, removed or upgraded, and no Node version was changed.
+
+### Recorded, not hidden
+
+- The pre-existing `scripts/gates/*.mjs` files are NOT-IMPLEMENTED stubs. They are
+  left in place; the real gates are the `.ts` files alongside them, and
+  `gate:preflight` P-09 excludes the stubs rather than pretending they pass.
+- The Set-1 instruction corpus (`docs/phase-2/week-01` … `week-12A`) is exempted
+  from `gate:preflight` by `containment/PENDING-RESOLUTIONS.json` with a W00
+  closing week — the exemptions expire with the week.
+- Nothing was installed, and no Node version was changed. `eslint`,
+  `@typescript-eslint/*`, `eslint-plugin-*` and `archiver` remain absent and are
+  allowlisted in `.deps-plan.json` against W00, so `gate:deps` fails the moment
+  W00 goes GREEN without them. `drizzle-kit` is absent too, but `lib/db/package.json`
+  already declares it, so it cannot be an allowlist entry — it is recorded as a
+  plain missing install, not as an exempted one.
+- `node --import tsx` needed the top-level `node_modules/esbuild` link, which was
+  absent while the store copy existed. A directory junction was created to
+  `.pnpm/esbuild@0.28.1/node_modules/esbuild`. This is an environment repair, not
+  a dependency change.
+- `pnpm run <script>` is broken in the sandbox this was verified in (the
+  `corepack` shim cannot find `pnpm.js`), so the gates were invoked directly as
+  `node --import tsx scripts/gates/<gate>.ts`. The sandbox runs Node `v26.5.0`
+  while `.nvmrc` and `.github/workflows/ci.yml` pin 24; P-04 compares the workflow
+  against `.nvmrc` and passes, so the runtime mismatch is recorded here instead.
+- `pnpm run check` and `pnpm run test` were therefore **not** run and are not
+  claimed green. See `docs/phase-2/week-00/EXIT-GATE-EVIDENCE.md` §6.
+
+### PATCH PACK items deliberately not applied
+
+- PATCH-02 (`scripts/gen-registries.ts` plus generated `inputs/`) — `inputs/`
+  already holds curated tier-1 JSON (`coefficients.json`, `constraints.json`,
+  `variables.json`, `schema.json`, `trace-map.json`, `KHERWARA.json`), and the
+  patch exists to make exactly that directory generated output. Applying it would
+  overwrite authoritative data, so the curated files stand.
+- PATCH-07 and PATCH-13 — both add a gate file (`gate-lint.ts`, `gate-readme.ts`).
+  A new file in `scripts/gates/` enters `gateFiles()`, and `gate-proven-red` then
+  requires a poison pill for it before the foundation can pass. `eslint-baseline.json`
+  also cannot be produced without an eslint run, and a baseline nobody measured
+  is a fabrication.
+- ADR-0009..0011 stay unwritten on purpose: `docs/adr/README.md` reserves the
+  numbers and records the opening decisions elsewhere until the records are
+  written. A reserved number that is cited is honest; an invented ADR is not.
+
+## Before this entry
+
+Work preceding the Phase-2 plan is not reconstructed here. Where it is still
+authoritative it is described in [CANONICAL.md](CANONICAL.md) and
+[ARCHITECTURE.md](ARCHITECTURE.md). The 0.15.0 release candidate mentioned in the
+plan has not been cut.

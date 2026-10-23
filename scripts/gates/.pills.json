@@ -1,0 +1,50 @@
+{
+  "_note": "Poison pills: one per gate. `gate-prove <gate>` corrupts the artefact below, runs the gate, requires exit 1 (proven RED), then restores the original bytes and records redAt in .proven.json. GREEN is recorded automatically by _lib.run(). `find`/`replace` are plain string substitutions (first occurrence); `write` replaces the whole file. No bash, no git, no network — the reference pills shelled out to bash and git checkout, neither of which is dependable on a Windows checkout.",
+  "tiers": {
+    "gate": "gate-tiers",
+    "file": "containment/ARTIFACT-TIERS.json",
+    "find": "{ \"glob\": \"*\", \"tier\": 4, \"trust\": \"ASSERTED\", \"assertedBy\": \"various\" }",
+    "replace": "{ \"glob\": \"__pill__/**\", \"tier\": 4 }"
+  },
+  "chain": {
+    "gate": "gate-chain",
+    "file": "containment/GATE-LEDGER.json",
+    "find": "\"W05\": \"PENDING\"",
+    "replace": "\"W05\": \"GREEN\""
+  },
+  "tasks": {
+    "gate": "gate-tasks",
+    "file": "docs/phase-2/week-00/AGENT-INSTRUCTIONS.md",
+    "find": "T00.1  MACHINE |",
+    "replace": "T00.1  SILENT |"
+  },
+  "docs": {
+    "gate": "gate-docs",
+    "file": "docs/phase-2/containment/C-12-containment-governance.md",
+    "find": "# ",
+    "replace": "# {{PILL_TOKEN}} "
+  },
+  "hygiene": {
+    "gate": "gate-hygiene",
+    "file": "package.json",
+    "find": "\"gate:chain\":",
+    "replace": "\"gate:chain-renamed\":"
+  },
+  "scripts": {
+    "gate": "gate-scripts",
+    "file": "package.json",
+    "find": "\"gate:chain\": \"tsx scripts/gates/gate-chain.ts\"",
+    "replace": "\"gate:chain\": \"tsx scripts/gates/__pill-missing.ts\""
+  },
+  "deps": {
+    "gate": "gate-deps",
+    "file": "shared/schema.ts",
+    "find": "from 'zod';",
+    "replace": "from 'zod-from-the-future';"
+  },
+  "proven-red": {
+    "gate": "gate-proven-red",
+    "file": "scripts/gates/.proven.json",
+    "write": "{}"
+  }
+}

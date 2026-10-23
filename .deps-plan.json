@@ -1,0 +1,17 @@
+{
+  "_note": "Dependencies referenced by instruction files but deliberately NOT installed yet. gate:deps allows them until their owning week, and fails if the week tag is malformed (must match W\\d{2}[A-Z]?). The allowlist may only shrink: when the week arrives the entry moves out of here and into package.json. Keys beginning with _ are ignored.",
+  "eslint": "W00",
+  "@typescript-eslint/parser": "W00",
+  "@typescript-eslint/eslint-plugin": "W00",
+  "eslint-plugin-jsx-a11y": "W00",
+  "eslint-plugin-import": "W00",
+  "eslint-plugin-react-hooks": "W00",
+  "archiver": "W00",
+  "puppeteer": "W11",
+  "@axe-core/puppeteer": "W11",
+  "harfbuzzjs": "W10",
+  "@pdf-lib/fontkit": "W10",
+  "@signpdf/signpdf": "W12A",
+  "@signpdf/signer-p12": "W12A",
+  "@signpdf/placeholder-pdf-lib": "W12A"
+}

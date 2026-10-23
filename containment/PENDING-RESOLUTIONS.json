@@ -1,0 +1,82 @@
+{
+  "version": "1.0.0",
+  "note": "Advisory exemptions for defects that already exist in the tree and are owned by a named week. A gate that consults this file still PRINTS the finding, but does not fail on it. Every entry needs id, assertion, patterns, owner, closingWeek and reason. An entry missing any of those — or whose closingWeek has already gone GREEN in containment/GATE-LEDGER.json — is itself a gate failure, so an exemption cannot quietly outlive its fix. The list may only shrink.",
+  "entries": [
+    {
+      "id": "PR-01",
+      "assertion": "P-01",
+      "patterns": [
+        "docs/phase-2/*.md",
+        "docs/phase-2/_templates/**",
+        "docs/phase-2/week-0[1-9]/**",
+        "docs/phase-2/week-1[0-2]/**",
+        "docs/phase-2/week-0[1-9]A/**",
+        "docs/phase-2/week-1[0-2]A/**"
+      ],
+      "owner": "W00",
+      "closingWeek": "W00",
+      "reason": "H-17: the Set-1 instruction corpus is prose that was never checked against the tree, which is why 18 referenced-but-absent paths survived twelve weeks. It is superseded by the Set-1 v2 instruction set; the reference resolution is verified, the legacy corpus is not, until W00 archives it."
+    },
+    {
+      "id": "PR-02",
+      "assertion": "P-02",
+      "patterns": [
+        "docs/phase-2/*.md",
+        "docs/phase-2/_templates/**",
+        "docs/phase-2/week-0[1-9]/**",
+        "docs/phase-2/week-1[0-2]/**",
+        "docs/phase-2/week-0[1-9]A/**",
+        "docs/phase-2/week-1[0-2]A/**"
+      ],
+      "owner": "W00",
+      "closingWeek": "W00",
+      "reason": "Same corpus as PR-01: it names npm targets that were never added."
+    },
+    {
+      "id": "PR-03",
+      "assertion": "gate-tasks",
+      "patterns": [
+        "docs/phase-2/*.md",
+        "docs/phase-2/_templates/**",
+        "docs/phase-2/week-0[1-9]/**",
+        "docs/phase-2/week-1[0-2]/**",
+        "docs/phase-2/week-0[1-9]A/**",
+        "docs/phase-2/week-1[0-2]A/**"
+      ],
+      "owner": "W00",
+      "closingWeek": "W00",
+      "reason": "The legacy week instructions use Set-1 task syntax (no MACHINE|MANUAL marker, no declared output path), which is what made an unfalsifiable OK possible."
+    },
+    {
+      "id": "PR-04",
+      "assertion": "gate-docs",
+      "patterns": [
+        "docs/phase-2/*.md",
+        "docs/phase-2/_templates/**",
+        "docs/phase-2/week-0[1-9]/**",
+        "docs/phase-2/week-1[0-2]/**",
+        "docs/phase-2/week-0[1-9]A/**",
+        "docs/phase-2/week-1[0-2]A/**"
+      ],
+      "owner": "W00",
+      "closingWeek": "W00",
+      "reason": "The template pack is deliberately placeholder-bearing by design; the legacy week files are stubs. Both are replaced by the Set-1 v2 corpus."
+    },
+    {
+      "id": "PR-05",
+      "assertion": "P-11",
+      "patterns": ["docs/week1", "docs/week-1", "docs/week3", "docs/week-3"],
+      "owner": "W00",
+      "closingWeek": "W00",
+      "reason": "H-15: two spellings of the same week folder are both tracked. docs/week-N is declared canonical in CANONICAL.md; the hyphenless copies are pending archive with a manifest row."
+    },
+    {
+      "id": "PR-06",
+      "assertion": "P-12",
+      "patterns": ["origin-weekly-plan.md", "docs/plan-b/15-week-implementation-plan.md"],
+      "owner": "W00",
+      "closingWeek": "W00",
+      "reason": "H-16: three plan documents compete for authority. CANONICAL.md now declares creat.md canonical and points at both superseded plans; the files themselves are archived with a pointer at W00 close-out, not deleted here."
+    }
+  ]
+}

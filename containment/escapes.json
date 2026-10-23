@@ -1,0 +1,80 @@
+[
+  {
+    "id": "E-001",
+    "class": "REFERENCED_BUT_ABSENT",
+    "artifact": "lib/",
+    "tier": 1,
+    "symptom": "README advertised an engine path that did not exist",
+    "escapedBecause": "no gate existed; README was Tier 4 and never checked against the tree",
+    "detectingGate": "gate:preflight",
+    "gateProvenRed": true,
+    "patch": "PATCH-01",
+    "liveTreeStatus": "ALREADY_CLOSED",
+    "note": "lib/engine/src/ exists in this repo (index.ts, contracts.ts, functions/, tests/). The referent exists; the README path resolves."
+  },
+  {
+    "id": "E-002",
+    "class": "REFERENCED_BUT_ABSENT",
+    "artifact": "inputs/",
+    "tier": 1,
+    "symptom": "registries referenced by README, creat.md and 3 tasks",
+    "escapedBecause": "hand-written registries with no generator",
+    "detectingGate": "gate:preflight",
+    "gateProvenRed": true,
+    "patch": "PATCH-02",
+    "liveTreeStatus": "ALREADY_CLOSED",
+    "note": "inputs/{variables,coefficients,constraints,schema,trace-map}.json and inputs/KHERWARA.json exist."
+  },
+  {
+    "id": "E-003",
+    "class": "REFERENCED_BUT_ABSENT",
+    "artifact": "project/ tests/ archive/",
+    "tier": 1,
+    "symptom": "three directories in the README repo map",
+    "escapedBecause": "README map was prose",
+    "detectingGate": "gate:preflight",
+    "gateProvenRed": true,
+    "patch": "PATCH-03/04/05",
+    "liveTreeStatus": "ALREADY_CLOSED",
+    "note": "project/ (asset-catalog, canonical-projects), tests/ (golden, integration) and archive/ all exist."
+  },
+  {
+    "id": "E-004",
+    "class": "ASSUMED_BUT_NOT_INSTALLED",
+    "artifact": "eslint archiver puppeteer",
+    "tier": 2,
+    "symptom": "instructions referenced tooling that was never installed",
+    "escapedBecause": "tooling was assumed from instruction prose, never from package.json",
+    "detectingGate": "gate:deps",
+    "gateProvenRed": true,
+    "patch": "PATCH-06/07/14",
+    "liveTreeStatus": "STILL_ABSENT",
+    "note": "eslint, archiver and puppeteer are still not installed. Recorded in .deps-plan.json pending their owning week rather than installed now."
+  },
+  {
+    "id": "E-005",
+    "class": "ASSERTED_BUT_FALSE",
+    "artifact": "AUDIT-REPORT-v1.0.md BOLT-004",
+    "tier": 1,
+    "symptom": "a valid alias was about to be deleted as 'phantom'",
+    "escapedBecause": "findings were inferred from call-sites and never re-checked",
+    "detectingGate": "gate:audit",
+    "gateProvenRed": true,
+    "patch": "PATCH-12",
+    "liveTreeStatus": "CONFIRMED",
+    "note": "Drawing_Module/src/components.tsx exists — BOLT-004 is a false positive."
+  },
+  {
+    "id": "E-006",
+    "class": "ASSERTED_BUT_FALSE",
+    "artifact": "README.md ci.yml netlify.toml",
+    "tier": 1,
+    "symptom": "Express 5 vs 4; Node version drift between CI and production",
+    "escapedBecause": "prose facts with no generator and no assertion",
+    "detectingGate": "gate:readme + gate:preflight",
+    "gateProvenRed": true,
+    "patch": "PATCH-11/13",
+    "liveTreeStatus": "PARTIALLY_STALE",
+    "note": "Node drift is FALSE here (.nvmrc = ci.yml = 24) and there is no netlify.toml (repo uses vercel.json). The README-facts-as-prose class still applies."
+  }
+]
