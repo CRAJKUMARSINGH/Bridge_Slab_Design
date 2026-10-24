@@ -50,9 +50,9 @@
   },
   "index": {
     "gate": "gate-index",
-    "file": "containment/claims.json",
-    "find": "\"status\": \"TRUE\"",
-    "replace": "\"status\": \"\""
+    "file": "package.json",
+    "find": "\"gate:readme\": \"tsx scripts/gates/gate-readme.ts\"",
+    "replace": "\"gate:readme\": \"tsx scripts/gates/__pill-untracked.ts\""
   },
   "deviations": {
     "gate": "gate-deviations",

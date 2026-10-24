@@ -45,7 +45,7 @@ Authoritative per-week instruction inputs live in `CODE-JUNCTION/`
 | `engineering/` | engineering knowledge audit and asset registry | 2 entries |
 | `evidence/` | assimilation evidence bundles | 663 entries |
 | `inputs/` | engine input contract (variables, coefficients, constraints) | 6 entries |
-| `lib/` | authoritative engine surface (shim; migrates in W02) | 56 entries |
+| `lib/` | authoritative engine surface (shim; migrates in W02) | 57 entries |
 | `openapi/` | OpenAPI description of the API | 1 entries |
 | `out/` | generated reports and workbooks | 4 entries |
 | `pipeline/` | pipeline entry point | 1 entries |
