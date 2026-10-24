@@ -36,6 +36,12 @@
     "find": "\"gate:chain\": \"tsx scripts/gates/gate-chain.ts\"",
     "replace": "\"gate:chain\": \"tsx scripts/gates/__pill-missing.ts\""
   },
+  "contracts": {
+    "gate": "gate-contracts",
+    "file": "foundation/engine.lock.json",
+    "find": "7c262e97",
+    "replace": "0c262e97"
+  },
   "deps": {
     "gate": "gate-deps",
     "file": "shared/schema.ts",

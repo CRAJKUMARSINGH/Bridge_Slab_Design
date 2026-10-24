@@ -1,0 +1,43 @@
+{
+  "version": "1.0.0",
+  "frozenOn": "2026-10-26",
+  "charter": "creat.md",
+  "authoritativeEngine": "bridge-excel-generator/design-engine.ts",
+  "engineModules": [
+    "bridge-excel-generator/design-engine.ts",
+    "bridge-excel-generator/types.ts",
+    "client/src/report-engine/lib/slabCalc.ts",
+    "client/src/report-engine/lib/loadCalc.ts",
+    "client/src/report-engine/lib/ircSlabCalc.ts",
+    "client/src/report-engine/lib/hydraulicCalc.ts",
+    "client/src/report-engine/lib/pierCalc.ts",
+    "client/src/report-engine/lib/sheets.ts"
+  ],
+  "mirrors": ["client/src/report-engine-weaver"],
+  "registries": [
+    "docs/week-0/variables.json",
+    "docs/week-0/coefficients.json",
+    "docs/week-0/constraints.json",
+    "docs/week-0/registry.json"
+  ],
+  "requiredPaths": [
+    "creat.md",
+    "package.json",
+    ".github/workflows/ci.yml",
+    "bridge-excel-generator/design-engine.ts",
+    "client/src/report-engine/lib/slabCalc.ts",
+    "client/src/report-engine/lib/loadCalc.ts",
+    "docs/week-0/coefficients.json",
+    "docs/week-0/constraints.json",
+    "docs/week-0/variables.json",
+    "docs/week-0/registry.json",
+    "scripts/fixtures/kherwara-project-input.ts"
+  ],
+  "charterClaimsAbsentPaths": [],
+  "lfsWatch": [
+    "VARIABLE_SELECTION_SHEET.xlsx",
+    "docs/week-0/demo_bridge_raw.xlsx"
+  ],
+  "baselineTestCount": 107,
+  "expectedLockfiles": ["pnpm-lock.yaml"]
+}

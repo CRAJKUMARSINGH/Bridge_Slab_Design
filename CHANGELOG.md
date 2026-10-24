@@ -122,6 +122,29 @@ wrong instruction cannot succeed quietly from week 1 onward.
 - `PATH-MANIFEST.json` is unchanged by rev. 5. The three files are pre-existing; W00
   neither wrote them nor now owns their content, and adding them would be a false
   ownership claim. `docs/phase-2/week-00/PATCH-PACK-CERTIFICATION.md` §11 is the record.
+- **Rev. 6 installed the gate the contract had been describing and did not have.**
+  `containment/CONTRACT.md` had said since it was frozen that "hash enforcement is
+  provided by gate:contracts (not yet installed)", which was honest and also a
+  declaration nothing executed. `gate:contracts` now ties `foundation/engine.lock.json`
+  to the `engineModules` declared in `foundation/manifest.json` and to the sha256 of each
+  module on disk, in four assertions, and refuses a run in which any of the three
+  disagree. Editing engine bytes now requires `lock:engine` in the same commit. The
+  contract rose to 1.1.0 for the paragraph that names the gate, and `docs/adr/0013-engine-pin-is-enforced.md`
+  is the ADR that bump requires. The gate is in the canonical entry point, in the
+  hygiene gate's required-script list, and carries a poison pill. The harness is now
+  `preflight` plus 14 gates at 61 assertions.
+- **Rev. 6 also removed a second deviation ledger that had returned.** The SET ONE
+  guide asks for `foundation/deviations.json` as well as `containment/DEVIATIONS.json`.
+  That is hole #7, which rev. 4 closed by asserting the ledger path is unique: the two
+  files carried the same six records under different schemas and different numbering,
+  nothing read the copy, and its checker
+  (`scripts/foundation/verify-deviations.mjs`) printed "5 checked, 0 problems" while
+  reading the wrong file. Both were deleted and `verify:deviations` was dropped from the
+  chain; `gate:deviations` is the one checker. The decision-log entries under
+  `project/decision-log/` were renumbered to agree with `containment/DEVIATIONS.json`,
+  because the guide's numbering and the ledger's had collided.
+- `README.md` was regenerated again in rev. 6, for the same reason rev. 5 regenerated it:
+  its module map is counted from the index, and tracking the Set One tree changes it.
 
 ### Recorded, not hidden
 

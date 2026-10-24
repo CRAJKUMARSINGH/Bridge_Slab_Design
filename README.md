@@ -52,25 +52,26 @@ than of the checkout.
 | `containment/` | trust tiers, contracts, claim ledger | 9 entries |
 | `data/` | local-only data, not shipped | 1 entries |
 | `design-reports/` | generated design report HTML | 29 entries |
-| `docs/` | phase deliverables | 220 entries |
+| `docs/` | phase deliverables | 221 entries |
 | `Drawing_Module/` | drawing components, reached through the @drawing/* alias | 2 entries |
 | `engineering/` | engineering knowledge audit and asset registry | 4 entries |
 | `evidence/` | assimilation evidence bundles | 350 entries |
+| `foundation/` | — | 8 entries |
 | `generated/` | generated artefact root | 1 entries |
 | `inputs/` | engine input contract (variables, coefficients, constraints) | 6 entries |
 | `lib/` | authoritative engine surface (shim; migrates in W02) | 57 entries |
 | `openapi/` | OpenAPI description of the API | 1 entries |
 | `out/` | generated reports and workbooks | 4 entries |
 | `pipeline/` | pipeline entry point | 1 entries |
-| `project/` | canonical projects and asset catalogue | 8 entries |
+| `project/` | canonical projects and asset catalogue | 13 entries |
 | `python_cad/` | CAD adapter | 6 entries |
 | `sample/` | integration test logs | 625 entries |
-| `scripts/` | tooling, gates, extractors | 131 entries |
+| `scripts/` | tooling, gates, extractors | 142 entries |
 | `server/` | Express 4 API server | 36 entries |
-| `shared/` | db, schema, feature flags | 6 entries |
+| `shared/` | db, schema, feature flags | 8 entries |
 | `src/` | root-level extras | 1 entries |
 | `test-output/` | ad-hoc verification output | 7 entries |
-| `tests/` | golden fixtures and integration tests | 23 entries |
+| `tests/` | golden fixtures and integration tests | 28 entries |
 <!-- /GEN:module-map -->
 
 ---

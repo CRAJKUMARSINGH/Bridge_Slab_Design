@@ -1,9 +1,12 @@
-# PHASE 2 INTER-SET CONTRACT — version 1.0.0
+# PHASE 2 INTER-SET CONTRACT — version 1.1.0
 
 Frozen: 2026-10-23 · Change requires an ADR and a minor version bump.
 
-Hash enforcement is provided by `gate:contracts` (not yet installed — see P2-W00). Until it
-is installed this table is a declaration, not an enforced boundary.
+Engine-pin enforcement is provided by `gate:contracts`. It ties `foundation/engine.lock.json`
+to `foundation/manifest.json` (the declared `engineModules`) and to the sha256 of each module
+on disk, and refuses a run in which any of the three disagree. What it does **not** enforce is
+the import table below: that table is still a declaration. The gate's scope and this 1.1.0
+bump are recorded in CHANGELOG.md.
 
 | From | To | Via | Allowed |
 |---|---|---|---|

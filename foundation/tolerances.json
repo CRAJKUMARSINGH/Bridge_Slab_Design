@@ -1,0 +1,26 @@
+{
+  "_doc": "Every numeric comparison MUST resolve a key here. Missing key = test throws. Changing a tolerance requires approvedBy + approvedOn. This replaces the charter's rtol=1e-6 default ONLY where explicitly recorded.",
+  "default": {
+    "rtol": 1e-6,
+    "atol": 1e-9,
+    "approvedBy": "charter Week 6",
+    "approvedOn": "2026-08-11"
+  },
+  "quantities": {
+    "hydraulics.discharge":        { "rtol": 1e-6, "atol": 1e-6 },
+    "hydraulics.scourDepth":       { "rtol": 1e-6, "atol": 1e-6 },
+    "hydraulics.designScourDepth": { "rtol": 1e-6, "atol": 1e-6 },
+    "hydraulics.foundationDepth":  { "rtol": 1e-6, "atol": 1e-6 },
+    "hydraulics.foundationLevel":  { "rtol": 1e-6, "atol": 1e-6 },
+    "hydraulics.freeboard":        { "rtol": 1e-6, "atol": 1e-6 },
+    "crossEngine.discharge":       { "rtol": 1e-6, "atol": 1e-6 },
+    "crossEngine.scourDepth":      { "rtol": 1e-6, "atol": 1e-6 },
+    "hydraulics.afflux": {
+      "rtol": 0.05,
+      "atol": 0.02,
+      "approvedBy": "PENDING — licensed engineer",
+      "approvedOn": "2026-10-26",
+      "note": "Replaces a bare 0.08 absolute in engineConsistency.test.ts that had no recorded approval. At 0.08 m absolute on a typical 0.2 m afflux, ~40% relative drift could pass."
+    }
+  }
+}

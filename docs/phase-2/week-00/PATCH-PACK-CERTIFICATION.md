@@ -666,3 +666,127 @@ it. No existing assertion was deleted, relaxed or renumbered.
   `node --import tsx scripts/gates/<gate>.ts`. The workflow's invocation of the canonical
   entry point is asserted by the hygiene gate but was not observed to run here.
 
+---
+
+## 12. Rev. 6 — SET ONE: the gate the contract had been describing (2026-10-26)
+
+Rev. 5 closed the hole where a file present in the checkout is carried by no commit.
+Rev. 6 answers the instruction that opened this sequence — apply the SET ONE guide in
+`CODE-JUNCTION` — and reports the one piece of it the harness was missing, together with
+the regressions the guide's own draft tree introduces when applied literally.
+
+### 12.1 The guide was applied by mapping it onto the harness, not by rebuilding it
+
+The guide's Stages 0–7 specify a second green definition: a `gate` chain running nine
+stages through `scripts/foundation/*`, described as the only definition of green. A
+parallel gate tree is a second source of truth, which is the defect class this harness
+exists to eliminate, so each guide instruction was mapped onto the existing containment
+harness instead. Three of the guide's instructions, applied literally, each introduce a
+defect the harness already has a gate for — and all three were observed RED before repair:
+
+| Guide instruction | Defect it introduces | Detected by |
+| --- | --- | --- |
+| Author a second ledger next to the committed one | A second truth: the same records, an older schema, no anchors, read by nothing | `gate:deviations` assertion 7 |
+| `gate` chain invokes `verify:excel` | A `package.json` target that is never defined, so the chain cannot run at all | `gate:scripts` |
+| Author the Set One tree into the worktree | Files present in the checkout and carried by no commit | `gate:index` assertion 4 |
+
+The guide's Node 22 and `npm ci` were likewise not applied: `.nvmrc`, the workflow and
+the Dockerfile all pin Node 24, and the root `preinstall` rejects npm, so the guide's
+replacement workflow would fail P-04 and P-13 as well as the hygiene gate's CI assertion.
+
+The second ledger was already recorded here as hole #7. Its copy was read by a checker,
+scripts/foundation/verify-deviations.mjs — named here as plain text rather than as a
+backticked path token, because the file is deliberately gone (ADR-0012, rule 4) — and
+that checker printed "5 checked, 0 problems" on every run while reading the wrong file.
+That is the sharpest form of the defect: a green check on the copy nothing acts on.
+
+### 12.2 The one piece that was genuinely missing
+
+`containment/CONTRACT.md` had said since the day it was frozen that hash enforcement is
+provided by `gate:contracts` — and that it was "not yet installed". Nothing executed that
+sentence. It now exists: a `run()` gate, four assertions, tying three things together.
+
+1. `foundation/manifest.json` declares an `authoritativeEngine` and a non-empty
+   `engineModules` list.
+2. `foundation/engine.lock.json` pins exactly those modules — nothing declared and
+   unpinned, nothing pinned and undeclared.
+3. Every pinned hash still equals the sha256 of the file on disk.
+4. The file the manifest calls authoritative is itself inside the pin, so the one file the
+   charter points at cannot sit outside the set that is being checked.
+
+The gate is wired into `pnpm run gate:foundation` after `gate:scripts`, added to the
+hygiene gate's required-script list, and carries a poison pill in
+`scripts/gates/.pills.json` that corrupts one byte of the lock and requires the gate to
+exit 1. The contract rose to version 1.1.0 for the paragraph that names the gate, and
+`docs/adr/0013-engine-pin-is-enforced.md` is the ADR that bump requires — the contract's
+own rule is that a version change needs one.
+
+### 12.3 Transcript — the last stdout line of each gate
+
+```
+GATE preflight: PASS 15 assertions
+GATE gate-deps: PASS 4 assertions
+GATE gate-scripts: PASS 2 assertions
+GATE gate-contracts: PASS 4 assertions
+GATE gate-tiers: PASS 3 assertions
+GATE gate-proven-red: PASS 2 assertions
+GATE gate-hygiene: PASS 7 assertions
+GATE gate-chain: PASS 2 assertions
+GATE gate-tasks: PASS 2 assertions
+GATE gate-docs: PASS 3 assertions
+GATE gate-readme: PASS 1 assertions
+GATE gate-index: PASS 4 assertions
+GATE gate-deviations: PASS 7 assertions
+GATE gate-vacuity: PASS 3 assertions
+GATE gate-ratchet: PASS 2 assertions
+
+TOTAL ASSERTIONS: 61   FAILING GATES: 0
+```
+
+**Result: 15 members, 61 assertions, 0 failures, 0 gates exiting 2.** One gate was added
+by this pass and none was removed; the count moved from 57 to 61 because `gate:contracts`
+declares four assertions, and the ratchet recorded that gate appearing rather than being
+told about it. No existing assertion was deleted, relaxed or renumbered.
+
+Two other reds were cleared in the same pass, both caused by the guide's tree rather than
+by the harness: `gate:scripts` failed on the undefined `verify:excel` target until the
+target was given a definition, and `gate:readme` failed because adding tracked paths
+changes the module map, which is counted from the index. `README.md` was regenerated.
+
+### 12.4 What rev. 6 does not claim
+
+- **The import table in `containment/CONTRACT.md` is still a declaration.** The gate checks the
+  engine pin, which is the checkable half of the boundary. Whether `lib/engine` really
+  only reaches `lib/units` and `lib/trust` is not asserted by anything, and the contract
+  says so in the sentence that names the gate.
+- **The assertion reads the index, not the history.** `git ls-files` reports what is
+  staged. It closes "present in the checkout but carried by nothing"; it does not prove a
+  commit exists. That remains the rev. 5 limit, unchanged.
+- **The literal guard is still RED, and that is the finding, not a failure of this pass.**
+  `scripts/foundation/literal-guard.mjs` reports roughly 1051 bare numeric literals across
+  the engine files. Replacing them is Stage 3/4 work that edits calculation code, and this
+  environment has no working test runner to verify such an edit against. A green produced
+  by sweeping the numbers into an allowlist would be worse than the red.
+- **The baseline test count is a claim, not a measurement.** `@vitest` is absent from
+  `node_modules` entirely, so no reporter runs and no report file is produced. The number
+  in `foundation/BASE_TEST_COUNT.txt` is the charter's 107, recorded as unmeasured, and
+  `verify:testcount` uses it as a floor — which means a wrong baseline is a wrong floor,
+  silently. The first run in a working environment must overwrite it.
+- **`build` and `audit:policy` were not run.** They need a working `pnpm` and network
+  access, neither of which this sandbox has. The guide's `gate` chain cannot pass here for
+  that reason and is left red on purpose; its failures are findings.
+- **One observation is recorded without a cause.** The second ledger was deleted twice.
+  Between the first deletion and the second, `gate:deviations` passed once and then failed
+  again with the file present and a later modification time. A controlled probe — staging a
+  file, deleting it, and re-checking both a staged and an unstaged path — could not
+  reproduce a return for either, so the cause is not established. It is recorded because if
+  it recurs it is the finding, not noise. After the second deletion the gate passed on every
+  subsequent run.
+- **The tracked files absent from this checkout are unchanged and still not staged.** The
+  index gate reports them as an advisory and still does. That is an observation about the
+  operator's worktree, not a defect this pass fixes.
+- **One agreement is still not enforced.** The decision-log numbering under
+  `project/decision-log/` now matches `containment/DEVIATIONS.json`, and it was renumbered
+  by hand to get there. No gate asserts that the two agree, so the agreement can drift
+  again. That is the next hole, not a closed one.
+

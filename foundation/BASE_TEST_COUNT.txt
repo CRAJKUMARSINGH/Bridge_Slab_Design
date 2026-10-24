@@ -1,0 +1,11 @@
+107 — the Set One charter's number. NOT measured in this checkout.
+
+Measured: never. `pnpm run test:report` cannot complete here — vitest fails to load because
+`node_modules/@vitest/utils` is absent, so no reporter runs and no `.vitest-report.json` is
+produced. `node_modules` is incomplete in this environment, and pnpm cannot repair it (its shim
+is broken here), so there is no working runner to measure with.
+
+This file therefore records a CLAIM, not an observation. The first run in an environment with a
+working toolchain must overwrite it with the observed count and set
+foundation/manifest.json → baselineTestCount to the same value. `verify:testcount` uses that
+number as the floor below which it fails, so a wrong baseline is a wrong floor, silently.

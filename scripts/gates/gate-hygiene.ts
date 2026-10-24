@@ -15,6 +15,7 @@ const REQUIRED_SCRIPTS = [
   "gate:preflight",
   "gate:deps",
   "gate:scripts",
+  "gate:contracts",
   "gate:docs:strict",
   "gate:tasks",
   "gate:tiers",

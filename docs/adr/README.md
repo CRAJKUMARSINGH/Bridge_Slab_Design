@@ -27,6 +27,7 @@ but not what would have to become true for the choice to be wrong.
 | [0010](0010-devanagari-shaping-admitted.md) | Devanagari shaping admitted; the single PDF writer is kept | ACCEPTED |
 | [0011](0011-spec-corpus-placement.md) | Where the Set-3/4/5 specification corpus lives, and who owns it | ACCEPTED |
 | [0012](0012-no-dangling-references.md) | No instruction may reference a path that does not resolve | ACCEPTED |
+| [0013](0013-engine-pin-is-enforced.md) | The inter-set contract's engine pin is enforced, not asserted | ACCEPTED |
 
 Numbers 0001–0007 are **reserved and unwritten**. They are not listed above
 because a record that does not exist cannot be cited. They remain reserved because
