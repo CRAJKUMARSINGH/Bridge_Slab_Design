@@ -1,10 +1,11 @@
 #!/usr/bin/env tsx
 // gate-hygiene — repo invariants that are cheap to state and expensive to lose.
-// 5 assertions: one lockfile; .gitignore agrees with what is tracked; a LICENSE
-// matching package.json; the four root documents; the foundation gates wired.
+// 6 assertions: one lockfile; .gitignore agrees with what is tracked; a LICENSE
+// matching package.json; the four root documents; the listed foundation gates
+// wired; and every gate file reachable from some package.json script.
 import { run, is } from "./_lib";
 import { existsSync } from "node:fs";
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 
 // The foundation's doc gate is wired as `gate:docs:strict` because `gate:docs`
 // already names the pre-existing NOT-IMPLEMENTED `gate-docs.mjs` stub. Requiring
@@ -26,7 +27,7 @@ const REQUIRED_SCRIPTS = [
   "gate:foundation",
 ];
 
-await run("gate-hygiene", 5, async () => {
+await run("gate-hygiene", 6, async () => {
   // 1. one lockfile, and it is the one CI installs with
   is(
     !(existsSync("package-lock.json") && existsSync("pnpm-lock.yaml")),
@@ -56,5 +57,26 @@ await run("gate-hygiene", 5, async () => {
     missingScripts.length === 0,
     "every foundation gate is wired in package.json",
     missingScripts.map((s) => `package.json missing script ${s}`).join("\n"),
+  );
+
+  // 6. ...and the converse, which assertion 5 structurally cannot see. That list
+  //    is hand-written, so it only catches a gate that was REMOVED. Add a new
+  //    `scripts/gates/gate-*.ts`, forget to add it to the list and to the
+  //    `gate:foundation` chain, and every assertion above stays green: the gate
+  //    sits on disk, unreferenced, running nowhere. gate-proven-red would notice
+  //    it only as "never observed RED", which is satisfied by proving a gate that
+  //    no run ever invokes — a check that never executes cannot fail, which is
+  //    the same defect gate-vacuity guards one level down.
+  const gateFiles = (await readdir("scripts/gates")).filter((f) => /^(gate-[a-z0-9-]+|preflight)\.ts$/.test(f));
+  const wired = new Set(
+    Object.values(pkg.scripts ?? {})
+      .flatMap((cmd: string) => [...cmd.matchAll(/scripts\/gates\/([a-z0-9-]+)\.ts/g)])
+      .map((m) => `${m[1]}.ts`),
+  );
+  const orphans = gateFiles.filter((f) => !wired.has(f));
+  is(
+    orphans.length === 0,
+    "every gate file is reachable from a package.json script",
+    orphans.map((f) => `scripts/gates/${f} is referenced by no script — a gate nothing invokes cannot fail`).join("\n"),
   );
 });
