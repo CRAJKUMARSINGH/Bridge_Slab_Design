@@ -1,8 +1,9 @@
 #!/usr/bin/env tsx
 // gate-hygiene — repo invariants that are cheap to state and expensive to lose.
-// 6 assertions: one lockfile; .gitignore agrees with what is tracked; a LICENSE
+// 7 assertions: one lockfile; .gitignore agrees with what is tracked; a LICENSE
 // matching package.json; the four root documents; the listed foundation gates
-// wired; and every gate file reachable from some package.json script.
+// wired; every gate file reachable from some package.json script; and CI
+// actually invoking that harness as a blocking step.
 import { run, is } from "./_lib";
 import { existsSync } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
@@ -27,7 +28,7 @@ const REQUIRED_SCRIPTS = [
   "gate:foundation",
 ];
 
-await run("gate-hygiene", 6, async () => {
+await run("gate-hygiene", 7, async () => {
   // 1. one lockfile, and it is the one CI installs with
   is(
     !(existsSync("package-lock.json") && existsSync("pnpm-lock.yaml")),
@@ -79,4 +80,30 @@ await run("gate-hygiene", 6, async () => {
     "every gate file is reachable from a package.json script",
     orphans.map((f) => `scripts/gates/${f} is referenced by no script — a gate nothing invokes cannot fail`).join("\n"),
   );
+
+  // 7. ...and reachable is still not executed. Assertions 5 and 6 prove every gate
+  //    is named by some package.json script; neither proves anything ever CALLS
+  //    that script. The whole containment layer was decorative on every push for
+  //    exactly this reason — the gates existed, the scripts existed, and CI ran
+  //    none of them. A workflow file can still be replaced wholesale by an
+  //    enrichment drop, and every assertion above would stay green. So the CI step
+  //    is asserted directly, and asserted for being BLOCKING: a gate invoked with
+  //    `continue-on-error: true` cannot fail the build, which is the same defect
+  //    as a gate nothing invokes, one level up.
+  const ciPath = ".github/workflows/ci.yml";
+  const ciLines = existsSync(ciPath) ? (await readFile(ciPath, "utf8")).split(/\r?\n/) : [];
+  const runIdx = ciLines.findIndex((l) => /^\s*run:.*gate:foundation/.test(l));
+  let ciDetail = "";
+  if (runIdx === -1) {
+    ciDetail = existsSync(ciPath)
+      ? `${ciPath} never invokes gate:foundation — the harness is present and unexecuted`
+      : `${ciPath} not found — nothing runs the harness`;
+  } else {
+    // walk back to the step header so `continue-on-error` is read from THIS step
+    let j = runIdx;
+    while (j > 0 && !/^\s*-\s*(name|uses):/.test(ciLines[j])) j--;
+    if (ciLines.slice(j, runIdx + 1).some((l) => /continue-on-error:\s*true/.test(l)))
+      ciDetail = `${ciPath} invokes gate:foundation with continue-on-error: true — a gate that cannot fail the build is not a gate`;
+  }
+  is(ciDetail === "", "CI invokes the gate harness as a blocking step", ciDetail);
 });

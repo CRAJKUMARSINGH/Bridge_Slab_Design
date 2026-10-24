@@ -1,7 +1,7 @@
 # P2-W00 PATCH-PACK ENRICHMENT CERTIFICATION — PATCH-06 .. PATCH-18
 
 Date: 2026-10-23 · **rev. 4** — a SET ONE harness-hardening pass (§10) took the gate
-count from 10 to 13 and the assertion count from 38 to 55, and wired the harness into
+count from 10 to 13 and the assertion count from 38 to 56, and wired the harness into
 CI. The text below rev. 3 is unchanged and still describes the state it certified.
 Operator: Kiro (agent) · Verifier: **not yet run** — see §8
 Pass: W00 close-out, additive only
@@ -456,6 +456,16 @@ on push: it would pass or fail on the operator's machine and nowhere else. The w
 now ends with a step that runs the canonical entry point `pnpm run gate:foundation`,
 which is preflight plus all thirteen gates.
 
+Wiring it once was not enough, and the relapse is the interesting part. A step in a
+workflow file is exactly the kind of artefact an enrichment drop rewrites wholesale —
+one of the drops in this repository proposes replacing the workflow file outright — and
+had that happened, every assertion in §10.1 would have stayed green while CI ran none of
+the gates. Present-but-unexecuted is the same defect as a gate nothing invokes, one
+level up, so the hygiene gate now asserts the invocation itself: the workflow must
+contain a step whose command is the harness entry point, and that step may not carry
+`continue-on-error: true`, because a gate that cannot fail the build is not a gate.
+Proven RED -> GREEN by replacing the step's command with a no-op.
+
 ### 10.3 Transcript — the last stdout line of each gate
 
 ```
@@ -464,7 +474,7 @@ GATE gate-deps: PASS 4 assertions
 GATE gate-scripts: PASS 2 assertions
 GATE gate-tiers: PASS 3 assertions
 GATE gate-proven-red: PASS 2 assertions
-GATE gate-hygiene: PASS 6 assertions
+GATE gate-hygiene: PASS 7 assertions
 GATE gate-chain: PASS 2 assertions
 GATE gate-tasks: PASS 2 assertions
 GATE gate-docs: PASS 3 assertions
@@ -474,7 +484,7 @@ GATE gate-deviations: PASS 7 assertions
 GATE gate-vacuity: PASS 3 assertions
 GATE gate-ratchet: PASS 2 assertions
 
-TOTAL ASSERTIONS: 55   FAILING GATES: 0
+TOTAL ASSERTIONS: 56   FAILING GATES: 0
 ```
 
 The RED half of the three gates added by this pass, run separately because a gate that
@@ -491,10 +501,10 @@ vacuity: gate-vacuity RED (poisoned) -> GREEN (restored) — recorded
 ratchet: gate-ratchet RED (poisoned) -> GREEN (restored) — recorded
 ```
 
-**Result: 13 gates, 55 assertions, 0 failures, 0 gates exiting 2.** The count moved from
-10 gates / 38 assertions to 13 / 55 because this pass adds three gates — the deviations
+**Result: 13 gates, 56 assertions, 0 failures, 0 gates exiting 2.** The count moved from
+10 gates / 38 assertions to 13 / 56 because this pass adds three gates — the deviations
 ledger, the anti-padding check and the ratchet — with 6, 3 and 2 assertions, and raises
-the hygiene gate from 5 to 6 and the deviations gate from 6 to 7. Two
+the hygiene gate from 5 to 7 and the deviations gate from 6 to 7. Two
 existing scripts in the gate directory changed meaning: the file already named as the
 index gate carried only a claims staleness check, so the git half was added to it rather
 than a second gate being created beside it. No existing assertion was deleted, relaxed

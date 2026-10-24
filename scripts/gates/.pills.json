@@ -26,9 +26,9 @@
   },
   "hygiene": {
     "gate": "gate-hygiene",
-    "file": "package.json",
-    "find": "\"gate:chain\":",
-    "replace": "\"gate:chain-renamed\":"
+    "file": ".github/workflows/ci.yml",
+    "find": "run: pnpm run gate:foundation",
+    "replace": "run: echo \"harness disabled by pill\""
   },
   "scripts": {
     "gate": "gate-scripts",
