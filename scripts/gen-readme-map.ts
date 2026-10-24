@@ -24,7 +24,8 @@
 //      subdirectory's node_modules and makes the Size column depend on the
 //      machine. The declared ignored set is the same one gate-tiers prunes by,
 //      so a generated table and the gate harness cannot disagree.
-import { readdir, readFile, writeFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 
 const START = "<!-- GEN:module-map -->";
 const END = "<!-- /GEN:module-map -->";
@@ -72,35 +73,39 @@ const tiers = JSON.parse(await readFile("containment/ARTIFACT-TIERS.json", "utf8
 };
 const SKIP = new Set<string>([...(tiers.ignored ?? []), "node_modules"]);
 
-/** Entries under `dir`, pruning the declared ignored trees and dot-directories,
- *  so the count is a property of the commit and not of the checkout. */
-async function count(dir: string): Promise<number> {
-  let n = 0;
-  const stack = [dir];
-  while (stack.length) {
-    const cur = stack.pop()!;
-    let entries;
-    try {
-      entries = await readdir(cur, { withFileTypes: true });
-    } catch {
-      continue;
-    }
-    for (const e of entries) {
-      if (e.name.startsWith(".") || SKIP.has(e.name)) continue;
-      n++;
-      if (e.isDirectory()) stack.push(`${cur}/${e.name}`);
-    }
+/** The map is counted from the INDEX, never from the checkout.
+ *
+ *  The first version walked the filesystem, and the comment above claimed its
+ *  count was "a property of the commit and not of the checkout" — which was
+ *  false. Any untracked directory sitting in the developer's working tree added a
+ *  row, so the committed table could never match the one CI regenerates from a
+ *  clean clone, and gate:readme failed for a reason that had nothing to do with
+ *  the README. `git ls-files` is the listing that is a property of the commit:
+ *  tracked paths only, identical on every machine, whether or not each file is
+ *  present in the working tree.
+ *
+ *  An entry is what a recursive listing would show: each tracked file, plus each
+ *  directory prefix on the way to it. Dot-entries and the declared ignored trees
+ *  are pruned at every level, which is the same set gate-tiers prunes by, so a
+ *  generated table and the gate harness cannot disagree. */
+function trackedMap(): Map<string, number> {
+  const files = execFileSync("git", ["ls-files", "-z"], { encoding: "utf8" }).split("\0").filter(Boolean);
+  const seen = new Map<string, Set<string>>();
+  for (const f of files) {
+    const seg = f.split("/");
+    if (seg.length < 2) continue; // a root-level file belongs to no directory row
+    if (seg.some((s) => s.startsWith(".") || SKIP.has(s))) continue;
+    let set = seen.get(seg[0]);
+    if (!set) seen.set(seg[0], (set = new Set()));
+    for (let i = 1; i < seg.length; i++) set.add(seg.slice(0, i + 1).join("/"));
   }
-  return n;
+  return new Map([...seen].map(([dir, set]) => [dir, set.size]));
 }
 
-const top = (await readdir(".", { withFileTypes: true }))
-  .filter((e) => e.isDirectory() && !e.name.startsWith(".") && !SKIP.has(e.name))
-  .sort((a, b) => a.name.localeCompare(b.name));
-
-const rows = await Promise.all(
-  top.map(async (e) => `| \`${e.name}/\` | ${PURPOSE[e.name] ?? "—"} | ${await count(e.name)} entries |`),
-);
+const counts = trackedMap();
+const rows = [...counts]
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([dir, n]) => `| \`${dir}/\` | ${PURPOSE[dir] ?? "—"} | ${n} entries |`);
 
 const block = [START, "| Path | Purpose | Size |", "|---|---|---|", ...rows, END].join("\n");
 const readme = await readFile(README, "utf8");
