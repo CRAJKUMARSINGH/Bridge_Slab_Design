@@ -29,17 +29,18 @@
 // capture "the boundary condition table is the wrong table". They are still held
 // to the full schema, so they cannot be deleted without the ledger changing.
 //
-// 6 assertions:
+// 7 assertions:
 //   1. containment/DEVIATIONS.json exists and has the declared shape.
 //   2. every deviation declares the fields that make it reviewable.
 //   3. every OPEN deviation names the week that closes it.
 //   4. every mechanical deviation (sourceUnit !== "n/a") carries an anchor.
 //   5. every declared anchor still captures its declared value.
 //   6. every file named by an anchor or a locator still exists.
+//   7. no second ledger exists — no other file named deviations.json in the tree.
 //
 // CONTRACT: exit 0=PASS, 1=FAIL, 2=NOT IMPLEMENTED
 //           last stdout line = "GATE gate-deviations: PASS|FAIL <n> assertions"
-import { run, is, read } from "./_lib";
+import { run, is, read, walk } from "./_lib";
 import { existsSync } from "node:fs";
 
 const DEV_PATH = "containment/DEVIATIONS.json";
@@ -88,7 +89,7 @@ async function anchorHolds(a: Anchor): Promise<{ ok: boolean; detail: string }> 
   return { ok, detail: ok ? "" : `${a.file}: the ledger says ${a.value}, the source now says ${m[1]}` };
 }
 
-await run("gate-deviations", 6, async () => {
+await run("gate-deviations", 7, async () => {
   // 1. the file exists and is the declared shape
   let file: DeviationsFile | null = null;
   if (existsSync(DEV_PATH)) {
@@ -173,4 +174,19 @@ await run("gate-deviations", 6, async () => {
     .filter((f): f is string => typeof f === "string" && f.includes("/"))
     .filter((f) => !existsSync(f));
   is(missing.length === 0, "every file a deviation names still exists", `missing: ${[...new Set(missing)].join(", ")}`);
+
+  // 7. the ledger path is unique. A second file named deviations.json is a second
+  //    truth: nothing reads it, so nothing can falsify it, and it is the copy a
+  //    reader is most likely to open because it says what they expect. A
+  //    CODE-JUNCTION drop wrote foundation/deviations.json over the top of this
+  //    ledger once already — the same six records, an older schema, no anchors —
+  //    and no gate objected. Declaring foundation/** a tier would have made that
+  //    silent again, so the uniqueness is asserted here instead.
+  const norm = (f: string) => f.replace(/\\/g, "/").replace(/^\.\//, "");
+  const duplicates = (await walk(".", /(^|\/)deviations\.json$/)).map(norm).filter((f) => f !== DEV_PATH);
+  is(
+    duplicates.length === 0,
+    "no second deviation ledger exists",
+    duplicates.map((f) => `${f} duplicates ${DEV_PATH} — one ledger, or the copies drift silently`).join("\n"),
+  );
 });

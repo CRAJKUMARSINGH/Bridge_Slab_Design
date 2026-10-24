@@ -19,6 +19,7 @@
     { "glob": "corpus/raw/**", "tier": 0, "trust": "EXTERNAL" },
     { "glob": "corpus/oracle/GOLDEN-ORACLE.json", "tier": 1, "trust": "VERIFIED", "derivedFrom": ["corpus/raw/**"] },
     { "glob": "containment/**", "tier": 1, "trust": "VERIFIED" },
+    { "glob": "foundation/**", "tier": 1, "trust": "VERIFIED" },
     { "glob": "CANONICAL.md", "tier": 1, "trust": "VERIFIED" },
     { "glob": "inputs/**", "tier": 1, "trust": "VERIFIED" },
     { "glob": "lib/engine/src/contracts.ts", "tier": 1, "trust": "VERIFIED", "derivedFrom": [] },

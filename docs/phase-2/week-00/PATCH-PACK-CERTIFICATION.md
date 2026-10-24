@@ -1,7 +1,7 @@
 # P2-W00 PATCH-PACK ENRICHMENT CERTIFICATION — PATCH-06 .. PATCH-18
 
 Date: 2026-10-23 · **rev. 4** — a SET ONE harness-hardening pass (§10) took the gate
-count from 10 to 13 and the assertion count from 38 to 54, and wired the harness into
+count from 10 to 13 and the assertion count from 38 to 55, and wired the harness into
 CI. The text below rev. 3 is unchanged and still describes the state it certified.
 Operator: Kiro (agent) · Verifier: **not yet run** — see §8
 Pass: W00 close-out, additive only
@@ -429,10 +429,10 @@ Revisions 1 to 3 certified the enrichment's content. Rev. 4 asks a different que
 about it — the one the operator put directly: the code is a tower resting on the
 foundation, and the foundation may have a systemic flaw that lets incomplete work pass
 silently. Reading the harness rather than trusting it, the flaw is real and structural,
-and it lies in six places, each of which let a gate keep reporting PASS while checking
+and it lies in seven places, each of which let a gate keep reporting PASS while checking
 less than its own count claimed.
 
-### 10.1 The six holes, and what closes each
+### 10.1 The seven holes, and what closes each
 
 | Hole | Why a gate could pass without checking | What closes it |
 | --- | --- | --- |
@@ -442,8 +442,9 @@ less than its own count claimed.
 | The index was never inspected | Every gate reads the working tree, so none could see the failure mode that produced the earlier desynchronisation: paths staged as deleted whose files are still on disk. | The index gate now fails on a phantom staged deletion, and reports as an advisory the tracked files absent from the worktree that a blanket commit would sweep in unreviewed. |
 | The values that disagree were written in prose | The concrete and bituminous unit weights differ between the coefficient table and the code, and the difference was recorded only in a document nobody executes. | A new deviations gate anchors such a value to a file, a regex and the value the regex must still capture, so neither side can be corrected silently while the other still says something else. |
 | A gate could exist and never run | The hygiene gate compared a hand-written list of script names against `package.json`, which catches a gate that was removed but not one that was never wired. A new `scripts/gates/gate-*.ts` could sit on disk referenced by nothing and executed nowhere; the proof gate would flag it only as "never observed RED", which is satisfied by proving a gate that no run ever invokes. | The hygiene gate now derives the gate files from the directory listing and requires each to be referenced by some `package.json` script, so a gate that nothing invokes fails the build. |
+| A record could be duplicated | The ledger is one file at one path, but nothing said so. A `CODE-JUNCTION` drop wrote a second ledger — foundation/deviations.json, the same six records, an older schema, no anchors — beside `containment/DEVIATIONS.json`. No gate read it, so nothing could falsify it, and it is the copy a reader is most likely to open. The two could then disagree forever with no signal. | The deviations gate asserts that the ledger path is unique: any second file named deviations.json in the tree fails the gate. Tiering `foundation/**` (done in the same pass, so the drop's own manifest and lock files are declared) would have made the duplicate silent again, which is why the uniqueness is checked rather than the path assumed. |
 
-The general shape of all six is the same, and it is the operator's thesis stated
+The general shape of all seven is the same, and it is the operator's thesis stated
 exactly: **a check that cannot fail is not a check, and a count is not a check.**
 
 ### 10.2 The harness was also unreachable from CI
@@ -469,11 +470,11 @@ GATE gate-tasks: PASS 2 assertions
 GATE gate-docs: PASS 3 assertions
 GATE gate-readme: PASS 1 assertions
 GATE gate-index: PASS 3 assertions
-GATE gate-deviations: PASS 6 assertions
+GATE gate-deviations: PASS 7 assertions
 GATE gate-vacuity: PASS 3 assertions
 GATE gate-ratchet: PASS 2 assertions
 
-TOTAL ASSERTIONS: 54   FAILING GATES: 0
+TOTAL ASSERTIONS: 55   FAILING GATES: 0
 ```
 
 The RED half of the three gates added by this pass, run separately because a gate that
@@ -490,10 +491,10 @@ vacuity: gate-vacuity RED (poisoned) -> GREEN (restored) — recorded
 ratchet: gate-ratchet RED (poisoned) -> GREEN (restored) — recorded
 ```
 
-**Result: 13 gates, 54 assertions, 0 failures, 0 gates exiting 2.** The count moved from
-10 gates / 38 assertions to 13 / 54 because this pass adds three gates — the deviations
+**Result: 13 gates, 55 assertions, 0 failures, 0 gates exiting 2.** The count moved from
+10 gates / 38 assertions to 13 / 55 because this pass adds three gates — the deviations
 ledger, the anti-padding check and the ratchet — with 6, 3 and 2 assertions, and raises
-the hygiene gate from 5 to 6. Two
+the hygiene gate from 5 to 6 and the deviations gate from 6 to 7. Two
 existing scripts in the gate directory changed meaning: the file already named as the
 index gate carried only a claims staleness check, so the git half was added to it rather
 than a second gate being created beside it. No existing assertion was deleted, relaxed
@@ -509,13 +510,22 @@ gate would flag it only as "never observed RED" — which is satisfied by provin
 that no run ever invokes. The gate now derives the list from the directory itself, so a
 gate nothing invokes fails the build.
 
+The seventh hole was found by being its victim rather than by reading for it: a
+`CODE-JUNCTION` drop wrote a second ledger at foundation/deviations.json over the top of
+the canonical one while this pass was running, and the only gate that noticed was the
+tier map — for the wrong reason. Tiering `foundation/**` (now done, so the drop's
+manifest, engine lock and tolerances are declared on arrival) would have restored
+silence. So the deviations gate asserts the thing the tier map cannot: that there is
+exactly one ledger. Verified by copying the ledger to that second path — RED — and
+removing it — GREEN.
+
 Two artefacts were deleted during this pass rather than tiered, because a second copy of
-a record is a second truth: the superseded `foundation/deviations.json` (its six records
-had already been merged, with anchors, into `containment/DEVIATIONS.json`) and the same
-file again when it reappeared in the worktree after a `CODE-JUNCTION` drop wrote it back.
+a record is a second truth: the superseded file under foundation/ (its six records had
+already been merged, with anchors, into `containment/DEVIATIONS.json`) and the same file
+again when it reappeared in the worktree after a `CODE-JUNCTION` drop wrote it back.
 `containment/` is the canonical ledger path: it is tracked, it carries an `anchor` per
 record, and `gate-deviations` reads it. A ledger at any other path is enforced by
-nothing.
+nothing — which is now itself an assertion rather than a convention.
 
 ### 10.4 What rev. 4 does not claim
 
