@@ -145,6 +145,61 @@
       "raisedAt": "2026-10-24",
       "notes": "Closed, but not unguarded: the anchor below fails the gate if the fix is silently reverted.",
       "anchors": [{ "file": ".github/workflows/ci.yml", "pattern": "(lfs: true)", "value": "lfs: true" }]
+    },
+    {
+      "id": "DEV-007",
+      "quantity": "engine parity tolerance and cross-wired field names",
+      "sourceValue": "rtol 1e-6 unless engineering review approves a different tolerance",
+      "sourceUnit": "n/a",
+      "sourceFile": "docs/phase-2/PHASE-2-GATE-SPECS.md",
+      "sourceLocator": "charter Week 6 parity mandate",
+      "codeValue": "afflux |excel - web| <= 0.08 m; discharge toBeCloseTo(...,1); scour toBeCloseTo(...,2); excel.scourDepth compared against web.meanScourDepth and excel.designScourDepth against web.maxScourDepth",
+      "codeUnit": "n/a",
+      "codeFile": "client/src/report-engine/lib/__tests__/engineConsistency.test.ts",
+      "codeLocator": "D02 afflux test and the scour comparison block",
+      "description": "engineConsistency.test.ts is the only test that compares the two engines, and it is far looser than the charter allows. The single numeric tolerance for afflux is a hand-typed 0.08 m, and the other comparisons use toBeCloseTo at one or two decimal digits. No approval for these tolerances is recorded anywhere, which the charter requires. The same test also cross-wires the field names: excel.scourDepth (Excel's mean scour) is compared against web.meanScourDepth, and excel.designScourDepth against web.maxScourDepth. The numbers may agree while the two engines disagree about what the fields mean.",
+      "decision": "PENDING",
+      "decidedValue": null,
+      "decidedBy": null,
+      "ircClause": "n/a",
+      "status": "OPEN",
+      "owner": "W06",
+      "closingWeek": "W06",
+      "raisedAt": "2026-10-24",
+      "notes": "Do NOT tighten the tolerance silently — that would fail tests whose disagreement has never been triaged. Either record the engineering approval for 0.08 m and the 1/2-digit bands, or tighten to rtol 1e-6 and fix what breaks. The name cross-wiring is a separate defect: decide the canonical field names before the tolerance is tightened, or the tighter test compares the wrong pair.",
+      "anchors": [
+        { "file": "client/src/report-engine/lib/__tests__/engineConsistency.test.ts", "pattern": "afflux - web\\.afflux\\)\\)\\.toBeLessThanOrEqual\\(([0-9.]+)\\)", "value": 0.08 },
+        { "file": "client/src/report-engine/lib/__tests__/engineConsistency.test.ts", "pattern": "expect\\(excel\\.discharge\\)\\.toBeCloseTo\\(web\\.discharge, ([0-9]+)\\)", "value": 1 },
+        { "file": "client/src/report-engine/lib/__tests__/engineConsistency.test.ts", "pattern": "expect\\(excel\\.scourDepth\\)\\.toBeCloseTo\\(web\\.meanScourDepth, ([0-9]+)\\)", "value": 2 },
+        { "file": "client/src/report-engine/lib/__tests__/engineConsistency.test.ts", "pattern": "expect\\(excel\\.designScourDepth\\)\\.toBeCloseTo\\(web\\.maxScourDepth, ([0-9]+)\\)", "value": 2 }
+      ]
+    },
+    {
+      "id": "DEV-008",
+      "quantity": "slab factored-load coefficient (partial safety factors)",
+      "sourceValue": "gamma_G = 1.35 (self weight), gamma_Q = 1.5 (live load)",
+      "sourceUnit": "n/a",
+      "sourceFile": "docs/week-0/coefficients.json",
+      "sourceLocator": "Factors!B3, Factors!B4",
+      "codeValue": "1.5 applied to (totalDL + totalLL) as a single factor",
+      "codeUnit": "n/a",
+      "codeFile": "client/src/report-engine/lib/slabCalc.ts",
+      "codeLocator": "designSlab(): const w = 1.5 * (totalDL + totalLL)",
+      "description": "coefficients.json declares two separate partial safety factors for the ultimate limit state — gamma_G = 1.35 on self weight (Factors!B3) and gamma_Q = 1.5 on live load (Factors!B4). slabCalc.ts collapses both into a single hardcoded 1.5 applied to the sum of dead and live load. Where the dead load is a significant share of the total, a single 1.5 under-factors the self weight relative to 1.35*DL + 1.5*LL; where it is small, the two nearly agree. The direction of the error depends on the DL/LL split, so it cannot be dismissed as conservative.",
+      "decision": "PENDING",
+      "decidedValue": null,
+      "decidedBy": null,
+      "ircClause": "IRC:6-2017 / IS 456:2000 Table 18 partial safety factors",
+      "status": "OPEN",
+      "owner": "W03",
+      "closingWeek": "W03",
+      "raisedAt": "2026-10-24",
+      "notes": "Do NOT change the number silently. The factor is written as a bare literal, not derived from coefficients.json, so nothing connects the two. If the decision is to use gamma_G/gamma_Q separately, the code must read them from the generated coefficient module rather than hardcode either value, or the same divergence reappears in a new literal.",
+      "anchors": [
+        { "file": "client/src/report-engine/lib/slabCalc.ts", "pattern": "const w = ([0-9.]+) \\* \\(totalDL \\+ totalLL\\)", "value": 1.5 },
+        { "file": "docs/week-0/coefficients.json", "pattern": "\"id\": \"Factors!B3\"[\\s\\S]{0,240}?\"value\": ([0-9.]+)", "value": 1.35 },
+        { "file": "docs/week-0/coefficients.json", "pattern": "\"id\": \"Factors!B4\"[\\s\\S]{0,240}?\"value\": ([0-9.]+)", "value": 1.5 }
+      ]
     }
   ]
 }
