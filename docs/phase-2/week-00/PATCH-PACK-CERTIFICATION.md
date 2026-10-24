@@ -553,3 +553,116 @@ nothing — which is now itself an assertion rather than a convention.
 - **The CI step is written but not observed to run.** Its first execution is the next
   push; this record claims the wiring, not a green CI run.
 
+---
+
+## 11. Rev. 5 — hole #8: a path can be present and still not be carried (2026-10-24)
+
+Rev. 4 made the harness falsifiable. It did not change the question the harness asks,
+and that question is the eighth hole: **every gate decides from the working tree.** A
+file that sits in this checkout and is carried by no commit satisfies `existsSync`, is
+readable, and is walked. On a fresh clone it is not there, and every assertion above the
+first script invocation fails — while the machine that holds the file reports green.
+
+### 11.1 The hole, demonstrated rather than argued
+
+The scripts gate asserts that every file a `package.json` script names *exists*. Three
+files satisfied that assertion while no commit carried them:
+
+| File | Who names it | Why the checkout still hid the defect |
+| --- | --- | --- |
+| scripts/lint-pdf-glyph-encodability.ts | `lint:pdf-glyphs`, invoked by the workflow's `check` step | `existsSync` cannot distinguish a committed file from a locally created one. |
+| scripts/verify-client-api-links.ts | `verify:apilinks` in scripts/package.json | Scanned by the scripts gate, which reads only the working tree. |
+| lib/engine/src/contracts.ts | Declared tier 1 / VERIFIED in containment/ARTIFACT-TIERS.json, and named as the sole origin of the whole `lib` tier | The tier map is a declaration about paths, not about commits; every consumer of it reads the artefact from disk. |
+
+The demonstration is `git ls-files --error-unmatch`, which answered "did not match any
+file(s) known to git" for all three while all three were present and readable. The
+harness reported 56 assertions green in the same checkout. The third file is the one
+that matters most: the tier-1 contract the rest of the engine is declared to derive
+from was, until this pass, a file no clone would ever receive.
+
+### 11.2 What closes it
+
+The index gate's fourth assertion reads `git ls-files -z` — the index, which is the
+listing that is a property of the commit, the same reason the README module map is
+counted from the index rather than from the checkout. It resolves every
+`tsx|node|ts-node <file>` target in package.json and scripts/package.json relative to
+the directory of the manifest that names it, and fails naming the scripts whose targets
+no commit carries.
+
+The poison pill for this gate was repointed to the new assertion, the same convention
+commit d41d8eb used for the hygiene gate: the pill edits package.json so that
+`gate:readme` points at a gate script that no commit carries, and the gate must go RED on
+that and nothing else. The ratchet raised this gate from 3 to 4 assertions by itself.
+The README module map was regenerated because it is counted from the index, and tracking
+three files changes it — which is itself evidence that the index is the correct source.
+
+Observed RED, by unstaging the three paths and re-running the gate:
+
+```
+GATE gate-index: FAIL 4 assertions
+  present in this checkout but carried by no commit — a fresh clone runs these and fails:
+  package.json: lint:pdf-glyphs -> scripts/lint-pdf-glyph-encodability.ts
+  scripts/package.json: verify:apilinks -> scripts/verify-client-api-links.ts
+```
+
+Observed GREEN, after tracking them:
+
+```
+GATE gate-index: PASS 4 assertions
+```
+
+### 11.3 Transcript — the last stdout line of each gate
+
+```
+GATE preflight: PASS 15 assertions
+GATE gate-deps: PASS 4 assertions
+GATE gate-scripts: PASS 2 assertions
+GATE gate-tiers: PASS 3 assertions
+GATE gate-proven-red: PASS 2 assertions
+GATE gate-hygiene: PASS 7 assertions
+GATE gate-chain: PASS 2 assertions
+GATE gate-tasks: PASS 2 assertions
+GATE gate-docs: PASS 3 assertions
+GATE gate-readme: PASS 1 assertions
+GATE gate-index: PASS 4 assertions
+GATE gate-deviations: PASS 7 assertions
+GATE gate-vacuity: PASS 3 assertions
+GATE gate-ratchet: PASS 2 assertions
+
+TOTAL ASSERTIONS: 57   FAILING GATES: 0
+```
+
+**Result: 13 gates, 57 assertions, 0 failures, 0 gates exiting 2.** No gate was added by
+this pass and none was removed; the count moved from 56 to 57 because the index gate
+gained its fourth assertion. The ratchet recorded that rise rather than being told about
+it. No existing assertion was deleted, relaxed or renumbered.
+
+### 11.4 What rev. 5 does not claim
+
+- **The assertion reads the index, not the history.** `git ls-files` lists what is
+  staged for the next commit, so a file added with `git add` and never committed
+  satisfies it. It closes "present in the checkout but carried by nothing"; it does not
+  prove that a commit exists. That is the strongest statement `git ls-files` supports.
+- **Only two manifests are scanned.** package.json and scripts/package.json are read. The
+  other workspace manifests — under client and under artifacts — name script targets that
+  this assertion does not resolve.
+- **Only `tsx|node|ts-node <file>` targets are resolved.** A script that shells out to a
+  python file, a `.mjs` file, or a binary is not covered.
+- **PATH-MANIFEST.json is unchanged.** The three files are pre-existing; W00 neither
+  wrote them nor now owns their content — it only asserts that a commit carries them.
+  Adding them under W00 would be a false ownership claim, and rev. 4's four new gates
+  are likewise not enumerated there. The manifest maps weeks to the paths they write, not
+  every path in the repository.
+- **The 1055 tracked files absent from this checkout are unchanged and still not
+  staged.** The index gate reports that as an advisory and still does. That is a
+  worktree-state observation about the operator's machine, not a defect this pass fixes,
+  and the advisory is the only thing standing between it and a blanket commit sweeping
+  them in unreviewed.
+- **The engine is still unproven.** This pass says nothing about the parity tolerance, the
+  golden values, the type coverage or the declared unit-weight divergence. Those remain
+  the findings of §§4 and 10 and of the deviations ledger.
+- **The gates were invoked directly, not through the package manager.** `pnpm run` is
+  broken in this sandbox, exactly as §6 records, so each gate was run as
+  `node --import tsx scripts/gates/<gate>.ts`. The workflow's invocation of the canonical
+  entry point is asserted by the hygiene gate but was not observed to run here.
+

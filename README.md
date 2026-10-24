@@ -58,14 +58,14 @@ than of the checkout.
 | `evidence/` | assimilation evidence bundles | 350 entries |
 | `generated/` | generated artefact root | 1 entries |
 | `inputs/` | engine input contract (variables, coefficients, constraints) | 6 entries |
-| `lib/` | authoritative engine surface (shim; migrates in W02) | 56 entries |
+| `lib/` | authoritative engine surface (shim; migrates in W02) | 57 entries |
 | `openapi/` | OpenAPI description of the API | 1 entries |
 | `out/` | generated reports and workbooks | 4 entries |
 | `pipeline/` | pipeline entry point | 1 entries |
 | `project/` | canonical projects and asset catalogue | 8 entries |
 | `python_cad/` | CAD adapter | 6 entries |
 | `sample/` | integration test logs | 625 entries |
-| `scripts/` | tooling, gates, extractors | 129 entries |
+| `scripts/` | tooling, gates, extractors | 131 entries |
 | `server/` | Express 4 API server | 36 entries |
 | `shared/` | db, schema, feature flags | 6 entries |
 | `src/` | root-level extras | 1 entries |

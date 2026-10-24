@@ -16,12 +16,24 @@
 // leave behind. A `git commit -a` in either state destroys work that no gate
 // would have objected to.
 //
-// 3 assertions:
+// 4 assertions:
 //   1. every claim in containment/claims.json has id, claim and status.
 //   2. no UNADJ claim is older than 7 days.
 //   3. the index carries no phantom deletion — no path staged as deleted whose
 //      file is still present in the worktree. This state has no legitimate
 //      producer; it is index corruption.
+//   4. every file a package.json script points at is TRACKED BY GIT, not merely
+//      present in this checkout.
+//
+// Assertion 4 is the exact dual of the defect assertion 3 catches, and it is the
+// ninth hole in the harness. Assertion 3 is about the index disagreeing with the
+// disk; assertion 4 is about the disk agreeing with itself while git carries
+// nothing. Every gate in this directory, and gate-scripts' own "every file a
+// script points at exists", reads the WORKING TREE — so a script target that
+// exists here and nowhere else satisfies all of them and breaks `pnpm run check`
+// on a fresh clone with no gate objecting. That is how the 15 scripts/gates/*.mjs
+// files were found missing in 56af5b3: by hand, not by a check. Assertion 4 makes
+// the class falsifiable instead of rediscovered.
 //
 // Two counts are printed as advisories because they are findings a human must
 // decide on, not invariants a gate can fail: staged deletions that a commit
@@ -29,7 +41,7 @@
 //
 // CONTRACT: exit 0=PASS, 1=FAIL, 2=NOT IMPLEMENTED
 //           last stdout line = "GATE gate-index: PASS|FAIL <n> assertions"
-import { run, is, json } from "./_lib";
+import { run, is, json, read } from "./_lib";
 import { execFileSync } from "node:child_process";
 import { existsSync } from "node:fs";
 
@@ -38,7 +50,7 @@ const MAX_UNADJ_DAYS = 7;
 
 type Claim = { id?: string; claim?: string; status?: string; adjudicatedAt?: string; createdAt?: string };
 
-await run("gate-index", 3, async () => {
+await run("gate-index", 4, async () => {
   // ── the claim index ──────────────────────────────────────────────────────
   const claims: Claim[] = existsSync(CLAIMS) ? await json<Claim[]>(CLAIMS) : [];
   if (!existsSync(CLAIMS))
@@ -97,4 +109,50 @@ await run("gate-index", 3, async () => {
       `  ADVISORY  ${worktreeDeletions.length} tracked file(s) absent from the worktree and NOT staged ` +
         `— "git commit -a" or "git add -A" would sweep them into the next commit unreviewed.`,
     );
+
+  // ── the referenced files git is asked to carry ───────────────────────────
+  // Present is not the same as tracked. Assertion 3 catches an index that
+  // disagrees with the disk; this catches a disk that agrees with itself while
+  // git carries nothing — a script target that exists only in this checkout.
+  // `pnpm run check` (CI) runs scripts/lint-pdf-glyph-encodability.ts, and a
+  // fresh clone does not have it, because nothing ever committed it.
+  let tracked = new Set<string>();
+  try {
+    tracked = new Set(
+      execFileSync("git", ["ls-files", "-z"], { encoding: "utf8" })
+        .split("\0")
+        .filter(Boolean)
+        .map((p) => p.replace(/\\/g, "/")),
+    );
+  } catch (e) {
+    is(false, "git ls-files is readable", `git ls-files failed: ${e instanceof Error ? e.message : String(e)}`);
+    return;
+  }
+
+  // The workspace manifests whose `tsx`/`node` targets CI executes.
+  const MANIFESTS = ["package.json", "scripts/package.json"];
+  const TARGET = /^(?:tsx|node|ts-node)\s+([^\s"']+)/;
+  const untracked: string[] = [];
+  for (const mf of MANIFESTS) {
+    if (!existsSync(mf)) continue;
+    const dir = mf.includes("/") ? mf.slice(0, mf.lastIndexOf("/")) : "";
+    const pkg = JSON.parse(await read(mf)) as { scripts?: Record<string, string> };
+    for (const [name, cmd] of Object.entries(pkg.scripts ?? {}))
+      for (const part of String(cmd).split(/&&|;/)) {
+        const m = TARGET.exec(part.trim());
+        if (!m) continue;
+        let file = m[1].replace(/^"|"$/g, "");
+        if (file.includes("$") || file.includes("*")) continue;
+        if (file.startsWith("./")) file = file.slice(2);
+        const full = dir ? `${dir}/${file}` : file;
+        if (!tracked.has(full)) untracked.push(`${mf}: ${name} -> ${full}`);
+      }
+  }
+
+  is(
+    untracked.length === 0,
+    "every file a package.json script points at is tracked by git",
+    "present in this checkout but carried by no commit — a fresh clone runs these and fails:\n" +
+      untracked.join("\n"),
+  );
 });

@@ -97,6 +97,32 @@ wrong instruction cannot succeed quietly from week 1 onward.
   `gate:readme` and `gen:readme`. No dependency was added, removed or upgraded,
   and no Node version was changed.
 
+### Corrected and extended — the harness, rev. 4 and rev. 5 (2026-10-24)
+
+- **Rev. 4 closed seven holes**, each of which let a gate keep reporting PASS while
+  checking less than its own count claimed: the self-declared assertion count, a count
+  that could be lowered, a count that could be padded with a literal `true`, an index no
+  gate ever inspected, diverging values recorded only in prose, a gate that could exist
+  and never run, and a record that could be duplicated. It added `gate:deviations`,
+  `gate:vacuity` and `gate:ratchet`, raised `gate:hygiene` from 5 to 7 assertions, and
+  wired the canonical entry point into CI as a blocking step. The counts in `### Verified`
+  above are the rev. 1 figures and are superseded: the harness is now `preflight` plus 13
+  gates at 57 assertions.
+- **Rev. 5 closed the eighth hole: every gate decided from the working tree**, so a file
+  present in this checkout and carried by no commit satisfied every check and would be
+  absent from a fresh clone. `gate:index` now reads `git ls-files` and fails any
+  `tsx`/`node`/`ts-node` target named by `package.json` or `scripts/package.json` that no
+  commit carries. Three files were the finding, and are now tracked:
+  `scripts/lint-pdf-glyph-encodability.ts` (the target of `lint:pdf-glyphs`, run by CI's
+  `check` step), `scripts/verify-client-api-links.ts` (the target of `verify:apilinks`),
+  and `lib/engine/src/contracts.ts` — the tier-1 contract the whole `lib` tier is declared
+  to derive from, which until now no clone would have received. The index gate was 3
+  assertions and is 4; the ratchet recorded that rise rather than being told about it.
+  `README.md` was regenerated because its module map is counted from the index.
+- `PATH-MANIFEST.json` is unchanged by rev. 5. The three files are pre-existing; W00
+  neither wrote them nor now owns their content, and adding them would be a false
+  ownership claim. `docs/phase-2/week-00/PATCH-PACK-CERTIFICATION.md` §11 is the record.
+
 ### Recorded, not hidden
 
 - The pre-existing `scripts/gates/*.mjs` files are NOT-IMPLEMENTED stubs. They are
