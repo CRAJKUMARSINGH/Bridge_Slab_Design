@@ -20,11 +20,20 @@
 //   5. `globToRe()` implements `**` and `*` in one pass. The reference version
 //      rewrote `**` to `.*` and then let the `*` substitution eat the `*` it had
 //      just inserted.
+//   6. The declared assertion count is now FALSIFIABLE. It used to be a number
+//      the gate wrote about itself in its own `run()` call, and nothing compared
+//      it with the work the body actually did — so deleting an assertion and
+//      leaving the literal alone produced a gate that printed the same number
+//      while checking less. That is the one way every other safeguard in this
+//      directory can be defeated at once, so `run()` now counts what the body
+//      recorded through `is()` and fails the gate when a green run executes a
+//      different number of assertions than it declared.
 import { readFile, readdir, writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 
 export const OUT = "scripts/gates/.out";
 export const PROVEN = "scripts/gates/.proven.json";
+export const RATCHET = "scripts/gates/.ratchet.json";
 export const LEDGER = "containment/GATE-LEDGER.json";
 export const TIERS = "containment/ARTIFACT-TIERS.json";
 export const PENDING = "containment/PENDING-RESOLUTIONS.json";
@@ -34,16 +43,56 @@ export const fail = (msg: string): never => {
   throw new GateFail(msg);
 };
 
-export async function run(name: string, assertions: number, body: () => Promise<void>) {
+/**
+ * The assertions a gate has evaluated in this process. `run()` clears it, the
+ * body fills it, `run()` compares its length with the declared count and prints
+ * the measured number. Exported as a function so no gate can assign to it.
+ */
+const ledger: { label: string; ok: boolean; detail: string }[] = [];
+export const executed = (): number => ledger.length;
+
+/**
+ * Record one assertion. Unlike `fail()` this never throws: a gate reports every
+ * failed assertion in a single run, which is what makes a red gate reviewable.
+ * `run()` turns any recorded failure — and any mismatch between the number
+ * recorded and the number declared — into exit 1.
+ *
+ * `detail` is shown only when the assertion fails; it defaults to the label so a
+ * terse site still produces a readable failure.
+ */
+export function is(ok: boolean, label: string, detail = ""): boolean {
+  ledger.push({ label, ok, detail: detail || label });
+  return ok;
+}
+
+export async function run(name: string, declared: number, body: () => Promise<void>) {
   await mkdir(OUT, { recursive: true });
+  ledger.length = 0;
   let ok = true;
-  let detail = "";
+  let thrown = "";
   try {
     await body();
   } catch (e: unknown) {
     ok = false;
-    detail = e instanceof Error ? e.message || String(e) : String(e);
+    thrown = e instanceof Error ? e.message || String(e) : String(e);
   }
+  const failed = ledger.filter((a) => !a.ok);
+  if (failed.length) ok = false;
+  // The declared count is a claim the gate makes about its own body, and this
+  // comparison is the only thing that can falsify it. A gate that quietly stops
+  // exercising an assertion — because a check was deleted, short-circuited or
+  // moved behind a guard that no longer holds — must not be able to keep
+  // printing yesterday's number and stay green.
+  let drift = "";
+  if (ok && ledger.length !== declared) {
+    ok = false;
+    drift =
+      `assertion-count drift: declared ${declared}, executed ${ledger.length}. ` +
+      "A gate may not silently stop checking. Restore the assertion, or lower the " +
+      "declared count AND record an ADR in scripts/gates/.ratchet.json naming the " +
+      "check that was removed and why it was wrong.";
+  }
+  const detail = [...failed.map((a) => a.detail), thrown, drift].filter(Boolean).join("\n");
   await writeFile(
     `${OUT}/${name}.json`,
     JSON.stringify(
@@ -52,7 +101,8 @@ export async function run(name: string, assertions: number, body: () => Promise<
         ts: new Date().toISOString(),
         commit: process.env.GITHUB_SHA ?? "local",
         pass: ok,
-        assertions,
+        assertions: ledger.length,
+        declared,
         detail,
       },
       null,
@@ -60,12 +110,32 @@ export async function run(name: string, assertions: number, body: () => Promise<
     ),
   );
   if (ok) await markGreen(name);
-  console.log(`GATE ${name}: ${ok ? "PASS" : "FAIL"} ${assertions} assertions`);
+  console.log(`GATE ${name}: ${ok ? "PASS" : "FAIL"} ${ledger.length} assertions`);
   if (!ok) console.log("  " + detail.split("\n").join("\n  "));
   process.exit(ok ? 0 : 1);
 }
 
-/** A gate is only real once it has been observed GREEN as well as RED. */
+/**
+ * A gate is only real once it has been observed GREEN as well as RED.
+ *
+ * Two pieces of bookkeeping live here, both written on a green run only.
+ *
+ *   `.proven.json` carries the RED/GREEN pair `gate-proven-red` and preflight
+ *   P-10 read. RED is written by `--prove`, GREEN by ordinary execution.
+ *
+ *   `.ratchet.json` carries the HIGH-WATER assertion count, and is the second
+ *   half of the drift check above. The drift check only fires when a gate's
+ *   declared count and its executed count disagree — so a maintainer who deletes
+ *   an assertion AND lowers the literal together is still green. This file is
+ *   what remembers the number that used to be checked: `gate-ratchet` fails when
+ *   a green gate returns with fewer assertions than it has ever had.
+ *
+ * The count recorded here is a maximum, never the latest run's value. Recording
+ * the latest would let the ratchet ratchet itself down. The one exception is a
+ * gate with a recorded ADR: there the lower count is the intended one, so the
+ * ratchet follows the record down instead of fighting it. `gate-ratchet` asserts
+ * that every ADR is well-formed, so "record an ADR" is not a free pass.
+ */
 async function markGreen(name: string) {
   try {
     const proven: Record<string, Record<string, unknown>> = existsSync(PROVEN)
@@ -75,6 +145,20 @@ async function markGreen(name: string) {
     await writeFile(PROVEN, JSON.stringify(proven, null, 2));
   } catch {
     /* .proven.json is bookkeeping; never let it fail a green gate */
+  }
+  try {
+    type Ratchet = { version?: string; gates?: Record<string, number>; adr?: Record<string, unknown> };
+    const r: Ratchet = existsSync(RATCHET)
+      ? JSON.parse(await readFile(RATCHET, "utf8"))
+      : { version: "1.0.0", gates: {} };
+    r.gates = r.gates ?? {};
+    const cur = ledger.length;
+    const prev = r.gates[name];
+    if (r.adr?.[name]) r.gates[name] = cur;
+    else if (typeof prev !== "number" || cur > prev) r.gates[name] = cur;
+    await writeFile(RATCHET, JSON.stringify(r, null, 2));
+  } catch {
+    /* .ratchet.json is bookkeeping; never let it fail a green gate */
   }
 }
 

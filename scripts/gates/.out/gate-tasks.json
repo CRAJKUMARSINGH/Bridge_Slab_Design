@@ -1,8 +1,9 @@
 {
   "name": "gate-tasks",
-  "ts": "2026-10-23T05:58:52.261Z",
+  "ts": "2026-10-24T02:44:16.126Z",
   "commit": "local",
   "pass": true,
   "assertions": 2,
+  "declared": 2,
   "detail": ""
 }

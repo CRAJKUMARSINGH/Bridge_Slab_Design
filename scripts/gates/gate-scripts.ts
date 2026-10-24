@@ -3,7 +3,7 @@
 // 2 assertions: every file a script points at exists; every script a script
 // invokes exists. This is the gate that would have caught
 // `manifest.gates.map(g => g.cmd)` shipping before its target did.
-import { run, read, fail } from "./_lib";
+import { run, is, read } from "./_lib";
 import { existsSync } from "node:fs";
 
 const TARGET = /^(?:tsx|node|ts-node)\s+([^\s"']+)/;
@@ -23,11 +23,19 @@ await run("gate-scripts", 2, async () => {
       if (!existsSync(file)) missing.push(`${name} -> ${file}`);
     }
   }
-  if (missing.length) fail(`package.json scripts point at absent files:\n${missing.join("\n")}`);
+  is(
+    missing.length === 0,
+    "every file a script points at exists",
+    `package.json scripts point at absent files:\n${missing.join("\n")}`,
+  );
 
   // 2. every invoked script exists
   const invoked: string[] = [];
   for (const [name, cmd] of Object.entries(scripts))
     for (const m of cmd.matchAll(/(?:npm|pnpm) run ([a-z0-9:_-]+)/gi)) if (!scripts[m[1]]) invoked.push(`${name} -> run ${m[1]}`);
-  if (invoked.length) fail(`package.json scripts invoke absent scripts:\n${[...new Set(invoked)].join("\n")}`);
+  is(
+    invoked.length === 0,
+    "every script a script invokes exists",
+    `package.json scripts invoke absent scripts:\n${[...new Set(invoked)].join("\n")}`,
+  );
 });

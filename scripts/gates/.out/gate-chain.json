@@ -1,8 +1,9 @@
 {
   "name": "gate-chain",
-  "ts": "2026-10-23T05:58:52.070Z",
+  "ts": "2026-10-24T02:44:08.500Z",
   "commit": "local",
   "pass": true,
-  "assertions": 1,
+  "assertions": 2,
+  "declared": 2,
   "detail": ""
 }

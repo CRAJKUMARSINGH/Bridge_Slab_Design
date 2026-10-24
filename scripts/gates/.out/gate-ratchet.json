@@ -1,0 +1,9 @@
+{
+  "name": "gate-ratchet",
+  "ts": "2026-10-24T02:44:15.389Z",
+  "commit": "local",
+  "pass": true,
+  "assertions": 2,
+  "declared": 2,
+  "detail": ""
+}

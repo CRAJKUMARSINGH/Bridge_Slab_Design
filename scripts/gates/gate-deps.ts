@@ -8,7 +8,7 @@
 //      still be allowlisted as absent;
 //   4. an allowlist entry whose owning week has gone GREEN is a hard failure,
 //      because the week that owed the install has already been signed off.
-import { run, walk, json, fail, read } from "./_lib";
+import { run, is, walk, json, read } from "./_lib";
 import { existsSync } from "node:fs";
 import { builtinModules } from "node:module";
 
@@ -74,21 +74,36 @@ await run("gate-deps", 4, async () => {
     }
   }
   if (expected.length) console.log(`  expected-red (${new Set(expected.map((e) => e.split("-> ")[1].split("/")[0])).size} pkg): e.g. ${[...new Set(expected)].slice(0, 3).join(" | ")}`);
-  if (unresolved.length)
-    fail(`unresolved imports (asserted but never declared, and not allowlisted):\n${[...new Set(unresolved)].slice(0, 25).join("\n")}`);
+  is(
+    unresolved.length === 0,
+    "every bare import resolves",
+    `unresolved imports (asserted but never declared, and not allowlisted):\n${[...new Set(unresolved)].slice(0, 25).join("\n")}`,
+  );
 
   // 2. every allowlist entry owns a week
   const malformed = allow.filter((k) => !WEEK.test(plan[k] ?? ""));
-  if (malformed.length) fail(`.deps-plan.json entries without a well-formed week: ${malformed.map((k) => `${k}=${plan[k] ?? "?"}`).join(", ")}`);
+  is(
+    malformed.length === 0,
+    "every .deps-plan.json entry owns a week",
+    `.deps-plan.json entries without a well-formed week: ${malformed.map((k) => `${k}=${plan[k] ?? "?"}`).join(", ")}`,
+  );
 
   // 3. the allowlist may only shrink
   const stale = allow.filter((k) => declared.has(k));
-  if (stale.length) fail(`allowlisted as absent but present in a manifest — remove from .deps-plan.json: ${stale.join(", ")}`);
+  is(
+    stale.length === 0,
+    "the allowlist may only shrink",
+    `allowlisted as absent but present in a manifest — remove from .deps-plan.json: ${stale.join(", ")}`,
+  );
 
   // 4. the week that owed the install may not already be signed off
   const ledger: Record<string, string> = existsSync("containment/GATE-LEDGER.json")
     ? await json<Record<string, string>>("containment/GATE-LEDGER.json")
     : {};
   const outlived = allow.filter((k) => ledger[plan[k]] === "GREEN");
-  if (outlived.length) fail(`allowlist outlived its week: ${outlived.map((k) => `${k} (${plan[k]} GREEN)`).join(", ")}`);
+  is(
+    outlived.length === 0,
+    "no allowlist entry outlived its week",
+    `allowlist outlived its week: ${outlived.map((k) => `${k} (${plan[k]} GREEN)`).join(", ")}`,
+  );
 });

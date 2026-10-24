@@ -2,7 +2,7 @@
 // gate-hygiene — repo invariants that are cheap to state and expensive to lose.
 // 5 assertions: one lockfile; .gitignore agrees with what is tracked; a LICENSE
 // matching package.json; the four root documents; the foundation gates wired.
-import { run, fail } from "./_lib";
+import { run, is } from "./_lib";
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 
@@ -19,30 +19,42 @@ const REQUIRED_SCRIPTS = [
   "gate:proven-red",
   "gate:chain",
   "gate:hygiene",
+  "gate:index",
+  "gate:deviations",
+  "gate:vacuity",
+  "gate:ratchet",
   "gate:foundation",
 ];
 
 await run("gate-hygiene", 5, async () => {
-  const probs: string[] = [];
-
   // 1. one lockfile, and it is the one CI installs with
-  if (existsSync("package-lock.json") && existsSync("pnpm-lock.yaml")) probs.push("two lockfiles tracked (preinstall permits pnpm only)");
+  is(
+    !(existsSync("package-lock.json") && existsSync("pnpm-lock.yaml")),
+    "one lockfile",
+    "two lockfiles tracked (preinstall permits pnpm only)",
+  );
 
   // 2. .gitignore may not ignore a path that is tracked
   const gi = existsSync(".gitignore") ? await readFile(".gitignore", "utf8") : "";
-  if (gi.includes("dist/") && existsSync("artifacts/api-server/dist/index.mjs"))
-    probs.push(".gitignore excludes dist/ but artifacts/api-server/dist is tracked");
+  is(
+    !(gi.includes("dist/") && existsSync("artifacts/api-server/dist/index.mjs")),
+    ".gitignore agrees with what is tracked",
+    ".gitignore excludes dist/ but artifacts/api-server/dist is tracked",
+  );
 
   // 3. LICENSE matching package.json
   const pkg = JSON.parse(await readFile("package.json", "utf8"));
-  if (!existsSync("LICENSE")) probs.push(`no LICENSE (package.json says ${pkg.license ?? "unknown"})`);
+  is(existsSync("LICENSE"), "LICENSE present", `no LICENSE (package.json says ${pkg.license ?? "unknown"})`);
 
   // 4. the root documents the repo claims to have
-  for (const f of ["SECURITY.md", "CONTRIBUTING.md", "CHANGELOG.md", "ARCHITECTURE.md"])
-    if (!existsSync(f)) probs.push(`missing ${f}`);
+  const missingDocs = ["SECURITY.md", "CONTRIBUTING.md", "CHANGELOG.md", "ARCHITECTURE.md"].filter((f) => !existsSync(f));
+  is(missingDocs.length === 0, "the four root documents exist", missingDocs.map((f) => `missing ${f}`).join("\n"));
 
   // 5. the foundation gates are reachable from package.json
-  for (const s of REQUIRED_SCRIPTS) if (!pkg.scripts?.[s]) probs.push(`package.json missing script ${s}`);
-
-  if (probs.length) fail(probs.join("\n"));
+  const missingScripts = REQUIRED_SCRIPTS.filter((s) => !pkg.scripts?.[s]);
+  is(
+    missingScripts.length === 0,
+    "every foundation gate is wired in package.json",
+    missingScripts.map((s) => `package.json missing script ${s}`).join("\n"),
+  );
 });

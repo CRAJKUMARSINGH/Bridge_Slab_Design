@@ -3,7 +3,7 @@
 // 2 assertions: no task may be closed without declaring the artefact it produces,
 // and no task may be closed without saying whether a machine can check it
 // (MACHINE) or a person must (MANUAL + a written reason).
-import { run, walk, read, fail, pendingFor } from "./_lib";
+import { run, is, walk, read, pendingFor } from "./_lib";
 
 const TASK = /^\s*-?\s*(T\d+[A-Z]?\.\d+)\s+(.*)$/;
 const PATH_TOKEN = /(?:^|\s|`)([A-Za-z0-9_./@-]+\.(?:ts|tsx|md|json|sql|ya?ml|xlsx|dxf))/;
@@ -11,7 +11,8 @@ const PATH_TOKEN = /(?:^|\s|`)([A-Za-z0-9_./@-]+\.(?:ts|tsx|md|json|sql|ya?ml|xl
 await run("gate-tasks", 2, async () => {
   const files = (await walk("docs/phase-2", /AGENT-INSTRUCTIONS\.md$/)).sort();
   const ex = await pendingFor("gate-tasks");
-  const problems: string[] = [];
+  const noPath: string[] = [];
+  const noMarker: string[] = [];
   let tasks = 0;
   let exemptedFiles = 0;
   for (const f of files) {
@@ -38,18 +39,25 @@ await run("gate-tasks", 2, async () => {
     }
     for (const { id, body } of blocks) {
       tasks++;
-      if (!PATH_TOKEN.test(body)) problems.push(`${f} ${id}: no output path`);
+      if (!PATH_TOKEN.test(body)) noPath.push(`${f} ${id}: no output path`);
       // The marker is the leading token of the task, not any occurrence of the
       // word: a task whose text *quotes* `MACHINE|MANUAL` is still a task with a
       // marker of its own.
       const marker = /^\s*(MACHINE|MANUAL)\b/.exec(body)?.[1];
-      if (!marker) problems.push(`${f} ${id}: not marked MACHINE|MANUAL`);
+      if (!marker) noMarker.push(`${f} ${id}: not marked MACHINE|MANUAL`);
       else if (marker === "MANUAL" && !/MANUAL because|reason:/i.test(body))
-        problems.push(`${f} ${id}: MANUAL without a written reason`);
+        noMarker.push(`${f} ${id}: MANUAL without a written reason`);
     }
   }
   if (exemptedFiles) console.log(`  advisory: ${exemptedFiles} legacy instruction file(s) exempted (PR-03)`);
-  if (ex.broken.length) problems.push(...ex.broken);
   console.log(`  checked ${tasks} task line(s) across ${files.length - exemptedFiles} file(s)`);
-  if (problems.length) fail(problems.join("\n"));
+  is(noPath.length === 0, "every closed task declares the artefact it produces", noPath.join("\n"));
+  // A malformed exemption entry — one with no owner, no closing week, no reason,
+  // or a closing week that has already gone GREEN — is itself a failure, and it is
+  // why this gate consults containment/PENDING-RESOLUTIONS.json at all.
+  is(
+    noMarker.length === 0 && ex.broken.length === 0,
+    "every closed task is marked MACHINE|MANUAL, and every exemption is well-formed",
+    [...noMarker, ...ex.broken].join("\n"),
+  );
 });

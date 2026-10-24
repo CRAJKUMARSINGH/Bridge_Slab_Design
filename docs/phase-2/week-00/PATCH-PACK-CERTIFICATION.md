@@ -1,8 +1,8 @@
 # P2-W00 PATCH-PACK ENRICHMENT CERTIFICATION — PATCH-06 .. PATCH-18
 
-Date: 2026-10-23 · **rev. 3** — re-verified against the tree as it now stands; the
-repository-state defect recorded in §2.1 was repaired, and the two gates that the W00
-close-out addendum had opened were closed again (§7.5), before the transcript was taken.
+Date: 2026-10-23 · **rev. 4** — a SET ONE harness-hardening pass (§10) took the gate
+count from 10 to 13 and the assertion count from 38 to 53, and wired the harness into
+CI. The text below rev. 3 is unchanged and still describes the state it certified.
 Operator: Kiro (agent) · Verifier: **not yet run** — see §8
 Pass: W00 close-out, additive only
 
@@ -420,3 +420,97 @@ Revision 3 re-ran it again, found that the W00 close-out addendum had turned thr
 assertions red against its own evidence file, and closed them by correcting the document
 (§7.5). Ten gates, thirty-eight assertions, zero failures, zero not-implemented.
 The one thing this record cannot certify is its own independence — see §8, last bullet.
+
+---
+
+## 10. Rev. 4 — SET ONE: the harness itself, hardened (2026-10-24)
+
+Revisions 1 to 3 certified the enrichment's content. Rev. 4 asks a different question
+about it — the one the operator put directly: the code is a tower resting on the
+foundation, and the foundation may have a systemic flaw that lets incomplete work pass
+silently. Reading the harness rather than trusting it, the flaw is real and structural,
+and it lies in five places, each of which let a gate keep reporting PASS while checking
+less than its own count claimed.
+
+### 10.1 The five holes, and what closes each
+
+| Hole | Why a gate could pass without checking | What closes it |
+| --- | --- | --- |
+| The count was self-declared | The harness entry point took the assertion count as a literal argument, and nothing compared it to how many assertions the body actually executed. A gate could declare six, execute three after an early return, and print PASS with six. | The shared harness now clears a module-level ledger on entry, every assertion call appends to it, and a green run whose length differs from the declared count fails with an assertion-count drift message. |
+| A count could be lowered | The drift check fires only when declared and executed disagree, so deleting an assertion and lowering the literal together still passed. | A ratchet ledger records the high-water assertion count per gate. The harness raises it on every green run and never lowers it, and a new gate fails any gate that reports fewer assertions than its high-water. The sanctioned way down is a recorded ADR, and that gate's second assertion requires the ADR to carry all three of removed, why and week, so an empty object is not a free pass. |
+| A count could be padded | An assertion whose first argument is the bare literal true can never fail. It inflates the count, satisfies the ratchet, and is invisible to the poison-pill proof, which trips the other assertions. | A new gate allows a literal-true assertion only inside a declared budget file, and fails in both directions — over budget, and a budget that no longer matches reality. |
+| The index was never inspected | Every gate reads the working tree, so none could see the failure mode that produced the earlier desynchronisation: paths staged as deleted whose files are still on disk. | The index gate now fails on a phantom staged deletion, and reports as an advisory the tracked files absent from the worktree that a blanket commit would sweep in unreviewed. |
+| The values that disagree were written in prose | The concrete and bituminous unit weights differ between the coefficient table and the code, and the difference was recorded only in a document nobody executes. | A new deviations gate anchors such a value to a file, a regex and the value the regex must still capture, so neither side can be corrected silently while the other still says something else. |
+
+The general shape of all five is the same, and it is the operator's thesis stated
+exactly: **a check that cannot fail is not a check, and a count is not a check.**
+
+### 10.2 The harness was also unreachable from CI
+
+The CI workflow ran the type check, the tests, the workbook verification chain, the
+pipeline smoke run, the bundle build and the audit policy gate — and never invoked a
+single gate in `scripts/gates/`. Every gate in this record was, until rev. 4, decorative
+on push: it would pass or fail on the operator's machine and nowhere else. The workflow
+now ends with a step that runs the canonical entry point `pnpm run gate:foundation`,
+which is preflight plus all thirteen gates.
+
+### 10.3 Transcript — the last stdout line of each gate
+
+```
+GATE preflight: PASS 15 assertions
+GATE gate-deps: PASS 4 assertions
+GATE gate-scripts: PASS 2 assertions
+GATE gate-tiers: PASS 3 assertions
+GATE gate-proven-red: PASS 2 assertions
+GATE gate-hygiene: PASS 5 assertions
+GATE gate-chain: PASS 2 assertions
+GATE gate-tasks: PASS 2 assertions
+GATE gate-docs: PASS 3 assertions
+GATE gate-readme: PASS 1 assertions
+GATE gate-index: PASS 3 assertions
+GATE gate-deviations: PASS 6 assertions
+GATE gate-vacuity: PASS 3 assertions
+GATE gate-ratchet: PASS 2 assertions
+
+TOTAL ASSERTIONS: 53   FAILING GATES: 0
+```
+
+The RED half of the three gates added by this pass, run separately because a gate that
+was never observed RED is not a gate:
+
+```
+=== node --import tsx scripts/gates/gate-proven-red.ts --prove gate-index
+index: gate-index RED (poisoned) -> GREEN (restored) — recorded
+=== node --import tsx scripts/gates/gate-proven-red.ts --prove gate-deviations
+deviations: gate-deviations RED (poisoned) -> GREEN (restored) — recorded
+=== node --import tsx scripts/gates/gate-proven-red.ts --prove gate-vacuity
+vacuity: gate-vacuity RED (poisoned) -> GREEN (restored) — recorded
+=== node --import tsx scripts/gates/gate-proven-red.ts --prove gate-ratchet
+ratchet: gate-ratchet RED (poisoned) -> GREEN (restored) — recorded
+```
+
+**Result: 13 gates, 53 assertions, 0 failures, 0 gates exiting 2.** The count moved from
+10 gates / 38 assertions to 13 / 53 because this pass adds three gates — the deviations
+ledger, the anti-padding check and the ratchet — with 6, 3 and 2 assertions. Two
+existing scripts in the gate directory changed meaning: the file already named as the
+index gate carried only a claims staleness check, so the git half was added to it rather
+than a second gate being created beside it. No existing assertion was deleted, relaxed
+or renumbered, and the ratchet recorded the two gates whose counts rose rather than
+being told about them.
+
+### 10.4 What rev. 4 does not claim
+
+- **The three new gates are not proof that the engine is correct.** They prove that the
+  harness can fail, that it cannot quietly weaken, and that a declared divergence is
+  attached to the two source locations that must agree. The engine's own parity
+  tolerance, its golden values and its type coverage are separate findings and are not
+  addressed here.
+- **The deviations ledger records a defect; it does not fix one.** The concrete unit
+  weight disagreement between the coefficient table and the code is recorded with the
+  engineering decision left open and assigned to W03, exactly as the standing rule
+  requires. No value was changed to make the ledger agree.
+- **No install was performed, and no dependency was added.** The gates were invoked
+  directly, as in §8, and the lockfile state is unchanged.
+- **The CI step is written but not observed to run.** Its first execution is the next
+  push; this record claims the wiring, not a green CI run.
+

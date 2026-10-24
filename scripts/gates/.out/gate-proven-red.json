@@ -1,8 +1,9 @@
 {
   "name": "gate-proven-red",
-  "ts": "2026-10-23T05:58:51.736Z",
+  "ts": "2026-10-24T02:44:15.191Z",
   "commit": "local",
   "pass": true,
   "assertions": 2,
+  "declared": 2,
   "detail": ""
 }

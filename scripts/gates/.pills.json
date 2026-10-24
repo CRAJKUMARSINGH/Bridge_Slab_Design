@@ -48,6 +48,29 @@
     "find": "| Path | Purpose | Size |",
     "replace": "| Path | Purpose | Size | (poisoned) |"
   },
+  "index": {
+    "gate": "gate-index",
+    "file": "containment/claims.json",
+    "find": "\"status\": \"TRUE\"",
+    "replace": "\"status\": \"\""
+  },
+  "deviations": {
+    "gate": "gate-deviations",
+    "file": "containment/DEVIATIONS.json",
+    "find": "\"value\": 24",
+    "replace": "\"value\": 23"
+  },
+  "ratchet": {
+    "gate": "gate-ratchet",
+    "file": "scripts/gates/.ratchet.json",
+    "write": "{ \"version\": \"1.0.0\", \"gates\": { \"gate-ratchet\": 99 } }"
+  },
+  "vacuity": {
+    "gate": "gate-vacuity",
+    "file": "containment/VACUITY.json",
+    "find": "\"gate-ratchet\": 2",
+    "replace": "\"gate-ratchet\": 0"
+  },
   "proven-red": {
     "gate": "gate-proven-red",
     "file": "scripts/gates/.proven.json",

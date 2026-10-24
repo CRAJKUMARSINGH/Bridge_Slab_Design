@@ -51,6 +51,7 @@
     { "glob": "evidence/**", "tier": 3, "trust": "VERIFIED" },
     { "glob": "parity-dump/**", "tier": 3, "trust": "VERIFIED" },
     { "glob": "sample/**", "tier": 3, "trust": "VERIFIED" },
+    { "glob": "docs/week-0/coefficients.json", "tier": 1, "trust": "VERIFIED", "derivedFrom": ["corpus/raw/**"] },
     { "glob": "docs/**", "tier": 4, "trust": "ASSERTED", "assertedBy": "various" },
     { "glob": "CODE-JUNCTION/**", "tier": 4, "trust": "ASSERTED", "assertedBy": "various" },
     { "glob": ".github/**", "tier": 4, "trust": "ASSERTED", "assertedBy": "various" },

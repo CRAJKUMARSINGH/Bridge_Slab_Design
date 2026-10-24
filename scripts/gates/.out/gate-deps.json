@@ -1,8 +1,9 @@
 {
   "name": "gate-deps",
-  "ts": "2026-10-23T05:58:51.103Z",
+  "ts": "2026-10-24T02:44:09.240Z",
   "commit": "local",
   "pass": true,
   "assertions": 4,
+  "declared": 4,
   "detail": ""
 }

@@ -12,7 +12,7 @@
 // unrelated work. The pills here are plain string substitutions declared in
 // scripts/gates/.pills.json, applied and reverted in-process from the original
 // bytes, so a failed proof can never leave the tree corrupted.
-import { run, json, fail, read, PROVEN, gateFiles, gateName } from "./_lib";
+import { run, is, json, read, PROVEN, gateFiles, gateName } from "./_lib";
 import { readFile, writeFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 
@@ -44,15 +44,8 @@ await run(SELF, 2, async () => {
     if (!proven[name]?.greenAt) neverGreen.push(name);
   }
   console.log(`  ${gates.length} gate(s): ${gates.map(gateName).join(", ")}`);
-  if (neverRed.length || neverGreen.length)
-    fail(
-      [
-        neverRed.length ? `never observed RED: ${neverRed.join(", ")}` : "",
-        neverGreen.length ? `never observed GREEN: ${neverGreen.join(", ")}` : "",
-      ]
-        .filter(Boolean)
-        .join("\n"),
-    );
+  is(neverRed.length === 0, "every gate has been observed RED", `never observed RED: ${neverRed.join(", ")}`);
+  is(neverGreen.length === 0, "every gate has been observed GREEN", `never observed GREEN: ${neverGreen.join(", ")}`);
 });
 
 /** Run a gate out-of-process and return its exit code. */

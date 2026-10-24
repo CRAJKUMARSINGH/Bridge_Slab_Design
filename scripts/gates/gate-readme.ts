@@ -12,16 +12,18 @@
 //   * The check must not be able to write. The poison pill that proves this gate
 //     RED corrupts the generator, so a poisoned run that could write would edit
 //     the README on its way to failing.
-import { run, fail } from "./_lib";
+import { run, is } from "./_lib";
 import { execFileSync } from "node:child_process";
 
 await run("gate-readme", 1, async () => {
+  let stale = "";
   try {
     execFileSync(process.execPath, ["--import", "tsx", "scripts/gen-readme-map.ts", "--check"], {
       stdio: "pipe",
     });
   } catch (e: unknown) {
     const out = (e as { stdout?: Buffer }).stdout?.toString().trim();
-    fail(`README module map is stale — run: pnpm run gen:readme${out ? `\n  ${out}` : ""}`);
+    stale = `README module map is stale — run: pnpm run gen:readme${out ? `\n  ${out}` : ""}`;
   }
+  is(stale === "", "regenerating the README module map changes nothing", stale);
 });

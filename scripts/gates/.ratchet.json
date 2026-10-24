@@ -1,5 +1,19 @@
 {
-  "_note": "Gate monotonicity (C-06). A gate's assertion count may never fall, and a gate that has gone GREEN may never go RED again without a recorded reason. `gate-monotonic` (owner: W00) updates this file on every green run and refuses any run that lowers a count or regresses a GREEN gate.",
+  "_note": "Gate monotonicity (C-06). Each value is the HIGH-WATER assertion count that gate has ever reported green. `_lib.markGreen()` raises it on every green run and never lowers it; `gate-ratchet` fails any gate that reports fewer assertions than its high-water. The sanctioned way down is an entry in the `adr` map naming which check was removed and why it was wrong — an ADR replaces the value instead of preserving it, and gate-ratchet's second assertion requires the ADR to carry all three of removed/why/week so that an empty object is not a free pass.",
   "version": "1.0.0",
-  "gates": {}
+  "gates": {
+    "gate-deps": 4,
+    "gate-scripts": 2,
+    "gate-chain": 2,
+    "gate-tasks": 2,
+    "gate-docs": 3,
+    "gate-hygiene": 5,
+    "gate-index": 3,
+    "gate-deviations": 6,
+    "gate-ratchet": 2,
+    "gate-tiers": 3,
+    "gate-readme": 1,
+    "gate-proven-red": 2,
+    "gate-vacuity": 3
+  }
 }

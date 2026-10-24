@@ -1,0 +1,10 @@
+{
+  "_note": "Assertion-count budget for gate assertions whose first argument is the bare literal true. Such an assertion can never fail: it inflates the declared count, satisfies gate-ratchet (the count only ever rises), and is invisible to gate-proven-red (poisoning the guarded artefact fails the OTHER assertions, not this one). A count is not a check. This file is the only place a gate may declare one. Adding a literal-true assertion to any gate without raising its number here fails gate-vacuity assertion 2; lowering a number here without removing the assertion fails assertion 3. Both directions are visible ledger edits, which is the whole point.",
+  "version": "1.0.0",
+  "allowed": {
+    "gate-ratchet": 2
+  },
+  "_why": {
+    "gate-ratchet": "The two assertions in the 'no .ratchet.json yet' early-return branch are literal-true on purpose and are the only legitimate case in the harness: on a first pass there is genuinely nothing to compare against, and the gate may not read a file that does not exist yet. They report the fixpoint ('nothing has regressed') and say so in their detail string. Every other literal-true assertion in any gate is padding, and is treated as such."
+  }
+}

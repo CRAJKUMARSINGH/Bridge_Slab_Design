@@ -44,19 +44,20 @@ than of the checkout.
 | Path | Purpose | Size |
 |---|---|---|
 | `api/` | serverless API entry point | 1 entries |
-| `archive/` | retired artefacts, one MANIFEST.md row each | 1126 entries |
+| `archive/` | retired artefacts, one MANIFEST.md row each | 1138 entries |
 | `artifacts/` | workspace app packages | 96 entries |
 | `bridge-excel-generator/` | legacy engine (being absorbed into lib/engine) | 29 entries |
 | `client/` | React UI | 132 entries |
-| `CODE-JUNCTION/` | the Phase-2 enrichment drop this foundation is drawn from | 2 entries |
-| `containment/` | trust tiers, contracts, claim ledger | 7 entries |
+| `CODE-JUNCTION/` | the Phase-2 enrichment drop this foundation is drawn from | 3 entries |
+| `containment/` | trust tiers, contracts, claim ledger | 9 entries |
 | `corpus/` | immutable source workbooks + frozen oracle | 4 entries |
 | `data/` | local-only data, not shipped | 1 entries |
 | `design-reports/` | generated design report HTML | 29 entries |
-| `docs/` | phase deliverables | 262 entries |
+| `docs/` | phase deliverables | 252 entries |
 | `Drawing_Module/` | drawing components, reached through the @drawing/* alias | 2 entries |
 | `engineering/` | engineering knowledge audit and asset registry | 22 entries |
 | `evidence/` | assimilation evidence bundles | 670 entries |
+| `foundation/` | — | 0 entries |
 | `generated/` | generated artefact root | 1 entries |
 | `inputs/` | engine input contract (variables, coefficients, constraints) | 6 entries |
 | `lib/` | authoritative engine surface (shim; migrates in W02) | 64 entries |
@@ -67,7 +68,7 @@ than of the checkout.
 | `project/` | canonical projects and asset catalogue | 8 entries |
 | `python_cad/` | CAD adapter | 6 entries |
 | `sample/` | integration test logs | 625 entries |
-| `scripts/` | tooling, gates, extractors | 134 entries |
+| `scripts/` | tooling, gates, extractors | 138 entries |
 | `server/` | Express 4 API server | 36 entries |
 | `shared/` | db, schema, feature flags | 6 entries |
 | `src/` | root-level extras | 1 entries |
