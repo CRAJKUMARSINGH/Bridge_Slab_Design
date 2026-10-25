@@ -1,5 +1,16 @@
 {
-  "_doc": "Every numeric comparison MUST resolve a key here. Missing key = test throws. Changing a tolerance requires approvedBy + approvedOn. This replaces the charter's rtol=1e-6 default ONLY where explicitly recorded.",
+  "_doc": "Every numeric comparison MUST resolve a key here. Missing key = test throws. Changing a tolerance requires approvedBy + approvedOn. This replaces the charter's rtol=1e-6 default ONLY where explicitly recorded. An entry that is not yet approved must be recorded in `pendingApproval` (owner + closingWeek + reason) or `verify:tolerances --strict` fails — this list may only shrink.",
+  "pendingApproval": [
+    { "quantity": "hydraulics.discharge",        "owner": "W06", "closingWeek": "W06", "reason": "DEV-007: quantity atol widened to 1e-6 without a recorded ruling. Printed on every verify:tolerances run until the licensed engineer accepts or the value is tightened." },
+    { "quantity": "hydraulics.scourDepth",       "owner": "W06", "closingWeek": "W06", "reason": "DEV-007: quantity atol widened to 1e-6 without a recorded ruling." },
+    { "quantity": "hydraulics.designScourDepth", "owner": "W06", "closingWeek": "W06", "reason": "DEV-007: quantity atol widened to 1e-6 without a recorded ruling." },
+    { "quantity": "hydraulics.foundationDepth",  "owner": "W06", "closingWeek": "W06", "reason": "DEV-007: quantity atol widened to 1e-6 without a recorded ruling." },
+    { "quantity": "hydraulics.foundationLevel",  "owner": "W06", "closingWeek": "W06", "reason": "DEV-007: quantity atol widened to 1e-6 without a recorded ruling." },
+    { "quantity": "hydraulics.freeboard",        "owner": "W06", "closingWeek": "W06", "reason": "DEV-007: quantity atol widened to 1e-6 without a recorded ruling." },
+    { "quantity": "crossEngine.discharge",       "owner": "W06", "closingWeek": "W06", "reason": "DEV-007: quantity atol widened to 1e-6 without a recorded ruling." },
+    { "quantity": "crossEngine.scourDepth",      "owner": "W06", "closingWeek": "W06", "reason": "DEV-007: quantity atol widened to 1e-6 without a recorded ruling." },
+    { "quantity": "hydraulics.afflux",           "owner": "W06", "closingWeek": "W06", "reason": "approvedBy is still the literal placeholder 'PENDING — licensed engineer'. DEV-007 records the 0.05 rtol / 0.02 atol as awaiting the engineer's ruling." }
+  ],
   "default": {
     "rtol": 1e-6,
     "atol": 1e-9,
