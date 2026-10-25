@@ -45,7 +45,7 @@
     "docs/week-0/demo_bridge_raw.xlsx",
     "docs/week-0/bridge_pipeline_week0_bundle_1786286346945.zip"
   ],
-  "baselineTestCount": 107,
-  "baselineTestCountProvenance": "CLAIM — inherited from the Set One charter, never measured in a working toolchain. Set to the observed count on the first green run.",
+  "baselineTestCount": 172,
+  "baselineTestCountProvenance": "MEASURED — pnpm run test:report on 2026-10-25 from the repo root (vitest 4.1.11): .vitest-report.json numTotalTests=172, numPassedTests=172, numFailedTests=0, numPendingTests=0, over 17 collected test files. Replaces the inherited Set One charter claim of 107, which had never been measured in a working toolchain. Consumed as a floor by scripts/foundation/assert-test-count.mjs, so this figure may rise but must not fall.",
   "expectedLockfiles": ["pnpm-lock.yaml"]
 }

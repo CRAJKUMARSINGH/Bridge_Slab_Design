@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { motion, useReducedMotion } from 'framer-motion';
 import {
@@ -12,6 +12,7 @@ import { useQuery } from '@tanstack/react-query';
 import { applyKherwaraDemoSeed } from '@/lib/demo-seed';
 import { useDesignStore } from '@/stores/useDesignStore';
 import { useTheme } from '@/lib/theme-context';
+import { SARASWATI } from '@/components/SaraswatiMascot';
 
 const stagger = {
   show: { transition: { staggerChildren: 0.05, delayChildren: 0.03 } },
@@ -144,6 +145,11 @@ export function Landing() {
                 </button>
               </div>
             </div>
+            <SARASWATI
+              size="lg"
+              message="Consult the guide before you commit a section."
+              className="mx-auto shrink-0 md:ml-auto"
+            />
           </div>
         </motion.header>
 
