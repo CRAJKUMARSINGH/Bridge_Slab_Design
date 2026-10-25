@@ -1,8 +1,35 @@
 attached_assets/Bridge-Slab-Design_1786679709345.zip filter=lfs diff=lfs merge=lfs -text
 *.dwg filter=lfs diff=lfs merge=lfs -text
+*.dxf filter=lfs diff=lfs merge=lfs -text
 *.pdf filter=lfs diff=lfs merge=lfs -text
 *.xls filter=lfs diff=lfs merge=lfs -text
 *.xlsx filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
 *.csv filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.docx filter=lfs diff=lfs merge=lfs -text
+# Binary CAD / Office formats that appear only in reference-design-examples/.
+# Each needs its own line: gitattribute matching is case-sensitive on Linux
+# (core.ignorecase=false), so *.dxf above does NOT match the 28 uppercase
+# .DXF drawings in that tree, and a pointer checked out on a case-sensitive
+# filesystem would be written as literal text. Both cases are listed.
+*.bak filter=lfs diff=lfs merge=lfs -text
+*.doc filter=lfs diff=lfs merge=lfs -text
+*.xlsm filter=lfs diff=lfs merge=lfs -text
+*.vdml filter=lfs diff=lfs merge=lfs -text
+*.kmz filter=lfs diff=lfs merge=lfs -text
+*.DXF filter=lfs diff=lfs merge=lfs -text
+*.DWG filter=lfs diff=lfs merge=lfs -text
+*.XLS filter=lfs diff=lfs merge=lfs -text
+*.XLSX filter=lfs diff=lfs merge=lfs -text
+*.XLSM filter=lfs diff=lfs merge=lfs -text
+*.DOC filter=lfs diff=lfs merge=lfs -text
+# The permanent research corpus is LFS-backed regardless of extension. The tree
+# carries formats that have no dedicated rule above (.fil, .ast, .gen, .rtf,
+# .txt and their uppercase spellings), so a path rule is used instead of one
+# line per extension: a new format arriving in the corpus then cannot silently
+# commit its bytes inline. Placed last so it wins for this path; the values
+# match the extension rules, so the overlap is a no-op.
+reference-design-examples/** filter=lfs diff=lfs merge=lfs -text

@@ -108,6 +108,32 @@ The Kherwara identity is recorded and resolved in `project/canonical-projects/kh
 
 ---
 
+## Reference design examples (permanent research corpus)
+
+`reference-design-examples/` is the permanent external reference corpus — real-world bridge
+deliverables kept for eternal research and for correcting or extending the calculation core:
+`ASTRA 15 TUTORIALS/` (tutorial drawings, VDML models, spreadsheets and reports covering box
+culverts, deck slabs, piers and abutments) and `BRIDGE DESIGN FROM PC/` (spreadsheet-based
+design calculations, submersible-bridge abutment reinforcement and drawing sets).
+
+Nothing in this directory is produced by this repository and nothing in it is a claim.
+`containment/ARTIFACT-TIERS.json` declares the whole tree **tier 0 / EXTERNAL**, so no gate may
+read it as evidence and no artefact may cite a number from it without a declared deviation in
+`containment/DEVIATIONS.json`. Read it; do not cite it silently, and do not write derived values
+back into it — those belong in `corpus/`, in `lib/engine`, or in the report output.
+
+The corpus is large (hundreds of files, several hundred MB of binaries), so it is stored in Git
+LFS. A clone that skipped the smudge filter leaves 128-byte pointer files on disk. The
+assimilation helpers in `scripts/assimilate/` detect that state — `inventory.py` reports
+"N of M indexed files are Git LFS pointer stubs" and `classify_workbook.py` refuses a pointer
+outright — and name the fix:
+
+```bash
+git lfs pull --include="reference-design-examples/**"
+```
+
+---
+
 ## Known gaps (still due)
 
 1. Full FINAL_RESULT.xls row/formula clones (e.g. pier stability 468 rows, LLOAD 334 rows) — current sheets are engine views, not cell-level replicas.
