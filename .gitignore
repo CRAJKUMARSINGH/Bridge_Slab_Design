@@ -17,6 +17,11 @@ out-tsc
 # dependencies
 node_modules
 
+# stray lockfile copies (e.g. pnpm-lock.yaml.2557159217) — one lockfile, tracked by the manifest
+pnpm-lock.yaml.*
+package-lock.json.*
+yarn.lock.*
+
 # IDEs and editors
 /.idea
 .project
@@ -43,6 +48,10 @@ yarn-error.log
 testem.log
 /typings
 
+# Python
+__pycache__/
+*.pyc
+
 # System Files
 .DS_Store
 Thumbs.db
@@ -53,3 +62,11 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# Security scan outputs and temp files — never commit these.
+# They contain raw scanner output with secret-like strings from test/reference data.
+trufflehog*.jsonl
+th-*.jsonl
+pnpm-audit.json
+_tmp_*
+tmp-*.log

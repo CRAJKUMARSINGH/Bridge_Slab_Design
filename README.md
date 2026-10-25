@@ -56,7 +56,7 @@ than of the checkout.
 | `Drawing_Module/` | drawing components, reached through the @drawing/* alias | 2 entries |
 | `engineering/` | engineering knowledge audit and asset registry | 4 entries |
 | `evidence/` | assimilation evidence bundles | 350 entries |
-| `foundation/` | — | 8 entries |
+| `foundation/` | — | 10 entries |
 | `generated/` | generated artefact root | 1 entries |
 | `inputs/` | engine input contract (variables, coefficients, constraints) | 6 entries |
 | `lib/` | authoritative engine surface (shim; migrates in W02) | 57 entries |
@@ -65,8 +65,9 @@ than of the checkout.
 | `pipeline/` | pipeline entry point | 1 entries |
 | `project/` | canonical projects and asset catalogue | 13 entries |
 | `python_cad/` | CAD adapter | 6 entries |
+| `reference-design-examples/` | external reference designs and drawings (permanent research corpus) | 1140 entries |
 | `sample/` | integration test logs | 625 entries |
-| `scripts/` | tooling, gates, extractors | 142 entries |
+| `scripts/` | tooling, gates, extractors | 143 entries |
 | `server/` | Express 4 API server | 36 entries |
 | `shared/` | db, schema, feature flags | 8 entries |
 | `src/` | root-level extras | 1 entries |

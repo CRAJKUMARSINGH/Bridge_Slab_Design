@@ -31,13 +31,21 @@
     "docs/week-0/constraints.json",
     "docs/week-0/variables.json",
     "docs/week-0/registry.json",
-    "scripts/fixtures/kherwara-project-input.ts"
+    "scripts/fixtures/kherwara-project-input.ts",
+    "tests/golden/kherwara/golden.test.ts",
+    "tests/golden/kherwara/expected.json",
+    "tests/helpers/tolerance.ts",
+    "foundation/tolerances.json",
+    "foundation/literals.allow.json",
+    "foundation/imports.allow.json"
   ],
   "charterClaimsAbsentPaths": [],
   "lfsWatch": [
     "VARIABLE_SELECTION_SHEET.xlsx",
-    "docs/week-0/demo_bridge_raw.xlsx"
+    "docs/week-0/demo_bridge_raw.xlsx",
+    "docs/week-0/bridge_pipeline_week0_bundle_1786286346945.zip"
   ],
   "baselineTestCount": 107,
+  "baselineTestCountProvenance": "CLAIM — inherited from the Set One charter, never measured in a working toolchain. Set to the observed count on the first green run.",
   "expectedLockfiles": ["pnpm-lock.yaml"]
 }

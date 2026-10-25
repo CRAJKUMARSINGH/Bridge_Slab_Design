@@ -8,7 +8,7 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync, existsSync } from 'node:fs';
 import { calculateCompleteDesign } from '../../../bridge-excel-generator/design-engine';
 import { KHERWARA_REFERENCE_PROJECT_INPUT } from '../../../scripts/fixtures/kherwara-project-input';
-import { expectWithin } from '../../helpers/tolerance';
+import { expectWithin, unregisteredQuantities } from '../../helpers/tolerance';
 
 const GOLDEN = 'tests/golden/kherwara/expected.json';
 const IGNORE_TOP = new Set(['input']);
@@ -52,5 +52,13 @@ describe('G3a golden numeric regression — Kherwara', () => {
       extra,
       `unblessed new outputs: ${extra.slice(0, 10).join(', ')} — re-bless and record the change`
     ).toEqual([]);
+  });
+
+  it('reports any numeric leaf with no quantity-specific tolerance', () => {
+    const bare = unregisteredQuantities();
+    if (bare.length) console.log(
+      `[golden] ${bare.length} leaves resolved under the blanket default tolerance ` +
+      `(no entry in foundation/tolerances.json → quantities): ${bare.slice(0, 20).join(', ')}`,
+    );
   });
 });
