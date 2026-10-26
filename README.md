@@ -47,7 +47,7 @@ than of the checkout.
 | `archive/` | retired artefacts, one MANIFEST.md row each | 747 entries |
 | `artifacts/` | workspace app packages | 94 entries |
 | `bridge-excel-generator/` | legacy engine (being absorbed into lib/engine) | 29 entries |
-| `client/` | React UI | 129 entries |
+| `client/` | React UI | 134 entries |
 | `CODE-JUNCTION/` | the Phase-2 enrichment drop this foundation is drawn from | 12 entries |
 | `containment/` | trust tiers, contracts, claim ledger | 9 entries |
 | `data/` | local-only data, not shipped | 1 entries |

@@ -76,5 +76,31 @@
     "patch": "PATCH-11/13",
     "liveTreeStatus": "PARTIALLY_STALE",
     "note": "Node drift is FALSE here (.nvmrc = ci.yml = 24) and there is no netlify.toml (repo uses vercel.json). The README-facts-as-prose class still applies."
+  },
+  {
+    "id": "E-007",
+    "class": "RUNNER_OVERLAP",
+    "artifact": "vitest.config.ts + tests/integration/**",
+    "tier": 2,
+    "symptom": "vitest collected the node:test integration lane it cannot execute and reported the lane's files as failures — correct files red for a reason unrelated to the code under test",
+    "escapedBecause": "two runners declared overlapping globs and nothing asserted they were disjoint; the test lane was never a gate input, so no check could go RED on the overlap",
+    "detectingGate": "gate:hygiene",
+    "gateProvenRed": true,
+    "patch": "vitest.config.ts — add 'tests/integration/**' to exclude so the vitest and node:test lanes are disjoint; golden:bless writes tests/golden/kherwara/expected-leaves.json so the flat leaf map and the structured verify:golden doc stop sharing one path",
+    "liveTreeStatus": "ALREADY_CLOSED",
+    "note": "A test-infrastructure defect, not a source defect: the lane's files were correct throughout. gate:hygiene assertions 8-9 hold the separation and refuse to let the exclusion orphan the lane (the node:test runner must still name it). Proven RED by removing the exclude — gate-hygiene FAIL, 'vitest.config.ts does not list tests/integration/** in exclude' — and GREEN with it restored."
+  },
+  {
+    "id": "E-008",
+    "class": "GREEN_ONLY_IN_DIRTY_TREE",
+    "artifact": "gate:preflight (P-01, P-08, P-11, P-12) + foundation/manifest.json baselineTestCount",
+    "tier": 1,
+    "symptom": "gate:preflight and the recorded test baseline both pass in the working tree but FAIL from a clean checkout of the same commit. The working tree carries 958 tracked deletions, 372 untracked files and 192 modifications that the commit does not; among the deletions are docs/week1/** and docs/week3/** (the only reason P-11's 'docs/week-1 vs docs/week1' collision check is quiet) and corpus/ has 0 tracked files, which is the only reason P-01/P-08 resolve. Measured from a clean worktree of the tree: 'FAIL P-01', 'FAIL P-08 missing: corpus', 'FAIL P-11 docs/week-1 vs docs/week1; docs/week-3 vs docs/week3', 'FAIL P-12', 'GATE preflight: FAIL 15 assertions'.",
+    "escapedBecause": "every gate is run in the working tree, and the working tree is not the commit. No gate asserted that its own inputs are tracked (git ls-files), so a green result could be produced by uncommitted work; the same gap let baselineTestCount=172 be recorded — 172 reproduced only with an untracked client/src/report-engine/lib/__tests__/slabInputSchema.test.ts (+24), a modified hostileEdgeInput.test.ts (0 to 61 — its committed form imports ../slabInputSchema, absent from the tree) and a modified slabCalc.test.ts (6 to 12). From the commit the lane is 16 files / 81 tests / 70 passing / 11 failing.",
+    "detectingGate": "none — found by hand from a clean worktree (git worktree add --detach), not by any gate",
+    "gateProvenRed": false,
+    "patch": "recorded, not fixed, in this commit. Fixing requires committing the docs/week1 and docs/week3 removals, committing corpus/ (or dropping its reference from preflight), committing the missing slabInputSchema module or reverting hostileEdgeInput.test.ts, and fixing the 11 failing tests (tests/golden/kherwara/golden.test.ts 3, pbt-stats.test.ts 4, ircSlabCalc.test.ts 2, tests/meta/tamper-goes-red.test.ts 1, engineConsistency.test.ts 1).",
+    "liveTreeStatus": "CONFIRMED",
+    "note": "baselineTestCount was lowered 172 to 81 in this commit so the floor reflects the tree that is actually committed. The lane is still RED, so 81 is a floor for a failing lane. Do not read the green gate:foundation runs before this record as evidence about the commit — they were runs against the dirty tree. The durable fix is a gate that fails when a required path is untracked; gate-hygiene assertion 7 (present but unexecuted) is the closest existing instance of this class."
   }
 ]
