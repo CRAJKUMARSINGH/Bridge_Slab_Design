@@ -59,7 +59,7 @@
     "gate:vacuity": "tsx scripts/gates/gate-vacuity.ts",
     "gen:readme": "tsx scripts/gen-readme-map.ts",
     "gate:prove": "tsx scripts/gates/gate-proven-red.ts --prove",
-    "gate:foundation": "pnpm run gate:preflight && pnpm run gate:deps && pnpm run gate:scripts && pnpm run gate:contracts && pnpm run gate:tiers && pnpm run gate:proven-red && pnpm run gate:hygiene && pnpm run gate:chain && pnpm run gate:tasks && pnpm run gate:docs:strict && pnpm run gate:readme && pnpm run gate:index && pnpm run gate:deviations && pnpm run gate:vacuity && pnpm run gate:ratchet && pnpm run verify:tolerances",
+    "gate:foundation": "pnpm run gate:preflight && pnpm run gate:deps && pnpm run gate:scripts && pnpm run gate:contracts && pnpm run gate:tiers && pnpm run gate:proven-red && pnpm run gate:hygiene && pnpm run gate:chain && pnpm run gate:tasks && pnpm run gate:docs:strict && pnpm run gate:readme && pnpm run gate:index && pnpm run gate:deviations && pnpm run gate:vacuity && pnpm run gate:ratchet && pnpm run verify:tolerances && pnpm run verify:foundation",
     "typecheck:libs": "tsc --build",
     "typecheck:flat": "tsc -p tsconfig.flat.json --noEmit",
     "typecheck:client": "tsc -p tsconfig.client.json --noEmit",

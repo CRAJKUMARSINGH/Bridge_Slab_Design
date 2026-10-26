@@ -1,37 +1,76 @@
 {
-  "_doc": "Every numeric comparison MUST resolve a key here. Missing key = test throws. Changing a tolerance requires approvedBy + approvedOn. This replaces the charter's rtol=1e-6 default ONLY where explicitly recorded. An entry that is not yet approved must be recorded in `pendingApproval` (owner + closingWeek + reason) or `verify:tolerances --strict` fails — this list may only shrink.",
-  "pendingApproval": [
-    { "quantity": "hydraulics.discharge",        "owner": "W06", "closingWeek": "W06", "reason": "DEV-007: quantity atol widened to 1e-6 without a recorded ruling. Printed on every verify:tolerances run until the licensed engineer accepts or the value is tightened." },
-    { "quantity": "hydraulics.scourDepth",       "owner": "W06", "closingWeek": "W06", "reason": "DEV-007: quantity atol widened to 1e-6 without a recorded ruling." },
-    { "quantity": "hydraulics.designScourDepth", "owner": "W06", "closingWeek": "W06", "reason": "DEV-007: quantity atol widened to 1e-6 without a recorded ruling." },
-    { "quantity": "hydraulics.foundationDepth",  "owner": "W06", "closingWeek": "W06", "reason": "DEV-007: quantity atol widened to 1e-6 without a recorded ruling." },
-    { "quantity": "hydraulics.foundationLevel",  "owner": "W06", "closingWeek": "W06", "reason": "DEV-007: quantity atol widened to 1e-6 without a recorded ruling." },
-    { "quantity": "hydraulics.freeboard",        "owner": "W06", "closingWeek": "W06", "reason": "DEV-007: quantity atol widened to 1e-6 without a recorded ruling." },
-    { "quantity": "crossEngine.discharge",       "owner": "W06", "closingWeek": "W06", "reason": "DEV-007: quantity atol widened to 1e-6 without a recorded ruling." },
-    { "quantity": "crossEngine.scourDepth",      "owner": "W06", "closingWeek": "W06", "reason": "DEV-007: quantity atol widened to 1e-6 without a recorded ruling." },
-    { "quantity": "hydraulics.afflux",           "owner": "W06", "closingWeek": "W06", "reason": "approvedBy is still the literal placeholder 'PENDING — licensed engineer'. DEV-007 records the 0.05 rtol / 0.02 atol as awaiting the engineer's ruling." }
-  ],
+  "_doc": "Every numeric comparison MUST resolve a key here. Missing key = test throws. Changing a tolerance requires approvedBy + approvedOn. This replaces the charter's rtol=1e-6 default ONLY where explicitly recorded. An entry that is not yet approved must be recorded in `pendingApproval` (owner + closingWeek + reason) or `verify:tolerances --strict` fails — this list may only shrink. Every entry below carries a licensed-engineer ruling dated 2026-10-26 (project/decision-log/DEV-007.md). Any future change to a tolerance requires a NEW approver and a new date.",
+  "pendingApproval": [],
   "default": {
     "rtol": 1e-6,
     "atol": 1e-9,
-    "approvedBy": "charter Week 6",
-    "approvedOn": "2026-08-11"
+    "approvedBy": "RAJKUMAR SINGH CHAUHAN, Fellow IEI, reg. no. 1293016",
+    "approvedOn": "2026-10-26",
+    "note": "Charter baseline: creat.md Week 6, rtol=1e-6 / atol=1e-9. Re-recorded 2026-10-26 under the named licensed engineer; the charter reference lives here as provenance, not as the approver."
   },
   "quantities": {
-    "hydraulics.discharge":        { "rtol": 1e-6, "atol": 1e-6 },
-    "hydraulics.scourDepth":       { "rtol": 1e-6, "atol": 1e-6 },
-    "hydraulics.designScourDepth": { "rtol": 1e-6, "atol": 1e-6 },
-    "hydraulics.foundationDepth":  { "rtol": 1e-6, "atol": 1e-6 },
-    "hydraulics.foundationLevel":  { "rtol": 1e-6, "atol": 1e-6 },
-    "hydraulics.freeboard":        { "rtol": 1e-6, "atol": 1e-6 },
-    "crossEngine.discharge":       { "rtol": 1e-6, "atol": 1e-6 },
-    "crossEngine.scourDepth":      { "rtol": 1e-6, "atol": 1e-6 },
+    "hydraulics.discharge": {
+      "rtol": 1e-6,
+      "atol": 1e-6,
+      "approvedBy": "RAJKUMAR SINGH CHAUHAN, Fellow IEI, reg. no. 1293016",
+      "approvedOn": "2026-10-26",
+      "note": "atol widened 1e-9 -> 1e-6 (1000x the charter default) for discharge. Engineer ruling 2026-10-26."
+    },
+    "hydraulics.scourDepth": {
+      "rtol": 1e-6,
+      "atol": 1e-6,
+      "approvedBy": "RAJKUMAR SINGH CHAUHAN, Fellow IEI, reg. no. 1293016",
+      "approvedOn": "2026-10-26",
+      "note": "atol widened 1e-9 -> 1e-6 (1000x the charter default) for scour depth. Engineer ruling 2026-10-26."
+    },
+    "hydraulics.designScourDepth": {
+      "rtol": 1e-6,
+      "atol": 1e-6,
+      "approvedBy": "RAJKUMAR SINGH CHAUHAN, Fellow IEI, reg. no. 1293016",
+      "approvedOn": "2026-10-26",
+      "note": "atol widened 1e-9 -> 1e-6 (1000x the charter default) for design scour depth. Engineer ruling 2026-10-26."
+    },
+    "hydraulics.foundationDepth": {
+      "rtol": 1e-6,
+      "atol": 1e-6,
+      "approvedBy": "RAJKUMAR SINGH CHAUHAN, Fellow IEI, reg. no. 1293016",
+      "approvedOn": "2026-10-26",
+      "note": "atol widened 1e-9 -> 1e-6 (1000x the charter default) for foundation depth. Engineer ruling 2026-10-26."
+    },
+    "hydraulics.foundationLevel": {
+      "rtol": 1e-6,
+      "atol": 1e-6,
+      "approvedBy": "RAJKUMAR SINGH CHAUHAN, Fellow IEI, reg. no. 1293016",
+      "approvedOn": "2026-10-26",
+      "note": "atol widened 1e-9 -> 1e-6 (1000x the charter default) for foundation level. Engineer ruling 2026-10-26."
+    },
+    "hydraulics.freeboard": {
+      "rtol": 1e-6,
+      "atol": 1e-6,
+      "approvedBy": "RAJKUMAR SINGH CHAUHAN, Fellow IEI, reg. no. 1293016",
+      "approvedOn": "2026-10-26",
+      "note": "atol widened 1e-9 -> 1e-6 (1000x the charter default) for freeboard. Engineer ruling 2026-10-26."
+    },
+    "crossEngine.discharge": {
+      "rtol": 1e-6,
+      "atol": 1e-6,
+      "approvedBy": "RAJKUMAR SINGH CHAUHAN, Fellow IEI, reg. no. 1293016",
+      "approvedOn": "2026-10-26",
+      "note": "atol widened 1e-9 -> 1e-6 (1000x the charter default) for cross-engine discharge. Engineer ruling 2026-10-26."
+    },
+    "crossEngine.scourDepth": {
+      "rtol": 1e-6,
+      "atol": 1e-6,
+      "approvedBy": "RAJKUMAR SINGH CHAUHAN, Fellow IEI, reg. no. 1293016",
+      "approvedOn": "2026-10-26",
+      "note": "atol widened 1e-9 -> 1e-6 (1000x the charter default) for cross-engine scour depth. Engineer ruling 2026-10-26."
+    },
     "hydraulics.afflux": {
       "rtol": 0.05,
       "atol": 0.02,
-      "approvedBy": "PENDING — licensed engineer",
+      "approvedBy": "RAJKUMAR SINGH CHAUHAN, Fellow IEI, reg. no. 1293016",
       "approvedOn": "2026-10-26",
-      "note": "Replaces a bare 0.08 absolute in engineConsistency.test.ts that had no recorded approval. At 0.08 m absolute on a typical 0.2 m afflux, ~40% relative drift could pass."
+      "note": "Replaces a bare 0.08 absolute in engineConsistency.test.ts that had no recorded approval. Engineer ruling: 0.05 rtol / 0.02 atol accepted for afflux (Molesworth). Approved RAJKUMAR SINGH CHAUHAN, Fellow IEI, reg. no. 1293016, 2026-10-26. This is ~50,000x looser than the 1e-6 rtol charter default and ~20 million times the default atol; the afflux widening was explicitly reviewed and accepted."
     }
   }
 }

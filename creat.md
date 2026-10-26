@@ -86,3 +86,92 @@ Every user prompt submission appends a timestamped entry. All agents (including 
 **Files changed:** `evidence/asset-register.json`, `evidence/assimilation-coverage.md`, `kiro-impl-plan.md`, `CREAT.md`
 
 ---
+
+## §8 — Session log (rolling 24 h)
+
+### Session: 2026-10-26 — W06 tolerance sign-off (the project's first non-DRAFT event)
+
+**Operator:** TraeCode (agent) | **Verifier:** not yet run
+**Triggered by:** User — "the nine tolerance flags go to zero by recording the licensed-engineer approvals; keep --strict; prove it is falsifiable"
+
+#### Actions taken
+1. Recorded the licensed-engineer ruling in `foundation/tolerances.json`: `approvedBy` + `approvedOn` (2026-10-26) on all nine quantity entries and on `default`; replaced the afflux placeholder `approvedBy: "PENDING — licensed engineer"` with the approver; moved the charter provenance into each entry's `note`.
+2. Emptied `pendingApproval`. The nine records were an exemption, not an approval, and `verify-tolerances.mjs` fails any entry that is both approved and still listed — the list may only shrink.
+3. Proved falsifiability: `verify:tolerances --strict` green, then blanked one `approvedOn` to force exit 1, then restored it to green.
+4. Filled the `Engine ruling` section of `project/decision-log/DEV-007.md`.
+
+#### Key findings
+- The eight unflagged quantities sat at `atol 1e-6` against a `default` of `1e-9` — a 1000x widening that had never been approved. `hydraulics.afflux` at 0.05 rtol / 0.02 atol is ~50,000x looser than the charter's 1e-6 rtol. The nine approvals are a licensed ruling on nine real loosenings, not paperwork.
+- The earlier green of `verify:tolerances` came from the `pendingApproval` exemption, not from an approval — the "defanged gate" reading, now closed.
+
+#### Outcome / gate verdict
+- `verify:tolerances --strict` exited 0 unpoisoned ("9 registered, 0 unapproved, 0 recorded-pending") and exited 1 poisoned ("UNAPPROVED hydraulics.afflux: missing approvedBy/approvedOn"). The gate is falsifiable and the exemption list is empty.
+- Approver: RAJKUMAR SINGH CHAUHAN, Fellow IEI, reg. no. 1293016. The afflux widening was explicitly reviewed and accepted.
+
+**Next-week blockers:**
+- The code-side half of DEV-007 is not closed: `engineConsistency.test.ts` still applies a bare 0.08 m absolute for afflux and still cross-wires `excel.scourDepth` against `web.meanScourDepth`. Deciding the canonical field names and repointing the test at the registry tolerance remains a code change.
+
+---
+
+## §13 — Deliverable-Contract Table (P2-W01 T1.13)
+
+No week may create a file another week owns. This table is the authoritative
+source of deliverable ownership for Phase 2.
+
+| Week | Deliverable path | Description |
+|---|---|---|
+| W01 | docs/phase-2/{ARCHITECTURE,INPUT-DICTIONARY,MODULE-MATRIX,SECURITY,DATA-MODEL,COMPUTE-TOPOLOGY,RUNBOOK,UAT-PLAN,SCORECARD,KNOWN-LIMITATIONS}.md | Phase-2 infrastructure docs |
+| W01 | docs/phase-2/_templates/** | 22 document skeletons |
+| W01 | scripts/gates/** | Gate harness stubs |
+| W01 | creat.md §13 | This deliverable-contract table |
+| W02 | lib/engine/src/{contracts,hydraulics,loads,stability,rebar}/** | Engine consolidation + shared types |
+| W02 | docs/phase-2/week-02/{PARITY-DIFF,EXIT-GATE-EVIDENCE}.md | Parity evidence |
+| W02A | corpus/** | Oracle corpus, raw workbooks, superseded fixtures |
+| W02A | lib/engine/src/io/xls.ts | BIFF8 .xls reader |
+| W02A | docs/phase-2/week-02A/{XLS-STRATEGY,ORACLE-TABLE,SOURCE-DEFECT-REGISTER,EXIT-GATE-EVIDENCE}.md | Corpus assimilation evidence |
+| W02A | scripts/assimilate/emit-oracle.ts | Oracle extractor |
+| W03 | docs/phase-2/{ASSUMPTION-REGISTER,INPUT-DICTIONARY}.md | Clause coverage + input dictionary |
+| W03 | docs/phase-2/week-03/{CLAUSE-COVERAGE,REALITY-AUDIT,EXIT-GATE-EVIDENCE}.md | Clause + reality audit evidence |
+| W04 | lib/engine/src/io/** | .xlsx migration + .xls survival |
+| W04 | docs/phase-2/week-04/{SECURITY-HARDENING,EXIT-GATE-EVIDENCE}.md | Security hardening evidence |
+| W05 | docs/phase-2/week-05/{REPRO-PROOF,EXIT-GATE-EVIDENCE}.md | Reproducibility evidence |
+| W06 | docs/phase-2/week-06/{PERF-BASELINE,EXIT-GATE-EVIDENCE}.md | Performance baseline evidence |
+| W06 | docs/phase-2/COMPUTE-TOPOLOGY.md (filled) | Compute topology decision |
+| W06A | lib/engine/src/hydraulics/** | Hydraulic & scour method parity |
+| W06A | docs/phase-2/week-06A/{PARITY-DIFF,EXIT-GATE-EVIDENCE}.md | Hydraulics parity evidence |
+| W07 | lib/engine/src/{combinations,checks}/** | Load combination engine |
+| W07 | docs/phase-2/week-07/{CASE-TABLES,EXIT-GATE-EVIDENCE}.md | Load case evidence |
+| W07A | lib/engine/src/{loads,stability,abutment,foundation,rebar}/** | Design method parity |
+| W07A | docs/phase-2/week-07A/{CASE-TABLES,PARITY-DIFF,EXIT-GATE-EVIDENCE}.md | Design parity evidence |
+| W08 | lib/drawing/** | DXF writer + layer enforcement |
+| W08 | docs/phase-2/week-08/{DRAWING-REGISTER,EXIT-GATE-EVIDENCE}.md | Drawing module evidence |
+| W08 | docs/phase-2/_templates/{LAYER-STANDARD,REPORT-SPEC}.md (filled) | Drawing + report specs |
+| W08A | lib/drawing/figures/** | Legacy drawing & figure parity |
+| W08A | docs/phase-2/week-08A/{FIGURE-REGISTER,VISUAL-COMPARISON,EXIT-GATE-EVIDENCE}.md | Figure parity evidence |
+| W09 | lib/estimation/{items,measurements,charges}/** | Estimation engine + rate registry |
+| W09 | docs/phase-2/week-09/{ITEM-REGISTRY,EXIT-GATE-EVIDENCE}.md | Estimation evidence |
+| W09 | docs/phase-2/_templates/MEASUREMENT-RULES.md (filled) | Measurement rules |
+| W09A | lib/estimation/{items,measurements,charges}/** | DPR & MoRTH estimation parity |
+| W09A | docs/phase-2/week-09A/{ITEM-REGISTRY,DPR-TEMPLATE,EXIT-GATE-EVIDENCE}.md | DPR evidence |
+| W10 | docs/phase-2/week-10/{REPORT-VALIDATION,EXIT-GATE-EVIDENCE}.md | Report integrity evidence |
+| W10 | docs/phase-2/_templates/REPORT-SPEC.md (filled) | Report spec |
+| W11 | docs/phase-2/week-11/{A11Y-REPORT,USER-GUIDE,EXIT-GATE-EVIDENCE}.md | A11y + UX evidence |
+| W11 | docs/phase-2/HANDOVER/DEMO-SCRIPT.md | Demo script |
+| W12 | docs/phase-2/week-12/{GATE-LOG,UAT-RESULTS,RELEASE-NOTES,SCORECARD-SUMMARY,EXIT-GATE-EVIDENCE}.md | Full gate + UAT + release evidence |
+| W12 | docs/phase-2/HANDOVER/{ENGINEERING-REVIEW-GUIDE,KNOWN-LIMITATIONS}.md | Handover docs |
+| W12 | AUDIT-REPORT-v2.0.md | Updated audit report |
+| W12 | docs/phase-2/POST-RELEASE-BACKLOG.md (initial) | Post-release backlog |
+| W12A | docs/phase-2/week-12A/{CUTOVER-PLAN,SOAK-LOG,LAUNCH-EVIDENCE,EXIT-GATE-EVIDENCE}.md | Cutover evidence |
+| W12A | docs/phase-2/HANDOVER/** | Full handover pack |
+| W12A | docs/phase-2/{POST-RELEASE-BACKLOG,PHASE-3-PROPOSAL}.md (final) | Post-release + Phase-3 proposal |
+| W12A | creat.md §14 | Launch evidence |
+
+## §14 — Launch Evidence (to be filled by P2-W12A)
+
+> This section is reserved for P2-W12A. It must contain:
+> launch date, released version, tag sha, deployed URL, environment,
+> verification commands + results, known limitations reference, and the
+> engineering review status. creat.md status stays DRAFT unless a licensed
+> engineer has signed.
+
+_Launch evidence not yet recorded._
