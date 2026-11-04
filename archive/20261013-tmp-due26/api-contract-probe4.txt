@@ -1,0 +1,58 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+templates probed: 21
+rejected by the API contract: 9
+
+--- rejection counts by field ---
+  8  dwl
+  1  numberOfLanes
+
+--- ALL issues per input, with the repo value that trips it ---
+<DEFAULT>: ACCEPTED
+
+larathi-stabil
+  values: bedSlope=926 deckSlabThickness=0.25 dwl=100.83 hfl=99.5 numberOfLanes=2 carriageWidth=7.5
+  ISSUE dwl: dwl (100.83 m) exceeds hfl (99.5 m) by more than 0.5 m — check values (submersible bridges allow dwl slightly above hfl).
+kherwara-golden: ACCEPTED
+high-level-reference: ACCEPTED
+
+small-bridge
+  values: bedSlope=1000 deckSlabThickness=0.25 dwl=282.25 hfl=282 numberOfLanes=2 carriageWidth=4.5
+  ISSUE numberOfLanes: numberOfLanes (2) x 3.75 m lane width exceeds carriageWidth (4.5 m).
+medium-bridge: ACCEPTED
+large-bridge: ACCEPTED
+irc-bedach-bedla: ACCEPTED
+irc-jakham-mandvi: ACCEPTED
+irc-t01-jethliya: ACCEPTED
+irc-sukanaka-matoon: ACCEPTED
+irc-ayad-maharashtra: ACCEPTED
+irc-gumaniya-udaipur: ACCEPTED
+irc-katumbi-chandrod: ACCEPTED
+
+irc-sisarama-highlevel
+  values: bedSlope=1100 deckSlabThickness=0.25 dwl=422.2 hfl=421.5 numberOfLanes=2 carriageWidth=7.5
+  ISSUE dwl: dwl (422.2 m) exceeds hfl (421.5 m) by more than 0.5 m — check values (submersible bridges allow dwl slightly above hfl).
+
+irc-kumbhalgarh-kelwara
+  values: bedSlope=850 deckSlabThickness=0.25 dwl=699 hfl=698.4 numberOfLanes=2 carriageWidth=7.5
+  ISSUE dwl: dwl (699 m) exceeds hfl (698.4 m) by more than 0.5 m — check values (submersible bridges allow dwl slightly above hfl).
+
+irc-parwan-highlevel
+  values: bedSlope=920 deckSlabThickness=0.25 dwl=390.2 hfl=389.6 numberOfLanes=3 carriageWidth=10.5
+  ISSUE dwl: dwl (390.2 m) exceeds hfl (389.6 m) by more than 0.5 m — check values (submersible bridges allow dwl slightly above hfl).
+
+irc-banas-highlevel
+  values: bedSlope=840 deckSlabThickness=0.25 dwl=297.5 hfl=296.8 numberOfLanes=2 carriageWidth=7.5
+  ISSUE dwl: dwl (297.5 m) exceeds hfl (296.8 m) by more than 0.5 m — check values (submersible bridges allow dwl slightly above hfl).
+
+irc-ayad-fatehpura
+  values: bedSlope=960 deckSlabThickness=0.25 dwl=585.3 hfl=584.6 numberOfLanes=2 carriageWidth=7.5
+  ISSUE dwl: dwl (585.3 m) exceeds hfl (584.6 m) by more than 0.5 m — check values (submersible bridges allow dwl slightly above hfl).
+
+irc-kherka-teegirder
+  values: bedSlope=1050 deckSlabThickness=0.25 dwl=416.5 hfl=415.8 numberOfLanes=2 carriageWidth=7.5
+  ISSUE dwl: dwl (416.5 m) exceeds hfl (415.8 m) by more than 0.5 m — check values (submersible bridges allow dwl slightly above hfl).
+
+irc-sukanaka-highlevel
+  values: bedSlope=1050 deckSlabThickness=0.25 dwl=493.4 hfl=492.7 numberOfLanes=2 carriageWidth=7.5
+  ISSUE dwl: dwl (493.4 m) exceeds hfl (492.7 m) by more than 0.5 m — check values (submersible bridges allow dwl slightly above hfl).

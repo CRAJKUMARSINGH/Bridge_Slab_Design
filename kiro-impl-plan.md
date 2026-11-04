@@ -1,4 +1,4 @@
-﻿# Kiro Implementation Plan
+# Kiro Implementation Plan
 > **Source:** `CODE-JUNCTION/` folder — 11 files analysed on 2026-10-05
 > **Applies to:** `E:\Rajkumar\Bridge_Slab_Design` (M1 — cursor-baseline)
 > **Authority:** Best-of-Four Merger Prompt v3.0/v4.0, 15-week pipeline plan, sheet audit (BRIDGE 12 AUD.txt), merge worksheet
@@ -12,7 +12,7 @@
 3. **Report-first** — HTML/PDF report is the deliverable; Excel is the regression harness.
 4. **Evidence over headings** — a task is DONE only when code + test + artifact all exist.
 5. **Archive, never delete** — removals go to `archive/` via `git mv`.
-6. **Mandatory 12-minute chat log** — every agent appends to `CREAT.md`.
+6. **Mandatory 15-minute chat log** — every agent appends to `CREAT.md`.
 
 ---
 
@@ -176,9 +176,9 @@ git lfs install
 
 ## 9. MANDATORY CHAT LOG ENFORCEMENT
 
-**Hook file:** `.kiro/hooks/chat-log-12min.json`
+**Hook file:** `.kiro/hooks/chat-log-15min.json`
 **Trigger:** `UserPromptSubmit` (already created in previous session)
-**CREAT.md:** Mandatory append every 12 minutes — all agents including Kiro.
+**CREAT.md:** Mandatory append every 15 minutes — all agents including Kiro.
 **Format:**
 ```
 ## [YYYY-MM-DD HH:MM] — <Agent>
@@ -200,7 +200,7 @@ WEEK 1 (DONE ✅ 2026-10-05):
   ✅ UI-03   stale banner text — updated to "Engineering preview build — October 2026"
   ✅ UI-04   WCAG lang attribute — lang="en" already present in index.html
   ✅ Landing  all 17 pages wired (10 module grid + Recent Projects + design-loaded badge)
-  ✅ CREAT.md hook enforced — .kiro/hooks/chat-log-12min.json active
+  ✅ CREAT.md hook enforced — .kiro/hooks/chat-log-15min.json active
 
 WEEK 2 (DONE ✅ 2026-10-05):
   ✅ ENGINE-01  Wind force — IRC:6-2017 §209 already implemented in design-engine.ts (designWindPressure())
@@ -245,4 +245,4 @@ A task is **complete** when:
 
 ---
 *Created: 2026-10-05 by Kiro*
-*Next update: append log to CREAT.md within 12 minutes*
+*Next update: append log to CREAT.md within 15 minutes*

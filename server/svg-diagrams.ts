@@ -232,12 +232,15 @@ export function generateScourProfileSvg(input: EnhancedProjectInput): string {
   const toX = (x: number) => margin + x * scaleX;
 
   let body = '';
+  /** Afflux is often a few decimetres, which puts DWL and HFL on the same pixel row; keep their labels legible. */
+  const dwl = input.hydraulics?.designWaterLevel ?? (hfl + afflux);
+  const dwlLabelY = hflY - dwlY < 11 ? hflY - 15 : dwlY - 4;
   body += `<line x1="${margin}" y1="${hflY}" x2="${svgW - margin}" y2="${hflY}" stroke="#1976d2" stroke-width="2" stroke-dasharray="6,4"/>`;
   body += `<text x="${margin - 8}" y="${hflY - 4}" text-anchor="end" font-size="9" fill="#1976d2">HFL ${n(hfl)}</text>`;
   body += `<line x1="${margin}" y1="${dwlY}" x2="${svgW - margin}" y2="${dwlY}" stroke="#42a5f5" stroke-width="1.5" stroke-dasharray="3,3"/>`;
-  body += `<text x="${margin - 8}" y="${dwlY - 4}" text-anchor="end" font-size="9" fill="#42a5f5">DWL ${n(input.hydraulics?.designWaterLevel ?? (hfl + afflux))}</text>`;
+  body += `<text x="${margin - 8}" y="${dwlLabelY}" text-anchor="end" font-size="9" fill="#42a5f5">DWL ${n(dwl)}</text>`;
   body += `<line x1="${margin}" y1="${bedY}" x2="${svgW - margin}" y2="${bedY}" stroke="#6d4c41" stroke-width="2"/>`;
-  body += `<text x="${margin - 8}" y="${bedY + 4}" text-anchor="end" font-size="9" fill="#6d4c41">Bed ${n(bed)}</text>`;
+  body += `<text x="${margin - 8}" y="${bedY - 5}" text-anchor="end" font-size="9" fill="#6d4c41">Bed ${n(bed)}</text>`;
 
   for (let i = 0; i <= nPiers + 1; i += 1) {
     const x = i === 0 ? 0 : i === nPiers + 1 ? totalL : i * spanL;

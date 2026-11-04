@@ -1,0 +1,214 @@
+{
+  "name": "gate-security",
+  "ts": "2026-11-04T08:09:50.662Z",
+  "commit": null,
+  "pass": 41,
+  "fail": 0,
+  "detail": [
+    {
+      "ok": true,
+      "label": "A: header declared — X-Content-Type-Options",
+      "note": "'X-Content-Type-Options': 'nosniff',"
+    },
+    {
+      "ok": true,
+      "label": "A: header declared — X-Frame-Options",
+      "note": "'X-Frame-Options': 'DENY',"
+    },
+    {
+      "ok": true,
+      "label": "A: header declared — X-XSS-Protection",
+      "note": "'X-XSS-Protection': '0',"
+    },
+    {
+      "ok": true,
+      "label": "A: header declared — Referrer-Policy",
+      "note": "'Referrer-Policy': 'strict-origin-when-cross-origin',"
+    },
+    {
+      "ok": true,
+      "label": "A: header declared — Content-Security-Policy",
+      "note": "'Content-Security-Policy': ["
+    },
+    {
+      "ok": true,
+      "label": "B: app-factory applies securityHeaders()",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "B: app-factory error handler uses buildErrorPayload",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "B: app-factory uses resolveCorsOrigin",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "B: upload route gets its own body parser (U-1: 10 MB ceiling reachable)",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "B: upload route calls validateUpload",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "B: slabdraw proxy calls guardProxyUrl (KERO-005)",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: no stack trace attached outside server/security.ts",
+      "note": "clean"
+    },
+    {
+      "ok": true,
+      "label": "D: server/security.ts loads (type-stripping)",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D1: applySecurityHeaders sets X-Content-Type-Options",
+      "note": "nosniff"
+    },
+    {
+      "ok": true,
+      "label": "D1: applySecurityHeaders sets X-Frame-Options",
+      "note": "DENY"
+    },
+    {
+      "ok": true,
+      "label": "D1: applySecurityHeaders sets X-XSS-Protection",
+      "note": "0"
+    },
+    {
+      "ok": true,
+      "label": "D1: applySecurityHeaders sets Referrer-Policy",
+      "note": "strict-origin-when-cross-origin"
+    },
+    {
+      "ok": true,
+      "label": "D1: applySecurityHeaders sets Content-Security-Policy",
+      "note": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"
+    },
+    {
+      "ok": true,
+      "label": "D2: production error payload omits stack",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D2: production error payload keeps message + status",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D2: development error payload includes stack",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D3: production + empty origins denies",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D3: production + list returns the list",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D3: development + empty origins reflects origin",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D3: production + wildcard is refused (throws)",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D4: missing upload -> 400",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D4: disallowed MIME -> 415",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D4: valid zip + allowed MIME -> ok",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D4: magic-byte mismatch -> 400",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D4: oversize base64 -> 413",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D5: production blocks metadata address",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D5: production blocks loopback",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D5: development allows loopback (SlabDraw default)",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D5: non-http(s) scheme refused",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "E: SECURITY.md names role — viewer",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "E: SECURITY.md names role — engineer",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "E: SECURITY.md names role — reviewer",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "E: SECURITY.md names role — admin",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "E: SECURITY.md has a secret inventory",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "E: secret inventory documents rotation",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "E: secret inventory documents owner",
+      "note": null
+    }
+  ]
+}

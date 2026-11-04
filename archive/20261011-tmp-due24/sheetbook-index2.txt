@@ -1,0 +1,63 @@
+pages 119
+sheet pages found: 56
+    7 INDEX
+    9 DESIGN CRITERIA
+    13 INPUT DATA SUMMARY
+    16 INSERT- HYDRAULICS
+    17 AFFLUX CALCULATION
+    22 HYDRAULICS
+    24 DECK ANCHORAGE
+    27 CROSS SECTION
+MISMATCH  'INDEX' cited 3, real 7
+MISMATCH  'DESIGN CRITERIA' cited 4, real 9
+MISMATCH  'INPUT DATA SUMMARY' cited 5, real 13
+MISMATCH  'INSERT- HYDRAULICS' cited 6, real 16
+MISMATCH  'afflux calculation' cited 7, real 17
+MISMATCH  'HYDRAULICS' cited 8, real 22
+MISMATCH  'Deck Anchorage' cited 9, real 24
+MISMATCH  'CROSS SECTION' cited 10, real 27
+MISMATCH  'Bed Slope' cited 11, real 28
+MISMATCH  'SBC' cited 12, real 29
+MISMATCH  'SEISMIC ANALYSIS (IS 1893)' cited 13, real 30
+MISMATCH  'WIND LOAD ANALYSIS (IS 875)' cited 14, real 32
+MISMATCH  'STABILITY CHECK FOR PIER' cited 15, real 34
+MISMATCH  'abstract of stresses' cited 16, real 38
+MISMATCH  'STEEL IN FLARED PIER BASE' cited 17, real 39
+MISMATCH  'STEEL IN PIER' cited 18, real 40
+MISMATCH  'FOOTING DESIGN' cited 19, real 41
+MISMATCH  'Footing STRESS DIAGRAM' cited 20, real 42
+MISMATCH  'Pier Cap LL tracked vehicle' cited 21, real 43
+MISMATCH  'Pier Cap' cited 22, real 44
+MISMATCH  'LLOAD' cited 23, real 45
+MISMATCH  'loadsumm' cited 24, real 46
+MISMATCH  'LL-ABSTRACT' cited 25, real 47
+MISMATCH  'BEARING DETAILS' cited 26, real 51
+MISMATCH  'EXPANSION JOINT & DRAINAGE' cited 27, real 54
+MISMATCH  'APPROACH SLAB DESIGN' cited 28, real 57
+MISMATCH  'TYPE1-AbutMENT Drawing' cited 29, real 61
+MISMATCH  'TYPE1-STABILITY CHECK ABUTMENT' cited 30, real 62
+MISMATCH  'TYPE1-ABUTMENT FOOTING DESIGN' cited 31, real 64
+MISMATCH  'TYPE1- Abut Footing STRESS' cited 32, real 65
+MISMATCH  'TYPE1-STEEL IN ABUTMENT' cited 33, real 66
+MISMATCH  'TYPE1-Abutment Cap' cited 34, real 67
+MISMATCH  'TYPE1-DIRT WALL REINFORCEMENT' cited 35, real 68
+MISMATCH  'TYPE1-DIRT DirectLoad_BM' cited 36, real 69
+MISMATCH  'TYPE1-DIRT LL_BM' cited 37, real 70
+MISMATCH  'INSERT C1-ABUT' cited 38, real 71
+MISMATCH  'C1-AbutMENT Drawing' cited 39, real 73
+MISMATCH  'C1-STABILITY CHECK ABUTMENT' cited 40, real 74
+MISMATCH  'C1-ABUTMENT FOOTING DESIGN' cited 41, real 75
+MISMATCH  'C1-Abut Footing STRESS DIAGRAM' cited 42, real 76
+MISMATCH  'CAN-RETURN FOOTING DESIGN' cited 43, real 77
+MISMATCH  'STEEL IN CANT-ABUTMENT' cited 44, real 78
+MISMATCH  'STEEL IN CANT-RETURNS' cited 45, real 79
+MISMATCH  'C1-Abutment Cap' cited 46, real 80
+MISMATCH  'C1-DIRT WALL REINFORCEMENT' cited 47, real 81
+MISMATCH  'C1-DIRT DirectLoad_BM' cited 48, real 82
+MISMATCH  'C1-DIRT LL_BM' cited 49, real 83
+MISMATCH  'TechNote' cited 50, real 84
+MISMATCH  'INSERT ESTIMATE' cited 51, real 85
+MISMATCH  'Tech Report' cited 52, real 86
+MISMATCH  'General Abs.' cited 53, real 87
+MISMATCH  'Abstract' cited 54, real 89
+claims 52 mismatches 52

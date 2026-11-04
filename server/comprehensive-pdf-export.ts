@@ -1,8 +1,8 @@
 /**
  * Comprehensive PDF Export — calculation sheets plus INPUT workbook samples.
- * Generates ~200+ page A4 portrait PDF; includes the three Excel INPUT template
+ * Generates a ~225-page A4 portrait PDF; includes the three Excel INPUT template
  * tabs (A–H, same models as the short report) before the table of contents, then
- * the 46-style calculation section sequence.
+ * the calculation section sequence, then an appendix reproducing the workbook grids.
  */
 
 import { jsPDF } from 'jspdf';
@@ -22,6 +22,8 @@ import {
   generateScourProfileSvg,
   generateSlabReinfPlanSvg,
 } from './svg-diagrams';
+import { DESIGN_CONSTANTS, STABILITY_ACCEPTANCE } from '../bridge-excel-generator/design-engine';
+import { EXPECTED_SHEET_COUNT } from '../bridge-excel-generator/sheet-contract';
 
 // A4 dimensions in mm
 const PAGE_WIDTH = 210;
@@ -58,26 +60,72 @@ interface SheetPage {
   }[];
 }
 
-/** Minimum pages before the design summary (cover + body + workbook appendix). */
+/** Section keys the table of contents prints, in the order the report lays them out. */
+type TocSectionId =
+  | 'IN1-3'
+  | '01'
+  | '02'
+  | '03'
+  | '04'
+  | '05-08'
+  | '09-18'
+  | '19-28'
+  | '29'
+  | '30-41'
+  | '42-46'
+  | 'ANNEX'
+  | 'APPX'
+  | 'SUM';
+
+/** Where each contents section actually begins; measured by the pass before the printed one. */
+type SectionPages = Partial<Record<TocSectionId, number>>;
+
+/** Minimum pages the workbook appendix grows the document to before the design summary. */
 const APPENDIX_TARGET_MIN_PAGES = 224;
-/** Upper bound for appendix growth (summary follows). */
+/** Hard stop for appendix growth; the design summary follows it. */
 const APPENDIX_TARGET_MAX_PAGES = 248;
 
 /**
- * Generate comprehensive PDF with all 46 sheets
- * ~200 pages, A4 portrait
+ * Comprehensive report for the {@link EXPECTED_SHEET_COUNT}-sheet workbook, A4 portrait.
+ * Rendered twice: the measuring pass fixes the length the printed pass stamps.
  */
 async function generateComprehensivePDFInternal(
   input: EnhancedProjectInput,
 ): Promise<{ buffer: Buffer; pageCount: number }> {
+  /**
+   * The printed page total and the contents page numbers are only knowable once the workbook
+   * appendix has finished growing, and neither one changes the layout. Render once to measure,
+   * then render again with the measured numbers so every stamp on the page is the truth.
+   */
+  let totalPages = APPENDIX_TARGET_MAX_PAGES + 2;
+  let sectionPages: SectionPages = {};
+  let rendered = await renderComprehensiveDocument(input, totalPages, sectionPages);
+  for (let pass = 0; pass < 3 && rendered.pageCount !== totalPages; pass++) {
+    totalPages = rendered.pageCount;
+    sectionPages = rendered.sectionPages;
+    rendered = await renderComprehensiveDocument(input, totalPages, sectionPages);
+  }
+  return rendered;
+}
+
+async function renderComprehensiveDocument(
+  input: EnhancedProjectInput,
+  totalPages: number,
+  knownSectionPages: SectionPages = {},
+): Promise<{ buffer: Buffer; pageCount: number; sectionPages: SectionPages }> {
   const doc = new jsPDF({
     orientation: 'portrait',
     unit: 'mm',
     format: 'a4'
   });
 
-  let pageNumber = 1;
-  const totalPages = estimateTotalPages(input);
+  const sectionPages: SectionPages = {};
+
+  /** Starts a new PDF page and returns its real index — the number every header prints. */
+  const newPage = (): number => {
+    doc.addPage();
+    return doc.getNumberOfPages();
+  };
 
   // Cover page
   addCoverPage(doc, input, totalPages);
@@ -87,109 +135,100 @@ async function generateComprehensivePDFInternal(
   addForeword(doc, input, totalPages);
 
   /** Excel places INPUT templates before INDEX; same A-H models as the short design PDF. */
+  const firstInputPage = doc.getNumberOfPages() + 1;
+  sectionPages['IN1-3'] = firstInputPage;
   const inputWorkbookPdfPages = drawWbInputTemplateSheets(doc, input as ProjectInput, MARGIN, PAGE_WIDTH, PAGE_HEIGHT);
+  for (let p = firstInputPage; p < firstInputPage + inputWorkbookPdfPages; p++) {
+    stampFooterPageNumber(doc, p, totalPages);
+  }
 
   // Table of contents (after INPUT samples so page numbers line up)
   doc.addPage();
-  addTableOfContents(doc, input, inputWorkbookPdfPages, totalPages);
+  addTableOfContents(doc, input, inputWorkbookPdfPages, totalPages, knownSectionPages);
 
   // Sheet 1: INDEX
-  doc.addPage();
-  pageNumber = doc.getNumberOfPages();
-  addIndexSheet(doc, input, pageNumber, totalPages);
-  pageNumber += 2;
+  sectionPages['01'] = newPage();
+  addIndexSheet(doc, input, sectionPages['01']!, totalPages);
 
   // Sheet 2: INSERT- HYDRAULICS
-  doc.addPage();
-  addInsertHydraulicsSheet(doc, input, pageNumber, totalPages);
-  pageNumber += 2;
+  sectionPages['02'] = newPage();
+  addInsertHydraulicsSheet(doc, input, sectionPages['02']!, totalPages);
 
   // Sheet 3: afflux calculation
-  doc.addPage();
-  addAffluxSheet(doc, input, pageNumber, totalPages);
-  pageNumber += 4;
+  sectionPages['03'] = newPage();
+  addAffluxSheet(doc, input, sectionPages['03']!, totalPages);
 
   // Sheet 4: HYDRAULICS
-  doc.addPage();
-  addHydraulicsSheet(doc, input, pageNumber, totalPages);
-  pageNumber += 4;
+  sectionPages['04'] = newPage();
+  addHydraulicsSheet(doc, input, sectionPages['04']!, totalPages);
 
   // Sheet 5-8: Deck Anchorage, Cross Section, Bed Slope, SBC
+  sectionPages['05-08'] = doc.getNumberOfPages() + 1;
   for (let i = 5; i <= 8; i++) {
-    doc.addPage();
-    addDataSheet(doc, input, i, getSheetName(i), pageNumber, totalPages);
-    pageNumber += 2;
+    addDataSheet(doc, input, i, getSheetName(i), newPage(), totalPages);
   }
 
   // Sheet 9: STABILITY CHECK FOR PIER (multi-page)
-  doc.addPage();
-  addStabilityPierCover(doc, input, pageNumber, totalPages);
-  pageNumber++;
-  
-  const pierPages = addStabilityPierSheets(doc, input, pageNumber, totalPages);
-  pageNumber += pierPages;
+  sectionPages['09-18'] = newPage();
+  addStabilityPierCover(doc, input, sectionPages['09-18']!, totalPages);
+  addStabilityPierSheets(doc, input, doc.getNumberOfPages() + 1, totalPages);
 
   // Sheet 10-18: Pier-related sheets
   for (let i = 10; i <= 18; i++) {
-    doc.addPage();
-    addDataSheet(doc, input, i, getSheetName(i), pageNumber, totalPages);
-    pageNumber += 2;
+    addDataSheet(doc, input, i, getSheetName(i), newPage(), totalPages);
   }
 
   // Sheet 19-28: Type1 Abutment
-  doc.addPage();
-  addAbutmentCover(doc, input, 'TYPE1', pageNumber, totalPages);
-  pageNumber++;
-  
+  sectionPages['19-28'] = newPage();
+  addAbutmentCover(doc, input, 'TYPE1', sectionPages['19-28']!, totalPages);
+
   for (let i = 19; i <= 28; i++) {
-    doc.addPage();
+    const pn = newPage();
     if (i === 21) {
-      addAbutmentStabilityDetailedSheet(doc, input, 'TYPE1', pageNumber, totalPages);
+      addAbutmentStabilityDetailedSheet(doc, input, 'TYPE1', pn, totalPages);
     } else if (i === 23) {
-      addFootingStressNarrativeSheet(doc, input, 'TYPE1', pageNumber, totalPages);
+      addFootingStressNarrativeSheet(doc, input, 'TYPE1', pn, totalPages);
     } else {
-      addDataSheet(doc, input, i, getSheetName(i), pageNumber, totalPages);
+      addDataSheet(doc, input, i, getSheetName(i), pn, totalPages);
     }
-    pageNumber += 3;
   }
 
   // Sheet 29: TECHNOTE
-  doc.addPage();
-  addTechNoteSheet(doc, input, pageNumber, totalPages);
-  pageNumber += 2;
+  sectionPages['29'] = newPage();
+  addTechNoteSheet(doc, input, sectionPages['29']!, totalPages);
 
   // Sheet 30-41: C1 Abutment
-  doc.addPage();
-  addAbutmentCover(doc, input, 'C1', pageNumber, totalPages);
-  pageNumber++;
-  
+  sectionPages['30-41'] = newPage();
+  addAbutmentCover(doc, input, 'C1', sectionPages['30-41']!, totalPages);
+
   for (let i = 30; i <= 41; i++) {
-    doc.addPage();
+    const pn = newPage();
     if (i === 32) {
-      addAbutmentStabilityDetailedSheet(doc, input, 'C1', pageNumber, totalPages);
+      addAbutmentStabilityDetailedSheet(doc, input, 'C1', pn, totalPages);
     } else if (i === 34) {
-      addFootingStressNarrativeSheet(doc, input, 'C1', pageNumber, totalPages);
+      addFootingStressNarrativeSheet(doc, input, 'C1', pn, totalPages);
     } else {
-      addDataSheet(doc, input, i, getSheetName(i), pageNumber, totalPages);
+      addDataSheet(doc, input, i, getSheetName(i), pn, totalPages);
     }
-    pageNumber += 3;
   }
 
   // Sheet 42-46: Estimation and Reports
+  sectionPages['42-46'] = doc.getNumberOfPages() + 1;
   for (let i = 42; i <= 46; i++) {
-    doc.addPage();
-    if (i === 42) addInsertEstimateSheet(doc, input, pageNumber, totalPages);
-    else if (i === 46) addEstimationSheet(doc, input, pageNumber, totalPages);
-    else addDataSheet(doc, input, i, getSheetName(i), pageNumber, totalPages);
-    pageNumber += 4;
+    const pn = newPage();
+    if (i === 42) addInsertEstimateSheet(doc, input, pn, totalPages);
+    else if (i === 46) addEstimationSheet(doc, input, pn, totalPages);
+    else addDataSheet(doc, input, i, getSheetName(i), pn, totalPages);
   }
 
-  addAnnexureDrawingPage(doc, input, 'D-04 HYDRAULIC PROFILE & SCOUR DIAGRAM', generateScourProfileSvg(input), getHydraulicNarrativeParagraphs(input).slice(0, 2));
-  addAnnexureDrawingPage(doc, input, 'D-05 PIER STABILITY FREE-BODY', generatePierStabilitySvg(input), getSheetNarrativeParagraphs('STABILITY CHECK FOR PIER', input).slice(0, 2));
-  addAnnexureDrawingPage(doc, input, 'D-06 ABUTMENT EARTH-PRESSURE DIAGRAM', generateAbutmentPressureSvg(input), getSheetNarrativeParagraphs('TYPE1-STABILITY CHECK ABUTMENT', input).slice(0, 2));
-  addAnnexureDrawingPage(doc, input, 'D-07 SLAB REINFORCEMENT PLAN', generateSlabReinfPlanSvg(input), getClosingNarrativeParagraphs(input).slice(0, 2));
+  sectionPages['ANNEX'] = doc.getNumberOfPages() + 1;
+  await addAnnexureDrawingPage(doc, 'D-04 HYDRAULIC PROFILE & SCOUR DIAGRAM', generateScourProfileSvg(input), getHydraulicNarrativeParagraphs(input).slice(0, 2), totalPages);
+  await addAnnexureDrawingPage(doc, 'D-05 PIER STABILITY FREE-BODY', generatePierStabilitySvg(input), getSheetNarrativeParagraphs('STABILITY CHECK FOR PIER', input).slice(0, 2), totalPages);
+  await addAnnexureDrawingPage(doc, 'D-06 ABUTMENT EARTH-PRESSURE DIAGRAM', generateAbutmentPressureSvg(input), getSheetNarrativeParagraphs('TYPE1-STABILITY CHECK ABUTMENT', input).slice(0, 2), totalPages);
+  await addAnnexureDrawingPage(doc, 'D-07 SLAB REINFORCEMENT PLAN', generateSlabReinfPlanSvg(input), getClosingNarrativeParagraphs(input).slice(0, 2), totalPages);
 
   /** Workbook-faithful grid excerpts until total length reaches the ~200–250 page band. */
+  const firstAppendixPage = doc.getNumberOfPages() + 1;
   await appendWorkbookPreviewAppendix(
     doc,
     input as ProjectInput,
@@ -197,14 +236,16 @@ async function generateComprehensivePDFInternal(
     APPENDIX_TARGET_MIN_PAGES,
     APPENDIX_TARGET_MAX_PAGES,
   );
+  if (doc.getNumberOfPages() >= firstAppendixPage) sectionPages['APPX'] = firstAppendixPage;
 
   doc.addPage();
   const summaryPageNum = doc.getNumberOfPages();
   const finalTotalPages = summaryPageNum;
+  sectionPages['SUM'] = summaryPageNum;
   addFinalSummary(doc, input, summaryPageNum, finalTotalPages);
 
   const pageCount = doc.getNumberOfPages();
-  return { buffer: Buffer.from(doc.output('arraybuffer')), pageCount };
+  return { buffer: Buffer.from(doc.output('arraybuffer')), pageCount, sectionPages };
 }
 
 function truncateCell(s: string, max: number): string {
@@ -220,7 +261,7 @@ function truncateCell(s: string, max: number): string {
 async function appendWorkbookPreviewAppendix(
   doc: jsPDF,
   input: ProjectInput,
-  totalPagesStub: number,
+  totalPages: number,
   targetMinPages: number,
   targetMaxPages: number,
 ): Promise<void> {
@@ -264,27 +305,45 @@ async function appendWorkbookPreviewAppendix(
       doc,
       `WORKBOOK GRID: ${sheet.name} (rows ${r0 + 1}–${rowEnd})${lapNote}`,
       pn,
-      totalPagesStub,
+      totalPages,
     );
 
     const chunk = sheet.rows.slice(r0, rowEnd);
-    const headers = Array.from({ length: MAX_COLS }, (_, c) => ({
+    const cols = Math.max(1, Math.min(MAX_COLS, sheet.colCount));
+    const widths = appendixColumnWidths(chunk, cols);
+    const headers = Array.from({ length: cols }, (_, c) => ({
       header: `C${c + 1}`,
-      width: CONTENT_WIDTH / MAX_COLS,
+      width: widths[c]!,
       align: 'left' as const,
     }));
     const dataRows = chunk.map((line) => ({
-      cells: Array.from({ length: MAX_COLS }, (_, c) => ({
+      cells: Array.from({ length: cols }, (_, c) => ({
         value: truncateCell(String(line[c] ?? ''), 32),
       })),
     }));
-    drawTable(doc, 32, headers, dataRows);
+    drawTable(doc, 32, headers, dataRows, { wrap: false });
   }
 }
 
-function estimateTotalPages(_input: EnhancedProjectInput): number {
-  /** Cover / TOC stub “of N” before render completes; final summary uses the true last page index. */
-  return APPENDIX_TARGET_MAX_PAGES + 2;
+/**
+ * Equal 20 mm columns elide almost every label in a sheet whose real width is three columns.
+ * Share the printable width by the longest value in each column, with a floor that still fits
+ * the "C10" style header.
+ */
+function appendixColumnWidths(chunk: string[][], cols: number): number[] {
+  const weights = Array.from({ length: cols }, (_, c) => {
+    let longest = 3;
+    for (const line of chunk) longest = Math.max(longest, (line[c] ?? '').length);
+    return Math.min(longest, 34);
+  });
+  const total = weights.reduce((a, b) => a + b, 0);
+  const minW = Math.min(12, CONTENT_WIDTH / cols / 2);
+  const widths = weights.map((w) => Math.max((CONTENT_WIDTH * w) / total, minW));
+  const overflow = widths.reduce((a, b) => a + b, 0) - CONTENT_WIDTH;
+  if (overflow <= 0) return widths;
+  const slack = widths.map((w) => Math.max(w - minW, 0));
+  const slackTotal = slack.reduce((a, b) => a + b, 0) || 1;
+  return widths.map((w, i) => w - (overflow * slack[i]!) / slackTotal);
 }
 
 function addCoverPage(doc: jsPDF, input: EnhancedProjectInput, totalPages: number): void {
@@ -304,21 +363,18 @@ function addCoverPage(doc: jsPDF, input: EnhancedProjectInput, totalPages: numbe
   
   doc.setFontSize(14);
   doc.setFont('helvetica', 'normal');
-  doc.text('Complete Calculation Sheets (46 Sheets)', PW / 2, 55, { align: 'center' });
+  doc.text(`Complete Calculation Sheets (${EXPECTED_SHEET_COUNT}-Sheet Workbook)`, PW / 2, 55, { align: 'center' });
   doc.text('IRC:6-2016 | IRC:112-2015 | IRC:78-1983', PW / 2, 65, { align: 'center' });
 
   // Project info box
   const boxY = 100;
-  doc.setDrawColor(...COLORS.border);
-  doc.setLineWidth(0.5);
-  doc.roundedRect(MARGIN, boxY, CONTENT_WIDTH, 80, 3, 3, 'S');
+  const labelX = MARGIN + 5;
+  const valueX = MARGIN + 50;
+  const lineH = 5.5;
+  const rowGap = 5;
 
-  doc.setFontSize(11);
-  doc.setTextColor(...COLORS.text);
-  doc.setFont('helvetica', 'bold');
-  doc.text('PROJECT DETAILS', MARGIN + 5, boxY + 15);
-
-  const details = [
+  doc.setFontSize(10);
+  const details: [string, string][] = [
     ['Project Name:', input.projectName],
     ['Bridge Type:', bridgeTypeLabel],
     ['Location:', input.location || 'Not specified'],
@@ -329,15 +385,29 @@ function addCoverPage(doc: jsPDF, input: EnhancedProjectInput, totalPages: numbe
     ['Report Pages:', `${totalPages} pages`],
     ['Generated:', new Date().toLocaleDateString('en-IN')]
   ];
+  const rows = details.map(([label, value]) => ({
+    label,
+    lines: doc.splitTextToSize(value, CONTENT_WIDTH - (valueX - MARGIN) - 5) as string[],
+  }));
+
+  const cardHeight = 28 + rows.reduce((h, row) => h + row.lines.length * lineH + rowGap, 0);
+  doc.setDrawColor(...COLORS.border);
+  doc.setLineWidth(0.5);
+  doc.roundedRect(MARGIN, boxY, CONTENT_WIDTH, cardHeight, 3, 3, 'S');
+
+  doc.setFontSize(11);
+  doc.setTextColor(...COLORS.text);
+  doc.setFont('helvetica', 'bold');
+  doc.text('PROJECT DETAILS', labelX, boxY + 15);
 
   doc.setFontSize(10);
-  let y = boxY + 30;
-  details.forEach(([label, value]) => {
+  let y = boxY + 28;
+  rows.forEach((row) => {
     doc.setFont('helvetica', 'bold');
-    doc.text(label, MARGIN + 5, y);
+    doc.text(row.label, labelX, y);
     doc.setFont('helvetica', 'normal');
-    doc.text(String(value), MARGIN + 50, y);
-    y += 10;
+    doc.text(row.lines, valueX, y);
+    y += row.lines.length * lineH + rowGap;
   });
 
   // Footer
@@ -375,16 +445,40 @@ function addForeword(doc: jsPDF, input: EnhancedProjectInput, totalPages: number
   ]);
 }
 
-function addAnnexureDrawingPage(
+/**
+ * Annexure pages carry the drawing, not its markup. `sharp` is a devDependency, so an install
+ * without dev dependencies loses the rasteriser; the page then says so instead of silently
+ * dropping the diagram.
+ */
+async function rasteriseAnnexureSvg(svg: string): Promise<Uint8Array | null> {
+  try {
+    const { default: sharp } = await import('sharp');
+    const png = await sharp(Buffer.from(svg)).png().toBuffer();
+    return new Uint8Array(png);
+  } catch {
+    return null;
+  }
+}
+
+/** Intrinsic size of a generated annexure SVG, from its root width/height or its viewBox. */
+function svgPixelSize(svg: string): { width: number; height: number } {
+  const root = svg.slice(0, svg.indexOf('>') + 1);
+  const box = /viewBox="([\d.\-]+) ([\d.\-]+) ([\d.\-]+) ([\d.\-]+)"/.exec(root);
+  const width = Number(/width="([\d.]+)"/.exec(root)?.[1]) || Number(box?.[3]) || 800;
+  const height = Number(/height="([\d.]+)"/.exec(root)?.[1]) || Number(box?.[4]) || 600;
+  return { width, height };
+}
+
+async function addAnnexureDrawingPage(
   doc: jsPDF,
-  input: EnhancedProjectInput,
   title: string,
   svg: string,
   narrative: string[],
-): void {
+  totalPages: number,
+): Promise<void> {
   doc.addPage();
   const pageNum = doc.getNumberOfPages();
-  addSheetHeader(doc, title, pageNum, estimateTotalPages(input));
+  addSheetHeader(doc, title, pageNum, totalPages);
   doc.setFontSize(9);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(...COLORS.text);
@@ -394,31 +488,23 @@ function addAnnexureDrawingPage(
     doc.text(lines, MARGIN, y);
     y += lines.length * 4 + 3;
   }
-  const svgLines = svgToPdfText(svg, 160);
-  doc.setFont('courier', 'normal');
-  doc.setFontSize(5.5);
-  doc.setTextColor(110, 120, 130);
-  doc.text(svgLines, MARGIN, y + 2);
-}
 
-function svgToPdfText(svg: string, maxLineLength: number): string[] {
-  const compact = svg
-    .replace(/\s+/g, ' ')
-    .replace(/></g, '>\n<')
-    .split('\n')
-    .map((line) => line.trim())
-    .filter(Boolean);
-  const lines: string[] = [];
-  for (const line of compact) {
-    if (line.length <= maxLineLength) {
-      lines.push(line);
-      continue;
-    }
-    for (let i = 0; i < line.length; i += maxLineLength) {
-      lines.push(line.slice(i, i + maxLineLength));
-    }
+  const png = await rasteriseAnnexureSvg(svg);
+  if (!png) {
+    doc.setDrawColor(...COLORS.border);
+    doc.setLineWidth(0.3);
+    doc.rect(MARGIN, y + 2, CONTENT_WIDTH, PAGE_HEIGHT - MARGIN - y - 2, 'S');
+    doc.text(
+      'This build has no SVG rasteriser installed. The drawing ships as the vector annexure exported with the workbook.',
+      MARGIN + 4,
+      y + 10,
+    );
+    return;
   }
-  return lines.slice(0, 80);
+
+  const { width, height } = svgPixelSize(svg);
+  const drawnWidth = Math.min(CONTENT_WIDTH, ((PAGE_HEIGHT - MARGIN - y - 4) * width) / height);
+  doc.addImage(png, 'PNG', MARGIN, y + 2, drawnWidth, (drawnWidth * height) / width);
 }
 
 function addTableOfContents(
@@ -426,27 +512,32 @@ function addTableOfContents(
   input: EnhancedProjectInput,
   inputWorkbookPdfPages: number,
   totalPages: number,
+  sectionPages: SectionPages,
 ): void {
   const tocPageNum = doc.getNumberOfPages();
   addSheetHeader(doc, 'TABLE OF CONTENTS', tocPageNum, totalPages);
 
   const shift = inputWorkbookPdfPages;
-  const sections = [
+  const sections: { id: TocSectionId; label: string; name: string; placeholder: number }[] = [
     {
-      sheet: 'IN1-3',
+      id: 'IN1-3',
+      label: 'Sheets IN1-3',
       name: 'INPUT workbook tabs (Hydraulics, Pier, Abutment — A–H sample layout)',
-      page: 3,
+      placeholder: 3,
     },
-    { sheet: '01', name: 'INDEX', page: 4 + shift },
-    { sheet: '02', name: 'INSERT- HYDRAULICS', page: 6 + shift },
-    { sheet: '03', name: 'afflux calculation', page: 8 + shift },
-    { sheet: '04', name: 'HYDRAULICS', page: 12 + shift },
-    { sheet: '05-08', name: 'DECK ANCHORAGE, CROSS SECTION, BED SLOPE, SBC', page: 16 + shift },
-    { sheet: '09-18', name: 'PIER DESIGN & STABILITY (10 sheets)', page: 24 + shift },
-    { sheet: '19-28', name: 'TYPE1 ABUTMENT (10 sheets)', page: 54 + shift },
-    { sheet: '29', name: 'TECHNOTE', page: 84 + shift },
-    { sheet: '30-41', name: 'C1 CANTILEVER ABUTMENT (12 sheets)', page: 86 + shift },
-    { sheet: '42-46', name: 'ESTIMATION & REPORTS (5 sheets)', page: 122 + shift },
+    { id: '01', label: 'Sheet 01', name: 'INDEX', placeholder: 4 + shift },
+    { id: '02', label: 'Sheet 02', name: 'INSERT- HYDRAULICS', placeholder: 6 + shift },
+    { id: '03', label: 'Sheet 03', name: 'afflux calculation', placeholder: 8 + shift },
+    { id: '04', label: 'Sheet 04', name: 'HYDRAULICS', placeholder: 12 + shift },
+    { id: '05-08', label: 'Sheets 05-08', name: 'DECK ANCHORAGE, CROSS SECTION, BED SLOPE, SBC', placeholder: 16 + shift },
+    { id: '09-18', label: 'Sheets 09-18', name: 'PIER DESIGN & STABILITY (10 sheets)', placeholder: 24 + shift },
+    { id: '19-28', label: 'Sheets 19-28', name: 'TYPE1 ABUTMENT (10 sheets)', placeholder: 54 + shift },
+    { id: '29', label: 'Sheet 29', name: 'TECHNOTE', placeholder: 84 + shift },
+    { id: '30-41', label: 'Sheets 30-41', name: 'C1 CANTILEVER ABUTMENT (12 sheets)', placeholder: 86 + shift },
+    { id: '42-46', label: 'Sheets 42-46', name: 'ESTIMATION & REPORTS (5 sheets)', placeholder: 122 + shift },
+    { id: 'ANNEX', label: 'Annexures', name: 'D-04 to D-07 hydraulic profile, pier FBD, abutment pressure, slab reinforcement', placeholder: 130 + shift },
+    { id: 'APPX', label: 'Appendix', name: `Workbook grids — all ${EXPECTED_SHEET_COUNT} tabs, cell by cell`, placeholder: 136 + shift },
+    { id: 'SUM', label: 'Summary', name: 'DESIGN SUMMARY — governing values and status', placeholder: 250 },
   ];
 
   let y = 60;
@@ -465,16 +556,27 @@ function addTableOfContents(
     doc.setFontSize(10);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(...COLORS.header);
-    doc.text(`Sheet ${sec.sheet}`, MARGIN + 5, y);
+    doc.text(sec.label, MARGIN + 5, y);
 
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(...COLORS.text);
-    doc.text(sec.name, MARGIN + 40, y);
+    doc.text(doc.splitTextToSize(sec.name, 105) as string[], MARGIN + 40, y);
 
-    doc.text(`Page ${sec.page}`, PAGE_WIDTH - MARGIN - 10, y, { align: 'right' });
+    doc.text(`Page ${sectionPages[sec.id] ?? sec.placeholder}`, PAGE_WIDTH - MARGIN - 10, y, { align: 'right' });
 
     y += 12;
   });
+}
+
+/** Adds the bottom-right page stamp to a page drawn by a module that has no numbering of its own. */
+function stampFooterPageNumber(doc: jsPDF, pageNum: number, totalPages: number): void {
+  const lastPage = doc.getNumberOfPages();
+  doc.setPage(pageNum);
+  doc.setFontSize(8);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(150, 150, 150);
+  doc.text(`Page ${pageNum} of ${totalPages}`, PAGE_WIDTH - MARGIN, PAGE_HEIGHT - 10, { align: 'right' });
+  doc.setPage(lastPage);
 }
 
 function addSheetHeader(doc: jsPDF, title: string, pageNum: number, totalPages: number): void {
@@ -520,7 +622,7 @@ function addIndexSheet(doc: jsPDF, input: EnhancedProjectInput, pageNum: number,
     ['Design basis', input.bridgeType === 'high-level' ? 'IRC:6-2016 (incl. Wind), IRC:112-2015, IRC:78-1983, IRC:5-2015 (Freeboard)' : 'IRC:6-2016, IRC:112-2015, IRC:78-1983, IRC SP-13'],
     ['Hydraulic control', input.bridgeType === 'high-level' ? `HFL ${n(input.hfl)} m, Soffit ${n(input.hydraulics?.soffitLevel)} m, Clr above HFL ${n(input.hydraulics?.freeboardAboveHfl)} m, Req min above HFL ${n(input.hydraulics?.requiredFreeboardAboveHfl, 2)} m, Clr above DWL ${n(input.hydraulics?.freeboard)} m` : `HFL ${n(input.hfl)} m MSL, bed level ${n(input.bedLevel)} m MSL`],
     ['Material declaration', `Concrete ${input.concreteGrade || 'M25'}, Steel ${input.steelGrade || 'Fe415'}`],
-    ['Workbook scope', '46 engineering sheets + summary pages with narrative derivations'],
+    ['Workbook scope', `${EXPECTED_SHEET_COUNT} engineering sheets + summary pages with narrative derivations`],
     ['Quality declaration', 'All values from unified design engine + formula-linked workbook output'],
   ];
 
@@ -570,9 +672,9 @@ function addInsertHydraulicsSheet(doc: jsPDF, input: EnhancedProjectInput, pageN
     ['Flow regime', h?.flowType ?? '—', '—', 'Subcritical / supercritical'],
     ...(isHigh
       ? [
-          ['Deck Soffit Level', n(h?.soffitLevel, 3), 'm MSL', 'Explicit or RTL − deck thickness'],
-          ['Clearance above HFL', n(h?.freeboardAboveHfl, 3), 'm', 'Soffit − HFL'],
-          ['Clearance above DWL', n(h?.freeboard, 3), 'm', 'Soffit − DWL'],
+          ['Deck Soffit Level', n(h?.soffitLevel, 3), 'm MSL', 'Explicit or RTL - deck thickness'],
+          ['Clearance above HFL', n(h?.freeboardAboveHfl, 3), 'm', 'Soffit - HFL'],
+          ['Clearance above DWL', n(h?.freeboard, 3), 'm', 'Soffit - DWL'],
           ['IRC min. freeboard above HFL (from Q)', n(h?.ircMinimumFreeboardAboveHfl, 2), 'm', 'Discharge tier — IRC:5 practice'],
           ['Project min. freeboard above HFL', n(input.freeboardAboveHfl, 2), 'm', 'Input criterion'],
           ['Governing required freeboard above HFL', n(reqFb, 2), 'm', 'max(IRC Q-based, project)'],
@@ -580,7 +682,7 @@ function addInsertHydraulicsSheet(doc: jsPDF, input: EnhancedProjectInput, pageN
             'Deck clearance check (engine)',
             h?.isFreeboardSafe === true ? 'OK' : h?.isFreeboardSafe === false ? 'CHECK' : '—',
             '—',
-            'Soffit ≥ HFL + required freeboard',
+            'Soffit >= HFL + required freeboard',
           ],
         ]
       : []),
@@ -661,7 +763,11 @@ function addHydraulicsSheet(doc: jsPDF, input: EnhancedProjectInput, pageNum: nu
     const length = next ? next.chainage - point.chainage : 0;
     const avgDepth = next ? (depth + Math.max(0, hfl - next.gl)) / 2 : depth;
     const area = avgDepth * length;
-    
+    // The sloped boundary length the engine sums (design-engine.ts wettedPerimeter), not the
+    // horizontal chainage gap — printing `length` here made the column disagree with its own SUM row.
+    const glDiff = next ? next.gl - point.gl : 0;
+    const wetted = Math.sqrt(length * length + glDiff * glDiff);
+
     return {
       cells: [
         { value: point.chainage.toFixed(2) },
@@ -670,16 +776,18 @@ function addHydraulicsSheet(doc: jsPDF, input: EnhancedProjectInput, pageNum: nu
         { value: length > 0 ? length.toFixed(2) : '-' },
         { value: length > 0 ? avgDepth.toFixed(3) : '-' },
         { value: length > 0 ? area.toFixed(3) : '-' },
-        { value: length > 0 ? length.toFixed(2) : '-' }
+        { value: length > 0 ? wetted.toFixed(2) : '-' }
       ]
     };
   }) || [];
 
-  drawTable(doc, 55, headers, rows);
+  const afterTableY = drawTable(doc, 55, headers, rows, {
+    continuation: { label: 'SHEET 04: HYDRAULICS — CROSS-SECTION POINTS (CONT.)', totalPages },
+  });
 
   // Summary section
   const h = input.hydraulics;
-  const summaryY = 55 + rows.length * 7 + 20;
+  const summaryY = afterTableY + 20;
   
   doc.setFontSize(10);
   doc.setFont('helvetica', 'bold');
@@ -742,6 +850,12 @@ function n(value: number | undefined, digits = 2): string {
   return value.toFixed(digits);
 }
 
+/** Rupee amounts print in Indian digit grouping (1,65,80,143.57), never 16580143.57 or 1.658e+7. */
+function money(value: number | undefined): string {
+  if (value === undefined || Number.isNaN(value)) return '-';
+  return `Rs ${value.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
+
 function fosVerdict(value: number, min: number): string {
   if (value >= min) return 'OK';
   if (value >= min * 0.9) return 'CHECK';
@@ -770,7 +884,10 @@ function addStabilityPierSheets(doc: jsPDF, input: EnhancedProjectInput, startPa
   const buoyancy = p?.loads?.buoyancy ?? 0;
   const baseArea = input.pierBaseWidth * input.pierBaseLength;
   const leverArm = input.pierBaseLength / 2;
-  const frictionCoeff = 0.5;
+  // μ comes from the engine's coefficient register — 0.5 typed here was a third copy of a value
+  // the engineer is told "the engine assumes", so re-calibrating μ left the PDF computing with the
+  // old number.
+  const frictionCoeff = DESIGN_CONSTANTS.BASE_FRICTION_COEFFICIENT;
 
   // Page 1 after cover: detailed design data and force build-up
   doc.addPage();
@@ -810,7 +927,7 @@ function addStabilityPierSheets(doc: jsPDF, input: EnhancedProjectInput, startPa
     { cells: [{ value: 'Buoyancy' }, { value: n(buoyancy) }, { value: 'kN' }, { value: 'Displaced water weight' }] },
     { cells: [{ value: 'Base area' }, { value: n(baseArea, 3) }, { value: 'm²' }, { value: 'Bw × Bl' }] },
     { cells: [{ value: 'Restoring lever arm' }, { value: n(leverArm, 3) }, { value: 'm' }, { value: 'Bl / 2' }] },
-    { cells: [{ value: 'Friction coefficient' }, { value: n(frictionCoeff, 2) }, { value: '-' }, { value: 'Assumed in engine for sliding check' }] },
+    { cells: [{ value: 'Friction coefficient' }, { value: n(frictionCoeff, 2) }, { value: '-' }, { value: 'IRC:6-2016 Annex B Table B.1 — the engine’s DESIGN_CONSTANTS value' }] },
   ]);
 
   // Page 2: overview summary table
@@ -833,20 +950,22 @@ function addStabilityPierSheets(doc: jsPDF, input: EnhancedProjectInput, startPa
       { value: lc.description },
       { value: lc.verticalForce.toFixed(1), bold: true },
       { value: lc.horizontalForce.toFixed(1) },
-      { value: lc.slidingFOS.toFixed(2), bold: lc.slidingFOS >= 1.5 },
-      { value: lc.overturningFOS.toFixed(2), bold: lc.overturningFOS >= 1.8 },
-      { value: lc.bearingFOS.toFixed(2), bold: lc.bearingFOS >= 2.5 },
+      { value: lc.slidingFOS.toFixed(2), bold: lc.slidingFOS >= STABILITY_ACCEPTANCE.slidingFosMin },
+      { value: lc.overturningFOS.toFixed(2), bold: lc.overturningFOS >= STABILITY_ACCEPTANCE.overturningFosMin },
+      { value: lc.bearingFOS.toFixed(2), bold: lc.bearingFOS >= STABILITY_ACCEPTANCE.bearingFosMin },
       { value: lc.status, bold: true, bgColor: lc.status === 'SAFE' ? [39, 174, 96] as [number, number, number] : [231, 76, 60] as [number, number, number] }
     ]
   }));
 
-  drawTable(doc, 45, headers, rows);
+  const afterCasesY = drawTable(doc, 45, headers, rows, {
+    continuation: { label: 'SHEET 09: STABILITY CHECK - LOAD CASES (CONT.)', totalPages },
+  });
 
   // FOS Criteria note
   doc.setFontSize(9);
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(...COLORS.formula);
-  doc.text('FOS Criteria: Sliding ≥ 1.5 | Overturning ≥ 1.8 | Bearing ≥ 2.5', MARGIN, 45 + rows.length * 8 + 20);
+  doc.text(`FOS Criteria: Sliding >= ${STABILITY_ACCEPTANCE.slidingFosMin} | Overturning >= ${STABILITY_ACCEPTANCE.overturningFosMin} | Bearing >= ${STABILITY_ACCEPTANCE.bearingFosMin} (pressure <= SBC)`, MARGIN, afterCasesY + 8);
 
   // Subsequent pages: one detailed narrative derivation per case
   loadCases.forEach((lc) => {
@@ -854,11 +973,11 @@ function addStabilityPierSheets(doc: jsPDF, input: EnhancedProjectInput, startPa
     addSheetHeader(doc, `SHEET 09: CASE ${lc.caseNumber} DETAILED CHECK`, startPage + pagesAdded, totalPages);
     pagesAdded++;
 
-    const restoringMoment = lc.verticalForce * leverArm;
-    const slidingFos = lc.horizontalForce > 0 ? (frictionCoeff * lc.verticalForce) / lc.horizontalForce : 0;
-    const overturningFos = lc.moment > 0 ? restoringMoment / lc.moment : 0;
-    const basePressure = baseArea > 0 ? lc.verticalForce / baseArea : 0;
-    const bearingFos = basePressure > 0 ? input.sbc / basePressure : 0;
+    // IRC:78-2000 §706 — the engine credits passive earth resistance in the sliding FOS, so this
+    // page must show that term. Recomputing (μ·V)/H here printed a lower Sliding FOS than the
+    // summary table two pages earlier of the same PDF, under the same case name.
+    const passive = lc.passiveResistance ?? 0;
+    const basePressure = baseArea > 0 ? Math.abs(lc.verticalForce) / baseArea : 0;
 
     doc.setFontSize(10);
     doc.setFont('helvetica', 'bold');
@@ -869,10 +988,11 @@ function addStabilityPierSheets(doc: jsPDF, input: EnhancedProjectInput, startPa
     doc.setTextColor(...COLORS.text);
     doc.text('Load factors -> force resolution -> stability safety factors -> engineering verdict.', MARGIN, 48);
 
-    const slidingVerdict = fosVerdict(slidingFos, 1.5);
-    const overturningVerdict = fosVerdict(overturningFos, 1.8);
-    const basePressureVerdict = basePressure <= input.sbc ? 'OK' : 'CHECK';
-    const bearingVerdict = fosVerdict(bearingFos, 2.5);
+    const slidingVerdict = fosVerdict(lc.slidingFOS, STABILITY_ACCEPTANCE.slidingFosMin);
+    const overturningVerdict = fosVerdict(lc.overturningFOS, STABILITY_ACCEPTANCE.overturningFosMin);
+    // q <= SBC and FOS_b >= 1.0 are the same test, so one verdict shades both rows. The
+    // hand-written `q <= sbc ? 'OK' : 'CHECK'` used to print an over-SBC bearing as amber.
+    const bearingVerdict = fosVerdict(lc.bearingFOS, STABILITY_ACCEPTANCE.bearingFosMin);
 
     drawTable(doc, 54, [
       { header: 'Check item', width: 56, align: 'left' as const },
@@ -884,10 +1004,11 @@ function addStabilityPierSheets(doc: jsPDF, input: EnhancedProjectInput, startPa
       { cells: [{ value: 'Vertical force V' }, { value: 'V = DLf*W_dead + LLf*W_live - Buoyf*W_buoy' }, { value: `${n(lc.verticalForce)} kN`, bold: true }, { value: lc.verticalForce > 0 ? 'OK' : 'CHECK' }] },
       { cells: [{ value: 'Horizontal force H' }, { value: 'H = hydrostatic + drag' }, { value: `${n(lc.horizontalForce)} kN`, bold: true }, { value: 'Driving' }] },
       { cells: [{ value: 'Overturning moment M_o' }, { value: 'M_o = H × (water depth/3)' }, { value: `${n(lc.moment)} kN-m`, bold: true }, { value: 'Driving' }] },
-      { cells: [{ value: 'Sliding FOS' }, { value: 'FOS_s = (μ × V) / H' }, { value: n(slidingFos, 3), bold: true }, { value: slidingVerdict, bgColor: verdictFill(slidingVerdict) }] },
-      { cells: [{ value: 'Overturning FOS' }, { value: 'FOS_o = (V × (Bl/2)) / M_o' }, { value: n(overturningFos, 3), bold: true }, { value: overturningVerdict, bgColor: verdictFill(overturningVerdict) }] },
-      { cells: [{ value: 'Base pressure q' }, { value: 'q = V / A_base' }, { value: `${n(basePressure, 3)} kN/m²`, bold: true }, { value: basePressureVerdict, bgColor: verdictFill(basePressureVerdict) }] },
-      { cells: [{ value: 'Bearing FOS' }, { value: 'FOS_b = SBC / q' }, { value: n(bearingFos, 3), bold: true }, { value: bearingVerdict, bgColor: verdictFill(bearingVerdict) }] },
+      { cells: [{ value: 'Passive resistance Pp' }, { value: 'Pp = min(½·Kp·gamma·D²·Bl, cap·mu·V) — IRC:78-2000 §706' }, { value: `${n(passive)} kN`, bold: true }, { value: passive > 0 ? 'Resisting' : 'Nil' }] },
+      { cells: [{ value: 'Sliding FOS' }, { value: 'FOS_s = (mu × V + Pp) / H' }, { value: n(lc.slidingFOS, 3), bold: true }, { value: slidingVerdict, bgColor: verdictFill(slidingVerdict) }] },
+      { cells: [{ value: 'Overturning FOS' }, { value: 'FOS_o = (V × (Bl/2)) / M_o' }, { value: n(lc.overturningFOS, 3), bold: true }, { value: overturningVerdict, bgColor: verdictFill(overturningVerdict) }] },
+      { cells: [{ value: 'Base pressure q' }, { value: 'q = V / A_base' }, { value: `${n(basePressure, 3)} kN/m²`, bold: true }, { value: bearingVerdict, bgColor: verdictFill(bearingVerdict) }] },
+      { cells: [{ value: 'Bearing FOS' }, { value: 'FOS_b = SBC / q' }, { value: n(lc.bearingFOS, 3), bold: true }, { value: bearingVerdict, bgColor: verdictFill(bearingVerdict) }] },
       { cells: [{ value: 'Case conclusion' }, { value: 'Minimum FOS against criteria governs' }, { value: lc.status, bold: true }, { value: lc.status === 'SAFE' ? 'Accept' : 'Review', bgColor: verdictFill(lc.status === 'SAFE' ? 'OK' : 'UNSAFE') }] },
     ]);
   });
@@ -907,6 +1028,13 @@ function addAbutmentCover(doc: jsPDF, input: EnhancedProjectInput, type: 'TYPE1'
   doc.setFontSize(11);
   doc.setTextColor(...COLORS.text);
   doc.text('STABILITY CHECK AND DESIGN', PAGE_WIDTH / 2, 100, { align: 'center' });
+
+  if (type === 'C1') {
+    doc.setFontSize(9);
+    doc.setTextColor(...COLORS.tableHeader);
+    doc.text('Stability figures on this cover mirror the Type-1 abutment model: the engine calculates one', PAGE_WIDTH / 2, 122, { align: 'center' });
+    doc.text('abutment stability case set and labels it twice (august-due §Z). Not an independent second check.', PAGE_WIDTH / 2, 128, { align: 'center' });
+  }
 }
 
 function addAbutmentStabilityDetailedSheet(
@@ -945,12 +1073,23 @@ function addAbutmentStabilityDetailedSheet(
     { cells: [{ value: 'Resultant location' }, { value: n(ep?.location, 3) }, { value: 'm' }, { value: 'Typically H/3 from base' }] },
   ];
 
-  drawTable(doc, 54, [
+  if (type === 'C1') {
+    basisRows.push({
+      cells: [
+        { value: 'Model basis' },
+        { value: 'Shared' },
+        { value: '—' },
+        { value: 'C1 mirrors the Type-1 case set (august-due §Z)' },
+      ],
+    });
+  }
+
+  const afterBasisY = drawTable(doc, 54, [
     { header: 'Design item', width: 60, align: 'left' as const },
     { header: 'Value', width: 38, align: 'right' as const },
     { header: 'Unit', width: 24, align: 'left' as const },
     { header: 'Narrative basis', width: 63, align: 'left' as const },
-  ], basisRows);
+  ], basisRows, { continuation: { label: `${title} — DETAILED NARRATIVE (CONT.)`, totalPages } });
 
   const caseRows = lc.map((c) => ({
     cells: [
@@ -963,7 +1102,7 @@ function addAbutmentStabilityDetailedSheet(
     ],
   }));
 
-  drawTable(doc, 122, [
+  drawTable(doc, afterBasisY + 8, [
     { header: 'Load case', width: 56, align: 'left' as const },
     { header: 'V (kN)', width: 24, align: 'right' as const },
     { header: 'H (kN)', width: 24, align: 'right' as const },
@@ -988,9 +1127,11 @@ function addFootingStressNarrativeSheet(
   const lc = ab?.loadCases ?? [];
   const critical = lc.length ? lc.reduce((a, b) => (a.bearingFOS <= b.bearingFOS ? a : b)) : undefined;
   const area = (g?.baseWidth ?? 0) * (g?.baseLength ?? 0);
-  const qAvg = critical && area > 0 ? critical.verticalForce / area : 0;
-  const qMax = qAvg * 1.15;
-  const qMin = Math.max(0, qAvg * 0.85);
+  const qAvg = critical && area > 0 ? Math.abs(critical.verticalForce) / area : 0;
+  // The abutment engine returns one bearing test — q = V/A, bearingFOS = SBC/q (design-engine.ts).
+  // This page used to print an "indicative" q_max = 1.15·q / q_min = 0.85·q that nothing computes
+  // and to key ACCEPT/REVIEW off it, so the report's verdict came from a number the engine never made.
+  const bearingVerdict = critical ? fosVerdict(critical.bearingFOS, STABILITY_ACCEPTANCE.bearingFosMin) : 'REVIEW';
 
   doc.setFontSize(10);
   doc.setFont('helvetica', 'bold');
@@ -1000,7 +1141,8 @@ function addFootingStressNarrativeSheet(
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(...COLORS.text);
   doc.text(
-    'Narrative: identify governing case -> compute average pressure -> estimate stress spread -> compare with SBC.',
+    'Narrative: identify governing case -> compute average pressure -> compare with SBC. The eccentric ' +
+      'max/min spread is not modelled for abutments; see the last row.',
     MARGIN,
     48
   );
@@ -1013,11 +1155,11 @@ function addFootingStressNarrativeSheet(
   ], [
     { cells: [{ value: 'Critical load case' }, { value: critical ? `${critical.caseNumber}. ${critical.description}` : '-' }, { value: '-' }, { value: 'Min bearing FOS' }] },
     { cells: [{ value: 'Base area A' }, { value: 'A = B × L' }, { value: `${n(area, 3)} m²`, bold: true }, { value: 'Footing plan area' }] },
-    { cells: [{ value: 'Average base pressure q_avg' }, { value: 'q = V / A' }, { value: `${n(qAvg, 3)} kN/m²`, bold: true }, { value: 'From governing V' }] },
-    { cells: [{ value: 'Indicative q_max' }, { value: 'q_max = 1.15 × q_avg' }, { value: `${n(qMax, 3)} kN/m²`, bold: true }, { value: qMax <= input.sbc ? 'OK' : 'CHECK' }] },
-    { cells: [{ value: 'Indicative q_min' }, { value: 'q_min = 0.85 × q_avg' }, { value: `${n(qMin, 3)} kN/m²`, bold: true }, { value: qMin >= 0 ? 'OK' : 'CHECK' }] },
+    { cells: [{ value: 'Average base pressure q_avg' }, { value: 'q = V / A' }, { value: `${n(qAvg, 3)} kN/m²`, bold: true }, { value: 'Engine bearing test input' }] },
     { cells: [{ value: 'Allowable SBC' }, { value: 'Input geotechnical limit' }, { value: `${n(input.sbc, 3)} kN/m²`, bold: true }, { value: 'Reference limit' }] },
-    { cells: [{ value: 'Final bearing narrative' }, { value: 'Compare q_max/q_min against SBC and uplift criterion' }, { value: qMax <= input.sbc && qMin >= 0 ? 'ACCEPT' : 'REVIEW', bold: true }, { value: qMax <= input.sbc && qMin >= 0 ? 'Safe' : 'Needs revision' }] },
+    { cells: [{ value: 'Bearing FOS' }, { value: 'SBC / q_avg' }, { value: critical ? n(critical.bearingFOS, 3) : '-', bold: true }, { value: bearingVerdict }] },
+    { cells: [{ value: 'Eccentric q_max / q_min' }, { value: 'V/A ± M/Sx' }, { value: 'not computed', bold: true }, { value: 'Pier only' }] },
+    { cells: [{ value: 'Final bearing narrative' }, { value: 'Compare q_avg against SBC (bearing FOS above)' }, { value: bearingVerdict === 'OK' ? 'ACCEPT' : 'REVIEW', bold: true }, { value: bearingVerdict === 'OK' ? 'Safe' : 'Needs revision' }] },
   ]);
 }
 
@@ -1048,7 +1190,7 @@ function addTechNoteSheet(doc: jsPDF, input: EnhancedProjectInput, pageNum: numb
     { cells: [{ value: 'Codes/standards path' }, { value: 'IRC:6 load basis, IRC:112 concrete/steel design, IRC:78 foundation checks, IRC SP-13 hydraulics reference.' }] },
     { cells: [{ value: 'Hydraulic declaration' }, { value: `Discharge=${n(input.hydraulics?.discharge, 3)} cumecs, velocity=${n(input.hydraulics?.velocity, 3)} m/s, afflux=${n(input.hydraulics?.afflux, 3)} m.` }] },
     { cells: [{ value: 'Stability load-case set' }, { value: lc.length ? lc.map(c => `${c.caseNumber}. ${c.description}`).join(' | ') : 'Service, construction, flood, seismic, and ULS combinations.' }] },
-    { cells: [{ value: 'Minimum acceptance limits' }, { value: `FOS Sliding >= 1.5, Overturning >= 1.8, Bearing >= 2.5${input.bridgeType === 'high-level' ? ', Freeboard >= 1.2m' : ''}.` }] },
+    { cells: [{ value: 'Minimum acceptance limits' }, { value: `FOS Sliding >= ${STABILITY_ACCEPTANCE.slidingFosMin}, Overturning >= ${STABILITY_ACCEPTANCE.overturningFosMin}, Bearing >= ${STABILITY_ACCEPTANCE.bearingFosMin} (pressure <= SBC)${input.bridgeType === 'high-level' ? ', Freeboard >= 1.2m' : ''}.` }] },
     ...(input.bridgeType === 'high-level' ? [
       { cells: [{ value: 'Wind load basis' }, { value: 'High-level bridge exposed height designed for 1.5 kN/m² wind pressure per IRC:6.' }] }
     ] : []),
@@ -1080,20 +1222,20 @@ function addInsertEstimateSheet(doc: jsPDF, input: EnhancedProjectInput, pageNum
       item.description,
       n(item.quantity, 2),
       item.unit,
-      `Rs ${n(item.rate, 2)}`,
-      `Rs ${n(amount, 2)}`,
+      money(item.rate),
+      money(amount),
     ];
   });
   const total = input.estimation?.cost?.total
     ?? boq.reduce((sum: number, item: BOQItem) => sum + ((item.amount ?? item.quantity * item.rate) || 0), 0);
-  summary.push(['Total', '', '', '', `Rs ${n(total, 2)}`]);
+  summary.push(['Total', '', '', '', money(total)]);
 
   drawTable(doc, 55, [
-    { header: 'Item Description', width: 70, align: 'left' },
-    { header: 'Qty', width: 25, align: 'right' },
-    { header: 'Unit', width: 20, align: 'center' },
-    { header: 'Rate', width: 35, align: 'right' },
-    { header: 'Amount', width: 50, align: 'right' }
+    { header: 'Item Description', width: 68, align: 'left' },
+    { header: 'Qty', width: 22, align: 'right' },
+    { header: 'Unit', width: 16, align: 'center' },
+    { header: 'Rate', width: 32, align: 'right' },
+    { header: 'Amount', width: 42, align: 'right' }
   ], summary.map((row, idx) => ({
     cells: row.map((cell, cidx) => ({
       value: cell,
@@ -1123,12 +1265,12 @@ function addEstimationSheet(doc: jsPDF, input: EnhancedProjectInput, pageNum: nu
   
   // BOQ table
   const headers = [
-    { header: 'S.No', width: 15, align: 'center' as const },
-    { header: 'Description of Item', width: 90, align: 'left' as const },
-    { header: 'Qty', width: 25, align: 'right' as const },
-    { header: 'Unit', width: 25, align: 'center' as const },
-    { header: 'Rate', width: 30, align: 'right' as const },
-    { header: 'Amount', width: 35, align: 'right' as const }
+    { header: 'S.No', width: 14, align: 'center' as const },
+    { header: 'Description of Item', width: 72, align: 'left' as const },
+    { header: 'Qty', width: 18, align: 'right' as const },
+    { header: 'Unit', width: 14, align: 'center' as const },
+    { header: 'Rate', width: 28, align: 'right' as const },
+    { header: 'Amount', width: 34, align: 'right' as const }
   ];
 
   const rows = (e?.boq || []).map((item: BOQItem, idx: number) => ({
@@ -1138,15 +1280,17 @@ function addEstimationSheet(doc: jsPDF, input: EnhancedProjectInput, pageNum: nu
       { value: item.description },
       { value: item.quantity.toFixed(2), bold: true },
       { value: item.unit },
-      { value: `Rs ${item.rate.toFixed(2)}` },
-      { value: `Rs ${((item.amount ?? item.quantity * item.rate) || 0).toFixed(2)}`, bold: true }
+      { value: money(item.rate) },
+      { value: money((item.amount ?? item.quantity * item.rate) || 0), bold: true }
     ]
   }));
 
-  drawTable(doc, 55, headers, rows.map(r => ({ cells: r.cells })));
+  const afterTableY = drawTable(doc, 55, headers, rows.map(r => ({ cells: r.cells })), {
+    continuation: { label: 'SHEET 46: ESTIMATION (CONT.)', totalPages },
+  });
 
   // Total
-  const totalY = 55 + rows.length * 7 + 10;
+  const totalY = afterTableY + 8;
   doc.setFillColor(...COLORS.tableAlt);
   doc.rect(MARGIN, totalY - 5, CONTENT_WIDTH, 10, 'F');
   doc.setFont('helvetica', 'bold');
@@ -1155,7 +1299,7 @@ function addEstimationSheet(doc: jsPDF, input: EnhancedProjectInput, pageNum: nu
   doc.text('TOTAL COST', MARGIN + 5, totalY);
   const totalCost = e?.cost?.total
     ?? rows.reduce((sum, r) => sum + r.amount, 0);
-  doc.text(`Rs ${totalCost.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`, PAGE_WIDTH - MARGIN - 5, totalY, { align: 'right' });
+  doc.text(money(totalCost), PAGE_WIDTH - MARGIN - 5, totalY, { align: 'right' });
 }
 
 function addDataSheet(doc: jsPDF, input: EnhancedProjectInput, sheetNum: number, sheetName: string, pageNum: number, totalPages: number): void {
@@ -1200,15 +1344,14 @@ function addDataSheet(doc: jsPDF, input: EnhancedProjectInput, sheetNum: number,
     },
   ];
 
-  drawTable(doc, 54, [
+  // Show some relevant data based on sheet number
+  const nextTableY = drawTable(doc, 54, [
     { header: 'Narrative block', width: 54, align: 'left' as const },
     { header: 'Detail', width: 131, align: 'left' as const },
-  ], narrativeRows);
-  
-  // Show some relevant data based on sheet number
-  let y = 92;
+  ], narrativeRows) + 8;
+
   if (sheetNum >= 10 && sheetNum <= 18) {
-    drawTable(doc, y, [
+    drawTable(doc, nextTableY, [
       { header: 'Pier derivation context', width: 54, align: 'left' as const },
       { header: 'Value / narrative', width: 131, align: 'left' as const },
     ], [
@@ -1217,7 +1360,7 @@ function addDataSheet(doc: jsPDF, input: EnhancedProjectInput, sheetNum: number,
       { cells: [{ value: 'Narrative acceptance' }, { value: 'Case-wise FOS checks and base pressures govern safe design judgment.' }] },
     ]);
   } else if (sheetNum >= 19 && sheetNum <= 28) {
-    drawTable(doc, y, [
+    drawTable(doc, nextTableY, [
       { header: 'TYPE1 derivation context', width: 54, align: 'left' as const },
       { header: 'Value / narrative', width: 131, align: 'left' as const },
     ], [
@@ -1226,7 +1369,7 @@ function addDataSheet(doc: jsPDF, input: EnhancedProjectInput, sheetNum: number,
       { cells: [{ value: 'Narrative acceptance' }, { value: 'Sliding/overturning/bearing checks with load-combination verdicts.' }] },
     ]);
   } else if (sheetNum >= 30 && sheetNum <= 41) {
-    drawTable(doc, y, [
+    drawTable(doc, nextTableY, [
       { header: 'C1 derivation context', width: 54, align: 'left' as const },
       { header: 'Value / narrative', width: 131, align: 'left' as const },
     ], [
@@ -1235,7 +1378,7 @@ function addDataSheet(doc: jsPDF, input: EnhancedProjectInput, sheetNum: number,
       { cells: [{ value: 'Narrative acceptance' }, { value: 'Critical case and governing FOS are stated before final verdict.' }] },
     ]);
   } else if (sheetNum >= 42 && sheetNum <= 46) {
-    drawTable(doc, y, [
+    drawTable(doc, nextTableY, [
       { header: 'Estimation/report context', width: 54, align: 'left' as const },
       { header: 'Value / narrative', width: 131, align: 'left' as const },
     ], [
@@ -1244,7 +1387,7 @@ function addDataSheet(doc: jsPDF, input: EnhancedProjectInput, sheetNum: number,
       { cells: [{ value: 'Narrative acceptance' }, { value: 'Totals are presented with transparent quantity origin and computation path.' }] },
     ]);
   } else {
-    drawTable(doc, y, [
+    drawTable(doc, nextTableY, [
       { header: 'Engineering note', width: 54, align: 'left' as const },
       { header: 'Narrative', width: 131, align: 'left' as const },
     ], [
@@ -1276,7 +1419,14 @@ function addFinalSummary(doc: jsPDF, input: EnhancedProjectInput, pageNum: numbe
   const minOverturning = pierCases.length ? Math.min(...pierCases.map(c => c.overturningFOS)) : undefined;
   const minBearing = pierCases.length ? Math.min(...pierCases.map(c => c.bearingFOS)) : undefined;
 
-  const summary = [
+  const fosRow = (label: string, value: number | undefined, min: number): [string, string] => [
+    label,
+    value === undefined
+      ? 'not computed'
+      : `${value.toFixed(2)} vs min ${min} - ${value >= min ? 'OK' : 'BELOW LIMIT'}`,
+  ];
+
+  const summary: [string, string][] = [
     ['Project Name', input.projectName],
     ['Total Length', `${n(input.totalLength)} m`],
     ['Span Configuration', `${input.numberOfSpans} spans x ${n(input.spanLength)} m`],
@@ -1285,30 +1435,35 @@ function addFinalSummary(doc: jsPDF, input: EnhancedProjectInput, pageNum: numbe
     ['Design Discharge', `${n(input.hydraulics?.discharge, 2)} cumecs`],
     ['Design Velocity', `${n(input.hydraulics?.velocity, 2)} m/s`],
     ...(input.bridgeType === 'high-level' ? [
-      ['Clearance above HFL', `${n(input.hydraulics?.freeboardAboveHfl, 3)} m`],
-      ['Clearance above DWL', `${n(input.hydraulics?.freeboard, 3)} m`],
-      ['Max Wind Force (Pier)', `${n(input.pier?.loads?.windForce, 2)} kN`],
+      ['Clearance above HFL', `${n(input.hydraulics?.freeboardAboveHfl, 3)} m`] as [string, string],
+      ['Clearance above DWL', `${n(input.hydraulics?.freeboard, 3)} m`] as [string, string],
+      ['Max Wind Force (Pier)', `${n(input.pier?.loads?.windForce, 2)} kN`] as [string, string],
     ] : []),
-    ['Pier Sliding FOS (min)', `${n(minSliding, 2)}`],
-    ['Pier Overturning FOS (min)', `${n(minOverturning, 2)}`],
-    ['Pier Bearing FOS (min)', `${n(minBearing, 2)}`],
+    fosRow('Pier Sliding FOS (min)', minSliding, STABILITY_ACCEPTANCE.slidingFosMin),
+    fosRow('Pier Overturning FOS (min)', minOverturning, STABILITY_ACCEPTANCE.overturningFosMin),
+    fosRow('Pier Bearing FOS (min)', minBearing, STABILITY_ACCEPTANCE.bearingFosMin),
     ['Number of Piers', `${input.numberOfPiers}`],
-    ['Total Sheets', '46'],
+    ['Total Sheets', `${EXPECTED_SHEET_COUNT}`],
     ['Total Pages', `${totalPages}`]
   ];
 
-  let y = 90;
-  doc.setFontSize(11);
+  // The block has to stop above the certification rule, so the pitch adapts to the row count.
+  const pitch = Math.min(11, (244 - 88) / summary.length);
+  let y = 88;
+  doc.setFontSize(10);
   summary.forEach(([label, value]) => {
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(...COLORS.text);
     doc.text(label + ':', MARGIN + 20, y);
-    
+
     doc.setFont('helvetica', 'normal');
-    doc.setTextColor(...COLORS.value);
-    doc.text(String(value), MARGIN + 80, y);
-    
-    y += 12;
+    const fails = value.includes('BELOW LIMIT');
+    const failColor: [number, number, number] = [231, 76, 60];
+    doc.setTextColor(...(fails ? failColor : COLORS.value));
+    const valueLines = doc.splitTextToSize(String(value), CONTENT_WIDTH - 80) as string[];
+    valueLines.forEach((line, li) => doc.text(line, MARGIN + 80, y + li * 4.6));
+
+    y += pitch + (valueLines.length - 1) * 4.6;
   });
 
   // Certification
@@ -1324,91 +1479,158 @@ function addFinalSummary(doc: jsPDF, input: EnhancedProjectInput, pageNum: numbe
 }
 
 // Utility functions
+/**
+ * Cuts `value` to what fits in `maxWidth` at the font size currently set, marking the cut with
+ * an ellipsis. Cell text is drawn without clipping, so an over-long string would otherwise run
+ * straight through the neighbouring column.
+ */
+function fitCellText(doc: jsPDF, value: string, maxWidth: number): string {
+  const full = doc.getTextWidth(value);
+  if (full <= maxWidth) return value;
+  let keep = Math.max(1, Math.floor((value.length * maxWidth) / full) - 1);
+  let cut = `${value.slice(0, keep)}…`;
+  while (keep > 1 && doc.getTextWidth(cut) > maxWidth) {
+    keep -= 1;
+    cut = `${value.slice(0, keep)}…`;
+  }
+  return cut;
+}
+
+type TableOptions = {
+  /** false keeps a fixed 7 mm row pitch and clips each cell to its column instead of wrapping it. */
+  wrap?: boolean;
+  /** Sheet header band to draw when the table overflows onto another page. */
+  continuation?: { label: string; totalPages: number };
+};
+
 function drawTable(
   doc: jsPDF,
   startY: number,
   headers: { header: string; width: number; align?: 'left' | 'right' | 'center' }[],
-  rows: { cells: { value: string; bold?: boolean; formula?: boolean; bgColor?: [number, number, number]; colSpan?: number }[] }[]
-): void {
+  rows: { cells: { value: string; bold?: boolean; formula?: boolean; bgColor?: [number, number, number]; colSpan?: number }[] }[],
+  opts: TableOptions = {}
+): number {
   let y = startY;
   const rowHeight = 7;
+  const LINE_HEIGHT = 4.2;
+  const wrap = opts.wrap !== false;
+  /** Continues the owning sheet's header band on pages the table overflows onto, so no page ships unlabelled. */
+  const breakToNewPage = (): void => {
+    doc.addPage();
+    if (opts.continuation) {
+      addSheetHeader(doc, opts.continuation.label, doc.getNumberOfPages(), opts.continuation.totalPages);
+    }
+    y = 30;
+  };
+
+  /** A table that starts below the text block would print its header off the page. */
+  if (y > PAGE_HEIGHT - 40) breakToNewPage();
+
+  /** A4 with 15 mm margins leaves CONTENT_WIDTH of text block; a wider table would run off the page. */
+  const authoredWidth = headers.reduce((w, h) => w + h.width, 0);
+  const scale = authoredWidth > CONTENT_WIDTH ? CONTENT_WIDTH / authoredWidth : 1;
+  const widths = headers.map((h) => h.width * scale);
 
   // Draw headers
-  doc.setFillColor(...COLORS.tableHeader);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(8);
+  const headerLines = headers.map((h, hi) =>
+    h.header
+      .split('\n')
+      .flatMap((part) => doc.splitTextToSize(part, (widths[hi] ?? h.width) - 4) as string[]),
+  );
+  const headerHeight = Math.max(
+    rowHeight,
+    Math.max(1, ...headerLines.map((lines) => lines.length)) * LINE_HEIGHT + rowHeight - LINE_HEIGHT,
+  );
+
   doc.setDrawColor(...COLORS.border);
   doc.setLineWidth(0.3);
-  
+
+  /** PDF text and shape fill share the non-stroking colour operator, so every rect re-arms its own fill. */
   let x = MARGIN;
-  headers.forEach(h => {
-    doc.rect(x, y, h.width, rowHeight, 'FD');
+  headers.forEach((h, hi) => {
+    const w = widths[hi] ?? h.width;
+    doc.setFillColor(...COLORS.tableHeader);
+    doc.rect(x, y, w, headerHeight, 'FD');
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(8);
     doc.setTextColor(255, 255, 255);
-    
-    const lines = h.header.split('\n');
-    let hy = y + 4;
-    lines.forEach(line => {
-      doc.text(line, x + 2, hy);
-      hy += 3;
+
+    (headerLines[hi] ?? []).forEach((line, li) => {
+      doc.text(line, x + 2, y + 4.6 + li * LINE_HEIGHT);
     });
-    
-    x += h.width;
+
+    x += w;
   });
 
-  y += rowHeight;
+  y += headerHeight;
 
   // Draw rows
   rows.forEach((row, ridx) => {
+    doc.setFontSize(8);
+    const rowLines = row.cells.map((cell, cidx) => {
+      const w = widths[cidx] ?? headers[cidx]?.width ?? 0;
+      doc.setFont('helvetica', cell.bold ? 'bold' : 'normal');
+      if (!wrap) return [fitCellText(doc, String(cell.value), w - 4)];
+      return doc.splitTextToSize(String(cell.value), w - 4) as string[];
+    });
+    const height = Math.max(rowHeight, Math.max(1, ...rowLines.map((l) => l.length)) * LINE_HEIGHT + rowHeight - LINE_HEIGHT);
+
     // Alternating background
     if (ridx % 2 === 0) {
       doc.setFillColor(...COLORS.tableAlt);
-      doc.rect(MARGIN, y, CONTENT_WIDTH, rowHeight, 'F');
+      doc.rect(MARGIN, y, CONTENT_WIDTH, height, 'F');
     }
 
     x = MARGIN;
     row.cells.forEach((cell, cidx) => {
       const h = headers[cidx];
       if (!h) return;
+      const w = widths[cidx] ?? h.width;
 
       // Cell background if specified
       if (cell.bgColor) {
         doc.setFillColor(...cell.bgColor);
-        doc.rect(x, y, h.width, rowHeight, 'F');
+        doc.rect(x, y, w, height, 'F');
       }
 
       // Cell border
       doc.setDrawColor(...COLORS.border);
-      doc.rect(x, y, h.width, rowHeight, 'S');
+      doc.rect(x, y, w, height, 'S');
 
       // Text
-      doc.setFont(cell.bold ? 'helvetica' : 'helvetica', cell.bold ? 'bold' : 'normal');
+      doc.setFont('helvetica', cell.bold ? 'bold' : 'normal');
       doc.setFontSize(8);
-      
+
       if (cell.formula) {
         doc.setTextColor(...COLORS.formula);
       } else if (cell.bgColor) {
-        doc.setTextColor(255, 255, 255);
+        const [r, g, b] = cell.bgColor;
+        const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+        if (luminance > 140) doc.setTextColor(...COLORS.text);
+        else doc.setTextColor(255, 255, 255);
       } else {
         doc.setTextColor(...COLORS.text);
       }
 
       const align = h.align || 'left';
-      const textX = align === 'right' ? x + h.width - 2 : x + 2;
-      const textY = y + 5;
+      const textX = align === 'right' ? x + w - 2 : align === 'center' ? x + w / 2 : x + 2;
 
-      doc.text(String(cell.value), textX, textY, { align });
+      (rowLines[cidx] ?? ['']).forEach((line, li) => {
+        doc.text(fitCellText(doc, line, w - 4), textX, y + 4.6 + li * LINE_HEIGHT, { align });
+      });
 
-      x += h.width;
+      x += w;
     });
 
-    y += rowHeight;
+    y += height;
 
     // Page break if needed
-    if (y > PAGE_HEIGHT - 30) {
-      doc.addPage();
-      y = 30;
-    }
+    if (y > PAGE_HEIGHT - 30) breakToNewPage();
   });
+
+  return y;
 }
 
 function getSheetName(sheetNum: number): string {

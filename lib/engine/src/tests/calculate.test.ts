@@ -8,7 +8,7 @@ import assert from "node:assert/strict";
 import { calculate, ENGINE_VERSION } from "../calculate.js";
 import { calcDesignUDL, calcMaximumMoment, calcMaximumShear } from "../functions/loads.js";
 import { calcBendingStress, calcBendingUtilisation } from "../functions/resistance.js";
-import { calcLiveLoadDeflection, calcDeflectionLimit } from "../functions/serviceability.js";
+import { calcDeflectionLimit } from "../functions/serviceability.js";
 import type { BridgeInputs } from "../types.js";
 
 const BASE: BridgeInputs = {

@@ -1,0 +1,4 @@
+
+> workspace@0.0.0 typecheck:flat E:\Rajkumar\Bridge_Slab_Design
+> tsc -p tsconfig.flat.json --noEmit
+

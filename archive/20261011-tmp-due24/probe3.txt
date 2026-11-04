@@ -1,0 +1,5 @@
+test-output/comprehensive-report.pdf: 225 pages
+pages with no Page n of N stamp: []
+stamps that disagree with the real length: [] count 0
+14
+0

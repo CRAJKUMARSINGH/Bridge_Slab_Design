@@ -178,7 +178,7 @@ export async function generateLLOADSheet(
       loadCase.description,
       loadCase.liveLoadFactor,
       { formula: `=${LL_PS}!$B${PIER_STABILITY_ROWS.live}*C${row}`, result: parseFloat((pier.loads.liveLoad * loadCase.liveLoadFactor).toFixed(3)) },
-      { formula: `=${LL_PS}!$N${PIER_STABILITY_ROWS.firstCaseRow + index}`, result: loadCase.status },
+      { formula: `=${LL_PS}!$${PIER_STABILITY_ROWS.colStatus}${PIER_STABILITY_ROWS.firstCaseRow + index}`, result: loadCase.status },
     ]);
   });
 }

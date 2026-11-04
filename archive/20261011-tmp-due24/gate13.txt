@@ -1,0 +1,28 @@
+
+> workspace@0.0.0 typecheck:flat E:\Rajkumar\Bridge_Slab_Design
+> tsc -p tsconfig.flat.json --noEmit
+
+server/landscape-pdf-export.ts(235,5): error TS2353: Object literal may only specify known properties, and 'tableLayout' does not exist in type 'UserOptions'.
+ ELIFECYCLE  Command failed with exit code 2.
+Total sheets: 56/56
+  design-workbook.xlsx         111,404 bytes
+  sheet-book.pdf               2,740,939 bytes
+  comprehensive-report.pdf     10,488,466 bytes
+  short-design-report.pdf      225,252 bytes
+  design-report.html           380,066 bytes
+  irc-checklist.html           39,752 bytes
+
+Wrote 6 deliverables to E:\Rajkumar\Bridge_Slab_Design\test-output
+---CHECK---
+pages 99
+sheet pages banded: 92 distinct sheets: 56
+index pages: [2, 3, 4, 5] divider pages: [6, 57]
+unstamped (cover excluded): []
+stamps that disagree: []
+index claims 58 mismatches 0
+sheets banded but absent from index: []
+multi-page sheets 23
+    INDEX [7, 8]
+    DESIGN CRITERIA [9, 10, 11]
+    INPUT DATA SUMMARY [12, 13, 14]
+    AFFLUX CALCULATION [16, 17, 18, 19, 20]

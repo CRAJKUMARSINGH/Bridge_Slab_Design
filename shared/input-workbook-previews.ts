@@ -445,7 +445,7 @@ export function buildInputPierSheet(input: ProjectInput): WbSheetModel {
   });
   rows.push({
     kind: 'data',
-    cells: pad8(['→', 'Impact Factor (IRC:6-2016)', '', fmt(4.5 / (6 + (input.spanLength || 1)), 4), '-', 'For live load amplification', '', '']),
+    cells: pad8(['→', 'Impact Factor (IRC:6-2016)', '', fmt((4.5 / (6 + (input.spanLength || 1))) * 100, 2), '%', 'For live load amplification', '', '']),
     styles: { 3: 'calc' },
   });
 

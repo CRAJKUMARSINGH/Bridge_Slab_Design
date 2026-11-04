@@ -58,6 +58,7 @@ const REGISTER_RATES = new Set<number>([
 function bandTotal(m: EstimationMeasurement): number {
   if (m.basis === 'count') return m.nos;
   if (m.basis === 'plan') return m.nos * m.length * m.breadth;
+  if (m.basis === 'run') return m.nos * m.length;
   if (m.basis === 'steel') return (m.nos * m.length * m.breadth * m.height) / 100 / 1000;
   return m.nos * m.length * m.breadth * m.height;
 }
@@ -260,6 +261,10 @@ function check(input: ProjectInput) {
 }
 
 let defects = 0;
+if (PHASE1_QUICK_TEMPLATES.length === 0) {
+  console.error('verify-estimation-consistency: the template roster is empty — this gate would exit 0 having checked nothing.');
+  process.exit(1);
+}
 for (const template of PHASE1_QUICK_TEMPLATES) {
   const { problems, stats } = check(template.input);
   defects += problems.length;

@@ -1,0 +1,57 @@
+A2 error diagnosis: 49 error records
+
+ 33  err=Workbook is encrypted    container=ole-biff(xls)    ext=.xls
+ 14  err=File is not a zip file   container=ole-encrypted    ext=.xlsx
+  2  err=File is not a zip file   container=ole-encrypted    ext=.xlsm
+
+total bytes behind the errors: 40.91 MB
+
+File is not a zip file   | .xlsm  | ole-encrypted    |     349168 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/RCC T Girder BS/RCC Precast Long Girder BS.xlsm
+File is not a zip file   | .xlsm  | ole-encrypted    |     351728 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/RCC T Girder IS/RCC Precast Long Girder IS.xlsm
+File is not a zip file   | .xlsx  | ole-encrypted    |    6206448 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Continuous PSC Box Girder/Contunuous Box Girder Analysis BS.xlsx
+File is not a zip file   | .xlsx  | ole-encrypted    |    6206448 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Continuous PSC Box Girder/Contunuous Box Girder Analysis IS.xlsx
+File is not a zip file   | .xlsx  | ole-encrypted    |    6205936 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Continuous PSC Box Girder/Contunuous Box Girder Analysis.xlsx
+File is not a zip file   | .xlsx  | ole-encrypted    |     365552 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/Deckslab/3 Girder Design_of_Deckslab_IRC_112.xlsx
+File is not a zip file   | .xlsx  | ole-encrypted    |     349168 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/Deckslab/5 Girder Design_of_Deckslab_IRC_112.xlsx
+File is not a zip file   | .xlsx  | ole-encrypted    |     434672 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/Deckslab/6 Girder Design_of_Deckslab_IRC_112.xlsx
+File is not a zip file   | .xlsx  | ole-encrypted    |     241136 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/Deckslab/Design_of_Deckslab_IRC_112.xlsx
+File is not a zip file   | .xlsx  | ole-encrypted    |     753136 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/PSC I Girder BS/Design of PSC I Girder BS.xlsx
+File is not a zip file   | .xlsx  | ole-encrypted    |     238576 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/PSC I Girder BS/Design of PSC I Girder_Deck Slab BS.xlsx
+File is not a zip file   | .xlsx  | ole-encrypted    |     809968 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/PSC I Girder IS/Design of PSC I Girder IS.xlsx
+File is not a zip file   | .xlsx  | ole-encrypted    |     241136 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/PSC I Girder IS/Design of PSC I Girder_Deck Slab IS.xlsx
+File is not a zip file   | .xlsx  | ole-encrypted    |      98288 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/RCC T Girder BS/RCC Cross Girder BS.xlsx
+File is not a zip file   | .xlsx  | ole-encrypted    |     100848 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/RCC T Girder IS/RCC Cross Girder IS.xlsx
+File is not a zip file   | .xlsx  | ole-encrypted    |     261616 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/RCC T Girder IS/RCC Deck Slab IS.xlsx
+Workbook is encrypted    | .xls   | ole-biff(xls)    |    1857520 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Abutment/Abutment Worksheet Design 1/Abutment_Worksheet_sheet.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     194544 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Abutment/Abutment Worksheet Design 2/Abutment Worksheet Design 02.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     139248 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Bearing Design/Bridge_Bearing_Design.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     530416 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Composite/Composite Worksheet Design 1/Composit_Worksheet_Design.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     286192 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Continuous PSC Box Girder/CPSC Box Transverse Design.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     460784 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Foundation/Sheet Pile/Design Sheet Pile.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     508400 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Foundation/Well Foundation/WellFoundation_Design.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     193520 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Geotechnics/CBR Test.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     247280 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Geotechnics/Grain Size Analysis Test.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     100336 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Geotechnics/Proctor Density Test.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |      63472 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Geotechnics/Summary Lab Test.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |      20464 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Material Properties/Material Properties.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     185328 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/PSC Box Girder/Cable Friction.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     174576 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/PSC Box Girder/Diaphragm_EndAnchorage_BlisterBlock_FuturePreStress.XLS
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     362480 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/PSC Box Girder/New Design Of PSC Box Girder.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     362480 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/PSC Box Girder/PSC BOX.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     147440 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/PSC Box Girder/Structural Design.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     160240 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/PSC Box Girder/Temperature Stresses.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     314352 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Pier/Pier Circular Design/Design of Circular Pier.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |    3574768 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Pier/Pier Worksheet Design 1/PIER_Worksheet_Design.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     219120 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Pier/Pier Worksheet Design 2/01 Pier Cap.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     472560 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Pier/Pier Worksheet Design 2/02 Pile Capacity.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     415216 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Pier/Pier Worksheet Design 2/03 Pier Design with 6piles.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |    1001968 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Pier/Pier with Well Foundation/Design of Pier with Well Foundation.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     101872 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Pre Stressed/Stressing Graph/TECHSOFT_STRESSING_GRAPH.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |    1993712 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Steel Truss/Warren 2 Worksheet Design/Warren2 Steel Truss Bridge.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |      98288 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Synthetic_Unit_Hydrograph_(SUH).xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     276464 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/TBEAM Bridge/TBEAM Worksheet Design 1/T_Girder_Bridge_ASTRA.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     804336 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/TBEAM Bridge/TBEAM Worksheet Design 2/01 SectionPROP.XLS
+Workbook is encrypted    | .xls   | ole-biff(xls)    |    1594352 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/TBEAM Bridge/TBEAM Worksheet Design 2/02 SIDL.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     703984 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/TBEAM Bridge/TBEAM Worksheet Design 2/03 CrossGirder+Slab Design.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |     263664 | Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/TBEAM Bridge/TBEAM Worksheet Design 2/04 TeeGirder Design.xls
+Workbook is encrypted    | .xls   | ole-biff(xls)    |    1857520 | Attached_Assets/ASTRA 15 TUTORIALS/Worksheet_Design/Abutment_Worksheet_sheet.xls

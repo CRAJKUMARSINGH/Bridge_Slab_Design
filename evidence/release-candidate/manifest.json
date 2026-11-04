@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-06T12:30:52.416Z",
-  "commit": "13cdf0b8b1dd30fc1df50d451d517a7b2d3afea9",
+  "generatedAt": "2026-10-16T04:19:17.937Z",
+  "commit": "dcbbbd95f2b78958df492c613c8db097d754930d",
   "workingTreeDirty": true,
   "toolchain": {
     "node": "v24.14.0",
@@ -31,47 +31,47 @@
   "deliverables": [
     {
       "name": "design-workbook.xlsx",
-      "bytes": 109039,
-      "sha256": "cf2b649aaf7a8204994a4ce3694903b2de924ae6ed163fa0b16819678f5101d1"
+      "bytes": 111404,
+      "sha256": "8372c1d5865ea2b7f96b4bd6ae4c69cce2f2d811a1c0e298be39c3bc3bacf0c8"
     },
     {
       "name": "sheet-book.pdf",
-      "bytes": 3203059,
-      "sha256": "a0d4cdcd09d1866efdea3e73a696c0d5205f33fbeee4e69dac5249da6797d993"
+      "bytes": 2741527,
+      "sha256": "6e1db12d132645f5e1ccdd8eb2b8f3563ef6d2079cd2403d90e7c990532d9393"
     },
     {
       "name": "comprehensive-report.pdf",
-      "bytes": 4913586,
-      "sha256": "9eee4c70e47110a0e93c7391b4a99c88f9905e08e8ff23acae6a47f3f375ea3e"
+      "bytes": 9218343,
+      "sha256": "d6a5647001e6abfa1ff88587f28019bee0f4c5975162eb4ee7ef54c2686f96de"
     },
     {
       "name": "short-design-report.pdf",
-      "bytes": 221114,
-      "sha256": "cd6058d18ae76027d9f9dfa3c47afe83423442c565c5a15590f3f4bf7884d7bc"
+      "bytes": 225252,
+      "sha256": "bbd7f6d9cc81bc5294d5724b3ea3c757cb8fb00b7b830c4ad056ef5cb0a73a18"
     },
     {
       "name": "design-report.html",
-      "bytes": 419689,
-      "sha256": "bca3fc2ab7bbf2f33f0beb9d34b5559788d4cb8ebabb32839487fc6a7c936df9"
+      "bytes": 381558,
+      "sha256": "c05dc571439e20efeb7d6203b32af6f6c83d0707bff396e1da010e21bd9e2648"
     },
     {
       "name": "irc-checklist.html",
-      "bytes": 39954,
-      "sha256": "415e1ac5f31a0f51e5c9222c609ee2e5a887e46db75f20eeedcefb1eb02200ef"
+      "bytes": 39965,
+      "sha256": "1bbfe7bf152af2640ddc476c8b57e6af9b21706ea0fd7a98bd33af6afd657440"
     }
   ],
   "engineeringOutcomes": {
     "totals": {
       "templates": 20,
       "cases": 300,
-      "safe": 4,
-      "unsafe": 296,
+      "safe": 195,
+      "unsafe": 105,
       "templatesWithUnsafe": 20
     },
     "thresholds": {
       "sliding": 1.5,
       "overturning": 1.8,
-      "bearing": 2.5
+      "bearing": 1
     },
     "file": "gates/verify.txt"
   }

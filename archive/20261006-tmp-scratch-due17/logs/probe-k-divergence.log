@@ -1,0 +1,9 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+Sheet 9 column K at HEAD: formula = mu*|V|/max(|H|,1) while the cached result was the engine passsive-aware slidingFOS.
+template irc-t01-jethliya  mu=0.5  cap=0.5
+  case 1 Service Condition (DL+LL)      cached=0.959 formulaOnly=0.639 ratio=1.500 passive=147.0 kN  status=UNSAFE
+  case 2 Construction Stage (DL+Wind)   cached=0.594 formulaOnly=0.396 ratio=1.500 passive=91.9 kN  status=UNSAFE
+  case 3 Flood Condition (DL+Hydro)     cached=0.306 formulaOnly=0.204 ratio=1.500 passive=47.0 kN  status=UNSAFE
+  case 4 Seismic Condition (DL+LL+Seism cached=0.402 formulaOnly=0.268 ratio=1.500 passive=72.0 kN  status=UNSAFE
+  case 5 Ultimate Limit State (ULS)     cached=1.482 formulaOnly=0.988 ratio=1.500 passive=229.1 kN  status=UNSAFE

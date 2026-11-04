@@ -1,0 +1,20 @@
+pages 99
+sheet pages banded: 92 distinct sheets: 56
+index pages: [2, 3, 4, 5] divider pages: [6, 57]
+unstamped (cover excluded): []
+stamps that disagree: []
+index claims 58 mismatches 0
+sheets banded but absent from index: []
+multi-page sheets 23
+    INDEX [7, 8]
+    DESIGN CRITERIA [9, 10, 11]
+    INPUT DATA SUMMARY [12, 13, 14]
+    AFFLUX CALCULATION [16, 17, 18, 19, 20]
+    HYDRAULICS [21, 22]
+    DECK ANCHORAGE [23, 24]
+    SEISMIC ANALYSIS (IS 1893) [28, 29]
+    WIND LOAD ANALYSIS (IS 875) [30, 31]
+    STABILITY CHECK FOR PIER [32, 33, 34, 35, 36]
+    ABSTRACT OF STRESSES [37, 38]
+    PIER CAP LL TRACKED VEHICLE [43, 44]
+    PIER CAP [45, 46]

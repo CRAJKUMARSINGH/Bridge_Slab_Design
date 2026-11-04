@@ -1,0 +1,126 @@
+{
+  "name": "gate-full",
+  "ts": "2026-11-04T08:10:02.810Z",
+  "commit": null,
+  "pass": 7,
+  "fail": 6,
+  "detail": [
+    {
+      "gate": "gate-docs",
+      "exitCode": 0,
+      "assertions": 5,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "gate-oracle",
+      "exitCode": 0,
+      "assertions": 270,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "gate-parity",
+      "exitCode": 0,
+      "assertions": 31,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "verify-clauses",
+      "exitCode": 0,
+      "assertions": 42,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "gate-security",
+      "exitCode": 0,
+      "assertions": 41,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "gate-perf",
+      "exitCode": 0,
+      "assertions": 37,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "scan-secrets",
+      "exitCode": 0,
+      "assertions": 4,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "gate:repro",
+      "error": "script not found",
+      "verdict": "FAIL"
+    },
+    {
+      "gate": "verify-dxf",
+      "exitCode": 2,
+      "error": "NOT IMPLEMENTED — gate is still a stub",
+      "detail": {
+        "name": "verify-dxf",
+        "ts": "2026-11-04T08:09:59.747Z",
+        "commit": null,
+        "pass": 0,
+        "fail": 0,
+        "detail": []
+      },
+      "verdict": "FAIL"
+    },
+    {
+      "gate": "verify-rates",
+      "exitCode": 2,
+      "error": "NOT IMPLEMENTED — gate is still a stub",
+      "detail": {
+        "name": "verify-rates",
+        "ts": "2026-11-04T08:09:59.917Z",
+        "commit": null,
+        "pass": 0,
+        "fail": 0,
+        "detail": []
+      },
+      "verdict": "FAIL"
+    },
+    {
+      "gate": "gate-boq",
+      "exitCode": 2,
+      "error": "NOT IMPLEMENTED — gate is still a stub",
+      "detail": {
+        "name": "gate-boq",
+        "ts": "2026-11-04T08:10:00.088Z",
+        "commit": null,
+        "pass": 0,
+        "fail": 0,
+        "detail": []
+      },
+      "verdict": "FAIL"
+    },
+    {
+      "gate": "verify-report",
+      "exitCode": 2,
+      "error": "NOT IMPLEMENTED — gate is still a stub",
+      "detail": {
+        "name": "verify-report",
+        "ts": "2026-11-04T08:10:00.300Z",
+        "commit": null,
+        "pass": 0,
+        "fail": 0,
+        "detail": []
+      },
+      "verdict": "FAIL"
+    },
+    {
+      "gate": "gate-a11y",
+      "exitCode": 2,
+      "error": "NOT IMPLEMENTED — gate is still a stub",
+      "detail": {
+        "name": "gate-a11y",
+        "ts": "2026-11-04T08:10:00.445Z",
+        "commit": null,
+        "pass": 0,
+        "fail": 0,
+        "detail": []
+      },
+      "verdict": "FAIL"
+    }
+  ]
+}

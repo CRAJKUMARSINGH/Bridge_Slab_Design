@@ -44,6 +44,7 @@ const PURPOSE: Record<string, string> = {
   "python_cad": "CAD adapter",
   "scripts": "tooling, gates, extractors",
   "corpus": "immutable source workbooks + frozen oracle",
+  "reference-design-examples": "external reference designs and drawings (permanent research corpus)",
   "containment": "trust tiers, contracts, claim ledger",
   "tests": "golden fixtures and integration tests",
   "docs": "phase deliverables",

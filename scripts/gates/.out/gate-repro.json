@@ -1,0 +1,129 @@
+{
+  "name": "gate-repro",
+  "ts": "2026-10-31T22:18:55.520Z",
+  "commit": null,
+  "pass": 23,
+  "fail": 0,
+  "detail": [
+    {
+      "ok": true,
+      "label": "A: contracts.ts declares RunFingerprint",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "A: RunFingerprint carries inputSha256",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "A: RunFingerprint carries engineVersion",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "A: RunFingerprint carries registryVersions",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "A: DesignResult stores a RunFingerprint (T5.2)",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "B: no Math.random/Date.now/performance.now in lib/engine/src",
+      "note": "clean"
+    },
+    {
+      "ok": true,
+      "label": "B: the only wall-clock read is calculate.ts's calculatedAt",
+      "note": "lib/engine/src/calculate.ts:42"
+    },
+    {
+      "ok": true,
+      "label": "C: reproducibility.ts loads (type-stripping)",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: calculatedAt is a declared volatile field",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: canonicalJson is key-order independent",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: differing calculatedAt does NOT change the digest",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: a real field change DOES change the digest (non-vacuous)",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: same input -> same fingerprint",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: different input -> different fingerprint (non-vacuous)",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: inputSha256 is a 64-char sha256 hex",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: integrityBlock yields a sha256 digest",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: integrityBlock hashes every artifact",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: integrityBlock is content-sensitive",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D: engine version resolved from calculate.ts",
+      "note": "0.5.0"
+    },
+    {
+      "ok": true,
+      "label": "D: three cold-start processes ran",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D: all 3 runs are byte-identical after cold restart",
+      "note": "{\"fp\":\"{\\\"engineVersion\\\":{\\\"codes\\\":\\\"codes-4b9a4227c2e1\\\",\\\"coefficients\\\":\\\"coeff-bb71b204f310\\\",\\\"engine\\\":\\\"0.5.0\\\"},\\\"inputSha256\\\":\\\"e639058da28678bed106c4f8eacdff0dd9768c08e39133c2aa14149cb4960b50\\\",\\\"registryVersions\\\":{\\\"codes\\\":\\\"codes-4b9a4227c2e1\\\",\\\"coefficients\\\":\\\"coeff-bb71b204f310\\\",\\\"engine\\\":\\\"0.5.0\\\"}}\",\"digest\":\"3babbb49aa6b034403390b31f89a6f16546dd933170851124bcc6f3fbb6d7f86\"}"
+    },
+    {
+      "ok": true,
+      "label": "D: the reproducible output is a sha256 digest",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D: no volatile field leaks into the hashed payload",
+      "note": null
+    }
+  ],
+  "coldStartRuns": [
+    "{\"fp\":\"{\\\"engineVersion\\\":{\\\"codes\\\":\\\"codes-4b9a4227c2e1\\\",\\\"coefficients\\\":\\\"coeff-bb71b204f310\\\",\\\"engine\\\":\\\"0.5.0\\\"},\\\"inputSha256\\\":\\\"e639058da28678bed106c4f8eacdff0dd9768c08e39133c2aa14149cb4960b50\\\",\\\"registryVersions\\\":{\\\"codes\\\":\\\"codes-4b9a4227c2e1\\\",\\\"coefficients\\\":\\\"coeff-bb71b204f310\\\",\\\"engine\\\":\\\"0.5.0\\\"}}\",\"digest\":\"3babbb49aa6b034403390b31f89a6f16546dd933170851124bcc6f3fbb6d7f86\"}",
+    "{\"fp\":\"{\\\"engineVersion\\\":{\\\"codes\\\":\\\"codes-4b9a4227c2e1\\\",\\\"coefficients\\\":\\\"coeff-bb71b204f310\\\",\\\"engine\\\":\\\"0.5.0\\\"},\\\"inputSha256\\\":\\\"e639058da28678bed106c4f8eacdff0dd9768c08e39133c2aa14149cb4960b50\\\",\\\"registryVersions\\\":{\\\"codes\\\":\\\"codes-4b9a4227c2e1\\\",\\\"coefficients\\\":\\\"coeff-bb71b204f310\\\",\\\"engine\\\":\\\"0.5.0\\\"}}\",\"digest\":\"3babbb49aa6b034403390b31f89a6f16546dd933170851124bcc6f3fbb6d7f86\"}",
+    "{\"fp\":\"{\\\"engineVersion\\\":{\\\"codes\\\":\\\"codes-4b9a4227c2e1\\\",\\\"coefficients\\\":\\\"coeff-bb71b204f310\\\",\\\"engine\\\":\\\"0.5.0\\\"},\\\"inputSha256\\\":\\\"e639058da28678bed106c4f8eacdff0dd9768c08e39133c2aa14149cb4960b50\\\",\\\"registryVersions\\\":{\\\"codes\\\":\\\"codes-4b9a4227c2e1\\\",\\\"coefficients\\\":\\\"coeff-bb71b204f310\\\",\\\"engine\\\":\\\"0.5.0\\\"}}\",\"digest\":\"3babbb49aa6b034403390b31f89a6f16546dd933170851124bcc6f3fbb6d7f86\"}"
+  ]
+}

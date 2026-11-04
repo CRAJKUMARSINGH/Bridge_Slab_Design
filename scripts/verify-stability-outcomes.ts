@@ -3,8 +3,10 @@
  *
  * Every other gate in `pnpm run verify` checks that the machinery is internally consistent:
  * 46 sheets exist, derived cells are formulas, values are finite, costs tie, uplift is sane,
- * load cases are diverse. All six can be GREEN while the bridge is UNSAFE — the last full run
- * reported 15/15 not-SAFE across 19 of 20 templates and still exited 0. Nothing in the pipeline
+ * load cases are diverse. All of them can be GREEN while the bridge is UNSAFE — in October 2026 a
+ * full run reported 15/15 not-SAFE across 19 of 20 templates and still exited 0 (that tally is the
+ * pre-§706, pre-bearing-1.0 rule; re-read evidence/stability-outcomes.json for the current one).
+ * Nothing in the pipeline
  * said the words "this design does not stand up", and nothing proved that the verdict an
  * engineer reads in the workbook is the verdict the engine reached.
  *
@@ -12,11 +14,19 @@
  *  1. every member (pier, abutment Type 1, abutment cantilever) exists and carries load cases;
  *  2. every load case has three finite, positive factors of safety;
  *  3. `status` is SAFE or UNSAFE — never blank, never 'CHECK', which the engine never emits;
- *  4. `status` agrees with the thresholds (IRC:6 §114 sliding 1.5, overturning 1.8, bearing 2.5)
- *     recomputed here from the same three numbers, so a status derived from different arithmetic
- *     than it reports is a defect even when it happens to read "SAFE";
+ *  4. `status` agrees with the engine's own acceptance rule (STABILITY_ACCEPTANCE — currently
+ *     sliding 1.5, overturning 1.8, bearing 1.0 i.e. base pressure ≤ SBC per the owner decision of
+ *     2026-10-06), recomputed here from the same three numbers, so a status derived from different
+ *     arithmetic than it reports is a defect even when it happens to read "SAFE";
  *  5. the workbook's stability sheets carry the same verdict, in the same order, for the same
- *     case — read back from the generated file, not from the generator's own arrays.
+ *     case — read back from the generated file, not from the generator's own arrays;
+ *  6. the acceptance rule reaches the browser as data in the design response, and no client file
+ *     keeps a copy of it (§AA);
+ *  6b. every numeric stability threshold the client still applies for its OWN reasons — the seismic
+ *     reduced edges, UI caution bands, and the second design model behind the report sheets, none of
+ *     which has a response to read — is declared with its basis, and an undeclared or drifted one is
+ *     a defect (§AB).
+ *     (`stabilityAcceptance`), and no client file writes a numeric copy of it — see §Y-5/§AA.
  *
  * A UNSAFE verdict is NOT a gate failure: it is an engineering outcome that belongs to the
  * licensed engineer who signs the drawing. Failing the build on it would train people to want
@@ -27,7 +37,7 @@
  * Run: npx tsx scripts/verify-stability-outcomes.ts
  */
 import ExcelJS from 'exceljs';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { generateCompleteExcel } from '../bridge-excel-generator/index.ts';
@@ -42,9 +52,6 @@ const THRESHOLDS = {
   overturning: STABILITY_ACCEPTANCE.overturningFosMin,
   bearing: STABILITY_ACCEPTANCE.bearingFosMin,
 } as const;
-
-/** Reporting only: the commoner "pressure <= SBC" reading of the bearing check, i.e. a factor of 1. */
-const BEARING_FOS_FOR_SBC_LIMIT = 1.0;
 
 const MEMBERS: Array<{ key: 'pier' | 'abutmentType1' | 'abutmentC1'; label: string; sheet: string }> = [
   { key: 'pier', label: 'Pier', sheet: 'STABILITY CHECK FOR PIER' },
@@ -74,11 +81,12 @@ function failureOf(lc: LoadCase): string[] {
   return fails;
 }
 
+/** Reporting only: how many UNSAFE cases fail the bearing check and nothing else. */
+/** Reporting only: how many UNSAFE cases fail the bearing check and nothing else. */
 const attribution = {
   unsafe: 0,
   byThreshold: { sliding: 0, overturning: 0, bearing: 0 } as Record<string, number>,
   bearingOnly: 0,
-  bearingWouldPassAtSbcLimit: 0,
 };
 
 interface MemberOutcome {
@@ -146,14 +154,7 @@ function checkEngine(design: CompleteDesignResult): { outcomes: MemberOutcome[];
         const fails = failureOf(lc);
         attribution.unsafe++;
         fails.forEach((f) => attribution.byThreshold[f]++);
-        if (fails.length === 1 && fails[0] === 'bearing') {
-          attribution.bearingOnly++;
-          // The alternative reading of the same numbers: bearing capacity is usually checked as
-          // "pressure ≤ SBC", i.e. a factor of 1.0, not 2.5. Counting cases that pass at 1.0 tells
-          // the signing engineer how much of this wall of UNSAFE is the 2.5 choice, and nothing else.
-          if (lc.slidingFOS >= THRESHOLDS.sliding && lc.overturningFOS >= THRESHOLDS.overturning &&
-              lc.bearingFOS >= BEARING_FOS_FOR_SBC_LIMIT) attribution.bearingWouldPassAtSbcLimit++;
-        }
+        if (fails.length === 1 && fails[0] === 'bearing') attribution.bearingOnly++;
       }
       if (lc.status === want) {
         if (want === 'SAFE') safe++; else unsafe++;
@@ -252,6 +253,10 @@ let defects = 0;
 const report: Array<{ template: string; name: string; members: MemberOutcome[] }> = [];
 const totals = { templates: 0, cases: 0, safe: 0, unsafe: 0, templatesWithUnsafe: 0 };
 
+if (PHASE1_QUICK_TEMPLATES.length === 0) {
+  console.error('verify-stability-outcomes: the template roster is empty — this gate would exit 0 having attributed nothing.');
+  process.exit(1);
+}
 for (const template of PHASE1_QUICK_TEMPLATES) {
   const design = calculateCompleteDesign(template.input, { quiet: true }) as unknown as CompleteDesignResult;
   const { outcomes, problems } = checkEngine(design);
@@ -300,6 +305,119 @@ for (const template of PHASE1_QUICK_TEMPLATES) {
   problems.forEach((p) => console.log(`       - ${p}`));
 }
 
+// Rule 6. The acceptance rule now travels to the browser INSIDE the design response
+// (`CompleteDesignResult.stabilityAcceptance`, emitted by the engine that applies it), so no client
+// file needs a copy. Checked in both directions, because a one-way check passes on dead code: a
+// numeric limit written into `client/src` is a defect — that is the copy that fell behind §M-1 eight
+// times in §Y — and every component that shows stability verdicts from the response must actually
+// read the field.
+const clientSrcDir = join(here, '..', 'client', 'src');
+const clientCopyProblems: string[] = [];
+const LIMIT_LITERAL = /\b(slidingFosMin|overturningFosMin|bearingFosMin)\b\s*[:=]\s*([0-9]+(?:\.[0-9]+)?)/g;
+const RETIRED_COPY = /\bSTABILITY_LIMITS\b/;
+
+function clientSources(dir: string): string[] {
+  const found: string[] = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const path = join(dir, entry.name);
+    if (entry.isDirectory()) found.push(...clientSources(path));
+    else if (/\.tsx?$/.test(entry.name)) found.push(path);
+  }
+  return found;
+}
+
+const limitReaders = [
+  'client/src/components/DesignCheckDashboard.tsx',
+  'client/src/components/CompareModal.tsx',
+  'client/src/components/EngineeringCopilot.tsx',
+  'client/src/components/WindLoadPanel.tsx',
+  'client/src/pages/Design.tsx',
+];
+for (const file of clientSources(clientSrcDir)) {
+  const rel = file.slice(join(here, '..').length + 1).replace(/\\/g, '/');
+  const src = readFileSync(file, 'utf8');
+  for (const literal of src.matchAll(LIMIT_LITERAL)) {
+    const key = literal[1] as keyof typeof STABILITY_ACCEPTANCE;
+    clientCopyProblems.push(
+      `${rel}: hard-codes ${key} = ${literal[2]} where the engine applies ${STABILITY_ACCEPTANCE[key]} — ` +
+      `the browser must read stabilityAcceptance from the design response, or a §M-1-style rule ` +
+      `change leaves this behind`);
+  }
+  if (RETIRED_COPY.test(src)) {
+    clientCopyProblems.push(`${rel}: still references the retired client copy (STABILITY_LIMITS)`);
+  }
+  if (limitReaders.includes(rel) && !src.includes('stabilityAcceptance')) {
+    clientCopyProblems.push(
+      `${rel}: shows stability verdicts but never reads stabilityAcceptance from the response — the ` +
+      `gate would otherwise stay green on code that ignores the rule the engine sent`);
+  }
+}
+defects += clientCopyProblems.length;
+console.log(`${clientCopyProblems.length === 0 ? 'OK  ' : 'DEFECT'} acceptance rule reaches the browser from the response`);
+clientCopyProblems.forEach((p) => console.log(`       - ${p}`));
+
+// Rule 6b. The client keeps a second, independent design model (the submersible-bridge report engine
+// and the standalone stability/evaluator pages) that has no engine response to read, plus a seismic
+// band and some UI caution bands that are deliberately NOT the normal rule (§AB). Those numbers are
+// legitimate, so a blanket ban would be wrong — but they must be DECLARED, with the basis written
+// down, and an undeclared or drifted one is a defect. This is what "which keep their own rule and
+// must say so" means in practice: a fourteenth file adding `slidFOS >= 1.6` fails the build.
+const STABILITY_COMPARE = /\b([\w.]*(?:FOS|slid|overturn|qmax|bear)[\w.]*)\s*(>=|<=|>|<)\s*([0-9]+\.[0-9]+)\b/gi;
+const DECLARED_CLIENT_THRESHOLDS: Record<string, { literals: string[]; basis: string }> = {
+  'client/src/components/SeismicZonePanel.tsx': {
+    literals: ['1.25', '1.50'],
+    basis: 'seismic reduced edges (sliding 1.25 / overturning 1.50), cited in-file as IRC:6-2016 Cl.219 — the citation is not verified against the code text (§AB-4)',
+  },
+  'client/src/pages/AbutmentStability.tsx': {
+    literals: ['1.50', '2.00'],
+    basis: 'standalone hand-calculator with its own force model: sliding 1.5 agrees with the engine, overturning 2.00 does NOT (the engine applies 1.80) — open owner decision (§AB-3)',
+  },
+  'client/src/pages/FormulaEvaluator.tsx': {
+    literals: ['1.3', '1.5', '1.7', '2.0'],
+    basis: 'teaching evaluator, own arithmetic; PASS 1.5 / WARN 1.3 sliding and PASS 2.0 / WARN 1.7 overturning are its own bands, not the engine rule (§AB-3)',
+  },
+  'client/src/pages/Design.tsx': {
+    literals: ['1.10', '1.25', '1.50'],
+    basis: 'quick preview: seismic band 1.25/1.50 and UI caution band 1.10/1.25/1.50. The wind PASS edge reads stabilityAcceptance (§AB-1)',
+  },
+  'client/src/pages/BridgeSlabReport.tsx': {
+    literals: ['1.5'],
+    basis: 'client report model — no engine response exists in this tree; sliding >= 1.5 with qmax <= SBC, i.e. bearing expressed as pressure <= SBC, matching the engine\'s 1.0 intent (§AB-2)',
+  },
+  'client/src/report-engine/sheets/SummarySection.tsx': { literals: ['1.5'], basis: 'client report model (§AB-2)' },
+  'client/src/report-engine/sheets/engineeringNarrative.tsx': { literals: ['1.5'], basis: 'client report model narrative (§AB-2)' },
+  'client/src/report-engine/exportUtils.ts': { literals: ['1.5'], basis: 'client report model export (§AB-2)' },
+  'client/src/report-engine/sheets/OptimisationAtAGlance.tsx': {
+    literals: ['1.25', '1.50'],
+    basis: 'report-model optimiser: ok/warn edges per load combination (seismic 1.25, normal 1.50) — the model has no engine response (§AB-2)',
+  },
+  'client/src/report-engine/sheets/PierOptimiser.tsx': { literals: ['1.25', '1.50'], basis: 'colour band in the report-model optimiser table, not a verdict (§AB-2)' },
+};
+const thresholdProblems: string[] = [];
+for (const file of clientSources(clientSrcDir)) {
+  const rel = file.slice(join(here, '..').length + 1).replace(/\\/g, '/');
+  const seen = [...readFileSync(file, 'utf8').matchAll(STABILITY_COMPARE)].map((m) => m[3]);
+  if (seen.length === 0) continue;
+  const declared = DECLARED_CLIENT_THRESHOLDS[rel];
+  const measured = [...new Set(seen)].sort();
+  if (!declared) {
+    thresholdProblems.push(
+      `${rel}: compares a stability factor against a numeric literal (${measured.join(' / ')}) with no entry in ` +
+      `DECLARED_CLIENT_THRESHOLDS — read stabilityAcceptance from the design response, or declare the rule and ` +
+      `say where it comes from (§AB)`);
+    continue;
+  }
+  const expected = [...new Set(declared.literals)].sort();
+  if (expected.join() !== measured.join()) {
+    thresholdProblems.push(
+      `${rel}: declared thresholds are [${expected.join(' / ')}] but the file now uses [${measured.join(' / ')}] — ` +
+      `update the declaration WITH its basis, never by copying the number in. Basis on file: ${declared.basis}`);
+  }
+}
+defects += thresholdProblems.length;
+console.log(`${thresholdProblems.length === 0 ? 'OK  ' : 'DEFECT'} client thresholds are declared with a stated basis`);
+thresholdProblems.forEach((p) => console.log(`       - ${p}`));
+
 const banner =
   `\n${'='.repeat(78)}\n` +
   `STABILITY OUTCOMES — ${totals.cases} load cases across ${totals.templates} templates\n` +
@@ -310,8 +428,7 @@ const banner =
   `  sliding < ${THRESHOLDS.sliding}          ${String(attribution.byThreshold.sliding).padStart(4)}\n` +
   `  overturning < ${THRESHOLDS.overturning}    ${String(attribution.byThreshold.overturning).padStart(4)}\n` +
   `  bearing < ${THRESHOLDS.bearing}         ${String(attribution.byThreshold.bearing).padStart(4)}\n` +
-  `  failing bearing ALONE ${String(attribution.bearingOnly).padStart(4)} — of which ${attribution.bearingWouldPassAtSbcLimit}` +
-  ` would pass the commoner "pressure ≤ SBC" reading (factor ${BEARING_FOS_FOR_SBC_LIMIT})\n` +
+  `  failing bearing ALONE ${String(attribution.bearingOnly).padStart(4)} — everything else in those cases passes\n` +
   `${'='.repeat(78)}\n` +
   `These are engineering verdicts, not gate failures. ${totals.templatesWithUnsafe} template(s)\n` +
   `must NOT be signed off on this run's numbers without a licensed engineer. A zero exit code\n` +

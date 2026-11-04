@@ -4,6 +4,7 @@ import { Router, type Request, type Response } from 'express';
 import { generateCompleteExcel } from '../bridge-excel-generator/index';
 import calculateCompleteDesign from '../bridge-excel-generator/design-engine';
 import type { EnhancedProjectInput, ProjectInput } from '../bridge-excel-generator/types';
+import { EXPECTED_SHEET_COUNT } from '../bridge-excel-generator/sheet-contract';
 import { mergeProjectInput, PHASE1_QUICK_TEMPLATES } from './default-project-inputs';
 import { generateDesignPDF } from './pdf-export';
 import { generateBridgeDXF } from './dxf-export';
@@ -21,11 +22,10 @@ import { calculateReinforcement, generateReinforcementDetailSVG, generateReinfor
 import { calculateDetailedAbutmentDesign, calculateDetailedEstimation, calculateDeckAnchorage } from './remote-app-adapter';
 import { formatZodIssues, projectInputBodySchema } from './project-input-zod';
 import {
-  isLikelyXlsxZip,
-  MAX_UPLOAD_XLSX_BYTES,
   parseExcelToProjectInput,
   validateParsedInput,
 } from './excel-parser';
+import { guardProxyUrl, validateUpload } from './security';
 import { generateComprehensivePDF } from './comprehensive-pdf-export';
 import { generateHTMLDesignReport } from './design-report';
 import { validateDesign, generateValidationHTML } from './claude-validator';
@@ -37,7 +37,12 @@ import {
   STABILITY_CHECK_PIER_SHEET_NAME,
 } from './workbook-sheets-preview';
 import { resolveFeatureFlags } from '../shared/feature-flags';
-import { buildPierCaseCatalog, resolveDefaultPierAssetRoot } from './pier-case-engine';
+import {
+  buildPierCaseCatalog,
+  isExistingDirectory,
+  pierAssetTrees,
+  resolveDefaultPierAssetRoot,
+} from './pier-case-engine';
 import { PIER_MASTER_SCHEMA, recommendPierType, type PierMasterVariables } from './pier-recommendation-engine';
 import { generatePierPayload } from './pier-template-mapper';
 import { optimiseBridgeDesign } from './optimisation-engine';
@@ -76,12 +81,16 @@ async function saveAnalysisRecord(
   }
 }
 
-/** Reject pier catalog roots outside the resolved default asset tree (no arbitrary drive traversal). */
+/** Reject pier catalog roots outside the installed asset library (no arbitrary drive traversal). */
 function isDirectoryWithin(rootAbs: string, candidateAbs: string): boolean {
   const root = resolve(rootAbs);
   const dir = resolve(candidateAbs);
   const rel = relative(root, dir);
   return rel === '' || !rel.startsWith('..');
+}
+
+function isWithinAssetLibrary(candidateAbs: string): boolean {
+  return pierAssetTrees().some((tree) => isDirectoryWithin(tree, candidateAbs));
 }
 
 function getPositiveIntEnv(name: string, fallback: number): number {
@@ -500,7 +509,8 @@ router.get('/drawings/svg/slab-reinf-plan', svgSlabReinfPlanHandler);
 router.post('/drawings/svg/slab-reinf-plan', svgSlabReinfPlanHandler);
 
 /**
- * POST /api/design/pdf/comprehensive — returns ~200 page PDF with all 46 sheets
+ * POST /api/design/pdf/comprehensive — returns the full report PDF for the
+ * {@link EXPECTED_SHEET_COUNT}-sheet workbook (measured length: ~225 A4 pages)
  */
 router.post('/pdf/comprehensive', async (req, res) => {
   try {
@@ -518,7 +528,7 @@ router.post('/pdf/comprehensive', async (req, res) => {
     const enhancedInput = { ...input, ...designResults } as EnhancedProjectInput;
     const buffer = await generateComprehensivePDF(enhancedInput);
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename="${input.projectName.replace(/\s+/g, '_')}_Complete_46_Sheets.pdf"`);
+    res.setHeader('Content-Disposition', `attachment; filename="${input.projectName.replace(/\s+/g, '_')}_Complete_${EXPECTED_SHEET_COUNT}_Sheets.pdf"`);
     res.send(buffer);
   } catch (error) {
     res.status(500).json({ success: false, error: errorMessage(error) });
@@ -608,23 +618,15 @@ router.post('/report-model', async (req, res) => {
  */
 router.post('/upload-excel', async (req, res) => {
   try {
-    // Expect base64-encoded Excel file in body.file
-    const fileBase64 = req.body.file;
-    if (!fileBase64 || typeof fileBase64 !== 'string') {
-      res.status(400).json({ success: false, error: 'No file provided (expected base64 in body.file)' });
+    // Expect base64-encoded Excel file in body.file; MIME allowlist + magic bytes +
+    // size cap are enforced in server/security.ts (P2-W04 T4.6).
+    const decision = validateUpload(req.body.file, req.body.mimeType ?? req.body.mime);
+    if (!decision.ok) {
+      res.status(decision.status).json({ success: false, error: decision.error });
       return;
     }
-    if (fileBase64.length > Math.ceil((MAX_UPLOAD_XLSX_BYTES * 4) / 3) + 16) {
-      res.status(413).json({ success: false, error: `File too large (max ${MAX_UPLOAD_XLSX_BYTES} bytes)` });
-      return;
-    }
-    
-    const buffer = Buffer.from(fileBase64, 'base64');
-    if (buffer.length === 0 || !isLikelyXlsxZip(buffer)) {
-      res.status(400).json({ success: false, error: 'Invalid XLSX file payload' });
-      return;
-    }
-    const parsed = await parseExcelToProjectInput(buffer);
+
+    const parsed = await parseExcelToProjectInput(decision.buffer);
     const validation = validateParsedInput(parsed.input);
     
     res.json({
@@ -955,24 +957,34 @@ router.get('/feature-flags', (_req, res) => {
  * Scans local pier asset library and returns classified + scored best-case defaults.
  */
 router.get('/pier-cases/catalog', (req, res) => {
+  const defaultRoot = resolveDefaultPierAssetRoot();
+  if (!defaultRoot) {
+    res.status(503).json({
+      success: false,
+      error:
+        'Pier asset library is not installed. Set PIER_ASSET_ROOT to an existing directory of pier drawings, ' +
+        'or deploy the repository assets/ tree alongside the server.',
+    });
+    return;
+  }
+  const requestedRoot =
+    typeof req.query.root === 'string' && req.query.root.trim().length > 0
+      ? req.query.root.trim()
+      : defaultRoot;
+  const resolvedRoot = resolve(requestedRoot);
+  if (!isExistingDirectory(resolvedRoot)) {
+    res.status(400).json({ success: false, error: `root is not a directory: ${resolvedRoot}` });
+    return;
+  }
+  if (!isWithinAssetLibrary(resolvedRoot)) {
+    res.status(400).json({
+      success: false,
+      error: `root must be within the installed asset library: ${pierAssetTrees().join(', ')}`,
+    });
+    return;
+  }
   try {
-    const defaultRoot = resolveDefaultPierAssetRoot();
-    const requestedRoot =
-      typeof req.query.root === 'string' && req.query.root.trim().length > 0
-        ? req.query.root.trim()
-        : defaultRoot;
-    const resolvedRoot = resolve(requestedRoot);
-    const resolvedDefaultRoot = resolve(defaultRoot);
-    const withinAllowedRoot = isDirectoryWithin(resolvedDefaultRoot, resolvedRoot);
-    if (!withinAllowedRoot) {
-      res.status(400).json({
-        success: false,
-        error: `root must be within configured asset root: ${resolvedDefaultRoot}`,
-      });
-      return;
-    }
-    const catalog = buildPierCaseCatalog(resolvedRoot);
-    res.json({ success: true, catalog });
+    res.json({ success: true, catalog: buildPierCaseCatalog(resolvedRoot) });
   } catch (error) {
     res.status(500).json({ success: false, error: errorMessage(error) });
   }
@@ -1084,9 +1096,33 @@ router.post('/pier-cases/generate', (req, res) => {
  * http://localhost:8000 in dev).
  */
 router.post('/slabdraw-zip', async (req: Request, res: Response) => {
-  const slabdrawUrl = (process.env.SLABDRAW_URL || 'http://localhost:8000').replace(/\/$/, '');
+  let slabdrawUrl: string;
+  try {
+    // KERO-005: refuse a loopback / metadata proxy target in production.
+    slabdrawUrl = guardProxyUrl(
+      process.env.SLABDRAW_URL || 'http://localhost:8000',
+      process.env.NODE_ENV,
+    );
+  } catch (e: unknown) {
+    res.status(400).json({
+      success: false,
+      error: e instanceof Error ? e.message : 'Invalid slabdraw proxy target',
+    });
+    return;
+  }
   const slabdrawTimeoutMs = getPositiveIntEnv('SLABDRAW_TIMEOUT', 30000);
   const slabdrawRetry = getPositiveIntEnv('SLABDRAW_RETRY', 3);
+
+  // KERO-005: validate before forwarding — no raw body passthrough to the proxy.
+  const parsedBody = projectInputBodySchema.safeParse(req.body ?? {});
+  if (!parsedBody.success) {
+    res.status(400).json({
+      success: false,
+      error: 'Invalid request body',
+      issues: formatZodIssues(parsedBody.error),
+    });
+    return;
+  }
 
   try {
     const upstream = await fetchWithTimeoutAndRetry(
@@ -1094,7 +1130,7 @@ router.post('/slabdraw-zip', async (req: Request, res: Response) => {
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(req.body ?? {}),
+        body: JSON.stringify(parsedBody.data),
       },
       slabdrawTimeoutMs,
       slabdrawRetry,
@@ -1142,7 +1178,19 @@ router.post('/slabdraw-zip', async (req: Request, res: Response) => {
  * Proxies to slabdraw's /healthz endpoint to check connectivity and version.
  */
 router.get('/slabdraw-health', async (_req, res) => {
-  const slabdrawUrl = (process.env.SLABDRAW_URL || 'http://localhost:8000').replace(/\/$/, '');
+  let slabdrawUrl: string;
+  try {
+    slabdrawUrl = guardProxyUrl(
+      process.env.SLABDRAW_URL || 'http://localhost:8000',
+      process.env.NODE_ENV,
+    );
+  } catch (e: unknown) {
+    res.status(400).json({
+      success: false,
+      error: e instanceof Error ? e.message : 'Invalid slabdraw proxy target',
+    });
+    return;
+  }
   const slabdrawTimeoutMs = getPositiveIntEnv('SLABDRAW_TIMEOUT', 30000);
   const slabdrawRetry = getPositiveIntEnv('SLABDRAW_RETRY', 3);
 

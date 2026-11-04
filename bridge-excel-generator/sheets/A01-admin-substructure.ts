@@ -19,6 +19,7 @@ import {
   styleHeader,
   COLORS,
 } from '../utils';
+import { STABILITY_ACCEPTANCE } from '../design-engine';
 
 const { SEISMIC_ZONE_FACTOR = { 2: 0.1, 3: 0.16, 4: 0.24, 5: 0.36 } }: any = {
   SEISMIC_ZONE_FACTOR: { 2: 0.1, 3: 0.16, 4: 0.24, 5: 0.36 },
@@ -114,9 +115,9 @@ export async function generateDesignCriteriaSheet(
   addTableHeader(ws, r, ['Check', 'Limit', 'Reference', 'Governs']);
   r += 1;
   const limitRows = [
-    ['Sliding Factor of Safety', '≥ 1.50', 'IRC:6-2017 §114 & IRC:112 §7.3.2', 'Pier & Abutment'],
-    ['Overturning Factor of Safety', '≥ 1.80', 'IRC:6-2017 §114', 'Pier & Abutment'],
-    ['Bearing (max base pressure) FOS', '≥ 2.50 vs SBC', 'IRC:78 §303 + IS 1893 §7.12', 'Footings'],
+    ['Sliding Factor of Safety', `≥ ${STABILITY_ACCEPTANCE.slidingFosMin.toFixed(2)}`, 'IRC:6-2017 §114 & IRC:112 §7.3.2', 'Pier & Abutment'],
+    ['Overturning Factor of Safety', `≥ ${STABILITY_ACCEPTANCE.overturningFosMin.toFixed(2)}`, 'IRC:6-2017 §114', 'Pier & Abutment'],
+    ['Bearing (max base pressure) FOS', `≥ ${STABILITY_ACCEPTANCE.bearingFosMin.toFixed(2)} (base pressure ≤ SBC)`, 'IRC:78 §303 + IS 1893 §7.12; limit = project decision 2026-10-06', 'Footings'],
     ['Eccentricity e = M/V', '≤ L/6 (tension free base preferred)', 'IRC:6-2017 §113', 'Footings'],
     ['Deck slab Deflection SLS', '≤ L / 350 (total long term)', 'IRC:112-2015 §7.4.2(b)', 'Superstructure'],
     ['Crack width SLS', '≤ 0.30 mm (XS1 / XS2 exposure)', 'IRC:112-2015 Table 7.3, §7.6.3', 'All RC members'],
@@ -354,21 +355,23 @@ export async function generateWindLoadSheet(
   const k3 = 1.00; // Flat topography (no hill/escarpment, §5.4.4)
   const k4 = 1.00; // Importance (ordinary bridge IRC)
   const Vz = Vb * k1 * k2 * k3 * k4;
-  const Pz = 0.6 * Vz * Vz; // kN/m² (§6.1)
+  // IS:875-5 §6.1 gives Pz = 0.6·Vz² in N/m²; the sheet labels its result kN/m², so the same
+  // ÷1000 the engine applies (design-engine.ts designWindPressure) has to happen here too.
+  const Pz = 0.6 * Vz * Vz / 1000; // kN/m² (§6.1)
+  // The force rows reference the printed pressure cell, so their cached results are computed from
+  // the printed values too — otherwise the link gate re-evaluates a formula on 0.653 and compares
+  // it to a cached value derived from 0.65340000.
+  const vzShown = Number(Vz.toFixed(2));
+  const pzShown = Number(Pz.toFixed(3));
 
   const hPier = Math.max(1, input.rtl - input.foundationLevel);
   const CfPier = 1.2; // §209.4.1 square/rectangular solid pier
-  const windPier = Pz * CfPier * input.pierWidth * hPier;
 
   const deckDepth = 1.5; // m — slab deck + parapets/railing (IRC:6 §209.5)
   const CfDeck = 1.3;
-  const windSuper = Pz * CfDeck * input.carriageWidth * deckDepth * (input.numberOfSpans); // accum across spans
 
   const hAbut = input.abutmentHeight;
   const CfAbut = 1.4; // Wing wall + stem — rough face
-  const windAbutPerSide = Pz * CfAbut * input.abutmentWidth * hAbut * 0.5; // half windward wing drag
-
-  const totalWind = windPier * Math.max(1, input.numberOfPiers) + windSuper + 2 * windAbutPerSide;
 
   let r = 5;
   styleHeader(ws, r, 'A — VELOCITY & PRESSURE COEFFICIENTS', 1, 4);
@@ -380,18 +383,30 @@ export async function generateWindLoadSheet(
   addTableRow(ws, r + 2, ['3', 'k2 — Terrain, height, structure', k2.toFixed(2), 'Cat 2 open, h<10 m Table 1']);
   addTableRow(ws, r + 3, ['4', 'k3 — Topography (flat)', k3.toFixed(2), '§5.4.4 — no ridge factor']);
   addTableRow(ws, r + 4, ['5', 'k4 — Importance', k4.toFixed(2), 'Ordinary road bridge IRC:6']);
-  addTableRow(ws, r + 5, ['6', 'Vz = Vb·k1·k2·k3·k4 (m/s)', Vz.toFixed(2), '§5.2 design velocity']);
-  addTableRow(ws, r + 6, ['7', 'Pz = 0.6·Vz² (kN/m²)', Pz.toFixed(3), '§6.1 design wind pressure']);
+  addTableRow(ws, r + 5, ['6', 'Vz = Vb·k1·k2·k3·k4 (m/s)', { formula: `=C${r}*C${r + 1}*C${r + 2}*C${r + 3}*C${r + 4}`, result: vzShown }, '§5.2 design velocity']);
+  addTableRow(ws, r + 6, ['7', 'Pz = 0.6·Vz²/1000 (kN/m²)', { formula: `=0.6*C${r + 5}*C${r + 5}/1000`, result: pzShown }, '§6.1 design wind pressure']);
+  const pzRow = r + 6;
   r += 8;
 
   styleHeader(ws, r, 'B — FORCES ON COMPONENTS (IRC:6 §209.6)', 1, 4);
   r += 1;
   addTableHeader(ws, r, ['#', 'Component', 'Force (kN)', 'Faces modelled']);
   r += 1;
-  addTableRow(ws, r, ['1', `Piers (${Math.max(1, input.numberOfPiers)} nos, Cf=${CfPier})`, (windPier * Math.max(1, input.numberOfPiers)).toFixed(2), `B×L×H = ${input.pierWidth.toFixed(2)}×${input.pierLength.toFixed(2)}×${hPier.toFixed(2)}`]);
-  addTableRow(ws, r + 1, ['2', `Superstructure (Cf=${CfDeck})`, windSuper.toFixed(2), `W=carriageway, depth=${deckDepth} m across ${input.numberOfSpans} spans`]);
-  addTableRow(ws, r + 2, ['3', `Abutments ×2 (Cf=${CfAbut})`, (2 * windAbutPerSide).toFixed(2), 'Wing wall + stem, half windward drag']);
-  addTableRow(ws, r + 3, ['4', 'TOTAL WIND FORCE (kN)', totalWind.toFixed(2), 'Load Case 3/5 contributing']);
+  const pierCount = Math.max(1, input.numberOfPiers);
+  const gPierW = Number(input.pierWidth.toFixed(2));
+  const gPierH = Number(hPier.toFixed(2));
+  const gCarri = Number(input.carriageWidth.toFixed(2));
+  const gAbutW = Number(input.abutmentWidth.toFixed(2));
+  const gAbutH = Number(hAbut.toFixed(2));
+  const pierForce = pzShown * CfPier * gPierW * gPierH * pierCount;
+  const superForce = pzShown * CfDeck * gCarri * deckDepth * input.numberOfSpans;
+  const abutForce = 2 * pzShown * CfAbut * gAbutW * gAbutH * 0.5;
+  const totalForce = Number(pierForce.toFixed(2)) + Number(superForce.toFixed(2)) + Number(abutForce.toFixed(2));
+
+  addTableRow(ws, r, ['1', `Piers (${pierCount} nos, Cf=${CfPier})`, { formula: `=C${pzRow}*${CfPier}*${gPierW}*${gPierH}*${pierCount}`, result: Number(pierForce.toFixed(2)) }, `B×L×H = ${input.pierWidth.toFixed(2)}×${input.pierLength.toFixed(2)}×${hPier.toFixed(2)}`]);
+  addTableRow(ws, r + 1, ['2', `Superstructure (Cf=${CfDeck})`, { formula: `=C${pzRow}*${CfDeck}*${gCarri}*${deckDepth}*${input.numberOfSpans}`, result: Number(superForce.toFixed(2)) }, `W=carriageway, depth=${deckDepth} m across ${input.numberOfSpans} spans`]);
+  addTableRow(ws, r + 2, ['3', `Abutments ×2 (Cf=${CfAbut})`, { formula: `=2*C${pzRow}*${CfAbut}*${gAbutW}*${gAbutH}*0.5`, result: Number(abutForce.toFixed(2)) }, 'Wing wall + stem, half windward drag']);
+  addTableRow(ws, r + 3, ['4', 'TOTAL WIND FORCE (kN)', { formula: `=C${r}+C${r + 1}+C${r + 2}`, result: Number(totalForce.toFixed(2)) }, 'Load Case 3/5 contributing']);
   r += 5;
 
   addSectionDivider(ws, r,

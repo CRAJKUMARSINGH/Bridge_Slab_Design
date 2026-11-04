@@ -45,12 +45,22 @@ describe('Hydraulics Engine Consistency (Category D)', () => {
     expect(excel.discharge).toBeCloseTo(web.discharge, 1);
     expect(excel.scourDepth).toBeCloseTo(web.meanScourDepth, 2);
     expect(excel.designScourDepth).toBeCloseTo(web.maxScourDepth, 2);
-    if (typeof excel.foundationDepth === 'number' && typeof web.foundationDepth === 'number') {
-      expect(excel.foundationDepth).toBeCloseTo(web.foundationDepth, 1);
-    }
-    if (typeof excel.foundationLevel === 'number' && typeof web.foundationLevel === 'number') {
-      expect(excel.foundationLevel).toBeCloseTo(web.foundationLevel, 1);
-    }
+
+    // excel.foundationDepth is the AS-BUILT depth below bed (bedLevel - foundationLevel, both
+    // project inputs); web.foundationDepth is the CODE-PRESCRIBED minimum below HFL (F2 x 2 x d2).
+    // They are different quantities and were never comparable — asserting equality tested nothing.
+    expect(excel.foundationDepth).toBeCloseTo(input.bedLevel - input.foundationLevel, 6);
+
+    // The engine's own scour-founding guard, now a returned value instead of only an engineLog line.
+    expect(excel.minFoundingLevelForScour).toBeCloseTo(input.bedLevel - excel.designScourDepth, 6);
+    expect(excel.isFoundingLevelSafe).toBe(
+      input.foundationLevel <= (excel.minFoundingLevelForScour as number),
+    );
+
+    // PINNED UNSAFE: the Kherwara reference project founds at 92.60 against a required 91.80,
+    // i.e. 0.80 m too high — the pier is at risk of undermining. Owner decision pending (row 1
+    // sign-off). If the input is ever deepened this pin fails and must be updated deliberately.
+    expect(excel.isFoundingLevelSafe).toBe(false);
   });
 
   it('D02: Same input should yield identical afflux', () => {

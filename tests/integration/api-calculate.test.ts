@@ -65,7 +65,7 @@ const VALID_MINIMAL_INPUT = {
   agl: 95,
   nbl: 95,
   ofl: 100,
-  dwl: 100.5,
+  dwl: 99.5,
 };
 
 describe('API Integration — Calculation & Optimise', () => {

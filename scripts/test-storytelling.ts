@@ -49,7 +49,7 @@ async function main() {
     // Load workbook to read narrative
     const wb = new ExcelJS.Workbook();
     // ExcelJS pins a pre-generic @types/node Buffer; Node 24's Buffer<ArrayBufferLike> is the same value.
-    const load = wb.xlsx.load.bind(wb.xlsx) as (data: Uint8Array) => Promise<ExcelJS.Workbook>;
+    const load = wb.xlsx.load.bind(wb.xlsx) as unknown as (data: Uint8Array) => Promise<ExcelJS.Workbook>;
     await load(buffer);
 
     reportText += `## User ${i + 1}: ${user.name}\n\n`;

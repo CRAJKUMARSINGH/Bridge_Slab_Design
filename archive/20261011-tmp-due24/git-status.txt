@@ -1,0 +1,11 @@
+== D by top dir ==
+    316 evidence
+      1 tmp-golden-hash.txt
+      1 tmp-due15-test.log
+      1 tmp-due15-candidate.log
+== Attached_Assets entries ==
+30
+== untracked by top dir ==
+      5 archive
+    320 evidence
+      2 scripts

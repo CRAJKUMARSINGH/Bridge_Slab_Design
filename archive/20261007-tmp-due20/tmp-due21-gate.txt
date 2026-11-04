@@ -1,0 +1,20 @@
+client/src/components/SeismicZonePanel.tsx -> '1.25', '1.50'
+client/src/pages/AbutmentStability.tsx -> '1.50', '2.00'
+client/src/pages/FormulaEvaluator.tsx -> '1.3', '1.5', '1.7', '2.0'
+client/src/pages/Design.tsx -> '1.10', '1.25', '1.50'
+client/src/pages/BridgeSlabReport.tsx -> '1.5'
+client/src/report-engine/sheets/SummarySection.tsx -> '1.5'
+client/src/report-engine/sheets/engineeringNarrative.tsx -> '1.5'
+client/src/report-engine/exportUtils.ts -> '1.5'
+client/src/report-engine/sheets/OptimisationAtAGlance.tsx -> '1.25', '1.50'
+client/src/report-engine/sheets/PierOptimiser.tsx -> '1.25', '1.50'
+declared files: 10
+limitReaders: const limitReaders = [
+  'client/src/components/DesignCheckDashboard.tsx',
+  'client/src/components/CompareModal.tsx',
+  'client/src/components/EngineeringCopilot.tsx',
+  'client/src/components/WindLoadPanel.tsx',
+  'client/src/pages/Design.tsx',
+]
+has STABILITY_COMPARE: True
+has 6b header doc: True

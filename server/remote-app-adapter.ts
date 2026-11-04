@@ -355,17 +355,26 @@ export function calculateDeckAnchorage(
   const friction = deckWeight * 0.6;
   const totalResisting = deckWeight + wearingCoat + parapet + friction;
 
-  const safetyFactor = totalUplift > 0 ? totalResisting / totalUplift : 99;
-  const status = safetyFactor >= 1.2 ? 'SAFE' : 'UNSAFE';
-  const anchorageRequired = status === 'UNSAFE' || submergedDepth > 0.1;
+  // Base FOS without anchorage
+  const baseSafetyFactor = totalUplift > 0 ? totalResisting / totalUplift : 99;
+  const anchorageRequired = baseSafetyFactor < 1.2 || submergedDepth > 0.1;
 
-  // Bolt recommendation
-  const boltForce = anchorageRequired
-    ? Math.max(0, totalUplift - totalResisting) * 1.5
-    : 0;
+  // Hold-down anchorage (rock bolts / tension piles) — adds capacity to the
+  // resisting side so the FOS crosses the 1.2 threshold when the deck is
+  // submerged or the dead-load margin is insufficient.
   const boltCapacity = 45.2; // 20mm grade 8.8 bolt capacity in kN
   const minimumBolts = submergedDepth > 0.1 ? 4 : 0;
+  const boltForce = anchorageRequired
+    ? Math.max(0, totalUplift * 1.2 - totalResisting) * 1.5
+    : 0;
   const numberOfBolts = Math.max(Math.ceil(boltForce / boltCapacity), minimumBolts);
+  const anchorageCapacity = numberOfBolts * boltCapacity;
+
+  // FOS includes the hold-down anchorage capacity when provided
+  const safetyFactor = totalUplift > 0
+    ? (totalResisting + anchorageCapacity) / totalUplift
+    : 99;
+  const status = safetyFactor >= 1.2 ? 'SAFE' : 'UNSAFE';
 
   return {
     upliftForces: {

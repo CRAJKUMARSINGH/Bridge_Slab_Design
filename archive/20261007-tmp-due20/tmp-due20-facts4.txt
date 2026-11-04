@@ -1,0 +1,31 @@
+=== ctl-d full defect block ===
+DEFECT acceptance rule reaches the browser from the response
+       - client/src/components/DesignCheckDashboard.tsx: hard-codes slidingFosMin = 1.5 where the engine applies 1.5 — the browser must read stabilityAcceptance from the design response, or a §M-1-style rule change leaves this behind
+       - client/src/components/DesignCheckDashboard.tsx: hard-codes overturningFosMin = 1.8 where the engine applies 1.8 — the browser must read stabilityAcceptance from the design response, or a §M-1-style rule change leaves this behind
+       - client/src/components/DesignCheckDashboard.tsx: hard-codes bearingFosMin = 2.5 where the engine applies 1 — the browser must read stabilityAcceptance from the design response, or a §M-1-style rule change leaves this behind
+       - client/src/components/DesignCheckDashboard.tsx: shows stability verdicts but never reads stabilityAcceptance from the response — the gate would otherwise stay green on code that ignores the rule the engine sent
+       - client/src/lib/tmp-limit-probe.ts: hard-codes slidingFosMin = 2.5 where the engine applies 1.5 — the browser must read stabilityAcceptance from the design response, or a §M-1-style rule change leaves this behind
+
+==============================================================================
+STABILITY OUTCOMES — 300 load cases across 20 templates
+  SAFE   195
+  UNSAFE 105
+  templates carrying at least one UNSAFE case: 20 of 20
+
+WHICH CHECK FAILS (cases may fail more than one):
+  sliding < 1.5            99
+  overturning < 1.8      82
+  bearing < 1            6
+
+=== final verify outcomes block ===
+OK   acceptance rule reaches the browser from the response
+
+==============================================================================
+STABILITY OUTCOMES — 300 load cases across 20 templates
+  SAFE   195
+  UNSAFE 105
+  templates carrying at least one UNSAFE case: 20 of 20
+
+WHICH CHECK FAILS (cases may fail more than one):
+  sliding < 1.5            99
+  overturning < 1.8      82

@@ -6,6 +6,11 @@ import { join } from "node:path";
 import apiRoutes from "./api-routes";
 import d4Routes from "./d4-routes";
 import logger from "./logger";
+import {
+  buildErrorPayload,
+  resolveCorsOrigin,
+  securityHeaders,
+} from "./security";
 
 export interface AppOptions {
   cors?: boolean;
@@ -20,20 +25,29 @@ export interface AppOptions {
 export function createApp(options: AppOptions = {}) {
   const app = express();
 
-  // CORS - RISK-1 fix: use configurable origins
+  // Security response headers - applied before any route can answer (P2-W04 T4.4).
+  app.use(securityHeaders());
+
+  // CORS - RISK-1 fix: use configurable origins.
+  // A wildcard is refused in production (T4.4/KERO-003); see server/security.ts.
   if (options.cors) {
-    const allowedOrigins = (process.env.ALLOWED_ORIGINS ?? "")
-      .split(",")
-      .map((origin) => origin.trim())
-      .filter(Boolean);
     app.use(cors({
-      origin: allowedOrigins.length > 0 ? allowedOrigins : false,
+      origin: resolveCorsOrigin(process.env.ALLOWED_ORIGINS, process.env.NODE_ENV),
       credentials: true
     }));
   }
 
-  // Body limit - RISK-1 fix: drop from 50mb to 200kb
-  app.use(express.json({ limit: '200kb' }));
+  // Body limits - RISK-1 fix: drop the default from 50mb to 200kb, but keep the
+  // workbook-upload route reachable. U-1 (W01 SECURITY.md) found the 10 MB ceiling
+  // declared in excel-parser.ts was unreachable because this global parser rejected
+  // anything over 200 kB first. The upload path therefore gets its own, larger
+  // parser; every other route keeps the small limit.
+  const jsonDefault = express.json({ limit: '200kb' });
+  const jsonUpload = express.json({ limit: '14mb' });
+  app.use((req, res, next) => {
+    const isUpload = req.path === '/api/design/upload-excel';
+    (isUpload ? jsonUpload : jsonDefault)(req, res, next);
+  });
   app.use(express.urlencoded({ extended: false, limit: '200kb' }));
 
   // Structured logging - DRIFT-1 alignment
@@ -82,21 +96,11 @@ export function createApp(options: AppOptions = {}) {
     }
   });
 
-  // Global error handler
+  // Global error handler — stack traces only in development (P2-W04 T4.5, KERO-002).
   app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
-    const cause = err && typeof err === 'object'
-      ? err as { status?: number; statusCode?: number; message?: string; stack?: string }
-      : {};
-    const status = cause.status ?? cause.statusCode ?? 500;
-    const message = cause.message ?? 'Internal Server Error';
-
     logger.error({ err }, 'Server error');
-
-    res.status(status).json({
-      success: false,
-      error: message,
-      ...(process.env.NODE_ENV === 'development' && { stack: cause.stack })
-    });
+    const { status, body } = buildErrorPayload(err, process.env.NODE_ENV);
+    res.status(status).json(body);
   });
 
   return app;

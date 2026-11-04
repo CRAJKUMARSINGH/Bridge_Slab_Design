@@ -1,0 +1,20 @@
+server/comprehensive-pdf-export.ts
+   U+03BC GREEK SMALL LETTER MU x5 at lines [860, 861, 951, 985, 986]
+   U+2265 GREATER-THAN OR EQUAL TO x4 at lines [662, 941, 941, 941]
+   U+2212 MINUS SIGN x3 at lines [652, 653, 654]
+   U+2264 LESS-THAN OR EQUAL TO x1 at lines [941]
+   U+03B3 GREEK SMALL LETTER GAMMA x1 at lines [985]
+server/pdf-export.ts
+   U+2500 BOX DRAWINGS LIGHT HORIZONTAL x322 at lines [102, 102, 102, 102, 102, 102]
+   U+2192 RIGHTWARDS ARROW x7 at lines [177, 177, 177, 177, 177, 177]
+   U+20B9 INDIAN RUPEE SIGN x6 at lines [338, 338, 353, 354, 355, 357]
+   U+03C6 GREEK SMALL LETTER PHI x1 at lines [169]
+   U+03B3 GREEK SMALL LETTER GAMMA x1 at lines [170]
+server/landscape-pdf-export.ts
+   U+2194 LEFT RIGHT ARROW x1 at lines [117]
+server/fiftysix-sheet-book-pdf.ts
+   U+2192 RIGHTWARDS ARROW x2 at lines [3, 3]
+   U+26A0 WARNING SIGN x1 at lines [188]
+   U+3014 LEFT TORTOISE SHELL BRACKET x1 at lines [247]
+   U+3015 RIGHT TORTOISE SHELL BRACKET x1 at lines [247]
+server/pdf-input-template-sheets.ts

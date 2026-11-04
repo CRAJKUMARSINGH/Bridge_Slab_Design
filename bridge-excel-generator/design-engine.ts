@@ -5,7 +5,7 @@
  *           IS:1893:2002, IS:875 Part-3 standards
  */
 
-import { ProjectInput, HydraulicsResult, PierDesignResult, AbutmentDesignResult, LoadCase, SteelDetails } from './types';
+import { ProjectInput, HydraulicsResult, PierDesignResult, AbutmentDesignResult, LoadCase, SteelDetails, CompleteDesignResult } from './types';
 import { deckSlabThicknessOf } from './input-contract';
 import { calculateDetailedEstimation, type DetailedEstimationResult } from '../shared/design-engine-types';
 import type { EstimationResult } from './types';
@@ -174,9 +174,11 @@ export const DECK_OBSTRUCTION_DEPTH_M = 0.83;
 //
 // Every numeric literal that is NOT a formula skeleton constant (8, 2, 5, 384,
 // 1000, 1e6, π/4 etc.) belongs here with its IRC / IS clause reference so a
-// reviewer can re-source or re-calibrate values in exactly one place.
+// reviewer can re-source or re-calibrate values in exactly one place. Exported because the
+// workbook sheets print the same coefficients as Section A parameter cells — a second literal in
+// a sheet is a second place to re-calibrate, and the link gate cannot see the difference.
 // ---------------------------------------------------------------------------
-const DESIGN_CONSTANTS = {
+export const DESIGN_CONSTANTS = {
   // Sliding-stability base friction coefficient for concrete founding on
   // compacted granular soil (IRC:6-2016 Annex B, Table B.1, medium gravel).
   // Lower bound of the 0.45…0.60 range for "conservative" design.
@@ -216,9 +218,9 @@ const DESIGN_CONSTANTS = {
  * sentence "Compare against Sliding >= 1.50" could outlive a change to the rule — the report
  * disagreeing with the calculation it describes, with nothing to catch it.
  *
- * Sliding/overturning follow IRC:6 §114; the bearing limit of 2.5 is this project's own
- * conservatism (the QA register, sheet 'IRC CODE COMPLIANCE CHECKLIST' rows D3-D5) rather than a
- * literal code clause — most IRC practice checks bearing as pressure <= SBC, i.e. a factor of 1.0.
+ * Sliding/overturning follow IRC:6 §114. The bearing limit was 2.5 — this project's own
+ * conservatism, not a literal code clause — and is now 1.0, the common IRC practice of checking
+ * bearing as pressure <= SBC; the owner made that decision on 2026-10-06.
  * Changing any value here changes verdicts across the whole book, so it is an engineering
  * decision for the signing engineer, never a lint fix.
  */
@@ -279,7 +281,7 @@ export function calculateCompleteDesign(input: ProjectInput, options: DesignEngi
   }
 }
 
-function runCompleteDesign(input: ProjectInput) {
+function runCompleteDesign(input: ProjectInput): CompleteDesignResult {
   engineLog('🔧 Design Engine: Starting calculations...');
   
   // 1. Hydraulics calculations
@@ -319,6 +321,10 @@ function runCompleteDesign(input: ProjectInput) {
     abutmentType1,
     abutmentC1,
     estimation,
+    // The verdicts above were made with these numbers. Printing the factors without the rule they
+    // are judged against is what let a browser, a PDF and a validator each keep their own copy of
+    // 1.5 / 1.8 / 2.5 (august-due §Y-5); the rule now travels with the result it belongs to.
+    stabilityAcceptance: STABILITY_ACCEPTANCE,
   };
 }
 
@@ -461,7 +467,8 @@ function calculateHydraulics(input: ProjectInput): HydraulicsResult {
   // anticipated scour envelope (IRC 78 § for spread foundations). If it does
   // not, the bridge is at risk of undermining in a design flood.
   const minFoundingLevelForScour = input.bedLevel - designScourDepth;
-  if (input.foundationLevel > minFoundingLevelForScour) {
+  const isFoundingLevelSafe = input.foundationLevel <= minFoundingLevelForScour;
+  if (!isFoundingLevelSafe) {
     engineLog(
       `    ⚠ Hydraulics: foundation level ${input.foundationLevel.toFixed(2)} m is ABOVE the IRC-required ` +
       `scour founding level ${minFoundingLevelForScour.toFixed(2)} m (bed − 2·dsm = ` +
@@ -486,6 +493,8 @@ function calculateHydraulics(input: ProjectInput): HydraulicsResult {
     flowType,
     foundationDepth,
     foundationLevel: input.foundationLevel,
+    minFoundingLevelForScour,
+    isFoundingLevelSafe,
     soffitLevel,
     freeboard,
     freeboardAboveHfl,

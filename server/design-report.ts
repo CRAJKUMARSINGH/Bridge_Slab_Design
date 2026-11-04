@@ -13,6 +13,7 @@ import { getFullTechnicalComputationNarrativeChunks } from '../bridge-excel-gene
 import { buildWorkbookSheetPreviews, buildSingleWorkbookSheetPreview, STABILITY_CHECK_PIER_SHEET_NAME, MAX_ROWS, MAX_COLS } from './workbook-sheets-preview';
 import type { WorkbookSheetPreview } from './workbook-sheets-preview';
 import { deckSlabThicknessOf } from '../bridge-excel-generator/input-contract';
+import { STABILITY_ACCEPTANCE } from '../bridge-excel-generator/design-engine';
 import {
   generateAbutmentPressureSvg,
   generatePierStabilitySvg,
@@ -733,9 +734,9 @@ function generatePierStabilitySection(input: EnhancedProjectInput): ReportSectio
           { value: formatNum(lc.slidingFOS), bold: true },
           { value: '—' },
           {
-            value: '≥ 1.5 typical',
+            value: `≥ ${STABILITY_ACCEPTANCE.slidingFosMin} (IRC:6 §114)`,
             clause: true,
-            note: lc.slidingFOS >= 1.5 ? 'OK' : 'CHECK',
+            note: lc.slidingFOS >= STABILITY_ACCEPTANCE.slidingFosMin ? 'OK' : 'CHECK',
           },
         ],
       });
@@ -745,9 +746,9 @@ function generatePierStabilitySection(input: EnhancedProjectInput): ReportSectio
           { value: formatNum(lc.overturningFOS), bold: true },
           { value: '—' },
           {
-            value: '≥ 1.8 typical',
+            value: `≥ ${STABILITY_ACCEPTANCE.overturningFosMin} (IRC:6 §114)`,
             clause: true,
-            note: lc.overturningFOS >= 1.8 ? 'OK' : 'CHECK',
+            note: lc.overturningFOS >= STABILITY_ACCEPTANCE.overturningFosMin ? 'OK' : 'CHECK',
           },
         ],
       });
@@ -757,9 +758,9 @@ function generatePierStabilitySection(input: EnhancedProjectInput): ReportSectio
           { value: formatNum(lc.bearingFOS), bold: true },
           { value: '—' },
           {
-            value: '≥ 2.5 typical',
+            value: `≥ ${STABILITY_ACCEPTANCE.bearingFosMin} (pressure ≤ SBC)`,
             clause: true,
-            note: lc.bearingFOS >= 2.5 ? 'OK' : 'CHECK',
+            note: lc.bearingFOS >= STABILITY_ACCEPTANCE.bearingFosMin ? 'OK' : 'CHECK',
           },
         ],
       });
@@ -817,6 +818,16 @@ function generateAbutmentSection(input: EnhancedProjectInput): ReportSection {
         { value: formatNum(t1?.geometry?.dirtWallHeight ?? input.dirtWallHeight) },
         { value: formatNum(c1?.geometry?.dirtWallHeight ?? input.dirtWallHeight) },
         { value: 'm' },
+      ],
+    },
+    {
+      cells: [
+        {
+          value:
+            'The C1 column mirrors the Type-1 column by construction: the engine calculates one abutment stability model and labels it twice, so identical figures here are expected rather than coincidental (august-due §Z).',
+          colSpan: 4,
+          clause: true,
+        },
       ],
     },
   ];

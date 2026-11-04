@@ -1,0 +1,6 @@
+
+> workspace@0.0.0 assimilate:classify E:\Rajkumar\Bridge_Slab_Design
+> python scripts/assimilate/classify_cells.py
+
+A3 classify: processed=16 of 96, relocated-pointer-era=95
+A3_EXIT=0

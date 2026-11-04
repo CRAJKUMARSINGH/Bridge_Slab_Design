@@ -1,0 +1,30 @@
+
+> workspace@0.0.0 verify:cases E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:cases
+
+
+> @workspace/scripts@0.0.0 verify:cases E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-load-case-diversity.ts
+
+OK   larathi-stabil           abutment cases: 5 distinct, horizontal spread 367.0 kN
+OK   kherwara-golden          abutment cases: 5 distinct, horizontal spread 54.0 kN
+OK   high-level-reference     abutment cases: 5 distinct, horizontal spread 435.5 kN
+OK   small-bridge             abutment cases: 5 distinct, horizontal spread 197.3 kN
+OK   medium-bridge            abutment cases: 5 distinct, horizontal spread 367.0 kN
+OK   large-bridge             abutment cases: 5 distinct, horizontal spread 428.1 kN
+OK   irc-bedach-bedla         abutment cases: 5 distinct, horizontal spread 271.6 kN
+OK   irc-jakham-mandvi        abutment cases: 5 distinct, horizontal spread 322.3 kN
+OK   irc-t01-jethliya         abutment cases: 5 distinct, horizontal spread 181.7 kN
+OK   irc-sukanaka-matoon      abutment cases: 5 distinct, horizontal spread 219.8 kN
+OK   irc-ayad-maharashtra     abutment cases: 5 distinct, horizontal spread 322.3 kN
+OK   irc-gumaniya-udaipur     abutment cases: 5 distinct, horizontal spread 181.7 kN
+OK   irc-katumbi-chandrod     abutment cases: 5 distinct, horizontal spread 271.6 kN
+OK   irc-sisarama-highlevel   abutment cases: 5 distinct, horizontal spread 435.5 kN
+OK   irc-kumbhalgarh-kelwara  abutment cases: 5 distinct, horizontal spread 535.0 kN
+OK   irc-parwan-highlevel     abutment cases: 5 distinct, horizontal spread 512.5 kN
+OK   irc-banas-highlevel      abutment cases: 5 distinct, horizontal spread 704.3 kN
+OK   irc-ayad-fatehpura       abutment cases: 5 distinct, horizontal spread 512.6 kN
+OK   irc-kherka-teegirder     abutment cases: 5 distinct, horizontal spread 405.5 kN
+OK   irc-sukanaka-highlevel   abutment cases: 5 distinct, horizontal spread 279.4 kN
+
+Templates: 20 | defects: 0

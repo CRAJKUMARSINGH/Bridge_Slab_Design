@@ -1,0 +1,9 @@
+normalized records: 96
+by status: {"lfs-stub": 95, "ok": 1}
+by top-level root: {"Attached_Assets": 96}
+record paths that are LFS-tracked: 96 of 96
+record paths currently DELETED in the working tree: 0
+  examples: 
+total paths deleted in worktree (any kind): 3
+of those, under Attached_Assets/: 0
+of those, under assets/: 0

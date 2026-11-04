@@ -1,9 +1,9 @@
 {
   "name": "gate-tiers",
-  "ts": "2026-10-24T14:38:11.177Z",
+  "ts": "2026-10-26T07:16:27.225Z",
   "commit": "local",
-  "pass": true,
+  "pass": false,
   "assertions": 3,
   "declared": 3,
-  "detail": ""
+  "detail": "undeclared artifacts:\n_clean-92c688e/.deps-plan.json\n_clean-92c688e/ACTION-PLAN.md\n_clean-92c688e/ARCHITECTURE.md\n_clean-92c688e/asset-register.json\n_clean-92c688e/AUDIT-REPORT-v1.0.md\n_clean-92c688e/AUGUST ACTION PLAN.md\n_clean-92c688e/august-due.md\n_clean-92c688e/BASELINE_MANIFEST.md\n_clean-92c688e/CANONICAL.md\n_clean-92c688e/CERTIFICATION-CODE-JUNCTION.md\n_clean-92c688e/CHANGELOG.md\n_clean-92c688e/CONTRIBUTING.md\n_clean-92c688e/creat.md\n_clean-92c688e/creat1.md\n_clean-92c688e/DEPLOY.md\n_clean-92c688e/DREAM030526.md\n_clean-92c688e/drizzle.config.ts\n_clean-92c688e/eslint.config.js\n_clean-92c688e/excel_workbook_audit_report.md\n_clean-92c688e/Get_Code_Sudited_Grok.md\n_clean-92c688e/kiro-impl-plan.md\n_clean-92c688e/MASTER-APP-TESTER.md\n_clean-92c688e/orval.config.ts\n_clean-92c688e/package.json\n_clean-92c688e/PATH-MANIFEST.json"
 }

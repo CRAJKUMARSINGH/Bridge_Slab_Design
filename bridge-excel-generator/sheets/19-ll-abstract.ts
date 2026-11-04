@@ -27,7 +27,7 @@ const IRC_IMPACT_FACTOR: Record<string, number> = {
   'IRC Class AA Wheeled': 0.25,
   'IRC Class 70R Tracked': 0.10,
   'IRC Class 70R Wheeled': 0.25,
-  'IRC Class A':           0.50,
+  'IRC Class A (2-lane)':   0.50,
 };
 
 export async function generateLLAbstractSheet(
@@ -77,7 +77,7 @@ export async function generateLLAbstractSheet(
     IRC_IMPACT_FACTOR['IRC Class AA Tracked'],
     IRC_IMPACT_FACTOR['IRC Class AA Wheeled'],
     IRC_IMPACT_FACTOR['IRC Class 70R Tracked'],
-    IRC_IMPACT_FACTOR['IRC Class A'],
+    IRC_IMPACT_FACTOR['IRC Class A (2-lane)'],
   );
   const maxReactionMT = reactionMT * (1 + governingImpact);
 

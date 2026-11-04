@@ -134,10 +134,14 @@ T00.24 MACHINE | write `docs/phase-2/week-00/EXIT-GATE-EVIDENCE.md` with the raw
        output of the run above. Evidence, not a summary of evidence.
 
 T00.25 MANUAL because the archive decision moves files and needs a human owner |
-       retire `origin-weekly-plan.md`, `docs/plan-b/15-week-implementation-plan.md`,
-       `docs/week1/`, `docs/week3/` and `scripts/gates/*.mjs` per the
-       pending-retirement table in `archive/MANIFEST.md`. Nothing has been moved
-       yet: the table declares the move, this task performs it.
+       retire `docs/week1/`, `docs/week3/` (archived 2026-10-23 to
+       `archive/20261023-w00-closeout/`) and `scripts/gates/*.mjs` per the
+       pending-retirement table in `archive/MANIFEST.md`.
+       The superseded plan files (origin-weekly-plan.md and
+       docs/plan-b/15-week-implementation-plan.md) were also archived to
+       `archive/20261023-w00-closeout/` on 2026-10-23.
+       `scripts/gates/*.mjs` (NOT-IMPLEMENTED stubs) remain; they are excluded by
+       P-09 and kept as documentation of the stub pattern.
 
 ## 4. EVIDENCE
 

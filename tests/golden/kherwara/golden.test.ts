@@ -8,9 +8,13 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync, existsSync } from 'node:fs';
 import { calculateCompleteDesign } from '../../../bridge-excel-generator/design-engine';
 import { KHERWARA_REFERENCE_PROJECT_INPUT } from '../../../scripts/fixtures/kherwara-project-input';
-import { expectWithin, unregisteredQuantities } from '../../helpers/tolerance';
+import { expectWithin, unregisteredQuantities, recordedPendingQuantities } from '../../helpers/tolerance';
 
-const GOLDEN = 'tests/golden/kherwara/expected.json';
+// Flat numeric-leaf snapshot of the authoritative engine. It is deliberately NOT
+// tests/golden/kherwara/expected.json: that path is the structured document
+// verify:golden reads. Two consumers, two schemas, two fixtures (see
+// docs/phase-2/week-00/PATCH-PACK-CERTIFICATION.md §13.6).
+const GOLDEN = 'tests/golden/kherwara/expected-leaves.json';
 const IGNORE_TOP = new Set(['input']);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -59,6 +63,11 @@ describe('G3a golden numeric regression — Kherwara', () => {
     if (bare.length) console.log(
       `[golden] ${bare.length} leaves resolved under the blanket default tolerance ` +
       `(no entry in foundation/tolerances.json → quantities): ${bare.slice(0, 20).join(', ')}`,
+    );
+    const pendingTol = recordedPendingQuantities();
+    if (pendingTol.length) console.log(
+      `[golden] ${pendingTol.length} quantity tolerance(s) compared under a recorded-pending ` +
+      `approval (owner/closingWeek in foundation/tolerances.json → pendingApproval): ${pendingTol.join(', ')}`,
     );
   });
 });

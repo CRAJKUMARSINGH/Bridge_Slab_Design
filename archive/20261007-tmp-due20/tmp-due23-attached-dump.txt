@@ -1,0 +1,191 @@
+sha256 Downloads == repo copy? True
+
+===== ATTACHMENT (Downloads): C:\Users\Rajkumar.DESKTOP-4ISBKM0\Downloads\plus Detailed ESTIMATE HL Bridge BEDACH.xls =====
+exists=True size=168448 sha256=5953625d62a245b8fab793299b6a3aac4a15775c3d0bdb9e8a2281918eef45a8
+sheets: 4  ['Tech Report', 'General Abs. ', 'Abstract', 'Bridge measurements']
+
+-- sheet 'Tech Report'  rows=43 cols=11 nonempty=45  ctype tally={1: 31, 2: 14}
+   r0   A:Technical - Report
+   r2   A:1 | B:Name of Project  | C::- | D:DESIGN OF HIGH-LEVEL SKEW BRIDGE ACROSS BEDACH RIVER | E:0 | F:0 | G:0 | H:0 | I:0 | J:0 | K:0
+   r5   A:2 | B:Authority | C::-
+   r7   A:3 | B:Necessity  | C::-
+   r10  A:4 | B:Specification Proposed :  | C::- | D:The following specifications are proposed in this estimete as under -  
+   r11  D:The administrative sanction for Construction of High Level Bridge having 8 Nos. span of 10.00 M each and open foundation has been proposed. The substructure in RCC wall type piers in M-25 and RCC solid slab simply supprted dacking also in M-30 (Design Mix Concreate). The solid slab has deck slab proposed to be properly Anchored into The pier cap against uplifting and drag. The pier footing has also proposed to be similarly anchored into the rocky strata. 
+   r13  D:(a) Foundation Concreate P.C.C. M-15 grade  20 mm nominal size aggregate. 
+   r15  D:(b) Foundation Footing of Piers - it has been proposed of RCC mix M-25. The annular space filled with M-15 with 20 mm nominal Size stone aggregate upto the top of the rock.
+   r17  D:(C) Foundation Footing of Abutments - It has been proposed of RCC mix M-20 The annular space filled with P.C.C. M-15 grade concreate with 20mm nominal Size stone aggregate upto the top of the rock.
+   r19  D:(D) Piers, Pier caps - These has been proposed of RCC Mix M-25
+   r21  D:(E) Abutments, Abutment caps and Dirt wall - These has been proposed of RCC Mix M-25
+   r23  D:(F) Deck Slab - The simply supported deck slab has been proposed of R.C.C. mix M-30. The deck slab shall be anchored at both ends with 25mm dia anchor bolts to prevent it from uplift and the drag of flowing water.
+   r25  D:(G) Railing - RCC railing has been proposed of mix M-25 as per recommendations of IRC special publiciation on Submersible bridges.
+   r27  D:(H) Wearing Coat - M-30 concreate with reinforcement as per IRC recommendation is proposed. The average thickness of the wearing coat 75mm.
+   r29  D:(I) Approach slab - Approach slab has been proposed of RCC M-25 overlaid  
+          The wearing coat similar to that on deck slab has been proposed provided over the approach slab. 
+   r31  D:(J) Filling behind Abutment & Wing walls- The back Fill has been proposed of locally available granular material it shall be compacted as per specifications.
+   r33  D:(K) Earth work in cutting for grade improvement on approches has been proposed.
+   r37  A:5 | B:Estimated Cost of Work  | C::- | D:The Estimated Cost comes to Rs.1274.46 Lacs
+   r40  A:6 | B:Rates  | C::- | D:The Estimate based on PWD BSR Road 2022  (Rajasthan). 
+   r42  A:7 | B:Job No. | C::-
+
+-- sheet 'General Abs. '  rows=26 cols=7 nonempty=27  ctype tally={1: 17, 2: 10}
+   r0   A:PUBLIC WORKS  DEPARTMENT, DIVISION - 
+   r2   A:GENERAL ABSTRACT
+   r4   A:Name of Work  :-   
+   r5   B:DESIGN OF HIGH-LEVEL SKEW BRIDGE ACROSS BEDACH RIVER
+   r6   A:Sr.No. | B:                    Items | G:Amount
+   r8   A:1 | B:Bridge Work  | G:110032581
+   r10  E:                  Total => Rs. | G:110032581
+   r12  B:Add 1.00% for Quality Control Charges | G:1100326
+   r14  B:Add 3% for Contengency Charges | G:0
+   r16  B:Add 1.50 % for Contingencies Charges  | G:1650489
+   r18  F:G. Total Rs. :- | G:112783396
+   r20  B:Add 13.00 % for Prorata Charges  | G:14661841
+   r22  F:G. Total Rs. :- | G:127445237
+   r24  F:Say Rs. :- | G:1274.46
+   r25  G:Lacs.
+
+-- sheet 'Abstract'  rows=113 cols=10 nonempty=360  ctype tally={1: 177, 2: 183}
+   r0   A:ABSTRACT OF COST
+   r1   A:Name of Work  :-   
+   r2   B:DESIGN OF HIGH-LEVEL SKEW BRIDGE ACROSS BEDACH RIVER
+   r3   A:S.No. | B:Particulars | C:Qty. | E:Rate | F:Unit | G:Amount
+   r5   A:1 (a)  | B:Excavation for Structures (Earth work in excavation of foundation of structures as per drawing and technical specification,  including setting out,  construction of shoring and bracing,  removal of stumps and other deleterious matter,  dressing of sides and bottom and backfilling with approved material.) Ordinary soil. Mechanical Means.  Depth upto 3 m  | J:116
+   r6   B:Foundation Work  | C:823.9022838641478 | D:Cum 
+   r7   B:Approches  | C:1041.6000000000001 | D:Cum 
+   r8   C:1865.502283864148 | D:Cum | E:51 | F:Cum | G:95140.61647707155
+   r10  A:(b) | B:Above 3m to 6m depth  | J:116
+   r11  B:Foundation Work  | C:926.8900693471661 | D:Cum  | E:57 | F:Cum | G:52832.73395278847
+   r13  A:© | B:Ordinary/Soft rock (not requiring blasting) [MoRTH Specification : Clause 301]. BY MECHANICAL MEANS | J:146
+   r14  B:Foundation Work  | C:1029.8778548301846 | D:Cum
+   r15  B:Approches  | C:1610 | D:Cum
+   r16  C:2639.8778548301843 | D:Cum | E:63 | F:Cum | G:166312.30485430162
+   r18  A:(d) | B:Hard rock ( requiring blasting ) | J:273
+   r19  B:Foundation Work  | C:1853.7801386943322 | D:Cum | E:514 | F:Cum | G:952842.9912888868
+   r21  A:5 | B: Plain/Reinforced cement concrete in open foundation complete as per drawing and technical specifications | J:3005
+   r22  B:PCC Grade M15 
+   r23  B:Foundation Work  | C:1172.2222179864189 | D:Cum | E:4508 | F:Cum | G:5284377.758682776
+   ... (88 more rows not dumped)
+
+-- sheet 'Bridge measurements'  rows=184 cols=12 nonempty=653  ctype tally={1: 268, 2: 385}
+   r0   A:DETAILED - ESTIMATE 
+   r1   A:Name of Work  :-   
+   r2   B:DESIGN OF HIGH-LEVEL SKEW BRIDGE ACROSS BEDACH RIVER
+   r4   A:S.No. | B:Particulars | C:Particulars | D:Details 
+   r6   C:BRIDGE WORK
+   r8   C:FOUNDATION WORK
+   r9   A:1 | B:B-1
+1.1.4 | C:Excavation for Structures (Earth work in excavation of foundation of structures as per drawing and technical specification,  including setting out,  construction of shoring and bracing,  removal of stumps and other deleterious matter,  dressing of sides and bottom and backfilling with approved material.) Ordinary soil. Mechanical Means.  Depth upto 3 m 
+   r10  A:1 | B:B-1
+1.1.4 | C:In ordinary soil BY MECHANICAL MEANS
+Depth upto 3m
+   r11  C:Pier  | D:17 | E:11.845236446545098 | F:4.33 | G:0.8 | H:697.5422838641477 | I:Cum
+   r12  C:Abutment  | D:2 | E:11.7 | F:6.75 | G:0.8 | H:126.36 | I:Cum
+   r13  G:Total:- | H:823.9022838641478 | I:Cum
+   r15  A:2 | B:B-1
+1.1.5 | C:Earthwork in excavation for foundation of structure complete with all lift, dewatering, shoring and shuttering etc. including refilling of trenches in 250 mm layer, ramming, watering and disposal of surplus soil within a lead of 1000 meters, as per drawing and technical Earth in excavation for foundation of specification. [MoRTH Specification : Clause 304].
+In ordinary soil [MoRTH Specification : clause 301] BY MECHANICAL MEANS
+Above 3m to 6m depth 
+   r16  C:Pier | D:17 | E:11.845236446545098 | F:4.33 | G:0.9 | H:784.7350693471661 | I:Cum
+   r17  C:Abutment  | D:2 | E:11.7 | F:6.75 | G:0.9 | H:142.155 | I:Cum
+   r18  G:Total:- | H:926.8900693471661 | I:Cum
+   r20  A:3 | B:1.3.2 | C:Earthwork in excavation for foundation of structure complete with all lift, dewatering, shoring and shuttering etc. including refilling of trenches in 250 mm layer, ramming, watering and disposal of surplus soil within a lead of 1000 meters, as per drawing and technical Earth in excavation for foundation of specification. [MoRTH Specification : Clause 304].
+In Ordinary/Soft rock (not requiring blasting) [MoRTH Specification : Clause 301]. BY MECHANICAL MEANS
+   r21  C:Pier | D:17 | E:11.845236446545098 | F:4.33 | G:1 | H:871.9278548301846 | I:Cum
+   r22  C:Abutment  | D:2 | E:11.7 | F:6.75 | G:1 | H:157.95 | I:Cum
+   r24  G:Total:- | H:1029.8778548301846 | I:Cum
+   ... (159 more rows not dumped)
+
+===== REPO INDEXED COPY (Attached_Assets): E:\Rajkumar\Bridge_Slab_Design\Attached_Assets\plus Detailed ESTIMATE HL Bridge BEDACH.xls =====
+exists=True size=168448 sha256=5953625d62a245b8fab793299b6a3aac4a15775c3d0bdb9e8a2281918eef45a8
+sheets: 4  ['Tech Report', 'General Abs. ', 'Abstract', 'Bridge measurements']
+
+-- sheet 'Tech Report'  rows=43 cols=11 nonempty=45  ctype tally={1: 31, 2: 14}
+   r0   A:Technical - Report
+   r2   A:1 | B:Name of Project  | C::- | D:DESIGN OF HIGH-LEVEL SKEW BRIDGE ACROSS BEDACH RIVER | E:0 | F:0 | G:0 | H:0 | I:0 | J:0 | K:0
+   r5   A:2 | B:Authority | C::-
+   r7   A:3 | B:Necessity  | C::-
+   r10  A:4 | B:Specification Proposed :  | C::- | D:The following specifications are proposed in this estimete as under -  
+   r11  D:The administrative sanction for Construction of High Level Bridge having 8 Nos. span of 10.00 M each and open foundation has been proposed. The substructure in RCC wall type piers in M-25 and RCC solid slab simply supprted dacking also in M-30 (Design Mix Concreate). The solid slab has deck slab proposed to be properly Anchored into The pier cap against uplifting and drag. The pier footing has also proposed to be similarly anchored into the rocky strata. 
+   r13  D:(a) Foundation Concreate P.C.C. M-15 grade  20 mm nominal size aggregate. 
+   r15  D:(b) Foundation Footing of Piers - it has been proposed of RCC mix M-25. The annular space filled with M-15 with 20 mm nominal Size stone aggregate upto the top of the rock.
+   r17  D:(C) Foundation Footing of Abutments - It has been proposed of RCC mix M-20 The annular space filled with P.C.C. M-15 grade concreate with 20mm nominal Size stone aggregate upto the top of the rock.
+   r19  D:(D) Piers, Pier caps - These has been proposed of RCC Mix M-25
+   r21  D:(E) Abutments, Abutment caps and Dirt wall - These has been proposed of RCC Mix M-25
+   r23  D:(F) Deck Slab - The simply supported deck slab has been proposed of R.C.C. mix M-30. The deck slab shall be anchored at both ends with 25mm dia anchor bolts to prevent it from uplift and the drag of flowing water.
+   r25  D:(G) Railing - RCC railing has been proposed of mix M-25 as per recommendations of IRC special publiciation on Submersible bridges.
+   r27  D:(H) Wearing Coat - M-30 concreate with reinforcement as per IRC recommendation is proposed. The average thickness of the wearing coat 75mm.
+   r29  D:(I) Approach slab - Approach slab has been proposed of RCC M-25 overlaid  
+          The wearing coat similar to that on deck slab has been proposed provided over the approach slab. 
+   r31  D:(J) Filling behind Abutment & Wing walls- The back Fill has been proposed of locally available granular material it shall be compacted as per specifications.
+   r33  D:(K) Earth work in cutting for grade improvement on approches has been proposed.
+   r37  A:5 | B:Estimated Cost of Work  | C::- | D:The Estimated Cost comes to Rs.1274.46 Lacs
+   r40  A:6 | B:Rates  | C::- | D:The Estimate based on PWD BSR Road 2022  (Rajasthan). 
+   r42  A:7 | B:Job No. | C::-
+
+-- sheet 'General Abs. '  rows=26 cols=7 nonempty=27  ctype tally={1: 17, 2: 10}
+   r0   A:PUBLIC WORKS  DEPARTMENT, DIVISION - 
+   r2   A:GENERAL ABSTRACT
+   r4   A:Name of Work  :-   
+   r5   B:DESIGN OF HIGH-LEVEL SKEW BRIDGE ACROSS BEDACH RIVER
+   r6   A:Sr.No. | B:                    Items | G:Amount
+   r8   A:1 | B:Bridge Work  | G:110032581
+   r10  E:                  Total => Rs. | G:110032581
+   r12  B:Add 1.00% for Quality Control Charges | G:1100326
+   r14  B:Add 3% for Contengency Charges | G:0
+   r16  B:Add 1.50 % for Contingencies Charges  | G:1650489
+   r18  F:G. Total Rs. :- | G:112783396
+   r20  B:Add 13.00 % for Prorata Charges  | G:14661841
+   r22  F:G. Total Rs. :- | G:127445237
+   r24  F:Say Rs. :- | G:1274.46
+   r25  G:Lacs.
+
+-- sheet 'Abstract'  rows=113 cols=10 nonempty=360  ctype tally={1: 177, 2: 183}
+   r0   A:ABSTRACT OF COST
+   r1   A:Name of Work  :-   
+   r2   B:DESIGN OF HIGH-LEVEL SKEW BRIDGE ACROSS BEDACH RIVER
+   r3   A:S.No. | B:Particulars | C:Qty. | E:Rate | F:Unit | G:Amount
+   r5   A:1 (a)  | B:Excavation for Structures (Earth work in excavation of foundation of structures as per drawing and technical specification,  including setting out,  construction of shoring and bracing,  removal of stumps and other deleterious matter,  dressing of sides and bottom and backfilling with approved material.) Ordinary soil. Mechanical Means.  Depth upto 3 m  | J:116
+   r6   B:Foundation Work  | C:823.9022838641478 | D:Cum 
+   r7   B:Approches  | C:1041.6000000000001 | D:Cum 
+   r8   C:1865.502283864148 | D:Cum | E:51 | F:Cum | G:95140.61647707155
+   r10  A:(b) | B:Above 3m to 6m depth  | J:116
+   r11  B:Foundation Work  | C:926.8900693471661 | D:Cum  | E:57 | F:Cum | G:52832.73395278847
+   r13  A:© | B:Ordinary/Soft rock (not requiring blasting) [MoRTH Specification : Clause 301]. BY MECHANICAL MEANS | J:146
+   r14  B:Foundation Work  | C:1029.8778548301846 | D:Cum
+   r15  B:Approches  | C:1610 | D:Cum
+   r16  C:2639.8778548301843 | D:Cum | E:63 | F:Cum | G:166312.30485430162
+   r18  A:(d) | B:Hard rock ( requiring blasting ) | J:273
+   r19  B:Foundation Work  | C:1853.7801386943322 | D:Cum | E:514 | F:Cum | G:952842.9912888868
+   r21  A:5 | B: Plain/Reinforced cement concrete in open foundation complete as per drawing and technical specifications | J:3005
+   r22  B:PCC Grade M15 
+   r23  B:Foundation Work  | C:1172.2222179864189 | D:Cum | E:4508 | F:Cum | G:5284377.758682776
+   ... (88 more rows not dumped)
+
+-- sheet 'Bridge measurements'  rows=184 cols=12 nonempty=653  ctype tally={1: 268, 2: 385}
+   r0   A:DETAILED - ESTIMATE 
+   r1   A:Name of Work  :-   
+   r2   B:DESIGN OF HIGH-LEVEL SKEW BRIDGE ACROSS BEDACH RIVER
+   r4   A:S.No. | B:Particulars | C:Particulars | D:Details 
+   r6   C:BRIDGE WORK
+   r8   C:FOUNDATION WORK
+   r9   A:1 | B:B-1
+1.1.4 | C:Excavation for Structures (Earth work in excavation of foundation of structures as per drawing and technical specification,  including setting out,  construction of shoring and bracing,  removal of stumps and other deleterious matter,  dressing of sides and bottom and backfilling with approved material.) Ordinary soil. Mechanical Means.  Depth upto 3 m 
+   r10  A:1 | B:B-1
+1.1.4 | C:In ordinary soil BY MECHANICAL MEANS
+Depth upto 3m
+   r11  C:Pier  | D:17 | E:11.845236446545098 | F:4.33 | G:0.8 | H:697.5422838641477 | I:Cum
+   r12  C:Abutment  | D:2 | E:11.7 | F:6.75 | G:0.8 | H:126.36 | I:Cum
+   r13  G:Total:- | H:823.9022838641478 | I:Cum
+   r15  A:2 | B:B-1
+1.1.5 | C:Earthwork in excavation for foundation of structure complete with all lift, dewatering, shoring and shuttering etc. including refilling of trenches in 250 mm layer, ramming, watering and disposal of surplus soil within a lead of 1000 meters, as per drawing and technical Earth in excavation for foundation of specification. [MoRTH Specification : Clause 304].
+In ordinary soil [MoRTH Specification : clause 301] BY MECHANICAL MEANS
+Above 3m to 6m depth 
+   r16  C:Pier | D:17 | E:11.845236446545098 | F:4.33 | G:0.9 | H:784.7350693471661 | I:Cum
+   r17  C:Abutment  | D:2 | E:11.7 | F:6.75 | G:0.9 | H:142.155 | I:Cum
+   r18  G:Total:- | H:926.8900693471661 | I:Cum
+   r20  A:3 | B:1.3.2 | C:Earthwork in excavation for foundation of structure complete with all lift, dewatering, shoring and shuttering etc. including refilling of trenches in 250 mm layer, ramming, watering and disposal of surplus soil within a lead of 1000 meters, as per drawing and technical Earth in excavation for foundation of specification. [MoRTH Specification : Clause 304].
+In Ordinary/Soft rock (not requiring blasting) [MoRTH Specification : Clause 301]. BY MECHANICAL MEANS
+   r21  C:Pier | D:17 | E:11.845236446545098 | F:4.33 | G:1 | H:871.9278548301846 | I:Cum
+   r22  C:Abutment  | D:2 | E:11.7 | F:6.75 | G:1 | H:157.95 | I:Cum
+   r24  G:Total:- | H:1029.8778548301846 | I:Cum
+   ... (159 more rows not dumped)

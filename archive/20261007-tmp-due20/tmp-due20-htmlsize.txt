@@ -1,0 +1,2 @@
+test-output/design-report.html bytes= 432811 chars= 430004 multibyte_extra= 2807
+test-output/irc-checklist.html bytes= 39965 chars= 39752 multibyte_extra= 213

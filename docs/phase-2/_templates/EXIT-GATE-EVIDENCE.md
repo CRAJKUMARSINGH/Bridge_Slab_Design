@@ -13,9 +13,9 @@ Baseline commit: {{SHA_BEFORE}} | Final commit: {{SHA_AFTER}}
 {{PASTE}}
 ### npm run test
 {{PASTE_SUMMARY_TOTALS}}
-### npm run gate:{{WEEK_GATE}}
+### npm run gate:&lt;WEEK_GATE&gt;
 {{PASTE}}
-### npm run build && npm run build:netlify
+### npm run build &amp;&amp; npm run build:netlify
 {{PASTE_TAIL}}
 
 ## Artifacts produced

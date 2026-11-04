@@ -1,0 +1,6 @@
+QA sheet: undefined
+C1 row3: Live-linked: C1 stability mirrors the Type-1 model (same geometry and load scheme); every cell below retrieves from the TYPE1 sheet.
+  C1 C5: {"formula":"='TYPE1-STABILITY CHECK ABUTMENT'!F21","result":1.7216}
+  C1 D5: {"formula":"='TYPE1-STABILITY CHECK ABUTMENT'!G21","result":2.1434}
+  C1 E5: {"formula":"='TYPE1-STABILITY CHECK ABUTMENT'!H21","result":3.9446}
+  C1 F5: {"formula":"=IF(AND(C5>=1.5,D5>=1.8,E5>=1),\"SAFE\",\"UNSAFE\")","result":"SAFE"}

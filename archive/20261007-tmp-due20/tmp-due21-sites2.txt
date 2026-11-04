@@ -1,0 +1,100 @@
+client/src/report-engine/sheets/OptimisationAtAGlance.tsx:77:    const slidMin = isSeismic[idx] ? 1.25 : 1.50;
+client/src/report-engine/sheets/OptimisationAtAGlance.tsx:79:    return lc.qmax <= d.SBC && lc.slidFOS >= slidMin && lc.otFOS >= otMin;
+client/src/report-engine/sheets/OptimisationAtAGlance.tsx:81:  const govQmax   = Math.max(...d.pierLCs.map((lc: any) => lc.qmax));
+client/src/report-engine/sheets/OptimisationAtAGlance.tsx:82:  const worstSlid = Math.min(...d.pierLCs.map((lc: any) => lc.slidFOS));
+client/src/report-engine/sheets/OptimisationAtAGlance.tsx:83:  const worstOT   = Math.min(...d.pierLCs.map((lc: any) => lc.otFOS));
+client/src/report-engine/sheets/OptimisationAtAGlance.tsx:86:  const abtOK = d.abtCases.every((lc: any) => lc.bearOK && lc.slidOK && lc.otOK);
+client/src/report-engine/sheets/OptimisationAtAGlance.tsx:156:        <Row label="Bearing qmax" value={`${govQmax.toFixed(1)} kPa vs SBC ${d.SBC.toFixed(0)} kPa`}
+client/src/report-engine/sheets/OptimisationAtAGlance.tsx:157:          ok={govQmax <= d.SBC} />
+client/src/report-engine/sheets/OptimisationAtAGlance.tsx:158:        <Row label="Sliding FOS" value={`${worstSlid.toFixed(2)} (min 1.25/1.50)`}
+client/src/report-engine/sheets/OptimisationAtAGlance.tsx:160:        <Row label="OT FOS" value={`${worstOT.toFixed(2)} (min 1.50/2.00)`}
+client/src/report-engine/sheets/OptimisationAtAGlance.tsx:171:            value={`slid=${lc.slidFOS.toFixed(2)} ot=${lc.otFOS.toFixed(2)} q=${lc.qmax.toFixed(0)}`}
+client/src/report-engine/sheets/OptimisationAtAGlance.tsx:172:            ok={lc.slidOK && lc.otOK && lc.bearOK}
+client/src/pages/FormulaEvaluator.tsx:223:  const [v, setV] = useState({ H: 6.0, gamma_s: 18, phi_deg: 30, delta_deg: 20, alpha_deg: 90, B: 3.6, mu: 0.55, W_stem: 85.2, W_ftg: 62.4, Pa_offse
+client/src/pages/FormulaEvaluator.tsx:246:  const FOS_slide = (v.mu * ΣW) / Math.max(Pa_h + surcharge_Pa, 0.0001);
+client/src/pages/FormulaEvaluator.tsx:249:  const M_overturn = Pa_h * v.H / 3 + surcharge_Pa * v.H / 2;
+client/src/pages/FormulaEvaluator.tsx:252:  const FOS_overturn = M_resist / Math.max(M_overturn, 0.0001);
+client/src/pages/FormulaEvaluator.tsx:254:  const e = v.B / 2 - (M_resist - M_overturn) / Math.max(ΣW, 0.0001);
+client/src/pages/FormulaEvaluator.tsx:272:        <NumInput label="Safe Bearing Capacity SBC" unit="kN/m²" value={v.SBC} onChange={val => s('SBC', val)} step={10} />
+client/src/pages/FormulaEvaluator.tsx:280:        <ResultRow label="FOS Sliding" formula="FOS = μ·ΣW / (Pa_h + ΔPa_q)" result={`${N(FOS_slide, 3)}`} verdict={FOS_slide >= 1.5 ? 'PASS' : 
+client/src/pages/FormulaEvaluator.tsx:281:        <ResultRow label="FOS Overturning" formula="FOS = ΣM_restoring / ΣM_overturn" result={`${N(FOS_overturn, 3)}`} verdict={FOS_overturn >= 2.
+client/src/pages/FormulaEvaluator.tsx:282:        <ResultRow label="Eccentricity e" formula="e = B/2 − (M_resist−M_overturn)/ΣW" result={`${N(Math.abs(e), 3)} m`} verdict={Math.abs(e) <
+client/src/pages/FormulaEvaluator.tsx:283:        <ResultRow label="Max Base Pressure q_max" formula="q_max = ΣW/B·(1 + 6e/B)" result={`${N(q_max, 2)} kN/m²`} verdict={q_max <= v.SBC ? 'P
+client/src/report-engine/sheets/engineeringNarrative.tsx:149:  const pierMinFOS = Math.min(...d.pierLCs.map((l) => l.slidFOS));
+client/src/report-engine/sheets/engineeringNarrative.tsx:150:  const pierMaxQ = Math.max(...d.pierLCs.map((l) => l.qmax));
+client/src/report-engine/sheets/engineeringNarrative.tsx:151:  const abtMinFOS = Math.min(...d.abtCases.map((c) => c.slidFOS));
+client/src/report-engine/sheets/engineeringNarrative.tsx:152:  const abtMaxQ = Math.max(...d.abtCases.map((c) => c.qmax));
+client/src/report-engine/sheets/engineeringNarrative.tsx:153:  const pierBearOK = pierMaxQ <= d.SBC;
+client/src/report-engine/sheets/engineeringNarrative.tsx:154:  const pierSlideOK = pierMinFOS >= 1.5;
+client/src/report-engine/sheets/engineeringNarrative.tsx:155:  const abtBearOK = abtMaxQ <= d.SBC;
+client/src/report-engine/sheets/engineeringNarrative.tsx:156:  const abtSlideOK = abtMinFOS >= 1.5;
+client/src/report-engine/sheets/engineeringNarrative.tsx:159:      ? `Net downward force on the slab = +${fv(d.net_force, 2)} kN — no uplift; bearing seating is sufficient and no anchorage
+client/src/report-engine/sheets/engineeringNarrative.tsx:199:        <strong>FOS<sub>slide,min</sub> = {fv(pierMinFOS, 3)}</strong>{" "}
+client/src/report-engine/sheets/engineeringNarrative.tsx:205:        therefore <strong>{pierBearOK ? "within bearing capacity" : "EXCEEDS bearing capacity — review"}</strong>.
+client/src/report-engine/sheets/engineeringNarrative.tsx:219:        FOS is <strong>{fv(abtMinFOS, 3)}</strong>{" "}
+client/src/report-engine/sheets/engineeringNarrative.tsx:238:  const pierMinFOS = Math.min(...d.pierLCs.map((l) => l.slidFOS));
+client/src/report-engine/sheets/engineeringNarrative.tsx:239:  const pierMaxQ = Math.max(...d.pierLCs.map((l) => l.qmax));
+client/src/report-engine/sheets/engineeringNarrative.tsx:240:  const abtMinFOS = Math.min(...d.abtCases.map((c) => c.slidFOS));
+client/src/report-engine/sheets/engineeringNarrative.tsx:241:  const abtMaxQ = Math.max(...d.abtCases.map((c) => c.qmax));
+client/src/report-engine/sheets/engineeringNarrative.tsx:243:    pierMinFOS >= 1.5 &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:244:    abtMinFOS >= 1.5 &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:245:    pierMaxQ <= d.SBC &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:246:    abtMaxQ <= d.SBC &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:289:  const pierMinFOS = Math.min(...d.pierLCs.map((l) => l.slidFOS));
+client/src/report-engine/sheets/engineeringNarrative.tsx:290:  const pierMaxQ = Math.max(...d.pierLCs.map((l) => l.qmax));
+client/src/report-engine/sheets/engineeringNarrative.tsx:291:  const abtMinFOS = Math.min(...d.abtCases.map((c) => c.slidFOS));
+client/src/report-engine/sheets/engineeringNarrative.tsx:292:  const abtMaxQ = Math.max(...d.abtCases.map((c) => c.qmax));
+client/src/report-engine/sheets/engineeringNarrative.tsx:296:    pierMinFOS >= 1.5 &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:297:    abtMinFOS >= 1.5 &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:298:    pierMaxQ <= d.SBC &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:299:    abtMaxQ <= d.SBC &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:326:        <strong>{fv(pierMaxQ, 2)} kN/m²</strong> against the adopted SBC of{" "}
+client/src/report-engine/sheets/engineeringNarrative.tsx:327:        <strong>{fv(d.SBC, 2)} kN/m²</strong>, with the lowest sliding factor
+client/src/report-engine/sheets/engineeringNarrative.tsx:329:        <strong>{fv(pierMinFOS, 3)}</strong> against the IRC:78 floor of 1.50.
+client/src/report-engine/sheets/engineeringNarrative.tsx:332:        <strong>{fv(abtMinFOS, 3)}</strong> and worst base pressure{" "}
+client/src/report-engine/sheets/PierOptimiser.tsx:57:  const qmax    = Vf / A_ftg + (Vf * e) / Z_ftg;
+client/src/report-engine/sheets/PierOptimiser.tsx:59:  const slidFOS = Hf > 0 ? mu * Vf / Hf : 999;
+client/src/report-engine/sheets/PierOptimiser.tsx:60:  const otFOS   = MO > 0 ? MR / MO : 999;
+client/src/report-engine/sheets/PierOptimiser.tsx:61:  const slidMin = seismic ? 1.25 : 1.50;
+client/src/report-engine/sheets/PierOptimiser.tsx:65:    bearOK: qmax <= SBC && qmin >= 0,
+client/src/report-engine/sheets/PierOptimiser.tsx:66:    slidOK: slidFOS >= slidMin,
+client/src/report-engine/sheets/PierOptimiser.tsx:67:    otOK:   otFOS   >= otMin,
+client/src/report-engine/sheets/PierOptimiser.tsx:107:    const allOK     = lcRes.every(r => r.bearOK && r.slidOK && r.otOK);
+client/src/report-engine/sheets/PierOptimiser.tsx:108:    const govQmax   = Math.max(...lcRes.map(r => r.qmax));
+client/src/report-engine/sheets/PierOptimiser.tsx:109:    const worstSlid = Math.min(...lcRes.map(r => r.slidFOS));
+client/src/report-engine/sheets/PierOptimiser.tsx:110:    const worstOT   = Math.min(...lcRes.map(r => r.otFOS));
+client/src/report-engine/sheets/PierOptimiser.tsx:143:  const rows   = runOptimisation(i, d.SBC);
+client/src/report-engine/sheets/PierOptimiser.tsx:169:            IRC:6-2017 Â· IRC:78-2014 Cl.706 Â· SBC = {f2(d.SBC)} kPa Â· Î¼ = {i.mu} Â· Step: B Â±25 mm, L Â±50 mm
+client/src/report-engine/sheets/PierOptimiser.tsx:209:                "Worst Slid.FOS", "Worst OT.FOS", "Verdict", onApply ? "Action" : ""].filter(Boolean).map(h => (
+client/src/report-engine/sheets/PierOptimiser.tsx:223:              const qColor = r.govQmax > d.SBC ? C.red : r.govQmax > d.SBC * 0.90 ? C.amber : C.green;
+client/src/report-engine/sheets/PierOptimiser.tsx:224:              const slidColor = r.worstSlid < 1.25 ? C.red : r.worstSlid < 1.50 ? C.amber : C.green;
+client/src/report-engine/sheets/PierOptimiser.tsx:238:                  <td style={{ ...cell, textAlign: "center", fontSize: 9, color: r.govQmax <= d.SBC ? C.green : C.red }}>
+client/src/report-engine/sheets/PierOptimiser.tsx:239:                    {r.govQmax <= d.SBC ? "â‰¤ OK" : `+${f2(r.govQmax - d.SBC)} OVER`}
+client/src/report-engine/sheets/PierOptimiser.tsx:241:                  <td style={{ ...cell, textAlign: "right", color: slidColor, fontWeight: "bold" }}>
+client/src/report-engine/sheets/PierOptimiser.tsx:244:                      &nbsp;â‰¥{r.lcRes.some(lc => !lc.slidOK) ? (r.lcRes[2].slidOK ? "1.50" : "1.25") : "1.50"}
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:12: *   1. Overturning FOS  = Î£MR / Î£MO  â‰¥ 2.00  (about toe)
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:13: *   2. Sliding FOS      = Î¼ Ã— Î£V / Î£H â‰¥ 1.50
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:14: *   3. Bearing:  qmax   = Î£V/B Ã— (1 + 6e/B) â‰¤ SBC
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:146:  const SBC    = d.SBC;
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:156:  /* â”€â”€ Moments about TOE (restoring = CW, overturning = CCW) â”€â”€â”€â”€â”€â”€â”€
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:168:  const otFOS    = MO > 0 ? MR / MO : Infinity;
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:169:  const slidFOS  = sumH > 0 ? mu * sumV / sumH : Infinity;
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:176:  const qmax = (sumV / Bbase) * (1 + 6 * e / Bbase);
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:179:  const otOK   = otFOS  >= fos_ot_min;
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:180:  const slidOK = slidFOS >= fos_sl_min;
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:181:  const bearOK = qmax   <= SBC;
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:183:  const allOK  = otOK && slidOK && bearOK && qOK && e < Bbase / 6;
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:197:  fos_ot_min = 2.00,
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:198:  fos_sl_min = 1.50,
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:204:  const SBC  = d.SBC;
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:253:            &nbsp;Â· SBC = {f2(SBC)} kN/mÂ² Â· Î¼ = {mu} Â· Ï† = {i.abt_phi}Â° Â· H = {f2(i.abt_H)} m
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:257:          FOS<sub>OT</sub> â‰¥ {fos_ot_min} &nbsp;|&nbsp; FOS<sub>SL</sub> â‰¥ {fos_sl_min}<br />
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:287:          <span style={{ color: current.otOK   ? C.green : C.red }}>OT FOS = {f2(current.otFOS)} {current.otOK ? "âœ“" : "âœ�
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:289:          <span style={{ color: current.slidOK ? C.green : C.red }}>SL FOS = {f2(current.slidFOS)} {current.slidOK ? "âœ“" : "â
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:291:          <span style={{ color: current.bearOK ? C.green : C.red }}>qmax = {f2(current.qmax)} kN/mÂ² {current.bearOK ? "âœ“" :
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:316:          <strong>Overturning FOS</strong> = Î£MR / Î£MO â‰¥ {fos_ot_min} &nbsp;(moments about toe, MO = Ph Ã— H/3)<br />
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:317:          <strong>Sliding FOS</strong> = Î¼ Ã— Î£V / Î£H â‰¥ {fos_sl_min} &nbsp;(Î¼ = {mu})<br />
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:319:          <strong>Bearing</strong>: qmax = Î£V/B Ã— (1 + 6e/B) â‰¤ SBC; qmin = Î£V/B Ã— (1 âˆ’ 6e/B) â‰¥ 0<br 
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:333:                `SL FOS â‰¥${fos_sl_min}`, "e (m)", "e < B/6?",
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:422:          &nbsp;â†’&nbsp;OT FOS = {f2(optimum.otFOS)} &nbsp;|&nbsp; SL FOS = {f2(optimum.slidFOS)}
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:423:          &nbsp;|&nbsp; qmax = {f2(optimum.qmax)} kN/mÂ² &nbsp;|&nbsp; qmin = {f2(optimum.qmin)} kN/mÂ²

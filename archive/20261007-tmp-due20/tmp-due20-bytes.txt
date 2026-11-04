@@ -1,0 +1,25 @@
+0002520   e   c   o   n   d       a   n   a   l   y   s   i   s       n
+0002540   o   w       s   t   a   t   e       t   h   e       m   i   r
+0002560   r   o   r   ,       a   n   d       `   v   e   r   i   f   y
+0002600   :   l   i   n   k   s   `       f   a   i   l   s       i   f
+0002620       t   h   e       m   i   r   r   o   r       e   v   e   r
+0002640       s   i   l   e   n   t   l   y       b   r   e   a   k   s
+0002660       (   c   a   c   h   e       t   a   m   p   e   r     342
+0002700 206 222       `   D   I   V   E   R   G   E       C   1   -   S
+0002720   T   A   B   I   L   I   T   Y       C   H   E   C   K       A
+0002740   B   U   T   M   E   N   T   !   C   5   `   ,       f   i   v
+0002760   e       c   a   s   e   s     303 227       t   w   e   n   t
+0003000   y       w   o   r   k   b   o   o   k   s   ,       e   x   i
+0003020   t       1   )   .       W   h   a   t       r   e   m   a   i
+0003040   n   s       i   s       t   h   e       e   n   g   i   n   e
+0003060   e   r   i   n   g       a   n   s   w   e   r   :       g   i
+0003100   v   e       t   h   e       c   a   n   t   i   l   e   v   e
+0003120   r       i   t   s       o   w   n       h   e   e   l   /   t
+0003140   o   e       m   o   d   e   l   ,       o   r       a   n   a
+0003160   l   y   s   e       o   n   e       a   b   u   t   m   e   n
+0003200   t       a   n   d       s   t   o   p       p   r   i   n   t
+0003220   i   n   g       i   t       t   w   i   c   e     342 200 224
+0003240       n   o   t   h   i   n   g       w   a   s       i   n   v
+0003260   e   n   t   e   d       t   o       c   l   o   s   e       i
+0003300   t   .  \n
+0003303

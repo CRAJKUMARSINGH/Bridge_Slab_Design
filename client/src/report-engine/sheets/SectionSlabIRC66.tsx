@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import type { Inputs, Derived } from "../BridgeSlabReport";
 import {
   fv, fi, HR, Cl, SectionHead, SubHead, SubHeadCl,
@@ -48,7 +48,7 @@ export default function SectionSlabIRC66({ i, d }: { i: Inputs; d: Derived }) {
   const wd = be + b2;
 
   // Impact factor (IRC:6 Cl.208)
-  const IF_pct = leff <= 3 ? 50 : leff <= 45 ? (1 + 4.5 / (6 + leff)) * 100 : 10;
+  const IF_pct = leff <= 3 ? 50 : leff <= 45 ? (4.5 / (6 + leff)) * 100 : 10;
   const P_impact = P_wheel * (1 + IF_pct / 100);
   const w_LL_area = P_impact / (ld * wd);
   const M_LL = ((w_LL_area * ld) / 2) * (leff / 2) - ((w_LL_area * ld) / 2) * (ld / 4);

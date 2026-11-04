@@ -1,0 +1,259 @@
+{
+  "name": "gate-perf",
+  "ts": "2026-11-04T08:09:50.980Z",
+  "commit": null,
+  "pass": 37,
+  "fail": 0,
+  "detail": [
+    {
+      "ok": true,
+      "label": "A: server/perf-budget.ts loads (type-stripping)",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "A: every budget figure is a positive number",
+      "note": "{\"p95WallMs\":3000,\"bundleKb\":1300,\"memoryMb\":1024,\"asyncThresholdMs\":3000,\"coldStartMs\":1500}"
+    },
+    {
+      "ok": true,
+      "label": "A: budget memory mirrors vercel.json (1024 MB)",
+      "note": "1024"
+    },
+    {
+      "ok": true,
+      "label": "A: a measured baseline exists for n=1/11/15/50",
+      "note": "40.5"
+    },
+    {
+      "ok": true,
+      "label": "A: the baseline carries the wall-minimum regression figure",
+      "note": "36.4"
+    },
+    {
+      "ok": true,
+      "label": "A: PERF-BASELINE.md exists and is non-trivial",
+      "note": "7119 bytes"
+    },
+    {
+      "ok": true,
+      "label": "A: PERF-BASELINE.md documents p95",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "A: PERF-BASELINE.md documents bundle",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "A: PERF-BASELINE.md documents memory",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "A: PERF-BASELINE.md documents cold start",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "A: doc states the p95 budget (3000 ms)",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "A: doc states the bundle budget (1300 KB)",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "A: doc states the memory budget (1024 MB)",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "B: client bundle is present in dist/public/assets",
+      "note": "16 files"
+    },
+    {
+      "ok": true,
+      "label": "B: client bundle is within the declared budget",
+      "note": "1161.9 KB <= 1300 KB"
+    },
+    {
+      "ok": true,
+      "label": "C: a run within the threshold is synchronous (200)",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: a run above the threshold returns 202",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: the 202 decision is flagged async",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: the job contract carries a valid status",
+      "note": "queued"
+    },
+    {
+      "ok": true,
+      "label": "C: the job contract carries jobId",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: the job contract carries pollUrl",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: the job contract carries cancelUrl",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: the job contract carries submittedAt",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: poll/cancel URLs identify the job",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: exactly at the threshold is still sync",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "C: above the threshold is async",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D: the hot path memoises design runs (calculateCached, T6.4)",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D: the memo cache is bounded (cannot grow with traffic)",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D: no blocking fs/exec call in the request handlers",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "D: the budget guard module is present on the server surface",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "E: hydraulics workload loads (type-stripping)",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "E: n=50 measured over 25 samples",
+      "note": "25"
+    },
+    {
+      "ok": true,
+      "label": "E: n=50 wall-clock minimum is within 15% of the recorded baseline",
+      "note": "35.95 ms min vs 36.4 ms baseline (p95 was 40.48 ms)"
+    },
+    {
+      "ok": true,
+      "label": "E: n=50 wall-clock p95 is within the wall-clock budget",
+      "note": "40.48 ms <= 3000 ms"
+    },
+    {
+      "ok": true,
+      "label": "E: per-project wall-clock p95 is within the wall-clock budget",
+      "note": "0.810 ms"
+    },
+    {
+      "ok": true,
+      "label": "F: cold start measured over 7 runs",
+      "note": null
+    },
+    {
+      "ok": true,
+      "label": "F: cold-start p95 is within budget",
+      "note": "227 ms <= 1500 ms"
+    }
+  ],
+  "measured": {
+    "bundleKb": 1161.8974609375,
+    "bundleFiles": 16,
+    "perf": {
+      "n1": {
+        "n": 25,
+        "min": 0.7248000000000161,
+        "p50": 0.7571999999999832,
+        "p95": 0.8993000000000109,
+        "max": 0.9362999999999886
+      },
+      "n11": {
+        "n": 25,
+        "min": 8.175000000000182,
+        "p50": 8.791299999999865,
+        "p95": 10.163699999999835,
+        "max": 10.733699999999999
+      },
+      "n15": {
+        "n": 25,
+        "min": 10.727800000000116,
+        "p50": 11.273699999999963,
+        "p95": 12.340400000000045,
+        "max": 12.701499999999896
+      },
+      "n50": {
+        "n": 25,
+        "min": 35.94580000000042,
+        "p50": 37.89269999999942,
+        "p95": 40.48239999999987,
+        "max": 50.208300000000236
+      }
+    },
+    "coldStart": {
+      "n": 7,
+      "min": 102.08869999999843,
+      "p50": 138.47339999999986,
+      "p95": 226.84959999999955,
+      "max": 226.84959999999955
+    },
+    "budget": {
+      "p95WallMs": 3000,
+      "bundleKb": 1300,
+      "memoryMb": 1024,
+      "asyncThresholdMs": 3000,
+      "coldStartMs": 1500
+    },
+    "baseline": {
+      "recordedAt": "2026-11-01",
+      "runtime": "win32-x64 / Node v26.5.0",
+      "workload": "computeHydraulics + JSON.stringify over a 401-point cross-section, 500 reps per project",
+      "samplesPerPoint": 25,
+      "projects": [
+        1,
+        11,
+        15,
+        50
+      ],
+      "n50TotalP95Ms": 40.5,
+      "n50WallMinMs": 36.4,
+      "perProjectP95Ms": 0.81,
+      "coldStartP95Ms": 106,
+      "bundleTotalKb": 1161.9
+    }
+  }
+}

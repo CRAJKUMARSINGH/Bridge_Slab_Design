@@ -1,0 +1,1895 @@
+### DELIVERABLES 00:49:18
+
+> workspace@0.0.0 deliverables E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run deliverables
+
+
+> @workspace/scripts@0.0.0 deliverables E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./regenerate-test-output.ts
+
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+  design-workbook.xlsx         111,404 bytes
+  sheet-book.pdf               2,741,527 bytes
+  comprehensive-report.pdf     9,218,343 bytes
+  short-design-report.pdf      225,252 bytes
+  design-report.html           380,068 bytes
+  irc-checklist.html           39,752 bytes
+
+Wrote 6 deliverables to E:\Rajkumar\Bridge_Slab_Design\test-output
+DELIVERABLES_EXIT=0
+### TEST 00:49:49
+
+> workspace@0.0.0 test E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run test:integration
+
+
+> @workspace/scripts@0.0.0 test:integration E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./run-integration-tests.ts
+
+📝 Design request: Test Bridge
+🚀 Starting Excel generation...
+Project: Test Bridge
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+▶ API Integration — Calculation & Optimise
+  ✔ POST /api/design/calculate with valid input returns binary excel sheet (1122.6387ms)
+  ✔ POST /api/design/calculate with invalid body returns 400 or 500 with error info (20.5275ms)
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+  ✔ POST /api/design/optimise runs the search and forwards the engine verdict (119.9619ms)
+  ✔ GET /api/design/templates returns list of design templates (10.4732ms)
+  ✔ GET /api/design/demo-seed returns fully populated default input set (10.7476ms)
+✔ API Integration — Calculation & Optimise (1290.5057ms)
+ℹ tests 5
+ℹ suites 1
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7506.1086
+▶ API Integration — D4 CRUD Operations
+  ✔ GET /api/projects lists projects (97.777ms)
+  ✔ POST /api/projects creates a project (62.682ms)
+  ✔ GET /api/projects/:id returns single project details (12.6193ms)
+  ✔ PATCH /api/projects/:id updates project info (16.5674ms)
+  ✔ POST /api/files registers a file (7.3796ms)
+  ✔ GET /api/files lists uploaded design files (5.9452ms)
+  ✔ POST /api/records creates a run record (11.3029ms)
+  ✔ POST /api/comparisons generates a comparison set (7.3543ms)
+  ✔ GET /api/stats/summary returns status counters (9.3215ms)
+  ✔ DELETE /api/comparisons/:id cleans up comparison (0.9984ms)
+  ✔ DELETE /api/records/:id cleans up record (0.6557ms)
+  ✔ DELETE /api/files/:id cleans up file (0.5258ms)
+  ✔ DELETE /api/projects/:id cleans up project (13.5185ms)
+✔ API Integration — D4 CRUD Operations (253.8454ms)
+ℹ tests 13
+ℹ suites 1
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5244.2642
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 276.50 m is ABOVE the IRC-required scour founding level 252.11 m (bed − 2·dsm = 28.09 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+▶ API Integration — Drawings & SVG
+  ✔ GET /api/design/drawings/svg/gad returns valid SVG content (154.4212ms)
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+  ✔ POST /api/design/drawings/svg/gad returns valid SVG content (63.8895ms)
+  ✔ GET /api/design/drawings/svg/pier returns valid SVG content (9.8447ms)
+  ✔ POST /api/design/drawings/svg/pier returns valid SVG content (12.8953ms)
+  ✔ GET /api/design/drawings/svg/abutment returns valid SVG content (9.4604ms)
+  ✔ POST /api/design/drawings/svg/abutment returns valid SVG content (11.056ms)
+  ✔ GET /api/design/drawings/svg/slab returns valid SVG content (8.7807ms)
+  ✔ POST /api/design/drawings/svg/slab returns valid SVG content (7.5787ms)
+  ✔ GET /api/design/drawings/svg/scour-profile returns valid SVG content (14.2421ms)
+  ✔ POST /api/design/drawings/svg/scour-profile returns valid SVG content (12.4009ms)
+  ✔ GET /api/design/drawings/svg/pier-stability returns valid SVG content (8.1316ms)
+  ✔ POST /api/design/drawings/svg/pier-stability returns valid SVG content (5.6294ms)
+  ✔ GET /api/design/drawings/svg/abutment-pressure returns valid SVG content (5.9166ms)
+  ✔ POST /api/design/drawings/svg/abutment-pressure returns valid SVG content (11.834ms)
+  ✔ GET /api/design/drawings/svg/slab-reinf-plan returns valid SVG content (8.6561ms)
+  ✔ POST /api/design/drawings/svg/slab-reinf-plan returns valid SVG content (8.6696ms)
+  ✔ POST /api/design/dxf returns valid DXF stream/file (27.366ms)
+✔ API Integration — Drawings & SVG (392.6691ms)
+ℹ tests 17
+ℹ suites 1
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5336.8944
+▶ API Integration — Health & Metadata
+  ✔ GET /api/health returns 200 with system features (98.9044ms)
+  ✔ GET /health (legacy) returns 200 with deprecation note (15.5168ms)
+  ✔ GET /api/openapi.yaml returns spec or status check (9.2187ms)
+  ✔ GET /api/design/feature-flags returns 200 and valid flag object (13.9234ms)
+✔ API Integration — Health & Metadata (142.4902ms)
+ℹ tests 4
+ℹ suites 1
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5037.8929
+▶ API Integration — Pier Case Recommendation Engine
+  ✔ GET /api/design/pier-cases/catalog returns a scored catalog from the installed library (110.4879ms)
+  ✔ catalog root does not depend on the server working directory (§T-9) (1.2398ms)
+  ✔ GET /api/design/pier-cases/catalog answers 503 when PIER_ASSET_ROOT points at nothing (14.2496ms)
+  ✔ GET /api/design/pier-cases/catalog answers 400 for a missing root instead of 500 (11.4964ms)
+  ✔ GET /api/design/pier-cases/catalog answers 400 for a root outside the asset library (12.2448ms)
+  ✔ GET /api/design/pier-cases/master-schema returns JSON schema validation schema (10.3025ms)
+  ✔ POST /api/design/pier-cases/recommend outputs recommended pier profile config (55.1514ms)
+  ✔ POST /api/design/pier-cases/generate produces template payload (9.9315ms)
+✔ API Integration — Pier Case Recommendation Engine (231.1204ms)
+ℹ tests 8
+ℹ suites 1
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4860.9549
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+▶ API Integration — Report Generation
+  ✔ POST /api/design/report/html returns full HTML report (1988.8785ms)
+  ✔ POST /api/design/validate returns validation results JSON (18.1028ms)
+  ✔ POST /api/design/validate/html returns validation checklist HTML (14.163ms)
+  ✔ POST /api/design/checklist/html returns raw structural audit checklist (15.4711ms)
+  ✔ POST /api/design/report-model returns clean structured report JSON (27.223ms)
+✔ API Integration — Report Generation (2069.0028ms)
+ℹ tests 5
+ℹ suites 1
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6999.1161
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+▶ API Integration — Specialty Endpoints
+  ✔ POST /api/design/reinforcement/schedule generates bar bending schedule json (231.0789ms)
+  ✔ POST /api/design/reinforcement/drawing/:element returns reinforcement layout svg (22.8272ms)
+  ✔ POST /api/design/reinforcement/section/:element returns cross sectional detail svg (23.8574ms)
+  ✔ POST /api/design/detailed-abutment/:type performs structural analysis of abutment (12.7568ms)
+  ✔ POST /api/design/detailed-estimation calculates cost assessment metrics (21.574ms)
+  ✔ POST /api/design/deck-anchorage computes anchorage requirements (15.058ms)
+  ✔ GET /api/design/slabdraw-health checks slab drawing package health (101.4999ms)
+✔ API Integration — Specialty Endpoints (440.2822ms)
+ℹ tests 7
+ℹ suites 1
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6089.9736
+▶ Deployment Configuration Readiness (Vercel is the only live lane)
+  ✔ DEP-001: vercel.json exists and has valid rewrites (3.0516ms)
+  ✔ DEP-002: netlify.toml stays quarantined in archive/, not at the repo root (1.3044ms)
+  ✔ DEP-003: the Vercel API entry and build script referenced by vercel.json both exist (1.2742ms)
+  ✔ DEP-004: node version is pinned to one major across nvmrc, CI and Docker (10.7803ms)
+✔ Deployment Configuration Readiness (Vercel is the only live lane) (19.759ms)
+ℹ tests 4
+ℹ suites 1
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 612.716
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.00 m is ABOVE the IRC-required scour founding level 83.34 m (bed − 2·dsm = 12.83 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.00 m is ABOVE the IRC-required scour founding level 83.04 m (bed − 2·dsm = 13.13 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✔ optimiser reports non-convergence honestly instead of claiming success (74.6429ms)
+✔ optimiser stops on its compute budget and reports the budget (2.2962ms)
+✔ POST /api/design/optimise rejects a payload the design contract rejects (102.6895ms)
+✖ POST /api/design/optimise mirrors the engine verdict rather than forcing success (26.0027ms)
+✔ POST /api/design/optimise refuses a payload beyond the body cap (79.2797ms)
+[2026-10-15 00:50:45.689 +0530] [31mERROR[39m: [36mServer error[39m
+    err: {
+      "type": "PayloadTooLargeError",
+      "message": "request entity too large",
+      "stack":
+          PayloadTooLargeError: request entity too large
+              at readStream (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\raw-body@3.0.2\node_modules\raw-body\index.js:163:17)
+              at getRawBody (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\raw-body@3.0.2\node_modules\raw-body\index.js:116:12)
+              at read (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\body-parser@2.3.0\node_modules\body-parser\lib\read.js:113:3)
+              at jsonParser (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\body-parser@2.3.0\node_modules\body-parser\lib\types\json.js:60:5)
+              at Layer.handleRequest (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+              at trimPrefix (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:342:13)
+              at E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+              at processParams (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+              at next (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+              at router.handle (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3)
+              at app.handle (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\application.js:177:15)
+              at Server.app (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\express.js:38:9)
+              at Server.emit (node:events:508:28)
+              at parserOnIncoming (node:_http_server:1210:12)
+              at HTTPParser.parserOnHeadersComplete (node:_http_common:125:17)
+      "expected": 1109851,
+      "length": 1109851,
+      "limit": 204800,
+      "status": 413,
+      "statusCode": 413,
+      "expose": true
+    }
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6159.6086
+
+✖ failing tests:
+
+test at tests\integration\design-optimise-limits.test.ts:2:2590
+✖ POST /api/design/optimise mirrors the engine verdict rather than forcing success (26.0027ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  400 !== 200
+  
+      at TestContext.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\tests\integration\design-optimise-limits.test.ts:49:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 400,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+🚀 Starting Excel generation...
+Project: Excel Integrity Test Bridge
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+🚀 Starting Excel generation...
+Project: Excel Integrity Test Bridge
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+▶ Excel Workbook Integrity & Recalculation Structure
+  ✔ generates a workbook buffer and validates the 46-sheet contract via ExcelJS (1632.877ms)
+🚀 Starting Excel generation...
+Project: Excel Integrity Test Bridge
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+  ✔ verifies Excel size is within sanity bounds (50 KB - 5 MB) (734.1821ms)
+🚀 Starting Excel generation...
+Project: Excel Integrity Test Bridge
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+  ✔ E-006 validates Excel generation determinism (1272.652ms)
+✔ Excel Workbook Integrity & Recalculation Structure (3646.9732ms)
+ℹ tests 3
+ℹ suites 1
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6930.9397
+🚀 Starting Excel generation...
+Project: HTML Report Integrity Test Bridge
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+▶ Narrative & HTML Report Integrity
+  ✔ renders design report and checks structural completeness (2389.7227ms)
+✔ Narrative & HTML Report Integrity (2397.8977ms)
+ℹ tests 1
+ℹ suites 1
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5454.5127
+[2026-10-15 00:51:06.365 +0530] [31mERROR[39m: [36mServer error[39m
+    err: {
+      "type": "PayloadTooLargeError",
+      "message": "request entity too large",
+      "stack":
+          PayloadTooLargeError: request entity too large
+              at readStream (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\raw-body@3.0.2\node_modules\raw-body\index.js:163:17)
+              at getRawBody (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\raw-body@3.0.2\node_modules\raw-body\index.js:116:12)
+              at read (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\body-parser@2.3.0\node_modules\body-parser\lib\read.js:113:3)
+              at jsonParser (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\body-parser@2.3.0\node_modules\body-parser\lib\types\json.js:60:5)
+              at Layer.handleRequest (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+              at trimPrefix (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:342:13)
+              at E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+              at processParams (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+              at next (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+              at router.handle (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3)
+              at app.handle (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\application.js:177:15)
+              at Server.app (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\express.js:38:9)
+              at Server.emit (node:events:508:28)
+              at parserOnIncoming (node:_http_server:1210:12)
+              at HTTPParser.parserOnHeadersComplete (node:_http_common:125:17)
+      "expected": 250018,
+      "length": 250018,
+      "limit": 204800,
+      "status": 413,
+      "statusCode": 413,
+      "expose": true
+    }
+▶ Security & Hardening Integration Tests
+  ✔ SEC-001: enforces body parser size limit below 200 KB (158.6306ms)
+  ✔ SEC-002: rejects or safely handles path traversal attempts in pier cases catalog (20.9551ms)
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 276.50 m is ABOVE the IRC-required scour founding level 247.05 m (bed − 2·dsm = 33.15 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+🚀 Starting Excel generation...
+Project: <script>alert('xss')</script> Safe Bridge
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 276.50 m is ABOVE the IRC-required scour founding level 247.05 m (bed − 2·dsm = 33.15 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+  ✔ SEC-003: escapes HTML characters in report payload inputs to prevent XSS (2223.2577ms)
+  ✔ SEC-010: response headers contain standard security metadata (11.8689ms)
+✔ Security & Hardening Integration Tests (2421.1014ms)
+ℹ tests 4
+ℹ suites 1
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9396.7594
+▶ Zod Schema API Contract Enforcement
+  ✔ passes validation with a fully valid inputs object (9.7869ms)
+  ✔ rejects validation when finite constraints are violated (e.g. negative numbers for positive constraints) (2.3497ms)
+  ✔ rejects invalid enumeration values (1.9454ms)
+  ✔ strips out unknown properties from request payload (4.9305ms)
+✔ Zod Schema API Contract Enforcement (26.7428ms)
+ℹ tests 4
+ℹ suites 1
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 861.6555
+
+Integration lane: 12/13 files passed.
+Failed: design-optimise-limits.test.ts
+▶ calcDesignUDL
+  ✔ gammaG×dead + gammaQ×live (3.1609ms)
+✔ calcDesignUDL (9.6212ms)
+▶ calcMaximumMoment
+  ✔ wL²/8 (1.1562ms)
+✔ calcMaximumMoment (1.6435ms)
+▶ calcMaximumShear
+  ✔ wL/2 + gammaQ×P (0.7928ms)
+✔ calcMaximumShear (1.3065ms)
+▶ calcBendingStress
+  ✔ M×1e6/Z (0.7221ms)
+✔ calcBendingStress (1.1637ms)
+▶ calcBendingUtilisation PASS
+  ✔ 300 MPa vs fy=415 → PASS (0.7675ms)
+✔ calcBendingUtilisation PASS (1.4209ms)
+▶ calcDeflectionLimit
+  ✔ L/k3 = 8000/1.2 (0.6429ms)
+✔ calcDeflectionLimit (1.0323ms)
+▶ calculate (full pipeline)
+  ✔ runs without throwing (3.9238ms)
+  ✔ returns correct engine version (2.1826ms)
+  ✔ fingerprint stable (0.9744ms)
+  ✔ fingerprint changes with different input (1.8848ms)
+  ✔ trace sourceCells non-empty for all intermediates (1.6495ms)
+  ✔ oversized section → PASS (1.0949ms)
+✔ calculate (full pipeline) (12.733ms)
+ℹ tests 12
+ℹ suites 7
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 823.7018
+▶ Golden parity — Kherwara v0.5.0 snapshot
+  ✔ golden snapshot file exists (3.8552ms)
+  ✔ designUDL matches golden (rtol=1e-6) (1.1642ms)
+  ✔ maximumMoment matches calculated engine value (367.5 kNm) (0.9552ms)
+  ✔ maximumShear matches golden (0.9494ms)
+  ✔ bendingStress matches calculated engine value (8.166667 MPa) (0.9576ms)
+  ✔ deflectionLimit matches golden (0.9076ms)
+  ✔ bendingUtilisation status matches golden (1.1815ms)
+  ✔ deflectionCheck status (PASS for high I baseline) (1.123ms)
+  ✔ shearCheck status matches golden (4.9276ms)
+  ✔ governingUtilisation status evaluated (3.932ms)
+  ✔ overallStatus evaluated (0.7022ms)
+  ✔ failedChecks array exists (0.5399ms)
+  ✔ engine version matches golden snapshot version (0.3465ms)
+✔ Golden parity — Kherwara v0.5.0 snapshot (28.9295ms)
+▶ Tamper tests
+  ✔ mutating span changes fingerprint (1.0935ms)
+  ✔ mutating liveLoadUDL changes fingerprint (0.7285ms)
+  ✔ mutating steelYieldStrength changes utilisation status (0.6137ms)
+  ✔ doubling span produces different moment value (0.6282ms)
+  ✔ identical inputs produce byte-identical fingerprint (0.5601ms)
+✔ Tamper tests (4.4617ms)
+▶ Boundary — load functions
+  ✔ zero liveLoadUDL → only dead load contribution (0.7786ms)
+  ✔ zero deckThickness → only live load contribution (0.4747ms)
+  ✔ very small span → very small moment (0.4116ms)
+  ✔ very large span → very large moment (0.3509ms)
+  ✔ zero concentrated load → shear = wL/2 only (0.3586ms)
+✔ Boundary — load functions (3.7308ms)
+▶ Boundary — resistance functions
+  ✔ zero bending stress → zero utilisation (PASS) (0.6784ms)
+  ✔ exactly at allowable → utilisation = 1.0 (PASS) (0.3141ms)
+  ✔ just over allowable → FAIL (0.2728ms)
+  ✔ shear stress below capacity → PASS (0.2558ms)
+  ✔ shear stress at capacity → PASS (0.2422ms)
+  ✔ shear stress above capacity → FAIL (0.2419ms)
+✔ Boundary — resistance functions (2.7227ms)
+▶ Boundary — serviceability functions
+  ✔ very stiff section → deflection ≈ 0 (0.6535ms)
+  ✔ deflection exactly at limit → PASS (0.5601ms)
+  ✔ deflection just over limit → FAIL (0.3598ms)
+  ✔ governing utilisation selects max of bending and deflection ratio (0.4563ms)
+  ✔ adjusted utilisation applies alpha and k3 correctly (0.3344ms)
+✔ Boundary — serviceability functions (3.1512ms)
+▶ Full pipeline — parametric variations
+  ✔ short span + large section → PASS overall (0.9002ms)
+  ✔ long span + weak section → FAIL overall (0.5136ms)
+  ✔ default alpha and k3 used when not provided (0.5197ms)
+  ✔ custom alpha=1.0 and k3=1.0 changes adjusted utilisation (0.628ms)
+  ✔ all intermediate values are finite numbers (0.7277ms)
+  ✔ all constraint checks have valid status (0.7781ms)
+  ✔ assumptions and limitations arrays are non-empty (0.914ms)
+✔ Full pipeline — parametric variations (6.1297ms)
+▶ Traceability — all intermediates have metadata
+  ✔ designUDL has non-empty sourceCells (1.468ms)
+  ✔ designUDL has formula string (0.3639ms)
+  ✔ designUDL has unit (0.3368ms)
+  ✔ maximumMoment has non-empty sourceCells (0.2083ms)
+  ✔ maximumMoment has formula string (0.1987ms)
+  ✔ maximumMoment has unit (0.2439ms)
+  ✔ maximumShear has non-empty sourceCells (0.2081ms)
+  ✔ maximumShear has formula string (0.208ms)
+  ✔ maximumShear has unit (0.2156ms)
+  ✔ bendingStress has non-empty sourceCells (0.3523ms)
+  ✔ bendingStress has formula string (0.1968ms)
+  ✔ bendingStress has unit (0.2015ms)
+  ✔ liveLoadDeflection has non-empty sourceCells (0.23ms)
+  ✔ liveLoadDeflection has formula string (0.1627ms)
+  ✔ liveLoadDeflection has unit (0.1819ms)
+  ✔ deflectionLimit has non-empty sourceCells (0.2005ms)
+  ✔ deflectionLimit has formula string (0.192ms)
+  ✔ deflectionLimit has unit (0.196ms)
+  ✔ shearStress has non-empty sourceCells (0.182ms)
+  ✔ shearStress has formula string (0.2016ms)
+  ✔ shearStress has unit (0.1899ms)
+  ✔ bendingUtilisation has non-empty trace (0.3696ms)
+  ✔ deflectionCheck has non-empty trace (0.1288ms)
+  ✔ shearCheck has non-empty trace (0.1915ms)
+  ✔ governingUtilisation has non-empty trace (0.1645ms)
+  ✔ adjustedGoverningUtilisation has non-empty trace (0.1162ms)
+✔ Traceability — all intermediates have metadata (9.484ms)
+ℹ tests 67
+ℹ suites 7
+ℹ pass 67
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 854.8693
+
+Engine unit lane: 2/2 files passed.
+Test lanes: 14/15 files passed in 2 lanes.
+E:\Rajkumar\Bridge_Slab_Design\scripts:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @workspace/scripts@0.0.0 test:integration: `tsx ./run-integration-tests.ts`
+Exit status 1
+ ELIFECYCLE  Test failed. See above for more details.
+TEST_EXIT=1
+### VERIFY 00:51:14
+
+> workspace@0.0.0 verify E:\Rajkumar\Bridge_Slab_Design
+> pnpm run verify:golden && pnpm run verify:sheets && pnpm run verify:links && pnpm run verify:values && pnpm run verify:costing && pnpm run verify:uplift && pnpm run verify:cases && pnpm run verify:outcomes && pnpm run verify:parity && pnpm run verify:presentation && pnpm run verify:engine
+
+
+> workspace@0.0.0 verify:golden E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:golden
+
+
+> @workspace/scripts@0.0.0 verify:golden E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./src/verify-golden.ts
+
+Golden regression passed; tamper input changed the result as expected.
+
+> workspace@0.0.0 verify:sheets E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:sheets
+
+
+> @workspace/scripts@0.0.0 verify:sheets E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-kherwara-excel-golden.ts
+
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 46 sheets with real formulas (legacy 46-sheet contract)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on Larathi to Larathi B Road, across Som River
+Generating 46 sheets with real formulas (legacy 46-sheet contract)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.00 m is ABOVE the IRC-required scour founding level 83.34 m (bed − 2·dsm = 12.83 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+🚀 Starting Excel generation...
+Project: Fixture — minimal channel hydraulics
+Generating 46 sheets with real formulas (legacy 46-sheet contract)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 97.00 m is ABOVE the IRC-required scour founding level 40.52 m (bed − 2·dsm = 59.48 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+verify-kherwara-excel-golden: OK (current 46-sheet contract validated)
+
+> workspace@0.0.0 verify:links E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:links
+
+
+> @workspace/scripts@0.0.0 verify:links E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-workbook-links.ts
+
+OK   larathi-stabil           pts=16 formulas:753 cross:219 same:1449 re-eval:752 broken:0 diverge:0
+OK   kherwara-golden          pts= 7 formulas:629 cross:217 same:1156 re-eval:628 broken:0 diverge:0
+OK   high-level-reference     pts= 5 formulas:602 cross:217 same:1090 re-eval:601 broken:0 diverge:0
+OK   small-bridge             pts= 5 formulas:603 cross:217 same:1094 re-eval:602 broken:0 diverge:0
+OK   medium-bridge            pts= 5 formulas:603 cross:217 same:1094 re-eval:602 broken:0 diverge:0
+OK   large-bridge             pts= 5 formulas:603 cross:217 same:1094 re-eval:602 broken:0 diverge:0
+OK   irc-bedach-bedla         pts= 8 formulas:642 cross:217 same:1187 re-eval:641 broken:0 diverge:0
+OK   irc-jakham-mandvi        pts= 7 formulas:629 cross:217 same:1156 re-eval:628 broken:0 diverge:0
+OK   irc-t01-jethliya         pts= 5 formulas:603 cross:217 same:1094 re-eval:602 broken:0 diverge:0
+OK   irc-sukanaka-matoon      pts= 6 formulas:616 cross:217 same:1125 re-eval:615 broken:0 diverge:0
+OK   irc-ayad-maharashtra     pts= 7 formulas:629 cross:217 same:1156 re-eval:628 broken:0 diverge:0
+OK   irc-gumaniya-udaipur     pts= 5 formulas:610 cross:219 same:1108 re-eval:609 broken:0 diverge:0
+OK   irc-katumbi-chandrod     pts= 6 formulas:616 cross:217 same:1125 re-eval:615 broken:0 diverge:0
+OK   irc-sisarama-highlevel   pts= 5 formulas:602 cross:217 same:1090 re-eval:601 broken:0 diverge:0
+OK   irc-kumbhalgarh-kelwara  pts= 5 formulas:609 cross:219 same:1104 re-eval:608 broken:0 diverge:0
+OK   irc-parwan-highlevel     pts= 6 formulas:615 cross:217 same:1121 re-eval:614 broken:0 diverge:0
+OK   irc-banas-highlevel      pts= 7 formulas:628 cross:217 same:1152 re-eval:627 broken:0 diverge:0
+OK   irc-ayad-fatehpura       pts= 6 formulas:615 cross:217 same:1121 re-eval:614 broken:0 diverge:0
+OK   irc-kherka-teegirder     pts= 5 formulas:602 cross:217 same:1090 re-eval:601 broken:0 diverge:0
+OK   irc-sukanaka-highlevel   pts= 5 formulas:602 cross:217 same:1090 re-eval:601 broken:0 diverge:0
+
+Golden spot-checks:
+  S9 B18 velocity xref: {"formula":"=HYDRAULICS!C21","result":1.718}
+  S9 H51 V (Service Condition (DL+LL)): {"formula":"=C51*B34+D51*B35-G51*B40","result":644.638}
+  S9 N55 status (Ultimate Limit State (ULS)): {"formula":"=IF(AND(K55>=1.5,L55>=1.8,M55>=1),\"SAFE\",\"UNSAFE\")","result":"SAFE"}
+  S10 C12 retrieved V:  {"formula":"='STABILITY CHECK FOR PIER'!H51","result":644.638}
+  S10 I12 status link:  {"formula":"=IF(G12<=H12,'STABILITY CHECK FOR PIER'!N51,\"UNSAFE\")","result":"UNSAFE"}
+
+Done: 20/20 workbooks fully linked.
+
+> workspace@0.0.0 verify:values E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:values
+
+
+> @workspace/scripts@0.0.0 verify:values E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-workbook-value-sanity.ts
+
+OK   larathi-stabil                             cells:5447 formulas:753 nonFinite:0 placeholder:0 missingResult:0
+OK   kherwara-golden                            cells:5236 formulas:629 nonFinite:0 placeholder:0 missingResult:0
+OK   high-level-reference                       cells:5203 formulas:602 nonFinite:0 placeholder:0 missingResult:0
+OK   small-bridge                               cells:5203 formulas:603 nonFinite:0 placeholder:0 missingResult:0
+OK   medium-bridge                              cells:5203 formulas:603 nonFinite:0 placeholder:0 missingResult:0
+OK   large-bridge                               cells:5203 formulas:603 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-bedach-bedla                           cells:5260 formulas:642 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-jakham-mandvi                          cells:5241 formulas:629 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-t01-jethliya                           cells:5203 formulas:603 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-sukanaka-matoon                        cells:5222 formulas:616 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-ayad-maharashtra                       cells:5241 formulas:629 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-gumaniya-udaipur                       cells:5238 formulas:610 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-katumbi-chandrod                       cells:5222 formulas:616 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-sisarama-highlevel                     cells:5198 formulas:602 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-kumbhalgarh-kelwara                    cells:5233 formulas:609 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-parwan-highlevel                       cells:5222 formulas:615 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-banas-highlevel                        cells:5236 formulas:628 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-ayad-fatehpura                         cells:5217 formulas:615 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-kherka-teegirder                       cells:5198 formulas:602 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-sukanaka-highlevel                     cells:5198 formulas:602 nonFinite:0 placeholder:0 missingResult:0
+
+Templates: 20 | cells: 104624 | formulas: 12411 | defects: 0
+
+> workspace@0.0.0 verify:costing E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:costing
+
+
+> @workspace/scripts@0.0.0 verify:costing E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-estimation-consistency.ts
+
+OK   larathi-stabil             items:26 dig=1156.8 m³ (rock 821.2) steel=179.42 MT bearings=66 total=₹330.81 L
+OK   kherwara-golden            items:25 dig=826.3 m³ (rock 0.0) steel=78.01 MT bearings=66 total=₹165.80 L
+OK   high-level-reference       items:25 dig=656.8 m³ (rock 0.0) steel=159.46 MT bearings=18 total=₹274.27 L
+OK   small-bridge               items:25 dig=520.0 m³ (rock 0.0) steel=90.58 MT bearings=12 total=₹156.45 L
+OK   medium-bridge              items:25 dig=668.8 m³ (rock 0.0) steel=144.36 MT bearings=18 total=₹249.98 L
+OK   large-bridge               items:25 dig=1116.0 m³ (rock 0.0) steel=238.16 MT bearings=24 total=₹410.81 L
+OK   irc-bedach-bedla           items:25 dig=1054.6 m³ (rock 0.0) steel=141.57 MT bearings=42 total=₹255.10 L
+OK   irc-jakham-mandvi          items:25 dig=1147.1 m³ (rock 0.0) steel=161.44 MT bearings=54 total=₹292.68 L
+OK   irc-t01-jethliya           items:25 dig=689.0 m³ (rock 0.0) steel=100.19 MT bearings=24 total=₹179.14 L
+OK   irc-sukanaka-matoon        items:25 dig=784.0 m³ (rock 0.0) steel=114.23 MT bearings=30 total=₹205.13 L
+OK   irc-ayad-maharashtra       items:25 dig=1018.9 m³ (rock 0.0) steel=156.64 MT bearings=42 total=₹281.20 L
+OK   irc-gumaniya-udaipur       items:26 dig=627.0 m³ (rock 456.0) steel=94.86 MT bearings=18 total=₹169.52 L
+OK   irc-katumbi-chandrod       items:25 dig=938.0 m³ (rock 0.0) steel=136.56 MT bearings=36 total=₹244.11 L
+OK   irc-sisarama-highlevel     items:25 dig=732.5 m³ (rock 0.0) steel=154.29 MT bearings=12 total=₹262.56 L
+OK   irc-kumbhalgarh-kelwara    items:26 dig=976.5 m³ (rock 744.0) steel=190.49 MT bearings=18 total=₹329.84 L
+OK   irc-parwan-highlevel       items:25 dig=1135.7 m³ (rock 0.0) steel=254.40 MT bearings=18 total=₹436.27 L
+OK   irc-banas-highlevel        items:25 dig=1296.9 m³ (rock 0.0) steel=243.51 MT bearings=30 total=₹420.79 L
+OK   irc-ayad-fatehpura         items:25 dig=796.6 m³ (rock 0.0) steel=174.01 MT bearings=18 total=₹297.98 L
+OK   irc-kherka-teegirder       items:25 dig=771.8 m³ (rock 0.0) steel=188.18 MT bearings=6 total=₹316.13 L
+OK   irc-sukanaka-highlevel     items:25 dig=732.5 m³ (rock 0.0) steel=156.12 MT bearings=12 total=₹265.74 L
+
+Templates: 20 | defects: 0
+
+> workspace@0.0.0 verify:uplift E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:uplift
+
+
+> @workspace/scripts@0.0.0 verify:uplift E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-uplift-sanity.ts
+
+OK   larathi-stabil           FOS=  4.15 sheet=4.15 SAFE
+OK   kherwara-golden          FOS=  8.16 sheet=8.17 SAFE
+OK   high-level-reference     FOS= 99.00 sheet=99.00 SAFE
+OK   small-bridge             FOS=  2.10 sheet=2.10 SAFE
+OK   medium-bridge            FOS=  1.73 sheet=1.73 SAFE
+OK   large-bridge             FOS=  1.11 sheet=1.10 UNSAFE
+OK   irc-bedach-bedla         FOS=  7.26 sheet=7.26 SAFE
+OK   irc-jakham-mandvi        FOS=  5.98 sheet=5.98 SAFE
+OK   irc-t01-jethliya         FOS=  8.88 sheet=8.88 SAFE
+OK   irc-sukanaka-matoon      FOS=  6.17 sheet=6.17 SAFE
+OK   irc-ayad-maharashtra     FOS=  5.87 sheet=5.87 SAFE
+OK   irc-gumaniya-udaipur     FOS=  8.02 sheet=8.02 SAFE
+OK   irc-katumbi-chandrod     FOS=  5.95 sheet=5.95 SAFE
+OK   irc-sisarama-highlevel   FOS= 99.00 sheet=99.00 SAFE
+OK   irc-kumbhalgarh-kelwara  FOS= 99.00 sheet=99.00 SAFE
+OK   irc-parwan-highlevel     FOS= 99.00 sheet=99.00 SAFE
+OK   irc-banas-highlevel      FOS= 99.00 sheet=99.00 SAFE
+OK   irc-ayad-fatehpura       FOS= 99.00 sheet=99.00 SAFE
+OK   irc-kherka-teegirder     FOS= 99.00 sheet=99.00 SAFE
+OK   irc-sukanaka-highlevel   FOS= 99.00 sheet=99.00 SAFE
+
+Templates: 20 | defects: 0
+
+> workspace@0.0.0 verify:cases E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:cases
+
+
+> @workspace/scripts@0.0.0 verify:cases E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-load-case-diversity.ts
+
+OK   larathi-stabil           abutment cases: 5 distinct, horizontal spread 367.0 kN
+OK   kherwara-golden          abutment cases: 5 distinct, horizontal spread 54.0 kN
+OK   high-level-reference     abutment cases: 5 distinct, horizontal spread 435.5 kN
+OK   small-bridge             abutment cases: 5 distinct, horizontal spread 197.3 kN
+OK   medium-bridge            abutment cases: 5 distinct, horizontal spread 367.0 kN
+OK   large-bridge             abutment cases: 5 distinct, horizontal spread 428.1 kN
+OK   irc-bedach-bedla         abutment cases: 5 distinct, horizontal spread 271.6 kN
+OK   irc-jakham-mandvi        abutment cases: 5 distinct, horizontal spread 322.3 kN
+OK   irc-t01-jethliya         abutment cases: 5 distinct, horizontal spread 181.7 kN
+OK   irc-sukanaka-matoon      abutment cases: 5 distinct, horizontal spread 219.8 kN
+OK   irc-ayad-maharashtra     abutment cases: 5 distinct, horizontal spread 322.3 kN
+OK   irc-gumaniya-udaipur     abutment cases: 5 distinct, horizontal spread 181.7 kN
+OK   irc-katumbi-chandrod     abutment cases: 5 distinct, horizontal spread 271.6 kN
+OK   irc-sisarama-highlevel   abutment cases: 5 distinct, horizontal spread 435.5 kN
+OK   irc-kumbhalgarh-kelwara  abutment cases: 5 distinct, horizontal spread 535.0 kN
+OK   irc-parwan-highlevel     abutment cases: 5 distinct, horizontal spread 512.5 kN
+OK   irc-banas-highlevel      abutment cases: 5 distinct, horizontal spread 704.3 kN
+OK   irc-ayad-fatehpura       abutment cases: 5 distinct, horizontal spread 512.6 kN
+OK   irc-kherka-teegirder     abutment cases: 5 distinct, horizontal spread 405.5 kN
+OK   irc-sukanaka-highlevel   abutment cases: 5 distinct, horizontal spread 279.4 kN
+
+Templates: 20 | defects: 0
+
+> workspace@0.0.0 verify:outcomes E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:outcomes
+
+
+> @workspace/scripts@0.0.0 verify:outcomes E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-stability-outcomes.ts
+
+OK   larathi-stabil           UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   kherwara-golden          UNSAFE (4/5)  UNSAFE (3/5)  UNSAFE (3/5)
+OK   high-level-reference     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   small-bridge             UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   medium-bridge            UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   large-bridge             UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-bedach-bedla         UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-jakham-mandvi        UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-t01-jethliya         UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-sukanaka-matoon      UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-ayad-maharashtra     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-gumaniya-udaipur     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-katumbi-chandrod     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-sisarama-highlevel   UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-kumbhalgarh-kelwara  UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-parwan-highlevel     UNSAFE (5/5)  UNSAFE (1/5)  UNSAFE (1/5)
+OK   irc-banas-highlevel      UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-ayad-fatehpura       UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-kherka-teegirder     UNSAFE (4/5)  UNSAFE (1/5)  UNSAFE (1/5)
+OK   irc-sukanaka-highlevel   UNSAFE (4/5)  UNSAFE (1/5)  UNSAFE (1/5)
+OK   acceptance rule reaches the browser from the response
+OK   client thresholds are declared with a stated basis
+
+==============================================================================
+STABILITY OUTCOMES — 300 load cases across 20 templates
+  SAFE   195
+  UNSAFE 105
+  templates carrying at least one UNSAFE case: 20 of 20
+
+WHICH CHECK FAILS (cases may fail more than one):
+  sliding < 1.5            99
+  overturning < 1.8      82
+  bearing < 1            6
+  failing bearing ALONE    6 — everything else in those cases passes
+==============================================================================
+These are engineering verdicts, not gate failures. 20 template(s)
+must NOT be signed off on this run's numbers without a licensed engineer. A zero exit code
+below means the machinery reported the truth, not that the bridge stands.
+
+Evidence written: E:/Rajkumar/Bridge_Slab_Design/evidence/stability-outcomes.json
+Templates: 20 | defects: 0
+
+> workspace@0.0.0 verify:parity E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:parity
+
+
+> @workspace/scripts@0.0.0 verify:parity E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-html-pdf-parity.ts
+
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+
+kherwara-golden
+  OK   facts matched: 11/11
+🚀 Starting Excel generation...
+Project: High Level Slab Bridge Template
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 277.50 m is ABOVE the IRC-required scour founding level 259.65 m (bed − 2·dsm = 21.55 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+🚀 Starting Excel generation...
+Project: High Level Slab Bridge Template
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 277.50 m is ABOVE the IRC-required scour founding level 259.65 m (bed − 2·dsm = 21.55 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+🚀 Starting Excel generation...
+Project: High Level Slab Bridge Template
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 277.50 m is ABOVE the IRC-required scour founding level 259.65 m (bed − 2·dsm = 21.55 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+
+high-level-reference
+  OK   facts matched: 11/11
+
+Projects: 2 | shared facts compared: 22 | defects: 0 | self-contradictions reported: 0
+Parity means: whatever the reader sees in the browser, the same reader sees in the signed PDF.
+It says nothing about whether the number itself is right — that is the engineering sign-off.
+
+> workspace@0.0.0 verify:presentation E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:presentation
+
+
+> @workspace/scripts@0.0.0 verify:presentation E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-presentation-policy.ts
+
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+  workbook [executive-56]: 56 sheets, 19 landscape / 37 portrait
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 46 sheets with real formulas (legacy 46-sheet contract)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+  workbook [legacy-46]: 46 sheets, 13 landscape / 33 portrait
+  @page      : client/src/styles/struds-report.css::@page:first margin "0" — allowed (full-bleed cover page)
+  @page      : 6 print rules scanned in client/server/pipeline sources
+  pdf pages  : comprehensive-report.pdf — 225 pages, 0 landscape / 225 portrait
+  pdf pages  : sheet-book.pdf — 99 pages, 48 landscape / 51 portrait
+  pdf pages  : short-design-report.pdf — 14 pages, 0 landscape / 14 portrait
+verify-presentation-policy: OK (A4 / 15 mm / orientation proven on artefacts)
+
+> workspace@0.0.0 verify:engine E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:engine
+
+
+> @workspace/scripts@0.0.0 verify:engine E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-engine-boundary.ts
+
+Golden: 493 outputs checked, 0 drifted, tamper moved 48 (tolerance 0.000001 relative).
+Diagnostic: +50 m³/s on the declared ProjectInput.discharge moved 0 of 493 pinned outputs — the engine derives Q from the section and its own velocity and reads the field nowhere on this path; sheet 3 prints it separately (§M-4).
+Boundary: 61 modules feed the artefacts from 4 entries; 0 of them under lib/engine/.
+Calculators in the engine closure: bridge-excel-generator/design-engine.ts [calculateCompleteDesign], shared/design-engine-types.ts [calculateDetailedEstimation].
+Snapshot: 493 outputs pinned for tests/golden/deliverable-engine/kherwara.json.
+verify-engine-boundary: OK (deliverable engine pinned, boundary measured, tamper control live). Green here does not certify the design — see §M-1.
+VERIFY_EXIT=0
+### DONE 00:54:23

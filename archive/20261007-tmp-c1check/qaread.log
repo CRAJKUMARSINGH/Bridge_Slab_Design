@@ -1,0 +1,5 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+row 42 D1: Five load cases analysed for Pier stability (Case 1–5) — see §STABILITY-CHECK-FOR-PIER  [status YES]
+row 43 D2: Five load cases analysed for Abutment stability on ONE shared model — §TYPE1 computes them and §C1 mirrors it cell-for-cell (C1 has no separate geometry yet; august-due §Z)  [status YES]
+row 46 D5: Bearing FOS (σ_max / SBC) ≥ 1.00 across footing & abut footing (project decision 2026-10-06: pressure ≤ SBC)  [status CHECK]

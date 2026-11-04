@@ -1,0 +1,213 @@
+# OURS  test-output/design-workbook.xlsx (estimate family)
+
+===== SHEET 'Tech Report'  rows=30 cols=2 =====
+r1    A=TECHNICAL REPORT
+r3    A=Project Name  B=Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+r4    A=Location  B=KM 9/000, KHERWARA - JAWAS - SUVERI ROAD
+r5    A=Bridge Type  B=Not specified
+r6    A=Total Length  B=96 m
+r7    A=Width  B=7.5 m
+r8    A=No. of Spans  B=12
+r9    A=Discharge  B=243.11 m³/s
+r10   A=Velocity  B=1.718 m/s
+r11   A=Afflux  B=0.256 m
+r12   A=Design Scour  B=4.8 m
+r13   A=Flow Type  B=Subcritical
+r16   A=Draft/review status  B=Engineering sign-off not obtained
+r18   A=DESIGN STORY NOTE (Tech Report) - DESIGN OF SUBMERSIBLE BRIDGE
+r19   A=VERIFICATION NARRATIVE: this report is intended to let a checker read backward from final verdict to governing numbers without opening source code or reconstructing hidden assumptions. The prose is deterministic and is generated from the same input plus design-result object as the tables and drawings.
+r20   A=Design data: discharge 243.11 cumecs, velocity 1.718 m/s, afflux 0.256 m, design water level 100.856 m MSL, scour 4.800 m, SBC 150.00 kN/m2, phi 30.00 deg, gamma 18.00 kN/m3.
+r21   A=Step 1 - HYDRAULIC VERIFICATION: section, regime width, afflux and scour are checked as a mutually consistent chain. High-level bridges must satisfy freeboard/clearance; submersible bridges must state overtopping intent and then prove current, buoyancy and stability behavior.
+r22   A=Step 2 - STRUCTURAL VERIFICATION: governing pier and abutment load cases must keep sliding, overturning and bearing within acceptance. Cantilever/C1 minima are Sliding 0.958, Overturning 1.078, Bearing 2.823. Hence NOT O.K. - revise inputs/member sizes and re-verify.
+r23   A=A) DEAD LOAD CALCULATION REVIEW: pier/substructure dead load 420.00 kN is the base restoring component. Service case 1 carries V = 644.638 kN and q = V/A = 57.301 kN/m2 over base area 11.250 m2.
+r24   A=B) LIVE LOAD CALCULATION REVIEW: live reaction 400.00 kN is visible through the service and ultimate live-load factors. This preserves the attached workbook's practice of separating live reaction before combining moments and stresses.
+r25   A=C) LOADS DUE TO WATER CURRENT REVIEW: hydrostatic 310.985 kN plus drag/current 142.35 kN gives horizontal action 457.556 kN. Flood case 3 reports M = 643.153 kN-m and buoyancy factor 1.00.
+r26   A=D) SEISMIC CONDITION REVIEW: case 4 (Seismic Condition (DL+LL+Seismic)) remains in the audit table with V = 344.638 kN, H = 535.335 kN and M = 759.487 kN-m. A non-governing seismic result is still stated, not silently omitted.
+r27   A=E) WIND FORCE REVIEW: wind-factor cases are case 2, case 5 and pier wind screening force is 4.22 kN. Wind therefore remains part of the report audit trail even when water current controls.
+r28   A=BASE PRESSURE / STABILITY VERDICT: governing pier bearing case 5 gives q = 88.146 kN/m2; pier minima are Sliding 0.405, Overturning 0.856, Bearing 1.702. Hence NOT O.K. - revise inputs/member sizes and re-verify.
+r29   A=ABUTMENT / FOUNDATION VERIFICATION: Type1 minima are Sliding 0.958, Overturning 1.078, Bearing 2.823; C1 minima are Sliding 0.958, Overturning 1.078, Bearing 2.823. This extends the source PCC abutment workbook's sill/foundation/seismic pressure checks into the final report narrative.
+r30   A=FINAL VERIFICATION LINE: computed values, narrative prose, report tables and annexure drawings are all generated from the same design state, so a revision to HFL, SBC, span, geometry or load class refreshes the whole report set. Hence NOT O.K. - revise inputs/member sizes and re-verify.
+
+===== SHEET 'General Abs.'  rows=42 cols=4 =====
+r1    A=GENERAL ABSTRACT OF COST
+r3    A=S.No.  B=Category / item  C=Amount (₹)  D=% of subtotal
+r4    A=1  B=Earthwork in excavation for foundation of structure in ordinary soil by mechanical means, depth up to 3 m, including setting out, shoring, dewatering, refilling in layers and disposal within 1000 m lead  C{=='Abstract'!F4=>25283.25}  D{==C4/$C29*100=>0.18}
+r5    A=2  B=Earthwork in excavation for foundation of structure in ordinary soil by mechanical means, depth above 3 m (deeper lifts are billed in this band)  C{=='Abstract'!F5=>18838.5}  D{==C5/$C29*100=>0.13}
+r6    A=3  B=PCC M-15 grade blinding concrete in open foundations with 20 mm aggregate (100 mm thick)  C{=='Abstract'!F6=>74494.7}  D{==C6/$C29*100=>0.52}
+r7    A=4  B=RCC M-25 in open foundations including formwork  C{=='Abstract'!F7=>1333599}  D{==C7/$C29*100=>9.32}
+r8    A=5  B=TMT steel reinforcement in foundations at 1.50 % of RCC volume  C{=='Abstract'!F8=>2596209.73}  D{==C8/$C29*100=>18.14}
+r9    A=6  B=Design mix RCC M-25 for substructure up to 5 m height including formwork  C{=='Abstract'!F9=>1380140.8}  D{==C9/$C29*100=>9.64}
+r10   A=7  B=TMT steel reinforcement in substructure at 1.45 % of RCC volume  C{=='Abstract'!F10=>2473650.2}  D{==C10/$C29*100=>17.28}
+r11   A=8  B=Back filling behind abutment, wing wall and return wall in 150 mm layers with mechanical compaction, gravelly material (1.5 m wide behind the walls up to 3.5 m high)  C{=='Abstract'!F11=>153153}  D{==C11/$C29*100=>1.07}
+r12   A=9  B=Graded stone aggregate filter medium behind abutment, wing wall and return wall (0.6 m thick up to 3.5 m high)  C{=='Abstract'!F12=>112173.6}  D{==C12/$C29*100=>0.78}
+r13   A=10  B=150 mm dia A.C. pipe weep holes in abutment, wing wall and return wall at 1.5 m c/c  C{=='Abstract'!F13=>5964.8}  D{==C13/$C29*100=>0.04}
+r14   A=11  B=Design mix RCC M-30 deck slab including steel formwork and scaffolding (no BSR superstructure rate for the project grade; billed at the M30 rate — SSR extension required)  C{=='Abstract'!F14=>1128960}  D{==C14/$C29*100=>7.89}
+r15   A=12  B=TMT steel reinforcement in superstructure at 1.50 % of RCC volume  C{=='Abstract'!F15=>1907550}  D{==C15/$C29*100=>13.33}
+r16   A=13  B=RCC M-30 wearing coat 75 mm thick average, including formwork and reinforcement  C{=='Abstract'!F16=>540486}  D{==C16/$C29*100=>3.78}
+r17   A=14  B=RCC M-30 railing in-situ with 20 mm aggregate, 2 edges along the carried deck including steel and formwork  C{=='Abstract'!F17=>335424}  D{==C17/$C29*100=>2.34}
+r18   A=15  B=12 mm thick bitumen mastic wearing coat / damp-proof course to pier and abutment faces, including tack coat  C{=='Abstract'!F18=>165058.4}  D{==C18/$C29*100=>1.15}
+r19   A=16  B=20 mm thick compressible fibre board in expansion joint, 325 mm deep (deck slab plus wearing coat)  C{=='Abstract'!F19=>38881.18}  D{==C19/$C29*100=>0.27}
+r20   A=17  B=Elastomeric bearing pad at piers (6 per pier)  C{=='Abstract'!F20=>1650000}  D{==C20/$C29*100=>11.53}
+r21   A=18  B=PCC M-15 levelling course below approach slab (150 mm thick, 6 m long at each end)  C{=='Abstract'!F21=>58522.5}  D{==C21/$C29*100=>0.41}
+r22   A=19  B=RCC M-30 approach slab including reinforcement and formwork (300 mm thick, 6 m long at each end)  C{=='Abstract'!F22=>221454}  D{==C22/$C29*100=>1.55}
+r23   A=20  B=Road marking with hot-applied thermoplastic compound 2.5 mm thick with reflectorising glass beads, on deck and approach slabs  C{=='Abstract'!F23=>30715.2}  D{==C23/$C29*100=>0.21}
+r24   A=21  B=Raised pavement markers (cats eyes) along both edge lines at 3 m spacing  C{=='Abstract'!F24=>13752}  D{==C24/$C29*100=>0.1}
+r25   A=22  B=Citizens information board, one at each end of the bridge  C{=='Abstract'!F25=>14080}  D{==C25/$C29*100=>0.1}
+r26   A=23  B=Village name board, one at each end of the bridge  C{=='Abstract'!F26=>6600}  D{==C26/$C29*100=>0.05}
+r27   A=24  B=Retro-reflectivised 90 cm equilateral cautionary sign as per IRC:67 on MS angle post with M-15 concrete foundation, 3 per approach  C{=='Abstract'!F27=>16254}  D{==C27/$C29*100=>0.11}
+r28   A=25  B=Retro-reflectivised 60 cm equilateral cautionary sign as per IRC:67 on MS angle post with M-15 concrete foundation, 3 per approach  C{=='Abstract'!F28=>13578}  D{==C28/$C29*100=>0.09}
+r29   B=SUBTOTAL  C{==SUM(C4:C28)=>14314822.85}
+r30   B=Add: Quality Control @ 1.00 %  C{=='Abstract'!F30=>143148.23}
+r31   B=Add: Contingency provision @ 3.00 % (booked nil)  C{=='Abstract'!F31=>0}
+r32   B=Add: Contingencies @ 1.50 %  C{=='Abstract'!F32=>214722.34}
+r33   B=G.TOTAL  C{=='Abstract'!F33=>14672693.42}
+r34   B=Add: Prorata Overheads & Profit @ 13.00 %  C{=='Abstract'!F34=>1907450.15}
+r35   B=GRAND TOTAL  C{=='Abstract'!F35=>16580143.57}
+r36   B=SAY (₹ LAKH)  C{=='Abstract'!F36=>165.8}
+r38   A=STORY - General Abs. belongs to the same engineering narrative chain: inputs must lead to visible design logic, then to computed values, and finally to a pass/check verdict.
+r39   A=Design data: project Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD, bridge length 96.00 m, span 8.00 m, HFL 100.60 m MSL, SBC 150.00 kN/m2.
+r40   A=Step 1 - identify the governing phenomenon of this sheet rather than reusing unrelated formulas.
+r41   A=Step 2 - carry the correct numbers from the same calculation model into the explanation so narration and design never drift apart.
+r42   A=Check: only compliant calculations should read as Hence O.K.; everything else remains a review checkpoint.
+
+===== SHEET 'Abstract'  rows=71 cols=6 =====
+r1    A=DETAILED ABSTRACT OF COST
+r3    A=Item  B=Description  C=Unit  D=Quantity  E=Rate (₹)  F=Amount (₹)
+r4    A=1  B=Earthwork in excavation for foundation of structure in ordinary soil by mechanical means, depth up to 3 m, including setting out, shoring, dewatering, refilling in layers and disposal within 1000 m lead  C=m³  D=495.75  E=51  F{==D4*E4=>25283.25}
+r5    A=2  B=Earthwork in excavation for foundation of structure in ordinary soil by mechanical means, depth above 3 m (deeper lifts are billed in this band)  C=m³  D=330.5  E=57  F{==D5*E5=>18838.5}
+r6    A=3  B=PCC M-15 grade blinding concrete in open foundations with 20 mm aggregate (100 mm thick)  C=m³  D=16.525  E=4508  F{==D6*E6=>74494.7}
+r7    A=4  B=RCC M-25 in open foundations including formwork  C=m³  D=248.25  E=5372  F{==D7*E7=>1333599}
+r8    A=5  B=TMT steel reinforcement in foundations at 1.50 % of RCC volume  C=MT  D=29.231  E=88817  F{==D8*E8=>2596209.73}
+r9    A=6  B=Design mix RCC M-25 for substructure up to 5 m height including formwork  C=m³  D=242.3  E=5696  F{==D9*E9=>1380140.8}
+r10   A=7  B=TMT steel reinforcement in substructure at 1.45 % of RCC volume  C=MT  D=27.58  E=89690  F{==D10*E10=>2473650.2}
+r11   A=8  B=Back filling behind abutment, wing wall and return wall in 150 mm layers with mechanical compaction, gravelly material (1.5 m wide behind the walls up to 3.5 m high)  C=m³  D=231  E=663  F{==D11*E11=>153153}
+r12   A=9  B=Graded stone aggregate filter medium behind abutment, wing wall and return wall (0.6 m thick up to 3.5 m high)  C=m³  D=92.4  E=1214  F{==D12*E12=>112173.6}
+r13   A=10  B=150 mm dia A.C. pipe weep holes in abutment, wing wall and return wall at 1.5 m c/c  C=Rmt  D=46.6  E=128  F{==D13*E13=>5964.8}
+r14   A=11  B=Design mix RCC M-30 deck slab including steel formwork and scaffolding (no BSR superstructure rate for the project grade; billed at the M30 rate — SSR extension required)  C=m³  D=180  E=6272  F{==D14*E14=>1128960}
+r15   A=12  B=TMT steel reinforcement in superstructure at 1.50 % of RCC volume  C=MT  D=21.195  E=90000  F{==D15*E15=>1907550}
+r16   A=13  B=RCC M-30 wearing coat 75 mm thick average, including formwork and reinforcement  C=m³  D=54  E=10009  F{==D16*E16=>540486}
+r17   A=14  B=RCC M-30 railing in-situ with 20 mm aggregate, 2 edges along the carried deck including steel and formwork  C=Rmt  D=192  E=1747  F{==D17*E17=>335424}
+r18   A=15  B=12 mm thick bitumen mastic wearing coat / damp-proof course to pier and abutment faces, including tack coat  C=m²  D=613.6  E=269  F{==D18*E18=>165058.4}
+r19   A=16  B=20 mm thick compressible fibre board in expansion joint, 325 mm deep (deck slab plus wearing coat)  C=m²  D=31.688  E=1227  F{==D19*E19=>38881.18}
+r20   A=17  B=Elastomeric bearing pad at piers (6 per pier)  C=Nos  D=66  E=25000  F{==D20*E20=>1650000}
+r21   A=18  B=PCC M-15 levelling course below approach slab (150 mm thick, 6 m long at each end)  C=m³  D=13.5  E=4335  F{==D21*E21=>58522.5}
+r22   A=19  B=RCC M-30 approach slab including reinforcement and formwork (300 mm thick, 6 m long at each end)  C=m³  D=27  E=8202  F{==D22*E22=>221454}
+r23   A=20  B=Road marking with hot-applied thermoplastic compound 2.5 mm thick with reflectorising glass beads, on deck and approach slabs  C=m²  D=48.6  E=632  F{==D23*E23=>30715.2}
+r24   A=21  B=Raised pavement markers (cats eyes) along both edge lines at 3 m spacing  C=Nos  D=72  E=191  F{==D24*E24=>13752}
+r25   A=22  B=Citizens information board, one at each end of the bridge  C=Nos  D=2  E=7040  F{==D25*E25=>14080}
+r26   A=23  B=Village name board, one at each end of the bridge  C=Nos  D=2  E=3300  F{==D26*E26=>6600}
+r27   A=24  B=Retro-reflectivised 90 cm equilateral cautionary sign as per IRC:67 on MS angle post with M-15 concrete foundation, 3 per approach  C=Nos  D=6  E=2709  F{==D27*E27=>16254}
+r28   A=25  B=Retro-reflectivised 60 cm equilateral cautionary sign as per IRC:67 on MS angle post with M-15 concrete foundation, 3 per approach  C=Nos  D=6  E=2263  F{==D28*E28=>13578}
+r29   E=SUBTOTAL (A)  F{==SUM(F4:F28)=>14314822.85}
+r30   B=Add: Quality Control @ 1.00 %  F{==F29*0.01=>143148.23}
+r31   B=Add: Contingency provision @ 3.00 % (booked nil — engineer to direct)  F{==0=>0}
+r32   B=Add: Contingencies @ 1.50 %  F{==F29*0.015=>214722.34}
+r33   B=G.TOTAL (B = A + quality control + contingency + contingencies)  F{==F29+F30+F31+F32=>14672693.42}
+r34   B=Add: Prorata Overheads & Profit @ 13.00 %  F{==F33*0.13=>1907450.15}
+r35   B=GRAND TOTAL  F{==F33+F34=>16580143.57}
+r36   B=SAY (₹ Lakh)  F{==ROUND(F35/100000,2)=>165.8}
+r38   B=ESTIMATION ASSUMPTIONS (change the rule, not the number)
+r39   B=Rate register  D=PWD BSR Road 2022 (Rajasthan), per BEDACH HL bridge detailed estimate
+r40   B=Abutment band length billed per abutment  D=10  F=m
+r41   B=Abutment footing widening beyond the stem  D=1.5  F=m
+r42   B=Pier footing thickness  D=1  F=m
+r43   B=PCC blinding thickness  D=0.1  F=m
+r44   B=Grade billed for open-foundation concrete — the same grade at pier and abutment footings  D=M25  F=grade
+r45   B=Trench over-dig added to (bed − foundation)  D=1  F=m
+r46   B=Rock head assumed below bed where hard rock is reported  D=1.5  F=m
+r47   B=Soft rock (no blasting) band inside the rock zone  D=1  F=m
+r48   B=Soil band rates up to 3 m / deeper lifts  D=51 / 57  F=₹/m³
+r49   B=Rock band rates soft / blasted hard  D=63 / 514  F=₹/m³
+r50   B=Steel as % of RCC volume (foundation / sub / super)  D=1.5 / 1.45 / 1.5  F=%
+r51   B=Wearing coat thickness billed  D=0.075  F=m
+r52   B=Weep hole spacing (horizontal and vertical)  D=1.5  F=m
+r53   B=Return wall thickness used for weep hole length  D=0.3  F=m
+r54   B=Backfill width behind abutment and returns  D=1.5  F=m
+r55   B=Filter medium thickness behind walls  D=0.6  F=m
+r56   B=Approach slab length / thickness at each end  D=6 / 0.3  F=m
+r57   B=Levelling course thickness below approach slab  D=0.15  F=m
+r58   B=Road marking lines × width  D=3 × 0.15  F=m
+r59   B=Cat eye spacing along each edge line  D=3  F=m
+r60   B=Bearings per pier  D=6  F=nos
+r61   B=Railing edges billed along the deck  D=2  F=nos
+r62   B=Expansion-joint faces billed (one at each pier junction plus one at each abutment)  D=13  F=nos
+r63   B=Cautionary traffic signs billed (90 cm / 60 cm equilateral, per approach)  D=3 / 3  F=nos
+r65   B=NOT BILLED HERE, ITEM BY ITEM, WITH THE REASON — the authority’s own bridge estimate prices these families and this project cannot yet measure them: (1) approach roadway earthwork in soil and in ordinary rock by hydraulic excavator — needs the approach formation levels and lead; (2) cement concrete M-30 pavement grade to the approach — needs the approach pavement geometry; (3) solid RCC retaining walls to the approaches with their excavation, concrete, steel, backfill, filter and weep holes — needs the retaining-wall layout; (4) river-bed pitching with graded filter beneath it and boulder apron — needs the river-training survey alignment and lengths; (5) NP-3 RCC pipe culverts (1000/600/300 mm) with joints and collars — needs the approach drainage schedule; (6) the annular space around open footings, pitched with PCC up to the top of rock, and the authority’s practice of grading pier footings one grade above abutment footings — this project declares one concrete grade per location, so every footing is billed at that grade (see the register above); splitting it needs the founding levels and footing steps only the sections carry. Each becomes a priced BOQ line as soon as its geometry is carried in the project input; none is estimated from a guessed length.
+r67   A=STORY - Estimation is the quantity-traceability story: every amount should descend from verified geometry, reinforcement and material assumptions already accepted in design sheets.
+r68   A=Design data: BOQ line count 25, project total Rs 1,65,80,143.569, and workbook-derived geometry driving concrete, steel, excavation, formwork and backfill items.
+r69   A=Step 1 - quantity extraction converts dimensions and reinforcement outputs into measurable line items.
+r70   A=Step 2 - each line amount is quantity x rate and the schedule rolls up to Rs 1,65,80,143.569.
+r71   A=Check: Hence O.K. If any governing design sheet remains in CHECK status, the estimate must be treated as provisional.
+
+===== SHEET 'Bridge measurements'  rows=97 cols=11 =====
+r1    A=BRIDGE MEASUREMENTS — DIMENSIONAL BUILD-UP OF EACH BOQ ITEM
+r3    A=Item  B=Particulars  C=BSR code  D=Component  E=Nos  F=L (m)  G=B (m)  H=H (m)  I=Unit  J=Quantity  K=Rule applied / tie vs Abstract
+r4    A=FOUNDATION WORK
+r5    A=1  B=Earthwork in excavation for foundation of structure in ordinary soil by mechanical means, depth …  C=B-1/1.1.4  D=Pier  E=11  F=2.5  G=4.5  H=3  I=m³  J{==E5*F5*G5*H5=>371.25}  K=Nos × L × B × H
+r6    A=1  B=Earthwork in excavation for foundation of structure in ordinary soil by mechanical means, depth …  C=B-1/1.1.4  D=Abutment  E=2  F=10  G=2.075  H=3  I=m³  J{==E6*F6*G6*H6=>124.5}  K=Nos × L × B × H
+r7    D=Total:-  J{==ROUND(SUM(J5:J6),3)=>495.75}  K{==IF(ROUND(J7-'Abstract'!D4,3)=0,"TIES","CHECK")=>TIES}
+r9    A=2  B=Earthwork in excavation for foundation of structure in ordinary soil by mechanical means, depth …  C=B-1/1.1.5  D=Pier  E=11  F=2.5  G=4.5  H=2  I=m³  J{==E9*F9*G9*H9=>247.5}  K=Nos × L × B × H
+r10   A=2  B=Earthwork in excavation for foundation of structure in ordinary soil by mechanical means, depth …  C=B-1/1.1.5  D=Abutment  E=2  F=10  G=2.075  H=2  I=m³  J{==E10*F10*G10*H10=>83}  K=Nos × L × B × H
+r11   D=Total:-  J{==ROUND(SUM(J9:J10),3)=>330.5}  K{==IF(ROUND(J11-'Abstract'!D5,3)=0,"TIES","CHECK")=>TIES}
+r13   A=3  B=PCC M-15 grade blinding concrete in open foundations with 20 mm aggregate (100 mm thick)  C=B-2/6.3  D=Pier  E=11  F=2.5  G=4.5  H=0.1  I=m³  J{==E13*F13*G13*H13=>12.375}  K=Nos × L × B × H
+r14   A=3  B=PCC M-15 grade blinding concrete in open foundations with 20 mm aggregate (100 mm thick)  C=B-2/6.3  D=Abutment  E=2  F=10  G=2.075  H=0.1  I=m³  J{==E14*F14*G14*H14=>4.15}  K=Nos × L × B × H
+r15   D=Total:-  J{==ROUND(SUM(J13:J14),3)=>16.525}  K{==IF(ROUND(J15-'Abstract'!D6,3)=0,"TIES","CHECK")=>TIES}
+r17   A=4  B=RCC M-25 in open foundations including formwork  C=B-2/6.6  D=Pier footing  E=11  F=2.5  G=4.5  H=1  I=m³  J{==E17*F17*G17*H17=>123.75}  K=Nos × L × B × H
+r18   A=4  B=RCC M-25 in open foundations including formwork  C=B-2/6.6  D=Abutment footing  E=2  F=10  G=2.075  H=3  I=m³  J{==E18*F18*G18*H18=>124.5}  K=Nos × L × B × H
+r19   D=Total:-  J{==ROUND(SUM(J17:J18),3)=>248.25}  K{==IF(ROUND(J19-'Abstract'!D7,3)=0,"TIES","CHECK")=>TIES}
+r21   A=5  B=TMT steel reinforcement in foundations at 1.50 % of RCC volume  C=B-2/13.3  D=1.50 % of RCC volume × 7850 kg/m³  E=1  F=1.5  G=248.25  H=7850  I=MT  J{==E21*F21*G21*H21/100/1000=>29.231}  K=Nos × L % × B RCC volume × H kg/m³ ÷ 100 ÷ 1000
+r22   D=Total:-  J{==ROUND(SUM(J21:J21),3)=>29.231}  K{==IF(ROUND(J22-'Abstract'!D8,3)=0,"TIES","CHECK")=>TIES}
+r24   A=SUB STRUCTURE WORK
+r25   A=6  B=Design mix RCC M-25 for substructure up to 5 m height including formwork  C=B-3/5.2.1.1  D=Pier body  E=11  F=3.5  G=1.2  H=4  I=m³  J{==E25*F25*G25*H25=>184.8}  K=Nos × L × B × H
+r26   A=6  B=Design mix RCC M-25 for substructure up to 5 m height including formwork  C=B-3/5.2.1.1  D=Abutment body and dirt wall  E=2  F=10  G=0.575  H=5  I=m³  J{==E26*F26*G26*H26=>57.5}  K=Nos × L × B × H
+r27   D=Total:-  J{==ROUND(SUM(J25:J26),3)=>242.3}  K{==IF(ROUND(J27-'Abstract'!D9,3)=0,"TIES","CHECK")=>TIES}
+r29   A=7  B=TMT steel reinforcement in substructure at 1.45 % of RCC volume  C=B-3/9.3  D=1.45 % of RCC volume × 7850 kg/m³  E=1  F=1.45  G=242.3  H=7850  I=MT  J{==E29*F29*G29*H29/100/1000=>27.58}  K=Nos × L % × B RCC volume × H kg/m³ ÷ 100 ÷ 1000
+r30   D=Total:-  J{==ROUND(SUM(J29:J29),3)=>27.58}  K{==IF(ROUND(J30-'Abstract'!D10,3)=0,"TIES","CHECK")=>TIES}
+r32   A=8  B=Back filling behind abutment, wing wall and return wall in 150 mm layers with mechanical compact …  C=B-1/3.1  D=Behind abutment  E=2  F=10  G=1.5  H=3.5  I=m³  J{==E32*F32*G32*H32=>105}  K=Nos × L × B × H
+r33   A=8  B=Back filling behind abutment, wing wall and return wall in 150 mm layers with mechanical compact …  C=B-1/3.1  D=Behind returns  E=4  F=6  G=1.5  H=3.5  I=m³  J{==E33*F33*G33*H33=>126}  K=Nos × L × B × H
+r34   D=Total:-  J{==ROUND(SUM(J32:J33),3)=>231}  K{==IF(ROUND(J34-'Abstract'!D11,3)=0,"TIES","CHECK")=>TIES}
+r36   A=9  B=Graded stone aggregate filter medium behind abutment, wing wall and return wall (0.6 m thick up …  C=B-1/4  D=Behind abutment  E=2  F=10  G=0.6  H=3.5  I=m³  J{==E36*F36*G36*H36=>42}  K=Nos × L × B × H
+r37   A=9  B=Graded stone aggregate filter medium behind abutment, wing wall and return wall (0.6 m thick up …  C=B-1/4  D=Behind returns  E=4  F=6  G=0.6  H=3.5  I=m³  J{==E37*F37*G37*H37=>50.4}  K=Nos × L × B × H
+r38   D=Total:-  J{==ROUND(SUM(J36:J37),3)=>92.4}  K{==IF(ROUND(J38-'Abstract'!D12,3)=0,"TIES","CHECK")=>TIES}
+r40   A=10  B=150 mm dia A.C. pipe weep holes in abutment, wing wall and return wall at 1.5 m c/c  C=B-3/15  D=Abutments  E=2  F=28  G=0.575  H=-  I=Rmt  J{==E40*F40*G40=>32.2}  K=Nos × L × B
+r41   A=10  B=150 mm dia A.C. pipe weep holes in abutment, wing wall and return wall at 1.5 m c/c  C=B-3/15  D=Returns  E=4  F=12  G=0.3  H=-  I=Rmt  J{==E41*F41*G41=>14.4}  K=Nos × L × B
+r42   D=Total:-  J{==ROUND(SUM(J40:J41),3)=>46.6}  K{==IF(ROUND(J42-'Abstract'!D13,3)=0,"TIES","CHECK")=>TIES}
+r44   A=SUPERSTRUCTURE
+r45   A=11  B=Design mix RCC M-30 deck slab including steel formwork and scaffolding (no BSR superstructure ra …  C=B-4/1.1.3  D=Deck slab  E=1  F=96  G=7.5  H=0.25  I=m³  J{==E45*F45*G45*H45=>180}  K=Nos × L × B × H
+r46   D=Total:-  J{==ROUND(SUM(J45:J45),3)=>180}  K{==IF(ROUND(J46-'Abstract'!D14,3)=0,"TIES","CHECK")=>TIES}
+r48   A=12  B=TMT steel reinforcement in superstructure at 1.50 % of RCC volume  C=B-4/3  D=1.50 % of RCC volume × 7850 kg/m³  E=1  F=1.5  G=180  H=7850  I=MT  J{==E48*F48*G48*H48/100/1000=>21.195}  K=Nos × L % × B RCC volume × H kg/m³ ÷ 100 ÷ 1000
+r49   D=Total:-  J{==ROUND(SUM(J48:J48),3)=>21.195}  K{==IF(ROUND(J49-'Abstract'!D15,3)=0,"TIES","CHECK")=>TIES}
+r51   A=13  B=RCC M-30 wearing coat 75 mm thick average, including formwork and reinforcement  C=B-4/5  D=Wearing coat  E=1  F=96  G=7.5  H=0.075  I=m³  J{==E51*F51*G51*H51=>54}  K=Nos × L × B × H
+r52   D=Total:-  J{==ROUND(SUM(J51:J51),3)=>54}  K{==IF(ROUND(J52-'Abstract'!D16,3)=0,"TIES","CHECK")=>TIES}
+r54   A=14  B=RCC M-30 railing in-situ with 20 mm aggregate, 2 edges along the carried deck including steel an …  C=R-7/2.3  D=Both edges of deck  E=2  F=96  G=-  H=-  I=Rmt  J{==E54*F54=>192}  K=Nos × L (billed per running metre)
+r55   D=Total:-  J{==ROUND(SUM(J54:J54),3)=>192}  K{==IF(ROUND(J55-'Abstract'!D17,3)=0,"TIES","CHECK")=>TIES}
+r57   A=15  B=12 mm thick bitumen mastic wearing coat / damp-proof course to pier and abutment faces, includin …  C=B-4/7  D=Pier faces  E=11  F=9.4  G=4  H=-  I=m²  J{==E57*F57*G57=>413.6}  K=Nos × L × B
+r58   A=15  B=12 mm thick bitumen mastic wearing coat / damp-proof course to pier and abutment faces, includin …  C=B-4/7  D=Abutment faces  E=2  F=10  G=10  H=-  I=m²  J{==E58*F58*G58=>200}  K=Nos × L × B
+r59   D=Total:-  J{==ROUND(SUM(J57:J58),3)=>613.6}  K{==IF(ROUND(J59-'Abstract'!D18,3)=0,"TIES","CHECK")=>TIES}
+r61   A=16  B=20 mm thick compressible fibre board in expansion joint, 325 mm deep (deck slab plus wearing coa …  C=B-4/11.2  D=At piers (one face per span junction)  E=11  F=7.5  G=0.325  H=-  I=m²  J{==E61*F61*G61=>26.813}  K=Nos × L × B
+r62   A=16  B=20 mm thick compressible fibre board in expansion joint, 325 mm deep (deck slab plus wearing coa …  C=B-4/11.2  D=At abutments  E=2  F=7.5  G=0.325  H=-  I=m²  J{==E62*F62*G62=>4.875}  K=Nos × L × B
+r63   D=Total:-  J{==ROUND(SUM(J61:J62),3)=>31.688}  K{==IF(ROUND(J63-'Abstract'!D19,3)=0,"TIES","CHECK")=>TIES}
+r65   A=17  B=Elastomeric bearing pad at piers (6 per pier)  C=R-16  D=Bearings  E=66  F=-  G=-  H=-  I=Nos  J{==E65=>66}  K=Nos
+r66   D=Total:-  J{==ROUND(SUM(J65:J65),3)=>66}  K{==IF(ROUND(J66-'Abstract'!D20,3)=0,"TIES","CHECK")=>TIES}
+r68   A=APPROACHES & ROAD FURNITURE
+r69   A=18  B=PCC M-15 levelling course below approach slab (150 mm thick, 6 m long at each end)  C=B-4/16  D=Approach slabs  E=2  F=6  G=7.5  H=0.15  I=m³  J{==E69*F69*G69*H69=>13.5}  K=Nos × L × B × H
+r70   D=Total:-  J{==ROUND(SUM(J69:J69),3)=>13.5}  K{==IF(ROUND(J70-'Abstract'!D21,3)=0,"TIES","CHECK")=>TIES}
+r72   A=19  B=RCC M-30 approach slab including reinforcement and formwork (300 mm thick, 6 m long at each end)  C=B-4/17  D=Approach slabs  E=2  F=6  G=7.5  H=0.3  I=m³  J{==E72*F72*G72*H72=>27}  K=Nos × L × B × H
+r73   D=Total:-  J{==ROUND(SUM(J72:J72),3)=>27}  K{==IF(ROUND(J73-'Abstract'!D22,3)=0,"TIES","CHECK")=>TIES}
+r75   A=20  B=Road marking with hot-applied thermoplastic compound 2.5 mm thick with reflectorising glass bead …  C=500-29  D=Centre and edge lines  E=3  F=108  G=0.15  H=-  I=m²  J{==E75*F75*G75=>48.6}  K=Nos × L × B
+r76   D=Total:-  J{==ROUND(SUM(J75:J75),3)=>48.6}  K{==IF(ROUND(J76-'Abstract'!D23,3)=0,"TIES","CHECK")=>TIES}
+r78   A=21  B=Raised pavement markers (cats eyes) along both edge lines at 3 m spacing  C=500-30  D=Cats eyes  E=72  F=-  G=-  H=-  I=Nos  J{==E78=>72}  K=Nos
+r79   D=Total:-  J{==ROUND(SUM(J78:J78),3)=>72}  K{==IF(ROUND(J79-'Abstract'!D24,3)=0,"TIES","CHECK")=>TIES}
+r81   A=22  B=Citizens information board, one at each end of the bridge  C=500-31  D=Information boards  E=2  F=-  G=-  H=-  I=Nos  J{==E81=>2}  K=Nos
+r82   D=Total:-  J{==ROUND(SUM(J81:J81),3)=>2}  K{==IF(ROUND(J82-'Abstract'!D25,3)=0,"TIES","CHECK")=>TIES}
+r84   A=23  B=Village name board, one at each end of the bridge  C=500-32  D=Name boards  E=2  F=-  G=-  H=-  I=Nos  J{==E84=>2}  K=Nos
+r85   D=Total:-  J{==ROUND(SUM(J84:J84),3)=>2}  K{==IF(ROUND(J85-'Abstract'!D26,3)=0,"TIES","CHECK")=>TIES}
+r87   A=24  B=Retro-reflectivised 90 cm equilateral cautionary sign as per IRC:67 on MS angle post with M-15 c …  C=500-33  D=Cautionary signs at both approaches  E=6  F=-  G=-  H=-  I=Nos  J{==E87=>6}  K=Nos
+r88   D=Total:-  J{==ROUND(SUM(J87:J87),3)=>6}  K{==IF(ROUND(J88-'Abstract'!D27,3)=0,"TIES","CHECK")=>TIES}
+r90   A=25  B=Retro-reflectivised 60 cm equilateral cautionary sign as per IRC:67 on MS angle post with M-15 c …  C=500-34  D=Secondary cautionary signs at both approaches  E=6  F=-  G=-  H=-  I=Nos  J{==E90=>6}  K=Nos
+r91   D=Total:-  J{==ROUND(SUM(J90:J90),3)=>6}  K{==IF(ROUND(J91-'Abstract'!D28,3)=0,"TIES","CHECK")=>TIES}
+r93   A=STORY - Estimation is the quantity-traceability story: every amount should descend from verified geometry, reinforcement and material assumptions already accepted in design sheets.
+r94   A=Design data: BOQ line count 25, project total Rs 1,65,80,143.569, and workbook-derived geometry driving concrete, steel, excavation, formwork and backfill items.
+r95   A=Step 1 - quantity extraction converts dimensions and reinforcement outputs into measurable line items.
+r96   A=Step 2 - each line amount is quantity x rate and the schedule rolls up to Rs 1,65,80,143.569.
+r97   A=Check: Hence O.K. If any governing design sheet remains in CHECK status, the estimate must be treated as provisional.

@@ -3,8 +3,9 @@
 > Naming note: the requested file `CREAT.MD` cannot be created because Windows
 > treats it as the existing `creat.md` (project planning doc). This file is the
 > chat log instead. Update policy: appended at every working turn; a literal
-> 12-minute timer is not possible inside an agent session — the log is updated
-> at least once per turn, which is the closest faithful behaviour.
+> 15-minute timer is not possible inside an agent session — the log is updated
+> at least once per turn, which is the closest faithful behaviour. The rollup
+> cadence rule lives in `creat.md` §0 (governance, 15 min).
 
 ---
 
@@ -1569,3 +1570,612 @@ docs: Task7 final gate run — CREAT-CHATLOG Turn26 + august-due §T24
 - §M-1…§M-4 sign-off questions (bearing factor, water level, PDF hydraulics block, which discharge)
 - `knowledge/` tree (downstream of A2–A5)
 - Two writers in one worktree (row 21)
+
+---
+
+## Turn 27 — 2026-10-06 · DUE-16: J-5 measured, three coverage holes closed, and a real optimiser defect (§W)
+
+> Standing directive still in force: `take up due tasks and complete them one by one`, blanket permission to run, no commit unless asked. Housekeeping from Turn 25 finished first (archive README + project memory), then the next non-blocked register item: **next action 6 / §J row J-5, engine decoupling**.
+
+### What the register claimed, and what the code did
+
+| Claim | Measured |
+|---|---|
+| "Two calculation engines coexist; the golden harness guards the one that produces **no deliverable**." | Half true, and the false half mattered. `lib/engine` owns the deck-slab chain (UDL/BM/SF/deflection/utilisation); `bridge-excel-generator/design-engine.ts` owns hydraulics/scour/stability/reinforcement/BOQ. **Neither calls the other** — zero `@workspace/engine` importers under `bridge-excel-generator/`, `pipeline/`, `server/`, `shared/`, `client/`, `api/`. So merging them was not the task; the sentence was hiding three holes. |
+
+### The three holes (all closed)
+
+| # | Hole | Closure |
+|---|---|---|
+| W-2(1) | `verify:golden` was defined, passing, and **excluded from `pnpm run verify`** — CI had never once executed the numeric golden regression. | First lane of the aggregate: **eleven** gates now, and inside `pnpm run candidate` + CI automatically. |
+| W-2(2) | `lib/engine/src/tests/{calculate,golden-parity-expanded}.test.ts` = **79 assertions**, both green standalone, invoked only by `scripts/qa-ultra-strict.ts`, which no script or CI job calls. | `scripts/run-integration-tests.ts` is a two-lane runner (`Integration lane`, `Engine unit lane`): `15/15 files passed in 2 lanes`. Per-file `--test-isolation=none` (§T-11) carried to both. |
+| W-2(3) | The engine that produces the workbook, three PDFs and the HTML had **no numeric regression whatsoever**. | New gate `pnpm run verify:engine` (`scripts/verify-engine-boundary.ts`): boundary from the import graph (61 modules, 0 under `lib/engine/`), calculator-coverage tripwire, **485** pinned outputs in `tests/golden/deliverable-engine/kherwara.json` (31 965 B, sha256 `00d09398…`), 233 of them case-by-case `loadCases`. |
+
+### Proving the gate can fail (five controls, each restored)
+
+drifted value → exit 1 · trimmed `covers` → exit 1 naming `calculateDetailedEstimation` · deleted pinned key → exit 1 `new output … is not pinned` · entries replaced with a non-engine entry → exit 1 `not reachable from any deliverable entry` · entries replaced to include `lib/engine/src/index.ts` → exit 1 `The boundary moved`. Determinism: two clean runs identical, `--emit` reproduces the file byte-for-byte (`sha256sum -c` OK).
+
+### Two findings the gate produced
+
+| Finding | Disposition |
+|---|---|
+| **`ProjectInput.discharge` moves 0 of 485 outputs on the deliverable path.** `calculateHydraulics` derives `Q = A × V` (Kherwara 243.11 cumecs) and never reads the declared 902.15, which reaches the book only through sheet 3's own rows (`sheets/03-afflux-calculation.ts:34,284,291`) and the `h?.discharge ?? input.discharge` fallbacks. | §M-4's "which discharge governs" is now located in code instead of suspected. **Not changed** — it is the signing engineer's decision. The gate keeps the probe as a printed diagnostic, and the control tamper is `manningN + 0.005` (moves 44 of 485), which is what proves the snapshot is live. |
+| **The red candidate found a product defect, not a harness one.** `design-optimise-limits.test.ts` failed `1 !== 0`: `deadlineMs: 0` produced one trial under load, zero on an idle machine, because `Date.now() > deadline` only trips after a millisecond ticks. Same line: the message interpolated `DEFAULT_DEADLINE_MS`, so a 500 ms caller was told "5000 ms compute budget exhausted". | `server/optimisation-engine.ts` now compares elapsed with `>=` against the caller's resolved budget and quotes the requested number; test gained `assert.match(message, /^Stopped at iteration 0: 0 ms compute budget exhausted/)`. Five consecutive runs of the file: `pass 5 · fail 0` each. Route path (no budget) unchanged. |
+
+### Second writer, again (§W-9)
+
+Mid-batch the owner landed `13cdf0b` "decouple bridge-excel-generator from server layer (J-5)" (+2 229/−630) and `aec5b42` labelled **DUE-15**. Their J-5 is the import direction (verified: zero generator→`server/*` imports remain); this one is numeric coverage. Complementary halves recorded in the same §J row. **This batch is therefore DUE-16**, and the snapshot was emitted after `13cdf0b`, so its 485 values are post-refactor. §T24's "9 gates" was accurate at that commit and is superseded.
+
+### Files changed this turn
+
+| File | Change |
+|---|---|
+| `package.json` | `verify` chain → eleven lanes (`verify:golden` first, `verify:engine` last); `verify:engine` script added. |
+| `scripts/package.json` | `verify:engine` → `tsx ./verify-engine-boundary.ts`. |
+| `scripts/verify-engine-boundary.ts` | **new** — boundary + coverage + 485-value golden, `--emit`, five self-controls, writes `evidence/engine-boundary.json`. |
+| `scripts/run-integration-tests.ts` | single-lane → two-lane runner (integration + `lib/engine/src/tests`). |
+| `server/optimisation-engine.ts` | `>=` elapsed-vs-budget; message quotes the caller's `deadlineMs`. |
+| `tests/integration/design-optimise-limits.test.ts` | asserts the reported budget, not just the phrase. |
+| `tests/golden/deliverable-engine/kherwara.json` | **new** — snapshot + `provenance` + `covers` + boundary record. |
+| `august-due.md` | §W (W-1…W-9), §J J-5 row corrected, next action 6 closed, §E three gate rows updated, DUE-16 bullet, footer. |
+| `CREAT-CHATLOG.MD` | this turn. |
+| `archive/20261006-tmp-scratch-due12/README.md` | **new** — the seven Turn-25 logs described (promised in Turn 25). |
+| project memory | `project-validation-commands.md` (eleven lanes, two test lanes, `--test-isolation=none`), `project-asset-assimilation-state.md` (**new**), index. |
+
+### Deliberately not touched
+
+`lib/engine`'s two entry points (merging them is an engineering decision); the 485 numbers themselves (no product calculation changed); `13cdf0b`/`aec5b42` content; `project/asset-catalog/asset-classification.json`; `Attached_Assets/**`; no `git lfs pull`; nothing committed.
+
+### Still DUE after this turn
+
+Licensed-engineer sign-off (row 1) · §M-1…§M-4 (now including the located §M-4 discharge fact) · governing water level (row 3) · `git lfs pull` → real A2–A5 data (rows 4/5b) · first `docker build` (row 10) · pixel verification (row 12) · pier-catalog cwd (row 19) · corrupt week-0 fixture (row 20) · **two writers / one worktree (row 21 — now with a label collision as evidence)** · `knowledge/` tree.
+
+---
+
+## Turn 28 — 2026-10-07 · DUE-17 + DUE-18: the working directory, a sliding number with no arithmetic, and eleven copies of one rule (§X, §Y)
+
+### User directives in force (verbatim, carried)
+
+- "take up due tasks and complete them one by one"
+- "presume my responce as allow once for all 100 prompts"
+- "DATA ARE GENERATED AS PEEF FORMULA CALCULATION AND RETRIEVED AFTERWARDS FROM SAME OR ANOTHER WORKSHEETS>>>>LINK ALL"
+- "ALL OUTPUT IN A4 PAGES WITH 15 MM MARGINS ALL AROUND" / "LANDSCAPE >>>3, 5, 9,10, 15,16, 17,18 TO 21, 30-31, ALL OTHER PORTRAIT"
+- "read all files in folder >>>>>E:\Rajkumar\Bridge_Slab_Design\CODE-JUNCTION >>>> apply enrichment and fixing of code if due>>>>indicate what is due and done"
+- "CREAT A FILE CREAT.MD AND SAVE OUR CHATLOG INTO UT MANDATORY FOR ADD UPDATE EVERY 12 MINUTES"
+
+### Work done
+
+**DUE-17 (§X) — the pier-case catalog.** `resolveDefaultPierAssetRoot()` built its candidates from `process.cwd()` and then returned an unchecked fallback path, so any server not started at the repo root threw inside `buildPierCaseCatalog` and answered 500. Resolution is now module-relative (`import.meta.url`) with cwd as a de-duplicated fallback, preference order sorted-pier-drawings then `Attached_Assets`, and `PIER_ASSET_ROOT` honoured only when it names an existing directory. The route is an explicit contract: **503** "asset library is not installed" (naming both remedies), **400** for a `?root=` that is missing, **400** for one outside `pierAssetTrees()` — the containment check had to move from "inside the single resolved default" to "inside either installed tree", or the fix would have rejected legitimate siblings.
+
+Measuring the *other* branch is what mattered: from the repo root the old code returned 200 with a catalog in which **0 of 10 templates were source-backed**, because its first candidate names `research_assets/component_drawings_sorted/...` and this repo has no `research_assets/` at all — so it always fell through to the general `Attached_Assets` dump (32 files). Module-relative default: **35 drawings, 4 of 10 source-backed** (single-column, hammerhead, tall-viaduct, circular). Five integration assertions pin it, including `process.chdir(os.tmpdir())` returning the same root, and the three status shapes. `.dockerignore`'s justification comment and the engine's own evidence `note` string corrected to match the code.
+
+**DUE-18 (§Y) — sheet 9, and then the acceptance rule.** Commit `876a3bd` added IRC:78-2000 §706 passive earth resistance to the engine's pier sliding FOS. The workbook was not told: column K still read `=B{mu}*ABS(H)/MAX(ABS(I),1)` while its cached `result` was the passive-aware engine value. Measured on `irc-t01-jethliya` the ratio is **exactly 1.500 for all five cases** (the `0.5*mu*V` cap binds everywhere), and the row contradicts itself: `N` tests `K>=1.5`, so the ULS case displays 1.627 / SAFE while the formula printed beside it yields 1.085. Section A gained phi (B27), gamma (B28), **Kp as a live formula** `=TAN((45+B27/2)*PI()/180)^2` (B29) and the §706 cap (B30, from `DESIGN_CONSTANTS`); mu came off a literal; K is now the §706 arithmetic, cell-referenced end to end — which is what "LINK ALL" asks for, not a decoration.
+
+Inserting four Section-A rows moved everything below them by 4, and `PIER_STABILITY_ROWS` — the hand-maintained anchor table sheets **10** and **12-18** point back into sheet 9 by — had not moved. Nothing errors: downstream formulas just read the neighbouring row. The link gate's own evidence print was the proof (it asked `H47` for a service-case V and printed `null` while reporting "fully linked"); it now reads the export and walks the case table to find its length. Section B is anchored to `R.passiveCap + 2` rather than to `Ah`, and `pierStabilityDrift()` throws at generation time on any mismatch — negative control run by mutating the layout: `dead: sheet 9 writes 34, PIER_STABILITY_ROWS publishes 33`.
+
+The wider defect surfaced while fixing that: **eleven hand copies** of the 1.5 / 1.8 / 2.5 acceptance rule, **eight still printing bearing 2.5** after §M-1 was decided to 1.0. Consequences, each real: `server/claude-validator.ts` was *failing* cases the engine had just passed; `server/comprehensive-pdf-export.ts` recomputed sliding as `mu*V/H` — passive-free — two pages after its own summary table printed the engine's number; five verdict chains in `narrative-engine.ts` hard-coded the literals, and the first compile of that sweep caught `c1Ok` referenced where it does not exist (TS2304). Sheet 9 prose/status, sheet 20's mu cell + status, `A01`/`C01`, `29-46-estimation.ts`, `checklist-export.ts`, `design-report.ts` and the PDF now interpolate `STABILITY_ACCEPTANCE` / `DESIGN_CONSTANTS`. The browser cannot import the engine (a deliberate type-only boundary), so `client/src/lib/stability-limits.ts` is the single client copy **and is gated**: setting `bearingFosMin: 2.5` made `verify:outcomes` print `DEFECT client UI copy of the acceptance rule ... the engine applies 1` and exit 1; restored gives `OK`, defects 0. Deleting the copy by carrying the limits in the API is filed as **row 22** rather than done silently, because it changes a response contract.
+
+Owner-authored content corrected, not withdrawn: the four STRUCTURAL REVIEW comments quoted figures no engine run reproduces (large-bridge "0.677"; parwan/kherka/sukanaka bearing 0.930/0.902/0.871 with sliding 1.505/1.504/1.508). Re-measured on the current engine: large-bridge pier sliding **0.228 / 0.183 / 0.084 / 0.117 / 0.364** (min 0.084 at flood, overturning min 0.110, bearing 1.270), parwan **0.985 / 0.370 / 0.606**, kherka **0.979 / 0.488 / 0.846**, sukanaka **0.967 / 0.474 / 0.890**. Each comment now carries the reproduction command and states that the 2026-10-06 figures match no current run. **The UNSAFE flags stay** — that is a signing engineer's call, not this session's.
+
+### Findings
+
+| Finding | Disposition |
+|---|---|
+| Two gates were red at HEAD before this batch touched anything: `876a3bd` changed the engine's per-case output (a `passiveResistance` on each pier load case) without re-pinning, so `verify:engine` reported **11 of 485 drifted**. | Golden re-emitted deliberately (`--emit`): **490 pinned, 0 drift**, tamper control moves 48, discharge diagnostic restated as 0 of 490. Recorded as evidence for row 21 (two writers), with the cheap rule proposed: every engine-touching commit re-runs `verify`. |
+| The register's tallies (§F/§L/§T24) still said 4 SAFE / 296 UNSAFE. | Corrected where they mislead: row 1 annotated, §M-1 marked DECIDED with what it now costs (only **6 of 105** UNSAFE cases fail bearing alone), next action 1 renumbered. Delivered measurement: **300 cases, SAFE 195, UNSAFE 105, 20 of 20 templates carrying an UNSAFE case**. |
+| Is the new 503 a regression for anyone? | No consumer exists — grep over `client/`, `api/`, `server/` finds only the route, its tests and `security.test.ts`. It exists so the first hosted deploy fails legibly. Stated in §X-5/§X-7 instead of assumed. |
+
+### Gates (transcripts in `archive/20261006-tmp-scratch-due17/logs/`)
+
+`check` exit 0 · `verify` exit 0 on **eleven** lanes (links **20/20 fully linked**, broken 0 / diverge 0; cases 0 defects; outcomes defects 0 with client copy `OK`; parity 22 facts 0 defects; engine 490 pinned 0 drift) · `test` exit 0 `15/15 files in 2 lanes` · `deliverables` 6 files regenerated · **`candidate` exit 0** on all four chains plus `audit:policy`, bundle captured against `8b5730f2c5ef`.
+
+### Artefact read-back (the delivered files, not the code that made them)
+
+`test-output/design-workbook.xlsx`: sheet 9 `B22 mu 0.5 · B27 phi 30 · B28 gamma 18 · B29 Kp formula -> 3 · B30 cap 0.5`; `K51 -> 1.066` carrying the §706 formula, `N51 UNSAFE`; `K55 -> 1.627`, `N55 SAFE`; row 3 prose `sliding >= 1.5, overturning >= 1.8, bearing >= 1`. Sheet 20: `B18 0.5`, `F21 =$B$18*C21/D21 -> 1.7216`, `I21 SAFE`. QA rows D1/D2 present. `irc-checklist.html`: `Bearing >= 1 (pressure <= SBC)` / `(req >= 1)` with **zero** `2.5` occurrences. `design-report.html`: no `2.5 typical`, contains `>= 1 (pressure <= SBC)` and `>= 1.5 (IRC:6 Sec 114)`.
+
+### Files changed this turn
+
+| File | Change |
+|---|---|
+| `server/pier-case-engine.ts` | module-relative resolution, `isExistingDirectory`, `pierAssetTrees()`, nullable default root, evidence-note wording. |
+| `server/api-routes.ts` | 503 / 400 / 400 route contract; containment checked against every installed tree. |
+| `.dockerignore` | comment corrected to the real preference order. |
+| `tests/integration/api-pier-cases.test.ts` | five assertions including chdir root-identity and the three status shapes. |
+| `bridge-excel-generator/sheets/09-stability-check-pier.ts` | §706 Section-A cells, passive-aware K formula, corrected `PIER_STABILITY_ROWS`, `pierStabilityDrift()` + generation-time throw, acceptance interpolated. |
+| `bridge-excel-generator/sheets/19-28-abutment-type1.ts`, `29-46-estimation.ts`, `A01-admin-substructure.ts`, `C01-qa-admin.ts` | mu from `DESIGN_CONSTANTS`; statuses and labels from `STABILITY_ACCEPTANCE`. |
+| `bridge-excel-generator/narrative-engine.ts` | one `stabilityOk()` replacing five literal verdict chains, and the `c1Ok` scope bug it exposed. |
+| `server/checklist-export.ts`, `server/claude-validator.ts`, `server/comprehensive-pdf-export.ts`, `server/design-report.ts` | colour logic, captions, validator comparisons, the PDF sliding row (now printing `Pp`) and the HTML report all from the constants. |
+| `client/src/lib/stability-limits.ts` (**new**), `client/src/components/DesignCheckDashboard.tsx`, `CompareModal.tsx` | single client copy, used by the four gauges and the compare modal. |
+| `scripts/verify-stability-outcomes.ts` | header rules rewritten to the rule in force, `BEARING_FOS_FOR_SBC_LIMIT` and the vacuous banner clause removed, client-copy check added. |
+| `scripts/verify-workbook-links.ts` | evidence rows read from `PIER_STABILITY_ROWS`; case-table length discovered, not hard-coded. |
+| `server/default-project-inputs.ts` | four STRUCTURAL REVIEW comments re-measured. |
+| `tests/golden/deliverable-engine/kherwara.json` | re-emitted 485 -> **490**. |
+| `august-due.md` | §X (X-1...X-7), §Y (Y-1...Y-9), §T28, rows 1 and 19 corrected, row 22 added, row 21 updated, §M-1 marked DECIDED, next actions 1 and 4b, footer. |
+| `CODE-JUNCTION/august-due.md` | twin re-synced (`cmp` identical). |
+| `CREAT-CHATLOG.MD` | this turn. |
+
+### Deliberately not touched
+
+No git commit, branch or push. `Attached_Assets/**` and the pre-existing staged deletions; no `git lfs pull`. The §706 **engineering** model itself (cap fraction, phi/gamma defaults) — the owner's `876a3bd` stands, and only the workbook and its copies were made to agree with it. §M-2 water level, §M-3 PDF hydraulics block, §M-4 discharge, PARWAN bar grade, OFL = HFL, SSR/DSR rates, IRC impact factors, estimation assumption register, empty `engineering/review/`. The four UNSAFE flags were corrected with numbers, never removed.
+
+### Still DUE after this turn
+
+Licensed-engineer sign-off (row 1, 105 UNSAFE of 300) · §M-2...§M-4 · scoped `git lfs pull` then real A2-A5 data and `knowledge/` (rows 4/5b) · first `docker build` plus the hosted deploy and the serverless-503 decision it forces (row 10 / §X-7) · pixel verification (row 12) · `lib/store/` persistence (row 11) · corrupt week-0 fixture (row 20) · two writers / one worktree (row 21, now demonstrably able to leave a gate red at HEAD) · **new row 22** — API-carried acceptance limits so the client copy can go.
+
+## Turn 29 — 2026-10-07 · DUE-19: the C1 abutment verdict re-verified, and the model underneath it (§Z)
+
+### User directives in force (verbatim, carried)
+
+- "take up due tasks and complete them one by one"
+- "presume my responce as allow once for all 100 prompts" / "AUTO MODE MEANS I PERMIT TO RUN ACCEPTING ALLOW ONCE FOR ALL SIMILAR CASES INCLUDING THIS ONE"
+- "recall >>>>>The probe found a real defect: the C1 abutment stability sheet writes no verdict formula at all, while pier and TYPE1 do. >>>>also recall context >>>The C1 sheet's status cell borrows TYPE1's verdict by cross-reference. Before changing it, checking whether the two abutments' engine verdicts ever actually diverge."
+- "DATA ARE GENERATED AS PEEF FORMULA CALCULATION AND RETRIEVED AFTERWARDS FROM SAME OR ANOTHER WORKSHEETS>>>>LINK ALL"
+- "CREAT A FILE CREAT.MD AND SAVE OUR CHATLOG INTO UT MANDATORY FOR ADD UPDATE EVERY 12 MINUTES"
+
+### What this turn was asked to do
+
+Turn 6 (recorded at lines 872-898 above) found that the C1 stability sheet's Status cell was
+`='TYPE1-STABILITY CHECK ABUTMENT'!I{row}` — it restated Type-1's conclusion instead of applying the
+rule where the engineer reads it. Before changing it, the divergence question was measured; the fix
+made the verdict local. The owner then asked me to **recall** that finding — so the honest answer had
+to be: is it still true after two engine commits (`876a3bd` passive resistance, `8b5730f` flags), and
+is the *claim* around those cells true?
+
+### Measured first (probe `archive/20261007-tmp-c1check/probes/p.ts` → `out.log`)
+
+- **20 templates × 5 load cases = 100 case-pairs** of engine Type-1 vs engine C1: **0 divergences**;
+  geometry (`height`, `width`, `depth`, `baseWidth`, `baseLength`, `dirtWallHeight`,
+  `returnWallLength`) identical on **20/20**. The mirror is honest today, and the local verdict from
+  Turn 6 therefore prints exactly the same words as it did before this turn.
+- Reading `calculateAbutmentDesign(input, hydraulics, type)` at `bridge-excel-generator/design-engine.ts:710`
+  (called twice, at `:294` with `'TYPE1'` and `:297` with `'C1'`):
+  geometry comes from `input.abutmentHeight/Width/Depth/DirtWallHeight` (`baseWidth = width + 1.5`,
+  `baseLength = depth + 1.0`), earth pressure from the same backfill and surcharge, and the five cases
+  from the same enumeration. The `type` argument appears in **four `engineLog` strings (lines 715, 769,
+  771, 857) and nowhere else**. **One abutment model, labelled twice** — so C1 is Type-1 relabelled,
+  not a cantilever check.
+
+That is the real defect, and it is a *presentation* defect sitting on top of an *engineering*
+question. Turn 6 fixed the cell; this turn stopped the reports from implying an independent second
+analysis, and filed the decision instead of inventing an answer.
+
+### Changed (no engineering number moved anywhere)
+
+1. **`bridge-excel-generator/narrative-engine.ts`** — `buildC1Narrative`'s STORY line now names the
+   mirror *before* the stem-footing story: the cantilever figures "mirror the Type-1 values until C1
+   is given its own geometry; read them as the shared model applied at the cantilever, not as a
+   second independent check."
+2. **`bridge-excel-generator/sheets/C01-qa-admin.ts:83`** — QA row **D2** was "Five load cases
+   analysed for Type1 + C1 Abutment stability", which claimed two analyses. Now: *"Five load cases
+   analysed for Abutment stability on ONE shared model — §TYPE1 computes them and §C1 mirrors it
+   cell-for-cell (C1 has no separate geometry yet; august-due §Z)"*, status still `YES`.
+3. **`server/comprehensive-pdf-export.ts`** — the C1 cover printed "C1 (CANTILEVER) ABUTMENT" over
+   Type-1's numbers. It now carries two centred 9-pt lines under the title stating the figures mirror
+   the Type-1 model and are not an independent second check, and the detailed stability page gains a
+   **"Model basis | Shared | — | C1 mirrors the Type-1 case set (august-due §Z)"** row. Type-1's cover
+   and page are untouched.
+4. **`server/design-report.ts`** — the table headed "ABUTMENT — TYPE1 vs C1 (SUMMARY)" prints two
+   columns that are equal by construction; it gains a full-width clause row saying so, so identical
+   figures read as *expected* rather than as a coincidental agreement that needs checking.
+5. **`august-due.md`** — new **§Z** (Z-1 divergence measurement, Z-2 the engine reading, Z-3 the four
+   overstating reports, Z-4 the link gate as the mirror's guard, Z-5 what remains), new **§M-5**,
+   SUMMARY **row 23**, 🟢 **DUE-19** bullet, **§T29** gate run, footer rewritten.
+
+The sheet itself was deliberately **not** changed: its FOS cells stay live cross-references
+(`='TYPE1-STABILITY CHECK ABUTMENT'!F21` etc., which is *true* — they are retrieved from the shared
+model) and its verdict stays locally derived (`=IF(AND(C5>=1.5,D5>=1.8,E5>=1),"SAFE","UNSAFE")`,
+thresholds interpolated from `STABILITY_ACCEPTANCE`). Making the numbers "independent" would mean
+fabricating heel/toe geometry the employer never supplied — the register's own rule (§V-3, §W-6).
+
+### Proved the guard bites (negative control, restored)
+
+Padded the cached C1 sliding FOS by ×1.2 in the generator while leaving the live formula:
+`pnpm run verify:links` re-executes every reference and printed **100 `DIVERGE` lines** (5 cases × 20
+workbooks), first two `DIVERGE C1-STABILITY CHECK ABUTMENT!C5 [='TYPE1-STABILITY CHECK ABUTMENT'!F21]
+cached=2.0659 recomputed=1.7216` and `!C6 cached=1.6797 recomputed=1.3998`; `Done: 0/20 workbooks
+fully linked`, **exit 1** (`links-tamper.log`). Reverted the one line (`probes/reverted-line.txt` is the
+restored source) → `Done: 20/20 workbooks fully linked`, exit 0 (`links-restored.log`). If the mirror
+ever silently breaks — cache tamper, stale copy, or a hand edit — the gate names the cell.
+
+### Gates, all green (`## T29` in august-due.md has the table)
+
+`check` **0** (159 prose spans, 0 violations — the four new disclosure sentences cite no numbers) ·
+`verify` **0** on all **eleven** lanes (sheets 46/46; links 20/20 fully linked broken:0 diverge:0;
+values/costing/uplift/cases 20 templates 0 defects; outcomes SAFE 195 / UNSAFE 105 of 300 with the
+client copy `OK`; parity 22 facts 0 defects; presentation executive-56 19L/37P, legacy-46 13L/33P;
+engine 490 pinned 0 drifted, tamper moved 48) · `test` **0** 15/15 in 2 lanes · `deliverables` **0**
+(6 files: workbook 109 971 B, sheet-book 3 249 807 B, comprehensive 4 980 101 B, short 222 981 B,
+design-report.html 430 004 B, irc-checklist.html 39 752 B) · `candidate` **0** (check 57.0 s ·
+verify 108.6 s · test 54.3 s · audit:policy 5.4 s, bundle at `8b5730f2c5ef`).
+
+### Read back from the delivered artefacts, not from the code
+
+Workbook `C1-STABILITY CHECK ABUTMENT`: row 3 prints the mirror disclosure; `C5 → 1.7216`,
+`D5 → 2.1434`, `E5 → 3.9446`, `F5 =IF(AND(C5>=1.5,D5>=1.8,E5>=1),"SAFE","UNSAFE") → SAFE`.
+`IRC CODE COMPLIANCE CHECKLIST` row 43 D2 carries the new one-model sentence (row 42 pier and row 46
+bearing ≥ 1.00 unchanged). `design-report.html` mirror clause appears **1** time.
+`comprehensive-report.pdf`: cover notice **1**, `Model basis` **1** (grep of the PDF content streams —
+the first attempt grepped "Mirrors Type-1 case set" and found 0 because the real text is lowercase
+"C1 mirrors the Type-1 case set"; re-grepped before reporting).
+
+### Not done here — deliberately
+
+**§M-5 / row 23: the C1 model decision itself.** Either the cantilever gets its own heel and toe
+(geometry the employer has not supplied) and a real second analysis, or one abutment is analysed and
+printed once. That is a signing-engineer's call; the gate now protects the mirror either way and the
+reports no longer claim more than the calculation delivers. Also unchanged: sign-off (row 1), §M-2
+water level, §M-3 PDF legacy hydraulics block, §M-4 discharge (0 of 490 outputs move), scoped
+`git lfs pull` + A2-A5 data + `knowledge/`, first `docker build` + serverless-503, pixel verification,
+`lib/store/`, corrupt week-0 fixture, two-writer advisory, row 22 API-carried acceptance limits.
+
+No git commit, branch or push. No `git lfs pull`. `Attached_Assets/**` and the pre-existing staged
+deletions untouched.
+
+---
+
+## Turn 30 — 2026-10-07 (paperwork landed 2026-10-08 00:1x) · DUE-20: the acceptance rule now travels in the design response, and the browser's copy is deleted (§AA)
+
+**Directive in force:** *take up due tasks and complete them one by one* — auto mode, all approvals
+presumed, no commits.
+
+### What this turn did
+
+Row 22 (§Y-5) was the last hand copy of the stability acceptance rule left in the product: the
+browser could not import engine code, so `client/src/lib/stability-limits.ts` re-typed 1.5 / 1.8 / 1
+and `verify:outcomes` grepped it. A gate on a copy is a workaround, so the copy went away instead.
+
+1. **The rule became part of the result.** `types.ts` gained `StabilityAcceptance` and
+   `CompleteDesignResult.stabilityAcceptance` (required, not optional — a result arriving without the
+   rule it was judged against is a defect). `runCompleteDesign` returns the engine's own
+   `STABILITY_ACCEPTANCE`, so the printed factors and the printed rule cannot disagree by construction.
+2. **No new endpoint.** `POST /api/design/results` (`server/api-routes.ts:319`) already returns the
+   engine result verbatim, so the field arrives untouched — proven against the live server, not argued
+   (`tmp-due20-api.json`). A separate `/api/design/acceptance-limits` route was rejected: a second
+   source for the same three numbers is the same disease with a nicer URL.
+3. **Four verdict-rendering client surfaces converted**, not the two row 22 named:
+   `DesignCheckDashboard` (four arc gauges + the `req ≥` caption), `CompareModal` (the `fosReq` map),
+   `EngineeringCopilot` (both insight blocks *and* the prose they print), `WindLoadPanel` (two
+   `FosRow`s, the wind pass/fail tests, `SpeedRow`'s colour logic — which needed a new `required` prop
+   because it had been deriving its own colour from a literal — plus two sentences of method text).
+   `DesignCheckDashboard`'s `max={1.5}` was inspected and deliberately **left**: it is the Lacey-ratio
+   gauge axis, not a stability limit.
+4. **Stale-cache guard.** `useDesignStore` persists `{results}` in `localStorage.lastDesignResults`;
+   a payload written before this change has no rule in it, so the rehydrator now returns `null` and
+   forces a refetch rather than painting limit-less gauges.
+5. **The copy deleted and the grep inverted.** `stability-limits.ts` moved to
+   `archive/20261007-tmp-due20/retired/`. Rule 6 of `verify:outcomes` now walks every `.ts`/`.tsx`
+   under `client/src` and fails on three things: a hard-coded `*FosMin` literal (file, value, and the
+   engine's value quoted beside it), any reference to the retired `STABILITY_LIMITS` name, and a file
+   that renders stability verdicts without ever reading `stabilityAcceptance` — the direction the old
+   grep could not see, because ignoring the response is how a green gate comes to mean nothing.
+
+### Two real client bugs found while converting
+
+- `CompareModal` had an `fosReq` entry for **"Abutment overturning FOS (worst)"** but that row was
+  missing from `fosCols`, so its ✓/✗ indicator had never rendered. Fixed in the same edit; it was
+  invisible precisely because the column list, not the requirement map, drove rendering.
+- The store's cached-payload case above: without the guard, a returning user gets gauges with no
+  threshold, which reads as "no requirement" rather than "stale cache".
+
+### Four planted controls — and the two bugs they found in the guard itself
+
+| Control | Result |
+| --- | --- |
+| `client/src/lib/tmp-limit-probe.ts` with `slidingFosMin: 2` | `DEFECT acceptance rule reaches the browser from the response`, exit 1 — and it printed `= 2` for a `2.5` literal and only one literal per file: pattern widened to `[0-9]+(?:\.[0-9]+)?` and switched to `matchAll` |
+| probe `2.5` + a literal left in `DesignCheckDashboard` | every literal named against the engine's value; but the *reader* arm did not fire — `limitReaders` held bare filenames while the walker compares repo-relative paths, so the defect was unreachable. Fixed to full relative paths and re-proved |
+| reader that ignores the response + retired name referenced | `shows stability verdicts but never reads stabilityAcceptance from the response` and the retired-copy defect, exit 1 |
+| authoring slip: non-global regex into `matchAll` | lane crashed with a `TypeError` and printed **no** DEFECT line, exit 1 — a red gate that says nothing is indistinguishable from one that never ran; fixed rather than tolerated |
+
+Green run: `OK   acceptance rule reaches the browser from the response`, defects 0.
+
+### Gate state (§T30), all read from the transcripts
+
+`check` **0** · `verify` **0** on eleven lanes (links 20/20 fully linked; outcomes 300 cases
+SAFE 195 / UNSAFE 105, 20/20 templates, sliding 99 / overturning 82 / bearing 6; parity 22 facts;
+presentation 19L/37P and 13L/33P; engine **493 pinned, 0 drifted**, tamper moved 48) · `test` **0**
+15/15 · `deliverables` **0** (6 files) · **`candidate` 0** (check 72.2 s · verify 98.7 s · test 39.7 s
+· audit:policy 10.1 s) against `8b5730f2c5ef`. Golden went **490 → 493** and the diff is exactly the
+three new keys, so the rule is now pinned too: changing it takes a deliberate re-accept.
+
+### Read-back: the app, not the code
+
+Live `POST /api/design/results` → `stabilityAcceptance {slidingFosMin:1.5, overturningFosMin:1.8,
+bearingFosMin:1}`. On `/suite/design`, after "Refresh engine metrics": gauges `req ≥ 1.5 / 1.8 / 1 /
+1.5` against worst-pier 0.405 / 0.856 / 6.898 / 0.405 with marks `✗ ✗ ✓ ✗`; copilot `(req ≥ 1.5)`
+`(req ≥ 1.8)`; wind panel `sliding ≥ 1.50, overturning ≥ 1.80`. The UI's verdict now matches the
+engine's UNSAFE case because it is the engine's rule. Console clean. **Pixels still open (row 12)**:
+this host's screenshot surface returns `NATIVE_BROWSER_VIEWPORT_UNAVAILABLE / visibilityState=hidden`,
+so the evidence is DOM text, not an image.
+
+### Two honest-residue statements instead of a clean claim
+
+- **42 hand-applied threshold comparisons survive across 12 client files** (`SeismicZonePanel` 9,
+  `Design` 7, `engineeringNarrative` 6, `FormulaEvaluator` 4, `OptimisationAtAGlance` 3,
+  `AbutmentStability` 3, `PierOptimiser` 2, and five files with 1 each). They are **not all the
+  stability rule** — IRC:20 reduced factors, WARN bands that are not verdicts, optimiser design
+  limits — so they are filed as **row 24** for site-by-site adjudication. Regex-sweeping them would
+  have changed printed verdicts to quiet a grep, which is exactly the §Y-4 mistake in reverse.
+- **`test-output/` HTML sizes are characters, not bytes.** `regenerate-test-output.ts` prints
+  `design-report.html 430,004` while the file is **432,811 bytes** on disk (and 39,752 vs 39,965 for
+  the checklist) — the gap is the multi-byte `≥ — × ₹` set. Measured this turn (`tmp-due20-htmlsize.txt`)
+  and §T30 now labels them "chars". The workbook and four PDFs are byte-exact.
+
+### Register / docs touched
+
+`august-due.md`: row 22 struck with the §AA pointer, **new row 24**, **§AA** (AA-1…AA-8),
+**§T30** gate run, §Y-5 annotated as closed, next-actions 4c/4d added, footer rewritten (DUE-20
+summary plus the char/byte disclosure). `CODE-JUNCTION/august-due.md` re-synced and byte-compared.
+Transcripts and the retired module under `archive/20261007-tmp-due20/` with a README.
+
+### Safety
+
+No git commit, branch or push. No `git lfs pull`. The dev server started for the browser pass
+(PID 2192, :5180) was stopped and the port confirmed free. `Attached_Assets/**`,
+`bridge-excel-generator/sheets-extracted/**` and the pre-existing `.gitignore` state untouched;
+scratch files archived, not deleted.
+
+
+## Turn 31 — 2026-10-08 (DUE-21: adjudicate the residual hand-applied stability thresholds in `client/`)
+
+**Directive in force:** "take up due tasks and complete them one by one", with "presume my responce as allow once for all 100 prompts" / "AUTO MODE MEANS I PERMIT TO RUN ACCEPTING ALLOW ONCE FOR ALL SIMILAR CASES INCLUDING THIS ONE". No commits, branches or pushes were made or requested. This turn opened by closing DUE-20's paperwork (row 22, §AA, §T30) and then took row 24 — the 42 thresholds §AA had left as measured residue.
+
+### What the row actually said, and what turned out to be true
+
+Row 24 asked a yes/no-shaped question — should every remaining client threshold read `stabilityAcceptance`? The answer was **no**, and the premise was wrong in two places, found by measuring rather than by trusting §AA's own sentence:
+
+1. **The "42" was not 42 stability thresholds.** AA-6 had counted regex matches, and that pattern also picked up Froude-number tests (`d.Fr < 1.0`), velocity and scour-depth limits, a biaxial DCR check (`<= 1.0`), an importance-factor choice, and division sentinels (`: 99`, `: 999`, `Infinity`). Re-measured with a matcher that requires a stability variable next to the comparison operator: **25 comparison lines / 33 literal occurrences across 10 files** (19 distinct values). Corrected in §AB-1 rather than restated quietly — a register whose counts rot is a register nobody can act on.
+2. **Most of them could not have read the response even in principle.** The client ships a **second design model**: `client/src/report-engine/**` plus `BridgeSlabReport.tsx` build their own load cases (`d.pierLCs`, `d.abtCases`) from `Inputs`, with friction-only sliding and `qmax <= SBC` for bearing; `AbutmentStability.tsx` and `FormulaEvaluator.tsx` are standalone calculators. None of them receives a `CompleteDesignResult`, so DUE-20's rule was unreachable there by construction. That is row 25 now, not a to-do.
+
+### Two divergences surfaced, and both were left alone deliberately
+
+- **Overturning: the client says 2.00, the engine says 1.80** (`AbutmentStability.tsx:223/497/837` + `limit={2.0}`, `FormulaEvaluator.tsx:281` PASS 2.0 / WARN 1.7, `report-engine/sheets/AbutmentOptimiser.tsx:197` `fos_ot_min = 2.00`). Sliding and bearing agree, so it is a one-rule split between two calculators judging the same bridge. **Not changed** — re-pointing those sites at the engine's number would re-verdict a *different* arithmetic (no §706 passive term), which is moving engineering outcomes to tidy a list. Its bite was measured rather than asserted: scanning all 300 engine load cases for `1.80 <= overturningFOS < 2.00` gives **3 cases**, all on the pier stability sheet, and **all three already UNSAFE on sliding** (0.853 / 1.137 / 1.183), so **no verdict contradicts today**. The margin matters though: `irc-sukanaka-matoon` pier case 5 sits at **1.9998891394** — it clears 1.80 by **1.11e-4**, so the first sliding repair row 1 recommends turns this into a live browser-vs-workbook disagreement. Hence the advice in next-action 4e: answer row 25 **before** repairing sliding, not after.
+- **Seismic edges are exactly 5/6 of the normal rule, cited as "IRC:6-2016 Cl. 219"** (sliding 1.25 against 1.5, overturning 1.50 against 1.8 — both precisely a 16.7% reduction, not the 25% "reduced factors" wording invites, which would be 1.125 / 1.35). The clause text could not be verified from this repo. Row 26, an owner answer.
+
+And one near-miss worth recording: `BridgeSlabReport.tsx:132 FOS_sbc: 2.5` looked exactly like a stale copy of the retired bearing rule §M-1 killed. It is not — it is the ultimate/allowable multiplier in `bridgeDerivation.ts:180` (`qnu = SBC * FOS_sbc`). Had this row been swept by regex, a working quantity would have been "fixed" into a wrong one. That is the evidence for site-by-site reading.
+
+### What was actually changed
+
+- `client/src/pages/Design.tsx` — the wind preview's PASS edge was the engine rule re-typed inside a file that *does* hold the response, so it now reads `acc.slidingFosMin` / `acc.overturningFosMin` via `const acc = r.stabilityAcceptance`. Same numbers, so value-preserving by construction. The seismic edge in the same file kept its numbers and gained a comment naming why they are *not* the engine rule and where the open question lives.
+- `scripts/verify-stability-outcomes.ts` — reader list widened from 2 files to the **5** that receive the response (`DesignCheckDashboard`, `CompareModal`, `EngineeringCopilot`, `WindLoadPanel`, `pages/Design.tsx`), and new arm **6b** added: every client file that compares a stability factor against a decimal literal must appear in `DECLARED_CLIENT_THRESHOLDS` **with a basis string**, and its declared literal set must still match what the file actually contains. Ten files declared, all bases written from the reading above. The inventory is now measured on every run instead of being a sentence in a markdown file.
+
+### Controls, and what they found about the gate itself
+
+Three planted defects, each reverted: (i) an undeclared `slidFOS >= 1.6` → `compares a stability factor against a numeric literal (1.6) with no entry in DECLARED_CLIENT_THRESHOLDS`, exit **1**; (ii) a declared site's 1.5 edited to 1.6 → `declared thresholds are [1.5] but the file now uses [1.6] — update the declaration WITH its basis, never by copying the number in`, exit **1**; (iii) `Design.tsx` reverted to a local limit object → **both** arms fire at once (three hard-copy defects **and** `shows stability verdicts but never reads stabilityAcceptance`), exit **1**, proving the widened reader list is live.
+
+The controls also caught two authoring bugs before anything shipped: the first 6b draft referenced an undefined `FOS_RULE_VALUES` and produced a garbled message (rewritten as a sorted literal-set comparison), and a case-sensitive token list missed `r.worstSlid`, so the matcher needed the `i` flag — after which it immediately flagged `OptimisationAtAGlance.tsx`, **a file the manual count had missed**. A gate that finds what the human missed is the argument for gating rather than typing. The lesson repeated itself before this entry was written: the register's first DUE-21 count -- 28 lines / 34 literals across 9 files, from a hand-written scan -- did not match the gate's own matcher either. Re-running that regex as `measure-client-thresholds.ts` gives **25 / 33 across 10**: four of `AbutmentStability.tsx`'s six lines are print-only strings the adjacency rule refuses, and `OptimisationAtAGlance.tsx` was missing from the hand list. §AB-1 now carries the correction, because a count that has to be restated by hand is exactly the thing this turn was supposed to stop doing.
+
+### Gate state at the end of this turn
+
+| Lane | Exit | Evidence |
+|---|---|---|
+| `pnpm run check` | **0** | five typecheck lanes + `lint:narrative` 159 spans, 0 violations |
+| `pnpm run verify` (11 lanes) | **0** | `OK   acceptance rule reaches the browser from the response` · `OK   client thresholds are declared with a stated basis` · links 20/20 fully linked (broken:0 diverge:0) · values 20 templates / 102 724 cells / 12 031 formulas / defects 0 · outcomes 300 cases SAFE 195 / UNSAFE 105, 20/20 templates unsafe-bearing, attribution sliding 99 / overturning 82 / bearing 6 · parity 22 facts 0 defects · engine **493 outputs, 0 drifted**, tamper moved 48 |
+| `pnpm run test` | **0** | 13 integration + 2 engine files, 67 engine tests 0 fail → `15/15 files passed in 2 lanes` |
+| `pnpm run deliverables` | **0** | 6 files, sizes **identical to §T30** — workbook 109 971 B, sheet-book 3 249 807 B, comprehensive 4 980 101 B, short 222 981 B, design-report.html 430 004 chars, irc-checklist.html 39 752 chars |
+| `pnpm run candidate` | **0** | check 45.0 s · verify 82.2 s · test 97.0 s; the chain refuses to bundle on red, so a green manifest is the proof |
+
+No engine file moved, so the golden and the artefacts were expected to be untouched — and the read-back confirms it rather than assuming it.
+
+### Register and paperwork
+
+`august-due.md`: row 24 struck **ADJUDICATED**; rows 25 and 26 opened with exact sites; **§AB** (AB-1…AB-7) — AB-7 is this turn's gap measurement; **§T31** gate run with the three controls and the read-back; next-action 4d closed, 4e re-pointed at the measured stakes; footer re-led to §AB/T31. `CREAT-CHATLOG.MD` this entry. `CODE-JUNCTION/august-due.md` re-synced by copy and compared byte-for-byte. Transcripts and the measuring script kept under `archive/20261007-tmp-due20/` (`tmp-due21-*.log`, `measure-row25-gap.ts` → `tmp-due21-gap.txt`); nothing was deleted from the tree — the register convention is archive, not remove.
+
+### Still DUE after this turn
+
+Licensed-engineer sign-off on **105 UNSAFE of 300** across **20/20** templates (row 1 — the only thing that makes any output authoritative) · **row 25**, the client's second design model and its 2.00-vs-1.80 overturning rule · **row 26**, the seismic 5/6 edges and their unverified Cl. 219 citation · row 23 / §Z-5, the C1 one-model-two-labels decision · §M-2 governing water level (101.375 vs 100.856) · §M-3 the PDF's legacy hydraulics block · §M-4 design discharge (moves **0 of 493** pinned outputs) · scoped `git lfs pull` then real A2–A5 data and `knowledge/` (rows 4/5b) · first `docker build`, hosted deploy and the serverless-503 question (row 10 / §X-7) · pixel verification (row 12) · `lib/store/` persistence (row 11) · corrupt week-0 fixture (row 20) · two-writer advisory (row 21).
+
+Nothing committed, branched or pushed. The four UNSAFE STRUCTURAL REVIEW flags, the PARWAN bar grade, OFL = HFL, SSR/DSR rates, IRC impact factors and the estimation assumption register remain owner-only decisions and were not touched.
+
+---
+
+## Turns 32–34 — 2026-10-10 / 2026-10-11 (DUE-22 rows 4/5b · DUE-23 estimation enrichment §AD · DUE-24 pipeline currency §AE)
+
+> Turns 32 and 33 landed in `august-due.md` (§AC, §AD) but not here — that gap is why this entry covers all three. Everything below was measured on the tree, and every number a previous turn asserted was re-measured before being repeated.
+
+### Turn 32 — DUE-22: the corpus stopped being pointers, and the register's own explanation was wrong
+
+- A scoped `git lfs pull --include "<95 paths>"` exited **0** while 29 files stayed 131–132 B stubs. Read `.gitattributes`: the repo attributes only lowercase `*.dwg *.pdf *.xls *.xlsx *.zip *.mp4 *.csv`, so 27 `.DXF` and 2 `.xlsm` never invoke the filter at all. The earlier "the square brackets in the names are the problem" diagnosis was **false** — 28 of the 95 paths carry brackets and four bracketed `.xls` files pulled cleanly.
+- The deterministic mechanism is per-path `git lfs smudge`: read the pointer's own `oid`/`size`, check the fetched object against that sha256 **before** replacing the file, then `os.replace`. 29/29 materialised, 0 refused.
+- **No unscoped pull was ever run**, and the owner's own deletions under `Attached_Assets/` were not restored.
+
+### Turn 33 — DUE-23: the authority's own estimate found four under-billings
+
+- Compared our bill against `plus Detailed ESTIMATE HL Bridge BEDACH.xls` (sha256 `5953625d…`, 4 sheets, **every cell a literal**), so the comparison had to be about which work families get priced rather than a formula transplant.
+- Four real gaps fixed: **railing was registered but never billed** (₹1 747/Rmt sitting in the rate register with no `add()` behind it), **expansion joints billed at abutments only** (2 → 13 faces), **no traffic signs at all**, and an exclusion note that was a sentence rather than a schedule. A fifth question — the authority's `@4995 RCC M-20` band — was answered by reading its measurement sheet and settled with an assumption row plus exclusion clause (6), **moving no money**.
+- Kherwara moved BOQ 22 → 25 lines, measurements 31 → 35, subtotal ₹1,39,16,667.302 → **₹1,43,14,822.853** (the ₹3,98,155.551 delta reconciles exactly to those three families), grand total → **₹1,65,80,143.5695, SAY 165.80 Lakh**. All 20 templates re-billed; all 25 tie cells on `Bridge measurements` read **TIES**.
+- Two of our own guards earned their keep. `verify:costing` failed 20/20 templates on the new `run` basis because its `bandTotal()` re-derives quantities independently — the checker was the bug, and extending it took defects to 0. And `verify:engine` was **already red at HEAD** before this turn touched anything: owner commit `876a3bd` had moved the §706 passive term without re-pinning, including one `UNSAFE → SAFE` flip. Both features were accepted deliberately in one re-emit: **493 outputs, 0 drifted, tamper still moves 48**.
+- Coverage proof that no further enrichment is due: our bill now carries **24 of the authority's 35 rate families = 96.2 %** of its cost. The remaining 11 lines (3.8 %) are each classified — soft/hard rock *are* billed by the 3 templates whose dig reaches rock, `@4995` is design intent, and the other eight need survey geometry no input carries.
+
+### Turn 34 — DUE-24: the pipeline was still counting the corpus it had lost
+
+- Re-running the stages exposed the residue §AC left: `normalized/` held **191 records for a 96-asset corpus**, `classified/` and `narrative/` **95 pointer-era readings each**, `drawings/` 31 — because every stage names its output `<sha256[:12]>_<fileName>.json`, so new bytes write a new record and the old one stays. A3's own line claimed `processed=31 of 191`: 16 real workbooks plus **15 readings of 132-byte stubs**, indistinguishable in the output.
+- Fixed at the mechanism: new `scripts/assimilate/output_currency.py`, `relocate_stale(out_dir, expected)`, called by A2/A3/A4/A5. It **moves** records no current input produces into `<stage>/pointer-era/` — never a delete — and stages glob only the top level, so the ghosts stop being inputs while staying on disk. Each stage now prints its own `records=` and `relocated-pointer-era=`. Measured: **316 relocated**, top level 96 / 96 / 96 / 31, A3 `processed=16 of 96`.
+- A5's eight `error` records were never eight broken drawings: the register's `drawing-cad` kind includes `.dwg`, and ezdxf reads DXF only. Now a named refusal `unsupported-dwg` with the reason — **28 DXF mapped, 4 DWG refused, 0 error, 0 stub, 0 missing**.
+- Measured the ceiling instead of pushing through it: all 16 workbooks that read cleanly are BIFF `.xls`, and `xlrd 2.0.2` was probed — **no `XL_CELL_FORMULA`, and `Sheet` has no `cell_formula_text`**, so it cannot dump BIFF formulas at all. A3b's deep layer therefore runs on **0 of 16**; unblocking needs `.xlsx` copies or a pinned-dependency decision, which is the owner's.
+- Two stale claims corrected by re-measuring: A3's header classifier is near-blind on this corpus (35 sheets, 548 headers → **463 blank / 80 label / 5 engineering-value**, because these property tables start their content below row 1), and row 4's "146 `Attached_Assets` paths deleted in the working tree" is **gone** (715 tracked = 715 on disk). The unscoped-pull hazard was restated on measured numbers: **1,876 of 2,080 files under `assets/` are still stubs**.
+- `pnpm run assimilate` exits **1** exactly as designed, now against the true corpus: `LFS pointer stubs among indexed assets: 0 of 97` and `FAIL: 97 of 97 assets are unclassified`. Rows 4/5b are blocked on three named human inputs — 49 password-protected workbooks, 97 bucket signatures (`reason` + `decidedBy`), and the A3b format decision.
+
+### Gate state at the end of turn 34
+
+| Lane | Exit | Evidence |
+|---|---|---|
+| `pnpm run assimilate` | **1 — correct** | red by design on 97/97 unclassified; 0 stubs of 97 |
+| `pnpm run check` | **0** | five typecheck lanes + `lint:narrative` 159 spans |
+| `pnpm run verify` (11 lanes) | **0** | 132.6 s · golden 493 outputs / 0 drifted / tamper moves 48 · links 20/20 · values, costing, outcomes, parity, presentation 0 defects |
+| `pnpm run test` | **0** | 91.0 s, 15/15 files in 2 lanes |
+| `pnpm run audit:policy` | **0** | 5.8 s |
+| `pnpm run candidate` | **0** | 6 deliverables + transcripts, commit `8b5730f2c5ef` |
+
+Deliverables were deliberately **not** regenerated: no engine, sheet or server file moved in turn 34, so the bundle carries the six artefacts turn 33 regenerated with unchanged digests.
+
+### Register and paperwork
+
+`august-due.md`: row 4 rewritten from "the corpus is pointers" to the measured post-pull state with its three human blockers named; **§AC** (turn 32), **§AD** (turn 33), **§AE** (turn 34) and **§T32** gate run added; next-actions 5/5b re-pointed; footer re-led. `scripts/assimilate/README.md` gained a *Record currency* section, the A2-before-A3/A4 ordering rule, the `unsupported-dwg` status, the xlrd-has-no-formula-text fact and the scoped-pull warning. `CODE-JUNCTION/august-due.md` re-synced by copy. Transcripts under `archive/20261011-tmp-due24/` (`a2/a3/a4/a5.log`, `assimilate-gate.log`, `candidate.log`, `git-status.txt`, `stub-scan.txt`); nothing deleted — the register's convention is archive, not remove.
+
+### Safety
+
+Nothing committed, branched or pushed. **No `git lfs pull` of any scope was run in turn 34**, and no stage wrote under `Attached_Assets/`. The 316 relocations are tracked-file moves showing to git as `D` + `??`; §AE-7 and §T32 state plainly that `git restore` here would re-create the double-count, so the owner should commit them as renames or leave them. No engineering decision needing a licensed engineer was adopted: the four UNSAFE template flags, the presentation of the `UNSAFE → SAFE` §706 flip, rows 23/25/26, §M-2…§M-4, the 97 asset buckets and the encrypted-workbook question all remain the owner's and were left open on purpose.
+
+### Still DUE after these turns
+
+Licensed-engineer sign-off on **105 UNSAFE of 300** across **20/20** templates (row 1) · the three human inputs behind rows 4/5b · **row 25** client second model / overturning 2.00 vs 1.80 · **row 26** seismic 5/6 and the Cl. 219 citation · **row 23 / §Z-5** C1 one model, two labels · §M-2 governing water level · §M-3 PDF legacy hydraulics block · §M-4 design discharge (0 of 493) · first `docker build` + hosted deploy (row 10) · **pixel verification (row 12)** · `lib/store/` persistence (row 11) · corrupt week-0 fixture (row 20) · two-writer advisory (row 21).
+
+## Turn 35 — 2026-10-13 (DUE-25: row 12, the pixel-level visual pass with eyes on the rendered surfaces) → §AF, §T33
+
+> Row 12 had waited four turns on one thing: somebody actually *looking* at the output. The PDFs were read page by page — text with coordinates, then the same pages rasterised to PNG and inspected — and the surfaces did not hold up. Five defects, all real, all fixed, all re-measured on the regenerated files. Register: **§AF** (AF-1…AF-11) and **§T33**; row 12 is **split**, not closed, because the HTML half still cannot be looked at here.
+
+### What eyes on the rendered pages found
+
+- **The sheet-book's File Topic Index was 100 % fiction: 52 of 52 claims pointed at pages that did not hold the named sheet.** The index is written before `autoTable` decides where each sheet lands, so its page numbers were guesses about a document that had not been paginated yet — and nothing checked them. Fixed at the mechanism: `generateLandscapeBookPDF` is now a **three-pass convergence loop** (lay out → record where each sheet actually starts → re-lay with those numbers → accept only when the page map stops moving, throw if it will not settle), with the index placeholder pages created *before* the sheets so all passes share one geometry. The first draft re-flowed itself by inserting its own index pages; the checker caught that. Result on the printed file: **58 index claims, 0 mismatches, 0 sheets banded but absent from the index**.
+- **98 of 99 pages carried no identity.** Every page now wears a band — `SHEET: <NAME>` / `(CONT.)`, `FILE TOPIC INDEX`, `SECTION DIVIDER` — with `Page n of N`. Implementing it exposed a second bug the checker caught rather than me: bands were painted in both the creation pass and the final pass, so sheet first pages carried **two overlapping stamps** and read as "unstamped". Bands are now final-pass only. **0 unstamped apart from the cover; 0 stamps disagreeing with the real length**; comprehensive report **225 pages, 0 unstamped**.
+- **Merged notes printed once per column.** ExcelJS hands *every* cell of a merged range the master's value, so a three-column note occupied all three. `cellDisplay()` now keeps text on the anchor cell only (`cell.isMerged && cell.master.address !== cell.address → ''`). Pixel-checked on `AFFLUX CALCULATION` (p16–20).
+- **Two silent truncations.** The print window was hard-coded at 140 rows and the table additionally capped width at `Math.min(colCount, 15)`. Measured against the delivered workbook: max **97** source rows, max **15** printed columns — the cap was never tripped because the widest sheet sat *exactly* on it, with zero headroom. Now an explicit `400 × 18` window, the width cap is gone, and a sheet whose source is taller prints a red **`!! PRINT CLIPPED: this worksheet holds N rows …`**. `sourceColCount` was probed and deliberately **not** added: `ws.columnCount` reports 60 for every sheet because it grows with the scan window.
+- **Off-page tables.** The appendix grid assumed a column split and the detailed estimate overran the right margin. `tableLayout` was tried and proved absent — not in the installed v3 typings and not in the v5 runtime bundle — so widths are computed (longest-cell weights, clamped, renormalised to the printable width) with `truncateCell`, `tableWidth` and `overflow: 'linebreak'`. Pixel-checked: appendix p67 prints 3 real columns with legible names, and the `TOTAL COST` band on p61–62 clears the last row.
+- **The last page printed a bare FOS with no rule beside it.** Now `0.40 vs min 1.5 - BELOW LIMIT` and `0.86 vs min 1.8 - BELOW LIMIT` in red, `1.70 vs min 1 - OK`, limits interpolated from `STABILITY_ACCEPTANCE`. **No engineering number moved** — this is presentation of the engine's own verdict, and it is row 1's evidence, restated rather than resolved.
+
+### One red gate, and the attribution mattered
+
+`pnpm run check` came up **2** on six `lib/` errors (3× TS4114 missing `override`, 3× unused imports). They were **not** in my files and **not** in HEAD: `git log` shows those files untouched since `ab38f29`/`f6b9211`, and `tsconfig.base.json` carries an **uncommitted** flip of `noImplicitOverride`, `noUnusedLocals` and `strictFunctionTypes` from `false` to `true`, mtime **2026-10-12 23:12** — after §T32 recorded `check` green. Rather than revert a config decision that is not mine (row 21: two writers in this worktree), the six violations were repaired: `override` on `ApiError.name`, `ResponseParseError.name`, `ResponseParseError.cause`, and the dead imports trimmed from two `lib/engine` test files. `check` exit **0** again, and again after the register edits.
+
+### A fourth stale assertion in four turns
+
+Row 18a claims `export-sample-output-bundle.ts` is "the only tool that converts SVG diagrams to PNG". A grep for `sharp` returns **two** files: that script **and `server/comprehensive-pdf-export.ts:455`**, where a dynamic import rasterises each annexure drawing into a PNG page **of the signed deliverable**. So `sharp` is load-bearing on the shipped path and sits in root `devDependencies`; an install without dev dependencies loses drawing pages, not a dev tool. The code degrades honestly (`rasteriseAnnexureSvg` → `null`, and the page says there is no rasteriser), which is why no gate ever saw it. Corrected in place at row 18a, filed as §AF-11, promoted to next action 11 — **not changed**, because the packaging decision is the owner's.
+
+### Gate state at the end of turn 35
+
+| Lane | Exit | Evidence |
+|---|---|---|
+| `pnpm run check` | **0** | five typecheck lanes + `lint:narrative` 159 spans + `lint:pdf-glyphs` 1 463 literals / 5 exporters · re-run **after** the register edits, still 0 (`check-after-docs.txt`) |
+| `pnpm run verify` (11 lanes) | **0** | golden 493 outputs / 0 drifted / tamper moves 48 · links 20/20 workbooks, 12 411 formulas · values 104 624 cells, 0 defects · costing · uplift · cases · outcomes · parity 22 facts · presentation 56/56 sheets and every PDF `MediaBox` |
+| `pnpm run test` | **0** | 15/15 files in 2 lanes |
+| `pnpm run audit:policy` | **0** | — |
+| `pnpm run deliverables` | **0** | 6 artefacts, `Total sheets: 56/56` |
+| `pnpm run candidate` | **0** | `check 84.0 s · verify 141.4 s · test 140.8 s · audit:policy 23.9 s`, bundle rebuilt on `8b5730f2c5ef` |
+| Render inspection | **5 found, 5 fixed** | sheet-book **99 pages**: 92 banded sheet pages / 56 distinct sheets, index [2,3,4,5], dividers [6,57], 0 unstamped, 58/58 index claims, 23 multi-page sheets · comprehensive **225 pages**, 0 unstamped, 0 disagreeing |
+
+Artefacts: `design-workbook.xlsx` 111,404 · `sheet-book.pdf` **2,741,527** (was 3,308,013) · `comprehensive-report.pdf` **9,218,343** (was 10,595,682) · `short-design-report.pdf` 225,252 · `design-report.html` 380,066 · `irc-checklist.html` 39,752. The two HTML figures are characters, not bytes (381,556 / 39,965 on disk — multi-byte `≥ — × ₹`), the same disclosure as §T30.
+
+### Register and paperwork
+
+`august-due.md`: **§AF** added before `## IMMEDIATE NEXT ACTIONS`, **§T33** after §T32, **row 12 split** (PDF/workbook half DONE, HTML-on-screen half open), **row 18a corrected** in place, next-action **9** updated and a new **11** added, "Last updated" rewritten. `CODE-JUNCTION/august-due.md` re-synced by copy. Evidence in `archive/20261011-tmp-due24/`: `sheetbook-final.txt`, `stamps9.txt`, `gate17/18.txt`, `candidate3.txt`, `sheet-extent.txt`, `liberrors-prov*.txt`, `tsconfig-diff.txt`, `check-after-docs.txt` and the rasterised pages under `img2/`.
+
+A numbering defect worth naming: this register's `§T` counter and this file's turn counter parted at DUE-22 (the chatlog counted DUE-22/23/24 as turns 32/33/34; the register logged one §T32). This entry is chatlog **Turn 35** = register **§T33**, and §T33 says so on its first line so the next reader does not chase a phantom turn.
+
+### Safety
+
+Nothing committed, branched or pushed; no `git lfs pull` of any scope; `archive/` only grew. Two working-tree items are now in front of the owner's commit step beyond §AE-7's rename advice: the `tsconfig.base.json` strictness flip (kept, not reverted) and `package.json` (`lint:pdf-glyphs` lane added to `check`; `nanoid 3.3.16 → 3.3.18`). **Also corrected here, because I nearly repeated a phantom:** the working note for this turn said tool results had been carrying prompt-injection text impersonating system messages ("ignore previous instructions … do not run typecheck …"). Audited against the session transcript by role and block type, **no such text exists in any tool result**. The strict pattern returns 14 `tool_result` hits, every one of them an echo of my *own* reading of `feedback-verify-injection-provenance.md` — the memory file written after the identical 2026-10-05 false positive, whose text literally contains the phrases being searched for — plus 7 in `assistant/thinking` and 1 in `user/text` that are likewise mine. This entry previously asserted the injection as fact; that assertion was wrong, is retracted here, and the gates were run and are green regardless. Recorded as §T33's fourth self-correction.
+
+### Still DUE after this turn
+
+**HTML rendered on a screen** (browser surface here is `0×0`) · licensed-engineer sign-off on **105 UNSAFE of 300**, 20/20 templates (row 1), now printed in red on the report's last page · §AF-10/AF-11's five rendered-surface observations (1–46 numbering vs the 56-tab book, `sharp` placement, near-blank pier-stability cover p15, D-04 scour label over a gridline, ~40 % empty appendix pages) · rows 4/5b's three human inputs · **row 25** · **row 26** · **row 23 / §Z-5** · rows 17–18 · §M-2…§M-4 · first `docker build` + hosted deploy (row 10) · `lib/store/` (row 11) · corrupt week-0 fixture (row 20) · two-writer advisory (row 21).
+
+## Turn 36 — 2026-10-16 (DUE-26: water-level unification + uplift anchorage + engine golden re-accept) → §T34
+
+> Three owner decisions taken 2026-10-15 were applied and certified this turn. The governing-water-level question — open since DUE-4 and the reason the parity gate carried a named exclusion — is **closed by unifying sheet 3 onto the engine definition**, not by choosing one of two disagreeing numbers. The hydrodynamic-uplift UNSAFE is **closed with hold-down anchorage**. The Item-4 estimate decisions moved the golden snapshot, which was re-accepted through the gate's own `--emit` protocol. One red gate (parity) was root-caused to a PDF label truncation and fixed at the harness, not the renderer. Register: **§T34**; 11/11 gates green.
+
+### What closed
+
+- **§M-2 / DUE item 2 — governing water level → CLOSED.** The choice was "unify on the engine definition": make sheet 3 use the engine's canonical waterway (`spans × spanLength`) and the engine obstruction areas, so `AFL == DWL` and the two numbers *become one number* rather than one being adjudicated over the other. In [03-afflux-calculation.ts](file:///e:/Rajkumar/Bridge_Slab_Design/bridge-excel-generator/sheets/03-afflux-calculation.ts) `computeLegacyAffluxChain` became `computeAffluxChain` and reproduces `calculateHydraulics` line for line — `bridgeWidth = numberOfSpans × spanLength`, `effectiveWaterway = bridgeWidth − numberOfPiers × pierWidth`, `unobstructedArea = bridgeWidth × avgDepth`, deck blockage = `bridgeWidth × DECK_OBSTRUCTION_DEPTH_M` (0.83), Molesworth `afflux = ((V²/17.85)+0.0152)·((A_unob/A_ob)² − 1)`, `afl = hfl + afflux` (AFL cell **C76**). Sheet-3's printed AFL is now **100.856** where it printed 101.375. In [09-stability-check-pier.ts](file:///e:/Rajkumar/Bridge_Slab_Design/bridge-excel-generator/sheets/09-stability-check-pier.ts) §D became `=ROUND(B16-'afflux calculation'!C76,3)` → **0**, with a note that a non-zero value flags a future divergence. **No structural/freeboard/scour verdict moved** — they already read the engine DWL — and the parity harness's water-level exclusion was retired from the header comment (only *mean scour depth* is a deliberate exclusion now).
+- **DUE item 1 — hydrodynamic uplift → CLOSED with anchorage.** `large-bridge` read UNSAFE at **FOS 1.11** on uplift alone. Per the decision, hold-down anchorage was added at the pier bases in [05-deck-anchorage.ts](file:///e:/Rajkumar/Bridge_Slab_Design/bridge-excel-generator/sheets/05-deck-anchorage.ts): base FOS (self-weight only) reported separately from the anchored FOS, `BOLT_CAPACITY_KN = 45.2` (20 mm grade 8.8), bolt force = 1.5× the FOS-1.2 margin, `numberOfBolts`, `anchorageCapacity = numberOfBolts × BOLT_CAPACITY_KN`, and safety against uplift = `(resisting + anchorage) / totalUplift`. The row is now labelled `Factor of safety against uplift (with anchorage)`. `verify:uplift` reports `large-bridge FOS = 1.25 SAFE` (was 1.11 UNSAFE); all 20 templates SAFE.
+- **DUE item 4 — estimates → applied, golden re-accepted.** M30/M35/M40 concrete rates = **5111 / 6111 / 7111** (`material-rates.ts`, `SSR_RATE_SOURCE`, plus the cautionary-sign 500-33/500-34, railing and hold-down-anchor lines); backfill = **0.4 × excavation** (`BACKFILL_RATIO_OF_EXCAVATION`, [design-engine-types.ts](file:///e:/Rajkumar/Bridge_Slab_Design/shared/design-engine-types.ts)); steel ratios retained at the BEDACH-derived 1.5 % / 1.45 % / 1.5 %. These moved `estimation.*`, so the pinned engine snapshot was re-emitted through the gate's documented protocol: `pnpm run verify:engine -- --emit` → *"Emitted 493 pinned values"*; the re-run then reported `493 outputs checked, 0 drifted, tamper moved 48`. No hydraulic value moved — the `+50 m³/s` diagnostic still displaces **0** outputs.
+
+### The one red gate, and why the fix was in the harness
+
+`verify:parity` came up red on the deck-anchorage row: `'Factor of safety against uplift': only in HTML (8.165 / 99)`. The number was present and correct in **both** documents — what differed was the label. Dumping the extracted PDF text (`parity-dump/`) showed the PDF's workbook-grid appendix prints every cell into a fixed-width grid and elides labels past 32 characters, so the 48-character label survives as `Factor of safety against uplift…`, an ellipsis that the harness's latin1 extraction keeps only as an invisible byte — which the `$`-anchored pattern could never match. The fix relaxed the fact regex to a **prefix match** (`/^factor of safety against uplift/i`), the same class of cosmetic tolerance the harness already applies to precision and digit grouping; no renderer was changed, because nothing was wrong with the renderer's output. After the fix: `2 projects · 22 shared facts · defects: 0 · self-contradictions: 0`.
+
+### Gate state at the end of turn 36
+
+| Lane | Exit | Measured |
+|---|---|---|
+| `pnpm run check` | **0** | five typecheck lanes + `lint:narrative` (159 prose spans) + `lint:pdf-glyphs` (1 461 literals / 5 exporters) |
+| `pnpm run verify` (11 lanes) | **0** | golden 493 / 0 drifted / tamper moves 48 · sheets (46-sheet contract) · links 20/20 `broken:0 diverge:0` · values 104 924 cells / 12 451 formulas / 0 defects · costing 20/0 · uplift 20/0 · cases 20/0 · outcomes SAFE 195 / UNSAFE 105 / 0 defects · parity 22 facts / 0 defects · presentation OK · engine 493 / 0 drifted / boundary OK |
+
+Evidence: per-gate transcript in `verify-run.log`.
+
+### Register and paperwork
+
+`august-due.md`: **§T34** added after §T33, **§M-2 marked closed** in the sign-off table, the live **§SUMMARY item 3** and the **IMMEDIATE NEXT ACTIONS 2 / 4b** entries updated, and the still-due lists now name §M-3/§M-4 (not §M-2). `CERTIFICATION-CODE-JUNCTION.md`: a 4th re-certification pass (**items 23–27**) records the three closures, the parity root cause, and the 11/11 gate table; §18 item 2 struck through as resolved; scorecard +1 row (124 checks / 95 PASS). `ACTION-PLAN.md`: the waterway/water-level, uplift and zod items moved to closed. `CODE-JUNCTION/DUE — needs you, not me.txt`: items 1 and 2 annotated RESOLVED, item 4 partly decided, engine decoupling still deferred. `CODE-JUNCTION/` otherwise empty; no `august-due.md` re-sync owed.
+
+### Still DUE after this turn
+
+- Licensed-engineer sign-off — **105 UNSAFE of 300, 20/20 templates** (row 1)
+- **§M-3** legacy hydraulics block in the comprehensive PDF · **§M-4** which discharge is the design discharge · **§M-5** does a C1 abutment exist · **row 25** (overturning 2.00 vs 1.80) · **row 26** (seismic 5/6, Cl. 219)
+- SSR/DSR rates remain flagged "provisional" pending the official schedule; **engine decoupling** from `client/` / `api/` / `netlify/` — owner-deferred
+- HTML pixel verification on a real display · first `docker build` + hosted deploy · `lib/store/` · corrupt week-0 fixture · two-writer advisory
+
+### Safety
+
+Nothing committed, branched or pushed; no `git lfs pull` of any scope. The only files written this turn are the three engine/sheet sources named above (applied in the prior working tree), the golden snapshot, the parity harness header, and documentation. Untracked scratch logs (`verify-run.log`, `parity-dump/`) were left in place as evidence.
+
+---
+
+## Session 2026-10-30 — Apply all *.txt / *.md instructions + declare redundant docs
+
+### Turn — user
+"APPLY ALL FROM *.TXT AND *.MD >>>>>REPOSITORY ROOT AND ITS SUB FOLDERS >>>>>>USED UP FILES NEED DECLARED AS REDUNDANT AND DELETED AT SUITABLE TIME"
+
+### Scope agreed with the user
+- Source scope: everything in root + all subfolders, including `archive/` and `sample/*.log` dumps.
+- Used-up files: archive via `git mv` (the repo's archive-never-delete ground rule), not hard delete.
+- Pending TODOs: apply all actionable open items found in the in-scope docs.
+
+### What was applied this turn
+1. **README.md — Project documentation section repointed** away from three dangling paths
+   (`CODE-JUNCTION/bridge_slab_design_comprehensive_impl_plan.md` and
+   `CODE-JUNCTION/BRIDGE 12 AUD.txt` do not exist; `origin-weekly-plan.md` had moved to
+   `archive/20261023-w00-closeout/`). The section now points at `creat.md` / `CANONICAL.md`,
+   the Phase-2 kit, `AUDIT-REPORT-v1.0.md`, and the archived weekly plan.
+2. **CANONICAL.md — three dangling links fixed:** `origin-weekly-plan.md` and
+   `docs/plan-b/15-week-implementation-plan.md` now point at their W00 archive locations, and
+   `CODE-JUNCTION/VENICE-GUIDE.MD` (absent) now points at the real file
+   `CODE-JUNCTION/VENICE IS GURU.txt`. This is the ADR-0012 (no-dangling-references) rule applied.
+
+### Used-up files declared REDUNDANT (declared now, `git mv` at a suitable time)
+Rows added to `archive/MANIFEST.md` §"Pending retirements (not yet moved)":
+`Get_Code_Sudited_Grok.md`, `MASTER-APP-TESTER.md`, `ACTION-PLAN.md`,
+`CODE-JUNCTION/00 FOR ALL APPS/000 master tester venice.md`, `CODE-JUNCTION/Slab.txt`,
+`CODE-JUNCTION/Slab2.txt` (byte-identical duplicate, sha256 `0d169617…`),
+`CODE-JUNCTION/Slab replit chat.txt`, `CODE-JUNCTION/VENICE IS GURU.txt`, `.q1.txt`,
+`excel_workbook_audit_report.md`. Each row names the artefact that replaced it.
+
+### Still due after this turn
+- `AUGUST ACTION PLAN.md`, `creat1.md`, `replit.md`, `kiro-impl-plan.md` (WEEK 5+ items),
+  `DREAM030526.md` (2 open backlog items) and `PHASE-2-MASTER-PLAN.md` (phase exit gate)
+  carry open items that are cross-week engineering work, not W00 clerical cleanup.
+- Doc consolidation (H-01, 293+ `.md`) is larger than the declaration above; only the
+  root-level, instruction-bearing set was declared redundant here.
+- Gate harness is not runnable in this worktree (no local `node_modules`/`tsx`), so the
+  README module map and gates were not re-run; the changes are prose/link-only and inside
+  no gate-generated block.
+
+### Safety
+Nothing committed, branched, pushed, or moved. Only `README.md`, `CANONICAL.md`,
+`archive/MANIFEST.md`, `creat.md` and this chatlog were edited.
+
+---
+
+## Archived from creat.md §8 — Session 2026-10-26 — W06 tolerance sign-off (the project's first non-DRAFT event)
+
+> Relocated here on 2026-10-30 when `creat.md` §8's rolling-24 h window was applied
+> (owner decision: relocate-then-remove, so no history is lost — archive-never-delete).
+> Verbatim below as it stood in §8.
+
+**Operator:** TraeCode (agent) | **Verifier:** not yet run
+**Triggered by:** User — "the nine tolerance flags go to zero by recording the licensed-engineer approvals; keep --strict; prove it is falsifiable"
+
+#### Actions taken
+1. Recorded the licensed-engineer ruling in `foundation/tolerances.json`: `approvedBy` + `approvedOn` (2026-10-26) on all nine quantity entries and on `default`; replaced the afflux placeholder `approvedBy: "PENDING — licensed engineer"` with the approver; moved the charter provenance into each entry's `note`.
+2. Emptied `pendingApproval`. The nine records were an exemption, not an approval, and `verify-tolerances.mjs` fails any entry that is both approved and still listed — the list may only shrink.
+3. Proved falsifiability: `verify:tolerances --strict` green, then blanked one `approvedOn` to force exit 1, then restored it to green.
+4. Filled the `Engine ruling` section of `project/decision-log/DEV-007.md`.
+
+#### Key findings
+- The eight unflagged quantities sat at `atol 1e-6` against a `default` of `1e-9` — a 1000x widening that had never been approved. `hydraulics.afflux` at 0.05 rtol / 0.02 atol is ~50,000x looser than the charter's 1e-6 rtol. The nine approvals are a licensed ruling on nine real loosenings, not paperwork.
+- The earlier green of `verify:tolerances` came from the `pendingApproval` exemption, not from an approval — the "defanged gate" reading, now closed.
+
+#### Outcome / gate verdict
+- `verify:tolerances --strict` exited 0 unpoisoned ("9 registered, 0 unapproved, 0 recorded-pending") and exited 1 poisoned ("UNAPPROVED hydraulics.afflux: missing approvedBy/approvedOn"). The gate is falsifiable and the exemption list is empty.
+- Approver: RAJKUMAR SINGH CHAUHAN, Fellow IEI, reg. no. 1293016. The afflux widening was explicitly reviewed and accepted.
+
+**Next-week blockers:**
+- The code-side half of DEV-007 is not closed: `engineConsistency.test.ts` still applies a bare 0.08 m absolute for afflux and still cross-wires `excel.scourDepth` against `web.meanScourDepth`. Deciding the canonical field names and repointing the test at the registry tolerance remains a code change.

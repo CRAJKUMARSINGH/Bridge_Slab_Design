@@ -1,0 +1,33 @@
+attempted: 29
+materialised: 29
+refused: 0
+
+  OK       957036 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [4 OF 16].DXF
+  OK      2535829 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C NEC RED [1 OF 6].DXF
+  OK       536331 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C NEC RED [3 OF 6].DXF
+  OK       871917 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [9 OF 16].DXF
+  OK       713859 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [8 OF 16].DXF
+  OK       792704 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [1 OF 16].DXF
+  OK       705788 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [12 OF 16].DXF
+  OK      1967888 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C WEC GAD [2 OF 2].DXF
+  OK       351744 B  Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/RCC T Girder IS/RCC Precast Long Girder IS.xlsm
+  OK       869492 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C WEC GAD [1 OF 2].DXF
+  OK       514648 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [2 OF 16].DXF
+  OK       879373 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [11 OF 16].DXF
+  OK       706573 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [6 OF 16].DXF
+  OK       743249 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C NEC RED [4 OF 6].DXF
+  OK       736129 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [10 OF 16].DXF
+  OK       712517 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [15 OF 16].DXF
+  OK       712540 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [16 OF 16].DXF
+  OK       707036 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C NEC RED [6 OF 6].DXF
+  OK       712333 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [14 OF 16].DXF
+  OK       654401 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C NEC RED [5 OF 6].DXF
+  OK       746111 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C NEC RED [2 OF 6].DXF
+  OK       955605 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/LAP ZONES_WEC.DXF
+  OK      4626419 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C NEC GAD.DXF
+  OK       808199 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/LAP ZONES_NEC.DXF
+  OK       707728 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [5 OF 16].DXF
+  OK      1020602 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [3 OF 16].DXF
+  OK       349184 B  Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/RCC T Girder BS/RCC Precast Long Girder BS.xlsm
+  OK       707263 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [13 OF 16].DXF
+  OK       705014 B  Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [7 OF 16].DXF

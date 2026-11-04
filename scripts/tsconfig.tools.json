@@ -9,11 +9,13 @@
   // first rebuild of the evidence bundle, weeks after it was written.
   //
   // Options are inherited from tsconfig.flat.json (allowImportingTsExtensions for the tsx-style `.ts`
-  // specifiers these tools use, noImplicitAny off, noEmit on).
+  // specifiers these tools use, strict on, noEmit on).
   //
   // Two files previously carried an @ts-expect-error on an import for undeclared packages (august-due.md
   // §P-4, §18a). sharp@0.35.5 and word-extractor@1.0.4 are now declared in root devDependencies;
   // the markers have been removed from export-sample-output-bundle.ts and phase-zero/extract-word.ts.
+  // sharp ships its own types; word-extractor does not, so phase-zero/word-extractor.d.ts declares the
+  // small surface extract-word.ts uses — required once `strict` (noImplicitAny) was switched on.
   //
   // Run: pnpm run typecheck:tools
   "extends": "../tsconfig.flat.json",

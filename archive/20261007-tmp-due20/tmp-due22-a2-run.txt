@@ -1,0 +1,1 @@
+A2 normalize: processed=16, lfs-stub=1, errors=49

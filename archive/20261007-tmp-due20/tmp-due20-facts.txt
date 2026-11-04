@@ -1,0 +1,54 @@
+--- check2 tail ---
+
+> workspace@0.0.0 lint:narrative E:\Rajkumar\Bridge_Slab_Design
+> tsx scripts/lint-narrative-no-hardcoded-numbers.ts
+
+NARRATIVE LINT: OK — 159 prose spans checked across lib/narrative/src, bridge-excel-generator/narrative-engine.ts; no hard-coded numbers (citations and units allowed by the explicit list).
+CHECK_EXIT=0
+--- verify key lines ---
+249:OK   irc-sukanaka-highlevel   abutment cases: 5 distinct, horizontal spread 279.4 kN
+260:OK   larathi-stabil           UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+261:OK   kherwara-golden          UNSAFE (4/5)  UNSAFE (3/5)  UNSAFE (3/5)
+262:OK   high-level-reference     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+263:OK   small-bridge             UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+264:OK   medium-bridge            UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+265:OK   large-bridge             UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+266:OK   irc-bedach-bedla         UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+267:OK   irc-jakham-mandvi        UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+268:OK   irc-t01-jethliya         UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+269:OK   irc-sukanaka-matoon      UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+270:OK   irc-ayad-maharashtra     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+271:OK   irc-gumaniya-udaipur     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+272:OK   irc-katumbi-chandrod     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+273:OK   irc-sisarama-highlevel   UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+274:OK   irc-kumbhalgarh-kelwara  UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+275:OK   irc-parwan-highlevel     UNSAFE (5/5)  UNSAFE (1/5)  UNSAFE (1/5)
+276:OK   irc-banas-highlevel      UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+277:OK   irc-ayad-fatehpura       UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+278:OK   irc-kherka-teegirder     UNSAFE (4/5)  UNSAFE (1/5)  UNSAFE (1/5)
+279:OK   irc-sukanaka-highlevel   UNSAFE (4/5)  UNSAFE (1/5)  UNSAFE (1/5)
+280:OK   acceptance rule reaches the browser from the response
+284:  SAFE   195
+285:  UNSAFE 105
+286:  templates carrying at least one UNSAFE case: 20 of 20
+358:  OK   facts matched: 11/11
+409:  OK   facts matched: 11/11
+477:verify-presentation-policy: OK (A4 / 15 mm / orientation proven on artefacts)
+486:Golden: 493 outputs checked, 0 drifted, tamper moved 48 (tolerance 0.000001 relative).
+491:verify-engine-boundary: OK (deliverable engine pinned, boundary measured, tamper control live). Green here does not certify the design — see §M-1.
+--- candidate ---
+
+> workspace@0.0.0 candidate E:\Rajkumar\Bridge_Slab_Design
+> tsx scripts/build-release-candidate.ts
+
+  check: exit 0 in 72.2 s
+  verify: exit 0 in 98.7 s
+  test: exit 0 in 39.7 s
+  audit:policy: exit 0 in 10.1 s
+  pnpm --version: exit 0 in 0.9 s
+
+Bundle: 6 deliverables + gate transcripts at E:\Rajkumar\Bridge_Slab_Design\evidence\release-candidate
+Commit 8b5730f2c5ef | gates check=0 verify=0 test=0 audit:policy=0
+(node:18884) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+CAND_EXIT=0

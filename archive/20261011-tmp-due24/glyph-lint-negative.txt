@@ -1,0 +1,5 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+lint-pdf-glyphs: 2 character(s) in PDF exporter strings cannot be encoded by the standard Helvetica font and print as the wrong glyph.
+  server/pdf-export.ts:169:21 U+2265 "≥"
+  server/pdf-export.ts:169:23 U+03C6 "φ"

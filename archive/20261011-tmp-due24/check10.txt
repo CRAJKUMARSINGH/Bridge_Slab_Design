@@ -1,0 +1,21 @@
+
+> workspace@0.0.0 check E:\Rajkumar\Bridge_Slab_Design
+> pnpm run typecheck && pnpm run lint:narrative && pnpm run lint:pdf-glyphs
+
+
+> workspace@0.0.0 typecheck E:\Rajkumar\Bridge_Slab_Design
+> pnpm run typecheck:libs && pnpm run typecheck:flat && pnpm run typecheck:client && pnpm run typecheck:tools && pnpm -r --filter "./artifacts/**" --filter "./scripts" --if-present run typecheck
+
+
+> workspace@0.0.0 typecheck:libs E:\Rajkumar\Bridge_Slab_Design
+> tsc --build
+
+lib/api-client-react/src/custom-fetch.ts(175,12): error TS4114: This member must have an 'override' modifier because it overrides a member in the base class 'Error'.
+lib/api-client-react/src/custom-fetch.ts(203,12): error TS4114: This member must have an 'override' modifier because it overrides a member in the base class 'Error'.
+lib/api-client-react/src/custom-fetch.ts(211,12): error TS4114: This member must have an 'override' modifier because it overrides a member in the base class 'Error'.
+lib/engine/src/tests/calculate.test.ts(11,10): error TS6133: 'calcLiveLoadDeflection' is declared but its value is never read.
+lib/engine/src/tests/golden-parity-expanded.test.ts(17,10): error TS6133: 'calcBendingStress' is declared but its value is never read.
+lib/engine/src/tests/golden-parity-expanded.test.ts(17,53): error TS6133: 'calcShearStress' is declared but its value is never read.
+ ELIFECYCLE  Command failed with exit code 2.
+ ELIFECYCLE  Command failed with exit code 2.
+ ELIFECYCLE  Command failed with exit code 2.

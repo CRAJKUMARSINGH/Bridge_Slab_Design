@@ -1,0 +1,18 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+pierAssetTrees: [
+  'E:\\Rajkumar\\Bridge_Slab_Design\\assets',
+  'E:\\Rajkumar\\Bridge_Slab_Design\\Attached_Assets'
+]
+AFTER (module-relative default, run from repo root)
+  root: E:\Rajkumar\Bridge_Slab_Design\assets\COMPONENT_DRAWINGS_SORTED\Pier Geometry & Dimensions
+  totalFiles: 35  classified: 
+  sourceBacked: 4/10 -> single-column, hammerhead, tall-viaduct, circular
+AFTER (module-relative default, run from scripts/)
+  root: E:\Rajkumar\Bridge_Slab_Design\assets\COMPONENT_DRAWINGS_SORTED\Pier Geometry & Dimensions
+  totalFiles: 35  classified: 
+  sourceBacked: 4/10 -> single-column, hammerhead, tall-viaduct, circular
+BEFORE (what the old cwd rule picked)
+  root: E:\Rajkumar\Bridge_Slab_Design\Attached_Assets
+  totalFiles: 32  classified: 
+  sourceBacked: 0/10 -> none

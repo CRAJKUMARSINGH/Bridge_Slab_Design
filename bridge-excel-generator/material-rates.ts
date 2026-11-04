@@ -21,6 +21,7 @@
 export type ConcreteLocation = 'foundation' | 'substructure' | 'superstructure';
 
 const BSR: string = 'PWD BSR Road 2022 (Rajasthan), per BEDACH HL bridge detailed estimate';
+const SSR: string = 'State Schedule of Rates (SSR/DSR) — M30/M35/M40 owner-provided 2026-10-15';
 const PROVISIONAL: string = 'provisional — no BEDACH/BSR equivalent; SSR/DSR review required';
 
 /**
@@ -28,9 +29,9 @@ const PROVISIONAL: string = 'provisional — no BEDACH/BSR equivalent; SSR/DSR r
  * rates, which is why the BOQ has no separate formwork item.
  */
 export const CONCRETE_RATES: Record<ConcreteLocation, Record<string, number>> = {
-  foundation: { M15: 4508, M20: 4995, M25: 5372 },
-  substructure: { M25: 5696 },
-  superstructure: { M30: 6272 },
+  foundation: { M15: 4508, M20: 4995, M25: 5372, M30: 5111, M35: 6111, M40: 7111 },
+  substructure: { M25: 5696, M30: 5111, M35: 6111, M40: 7111 },
+  superstructure: { M30: 6272, M35: 6111, M40: 7111 },
 };
 
 /**
@@ -97,8 +98,14 @@ export const ITEM_RATES = {
   infoBoard: 7040,
   /** Village name board, ₹/no. */
   villageNameBoard: 3300,
+  /** 90 cm equilateral retro-reflectivised cautionary sign on angle post, ₹/no. */
+  signCautionary90: 2709,
+  /** 60 cm equilateral retro-reflectivised cautionary sign on angle post, ₹/no. */
+  signCautionary60: 2263,
   /** Elastomeric bearing pad — not present in the source estimate. */
   bearing: 25000,
+  /** 20 mm dia grade 8.8 rock bolt / hold-down anchor for deck uplift restraint, ₹/no. (incl. drilling, grouting, plate, nut). */
+  holdDownAnchor: 1250,
 };
 
 /** Wearing-coat thickness the sanctioned estimate bills (75 mm average, M-30 RCC). */
@@ -177,8 +184,16 @@ export const MATERIAL_RATES: MaterialRate[] = [
   { itemNo: 'C-01', description: 'PCC M-15 in open foundations (blinding)', unit: 'm³', rate: CONCRETE_RATES.foundation.M15, source: BSR },
   { itemNo: 'C-02', description: 'RCC M-20 in open foundations (incl. formwork)', unit: 'm³', rate: CONCRETE_RATES.foundation.M20, source: BSR },
   { itemNo: 'C-03', description: 'RCC M-25 in open foundations (incl. formwork)', unit: 'm³', rate: CONCRETE_RATES.foundation.M25, source: BSR },
+  { itemNo: 'C-03a', description: 'RCC M-30 in open foundations (incl. formwork)', unit: 'm³', rate: CONCRETE_RATES.foundation.M30, source: SSR },
+  { itemNo: 'C-03b', description: 'RCC M-35 in open foundations (incl. formwork)', unit: 'm³', rate: CONCRETE_RATES.foundation.M35, source: SSR },
+  { itemNo: 'C-03c', description: 'RCC M-40 in open foundations (incl. formwork)', unit: 'm³', rate: CONCRETE_RATES.foundation.M40, source: SSR },
   { itemNo: 'C-04', description: 'DM RCC M-25 substructure (incl. formwork)', unit: 'm³', rate: CONCRETE_RATES.substructure.M25, source: BSR },
+  { itemNo: 'C-04a', description: 'DM RCC M-30 substructure (incl. formwork)', unit: 'm³', rate: CONCRETE_RATES.substructure.M30, source: SSR },
+  { itemNo: 'C-04b', description: 'DM RCC M-35 substructure (incl. formwork)', unit: 'm³', rate: CONCRETE_RATES.substructure.M35, source: SSR },
+  { itemNo: 'C-04c', description: 'DM RCC M-40 substructure (incl. formwork)', unit: 'm³', rate: CONCRETE_RATES.substructure.M40, source: SSR },
   { itemNo: 'C-05', description: 'DM RCC M-30 superstructure (incl. formwork)', unit: 'm³', rate: CONCRETE_RATES.superstructure.M30, source: BSR },
+  { itemNo: 'C-05a', description: 'DM RCC M-35 superstructure (incl. formwork)', unit: 'm³', rate: CONCRETE_RATES.superstructure.M35, source: SSR },
+  { itemNo: 'C-05b', description: 'DM RCC M-40 superstructure (incl. formwork)', unit: 'm³', rate: CONCRETE_RATES.superstructure.M40, source: SSR },
   { itemNo: 'S-01', description: 'TMT reinforcement in foundations', unit: 'MT', rate: STEEL_RATES.foundation, source: BSR },
   { itemNo: 'S-02', description: 'TMT reinforcement in substructure', unit: 'MT', rate: STEEL_RATES.substructure, source: BSR },
   { itemNo: 'S-03', description: 'TMT reinforcement in superstructure', unit: 'MT', rate: STEEL_RATES.superstructure, source: BSR },
@@ -198,7 +213,9 @@ export const MATERIAL_RATES: MaterialRate[] = [
   { itemNo: 'X-10', description: 'Raised pavement marker (cat eye)', unit: 'Nos', rate: ITEM_RATES.catsEye, source: BSR },
   { itemNo: 'X-11', description: 'Citizens information board', unit: 'Nos', rate: ITEM_RATES.infoBoard, source: BSR },
   { itemNo: 'X-12', description: 'Village name board', unit: 'Nos', rate: ITEM_RATES.villageNameBoard, source: BSR },
+  { itemNo: 'X-13', description: 'Retro-reflectivised 90 cm cautionary sign on angle post', unit: 'Nos', rate: ITEM_RATES.signCautionary90, source: BSR },
+  { itemNo: 'X-14', description: 'Retro-reflectivised 60 cm cautionary sign on angle post', unit: 'Nos', rate: ITEM_RATES.signCautionary60, source: BSR },
   { itemNo: 'P-01', description: 'Elastomeric bearing pad', unit: 'Nos', rate: ITEM_RATES.bearing, source: PROVISIONAL },
 ];
 
-export { BSR as RATE_REGISTER_SOURCE, PROVISIONAL as PROVISIONAL_RATE_SOURCE };
+export { BSR as RATE_REGISTER_SOURCE, SSR as SSR_RATE_SOURCE, PROVISIONAL as PROVISIONAL_RATE_SOURCE };

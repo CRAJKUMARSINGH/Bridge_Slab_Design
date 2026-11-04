@@ -1,0 +1,18 @@
+server/comprehensive-pdf-export.ts(1445,5): error TS2322: Type 'string[] | [string, string] | [string, string]' is not assignable to type '[string, string]'.
+  Type 'string[]' is not assignable to type '[string, string]'.
+    Target requires 2 element(s) but source may have fewer.
+server/comprehensive-pdf-export.ts(1459,22): error TS2556: A spread argument must either have a tuple type or be passed to a rest parameter.
+ ELIFECYCLE  Command failed with exit code 2.
+Total sheets: 56/56
+  design-workbook.xlsx         111,404 bytes
+  sheet-book.pdf               2,741,527 bytes
+  comprehensive-report.pdf     9,218,343 bytes
+  short-design-report.pdf      225,252 bytes
+  design-report.html           380,066 bytes
+  irc-checklist.html           39,752 bytes
+
+Wrote 6 deliverables to E:\Rajkumar\Bridge_Slab_Design\test-output
+---STAMPS---
+test-output/comprehensive-report.pdf: 225 pages
+pages with no Page n of N stamp: []
+stamps that disagree with the real length: [] count 0

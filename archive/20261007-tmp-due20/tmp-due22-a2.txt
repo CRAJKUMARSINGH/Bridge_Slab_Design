@@ -1,0 +1,7 @@
+status tally: {"error": 1, "lfs-stub": 94, "ok": 1}
+
+ERROR | 1511d3252746_PIER_Worksheet_Design.xls.json | cells=None | sheets=[]
+    path: Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Pier/Pier Worksheet Design 1/PIER_Worksheet_Design.xls
+    error: Workbook is encrypted
+OK | 5953625d62a2_plus_Detailed_ESTIMATE_HL_Bridge_BEDACH.xls.json | cells=1085 | sheets=['Tech Report', 'General Abs. ', 'Abstract', 'Bridge measurements']
+    path: Attached_Assets/plus Detailed ESTIMATE HL Bridge BEDACH.xls

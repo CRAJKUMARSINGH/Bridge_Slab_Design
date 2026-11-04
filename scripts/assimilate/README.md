@@ -5,6 +5,27 @@ Office and CAD corpus into the project without modifying any source file.
 
 ---
 
+## Record currency (`output_currency.py`)
+
+Every stage names its output `<sha256[:12]>_<fileName>.json`. When an asset's bytes
+change — the LFS pointer stubs materialising is the case that forced this — the stage
+writes a **new** record and leaves the old one beside it, so the directory then counts
+191 records for a 96-asset corpus and a printed `processed=31` silently mixes 16 real
+workbooks with 15 readings of 132-byte pointers.
+
+`relocate_stale(out_dir, expected)` moves every top-level record that no current input
+produces into `<stage>/pointer-era/`. It is a **move, never a delete**: the records stay
+on disk, and because each stage globs only its own top level the ghosts stop being
+inputs. A2 and A5 derive `expected` from the register entries they write; A3 and A4 from
+the normalized records they read. All four print `records=` and
+`relocated-pointer-era=` so a run states which corpus it counted.
+
+> Reverting a relocation with `git restore` puts every ghost back **beside** its current
+> twin and re-creates the double-count. Commit it as a rename, or leave it — do not
+> restore it.
+
+---
+
 ## Scripts
 
 ### A1 — `inventory.py`
@@ -152,11 +173,16 @@ pnpm run assimilate:narrative
 
 **Purpose:** For each `drawing-cad` asset (or `.dxf` file) in the register,
 count entity types in the modelspace (`LINE`, `ARC`, `TEXT`, etc.).
-LFS stubs are detected and written with `{"status": "lfs-stub"}`.
+LFS stubs are detected and written with `{"status": "lfs-stub"}`. `.dwg` assets get
+`{"status": "unsupported-dwg"}` — the register's `drawing-cad` kind includes AutoCAD's
+binary format, which ezdxf cannot parse, so a reader limit is recorded as a named
+refusal rather than an `error` on a file that is not broken.
 
 **Inputs:** `asset-register.json`
 
 **Outputs:** `evidence/assimilation/drawings/<sha256-prefix>_<filename>.json`
+(status is `ok`, `lfs-stub`, `unsupported-dwg`, `missing` or `error`; records no current
+register entry produces move to `drawings/pointer-era/`)
 
 **How to run:**
 ```bash
@@ -173,12 +199,20 @@ pnpm run assimilate:drawings
 git lfs pull            # REQUIRED before A2–A5 produce real data
                         # Without this, all workbooks are 42-byte pointer stubs
                         # and all outputs will carry status: lfs-stub
+                        # SCOPE IT — `--include` or per-path `git lfs smudge`:
+                        # `assets/` holds 1,876 stubs an unscoped run would fetch
+                        # wholesale, and `.DXF` / `.xlsm` / `.vdml` / `.txt` carry no
+                        # LFS filter entry, so `--include` cannot reach those either
+                        # (august-due.md §AC-1).
 
 pip install -r requirements.txt
                         # the pinned set: openpyxl (A2, A3, A3b), xlrd (A2 legacy .xls),
                         # ezdxf (A5 + python_cad), pydantic (python_cad CLI models)
                         # Versions are read back from the development host with
                         # `python -m pip list`, not guessed.
+                        # xlrd 2.0.2 exposes NO BIFF formula text (it has no
+                        # XL_CELL_FORMULA and its Sheet has no cell_formula_text),
+                        # which is why A3b refuses `.xls` rather than mis-reading it.
 ```
 
 ---
@@ -194,8 +228,9 @@ pip install -r requirements.txt
 | A4 | `mine_narrative.py` | `pnpm run assimilate:narrative` |
 | A5 | `map_drawings.py` | `pnpm run assimilate:drawings` |
 
-Run A1 first to produce `asset-register.json`. Then run A2–A5 in any order
-(A3 and A4 depend on A2's outputs; A5 is independent).
+Run A1 first to produce `asset-register.json`. Then run **A2 before A3/A4** — A2 is what
+relocates the superseded `normalized/` records, and A3/A4 read that directory, so a
+stale order re-classifies the ghosts. A5 is independent.
 
 ---
 
@@ -213,3 +248,7 @@ The gate is **red by design** until a reviewer signs off on each asset.
 No script in this directory modifies, moves, or deletes any file under
 `Attached_Assets/`. Source workbooks are opened read-only. All outputs go
 to `evidence/assimilation/`.
+
+The only moves any stage performs are inside **its own** output directory: a record no
+current register entry produces is relocated to `<stage>/pointer-era/` (see *Record
+currency* above). Sources are never touched, and nothing is deleted.

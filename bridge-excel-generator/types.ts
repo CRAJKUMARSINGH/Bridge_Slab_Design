@@ -119,6 +119,10 @@ export interface HydraulicsResult {
   flowType: string;             // Subcritical/Supercritical
   foundationDepth?: number;
   foundationLevel?: number;
+  // IRC scour envelope for founding: bed − 2·dsm. The as-built foundationLevel must sit at or
+  // below it, else the pier risks undermining. Previously only an engineLog warning.
+  minFoundingLevelForScour?: number;
+  isFoundingLevelSafe?: boolean;
   soffitLevel?: number;
   freeboard?: number;
   freeboardAboveHfl?: number;
@@ -345,7 +349,7 @@ export interface BOQItem {
 }
 
 /** How a measurement row multiplies into its quantity. */
-export type MeasurementBasis = 'volume' | 'plan' | 'count' | 'steel';
+export type MeasurementBasis = 'volume' | 'plan' | 'run' | 'count' | 'steel';
 
 export interface EstimationMeasurement {
   /** BOQ item this row builds up, e.g. '6'. */
@@ -365,6 +369,17 @@ export interface EstimationMeasurement {
   quantity: number;
 }
 
+/**
+ * The factors of safety the engine adjudicates stability verdicts with, carried OUT of the engine
+ * and into every consumer — including the browser, which cannot import `design-engine.ts` without
+ * bundling the whole engine. Until 2026-10-07 the UI re-typed them by hand (august-due §Y-5).
+ */
+export interface StabilityAcceptance {
+  slidingFosMin: number;
+  overturningFosMin: number;
+  bearingFosMin: number;
+}
+
 export interface CompleteDesignResult {
   input: ProjectInput;
   hydraulics: HydraulicsResult;
@@ -372,6 +387,8 @@ export interface CompleteDesignResult {
   abutmentType1: AbutmentDesignResult;
   abutmentC1: AbutmentDesignResult;
   estimation?: EstimationResult;
+  /** The same rule the verdicts in `pier` / `abutment*` were produced with (`STABILITY_ACCEPTANCE`). */
+  stabilityAcceptance: StabilityAcceptance;
 }
 
 // Enhanced input with calculated results

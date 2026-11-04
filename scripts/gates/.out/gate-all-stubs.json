@@ -1,8 +1,98 @@
 {
   "name": "gate-all-stubs",
-  "ts": "2026-10-23T07:53:15.708Z",
+  "ts": "2026-10-31T22:18:58.821Z",
   "commit": null,
-  "pass": 0,
+  "pass": 15,
   "fail": 0,
-  "detail": []
+  "detail": [
+    {
+      "gate": "gate-docs",
+      "check": "deterministic-exit",
+      "exitCode": 0,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "gate-oracle",
+      "check": "deterministic-exit",
+      "exitCode": 0,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "gate-parity",
+      "check": "deterministic-exit",
+      "exitCode": 0,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "verify-clauses",
+      "check": "deterministic-exit",
+      "exitCode": 0,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "gate-security",
+      "check": "deterministic-exit",
+      "exitCode": 0,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "gate-repro",
+      "check": "deterministic-exit",
+      "exitCode": 0,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "gate-perf",
+      "check": "deterministic-exit",
+      "exitCode": 2,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "verify-dxf",
+      "check": "deterministic-exit",
+      "exitCode": 2,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "verify-rates",
+      "check": "deterministic-exit",
+      "exitCode": 2,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "gate-boq",
+      "check": "deterministic-exit",
+      "exitCode": 2,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "verify-report",
+      "check": "deterministic-exit",
+      "exitCode": 2,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "gate-a11y",
+      "check": "deterministic-exit",
+      "exitCode": 2,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "gate-full",
+      "check": "deterministic-exit",
+      "exitCode": 1,
+      "verdict": "PASS"
+    },
+    {
+      "gate": "scan-secrets",
+      "check": "deterministic-exit",
+      "exitCode": 0,
+      "verdict": "PASS"
+    },
+    {
+      "check": "json-output-count",
+      "count": 28,
+      "verdict": "PASS"
+    }
+  ]
 }

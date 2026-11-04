@@ -32,6 +32,16 @@ export default defineConfig({
   build: {
     outDir: path.resolve(rootDir, "dist/public"),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom", "wouter"],
+          ui: ["framer-motion", "lucide-react", "sonner", "clsx", "tailwind-merge"],
+          excel: ["exceljs"],
+          pdf: ["jspdf", "jspdf-autotable", "html2canvas"],
+        },
+      },
+    },
   },
   server: {
     host: "0.0.0.0",

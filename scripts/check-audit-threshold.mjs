@@ -54,13 +54,16 @@ const ACCEPTED_HIGH = [
   {
     pkg: "xlsx",
     reason:
-      "Legacy BIFF .xls ingestion: SheetJS is the only reader in this tree that opens the .xls files under " +
-      "Attached_Assets (ExcelJS cannot). npm releases stop at 0.18.5, so the prototype-pollution and ReDoS " +
-      "highs have no patched npm version to move to.",
+      "Legacy BIFF .xls ingestion only. The shipped .xlsx path reads via ExcelJS " +
+      "(server/excel-parser.ts) — the .xlsx migration off xlsx@0.18.5 landed at P2-W04 T4.1. " +
+      "SheetJS remains the only reader in this tree that opens .xls (BIFF8; ExcelJS cannot), " +
+      "and npm releases stop at 0.18.5, so the prototype-pollution and ReDoS highs have no " +
+      "patched npm version to move to.",
     control:
-      "Declared in root devDependencies and imported only from scripts/** — the IMPORT_RULES source scan " +
-      "below fails the gate if server/, client/src/, bridge-excel-generator/, pipeline/, lib/, artifacts/, " +
-      "api/ or shared/ ever import it. All shipped workbook generation and .xlsx reading uses ExcelJS.",
+      "Declared in root devDependencies (asserted below) and imported only from scripts/** — the " +
+      "IMPORT_RULES source scan below fails the gate if server/, client/src/, bridge-excel-generator/, " +
+      "pipeline/, lib/, artifacts/, api/ or shared/ ever import it. All shipped workbook generation " +
+      "and .xlsx reading uses ExcelJS. lib/engine owns only the dependency-free BIFF8 layer.",
     owner: "RAJKUMAR SINGH CHAUHAN",
     reviewBy: "2027-01-31",
   },
@@ -125,6 +128,24 @@ function findForbiddenImports(repoRoot) {
   return offenders;
 }
 
+/**
+ * T4.1/T4.9 enforcement: the legacy BIFF8 reader must stay a *dev* dependency. A
+ * shipped dependency would put the unpatched package into the deployed tree.
+ */
+function assertXlsxIsDevOnly(repoRoot) {
+  const pkg = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8"));
+  const inDev = Boolean(pkg.devDependencies && pkg.devDependencies.xlsx);
+  const inProd = Boolean(pkg.dependencies && pkg.dependencies.xlsx);
+  if (!inDev) {
+    throw new Error("Audit policy failed: `xlsx` is not declared in devDependencies.");
+  }
+  if (inProd) {
+    throw new Error(
+      "Audit policy failed: `xlsx` must not be a shipped dependency (devDependencies only).",
+    );
+  }
+}
+
 function runCommand(command) {
   try {
     return execSync(command, { stdio: ["ignore", "pipe", "pipe"], encoding: "utf-8", maxBuffer: 64 * 1024 * 1024 });
@@ -164,6 +185,8 @@ function packagesWithSeverity(report, severity) {
 }
 
 function main() {
+  const repoRoot = join(import.meta.dirname, "..");
+  assertXlsxIsDevOnly(repoRoot);
   const { tool, report } = runAudit();
   const meta = report.metadata?.vulnerabilities ?? {};
   const critical = Number(meta.critical ?? 0);

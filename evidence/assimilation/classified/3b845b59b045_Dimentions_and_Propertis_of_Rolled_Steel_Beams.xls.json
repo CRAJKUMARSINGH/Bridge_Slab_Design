@@ -1,0 +1,613 @@
+{
+  "sheet_names": [
+    "Dim Rolled Steel Beam",
+    "Dim Rolled Steel Channels",
+    "Dim Rolled Stel Equal",
+    "Dim Rolled Steel Unequal Angle ",
+    "Permissible Stress"
+  ],
+  "column_headers": {
+    "Dim Rolled Steel Beam": [
+      "Dimentions and Propertis of Rolled Steel Beams",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "Dim Rolled Steel Channels": [
+      "Dimentions and Propertis of Rolled Steel Channels",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "Dim Rolled Stel Equal": [
+      "Dimensions and Properties of Rolled Steel Equal ",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "Dim Rolled Steel Unequal Angle ": [
+      "Rolled Steel Unequal Angles Dimensions and Properties",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "Permissible Stress": [
+      "Permissible Stress   (MPa) in Axial Compression for Steel with Various Yeild Stress",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "non_empty_cell_count": 5360,
+  "id": "3b845b59b045_Dimentions_and_Propertis_of_Rolled_Steel_Beams.xls",
+  "status": "ok",
+  "path": "Attached_Assets/ASTRA 15 TUTORIALS/TABLES/Indian Standard/Steel Table/Dimentions and Propertis of Rolled Steel Beams.xls",
+  "classified_headers": {
+    "Dim Rolled Steel Beam": [
+      {
+        "header": "Dimentions and Propertis of Rolled Steel Beams",
+        "category": "label"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      }
+    ],
+    "Dim Rolled Steel Channels": [
+      {
+        "header": "Dimentions and Propertis of Rolled Steel Channels",
+        "category": "label"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      }
+    ],
+    "Dim Rolled Stel Equal": [
+      {
+        "header": "Dimensions and Properties of Rolled Steel Equal ",
+        "category": "label"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      }
+    ],
+    "Dim Rolled Steel Unequal Angle ": [
+      {
+        "header": "Rolled Steel Unequal Angles Dimensions and Properties",
+        "category": "label"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      }
+    ],
+    "Permissible Stress": [
+      {
+        "header": "Permissible Stress   (MPa) in Axial Compression for Steel with Various Yeild Stress",
+        "category": "engineering-value"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      }
+    ]
+  },
+  "classification_status": "ok"
+}

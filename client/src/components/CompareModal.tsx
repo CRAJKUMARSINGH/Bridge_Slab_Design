@@ -154,14 +154,17 @@ export function CompareModal({
   engineResults: CompleteDesignResult | null;
 }) {
   const rows = buildRows(current.input, compare.input, engineResults);
+  // The limits come from the same response as the factors they judge (§Y-5). With no engine result
+  // buildRows emits no FOS rows, so there is nothing to mark and no numbers to invent.
+  const limits = engineResults?.stabilityAcceptance;
   const fosCols = new Set(['Pier sliding FOS (worst)', 'Pier overturning FOS (worst)', 'Pier bearing FOS (worst)', 'Abutment sliding FOS (worst)', 'Abutment overturning FOS (worst)']);
-  const fosReq: Record<string, number> = {
-    'Pier sliding FOS (worst)': 1.5,
-    'Pier overturning FOS (worst)': 1.8,
-    'Pier bearing FOS (worst)': 2.5,
-    'Abutment sliding FOS (worst)': 1.5,
-    'Abutment overturning FOS (worst)': 1.8,
-  };
+  const fosReq: Record<string, number> = limits ? {
+    'Pier sliding FOS (worst)': limits.slidingFosMin,
+    'Pier overturning FOS (worst)': limits.overturningFosMin,
+    'Pier bearing FOS (worst)': limits.bearingFosMin,
+    'Abutment sliding FOS (worst)': limits.slidingFosMin,
+    'Abutment overturning FOS (worst)': limits.overturningFosMin,
+  } : {};
 
   return (
     <GlassModal open={open} onOpenChange={o => !o && onClose()} title="Side-by-side Project Comparison" size="full">

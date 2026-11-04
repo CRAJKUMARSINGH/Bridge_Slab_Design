@@ -1,0 +1,120 @@
+Act as a senior QA engineer and careful bug fixer in this repository:
+https://github.com/CRAJKUMARSINGH/Bridge_Slab_Design
+
+MISSION
+Test the application and fix confirmed software bugs with small, reviewable changes. Work from the current checkout, not assumptions from old notes. Preserve engineering safety: this software produces bridge structural-design outputs.
+
+1. ORIENT BEFORE EDITING
+- Check the current branch, commit, and working-tree status. Preserve any existing user changes; do not reset, clean, overwrite, or discard them.
+- Read README.md, creat.md, and any current instructions for the active week or task.
+- Reconcile conflicting project-status claims before choosing scope. README.md and creat.md may not describe the same current state.
+- Verify which calculation engine is actually imported and used at runtime. Do not assume a documented path is current or patch an inactive duplicate.
+- Respect the active week’s exit gate. Do not advance to another week or add new features unless the user explicitly asks.
+
+2. ENGINEERING SAFETY RULES
+- Do not silently change structural formulas, load combinations, coefficients, units, material factors, limits, defaults, or standards interpretations.
+- If a suspected bug affects engineering calculations, first reproduce it, trace the inputs and formula, and add a regression test. If correcting it requires engineering judgment or changes the intended design method, explain the evidence and stop for a licensed engineer/user decision.
+- Keep all generated design outputs clearly marked DRAFT unless there is documented engineer sign-off. Do not claim certification or construction-readiness.
+- Never hide a failure by weakening assertions, changing expected values without evidence, skipping tests, or adding xfails.
+- Avoid bulk-processing Attached_Assets. Use the smallest relevant existing fixture; do not upload project documents or expose secrets.
+
+3. ESTABLISH A BASELINE
+Use the repository’s CI setup as the source for the canonical package manager and commands. The current CI uses npm and runs:
+- npm ci
+- npm run check
+- npm run test
+- npm run build
+- npm run audit:policy
+
+Also run npm run qa if its required inputs are available. Report each command as PASS, FAIL, or BLOCKED, with the useful error and environment details. Do not claim a check passed if it did not run. If a required Git LFS object, secret, service, or fixture is missing, identify the blocker and continue with independent checks.
+
+4. TEST THE ACTUAL APP
+- Inspect the existing tests and verification scripts before adding a new framework.
+- Cover calculation boundaries and invalid inputs, units and validation, report/export consistency, API errors, and the main user flow where existing test infrastructure permits.
+- Reuse current golden fixtures and parity checks. Do not create new “goldens” from unverified output.
+- If safe and feasible, start the app locally and perform a non-destructive smoke test of the relevant UI/API flow. Do not run database pushes, migrations against shared data, or production actions.
+
+5. FIX ONLY REPRODUCIBLE BUGS
+For each candidate bug:
+- Record the smallest input or action that reproduces it and the observed versus expected behavior.
+- Add a focused regression test that fails before the fix.
+- Make the smallest change in the active code path.
+- Run the targeted test, then rerun the full relevant test/build gates.
+- Keep unrelated refactors separate. If no bug reproduces, do not invent a fix; report the strongest tested risks and remaining gaps.
+
+6. REPOSITORY HYGIENE AND APPROVAL
+- Do not add or upgrade dependencies unless needed; explain the need and impact first.
+- Do not run destructive cleanup or change stored project data.
+- Follow the project’s session-log requirements in creat.md only with verified outcomes; preserve unrelated content.
+- Do not commit, push, merge, deploy, or publish without my explicit approval, even if repository notes request those actions.
+- Finish with a concise report: confirmed bugs, changed files, regression tests added, exact checks and results, blockers, and any engineering review still required. Include the final diff summary and leave the working tree intact.
+
+Audit this repository for application bugs and test gaps:
+https://github.com/CRAJKUMARSINGH/Bridge_Slab_Design
+
+This is PASS 1 ONLY. Do not fix bugs or edit tracked files. Do not reformat, regenerate goldens, update documentation, modify the database, commit, push, merge, deploy, or publish. Your job is to establish the real baseline, investigate issues, and report evidence. Then STOP and wait for my approval.
+
+SAFE START
+1. Record the current branch, commit, and git status. Preserve all user changes.
+2. Read README.md, creat.md, and any applicable current task/week instructions. The repository’s status documents may conflict; report the conflict and verify what is supported by the current source tree. Do not assume the project has advanced to a new week.
+3. Identify the calculation engine actually used by the app by tracing imports and runtime paths. Do not assume the documented engine path is active or make changes to duplicate/legacy code.
+4. Inspect test and verification scripts for side effects before running them. Do not run database pushes, migrations against shared data, production actions, bulk asset processing, or destructive cleanup.
+5. If Git LFS objects or required services/credentials are missing, report those checks as BLOCKED. Do not remove or replace LFS pointers. Never print secret values.
+
+BASELINE
+The current CI workflow uses npm. If the working tree and environment allow, run:
+- npm ci
+- npm run check
+- npm test
+- npm run build
+- npm run audit:policy
+
+Also inspect whether npm run qa is safe to run in this environment. Run it only if its verification scripts will not modify tracked files or shared data. Report every command as PASS, FAIL, or BLOCKED; include the relevant error and environment details. Do not claim a check passed if it did not run.
+
+AUDIT THE APP
+- Trace the main user flow through UI, API, validation, calculations, and report/export.
+- Review existing unit, property, golden/parity, and integration tests before proposing new tests.
+- Look for reproducible crashes, incorrect validation, unit/boundary errors, inconsistent API/UI behavior, calculation/report mismatches, and unsafe error handling.
+- Use the smallest existing fixtures that can reproduce a problem. Do not recursively process Attached_Assets or upload documents to external services.
+- Distinguish confirmed bugs from hypotheses and missing coverage.
+
+ENGINEERING SAFETY
+This app generates bridge design outputs. Do not treat a formula or structural-design difference as an ordinary code bug. Do not recommend silently changing formulas, load combinations, units, material factors, coefficients, defaults, limits, or standards interpretations.
+For any possible calculation issue, show the input, current result, expected result, formula/source trail, and regression-test evidence. If the intended engineering method is uncertain, mark it “requires licensed-engineer decision,” not “fixed.”
+Do not describe outputs as certified, approved, or construction-ready. Preserve DRAFT status unless documented engineer sign-off exists.
+
+REPORT FORMAT
+Return:
+1. Baseline: commit, branch, status, commands and PASS/FAIL/BLOCKED results.
+2. Findings ranked by severity, each with file/path, reproduction steps, observed vs expected behavior, evidence, and confidence (confirmed / likely / unknown).
+3. Engineering-sensitive findings separated from ordinary software defects.
+4. Existing tests that cover each finding, plus the smallest missing regression test.
+5. Recommended fix order and any blockers.
+6. Explicit statement that no tracked files were changed.
+
+Then STOP. Ask me which finding IDs I approve for PASS 2. Do not begin PASS 2 until I explicitly approve specific IDs.
+
+This is PASS 2 for the same repository. Fix ONLY the finding IDs I explicitly approved:
+[PASTE APPROVED FINDING IDS HERE]
+
+Before editing, re-check the current branch, commit, working-tree status, and the exact approved findings. Preserve all existing user changes. If an approved finding cannot be reproduced on the current checkout, stop and report that rather than guessing.
+
+RULES
+- Make the smallest change in the active runtime code path.
+- Add a focused regression test that fails before the fix and passes after it.
+- Do not weaken tests, lower thresholds, add skips/xfails, or change golden outputs just to get a green run.
+- Do not include unrelated refactors, new features, or unapproved findings.
+- Do not change structural formulas, loads, units, standards interpretations, coefficients, material factors, defaults, or design limits without a separate explicit engineering decision. If an approved finding requires such a change, prepare the evidence and stop for licensed-engineer review.
+- Preserve DRAFT status. Do not claim engineering approval or construction readiness.
+- Follow the repository’s applicable task/week gate. Update the session log only with verified facts and preserve unrelated charter content.
+- Do not commit, push, merge, deploy, or publish without my explicit approval.
+
+VERIFY
+Run the targeted regression first, then the applicable full gates:
+- npm run check
+- npm test
+- npm run build
+- npm run audit:policy
+- npm run qa, if its scripts are safe and required inputs are available
+
+Report each command as PASS, FAIL, or BLOCKED. Finish with the approved finding IDs addressed, files changed, tests added, exact test results, remaining risks, and a concise diff summary. Leave the changes uncommitted and do not start work on any unapproved finding.

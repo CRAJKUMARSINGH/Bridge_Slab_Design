@@ -36,10 +36,7 @@ import type { EnhancedProjectInput } from '../bridge-excel-generator/types.ts';
 
 /**
  * Labels both renderers are expected to print. A fact is checked only when the label is printed as a
- * distinct phrase in BOTH documents; two hydraulic quantities are deliberately absent from the list:
- *   - water level: this project prints two competing design water levels (sheet 3 AFL 101.375 m against
- *     the engine's HFL + afflux 100.856 m). Both formats print both, so parity holds; which one governs
- *     is an open engineering decision and is on the sign-off list, not something this file can settle.
+ * distinct phrase in BOTH documents; one hydraulic quantity remains absent from the list:
  *   - mean scour depth: the HTML prints the engine's d_sm, while the PDF's summary block prints
  *     'Normal Scour Depth' from shared/input-workbook-previews.ts, which is computed by its own
  *     approximate formula and is a different quantity under a similar name. Comparing them would be a
@@ -56,7 +53,14 @@ const SHARED_FACTS: Fact[] = [
   { label: 'Highest flood level', find: /^high flood level hfl$|^highest flood level(?: \(hfl\))?$/i },
   { label: 'Foundation level', find: /^foundation level(?: \(fl\))?$/i },
   { label: 'Design scour depth', find: /^design scour(?: dmax)?\s*=?/i },
-  { label: 'Factor of safety against uplift', find: /^factor of safety against uplift$/i },
+  // The workbook-grid appendix in the PDF prints every cell into a fixed-width grid and elides labels
+  // past 32 characters, so the deck-anchorage row prints 'Factor of safety against uplift…' where the
+  // HTML shows 'Factor of safety against uplift (with anchorage)'. The elision marker also survives the
+  // latin1 PDF extraction only as an invisible control byte, which an end-anchored pattern would miss.
+  // The value under the label is the same figure in both documents, so the match is on the leading
+  // phrase and the truncation tail is tolerated — the same class of cosmetic difference the precision
+  // and grouping normalisation above already absorbs.
+  { label: 'Factor of safety against uplift', find: /^factor of safety against uplift/i },
   { label: 'Total estimated cost', find: /^total cost$/i },
 ];
 

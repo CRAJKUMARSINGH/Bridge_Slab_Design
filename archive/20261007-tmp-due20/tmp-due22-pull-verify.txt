@@ -1,0 +1,48 @@
+requested: 95
+materialised: 66
+still pointer/missing: 29
+
+STILL STUBS / PROBLEMS:
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [4 OF 16].DXF
+  still a pointer (132 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C NEC RED [1 OF 6].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C NEC RED [3 OF 6].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [9 OF 16].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [8 OF 16].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [1 OF 16].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [12 OF 16].DXF
+  still a pointer (132 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C WEC GAD [2 OF 2].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/RCC T Girder IS/RCC Precast Long Girder IS.xlsm
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C WEC GAD [1 OF 2].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [2 OF 16].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [11 OF 16].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [6 OF 16].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C NEC RED [4 OF 6].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [10 OF 16].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [15 OF 16].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [16 OF 16].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C NEC RED [6 OF 6].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [14 OF 16].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C NEC RED [5 OF 6].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C NEC RED [2 OF 6].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/LAP ZONES_WEC.DXF
+  still a pointer (132 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1C NEC GAD.DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/LAP ZONES_NEC.DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [5 OF 16].DXF
+  still a pointer (132 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [3 OF 16].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/RCC T Girder BS/RCC Precast Long Girder BS.xlsm
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [13 OF 16].DXF
+  still a pointer (131 B)  <- Attached_Assets/ASTRA 15 TUTORIALS/DRAWINGS/Box_Culvert_Single_Cell/BOX 1CWEC RED [7 OF 16].DXF
+
+MATERIALISED, first 12 with magic bytes:
+     1857536  d0cf11e0a1b11ae1  Abutment_Worksheet_sheet.xls
+      139264  d0cf11e0a1b11ae1  Bridge_Bearing_Design.xls
+     6206464  d0cf11e0a1b11ae1  Contunuous Box Girder Analysis IS.xlsx
+     3574784  d0cf11e0a1b11ae1  PIER_Worksheet_Design.xls
+       98304  d0cf11e0a1b11ae1  RCC Cross Girder BS.xlsx
+      129935  4143313031380000  Terrain [UTM+44N+WGS84].dwg.dwg
+      238592  d0cf11e0a1b11ae1  Design of PSC I Girder_Deck Slab BS.xlsx
+      362496  d0cf11e0a1b11ae1  New Design Of PSC Box Girder.xls
+      362496  d0cf11e0a1b11ae1  PSC BOX.xls
+      247296  d0cf11e0a1b11ae1  Grain Size Analysis Test.xls
+      261632  d0cf11e0a1b11ae1  RCC Deck Slab IS.xlsx
+       63488  d0cf11e0a1b11ae1  Summary Lab Test.xls

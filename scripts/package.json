@@ -17,6 +17,7 @@
     "verify:outcomes": "tsx ./verify-stability-outcomes.ts",
     "verify:parity": "tsx ./verify-html-pdf-parity.ts",
     "verify:presentation": "tsx ./verify-presentation-policy.ts",
+    "verify:apilinks": "tsx ./verify-client-api-links.ts",
     "verify:engine": "tsx ./verify-engine-boundary.ts",
     "test:integration": "tsx ./run-integration-tests.ts",
     "deliverables": "tsx ./regenerate-test-output.ts",

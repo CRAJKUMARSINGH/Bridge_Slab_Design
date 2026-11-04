@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "Test CRUD Project",
+    "location": null,
+    "district": null,
+    "engineer": null,
+    "designData": {
+      "description": "Created during automation test run",
+      "bridgeType": null,
+      "status": "active"
+    },
+    "createdAt": "2026-10-25T02:18:26.840Z",
+    "updatedAt": "2026-10-25T02:18:26.840Z"
+  },
+  {
+    "id": 2,
+    "name": "Test CRUD Project",
+    "location": null,
+    "district": null,
+    "engineer": null,
+    "designData": {
+      "description": "Created during automation test run",
+      "bridgeType": null,
+      "status": "active"
+    },
+    "createdAt": "2026-10-25T02:24:28.497Z",
+    "updatedAt": "2026-10-25T02:24:28.497Z"
+  }
+]
