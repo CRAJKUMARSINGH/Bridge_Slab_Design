@@ -1,0 +1,7 @@
+NOT A POINTER Attached_Assets/plus Detailed ESTIMATE HL Bridge BEDACH.xls
+normalized records with a path: 96
+paths present on disk: 96, missing: 0
+LFS payload needed to materialise the assimilation corpus: 74579072 bytes = 71.12 MB
+largest 5: Contunuous Box Girder Analysis IS.xlsx (5.9 MB) | Contunuous Box Girder Analysis BS.xlsx (5.9 MB) | Contunuous Box Girder Analysis.xlsx (5.9 MB) | BOX 1C NEC GAD.DXF (4.4 MB) | PIER_Worksheet_Design.xls (3.4 MB)
+smallest 3: Advance UKC.xls (23552 B) | Advance UKB.xls (23552 B) | Material Properties.xls (20480 B)
+missing path examples: 

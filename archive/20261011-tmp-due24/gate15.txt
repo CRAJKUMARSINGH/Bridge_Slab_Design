@@ -1,0 +1,56 @@
+
+> workspace@0.0.0 typecheck:flat E:\Rajkumar\Bridge_Slab_Design
+> tsc -p tsconfig.flat.json --noEmit
+
+Total sheets: 56/56
+  design-workbook.xlsx         111,404 bytes
+  sheet-book.pdf               2,741,527 bytes
+  comprehensive-report.pdf     10,488,466 bytes
+  short-design-report.pdf      225,252 bytes
+  design-report.html           380,066 bytes
+  irc-checklist.html           39,752 bytes
+
+Wrote 6 deliverables to E:\Rajkumar\Bridge_Slab_Design\test-output
+---SHEETBOOK---
+pages 99
+sheet pages banded: 92 distinct sheets: 56
+index pages: [2, 3, 4, 5] divider pages: [6, 57]
+unstamped (cover excluded): []
+stamps that disagree: []
+index claims 58 mismatches 0
+sheets banded but absent from index: []
+multi-page sheets 23
+---STAMPS---
+0.86
+Pier Bearing FOS (min):
+1.70
+Number of Piers:
+11
+Total Sheets:
+56
+Total Pages:
+225
+This design has been prepared in accordance with IRC standards.
+End of Report
+
+---TOC---
+Sheet 29
+TECHNOTE
+Page 43
+Sheets 30-41
+C1 CANTILEVER ABUTMENT (12 sheets)
+Page 44
+Sheets 42-46
+ESTIMATION & REPORTS (5 sheets)
+Page 57
+Annexures
+D-04 to D-07 hydraulic profile, pier FBD, abutment pressure, slab
+reinforcement
+Page 63
+Appendix
+Workbook grids — all 56 tabs, cell by cell
+Page 67
+Summary
+DESIGN SUMMARY — governing values and status
+Page 225
+

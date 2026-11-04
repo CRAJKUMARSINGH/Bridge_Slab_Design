@@ -1,0 +1,235 @@
+
+> workspace@0.0.0 verify E:\Rajkumar\Bridge_Slab_Design
+> pnpm run verify:golden && pnpm run verify:sheets && pnpm run verify:links && pnpm run verify:values && pnpm run verify:costing && pnpm run verify:uplift && pnpm run verify:cases && pnpm run verify:outcomes && pnpm run verify:parity && pnpm run verify:presentation && pnpm run verify:engine
+
+
+> workspace@0.0.0 verify:golden E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:golden
+
+
+> @workspace/scripts@0.0.0 verify:golden E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./src/verify-golden.ts
+
+Golden regression passed; tamper input changed the result as expected.
+
+> workspace@0.0.0 verify:sheets E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:sheets
+
+
+> @workspace/scripts@0.0.0 verify:sheets E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-kherwara-excel-golden.ts
+
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 46 sheets with real formulas (legacy 46-sheet contract)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on Larathi to Larathi B Road, across Som River
+Generating 46 sheets with real formulas (legacy 46-sheet contract)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.00 m is ABOVE the IRC-required scour founding level 83.34 m (bed − 2·dsm = 12.83 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+🚀 Starting Excel generation...
+Project: Fixture — minimal channel hydraulics
+Generating 46 sheets with real formulas (legacy 46-sheet contract)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 97.00 m is ABOVE the IRC-required scour founding level 40.52 m (bed − 2·dsm = 59.48 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+verify-kherwara-excel-golden: OK (current 46-sheet contract validated)
+
+> workspace@0.0.0 verify:links E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:links
+
+
+> @workspace/scripts@0.0.0 verify:links E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-workbook-links.ts
+
+FAIL larathi-stabil           pts=16 formulas:733 cross:213 same:1383 re-eval:732 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=0.853 recomputed=0.5689
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.548 recomputed=0.3654
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.327 recomputed=0.2181
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.401 recomputed=0.2674
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=1.3 recomputed=0.8669
+FAIL kherwara-golden          pts= 7 formulas:609 cross:211 same:1090 re-eval:608 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=1.066 recomputed=0.7110
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.688 recomputed=0.4590
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.405 recomputed=0.2698
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.483 recomputed=0.3219
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=1.627 recomputed=1.0846
+FAIL high-level-reference     pts= 5 formulas:582 cross:211 same:1024 re-eval:581 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=0.537 recomputed=0.3578
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.306 recomputed=0.2043
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.146 recomputed=0.0971
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.223 recomputed=0.1484
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=0.836 recomputed=0.5575
+FAIL small-bridge             pts= 5 formulas:583 cross:211 same:1028 re-eval:582 broken:0 diverge:4
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=0.225 recomputed=0.1499
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.129 recomputed=0.0859
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.074 recomputed=0.0492
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=0.367 recomputed=0.2450
+FAIL medium-bridge            pts= 5 formulas:583 cross:211 same:1028 re-eval:582 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=0.311 recomputed=0.2072
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.196 recomputed=0.1305
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.086 recomputed=0.0576
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.135 recomputed=0.0899
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=0.49 recomputed=0.3269
+FAIL large-bridge             pts= 5 formulas:583 cross:211 same:1028 re-eval:582 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=0.228 recomputed=0.1522
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.183 recomputed=0.1218
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.084 recomputed=0.0557
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.117 recomputed=0.0777
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=0.364 recomputed=0.2426
+FAIL irc-bedach-bedla         pts= 8 formulas:622 cross:211 same:1121 re-eval:621 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=0.805 recomputed=0.5365
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.539 recomputed=0.3596
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.287 recomputed=0.1912
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.365 recomputed=0.2431
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=1.245 recomputed=0.8300
+FAIL irc-jakham-mandvi        pts= 7 formulas:609 cross:211 same:1090 re-eval:608 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=0.743 recomputed=0.4952
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.499 recomputed=0.3329
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.264 recomputed=0.1757
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.339 recomputed=0.2260
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=1.151 recomputed=0.7672
+FAIL irc-t01-jethliya         pts= 5 formulas:583 cross:211 same:1028 re-eval:582 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=0.959 recomputed=0.6391
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.594 recomputed=0.3958
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.306 recomputed=0.2043
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.402 recomputed=0.2682
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=1.482 recomputed=0.9882
+FAIL irc-sukanaka-matoon      pts= 6 formulas:596 cross:211 same:1059 re-eval:595 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=0.763 recomputed=0.5084
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.5 recomputed=0.3333
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.258 recomputed=0.1717
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.338 recomputed=0.2255
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=1.183 recomputed=0.7888
+FAIL irc-ayad-maharashtra     pts= 7 formulas:609 cross:211 same:1090 re-eval:608 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=0.845 recomputed=0.5636
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.519 recomputed=0.3462
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.292 recomputed=0.1945
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.376 recomputed=0.2508
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=1.296 recomputed=0.8643
+FAIL irc-gumaniya-udaipur     pts= 5 formulas:590 cross:213 same:1042 re-eval:589 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=0.909 recomputed=0.6058
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.565 recomputed=0.3767
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.288 recomputed=0.1922
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.383 recomputed=0.2551
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=1.407 recomputed=0.9383
+FAIL irc-katumbi-chandrod     pts= 6 formulas:596 cross:211 same:1059 re-eval:595 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=0.77 recomputed=0.5131
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.514 recomputed=0.3429
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.276 recomputed=0.1841
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.352 recomputed=0.2347
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=1.19 recomputed=0.7932
+FAIL irc-sisarama-highlevel   pts= 5 formulas:582 cross:211 same:1024 re-eval:581 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=1.365 recomputed=0.9101
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.793 recomputed=0.5290
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.531 recomputed=0.3540
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.607 recomputed=0.4047
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=2.041 recomputed=1.3609
+FAIL irc-kumbhalgarh-kelwara  pts= 5 formulas:589 cross:213 same:1038 re-eval:588 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=1.257 recomputed=0.8381
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.83 recomputed=0.5531
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.57 recomputed=0.3797
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.616 recomputed=0.4108
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=1.877 recomputed=1.2515
+FAIL irc-parwan-highlevel     pts= 6 formulas:595 cross:211 same:1055 re-eval:594 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=0.871 recomputed=0.5808
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.588 recomputed=0.3920
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.37 recomputed=0.2464
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.454 recomputed=0.3024
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=1.32 recomputed=0.8801
+FAIL irc-banas-highlevel      pts= 7 formulas:608 cross:211 same:1086 re-eval:607 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=1.092 recomputed=0.7281
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.797 recomputed=0.5316
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.547 recomputed=0.3647
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.579 recomputed=0.3861
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=1.633 recomputed=1.0884
+FAIL irc-ayad-fatehpura       pts= 6 formulas:595 cross:211 same:1055 re-eval:594 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=1.214 recomputed=0.8092
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.735 recomputed=0.4902
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.506 recomputed=0.3372
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.572 recomputed=0.3814
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=1.81 recomputed=1.2067
+FAIL irc-kherka-teegirder     pts= 5 formulas:582 cross:211 same:1024 re-eval:581 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=1.137 recomputed=0.7583
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.743 recomputed=0.4951
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.488 recomputed=0.3256
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.583 recomputed=0.3885
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=1.71 recomputed=1.1400
+FAIL irc-sukanaka-highlevel   pts= 5 formulas:582 cross:211 same:1024 re-eval:581 broken:0 diverge:5
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=B22*ABS(H47)/MAX(ABS(I47),1)] cached=1.223 recomputed=0.8156
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=B22*ABS(H48)/MAX(ABS(I48),1)] cached=0.713 recomputed=0.4754
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=B22*ABS(H49)/MAX(ABS(I49),1)] cached=0.474 recomputed=0.3162
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=B22*ABS(H50)/MAX(ABS(I50),1)] cached=0.589 recomputed=0.3929
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=B22*ABS(H51)/MAX(ABS(I51),1)] cached=1.832 recomputed=1.2214
+
+Golden spot-checks:
+  S9 B18 velocity xref: {"formula":"=HYDRAULICS!C21","result":1.718}
+  S9 H47 service V:     {"formula":"=C47*B30+D47*B31-G47*B36","result":644.638}
+  S9 N51 ULS status:    {"formula":"=IF(AND(K51>=1.5,L51>=1.8,M51>=1.0),\"SAFE\",\"UNSAFE\")","result":"SAFE"}
+  S10 C12 retrieved V:  {"formula":"='STABILITY CHECK FOR PIER'!H47","result":644.638}
+  S10 I12 status link:  {"formula":"=IF(G12<=H12,'STABILITY CHECK FOR PIER'!N47,\"UNSAFE\")","result":"UNSAFE"}
+
+Done: 0/20 workbooks fully linked.
+E:\Rajkumar\Bridge_Slab_Design\scripts:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @workspace/scripts@0.0.0 verify:links: `tsx ./verify-workbook-links.ts`
+Exit status 1
+ ELIFECYCLE  Command failed with exit code 1.
+ ELIFECYCLE  Command failed with exit code 1.

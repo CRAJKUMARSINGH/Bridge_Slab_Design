@@ -1,5 +1,6 @@
-import { existsSync, readdirSync, statSync } from 'node:fs';
-import { extname, join, relative, resolve } from 'node:path';
+import { readdirSync, statSync } from 'node:fs';
+import { dirname, extname, join, relative, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 export type PierTemplateType =
   | 'single-column'
@@ -174,19 +175,54 @@ function totalScore(parts: PierCaseFile['scoreBreakup']): number {
   );
 }
 
-export function resolveDefaultPierAssetRoot(): string {
+export function isExistingDirectory(abs: string): boolean {
+  try {
+    return statSync(abs).isDirectory();
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Repo root derived from this module, not from `process.cwd()`: a server started from a different
+ * directory (systemd unit, container WORKDIR, `node dist/...`) used to resolve the asset library to
+ * a path that did not exist and answer 500.
+ */
+function resolutionBases(): string[] {
+  const bases = [resolve(dirname(fileURLToPath(import.meta.url)), '..'), resolve(process.cwd())];
+  return bases.filter((base, index) => bases.indexOf(base) === index);
+}
+
+/** Sub-paths of a base that hold pier drawings, in preference order. */
+const ASSET_LEAVES = [
+  ['assets', 'COMPONENT_DRAWINGS_SORTED', 'Pier Geometry & Dimensions'],
+  ['Attached_Assets'],
+];
+
+/** Asset library trees a `?root=` request may point inside. */
+export function pierAssetTrees(): string[] {
+  return resolutionBases()
+    .flatMap((base) => [join(base, 'assets'), join(base, 'Attached_Assets')])
+    .filter(isExistingDirectory);
+}
+
+/**
+ * The pier drawing library to catalog. Returns null when nothing is present — callers must answer
+ * "library not installed" rather than cataloguing a path that does not exist.
+ */
+export function resolveDefaultPierAssetRoot(): string | null {
   const envRoot = process.env.PIER_ASSET_ROOT?.trim();
-  const candidates = [
-    ...(envRoot ? [resolve(envRoot)] : []),
-    join(process.cwd(), 'research_assets', 'component_drawings_sorted', 'Pier Geometry & Dimensions'),
-    join(process.cwd(), 'Attached_Assets'),
-  ];
-  const found = candidates.find((candidate) => existsSync(candidate) && statSync(candidate).isDirectory());
-  return found ?? join(process.cwd(), 'Attached_Assets');
+  if (envRoot) {
+    const configured = resolve(envRoot);
+    return isExistingDirectory(configured) ? configured : null;
+  }
+  return resolutionBases()
+    .flatMap((base) => ASSET_LEAVES.map((leaf) => join(base, ...leaf)))
+    .find(isExistingDirectory) ?? null;
 }
 
 export function buildPierCaseCatalog(root: string): PierCaseCatalog {
-  if (!statSync(root).isDirectory()) {
+  if (!isExistingDirectory(root)) {
     throw new Error(`Pier asset root is not a directory: ${root}`);
   }
 
@@ -223,7 +259,7 @@ export function buildPierCaseCatalog(root: string): PierCaseCatalog {
       sourceBacked,
       bestCase,
       note: sourceBacked
-        ? 'Best standard case selected from matching Attached_Assets evidence.'
+        ? 'Best standard case selected from matching pier asset library evidence.'
         : 'Parametric template is available; no exact source drawing name was found, so the engine uses computed geometry/BBS rules and the closest available bridge asset as reference evidence.',
     };
   });

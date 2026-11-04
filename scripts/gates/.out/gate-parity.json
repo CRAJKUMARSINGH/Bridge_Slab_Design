@@ -1,0 +1,135 @@
+{
+  "name": "gate-parity",
+  "ts": "2026-11-04T08:09:50.353Z",
+  "commit": "local",
+  "pass": 31,
+  "fail": 0,
+  "skipped": 2,
+  "egress": "none",
+  "detail": [
+    {
+      "check": "engine-port-loadable",
+      "verdict": "PASS"
+    },
+    {
+      "check": "BED-HL: schemaVersion declared",
+      "verdict": "PASS"
+    },
+    {
+      "check": "BED-HL: bridgeCode matches filename",
+      "verdict": "PASS"
+    },
+    {
+      "check": "BED-HL: gateParityExpectation declared",
+      "verdict": "PASS"
+    },
+    {
+      "check": "BED-HL: SKIP carries a declared, owned reason",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-KHW: schemaVersion declared",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-KHW: bridgeCode matches filename",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-KHW: gateParityExpectation declared",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-KHW: SKIP carries a declared, owned reason",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-LAR: schemaVersion declared",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-LAR: bridgeCode matches filename",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-LAR: gateParityExpectation declared",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-LAR: baseline complete for every baselined key",
+      "verdict": "PASS"
+    },
+    {
+      "check": "oracle declares at least one bridge",
+      "verdict": "PASS"
+    },
+    {
+      "check": "coverage: SOM-KHW has a frozen fixture",
+      "verdict": "PASS"
+    },
+    {
+      "check": "coverage: SOM-LAR has a frozen fixture",
+      "verdict": "PASS"
+    },
+    {
+      "check": "coverage: BED-HL has a frozen fixture",
+      "verdict": "PASS"
+    },
+    {
+      "check": "coverage: no fixture without an oracle entry",
+      "verdict": "PASS"
+    },
+    {
+      "check": "not vacuous: at least one fixture is actually asserted",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-LAR: computedArea == frozen baseline (rtol 1e-9)",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-LAR: computedPerimeter == frozen baseline (rtol 1e-9)",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-LAR: waterSpread == frozen baseline (rtol 1e-9)",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-LAR: velocityManning == frozen baseline (rtol 1e-9)",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-LAR: dischargeManning == frozen baseline (rtol 1e-9)",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-LAR: regimeWidth == frozen baseline (rtol 1e-9)",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-LAR: effectiveWaterway == frozen baseline (rtol 1e-9)",
+      "verdict": "PASS"
+    },
+    {
+      "check": "BED-HL: SKIP is registered in SOURCE-DEFECT-REGISTER.md",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-KHW: SKIP is registered in SOURCE-DEFECT-REGISTER.md",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-LAR: measured V delta is registered",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOM-LAR: measured Q delta is registered",
+      "verdict": "PASS"
+    },
+    {
+      "check": "SOURCE-DEFECT-REGISTER.md exists and is a populated table",
+      "verdict": "PASS"
+    }
+  ]
+}

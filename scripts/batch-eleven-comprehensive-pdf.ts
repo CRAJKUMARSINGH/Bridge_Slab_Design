@@ -7,6 +7,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { calculateCompleteDesign } from '../bridge-excel-generator/design-engine.ts';
 import type { EnhancedProjectInput } from '../bridge-excel-generator/types';
+import { EXPECTED_SHEET_COUNT } from '../bridge-excel-generator/sheet-contract.ts';
 import { generateComprehensivePDFWithPageCount } from '../server/comprehensive-pdf-export';
 import { buildElevenBridgeCases, expectedDesignSmokeCaseCount } from './eleven-bridge-cases';
 
@@ -34,7 +35,7 @@ async function main() {
       const enhanced = { ...input, ...design } as EnhancedProjectInput;
       const { buffer, pageCount } = await generateComprehensivePDFWithPageCount(enhanced);
       const stem = safeFileStem(id);
-      const file = join(OUT_DIR, `${stem}_Complete_46_Sheets.pdf`);
+      const file = join(OUT_DIR, `${stem}_Complete_${EXPECTED_SHEET_COUNT}_Sheets.pdf`);
       writeFileSync(file, buffer);
       const mb = (buffer.length / 1024 / 1024).toFixed(2);
       summary.push({ id, pages: pageCount, mb });

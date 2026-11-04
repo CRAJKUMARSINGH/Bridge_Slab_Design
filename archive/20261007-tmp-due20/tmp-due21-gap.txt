@@ -1,0 +1,22 @@
+evidence generatedAt: 2026-10-08T03:44:59.848Z
+engine thresholds: sliding 1.5 / overturning 1.8 / bearing 1
+total load cases: 300
+
+A) overturningFOS in [1.80, 2.00)  -> passes the engine rule, would be rejected by a 2.00 edge:
+   count: 3
+   by engine status: UNSAFE=3
+   of those SAFE by the engine: 0
+   SAFE whose only near-limit factor is overturning (sliding+bearing also clear): 0
+   templates touched: 3 -> irc-kherka-teegirder, irc-sukanaka-matoon, larathi-stabil
+
+   full list (template | member | case | overturningFOS | engine status):
+     irc-sukanaka-matoon | Pier | #5 Ultimate Limit State (ULS) | 1.9999 | UNSAFE
+     irc-kherka-teegirder | Pier | #1 Service Condition (DL+LL) | 1.9707 | UNSAFE
+     larathi-stabil | Pier | #1 Service Condition (DL+LL) | 1.8479 | UNSAFE
+
+   by member/sheet: Pier @ STABILITY CHECK FOR PIER: 3
+
+B) slidingFOS in [1.25, 1.50) -> the Design.tsx preview WARN band, for reference:
+   count: 9; engine-UNSAFE among them: 9
+
+C) bearingFOS in [1.00, 1.50): count 78 (engine accepts; no client 1.5 bearing rule found)

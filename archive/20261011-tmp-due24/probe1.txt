@@ -1,0 +1,15 @@
+--- typecheck ---
+
+> workspace@0.0.0 typecheck:flat E:\Rajkumar\Bridge_Slab_Design
+> tsc -p tsconfig.flat.json --noEmit
+
+--- deliverables ---
+Total sheets: 56/56
+  design-workbook.xlsx         111,404 bytes
+  sheet-book.pdf               3,296,996 bytes
+  comprehensive-report.pdf     4,943,286 bytes
+  short-design-report.pdf      225,271 bytes
+  design-report.html           436,969 bytes
+  irc-checklist.html           39,752 bytes
+
+Wrote 6 deliverables to E:\Rajkumar\Bridge_Slab_Design\test-output

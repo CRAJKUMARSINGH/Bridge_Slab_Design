@@ -1,0 +1,20 @@
+    at E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\tsx@4.23.1\node_modules\tsx\dist\register-BoI6-WNn.cjs:9:3894
+    at resolveTsPaths (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\tsx@4.23.1\node_modules\tsx\dist\register-BoI6-WNn.cjs:10:770)
+    at E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\tsx@4.23.1\node_modules\tsx\dist\register-BoI6-WNn.cjs:10:1171
+    at T._resolveFilename (file:///E:/Rajkumar/Bridge_Slab_Design/node_modules/.pnpm/tsx@4.23.1/node_modules/tsx/dist/register-zZ7SWseA.mjs:2:15301)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at defaultResolve (node:internal/modules/cjs/loader:1101:31)
+    at nextStep (node:internal/modules/customization_hooks:189:26)
+    at resolve (file:///E:/Rajkumar/Bridge_Slab_Design/node_modules/.pnpm/tsx@4.23.1/node_modules/tsx/dist/register-zZ7SWseA.mjs:2:13099)
+    at nextStep (node:internal/modules/customization_hooks:189:26)
+    at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1110:25)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'E:\\Rajkumar\\Bridge_Slab_Design\\archive\\20261007-tmp-c1check\\wbprobe.ts'
+  ]
+}
+
+Node.js v24.14.0

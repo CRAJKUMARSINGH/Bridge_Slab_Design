@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "frozenOn": "2026-10-26",
+  "frozenOn": "2026-10-25",
   "charter": "creat.md",
   "authoritativeEngine": "bridge-excel-generator/design-engine.ts",
   "engineModules": [

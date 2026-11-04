@@ -1,0 +1,25 @@
+client/src/pages/Design.tsx:197:            const sVerd: 'PASS' | 'WARN' | 'FAIL' = sSlideFOS >= 1.25 && sOTFOS >= 1.50 ? 'PASS' : sSlideFOS >= 1.10 ? 'WARN' : 'FAIL';
+client/src/pages/Design.tsx:220:            const wVerd: 'PASS' | 'WARN' | 'FAIL' = wFOS >= 1.50 && wOTFOS >= 1.80 ? 'PASS' : (wFOS >= 1.25 || wOTFOS >= 1.50) ? 'WARN' : 'FAIL';
+client/src/pages/AbutmentStability.tsx:496:    `FOS Sliding,${f.FOS_sliding.toFixed(2)},${f.slide_ok ? 'PASS' : 'FAIL'} (req >= 1.5)`,
+client/src/pages/AbutmentStability.tsx:497:    `FOS Overturning,${f.FOS_overturning.toFixed(2)},${f.overturn_ok ? 'PASS' : 'FAIL'} (req >= 2.0)`,
+client/src/pages/FormulaEvaluator.tsx:99:        <ResultRow label="Froude Number Fr" formula="Fr = V / √(g·y)" result={`${N(Fr, 4)}`} verdict={Fr < 1.0 ? 'PASS' : 'FAIL'} limit="< 1.0 (subcritical required)" benchmark="Typical: 0.3–0.7 subcritical" />
+client/src/pages/FormulaEvaluator.tsx:280:        <ResultRow label="FOS Sliding" formula="FOS = μ·ΣW / (Pa_h + ΔPa_q)" result={`${N(FOS_slide, 3)}`} verdict={FOS_slide >= 1.5 ? 'PASS' : FOS_slide >= 1.3 ? 'WARN' : 'FAIL'} limit="≥ 1.50 (IRC:78 Cl.706)" benchmark="Typical abutment: FOS 1.6–2.2" />
+client/src/pages/FormulaEvaluator.tsx:281:        <ResultRow label="FOS Overturning" formula="FOS = ΣM_restoring / ΣM_overturn" result={`${N(FOS_overturn, 3)}`} verdict={FOS_overturn >= 2.0 ? 'PASS' : FOS_overturn >= 1.7 ? 'WARN' : 'FAIL'} limit="≥ 2.0 (IRC:78)" />
+client/src/components/SeismicZonePanel.tsx:107:        <span style={{ color: pierFOS >= 1.25 ? 'rgb(16 185 129)' : 'rgb(239 68 68)' }} className="font-mono text-sm font-semibold">
+client/src/components/SeismicZonePanel.tsx:112:        <span style={{ color: abtFOS >= 1.25 ? 'rgb(16 185 129)' : 'rgb(239 68 68)' }} className="font-mono text-sm font-semibold">
+client/src/components/SeismicZonePanel.tsx:131:  const [importance, setImportance] = useState<1.0 | 1.5>(1.0);
+client/src/report-engine/sheets/engineeringNarrative.tsx:60:    waterwayRatio >= 1.0
+client/src/report-engine/sheets/engineeringNarrative.tsx:66:    d.Fr < 0.8 ? "comfortably subcritical" : d.Fr < 1.0 ? "subcritical but approaching critical" : "supercritical (review)";
+client/src/report-engine/sheets/engineeringNarrative.tsx:68:    d.V < 2.0
+client/src/report-engine/sheets/engineeringNarrative.tsx:243:    pierMinFOS >= 1.5 &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:244:    abtMinFOS >= 1.5 &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:248:    d.Fr < 1.0 &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:296:    pierMinFOS >= 1.5 &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:297:    abtMinFOS >= 1.5 &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:301:    d.Fr < 1.0 &&
+client/src/report-engine/sheets/SummarySection.tsx:125:  const pierSafe = d.pierLCs.every(lc => lc.slidFOS >= 1.5 && lc.qmax <= d.SBC);
+client/src/report-engine/sheets/SummarySection.tsx:149:          ["11", "Froude Number (Fr)",           `${fv(d.Fr,3)}`,          "< 1.0 (subcritical)", "IS:7784",              d.Fr < 1.0 ? "OK" : "REVIEW"],
+client/src/report-engine/sheets/OptimisationAtAGlance.tsx:159:          ok={worstSlid >= 1.25} warn={worstSlid >= 1.25 && worstSlid < 1.50} />
+client/src/report-engine/sheets/PierOptimiser.tsx:224:              const slidColor = r.worstSlid < 1.25 ? C.red : r.worstSlid < 1.50 ? C.amber : C.green;
+client/src/report-engine/exportUtils.ts:294:    const status = lc.slidFOS >= 1.5 && lc.qmax <= d.SBC ? "SAFE âœ“" : "CHECK âœ—";
+client/src/pages/BridgeSlabReport.tsx:830:    (lc) => lc.slidFOS >= 1.5 && lc.qmax <= d.SBC,

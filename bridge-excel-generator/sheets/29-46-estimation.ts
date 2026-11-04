@@ -9,12 +9,15 @@
 import ExcelJS from 'exceljs';
 import type { AbutmentDesignResult, EnhancedProjectInput, EstimationMeasurement, EstimationResult, MeasurementBasis, SteelDetails } from '../types';
 import { addTableHeader, addTableRow, setCellFormula, setColumnWidths, setCellValue } from '../utils';
+import { STABILITY_ACCEPTANCE } from '../design-engine';
 import {
   ABUTMENT_BAND_LENGTH_M,
   ABUTMENT_FOOTING_EXTRA_WIDTH_M,
+  APPROACH_COUNT,
   APPROACH_LEVELLING_THICKNESS_M,
   APPROACH_SLAB_LENGTH_M,
   APPROACH_SLAB_THICKNESS_M,
+  BACKFILL_RATIO_OF_EXCAVATION,
   BEARINGS_PER_PIER,
   BLINDING_THICKNESS_M,
   CATS_EYE_SPACING_M,
@@ -23,9 +26,11 @@ import {
   MARKING_LINE_WIDTH_M,
   OVERHEAD_RATES,
   PIER_FOOTING_THICKNESS_M,
+  RAILING_EDGES,
   RETURN_WALL_THICKNESS_M,
+  SIGNS_60CM_PER_APPROACH,
+  SIGNS_90CM_PER_APPROACH,
   SOFT_ROCK_BAND_THICKNESS_M,
-  WALL_BACKFILL_WIDTH_M,
   WALL_FILTER_THICKNESS_M,
   WEEP_HOLE_SPACING_M,
 } from '../../shared/design-engine-types';
@@ -35,6 +40,7 @@ import {
   ROCK_HEAD_DEPTH_BELOW_BED_M,
   STEEL_VOLUME_PERCENT,
   WEARING_COAT_THICKNESS_M,
+  gradeForLocation,
 } from '../material-rates';
 
 function n(value: number | undefined): number | string {
@@ -316,6 +322,11 @@ export async function generateAbstractSheet(
     ['Abutment footing widening beyond the stem', ABUTMENT_FOOTING_EXTRA_WIDTH_M, 'm'],
     ['Pier footing thickness', PIER_FOOTING_THICKNESS_M, 'm'],
     ['PCC blinding thickness', BLINDING_THICKNESS_M, 'm'],
+    [
+      'Grade billed for open-foundation concrete — the same grade at pier and abutment footings',
+      gradeForLocation(input, 'foundation'),
+      'grade',
+    ],
     ['Trench over-dig added to (bed − foundation)', EXCAVATION_OVERDIG_M, 'm'],
     ['Rock head assumed below bed where hard rock is reported', ROCK_HEAD_DEPTH_BELOW_BED_M, 'm'],
     ['Soft rock (no blasting) band inside the rock zone', SOFT_ROCK_BAND_THICKNESS_M, 'm'],
@@ -326,13 +337,24 @@ export async function generateAbstractSheet(
     ['Wearing coat thickness billed', WEARING_COAT_THICKNESS_M, 'm'],
     ['Weep hole spacing (horizontal and vertical)', WEEP_HOLE_SPACING_M, 'm'],
     ['Return wall thickness used for weep hole length', RETURN_WALL_THICKNESS_M, 'm'],
-    ['Backfill width behind abutment and returns', WALL_BACKFILL_WIDTH_M, 'm'],
+    ['Backfill volume as % of total excavation', `${(BACKFILL_RATIO_OF_EXCAVATION * 100).toFixed(0)}`, '%'],
     ['Filter medium thickness behind walls', WALL_FILTER_THICKNESS_M, 'm'],
     ['Approach slab length / thickness at each end', `${APPROACH_SLAB_LENGTH_M} / ${APPROACH_SLAB_THICKNESS_M}`, 'm'],
     ['Levelling course thickness below approach slab', APPROACH_LEVELLING_THICKNESS_M, 'm'],
     ['Road marking lines × width', `${MARKING_LINES} × ${MARKING_LINE_WIDTH_M}`, 'm'],
     ['Cat eye spacing along each edge line', CATS_EYE_SPACING_M, 'm'],
     ['Bearings per pier', BEARINGS_PER_PIER, 'nos'],
+    ['Railing edges billed along the deck', RAILING_EDGES, 'nos'],
+    [
+      'Expansion-joint faces billed (one at each pier junction plus one at each abutment)',
+      input.numberOfPiers + APPROACH_COUNT,
+      'nos',
+    ],
+    [
+      'Cautionary traffic signs billed (90 cm / 60 cm equilateral, per approach)',
+      `${SIGNS_90CM_PER_APPROACH} / ${SIGNS_60CM_PER_APPROACH}`,
+      'nos',
+    ],
   ];
   assumptions.forEach(([label, value, unit], index) => {
     const r = row + 1 + index;
@@ -341,7 +363,19 @@ export async function generateAbstractSheet(
     setCellValue(ws, r, 6, unit);
   });
   const noteRow = row + assumptions.length + 2;
-  setCellValue(ws, noteRow, 2, 'Earthwork for the approach roadway, river-bed pitching, approach culverts and slope protection are NOT billed here: they need the approach and river-training survey geometry, which the project input does not yet carry.');
+  setCellValue(
+    ws,
+    noteRow,
+    2,
+    'NOT BILLED HERE, ITEM BY ITEM, WITH THE REASON — the authority’s own bridge estimate prices these families and this project cannot yet measure them: '
+      + '(1) approach roadway earthwork in soil and in ordinary rock by hydraulic excavator — needs the approach formation levels and lead; '
+      + '(2) cement concrete M-30 pavement grade to the approach — needs the approach pavement geometry; '
+      + '(3) solid RCC retaining walls to the approaches with their excavation, concrete, steel, backfill, filter and weep holes — needs the retaining-wall layout; '
+      + '(4) river-bed pitching with graded filter beneath it and boulder apron — needs the river-training survey alignment and lengths; '
+      + '(5) NP-3 RCC pipe culverts (1000/600/300 mm) with joints and collars — needs the approach drainage schedule; '
+      + '(6) the annular space around open footings, pitched with PCC up to the top of rock, and the authority’s practice of grading pier footings one grade above abutment footings — this project declares one concrete grade per location, so every footing is billed at that grade (see the register above); splitting it needs the founding levels and footing steps only the sections carry. '
+      + 'Each becomes a priced BOQ line as soon as its geometry is carried in the project input; none is estimated from a guessed length.',
+  );
   ws.getCell(noteRow, 2).alignment = { wrapText: true };
 }
 
@@ -349,6 +383,7 @@ export async function generateAbstractSheet(
 const BASIS_TEXT: Record<MeasurementBasis, string> = {
   volume: 'Nos × L × B × H',
   plan: 'Nos × L × B',
+  run: 'Nos × L (billed per running metre)',
   count: 'Nos',
   steel: 'Nos × L % × B RCC volume × H kg/m³ ÷ 100 ÷ 1000',
 };
@@ -357,6 +392,7 @@ const BASIS_TEXT: Record<MeasurementBasis, string> = {
 function measurementFormula(m: EstimationMeasurement, row: number): string {
   if (m.basis === 'count') return `=E${row}`;
   if (m.basis === 'plan') return `=E${row}*F${row}*G${row}`;
+  if (m.basis === 'run') return `=E${row}*F${row}`;
   if (m.basis === 'steel') return `=E${row}*F${row}*G${row}*H${row}/100/1000`;
   return `=E${row}*F${row}*G${row}*H${row}`;
 }
@@ -540,7 +576,9 @@ export async function generateC1AbutmentPlaceholderSheets(
           // word instead of applying the rule at the place the engineer reads it: identical today
           // (verified across all 20 templates), silently wrong the day C1 takes its own geometry.
           {
-            formula: `=IF(AND(C${c1Row}>=1.5,D${c1Row}>=1.8,E${c1Row}>=2.5),"SAFE","UNSAFE")`,
+            formula:
+              `=IF(AND(C${c1Row}>=${STABILITY_ACCEPTANCE.slidingFosMin},D${c1Row}>=${STABILITY_ACCEPTANCE.overturningFosMin},` +
+              `E${c1Row}>=${STABILITY_ACCEPTANCE.bearingFosMin}),"SAFE","UNSAFE")`,
             result: loadCase.status,
           },
         ]);

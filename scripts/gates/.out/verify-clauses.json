@@ -1,0 +1,180 @@
+{
+  "name": "verify-clauses",
+  "ts": "2026-11-04T08:09:50.580Z",
+  "commit": "local",
+  "pass": 42,
+  "fail": 0,
+  "assertions": 42,
+  "scannedFiles": 23,
+  "citations": 22,
+  "detail": [
+    {
+      "check": "clause-registry.ts loads under plain Node (type-stripped)",
+      "verdict": "PASS"
+    },
+    {
+      "check": "clause-registry declares at least one clause",
+      "verdict": "PASS"
+    },
+    {
+      "check": "scan root lib/engine/src exists",
+      "verdict": "PASS"
+    },
+    {
+      "check": "scan covers at least 5 source files (not vacuous)",
+      "verdict": "PASS"
+    },
+    {
+      "check": "the scan finds at least one citation (not vacuous)",
+      "verdict": "PASS"
+    },
+    {
+      "check": "no orphan citation: every token under the scan root resolves to the registry",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry SP:13: id is well-formed [KIND:number]",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry SP:13: declares modules that exist",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry SP:13: every verbatim citation appears in a declared module",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry SP:13: implementing test tests/integration/clause-coverage.test.ts exists and names [SP:13]",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IS:7784: id is well-formed [KIND:number]",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IS:7784: declares modules that exist",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IS:7784: every verbatim citation appears in a declared module",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IS:7784: implementing test tests/integration/clause-coverage.test.ts exists and names [IS:7784]",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IRC:78: id is well-formed [KIND:number]",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IRC:78: declares modules that exist",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IRC:78: every verbatim citation appears in a declared module",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IRC:78: implementing test tests/integration/clause-coverage.test.ts exists and names [IRC:78]",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IS:875: id is well-formed [KIND:number]",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IS:875: declares modules that exist",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IS:875: every verbatim citation appears in a declared module",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IS:875: implementing test tests/integration/clause-coverage.test.ts exists and names [IS:875]",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IS:1893: id is well-formed [KIND:number]",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IS:1893: declares modules that exist",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IS:1893: every verbatim citation appears in a declared module",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IS:1893: implementing test tests/integration/clause-coverage.test.ts exists and names [IS:1893]",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IRC:112: id is well-formed [KIND:number]",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IRC:112: declares modules that exist",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IRC:112: every verbatim citation appears in a declared module",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IRC:112: implementing test tests/integration/clause-coverage.test.ts exists and names [IRC:112]",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IRC:21: id is well-formed [KIND:number]",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IRC:21: declares modules that exist",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IRC:21: every verbatim citation appears in a declared module",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IRC:21: implementing test tests/integration/clause-coverage.test.ts exists and names [IRC:21]",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IS:456: id is well-formed [KIND:number]",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IS:456: declares modules that exist",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IS:456: every verbatim citation appears in a declared module",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IS:456: implementing test tests/integration/clause-coverage.test.ts exists and names [IS:456]",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IRC:6: id is well-formed [KIND:number]",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IRC:6: declares modules that exist",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IRC:6: every verbatim citation appears in a declared module",
+      "verdict": "PASS"
+    },
+    {
+      "check": "entry IRC:6: implementing test tests/integration/clause-coverage.test.ts exists and names [IRC:6]",
+      "verdict": "PASS"
+    }
+  ]
+}

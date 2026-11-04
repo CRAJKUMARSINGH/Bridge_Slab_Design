@@ -20,7 +20,8 @@ import {
   defineNameRange,
 } from '../utils';
 import { getHydraulicsTotalRow } from './04-hydraulics';
-import { computeLegacyAffluxChain } from './03-afflux-calculation';
+import { computeAffluxChain } from './03-afflux-calculation';
+import { DESIGN_CONSTANTS, STABILITY_ACCEPTANCE } from '../design-engine';
 
 type CellVal = string | number | { formula: string; result?: number | string };
 
@@ -81,22 +82,39 @@ export const PIER_STABILITY_NAMES = {
  */
 export const PIER_STABILITY_ROWS = {
   sheet: PIER_STABILITY_NAMES.SHEET,
+  velocity: 18,
   baseW: 10,
   baseL: 11,
   sbc: 15,
-  dead: 30,
-  live: 31,
-  hydro: 33,
-  buoy: 36,
-  drag: 34,
-  wind: 41,
-  seis: 42,
-  totalH: 43,
-  firstCaseRow: 47,
+  // Section B starts below the passive-resistance parameters added to Section A (φ, γ, Kp, cap),
+  // so every row from `dead` down is 4 further than the pre-IRC:78 §706 layout.
+  dead: 34,
+  live: 35,
+  hydro: 37,
+  buoy: 40,
+  drag: 38,
+  wind: 45,
+  seis: 46,
+  totalH: 47,
+  firstCaseRow: 51,
   colV: 'H',
   colH: 'I',
   colM: 'J',
+  colStatus: 'N',
 } as const;
+
+/**
+ * Anchors `PIER_STABILITY_ROWS` claims to publish, checked against the rows this layout actually
+ * writes. Sheets 10 and 12-18 point into this sheet by those numbers, so an anchor that drifts
+ * silently — as every row from `dead` down did when the §706 passive-resistance parameters were
+ * inserted — makes downstream sheets link to the wrong cell and print a wrong number without
+ * erroring. Throwing here turns that into a build failure in the one file that can see both sides.
+ */
+export function pierStabilityDrift(actual: Record<string, number | string>): string[] {
+  return Object.entries(actual)
+    .filter(([key, value]) => PIER_STABILITY_ROWS[key as keyof typeof PIER_STABILITY_ROWS] !== value)
+    .map(([key, value]) => `${key}: sheet 9 writes ${value}, PIER_STABILITY_ROWS publishes ${PIER_STABILITY_ROWS[key as keyof typeof PIER_STABILITY_ROWS]}`);
+}
 
 export async function generateStabilityCheckPierSheet(
   workbook: ExcelJS.Workbook,
@@ -108,7 +126,7 @@ export async function generateStabilityCheckPierSheet(
   setCellValue(ws, 1, 1, 'DESIGN OF PIER AND CHECK FOR STABILITY - SUBMERSIBLE BRIDGE');
   ws.getCell(1, 1).font = { bold: true, size: 14 };
   setCellValue(ws, 2, 1, `Name Of Work :- ${input.projectName}`);
-  setCellValue(ws, 3, 1, `Wind per IRC:6-2017 §209; seismic per IS:1893:2002; stability limits: sliding ≥ 1.5, overturning ≥ 1.8, bearing ≥ 2.5.`);
+  setCellValue(ws, 3, 1, `Wind per IRC:6-2017 §209; seismic per IS:1893:2002; stability limits: sliding ≥ ${STABILITY_ACCEPTANCE.slidingFosMin}, overturning ≥ ${STABILITY_ACCEPTANCE.overturningFosMin}, bearing ≥ ${STABILITY_ACCEPTANCE.bearingFosMin}.`);
 
   const pier = input.pier;
   if (!pier) {
@@ -158,6 +176,10 @@ export async function generateStabilityCheckPierSheet(
     windCf: row++,          // B25
     zoneFactor: row++,      // B26 (formula)
     seismicAh: row++,       // B27 (formula)
+    soilPhi: row++,         // passive earth resistance: φ
+    soilGamma: row++,       // passive earth resistance: γ
+    kp: row++,              // passive earth pressure coefficient (formula)
+    passiveCap: row++,      // IRC:78 §706 cap on passive as a fraction of μV
   };
 
   paramRow(ws, R.unitWeight, 'Unit weight of RC', 25, 'kN/m³');
@@ -198,7 +220,7 @@ export async function generateStabilityCheckPierSheet(
 
   paramRow(ws, R.windVb, 'Basic wind speed Vb', Vb, 'm/s');
   paramRow(ws, R.zone, 'Seismic zone (IS:1893:2002)', zone, '');
-  paramRow(ws, R.mu, 'Friction coefficient μ', 0.5, '');
+  paramRow(ws, R.mu, 'Friction coefficient μ', DESIGN_CONSTANTS.BASE_FRICTION_COEFFICIENT, '');
   paramRow(ws, R.dragCd, 'Drag coefficient Cd (rect. pier)', 0.66, 'IRC:6-2016 Table 5');
   paramRow(ws, R.windCf, 'Wind force coefficient Cf', 1.3, 'IRC:6-2017 §209');
   ws.getCell(R.zoneFactor, 1).value = 'Zone factor Z';
@@ -217,6 +239,31 @@ export async function generateStabilityCheckPierSheet(
   };
   setCellValue(ws, R.seismicAh, 4, 'Ah = (Z/2)·(Sa/g)/(R/I), R=3, I=1.5');
   ws.getCell(R.seismicAh, 4).font = { italic: true, size: 9, color: { argb: 'FF666666' } };
+
+  // Passive earth resistance (IRC:78-2000 §706) — the resisting term design-engine.ts adds to
+  // sliding. Without these cells the Sliding FOS column shows an arithmetic that does not produce
+  // the number in it, which is what the link gate's cache-vs-formula re-execution catches.
+  const phiDeg = input.phi ?? 30;
+  const gammaSoil = input.gamma ?? 18;
+  const kpValue = Math.tan(((45 + phiDeg / 2) * Math.PI) / 180) ** 2;
+  paramRow(ws, R.soilPhi, 'Soil friction angle φ (passive resistance)', phiDeg, '°', 'IRC:78-2000 §706');
+  paramRow(ws, R.soilGamma, 'Soil unit weight γ (passive resistance)', gammaSoil, 'kN/m³', 'IRC:78-2000 §706');
+  paramRow(
+    ws,
+    R.kp,
+    'Passive earth pressure coefficient Kp',
+    { formula: `=TAN((45+B${R.soilPhi}/2)*PI()/180)^2`, result: Number(kpValue.toFixed(4)) },
+    '',
+    'Kp = tan²(45 + φ/2)',
+  );
+  paramRow(
+    ws,
+    R.passiveCap,
+    'Passive cap as fraction of μV',
+    DESIGN_CONSTANTS.PASSIVE_RESISTANCE_CAP_FRACTION,
+    '',
+    'IRC:78-2000 §706 — passive credited only up to this share of the friction term',
+  );
 
   // ── Named range registration (Section A outputs) ───────────────────────────
   // Excel updates defined-name refs automatically on insert/delete, so any
@@ -250,7 +297,10 @@ export async function generateStabilityCheckPierSheet(
   }
 
   // ── B) Load computations (every value a formula from Section A) ─────────────
-  row = R.seismicAh + 2;
+  // Section B starts below the LAST Section-A row, not below Ah specifically — the passive
+  // resistance parameters (φ, γ, Kp, cap) now close Section A, and PIER_STABILITY_ROWS mirrors
+  // whatever this offset produces.
+  row = R.passiveCap + 2;
   setCellValue(ws, row, 1, 'B) LOAD COMPUTATIONS — derived by formula from Section A cells');
   ws.getCell(row, 1).font = { bold: true, size: 11, color: { argb: 'FF1F496B' } };
   row++;
@@ -344,10 +394,31 @@ export async function generateStabilityCheckPierSheet(
   ]);
   row++;
 
+  const firstCaseRow = row;
+  const drift = pierStabilityDrift({
+    sheet: ws.name,
+    velocity: R.velocity,
+    baseW: R.baseW,
+    baseL: R.baseL,
+    sbc: R.sbc,
+    dead: L.dead,
+    live: L.live,
+    hydro: L.hydro,
+    drag: L.drag,
+    buoy: L.buoy,
+    wind: L.wind,
+    seis: L.seis,
+    totalH: L.totalH,
+    firstCaseRow,
+  });
+  if (drift.length) {
+    throw new Error(`Sheet 9 layout disagrees with PIER_STABILITY_ROWS (sheets 10/12-18 link by these rows):\n  ${drift.join('\n  ')}`);
+  }
+
   const seisFactors = [0.0, 0.0, 0.0, 1.0, 0.0];
   for (let i = 0; i < pier.loadCases.length; i++) {
     const lc = pier.loadCases[i];
-    const r = row + i;
+    const r = firstCaseRow + i;
     const values: CellVal[] = [
       lc.caseNumber,
       lc.description,
@@ -359,10 +430,20 @@ export async function generateStabilityCheckPierSheet(
       { formula: `=C${r}*B${L.dead}+D${r}*B${L.live}-G${r}*B${L.buoy}`, result: Number(lc.verticalForce.toFixed(3)) },
       { formula: `=B${L.hydro}+B${L.drag}+E${r}*B${L.wind}+F${r}*B${L.seis}`, result: Number(lc.horizontalForce.toFixed(3)) },
       { formula: `=I${r}*(B${R.depth}/3)`, result: Number(lc.moment.toFixed(3)) },
-      { formula: `=B${R.mu}*ABS(H${r})/MAX(ABS(I${r}),1)`, result: Number(lc.slidingFOS.toFixed(3)) },
+      {
+        formula:
+          `=(B${R.mu}*ABS(H${r})+MIN(0.5*B${R.kp}*B${R.soilGamma}*B${R.pierD}^2*B${R.baseL},` +
+          `B${R.passiveCap}*B${R.mu}*ABS(H${r})))/MAX(ABS(I${r}),1)`,
+        result: Number(lc.slidingFOS.toFixed(3)),
+      },
       { formula: `=ABS(H${r})*(B${R.baseL}/2)/MAX(ABS(J${r}),1)`, result: Number(lc.overturningFOS.toFixed(3)) },
       { formula: `=B${R.sbc}/MAX(ABS(H${r})/(B${R.baseW}*B${R.baseL}),1)`, result: Number(lc.bearingFOS.toFixed(3)) },
-      { formula: `=IF(AND(K${r}>=1.5,L${r}>=1.8,M${r}>=1.0),"SAFE","UNSAFE")`, result: lc.status },
+      {
+        formula:
+          `=IF(AND(K${r}>=${STABILITY_ACCEPTANCE.slidingFosMin},L${r}>=${STABILITY_ACCEPTANCE.overturningFosMin},` +
+          `M${r}>=${STABILITY_ACCEPTANCE.bearingFosMin}),"SAFE","UNSAFE")`,
+        result: lc.status,
+      },
     ];
     addTableRow(ws, r, values);
   }
@@ -373,17 +454,17 @@ export async function generateStabilityCheckPierSheet(
   setCellValue(ws, row, 1, 'Status is computed live from the FOS formulas above against IRC limits; it is not an engineering approval.');
   ws.getCell(row, 1).font = { italic: true, color: { argb: 'FF9C6500' } };
 
-  // ── D) Water-level reconciliation (open engineering decision, see PRESENTATION-SPEC) ──
+  // ── D) Water-level reconciliation (unified 2026-10-16: sheet 3 == engine DWL) ──
   row += 2;
-  setCellValue(ws, row, 1, 'D) RECONCILIATION — B16 DWL used above vs legacy afflux-sheet AFL');
+  setCellValue(ws, row, 1, 'D) RECONCILIATION — B16 DWL used above vs afflux-sheet AFL');
   ws.getCell(row, 1).font = { bold: true, size: 11, color: { argb: 'FF1F496B' } };
   row++;
-  const legacyAfl = computeLegacyAffluxChain(input).afl;
+  const affluxAfl = computeAffluxChain(input).afl;
   const dwl = input.hydraulics ? input.hydraulics.designWaterLevel : Math.max(0, input.hfl - input.bedLevel) + input.hfl;
-  setCellValue(ws, row, 1, 'DWL (B16) − legacy AFL');
-  setCellFormula(ws, row, 2, `=ROUND(B16-'afflux calculation'!C76,3)`, Number((dwl - legacyAfl).toFixed(3)));
+  setCellValue(ws, row, 1, 'DWL (B16) − afflux-sheet AFL');
+  setCellFormula(ws, row, 2, `=ROUND(B16-'afflux calculation'!C76,3)`, Number((dwl - affluxAfl).toFixed(3)));
   setCellValue(ws, row, 3, 'm');
-  setCellValue(ws, row, 4, 'Non-zero ⇒ the two waterway definitions differ. B16 stays a deliberate input until engineering fixes one definition; do not auto-link.');
+  setCellValue(ws, row, 4, 'Unified 2026-10-16: sheet 3 now uses the engine waterway (spans × spanLength) and the engine blockage areas, so AFL = DWL and this reads 0. A non-zero value flags a future divergence.');
   ws.getCell(row, 4).font = { italic: true, size: 9, color: { argb: 'FF666666' } };
   ws.getCell(row, 4).alignment = { wrapText: true };
 }

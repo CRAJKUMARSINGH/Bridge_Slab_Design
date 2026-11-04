@@ -1,0 +1,83 @@
+TOTAL lines: 82
+client/src/components/AstraContextPanel.tsx:191 [1.50] 'FOS_sliding = μ·ΣW / ΣH ≥ 1.50',
+client/src/components/AstraContextPanel.tsx:192 [2.0] 'FOS_overturning = ΣM_restoring / ΣM_overturn ≥ 2.0',
+client/src/components/AstraContextPanel.tsx:236 [1.50] 'FOS_slide = (μ·ΣW + Pp) / Pa_h ≥ 1.50  [IRC:78]',
+client/src/components/SeismicZonePanel.tsx:94 [1.25] const pierOK = pierFOS >= 1.25;
+client/src/components/SeismicZonePanel.tsx:95 [1.25] const abtOK  = abtFOS >= 1.25;
+client/src/components/SeismicZonePanel.tsx:107 [1.25] <span style={{ color: pierFOS >= 1.25 ? 'rgb(16 185 129)' : 'rgb(239 68 68)' }} className="font-mono text-sm font-semibo
+client/src/components/SeismicZonePanel.tsx:112 [1.25] <span style={{ color: abtFOS >= 1.25 ? 'rgb(16 185 129)' : 'rgb(239 68 68)' }} className="font-mono text-sm font-semibol
+client/src/components/SeismicZonePanel.tsx:175 [1.0] const M_overturn_pier_normal  = worstPier.overturningFOS > 0 ? 1.0 : 0; // relative unit
+client/src/components/SeismicZonePanel.tsx:196 [1.25] const pierSlideOK = FOS_pier_slide_seismic >= 1.25;
+client/src/components/SeismicZonePanel.tsx:197 [1.25] const abtSlideOK  = FOS_abt_slide_seismic  >= 1.25;
+client/src/components/SeismicZonePanel.tsx:198 [1.50] const pierOTOK    = FOS_pier_OT_seismic     >= 1.50;
+client/src/components/SeismicZonePanel.tsx:199 [1.50] const abtOTOK     = FOS_abt_OT_seismic      >= 1.50;
+client/src/components/SeismicZonePanel.tsx:352 [1.25] note={`≥ 1.25 req. (IRC:6-2016 Cl. 219) · normal = ${results.pier.loadCases.sort((a,b)=>a.slidingFOS-b.slidingFOS)[0]?.s
+client/src/components/SeismicZonePanel.tsx:358 [1.50] note={`≥ 1.50 req. (IRC:6-2016 Cl. 219) · normal = ${results.pier.loadCases.sort((a,b)=>a.overturningFOS-b.overturningFO
+client/src/components/SeismicZonePanel.tsx:364 [1.25] note={`≥ 1.25 req. · normal = ${results.abutmentType1.loadCases.sort((a,b)=>a.slidingFOS-b.slidingFOS)[0]?.slidingFOS.to
+client/src/components/SeismicZonePanel.tsx:370 [1.50] note={`≥ 1.50 req. · normal = ${results.abutmentType1.loadCases.sort((a,b)=>a.overturningFOS-b.overturningFOS)[0]?.overt
+client/src/components/SeismicZonePanel.tsx:415 [1.25,1.5,1.50,1.8] <strong className="text-app-fg">Reduced FOS limits (seismic):</strong> sliding ≥ 1.25 (vs 1.5 normal), overturning ≥ 1.5
+client/src/components/WindLoadPanel.tsx:381 [2.3] <strong className="text-app-fg">FOS limits (wind case):</strong> same as normal — sliding ≥ {limits.slidingFosMin.toFixe
+client/src/pages/AbutmentStability.tsx:222 [1.50] slide_ok:     FOS_sliding    >= 1.50,
+client/src/pages/AbutmentStability.tsx:223 [2.00] overturn_ok:  FOS_overturning >= 2.00,
+client/src/pages/AbutmentStability.tsx:496 [1.5] `FOS Sliding,${f.FOS_sliding.toFixed(2)},${f.slide_ok ? 'PASS' : 'FAIL'} (req >= 1.5)`,
+client/src/pages/AbutmentStability.tsx:497 [2.0] `FOS Overturning,${f.FOS_overturning.toFixed(2)},${f.overturn_ok ? 'PASS' : 'FAIL'} (req >= 2.0)`,
+client/src/pages/AbutmentStability.tsx:705 [1.5] <FOSCard label="Sliding FOS" fos={forces.FOS_sliding}    limit={1.5} ok={forces.slide_ok}    limitLabel="IRC:78 Cl.706" 
+client/src/pages/AbutmentStability.tsx:706 [2.0] <FOSCard label="Overturning FOS" fos={forces.FOS_overturning} limit={2.0} ok={forces.overturn_ok} limitLabel="IRC:78 Cl.
+client/src/pages/AbutmentStability.tsx:834 [1.50] <p>           = {forces.FOS_sliding.toFixed(3)}  {forces.slide_ok ? '≥ 1.50 ✓' : '< 1.50 ✗'}</p>
+client/src/pages/AbutmentStability.tsx:837 [2.00] <p>           = {forces.FOS_overturning.toFixed(3)}  {forces.overturn_ok ? '≥ 2.00 ✓' : '< 2.00 ✗'}</p>
+client/src/pages/AstraLibrary.tsx:210 [1.50] 'FOS_sliding = μ·W / H ≥ 1.50',
+client/src/pages/AstraLibrary.tsx:283 [1.5] 'FOS_sliding = (W×μ + Pa·sinδ) / (Pa·cosδ) ≥ 1.5',
+client/src/pages/AstraLibrary.tsx:485 [3.0] coverage: ['Terzaghi bearing capacity formula', 'Safe bearing capacity with FOS=3.0', 'Pile load capacity (static formul
+client/src/pages/AstraLibrary.tsx:488 [2.5] 'SBC = qu / FOS  (FOS=3 for strip, 2.5 for raft)',
+client/src/pages/BridgeSlabReport.tsx:132 [2.5] FOS_sbc: 2.5,
+client/src/pages/BridgeSlabReport.tsx:830 [1.5] (lc) => lc.slidFOS >= 1.5 && lc.qmax <= d.SBC,
+client/src/pages/BridgeSlabReport.tsx:879 [1.50] FOS_min = 1.50
+client/src/pages/Design.tsx:199 [1.25,1.50] // SeismicZonePanel prints (sliding 1.25 / overturning 1.50, cited there as IRC:6-2016
+client/src/pages/Design.tsx:202 [1.10,1.25,1.50] const sVerd: 'PASS' | 'WARN' | 'FAIL' = sSlideFOS >= 1.25 && sOTFOS >= 1.50 ? 'PASS' : sSlideFOS >= 1.10 ? 'WARN' : 'FAI
+client/src/pages/Design.tsx:227 [1.25,1.50] const wVerd: 'PASS' | 'WARN' | 'FAIL' = wFOS >= acc.slidingFosMin && wOTFOS >= acc.overturningFosMin ? 'PASS' : (wFOS >=
+client/src/pages/FormulaEvaluator.tsx:223 [2.4,3.6] const [v, setV] = useState({ H: 6.0, gamma_s: 18, phi_deg: 30, delta_deg: 20, alpha_deg: 90, B: 3.6, mu: 0.55, W_stem: 8
+client/src/pages/FormulaEvaluator.tsx:280 [1.3,1.5,1.50,1.6,2.2] <ResultRow label="FOS Sliding" formula="FOS = μ·ΣW / (Pa_h + ΔPa_q)" result={`${N(FOS_slide, 3)}`} verdict={FOS_slide >=
+client/src/pages/FormulaEvaluator.tsx:281 [1.7,2.0] <ResultRow label="FOS Overturning" formula="FOS = ΣM_restoring / ΣM_overturn" result={`${N(FOS_overturn, 3)}`} verdict={
+client/src/pages/PierStability.tsx:100 [1.5] Benchmark: BEDACH River pier W_DL=479 kN, W_LL=92 kN → SBC check 7.8 kg/cm². Seismic: Zone III Z=0.24, I=1.5 (frmPier_De
+client/src/report-engine/exportUtils.ts:294 [1.5] const status = lc.slidFOS >= 1.5 && lc.qmax <= d.SBC ? "SAFE âœ“" : "CHECK âœ—";
+client/src/report-engine/exportUtils.ts:599 [1.5,2.0] FOS: Sliding=1.5, OT=2.0
+client/src/report-engine/generateCertificationReport.ts:68 [1.5] const ad_ps = adequacy(pierMinFOS_slide, 1.5);
+client/src/report-engine/generateCertificationReport.ts:69 [2.0] const ad_pt = adequacy(pierMinFOS_ot, 2.0);
+client/src/report-engine/generateCertificationReport.ts:71 [1.5] const ad_as = adequacy(abtMinFOS_slide, 1.5);
+client/src/report-engine/generateCertificationReport.ts:151 [1.50] narrative: `${(d.pierLCs??[]).length} load combinations (DL, DL+LL, seismic, water-current, wind+braking). Min FOS_slide
+client/src/report-engine/generateCertificationReport.ts:160 [2.00] narrative: `Minimum overturning factor across all IRC load combinations = ${fv(pierMinFOS_ot,3)} vs floor 2.00 — ${ad_pt
+client/src/report-engine/generateCertificationReport.ts:375 [1.50] (IRC:78 floor 1.50), q_max = ${fv(Math.max(...(d.pierLCs ?? []).map(l => l.qmax ?? 0)), 2)} kN/m²
+client/src/report-engine/lib/pierCalc.ts:134 [1.25,1.5] const slidLim = seismic ? 1.25 : 1.5;
+client/src/report-engine/services/structural.ts:91 [1.25] slidOK: slidFOS >= (seismic?1.25:1.5),
+client/src/report-engine/services/structural.ts:92 [1.5] otOK: otFOS >= (seismic?1.5:2.0),
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:12 [2.00] *   1. Overturning FOS  = Î£MR / Î£MO  â‰¥ 2.00  (about toe)
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:13 [1.50] *   2. Sliding FOS      = Î¼ Ã— Î£V / Î£H â‰¥ 1.50
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:101 [2.0] /** Minimum FOS for overturning. Default 2.0. */
+client/src/report-engine/sheets/AbutmentOptimiser.tsx:103 [1.5] /** Minimum FOS for sliding. Default 1.5. */
+client/src/report-engine/sheets/AbutmentSection.tsx:105 [1.25,1.5] const okS = lc.slidFOS >= (lc.seismic ? 1.25 : 1.5);
+client/src/report-engine/sheets/AbutmentSection.tsx:106 [1.5,2.0] const okO = lc.otFOS >= (lc.seismic ? 1.5 : 2.0);
+client/src/report-engine/sheets/AbutmentSection.tsx:112 [1.25,1.5] { sym: "FOS Sliding", result: fv(lc.slidFOS), note: okS ? "ok" : "fail", where: `Limit: ${lc.seismic ? 1.25 : 1.5}` },
+client/src/report-engine/sheets/AbutmentSection.tsx:113 [1.5,2.0] { sym: "FOS Overturning", result: fv(lc.otFOS), note: okO ? "ok" : "fail", where: `Limit: ${lc.seismic ? 1.5 : 2.0}` },
+client/src/report-engine/sheets/AnnexureDrawings.tsx:137 [1.50] sliding factor of safety against the IRC:78 floor of 1.50 for every
+client/src/report-engine/sheets/AnnexureDrawings.tsx:327 [1.5] Σ q ≤ SBC ({fv(d.SBC, 0)} kN/m²) &nbsp;|&nbsp; FOS_slide ≥ 1.5 &nbsp;|&nbsp; e ≤ B/6
+client/src/report-engine/sheets/DesignCheckDashboard.tsx:367 [1.25,1.50] const slidLim = c.seismic ? 1.25 : 1.50;
+client/src/report-engine/sheets/engineeringNarrative.tsx:154 [1.5] const pierSlideOK = pierMinFOS >= 1.5;
+client/src/report-engine/sheets/engineeringNarrative.tsx:156 [1.5] const abtSlideOK = abtMinFOS >= 1.5;
+client/src/report-engine/sheets/engineeringNarrative.tsx:243 [1.5] pierMinFOS >= 1.5 &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:244 [1.5] abtMinFOS >= 1.5 &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:296 [1.5] pierMinFOS >= 1.5 &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:297 [1.5] abtMinFOS >= 1.5 &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:329 [1.50] <strong>{fv(pierMinFOS, 3)}</strong> against the IRC:78 floor of 1.50.
+client/src/report-engine/sheets/HydraulicsSection.tsx:259 [2.5,3.0] where="FOS = 2.5 or 3.0"
+client/src/report-engine/sheets/OptimisationAtAGlance.tsx:77 [1.25,1.50] const slidMin = isSeismic[idx] ? 1.25 : 1.50;
+client/src/report-engine/sheets/OptimisationAtAGlance.tsx:158 [1.25,1.50] <Row label="Sliding FOS" value={`${worstSlid.toFixed(2)} (min 1.25/1.50)`}
+client/src/report-engine/sheets/OptimisationAtAGlance.tsx:160 [1.50,2.00] <Row label="OT FOS" value={`${worstOT.toFixed(2)} (min 1.50/2.00)`}
+client/src/report-engine/sheets/PierOptimiser.tsx:61 [1.25,1.50] const slidMin = seismic ? 1.25 : 1.50;
+client/src/report-engine/sheets/PierOptimiser.tsx:224 [1.25,1.50] const slidColor = r.worstSlid < 1.25 ? C.red : r.worstSlid < 1.50 ? C.amber : C.green;
+client/src/report-engine/sheets/PierOptimiser.tsx:244 [1.25,1.50] &nbsp;â‰¥{r.lcRes.some(lc => !lc.slidOK) ? (r.lcRes[2].slidOK ? "1.50" : "1.25") : "1.50"}
+client/src/report-engine/sheets/PierStabilityEnhanced.tsx:195 [1.25,1.50] function slidMin(lc: typeof lcDefs[0]) { return lc.seismic ? 1.25 : 1.50; }
+client/src/report-engine/sheets/PierStabilityEnhanced.tsx:420 [1.25,1.50] FOS limits: Sliding â‰¥ 1.50 (non-seismic) / 1.25 (seismic) â€” <Cl>IRC:78-2014 Cl.706.2</Cl>.
+client/src/report-engine/sheets/PierStabilityEnhanced.tsx:421 [1.50,2.00] OT â‰¥ 2.00 (non-seismic) / 1.50 (seismic) â€” <Cl>IRC:78-2014 Cl.706.2</Cl>.
+client/src/report-engine/sheets/SummarySection.tsx:125 [1.5] const pierSafe = d.pierLCs.every(lc => lc.slidFOS >= 1.5 && lc.qmax <= d.SBC);
+client/src/report-engine/sheets/SummarySection.tsx:143 [1.50] ["5",  "Pier Sliding FOS",             `${fv(Math.min(...d.pierLCs.map(l=>l.slidFOS)),3)}`, " 1.50",           "IRC:78 C
+client/src/report-engine/sheets/SummarySection.tsx:144 [1.50] ["6",  "Abutment Sliding FOS",         `${fv(Math.min(...d.abtCases.map(c=>c.slidFOS)),3)}`, " 1.50",          "IRC:78 C

@@ -1,0 +1,12 @@
+      9 client/src/components/SeismicZonePanel.tsx
+      7 client/src/pages/Design.tsx
+      6 client/src/report-engine/sheets/engineeringNarrative.tsx
+      4 client/src/pages/FormulaEvaluator.tsx
+      3 client/src/report-engine/sheets/OptimisationAtAGlance.tsx
+      3 client/src/pages/AbutmentStability.tsx
+      2 client/src/report-engine/sheets/PierOptimiser.tsx
+      1 client/src/report-engine/sheets/SummarySection.tsx
+      1 client/src/report-engine/exportUtils.ts
+      1 client/src/pages/Estimate.tsx
+      1 client/src/pages/Dashboard.tsx
+      1 client/src/pages/BridgeSlabReport.tsx

@@ -17,10 +17,10 @@ rather than left to guesswork. They are *inputs*, not authority:
 
 | Document | Status | Why it is not canonical |
 | --- | --- | --- |
-| [origin-weekly-plan.md](origin-weekly-plan.md) | SUPERSEDED | the pre-Phase-2 weekly plan; its week numbering does not match `creat.md` §8 |
-| [docs/plan-b/15-week-implementation-plan.md](docs/plan-b/15-week-implementation-plan.md) | SUPERSEDED | an alternative 15-week schedule that was never adopted |
+| [archive/20261023-w00-closeout/origin-weekly-plan.md](archive/20261023-w00-closeout/origin-weekly-plan.md) | SUPERSEDED | the pre-Phase-2 weekly plan, archived in W00; its week numbering does not match `creat.md` §8 |
+| [archive/20261023-w00-closeout/15-week-implementation-plan.md](archive/20261023-w00-closeout/15-week-implementation-plan.md) | SUPERSEDED | an alternative 15-week schedule, archived in W00; never adopted |
 | [PHASE-2-INDEX.md](PHASE-2-INDEX.md) | DERIVED | a convenience index over `creat.md`; regenerate, never edit |
-| [CODE-JUNCTION/VENICE-GUIDE.MD](CODE-JUNCTION/VENICE-GUIDE.MD) | REFERENCE | the Phase-2 enrichment specification this foundation work is drawn from; it describes a tree that has since moved on |
+| [archive/20261101-code-junction-retirement/VENICE IS GURU.txt](archive/20261101-code-junction-retirement/VENICE%20IS%20GURU.txt) | REFERENCE | the standing-instruction dump this foundation work is drawn from; retired to `archive/` on 2026-11-01 (its rules now live in `README.md`, and it describes a tree that has since moved on) |
 | [kiro-impl-plan.md](kiro-impl-plan.md) | REFERENCE | agent-facing implementation notes |
 | [august-due.md](august-due.md) | REFERENCE | defect register; referenced by `scripts/tsconfig.tools.json` |
 

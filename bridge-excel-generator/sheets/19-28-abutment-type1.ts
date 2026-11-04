@@ -8,6 +8,7 @@
 import ExcelJS from 'exceljs';
 import type { AbutmentDesignResult, EnhancedProjectInput, SteelDetails } from '../types';
 import { addTableHeader, addTableRow, setCellFormula, setColumnWidths, setCellValue } from '../utils';
+import { DESIGN_CONSTANTS, STABILITY_ACCEPTANCE } from '../design-engine';
 
 function abutmentOrReview(input: EnhancedProjectInput): AbutmentDesignResult | undefined {
   return input.abutmentType1;
@@ -57,7 +58,7 @@ export async function generateType1StabilityCheckSheet(
   setColumnWidths(ws, [7, 30, 13, 13, 13, 12, 15, 12, 11, 9, 9, 9, 9, 9, 9]);
   setCellValue(ws, 1, 1, 'STABILITY CHECK FOR TYPE-1 ABUTMENT');
   ws.getCell(1, 1).font = { bold: true, size: 14 };
-  setCellValue(ws, 2, 1, 'Rankine earth pressure; stability limits: sliding ≥ 1.5, overturning ≥ 1.8, bearing ≥ 2.5. All derived cells are live formulas.');
+  setCellValue(ws, 2, 1, `Rankine earth pressure; stability limits: sliding ≥ ${STABILITY_ACCEPTANCE.slidingFosMin}, overturning ≥ ${STABILITY_ACCEPTANCE.overturningFosMin}, bearing ≥ ${STABILITY_ACCEPTANCE.bearingFosMin} (pressure ≤ SBC). μ is the Section-A cell B18. All derived cells are live formulas.`);
   const result = abutmentOrReview(input);
   if (!result) return note(ws, 4);
 
@@ -85,6 +86,10 @@ export async function generateType1StabilityCheckSheet(
   param(15, 'Live load LL (deck reaction)', result.loads.liveLoad, 'kN');
   param(16, 'Earth pressure Ka', { formula: '=TAN((45-B10/2)*PI()/180)^2', result: Number(result.earthPressure.ka.toFixed(4)) }, '');
   param(17, 'Active force Pa', { formula: '=0.5*B16*B11*B7^2', result: r3(result.earthPressure.pa) }, 'kN');
+  // μ is a Section-A source cell, not a number typed into the sliding formula below: the engine reads
+  // the same DESIGN_CONSTANTS entry, and a literal 0.5 in the cell would keep standing after a
+  // re-calibration of μ — the sheet then showing an arithmetic that no longer produces its own result.
+  param(18, 'Base friction coefficient μ', DESIGN_CONSTANTS.BASE_FRICTION_COEFFICIENT, '');
 
   // C) Lateral actions (placed before the case table references are resolved by Excel
   // at read time; rows 30-38 sit under the table and feed columns L-O).
@@ -127,10 +132,10 @@ export async function generateType1StabilityCheckSheet(
       { formula: `=J${row}*$B$14+K${row}*$B$15`, result: r3(loadCase.verticalForce) },
       { formula: `=L${row}*$B$17+M${row}*$B$32+N${row}*$B$35+O${row}*$B$38`, result: r3(loadCase.horizontalForce) },
       { formula: `=(L${row}*$B$17+M${row}*$B$32)*$B$7/3+(N${row}*$B$35+O${row}*$B$38)*$B$7/2`, result: r3(loadCase.moment) },
-      { formula: `=0.5*C${row}/D${row}`, result: Number(loadCase.slidingFOS.toFixed(4)) },
+      { formula: `=$B$18*C${row}/D${row}`, result: Number(loadCase.slidingFOS.toFixed(4)) },
       { formula: `=C${row}*B8/2/E${row}`, result: Number(loadCase.overturningFOS.toFixed(4)) },
       { formula: `=B12/(C${row}/(B8*B9))`, result: Number(loadCase.bearingFOS.toFixed(4)) },
-      { formula: `=IF(AND(F${row}>=1.5,G${row}>=1.8,H${row}>=2.5),"SAFE","UNSAFE")`, result: loadCase.status },
+      { formula: `=IF(AND(F${row}>=${STABILITY_ACCEPTANCE.slidingFosMin},G${row}>=${STABILITY_ACCEPTANCE.overturningFosMin},H${row}>=${STABILITY_ACCEPTANCE.bearingFosMin}),"SAFE","UNSAFE")`, result: loadCase.status },
       loadCase.deadLoadFactor,
       loadCase.liveLoadFactor,
       loadCase.earthPressureFactor ?? 0,
@@ -183,7 +188,8 @@ export async function generateType1FootingStressSheet(
   ws.getCell(2, 1).alignment = { wrapText: true };
   addTableHeader(ws, 4, ['Case', 'Description', 'Derived pressure (kN/m²)', 'SBC (kN/m²)', 'Status']);
   result.loadCases.forEach((loadCase, index) => {
-    const row = 4 + index;
+    // Row 4 is the header (see addTableHeader above); the C1 twin starts its data at 5 too.
+    const row = 5 + index;
     const src = 21 + index;
     const pressure = loadCase.bearingFOS > 0 ? input.sbc / loadCase.bearingFOS : Number.NaN;
     addTableRow(ws, row, [

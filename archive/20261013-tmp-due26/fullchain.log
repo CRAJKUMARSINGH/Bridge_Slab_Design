@@ -1,0 +1,37 @@
+=== deliverables ===
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+  design-workbook.xlsx         111,403 bytes
+  sheet-book.pdf               2,741,527 bytes
+  comprehensive-report.pdf     9,218,343 bytes
+  short-design-report.pdf      225,252 bytes
+  design-report.html           380,068 bytes
+  irc-checklist.html           39,752 bytes
+
+Wrote 6 deliverables to E:\Rajkumar\Bridge_Slab_Design\test-output
+EXIT_DELIVERABLES=0
+=== candidate (check/verify/test/audit:policy) ===
+
+> workspace@0.0.0 candidate E:\Rajkumar\Bridge_Slab_Design
+> tsx scripts/build-release-candidate.ts
+
+  check: exit 0 in 61.4 s
+  verify: exit 0 in 111.5 s
+  test: exit 1 in 65.8 s
+  audit:policy: exit 0 in 9.4 s
+Refusing to bundle: pnpm run test (exit 1) failed.
+Nothing was written to MANIFEST.md; the captured output is in evidence/release-candidate/gates/ for diagnosis.
+(node:6964) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ELIFECYCLE  Command failed with exit code 1.
+EXIT_CANDIDATE=0
+=== assimilate (A1 gate) ===
+Coverage report: E:\Rajkumar\Bridge_Slab_Design\evidence\assimilation-coverage.md
+FAIL: 97 of 97 assets are unclassified. A2-A5 must not run over an unclassified corpus (Action 1.6).
+E:\Rajkumar\Bridge_Slab_Design\scripts:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @workspace/scripts@0.0.0 assimilate: `python ./assimilate/inventory.py --root ../Attached_Assets --out ../asset-register.json --report`
+Exit status 1
+ ELIFECYCLE  Command failed with exit code 1.
+EXIT_ASSIMILATE=0

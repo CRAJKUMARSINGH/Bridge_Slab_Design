@@ -20,6 +20,13 @@ const out = flatten(result);
 for (const k of Object.keys(out)) {
   if (k.startsWith('input.')) delete out[k];
 }
+// The flat numeric-leaf fixture G3a (tests/golden/kherwara/golden.test.ts) reads.
+// It is NOT tests/golden/kherwara/expected.json: that path carries the structured
+// document verify:golden (scripts/src/verify-golden.ts) reads — schemaVersion +
+// intermediates + constraintStatus. One path cannot hold both, so the two golden
+// consumers were split onto two fixtures. Writing here keeps this script from
+// clobbering the fixture the other consumer depends on.
+const OUT = 'tests/golden/kherwara/expected-leaves.json';
 mkdirSync('tests/golden/kherwara', { recursive: true });
-writeFileSync('tests/golden/kherwara/expected.json', JSON.stringify(out, null, 2) + '\n');
-console.log(`blessed ${Object.keys(out).length} numeric leaves → tests/golden/kherwara/expected.json`);
+writeFileSync(OUT, JSON.stringify(out, null, 2) + '\n');
+console.log(`blessed ${Object.keys(out).length} numeric leaves → ${OUT}`);

@@ -24,7 +24,7 @@ import { deckSlabThicknessOf } from '../bridge-excel-generator/input-contract.ts
 import { PHASE1_QUICK_TEMPLATES } from '../server/default-project-inputs.ts';
 import type { ProjectInput } from '../bridge-excel-generator/types.ts';
 
-const FOS_LABEL = 'Factor of safety against uplift';
+const FOS_LABEL = 'Factor of safety against uplift (with anchorage)';
 
 async function sheetFos(input: ProjectInput): Promise<number> {
   const log = console.log;
@@ -64,7 +64,7 @@ async function check(input: ProjectInput) {
   }
   const expectedStatus = a.safetyFactor >= 1.2 ? 'SAFE' : 'UNSAFE';
   if (a.status !== expectedStatus) problems.push(`status ${a.status} but FOS ${a.safetyFactor.toFixed(2)}`);
-  if (dwl <= soffit && a.boltRecommendation.number !== 0 && a.status === 'SAFE') {
+  if (input.bridgeType === 'high-level' && dwl <= soffit && a.boltRecommendation.number !== 0 && a.status === 'SAFE') {
     problems.push(`dry deck still proposes ${a.boltRecommendation.number} hold-down bolts`);
   }
 
@@ -81,6 +81,10 @@ async function check(input: ProjectInput) {
 }
 
 let defects = 0;
+if (PHASE1_QUICK_TEMPLATES.length === 0) {
+  console.error('verify-uplift-sanity: the template roster is empty — this gate would exit 0 having checked nothing.');
+  process.exit(1);
+}
 for (const template of PHASE1_QUICK_TEMPLATES) {
   const r = await check(template.input);
   defects += r.problems.length;

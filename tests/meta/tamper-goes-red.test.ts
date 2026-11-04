@@ -17,14 +17,20 @@ describe('G3b tamper meta-test', () => {
     );
   });
 
-  it('a 10% span change moves discharge beyond the registered tolerance', () => {
+  it('a 10% span change moves a span-dependent output beyond the registered tolerance', () => {
     const clean = run(KHERWARA_REFERENCE_PROJECT_INPUT);
     const bad = run({
       ...KHERWARA_REFERENCE_PROJECT_INPUT,
       spanLength: KHERWARA_REFERENCE_PROJECT_INPUT.spanLength * 1.1,
     });
-    const t = toleranceFor('hydraulics.discharge');
-    const allowed = t.atol + t.rtol * Math.abs(clean.discharge);
-    expect(Math.abs(bad.discharge - clean.discharge)).toBeGreaterThan(allowed);
+    // discharge is an area-velocity result (A × V from the channel cross-section)
+    // and does NOT depend on span, so a span perturbation cannot move it. The
+    // span-dependent outputs are the waterway and the scour derived from it, so
+    // the sensitivity proof uses one of those — otherwise this test asserts
+    // nothing a span change could ever break.
+    const key = 'hydraulics.scourDepth';
+    const t = toleranceFor(key);
+    const allowed = t.atol + t.rtol * Math.abs(clean.scourDepth);
+    expect(Math.abs(bad.scourDepth - clean.scourDepth)).toBeGreaterThan(allowed);
   });
 });

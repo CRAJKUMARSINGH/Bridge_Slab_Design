@@ -1,0 +1,6 @@
+pages 226
+---- page 61 : SHEET 46: ESTIMATION | Page 61 of 226 | DETAILED ESTIMATE | Narrative: each line item is quantity-derived from design outputs and priced by rate analysis. | S.… | Description of Item | Qty | Unit | Rate | Amount | 1 | Earthwork in excavation for foundation of 
+---- page 62 : 18 | PCC M-15 levelling course below approach slab (150 mm | thick, 6 m long at each end) | 13.50 | m³ | Rs 4,335.00 | Rs 58,522.50 | 19 | RCC M-30 approach slab including reinforcement and | formwork (300 mm thick, 6 m long at each end) | 27.00 | m³ | Rs 8,20
+---- page 67 : WORKBOOK GRID: INDEX (rows 1–26) | Page 67 of 226 | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | DESIGN … | SUBMERSI | BLE | BRIDGE | AC… | DESIGN … | SUBMERSI | BLE | BRIDGE | AC… | DESIGN … | SUBMERSI | BLE | BRIDGE | AC… | Name of | work :- | Construction |
+---- page 68 : 13 | STABILITY | CHECK | FOR PIER | 13 | 14 | abstract of | stresses | 14 | 15 | STEEL IN | FLARED | PIER BASE | 15 | 16 | STEEL IN | PIER | 16 | 
+---- page 70 : 34 | TYPE1-DIR | T DirectLoa | d_BM | 34 | 35 | TYPE1-DIR | T LL_BM | 35 | 36 | INSERT | C1-ABUT | 36 | 37 | C1-AbutME | NT Drawing | 37 | 38 | C1-STABILI | TY CHECK | ABUTMENT | 38 | 39 | C1-ABUTM | ENT | FOOTING | DESIGN | 39 | 40 | C1-Abut | Footing | STRES

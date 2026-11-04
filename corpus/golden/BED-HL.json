@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0.0",
+  "bridgeCode": "BED-HL",
+  "oracleVersion": "1.0.0",
+  "sourceFile": "Stability Analysis HIGH LEVEL BRIDGE - BEDACH.xls",
+  "bridgeClass": "high-level",
+  "skewDeg": 30,
+  "spans": 18,
+  "spanLength": 10.8,
+  "hfl": 442.5,
+  "toleranceCategories": {
+    "ARITH": 0.000001,
+    "ROUNDED": 0.0001,
+    "HAND": 0.02
+  },
+  "inputSnapshot": null,
+  "inputSnapshotRejected": null,
+  "inputSnapshotGap": "No repository input snapshot matches the oracle (oracle: hfl 442.5, 18 spans, spanLength 10.8 m, skew 30 deg). scripts/fixtures/high-level-project-input.ts is hfl 286.5, 4 spans, spanLength 12 m, skew 0 — a different bridge. scripts/fixtures/high-level-hydraulics-snapshot.json is listed as superseded in GOLDEN-ORACLE.json (DWL 287.25 matches no uploaded workbook). Owner: W02 verifier (Kiro). Until an input snapshot is supplied, BED-HL is frozen as expectations only and gate:parity reports it as SKIP (never a silent pass).",
+  "inputs": null,
+  "baselinedKeys": [],
+  "gateParityExpectation": "SKIP",
+  "baseline": null,
+  "oracleVsComputed": null,
+  "perimeterRootCause": null,
+  "expected": {
+    "A": {
+      "value": 613.895,
+      "unit": "m2",
+      "sheet": "HYDRAULICS",
+      "tolerance": "ARITH",
+      "rtol": 0.000001
+    },
+    "V": {
+      "value": 2.146601,
+      "unit": "m/s",
+      "sheet": "HYDRAULICS",
+      "tolerance": "ROUNDED",
+      "rtol": 0.0001
+    },
+    "Q": {
+      "value": 1317.788,
+      "unit": "cumecs",
+      "sheet": "HYDRAULICS",
+      "tolerance": "ROUNDED",
+      "rtol": 0.0001
+    },
+    "deckObstruction": {
+      "value": 0,
+      "unit": "m2",
+      "sheet": "afflux calc",
+      "tolerance": "ARITH",
+      "rtol": 0.000001
+    },
+    "dsm": {
+      "value": 4.82,
+      "unit": "m",
+      "sheet": "afflux calc",
+      "tolerance": "HAND",
+      "rtol": 0.02
+    },
+    "afflux": {
+      "value": 0.09,
+      "unit": "m",
+      "sheet": "afflux calc",
+      "tolerance": "HAND",
+      "rtol": 0.02
+    },
+    "FS_sliding": {
+      "value": 1.76,
+      "unit": "-",
+      "sheet": "STABILITY CHECK ABUTMENT",
+      "tolerance": "HAND",
+      "rtol": 0.02
+    }
+  },
+  "expectedOutputHash": "7b48f976bf55cc392688ec5854e083e87ebfb96727e67cb2feb442f99d0a44b4"
+}

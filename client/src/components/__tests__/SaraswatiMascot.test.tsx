@@ -29,12 +29,11 @@ import { SARASWATI } from '../SaraswatiMascot';
 afterEach(cleanup);
 
 /**
- * The emitted asset URL is relative to the vite root, and this repo runs vitest
- * from two roots: `--root client` (the CI script) and the repo root (the config
- * at vitest.config.ts). The same component therefore serialises two different
- * `src` values. Normalising it keeps ONE snapshot valid in both lanes instead of
- * each lane writing a file the other rejects — a snapshot that fails on lane
- * choice is testing the runner, not the component.
+ * The emitted asset URL is vite's, not the component's: `saraswati.jpg` is
+ * imported so the bundler can fingerprint it, and the resolved `src` is whatever
+ * that transform produces. Pinning it in a snapshot would assert the bundler's
+ * output path rather than the mascot's markup, so a change there would fail a
+ * test about this component. Normalising it keeps the snapshot about the mascot.
  */
 const normalise = (el: Element) => el.outerHTML.replace(/src="[^"]*saraswati[^"]*"/i, 'src="[asset]"');
 

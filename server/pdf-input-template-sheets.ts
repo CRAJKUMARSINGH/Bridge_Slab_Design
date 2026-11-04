@@ -83,15 +83,17 @@ function drawInputWorkbookSheetModel(
   y += 6;
 
   ensureSpace(6);
-  doc.setFillColor(217, 217, 217);
   doc.setDrawColor(191, 191, 191);
   let x = M;
+  /** PDF text and shape fill share one colour operator, so each cell re-arms its own fill. */
+  doc.setFillColor(217, 217, 217);
   doc.rect(x, y, RN, 4.5, 'FD');
   doc.setFontSize(6.5);
   doc.setTextColor(0, 0, 0);
   doc.text('#', x + RN - 0.5, y + 3, { align: 'right' });
   x += RN;
   for (let i = 0; i < 8; i++) {
+    doc.setFillColor(217, 217, 217);
     doc.rect(x, y, W8, 4.5, 'FD');
     doc.text(letters[i], x + W8 / 2, y + 3, { align: 'center' });
     x += W8;

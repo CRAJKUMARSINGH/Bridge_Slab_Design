@@ -1489,3 +1489,37 @@ For high-level bridges where `foundationLevel > bedLevel` (e.g., pile caps above
 
 *End of AUDIT-REPORT-v1.0.md*
 *Generated: 2026-05-02 | Auditor: Grok (xAI) | Codebase: Bridge_Slab_Design (W16 post-merge)*
+
+---
+
+## 6. Gap Log — Post-Navratri Patch (2026-10-12)
+
+### BEDACH-002 — Molesworth Afflux Obstruction Depth (SIGN-OFF REQUIRED)
+
+| Field | Value |
+|---|---|
+| ID | BEDACH-002 |
+| Severity | Medium |
+| File | `bridge-excel-generator/design-engine.ts` line ~170 |
+| Constant | `DECK_OBSTRUCTION_DEPTH_M = 0.83` |
+| Used at | `design-engine.ts` line ~425: `const deckObstruction = bridgeWidth * DECK_OBSTRUCTION_DEPTH_M` |
+| Description | The Molesworth afflux blockage area calculation uses a fixed effective deck obstruction depth of 0.83 m. This was transcribed from the BEDACH HL bridge estimate. It represents the average depth of the deck slab + wearing coat that obstructs flow at HFL. |
+| Source clause | No IRC/IS clause found. Value originates from the BEDACH client estimate only. |
+| Status | **ASSUMPTION — requires licensed engineer sign-off before use in any sanctioned design.** |
+| Action | A licensed engineer must either (a) confirm 0.83 m as appropriate for the bridge type and confirm source, or (b) replace with a calculated value `= deckSlabThickness + wearingCoatThickness + girderDepth` derived from project geometry. |
+| Recorded by | Kiro automated audit pass 2026-10-12 (CODE-JUNCTION/august-due.md BEDACH-002) |
+
+### GIT LFS — `.dxf` and binary asset coverage (2026-10-12)
+
+Added to `.gitattributes`:
+- `*.dxf` — DXF drawing files (requested in CODE-JUNCTION/add GIT LFS AND ADD THE FOLLOWING F.txt)
+- `*.png`, `*.jpg` — image assets
+- `*.docx` — Word documents
+
+Pre-existing LFS coverage: `.dwg`, `.pdf`, `.xls`, `.xlsx`, `.zip`, `.mp4`, `.csv`
+
+External asset folders noted for future inclusion (not yet committed — paths outside repo):
+- `C:\Users\Rajkumar\Bridge_Slab_Design\attached_assets`
+- `C:\Users\Rajkumar\Dwg-Dxf-Record-Keeper\COMPONENT_DRAWINGS_SORTED`
+- `C:\Users\Rajkumar\Dwg-Dxf-Record-Keeper\DRAWINGS_FROM_RAJKUMAR_DESIGNS`
+- `C:\Users\Rajkumar\Dwg-Dxf-Record-Keeper\GENERATED_DRAWINGS`

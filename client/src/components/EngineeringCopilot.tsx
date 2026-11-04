@@ -42,6 +42,9 @@ function buildInsights(draft: ProjectInput, results: CompleteDesignResult): Insi
   const hyd  = results.hydraulics;
   const pier = results.pier;
   const abt1 = results.abutmentType1;
+  // Judged with the rule the engine sent in the same response, so this panel cannot fall behind a
+  // §M-1-style change to it — including the "(req ≥ …)" text it prints (august-due §AA).
+  const limits = results.stabilityAcceptance;
   const ins: Insight[] = [];
   const isHL = draft.bridgeType === 'high-level';
 
@@ -124,9 +127,9 @@ function buildInsights(draft: ProjectInput, results: CompleteDesignResult): Insi
     const worstSlide = pierCritical.slidingFOS;
     const worstOvert = pierCritical.overturningFOS;
     ins.push({
-      level: worstSlide >= 1.5 && worstOvert >= 1.8 ? 'ok' : 'alert',
+      level: worstSlide >= limits.slidingFosMin && worstOvert >= limits.overturningFosMin ? 'ok' : 'alert',
       code: 'IRC:6-2016 Cl. 202.3',
-      message: `Pier critical case: "${pierCritical.description}" — Sliding FOS = ${worstSlide.toFixed(2)} (req ≥ 1.5), Overturning FOS = ${worstOvert.toFixed(2)} (req ≥ 1.8). ${worstSlide >= 1.5 && worstOvert >= 1.8 ? 'All stability checks passed.' : 'FAILS stability — increase base width or add cut-off wall.'}`,
+      message: `Pier critical case: "${pierCritical.description}" — Sliding FOS = ${worstSlide.toFixed(2)} (req ≥ ${limits.slidingFosMin}), Overturning FOS = ${worstOvert.toFixed(2)} (req ≥ ${limits.overturningFosMin}). ${worstSlide >= limits.slidingFosMin && worstOvert >= limits.overturningFosMin ? 'All stability checks passed.' : 'FAILS stability — increase base width or add cut-off wall.'}`,
     });
   }
 
@@ -136,9 +139,9 @@ function buildInsights(draft: ProjectInput, results: CompleteDesignResult): Insi
     const ws = abtCritical.slidingFOS;
     const wo = abtCritical.overturningFOS;
     ins.push({
-      level: ws >= 1.5 && wo >= 1.8 ? 'ok' : 'alert',
+      level: ws >= limits.slidingFosMin && wo >= limits.overturningFosMin ? 'ok' : 'alert',
       code: 'IRC:6-2016 Cl. 202.3',
-      message: `Abutment critical case: "${abtCritical.description}" — Sliding = ${ws.toFixed(2)}, Overturning = ${wo.toFixed(2)}. ${ws >= 1.5 && wo >= 1.8 ? 'Abutment stable in all cases.' : 'Abutment FAILS — check earth pressure coefficient and base shear key.'}`,
+      message: `Abutment critical case: "${abtCritical.description}" — Sliding = ${ws.toFixed(2)}, Overturning = ${wo.toFixed(2)}. ${ws >= limits.slidingFosMin && wo >= limits.overturningFosMin ? 'Abutment stable in all cases.' : 'Abutment FAILS — check earth pressure coefficient and base shear key.'}`,
     });
   }
 

@@ -49,8 +49,12 @@ function getStatsSummary(db: MockDb) {
 
 // ── Arbitraries ───────────────────────────────────────────────────────────────
 
-const isoDateArb = fc.date({ min: new Date('2020-01-01'), max: new Date('2026-12-31') })
-  .map(d => d.toISOString());
+// fc.date() can still yield an Invalid Date, whose toISOString() throws RangeError; a bounded
+// timestamp cannot.
+const isoDateArb = fc.integer({
+  min: Date.parse('2020-01-01T00:00:00.000Z'),
+  max: Date.parse('2026-12-31T00:00:00.000Z'),
+}).map(ms => new Date(ms).toISOString());
 
 const fileRecordArb = (id: number): fc.Arbitrary<MockFileRecord> =>
   fc.record({

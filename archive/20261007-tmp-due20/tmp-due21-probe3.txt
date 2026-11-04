@@ -1,0 +1,26 @@
+== client/src/pages/Design.tsx
+2
+      2 CompleteDesignResult
+     19 engineResults
+     16 results
+      4 useDesignStore
+== client/src/pages/AbutmentStability.tsx
+0
+== client/src/pages/FormulaEvaluator.tsx
+0
+== client/src/components/SeismicZonePanel.tsx
+3
+      3 CompleteDesignResult
+     10 results
+== client/src/pages/Dashboard.tsx
+0
+      5 results
+      3 useDesignStore
+== client/src/pages/Estimate.tsx
+2
+      2 CompleteDesignResult
+     10 results
+      6 useDesignStore
+== client/src/report-engine/sheets/OptimisationAtAGlance.tsx
+0
+== client/src/report-engine/BridgeSlabReport.tsx

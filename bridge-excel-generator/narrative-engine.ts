@@ -17,6 +17,18 @@ function verdict(ok: boolean): string {
   return ok ? 'Hence O.K.' : 'Hence NOT O.K. - revise inputs/member sizes and re-verify.';
 }
 
+/**
+ * The stability rule, read from the module that applies it. These verdicts used to restate
+ * 1.5 / 1.8 / 2.5 locally, which is how a narrative paragraph could still call a design
+ * "NOT O.K." long after the owner moved the bearing limit to pressure ≤ SBC (factor 1.0) — the
+ * report disagreeing with the calculation it describes, with nothing to catch it.
+ */
+function stabilityOk(sliding?: number, overturning?: number, bearing?: number): boolean {
+  return (sliding ?? 0) >= STABILITY_ACCEPTANCE.slidingFosMin
+    && (overturning ?? 0) >= STABILITY_ACCEPTANCE.overturningFosMin
+    && (bearing ?? 0) >= STABILITY_ACCEPTANCE.bearingFosMin;
+}
+
 function adequacy(actual: number | undefined, threshold: number, label: string): string {
   const safe = actual ?? 0;
   const ratio = threshold > 0 ? safe / threshold : 0;
@@ -85,10 +97,7 @@ function narrativeContext(input: EnhancedProjectInput) {
   const v = h?.velocity ?? 0;
   const scour = h?.designScourDepth ?? h?.scourDepth ?? 0;
   const isHigh = input.bridgeType === 'high-level';
-  const minPierOk =
-    (minPierSliding ?? 0) >= 1.5 &&
-    (minPierOverturning ?? 0) >= 1.8 &&
-    (minPierBearing ?? 0) >= 2.5;
+  const minPierOk = stabilityOk(minPierSliding, minPierOverturning, minPierBearing);
 
   return {
     h,
@@ -171,10 +180,7 @@ export function getStructuralNarrativeParagraphs(input: EnhancedProjectInput): s
 export function getClosingNarrativeParagraphs(input: EnhancedProjectInput): string[] {
   const c = narrativeContext(input);
   const estTotal = input.estimation?.cost?.total ?? 0;
-  const type1Ok =
-    (c.minType1Sliding ?? 0) >= 1.5 &&
-    (c.minType1Overturning ?? 0) >= 1.8 &&
-    (c.minType1Bearing ?? 0) >= 2.5;
+  const type1Ok = stabilityOk(c.minType1Sliding, c.minType1Overturning, c.minType1Bearing);
 
   return [
     `CLOSING NARRATIVE: the bridge is accepted only when the river story, stability story, detailing story and quantity story remain consistent with one another. Any CHECK result is treated as an engineering review stop-point, not as a submission-ready closeout.`,
@@ -188,10 +194,7 @@ export function getClosingNarrativeParagraphs(input: EnhancedProjectInput): stri
 
 export function getVerificationNarrativeParagraphs(input: EnhancedProjectInput): string[] {
   const c = narrativeContext(input);
-  const c1Ok =
-    (c.minC1Sliding ?? 0) >= 1.5 &&
-    (c.minC1Overturning ?? 0) >= 1.8 &&
-    (c.minC1Bearing ?? 0) >= 2.5;
+  const c1Ok = stabilityOk(c.minC1Sliding, c.minC1Overturning, c.minC1Bearing);
   const cases = c.pier?.loadCases ?? [];
   const baseArea = ((c.pier?.footing.width ?? input.pierBaseWidth ?? 0) * (c.pier?.footing.length ?? input.pierBaseLength ?? 0)) || 1;
   const serviceCase = cases.find((lc) => /service/i.test(lc.description)) ?? cases[0];
@@ -338,7 +341,7 @@ function buildType1Narrative(input: EnhancedProjectInput): string[] {
     `Step 2 - B) LIVE LOAD SURCHARGE / EARTH PRESSURE: Rankine Ka = ${fmt(ab?.earthPressure.ka, 3)}, active thrust Pa = ${fmt(ab?.earthPressure.pa, 2)} kN acting at ${fmt(ab?.earthPressure.location, 3)} m above base, and live-load surcharge component = ${fmt(ab?.loads.soilSurcharge, 2)} kN. This reproduces the attached abutment workbook's separation of dead reaction, live reaction and surcharge stress.`,
     `C) FOUNDATION PRESSURE AT SILL / BOTTOM LEVEL: governing bearing case ${bearingCase?.caseNumber ?? 0} gives q = ${fmt(qBearing, 3)} kN/m2 and bearing FOS ${fmt(c.minType1Bearing, 3)}. The report keeps the foundation-level pressure check visible against SBC ${fmt(input.sbc, 2)} kN/m2 before reinforcement or BOQ is accepted.`,
     `D) SEISMIC CONDITION: ${seismicCase ? `case ${seismicCase.caseNumber} (${seismicCase.description}) reports V = ${fmt(seismicCase.verticalForce, 2)} kN, H = ${fmt(seismicCase.horizontalForce, 2)} kN and M = ${fmt(seismicCase.moment, 2)} kN-m` : 'no separate seismic case is present in the current Type1 load-case set'}. Seismic is stated explicitly so a non-governing case is not mistaken for an omitted check.`,
-    `BASE PRESSURE / STABILITY VERDICT: Type1 minima are Sliding ${fmt(c.minType1Sliding, 3)}, Overturning ${fmt(c.minType1Overturning, 3)}, Bearing ${fmt(c.minType1Bearing, 3)}. Compare against project acceptance before issuing abutment body, dirt wall, return wall, footing and cap reinforcement. ${verdict((c.minType1Sliding ?? 0) >= 1.5 && (c.minType1Overturning ?? 0) >= 1.8 && (c.minType1Bearing ?? 0) >= 2.5)}`,
+    `BASE PRESSURE / STABILITY VERDICT: Type1 minima are Sliding ${fmt(c.minType1Sliding, 3)}, Overturning ${fmt(c.minType1Overturning, 3)}, Bearing ${fmt(c.minType1Bearing, 3)}. Compare against project acceptance before issuing abutment body, dirt wall, return wall, footing and cap reinforcement. ${verdict(stabilityOk(c.minType1Sliding, c.minType1Overturning, c.minType1Bearing))}`,
   ];
 }
 
@@ -353,13 +356,13 @@ function buildC1Narrative(input: EnhancedProjectInput): string[] {
   const qService = serviceCase && baseArea > 0 ? serviceCase.verticalForce / baseArea : undefined;
   const qBearing = bearingCase && baseArea > 0 ? bearingCase.verticalForce / baseArea : undefined;
   return [
-    'STORY - Cantilever abutment behaviour is the stem-footing interaction story: stem action, heel/toe pressure, live-load surcharge, seismic increment and foundation bearing must be read together, not as isolated calculations.',
+    'STORY - Cantilever abutment behaviour is the stem-footing interaction story: stem action, heel/toe pressure, live-load surcharge, seismic increment and foundation bearing must be read together, not as isolated calculations. NOTE - the engine currently calculates ONE abutment stability model (august-due §Z), so these cantilever figures mirror the Type-1 values until C1 is given its own geometry; read them as the shared model applied at the cantilever, not as a second independent check.',
     `Design data: C1 height ${fmt(ab?.geometry.height ?? input.abutmentHeight, 2)} m, base ${fmt(ab?.geometry.baseWidth, 2)} m x ${fmt(ab?.geometry.baseLength, 2)} m, base area ${fmt(baseArea, 3)} m2, Ka ${fmt(ab?.earthPressure.ka, 3)}, Pa ${fmt(ab?.earthPressure.pa, 2)} kN, Pa location ${fmt(ab?.earthPressure.location, 3)} m above base.`,
     `Step 1 - A) DEAD LOAD / LIVE LOAD: dead load ${fmt(ab?.loads.deadLoad, 2)} kN and live load ${fmt(ab?.loads.liveLoad, 2)} kN establish the vertical restoring system. Service case ${serviceCase?.caseNumber ?? 0} gives V = ${fmt(serviceCase?.verticalForce, 2)} kN and q = ${fmt(qService, 3)} kN/m2.`,
     `Step 2 - B) EARTH PRESSURE / SURCHARGE: earth-pressure load ${fmt(ab?.loads.earthPressure, 2)} kN plus soil surcharge ${fmt(ab?.loads.soilSurcharge, 2)} kN and water pressure ${fmt(ab?.loads.waterPressure, 2)} kN form the destabilising side of the cantilever equilibrium.`,
     `C) FOUNDATION CHECK: governing bearing case ${bearingCase?.caseNumber ?? 0} gives q = ${fmt(qBearing, 3)} kN/m2 against SBC ${fmt(input.sbc, 2)} kN/m2. This keeps the bottom-of-foundation pressure story aligned with the attached PCC abutment workbook.`,
     `D) SEISMIC CONDITION: ${seismicCase ? `case ${seismicCase.caseNumber} (${seismicCase.description}) reports V = ${fmt(seismicCase.verticalForce, 2)} kN, H = ${fmt(seismicCase.horizontalForce, 2)} kN and M = ${fmt(seismicCase.moment, 2)} kN-m` : 'no separate seismic case is present in the current cantilever load-case set'}.`,
-    `BASE PRESSURE / STABILITY VERDICT: Cantilever minima are Sliding ${fmt(c.minC1Sliding, 3)}, Overturning ${fmt(c.minC1Overturning, 3)}, Bearing ${fmt(c.minC1Bearing, 3)}. Foundation pressure and stability acceptance must both pass before cantilever detailing is treated as final. ${verdict((c.minC1Sliding ?? 0) >= 1.5 && (c.minC1Overturning ?? 0) >= 1.8 && (c.minC1Bearing ?? 0) >= 2.5)}`,
+    `BASE PRESSURE / STABILITY VERDICT: Cantilever minima are Sliding ${fmt(c.minC1Sliding, 3)}, Overturning ${fmt(c.minC1Overturning, 3)}, Bearing ${fmt(c.minC1Bearing, 3)}. Foundation pressure and stability acceptance must both pass before cantilever detailing is treated as final. ${verdict(stabilityOk(c.minC1Sliding, c.minC1Overturning, c.minC1Bearing))}`,
   ];
 }
 

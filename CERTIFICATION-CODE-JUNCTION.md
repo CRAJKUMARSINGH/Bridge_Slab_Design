@@ -207,7 +207,7 @@ A follow-up audit was triggered by `ircSlabCalc.test.ts` reporting 10/10 failure
 | Check | Result | Evidence |
 |---|---|---|
 | `CREAT.md` exists | ✅ PASS | 41+ lines, 3 session entries |
-| Hook `.kiro/hooks/chat-log-12min.json` | ✅ PASS | Trigger: `UserPromptSubmit`, appends timestamped entry to `CREAT.md` |
+| Hook `.kiro/hooks/chat-log-15min.json` | ✅ PASS | Trigger: `UserPromptSubmit`, appends timestamped entry to `CREAT.md` (cadence 15 min; renamed from `chat-log-12min.json`, 2026-10-31) |
 | All agents instructed | ✅ PASS | `CREAT.md` header: "Every user prompt submission appends a timestamped entry. All agents (including Kiro) must log here." |
 
 ---

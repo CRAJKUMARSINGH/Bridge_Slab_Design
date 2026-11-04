@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "corpus-raw.v1",
+  "generatedAt": "2026-10-31",
+  "hashAlgorithm": "sha256",
+  "hashCase": "lowercase",
+  "originalsImmutable": true,
+  "note": "Verbatim copies of the 8 source workbooks. The originals under reference-design-examples/ are immutable and are never edited; these copies exist so the oracle and every parity gate read a frozen, hash-verified byte stream. Every sha256 below was measured from both the original and the copy and they matched at creation time.",
+  "entries": [
+    {
+      "bridgeCode": "SOM-KHW",
+      "bridgeClass": "submersible",
+      "description": "Kherwara 9/000, submersible bridge across Som River",
+      "fileName": "Stability Analysis SUBMERSIBLE BRIDGE ACROSS SOM RIVER 1.xls",
+      "relativePath": "SOM-KHW/Stability Analysis SUBMERSIBLE BRIDGE ACROSS SOM RIVER 1.xls",
+      "sourcePath": "reference-design-examples/BRIDGE DESIGN FROM PC/KHERWARA BRIDGE/Stability Analysis SUBMERSIBLE BRIDGE ACROSS SOM RIVER 1.xls",
+      "format": "biff8",
+      "bytes": 862208,
+      "sha256": "143c972c402bd7703aefedc50de9f86bac7f91d6e2425186a7caae3e0673c3c8"
+    },
+    {
+      "bridgeCode": "SOM-LAR",
+      "bridgeClass": "submersible",
+      "description": "Larathi, submersible bridge across Som River",
+      "fileName": "Stability Analysis SUBMERSIBLE BRIDGE ACROSS LARATHI SOM RIVER.xls",
+      "relativePath": "SOM-LAR/Stability Analysis SUBMERSIBLE BRIDGE ACROSS LARATHI SOM RIVER.xls",
+      "sourcePath": "reference-design-examples/BRIDGE DESIGN FROM PC/KHERWARA BRIDGE II/Stability Analysis SUBMERSIBLE BRIDGE ACROSS LARATHI SOM RIVER.xls",
+      "format": "biff8",
+      "bytes": 1102336,
+      "sha256": "1f457e9ec0399b013fdf801a2709b283f2f4b68692f61c66501be30fe312885f"
+    },
+    {
+      "bridgeCode": "BED-HL",
+      "bridgeClass": "high-level",
+      "description": "Bedach skew (30 deg), high level bridge",
+      "fileName": "plus Stability Analysis HIGH LEVEL BRIDGE - BEDACH.xls",
+      "relativePath": "BED-HL/plus Stability Analysis HIGH LEVEL BRIDGE - BEDACH.xls",
+      "sourcePath": "reference-design-examples/BRIDGE DESIGN FROM PC/CHITORGARH PWD/bedach bridge/plus Stability Analysis HIGH LEVEL BRIDGE - BEDACH.xls",
+      "format": "biff8",
+      "bytes": 1731584,
+      "sha256": "a05db117aa50c56a574aa474b56e39556d13fd645564ffcb3e1b98aef07c5a02"
+    },
+    {
+      "bridgeCode": "BED-SUB",
+      "bridgeClass": "submersible",
+      "description": "Bedach submersible bridge",
+      "fileName": "plus Stability Analysis SUBMERSIBLE BRIDGE - BEDACH.xlsx",
+      "relativePath": "BED-SUB/plus Stability Analysis SUBMERSIBLE BRIDGE - BEDACH.xlsx",
+      "sourcePath": "reference-design-examples/BRIDGE DESIGN FROM PC/CHITORGARH PWD/bedach bridge/plus Stability Analysis SUBMERSIBLE BRIDGE - BEDACH.xlsx",
+      "format": "xlsx",
+      "bytes": 512457,
+      "sha256": "0b08b7c10c954a7b0ec96effbf67d2157e48121ba43a6968cd14c7e583e849dd"
+    },
+    {
+      "bridgeCode": "AYAD-HL",
+      "bridgeClass": "high-level",
+      "description": "Ayad River high level bridge, Udaipur (Navratna complex)",
+      "fileName": "HIGH LEVEL BRIDGE ACROSS AYAD RIVER.xls",
+      "relativePath": "AYAD-HL/HIGH LEVEL BRIDGE ACROSS AYAD RIVER.xls",
+      "sourcePath": "reference-design-examples/BRIDGE DESIGN FROM PC/UIT BRIDGES/NAVRATNA COMPLEX/HIGH LEVEL BRIDGE ACROSS AYAD RIVER.xls",
+      "format": "biff8",
+      "bytes": 1257984,
+      "sha256": "1146d470b27be09cfd80cba0ddb5c4667917a6d085dc489b47a16b1fb23dec2e"
+    },
+    {
+      "bridgeCode": "REF-PIERCAP-1",
+      "bridgeClass": "reference",
+      "description": "ASTRA reference worksheet - pier cap, design set 2",
+      "fileName": "01 Pier Cap.xls",
+      "relativePath": "REF-PIERCAP-1/01 Pier Cap.xls",
+      "sourcePath": "reference-design-examples/ASTRA 15 TUTORIALS/DESIGN/Pier/Pier Worksheet Design 2/01 Pier Cap.xls",
+      "format": "biff8",
+      "bytes": 219136,
+      "sha256": "9ddbf40d1797ef2a5f0efd2e4756e58ca2d73fcac7bc738a519f8ab6f67a7bb1"
+    },
+    {
+      "bridgeCode": "REF-PIERCAP-2",
+      "bridgeClass": "reference",
+      "description": "ASTRA reference worksheet - pier worksheet design, design set 1",
+      "fileName": "PIER_Worksheet_Design.xls",
+      "relativePath": "REF-PIERCAP-2/PIER_Worksheet_Design.xls",
+      "sourcePath": "reference-design-examples/ASTRA 15 TUTORIALS/DESIGN/Pier/Pier Worksheet Design 1/PIER_Worksheet_Design.xls",
+      "format": "biff8",
+      "bytes": 3574784,
+      "sha256": "d01704be2f2600a453ae3c8ef77f45fd9372ecf4d54119625a49b38e5504a812"
+    },
+    {
+      "bridgeCode": "REF-FOOTING",
+      "bridgeClass": "reference",
+      "description": "ASTRA reference worksheet - pile capacity / footing, design set 2",
+      "fileName": "02 Pile Capacity.xls",
+      "relativePath": "REF-FOOTING/02 Pile Capacity.xls",
+      "sourcePath": "reference-design-examples/ASTRA 15 TUTORIALS/DESIGN/Pier/Pier Worksheet Design 2/02 Pile Capacity.xls",
+      "format": "biff8",
+      "bytes": 472576,
+      "sha256": "fd16c50a3453f5682c6d0f17263e2a8e857b7be7f7c7fd746671e691aa68d9b0"
+    }
+  ]
+}

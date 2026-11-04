@@ -1,0 +1,91 @@
+{
+  "sheet_names": [
+    "Sheet1",
+    "Sheet2",
+    "Sheet3"
+  ],
+  "column_headers": {
+    "Sheet1": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "Sheet2": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "Sheet3": []
+  },
+  "non_empty_cell_count": 342,
+  "id": "d009c2df9a5d_Section_Properties.xls",
+  "status": "ok",
+  "path": "Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Section Properties/Section Properties.xls",
+  "classified_headers": {
+    "Sheet1": [
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      }
+    ],
+    "Sheet2": [
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      }
+    ],
+    "Sheet3": []
+  },
+  "classification_status": "ok"
+}

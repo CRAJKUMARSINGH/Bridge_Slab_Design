@@ -145,10 +145,10 @@ function checkPageRules(): void {
 
 function checkPdfGeometry(): void {
   const outDir = path.join(REPO, 'test-output');
-  if (!fs.existsSync(outDir)) {
-    console.log('  pdf pages  : test-output/ absent — skipped (run `pnpm run deliverables`)');
-    return;
-  }
+  // Absence used to print "skipped" and return, so the A4/15 mm page lane stayed green while
+  // measuring nothing — the same green-not-safe failure mode as the stability-outcome gate.
+  check(fs.existsSync(outDir), 'test-output/ is absent: no PDF page geometry was measured (run `pnpm run deliverables` first)');
+  if (!fs.existsSync(outDir)) return;
   const files = fs.readdirSync(outDir).filter((f) => f.endsWith('.pdf'));
   check(files.length > 0, 'test-output/ has no PDFs to measure');
   for (const file of files) {

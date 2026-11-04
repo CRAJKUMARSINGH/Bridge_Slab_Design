@@ -1,0 +1,16 @@
+=== modified tsconfig/build-info ===
+ M tsconfig.base.json
+=== noImplicitOverride / noUnusedLocals across configs ===
+./merge-refs/Submersible_Bridge_Design/tsconfig.base.json:10:    "noImplicitOverride": false,
+./merge-refs/Submersible_Bridge_Design/tsconfig.base.json:12:    "noUnusedLocals": false,
+./merge-refs/Submersible_Bridge_Design/tsconfig.json:13:    "noImplicitOverride": false,
+./merge-refs/Submersible_Bridge_Design/tsconfig.json:15:    "noUnusedLocals": false,
+./merge-refs/Submersible_Bridge_Design/_archive/CODE-JUNCTION/Bridge-Design/tsconfig.base.json:10:    "noImplicitOverride": false,
+./merge-refs/Submersible_Bridge_Design/_archive/CODE-JUNCTION/Bridge-Design/tsconfig.base.json:12:    "noUnusedLocals": false,
+./merge-refs/Submersible_Bridge_Design/_archive/CODE-JUNCTION/Submersible_Bridge_Design_statutory_preview/tsconfig.base.json:10:    "noImplicitOverride": false,
+./merge-refs/Submersible_Bridge_Design/_archive/CODE-JUNCTION/Submersible_Bridge_Design_statutory_preview/tsconfig.base.json:12:    "noUnusedLocals": false,
+./tsconfig.base.json:10:    "noImplicitOverride": true,
+./tsconfig.base.json:12:    "noUnusedLocals": true,
+=== libs lane script ===
+15:    "typecheck:libs": "tsc --build",
+19:    "typecheck": "pnpm run typecheck:libs && pnpm run typecheck:flat && pnpm run typecheck:client && pnpm run typecheck:tools && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck",

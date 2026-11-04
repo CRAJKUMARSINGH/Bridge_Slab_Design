@@ -12,6 +12,8 @@ For each asset in asset-register.json:
 import json, os, sys
 from pathlib import Path
 
+from output_currency import relocate_stale
+
 WORKSPACE = Path(__file__).resolve().parents[2]  # repo root
 REGISTER = WORKSPACE / 'asset-register.json'
 OUT_DIR = WORKSPACE / 'evidence' / 'assimilation' / 'normalized'
@@ -67,6 +69,7 @@ def main():
     # asset-register.json uses 'files' array with 'relativePath' and 'fileName'
     assets = register.get('files', register if isinstance(register, list) else register.get('assets', []))
     skipped, processed, errors = 0, 0, 0
+    expected = set()
     for idx, asset in enumerate(assets):
         # Support both schema styles
         asset_id = asset.get('sha256', asset.get('id', asset.get('name', f'asset_{idx:04d}')))
@@ -80,6 +83,7 @@ def main():
             continue
         full_path = WORKSPACE / rel_path
         out_file = OUT_DIR / f'{short_id}.json'
+        expected.add(out_file.name)
         if not full_path.exists():
             out_file.write_text(json.dumps({'id': short_id, 'status': 'missing', 'path': str(rel_path)}), encoding='utf-8')
             continue
@@ -99,7 +103,9 @@ def main():
                 errors += 1
         else:
             out_file.write_text(json.dumps({'id': short_id, 'status': 'skipped-non-excel', 'path': str(rel_path)}), encoding='utf-8')
-    print(f'A2 normalize: processed={processed}, lfs-stub={skipped}, errors={errors}')
+    stale = relocate_stale(OUT_DIR, expected)
+    print(f'A2 normalize: processed={processed}, lfs-stub={skipped}, errors={errors}, '
+          f'records={len(expected)}, relocated-pointer-era={len(stale)}')
     sys.exit(0)
 
 if __name__ == '__main__':

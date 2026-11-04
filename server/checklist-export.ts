@@ -5,6 +5,14 @@
 
 import type { ProjectInput, CompleteDesignResult } from '../bridge-excel-generator/types';
 import { deckSlabThicknessOf } from '../bridge-excel-generator/input-contract';
+import { STABILITY_ACCEPTANCE } from '../bridge-excel-generator/design-engine';
+
+/**
+ * Colour a factor of safety by the rule the engine itself applied to set `status` on the same row.
+ * These limits used to be typed in here (1.5 / 1.8 / 2.5), so after the bearing limit moved to
+ * pressure ≤ SBC the table could paint a SAFE row's bearing cell red — one document, two verdicts.
+ */
+const fosColor = (value: number, min: number) => (value >= min ? '#065f46' : '#991b1b');
 
 type ClauseStatus = 'PASS' | 'WARN' | 'FAIL' | 'N/A';
 
@@ -112,7 +120,7 @@ function buildClauses(inp: ProjectInput, r: CompleteDesignResult): IrcClause[] {
     clause: 'Cl. 202.3',
     description: `Pier stability — ${pierCases.length} load combinations (sliding, overturning, bearing)`,
     computed: `Sliding min FOS = ${worstSlide.toFixed(2)}, Overturning min FOS = ${worstOvert.toFixed(2)} (${pierCases.length - pierUnsafe - pierCheck} SAFE, ${pierCheck} CHECK, ${pierUnsafe} UNSAFE)`,
-    limit: 'Sliding ≥ 1.5, Overturning ≥ 1.8, Bearing ≥ 2.5 — all combinations',
+    limit: `Sliding ≥ ${STABILITY_ACCEPTANCE.slidingFosMin}, Overturning ≥ ${STABILITY_ACCEPTANCE.overturningFosMin}, Bearing ≥ ${STABILITY_ACCEPTANCE.bearingFosMin} (pressure ≤ SBC) — all combinations`,
     status: pierUnsafe > 0 ? 'FAIL' : pierCheck > 0 ? 'WARN' : 'PASS',
     remarks: pierUnsafe === 0 && pierCheck === 0
       ? 'All pier stability checks satisfied in all load combinations'
@@ -333,9 +341,9 @@ export function generateIrcChecklistHTML(inp: ProjectInput, r: CompleteDesignRes
     <tr style="background:${lc.status === 'UNSAFE' ? '#fee2e2' : lc.status === 'CHECK' ? '#fef3c7' : '#f9fafb'}">
       <td style="padding:4px 8px;border:1px solid #e5e7eb">LC ${lc.caseNumber}</td>
       <td style="padding:4px 8px;border:1px solid #e5e7eb">${lc.description}</td>
-      <td style="padding:4px 8px;border:1px solid #e5e7eb;text-align:center;font-weight:600;color:${lc.slidingFOS >= 1.5 ? '#065f46' : '#991b1b'}">${lc.slidingFOS.toFixed(2)}</td>
-      <td style="padding:4px 8px;border:1px solid #e5e7eb;text-align:center;font-weight:600;color:${lc.overturningFOS >= 1.8 ? '#065f46' : '#991b1b'}">${lc.overturningFOS.toFixed(2)}</td>
-      <td style="padding:4px 8px;border:1px solid #e5e7eb;text-align:center;font-weight:600;color:${lc.bearingFOS >= 2.5 ? '#065f46' : '#991b1b'}">${lc.bearingFOS.toFixed(2)}</td>
+      <td style="padding:4px 8px;border:1px solid #e5e7eb;text-align:center;font-weight:600;color:${fosColor(lc.slidingFOS, STABILITY_ACCEPTANCE.slidingFosMin)}">${lc.slidingFOS.toFixed(2)}</td>
+      <td style="padding:4px 8px;border:1px solid #e5e7eb;text-align:center;font-weight:600;color:${fosColor(lc.overturningFOS, STABILITY_ACCEPTANCE.overturningFosMin)}">${lc.overturningFOS.toFixed(2)}</td>
+      <td style="padding:4px 8px;border:1px solid #e5e7eb;text-align:center;font-weight:600;color:${fosColor(lc.bearingFOS, STABILITY_ACCEPTANCE.bearingFosMin)}">${lc.bearingFOS.toFixed(2)}</td>
       <td style="padding:4px 8px;border:1px solid #e5e7eb;text-align:center">
         <span style="background:${lc.status === 'SAFE' ? '#d1fae5' : lc.status === 'CHECK' ? '#fef3c7' : '#fee2e2'};color:${lc.status === 'SAFE' ? '#065f46' : lc.status === 'CHECK' ? '#92400e' : '#991b1b'};padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700">${lc.status}</span>
       </td>
@@ -345,9 +353,9 @@ export function generateIrcChecklistHTML(inp: ProjectInput, r: CompleteDesignRes
     <tr style="background:${lc.status === 'UNSAFE' ? '#fee2e2' : lc.status === 'CHECK' ? '#fef3c7' : '#f9fafb'}">
       <td style="padding:4px 8px;border:1px solid #e5e7eb">LC ${lc.caseNumber}</td>
       <td style="padding:4px 8px;border:1px solid #e5e7eb">${lc.description}</td>
-      <td style="padding:4px 8px;border:1px solid #e5e7eb;text-align:center;font-weight:600;color:${lc.slidingFOS >= 1.5 ? '#065f46' : '#991b1b'}">${lc.slidingFOS.toFixed(2)}</td>
-      <td style="padding:4px 8px;border:1px solid #e5e7eb;text-align:center;font-weight:600;color:${lc.overturningFOS >= 1.8 ? '#065f46' : '#991b1b'}">${lc.overturningFOS.toFixed(2)}</td>
-      <td style="padding:4px 8px;border:1px solid #e5e7eb;text-align:center;font-weight:600;color:${lc.bearingFOS >= 2.5 ? '#065f46' : '#991b1b'}">${lc.bearingFOS.toFixed(2)}</td>
+      <td style="padding:4px 8px;border:1px solid #e5e7eb;text-align:center;font-weight:600;color:${fosColor(lc.slidingFOS, STABILITY_ACCEPTANCE.slidingFosMin)}">${lc.slidingFOS.toFixed(2)}</td>
+      <td style="padding:4px 8px;border:1px solid #e5e7eb;text-align:center;font-weight:600;color:${fosColor(lc.overturningFOS, STABILITY_ACCEPTANCE.overturningFosMin)}">${lc.overturningFOS.toFixed(2)}</td>
+      <td style="padding:4px 8px;border:1px solid #e5e7eb;text-align:center;font-weight:600;color:${fosColor(lc.bearingFOS, STABILITY_ACCEPTANCE.bearingFosMin)}">${lc.bearingFOS.toFixed(2)}</td>
       <td style="padding:4px 8px;border:1px solid #e5e7eb;text-align:center">
         <span style="background:${lc.status === 'SAFE' ? '#d1fae5' : lc.status === 'CHECK' ? '#fef3c7' : '#fee2e2'};color:${lc.status === 'SAFE' ? '#065f46' : lc.status === 'CHECK' ? '#92400e' : '#991b1b'};padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700">${lc.status}</span>
       </td>
@@ -514,9 +522,9 @@ export function generateIrcChecklistHTML(inp: ProjectInput, r: CompleteDesignRes
       <tr>
         <th style="width:40px">Case</th>
         <th>Description</th>
-        <th style="width:90px;text-align:center">Sliding FOS<br/><span style="font-weight:400">(req ≥ 1.5)</span></th>
-        <th style="width:90px;text-align:center">Overturn FOS<br/><span style="font-weight:400">(req ≥ 1.8)</span></th>
-        <th style="width:90px;text-align:center">Bearing FOS<br/><span style="font-weight:400">(req ≥ 2.5)</span></th>
+        <th style="width:90px;text-align:center">Sliding FOS<br/><span style="font-weight:400">(req ≥ ${STABILITY_ACCEPTANCE.slidingFosMin})</span></th>
+        <th style="width:90px;text-align:center">Overturn FOS<br/><span style="font-weight:400">(req ≥ ${STABILITY_ACCEPTANCE.overturningFosMin})</span></th>
+        <th style="width:90px;text-align:center">Bearing FOS<br/><span style="font-weight:400">(req ≥ ${STABILITY_ACCEPTANCE.bearingFosMin})</span></th>
         <th style="width:70px;text-align:center">Status</th>
       </tr>
     </thead>
@@ -530,9 +538,9 @@ export function generateIrcChecklistHTML(inp: ProjectInput, r: CompleteDesignRes
       <tr>
         <th style="width:40px">Case</th>
         <th>Description</th>
-        <th style="width:90px;text-align:center">Sliding FOS<br/><span style="font-weight:400">(req ≥ 1.5)</span></th>
-        <th style="width:90px;text-align:center">Overturn FOS<br/><span style="font-weight:400">(req ≥ 1.8)</span></th>
-        <th style="width:90px;text-align:center">Bearing FOS<br/><span style="font-weight:400">(req ≥ 2.5)</span></th>
+        <th style="width:90px;text-align:center">Sliding FOS<br/><span style="font-weight:400">(req ≥ ${STABILITY_ACCEPTANCE.slidingFosMin})</span></th>
+        <th style="width:90px;text-align:center">Overturn FOS<br/><span style="font-weight:400">(req ≥ ${STABILITY_ACCEPTANCE.overturningFosMin})</span></th>
+        <th style="width:90px;text-align:center">Bearing FOS<br/><span style="font-weight:400">(req ≥ ${STABILITY_ACCEPTANCE.bearingFosMin})</span></th>
         <th style="width:70px;text-align:center">Status</th>
       </tr>
     </thead>

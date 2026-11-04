@@ -1,0 +1,113 @@
+continue due taske of previous sessions >>>>>>implement W01→W09A, one week at a time
+Yesterday 23:18
+Thought
+I'll start by reviewing the current project state and the Phase-2 Master Plan to understand where we are and what W04 requires.
+
+Browsed 1 folder, Searched files 1 time
+Let me read the Phase-2 Master Plan and the recent governance log to pinpoint the current week.
+
+Read 2 files
+Now I have the full picture: W00–W03 (incl. W02A) are GREEN. W04 is next. Let me read the W04 instructions, the phase index, and the ledger.
+
+Read 2 files, Searched files 1 time
+Let me read the W04 instructions.
+
+Read 1 file
+Now let me gather the W04-relevant files and environment state.
+
+Read 3 files, Searched files 1 time
+Let me read the security gate, app-factory, .env.example, and check the toolchain state.
+
+Read 4 files
+Let me check the toolchain state before committing to an approach.
+
+Read 2 files, Searched files 2 times, Ran 5 commands
+Let me check path ownership and the audit's fix specs before touching code.
+
+Read 1 file
+This is a large multi-week effort. Let me set up a plan and read the remaining W04 references.
+
+Model thinking limit reached, please enter 'Continue' to get more.
+Abnormally stopped
+Continue
+06:56
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+P2-W06 (Performance Budget & Baseline) — CLOSED, ledger W06 = GREEN.
+
+What landed
+Task	Result
+T6.2/T6.5 budget + guard	perf-budget.ts (dependency-free): PERF_BUDGET = p95 3000 ms / bundle 1300 KB / memory 1024 MB / async 3000 ms / cold 1500 ms; enforceBudget() → 200 or 202 + JobContract; PERF_ASYNC_THRESHOLD_MS override
+T6.3 real gate:perf	gate-perf.mjs — 6 groups, GATE gate-perf: PASS 37 assertions, exit 0, 6/6 deterministic runs
+T6.1/T6.6 baseline	PERF-BASELINE.md — n=1/11/15/50, cold start, bundle (1161.9 KB / 16 files)
+T6.7 topology	COMPUTE-TOPOLOGY.md — Option B external worker chosen, Option A rejected, migration trigger recorded
+T6.4	hot-path memoisation + no blocking fs/exec, asserted by group D
+Evidence	EXIT-GATE-EVIDENCE.md — 6/6 boxes PASS, raw transcripts, sha256 table
+The one real engineering problem
+The gate flaked. Comparing an absolute wall-clock p95 against a baseline on a shared host swung 38.8–52.2 ms (34%) across identical runs — enough to fail a 15% band with no code change. I measured three signals:
+
+wall p95 → rejected (descheduling/co-tenant noise)
+CPU time (process.cpuUsage()) → bit-identical 47.00 ms, but quantised to the ~15.6 ms Windows scheduler tick, so a 15% band sits inside one tick and can never fire — vacuous (rejected)
+minimum wall-clock sample → 36.39–36.63 ms (~0.7%), no quantisation → chosen
+The 15% rule now applies to the minimum; the 3000 ms budget is still asserted against p95. Rationale in PERF-BASELINE.md §4 and the gate header.
+
+Non-vacuity proven RED→GREEN (bundleKb 1300→100 probe → FAIL 37, exit 1; revert → PASS 37, exit 0). Test lane tests/integration/perf-budget.test.ts 16/16.
+
+Ancillary
+GATE-LEDGER.json W06→GREEN · PATH-MANIFEST.json W06 block added (it had none) · creat.md §8 entry appended · RunCommand reruns confirm green. All artifacts remain DRAFT pending licensed sign-off. preflight/gate:index/build remain not-run under escape E-008 (harness imports extensionless ./_lib; no tsx).
+
+Next
+P2-W06A — Hydraulic & Scour Method Parity (12 tasks, 3 bridges; gate gate:oracle; deliverables docs/phase-2/week-06A/{PARITY-DIFF,EXIT-GATE-EVIDENCE}.md + specs E‑01/E‑02/E‑03). I've split it out as the next week per the one-week-at-a-time cadence — say the word and I'll start it.

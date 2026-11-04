@@ -1,0 +1,1091 @@
+{
+  "name": "gate-oracle",
+  "ts": "2026-11-04T08:09:50.042Z",
+  "commit": "local",
+  "pass": 270,
+  "fail": 0,
+  "skipped": 0,
+  "egress": "none",
+  "detail": [
+    {
+      "check": "corpus/raw/manifest.json present and parseable",
+      "verdict": "PASS"
+    },
+    {
+      "check": "manifest declares at least one corpus entry",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: SOM-KHW declares a bridgeCode",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: SOM-KHW declares a sha256",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: SOM-KHW sha256 matches manifest",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: SOM-KHW byte length matches manifest",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: SOM-LAR declares a bridgeCode",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: SOM-LAR declares a sha256",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: SOM-LAR sha256 matches manifest",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: SOM-LAR byte length matches manifest",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: BED-HL declares a bridgeCode",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: BED-HL declares a sha256",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: BED-HL sha256 matches manifest",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: BED-HL byte length matches manifest",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: BED-SUB declares a bridgeCode",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: BED-SUB declares a sha256",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: BED-SUB sha256 matches manifest",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: BED-SUB byte length matches manifest",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: AYAD-HL declares a bridgeCode",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: AYAD-HL declares a sha256",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: AYAD-HL sha256 matches manifest",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: AYAD-HL byte length matches manifest",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: REF-PIERCAP-1 declares a bridgeCode",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: REF-PIERCAP-1 declares a sha256",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: REF-PIERCAP-1 sha256 matches manifest",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: REF-PIERCAP-1 byte length matches manifest",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: REF-PIERCAP-2 declares a bridgeCode",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: REF-PIERCAP-2 declares a sha256",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: REF-PIERCAP-2 sha256 matches manifest",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: REF-PIERCAP-2 byte length matches manifest",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: REF-FOOTING declares a bridgeCode",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: REF-FOOTING declares a sha256",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: REF-FOOTING sha256 matches manifest",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus: REF-FOOTING byte length matches manifest",
+      "verdict": "PASS"
+    },
+    {
+      "check": "corpus/oracle/GOLDEN-ORACLE.json present and parseable",
+      "verdict": "PASS"
+    },
+    {
+      "check": "toleranceCategories match the frozen bands (ARITH 1e-6 / ROUNDED 1e-4 / HAND 2e-2)",
+      "verdict": "PASS"
+    },
+    {
+      "check": "oracle declares at least one bridge (not vacuous)",
+      "verdict": "PASS"
+    },
+    {
+      "check": "reach: SOM-KHW has a corpus entry",
+      "verdict": "PASS"
+    },
+    {
+      "check": "reach: SOM-KHW sourceFile resolves to its corpus file",
+      "verdict": "PASS"
+    },
+    {
+      "check": "reach: SOM-KHW sourceFile names a frozen corpus file",
+      "verdict": "PASS"
+    },
+    {
+      "check": "reach: SOM-KHW declares at least one value",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[0] A carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[0] A v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[0] A names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[0] A tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[1] P carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[1] P v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[1] P names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[1] P tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[2] R carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[2] R v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[2] R names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[2] R tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[3] V carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[3] V v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[3] V names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[3] V tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[4] Q carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[4] Q v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[4] Q names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[4] Q tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[5] L_regime carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[5] L_regime v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[5] L_regime names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[5] L_regime tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[6] Db carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[6] Db v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[6] Db names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[6] Db tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[7] A_waterway carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[7] A_waterway v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[7] A_waterway names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[7] A_waterway tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[8] a carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[8] a v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[8] a names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[8] a tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[9] hfl carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[9] hfl v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[9] hfl names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[9] hfl tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[10] deckTop carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[10] deckTop v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[10] deckTop names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[10] deckTop tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[11] slabThk carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[11] slabThk v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[11] slabThk names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[11] slabThk tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[12] AFL carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[12] AFL v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[12] AFL names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[12] AFL tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[13] dsm carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[13] dsm v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[13] dsm names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[13] dsm tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[14] afflux carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[14] afflux v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[14] afflux names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[14] afflux tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[15] Ka carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[15] Ka v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[15] Ka names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[15] Ka tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[16] dragFS carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[16] dragFS v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[16] dragFS names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[16] dragFS tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[17] Pmax carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[17] Pmax v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[17] Pmax names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[17] Pmax tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[18] FS_overturning carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[18] FS_overturning v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[18] FS_overturning names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[18] FS_overturning tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[19] FS_sliding carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[19] FS_sliding v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[19] FS_sliding names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[19] FS_sliding tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[20] Ash carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[20] Ash v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[20] Ash names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-KHW[20] Ash tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "reach: SOM-LAR has a corpus entry",
+      "verdict": "PASS"
+    },
+    {
+      "check": "reach: SOM-LAR sourceFile resolves to its corpus file",
+      "verdict": "PASS"
+    },
+    {
+      "check": "reach: SOM-LAR sourceFile names a frozen corpus file",
+      "verdict": "PASS"
+    },
+    {
+      "check": "reach: SOM-LAR declares at least one value",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[0] A carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[0] A v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[0] A names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[0] A tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[1] P carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[1] P v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[1] P names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[1] P tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[2] V carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[2] V v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[2] V names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[2] V tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[3] Q carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[3] Q v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[3] Q names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[3] Q tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[4] L_regime carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[4] L_regime v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[4] L_regime names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[4] L_regime tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[5] Db carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[5] Db v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[5] Db names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[5] Db tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[6] deckObstruction carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[6] deckObstruction v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[6] deckObstruction names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[6] deckObstruction tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[7] a carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[7] a v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[7] a names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[7] a tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[8] hfl carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[8] hfl v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[8] hfl names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[8] hfl tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[9] AFL carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[9] AFL v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[9] AFL names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[9] AFL tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[10] obstructedVelocity carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[10] obstructedVelocity v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[10] obstructedVelocity names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[10] obstructedVelocity tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[11] dsm carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[11] dsm v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[11] dsm names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[11] dsm tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[12] afflux carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[12] afflux v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[12] afflux names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[12] afflux tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[13] FS_overturning carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[13] FS_overturning v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[13] FS_overturning names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[13] FS_overturning tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[14] FS_sliding carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[14] FS_sliding v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[14] FS_sliding names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[14] FS_sliding tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[15] dragFS carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[15] dragFS v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[15] dragFS names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[15] dragFS tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[16] Pmax carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[16] Pmax v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[16] Pmax names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: SOM-LAR[16] Pmax tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "reach: BED-HL has a corpus entry",
+      "verdict": "PASS"
+    },
+    {
+      "check": "reach: BED-HL sourceFile resolves to its corpus file",
+      "verdict": "PASS"
+    },
+    {
+      "check": "reach: BED-HL sourceFile names a frozen corpus file",
+      "verdict": "PASS"
+    },
+    {
+      "check": "reach: BED-HL declares at least one value",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[0] A carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[0] A v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[0] A names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[0] A tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[1] P carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[1] P v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[1] P names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[1] P tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[2] V carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[2] V v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[2] V names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[2] V tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[3] Q carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[3] Q v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[3] Q names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[3] Q tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[4] L_regime carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[4] L_regime v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[4] L_regime names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[4] L_regime tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[5] Db carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[5] Db v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[5] Db names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[5] Db tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[6] deckObstruction carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[6] deckObstruction v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[6] deckObstruction names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[6] deckObstruction tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[7] a carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[7] a v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[7] a names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[7] a tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[8] hfl carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[8] hfl v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[8] hfl names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[8] hfl tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[9] deckTop carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[9] deckTop v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[9] deckTop names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[9] deckTop tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[10] slabThk carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[10] slabThk v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[10] slabThk names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[10] slabThk tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[11] AFL carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[11] AFL v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[11] AFL names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[11] AFL tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[12] dsm carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[12] dsm v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[12] dsm names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[12] dsm tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[13] afflux carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[13] afflux v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[13] afflux names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[13] afflux tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[14] FS_overturning carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[14] FS_overturning v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[14] FS_overturning names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[14] FS_overturning tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[15] FS_sliding carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[15] FS_sliding v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[15] FS_sliding names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[15] FS_sliding tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[16] Pmax carries all required provenance fields",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[16] Pmax v is a finite number",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[16] Pmax names its source cell",
+      "verdict": "PASS"
+    },
+    {
+      "check": "value: BED-HL[16] Pmax tolerance is a frozen category",
+      "verdict": "PASS"
+    },
+    {
+      "check": "oracle holds >= 48 frozen values",
+      "verdict": "PASS"
+    }
+  ]
+}

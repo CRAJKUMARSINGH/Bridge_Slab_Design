@@ -1,0 +1,6 @@
+
+> workspace@0.0.0 assimilate:drawings E:\Rajkumar\Bridge_Slab_Design
+> python scripts/assimilate/map_drawings.py
+
+A5 drawings: processed=28, error=4, lfs-stub=0, total-dxf=32, records=31, relocated-pointer-era=31
+A5_EXIT=0

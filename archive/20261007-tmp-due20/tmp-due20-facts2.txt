@@ -1,0 +1,17 @@
+=== ctl-a ===
+29:DEFECT acceptance rule reaches the browser from the response
+45:must NOT be signed off on this run's numbers without a licensed engineer. A zero exit code
+53: ELIFECYCLE  Command failed with exit code 1.
+54:CTL_A_EXIT=1
+=== ctl-b ===
+29:DEFECT acceptance rule reaches the browser from the response
+55:CTL_B_EXIT=1
+=== ctl-c ===
+33:TypeError: String.prototype.matchAll called with a non-global RegExp argument
+42:CTL_C_EXIT=1
+=== ctl-d ===
+29:DEFECT acceptance rule reaches the browser from the response
+58:CTL_D_EXIT=1
+=== deliverables sizes ===
+7:> tsx ./regenerate-test-output.ts
+112:Wrote 6 deliverables to E:\Rajkumar\Bridge_Slab_Design\test-output

@@ -1,0 +1,68 @@
+=== SummarySection header/props ===
+﻿import React from "react";
+import type { Inputs, Derived } from "../BridgeSlabReport";
+import {
+  fv, fi, HR, Cl, SectionHead, SubHead, SubHeadCl,
+  CalcBlock, Prose, Check, SummaryTable, Page, DetailedStory,
+} from "./ReportUI";
+import {
+  HydraulicNarrative,
+  StructuralNarrative,
+  ClosingNarrative,
+  VerificationNarrative,
+} from "./engineeringNarrative";
+
+/* 
+   SECTION TECH NOTE  (Sheet 29)
+   Golden-reference standard: design data  derivation  verdict
+ */
+export function SectionTechNote({ i, d }: { i: Inputs; d: Derived }) {
+  const totalL = i.spans * i.spanL;
+  const pierCount = Math.max(i.spans - 1, 0);
+  return (
+    <Page id="s-technote">
+      <HR />
+      <SectionHead>TECHNICAL NOTE  DESIGN OF SUBMERSIBLE BRIDGE</SectionHead>
+      <Prose>
+        Name of Work :- {i.name}
+      </Prose>
+
+      {/*  DESIGN DATA BLOCK  */}
+      <SubHeadCl clause="IRC:SP:13-2004 / IRC:6-2017">
+        A. DESIGN DATA
+      </SubHeadCl>
+      <CalcBlock whereHeader rows={[
+        { sym: "1. Right Effective Span",       result: fv(i.spanL, 2),          unit: "m",      where: "Clear span between bearings" },
+        { sym: "2. Span c/c of Piers",          result: fv(i.spanL + i.pierW, 2),unit: "m",      where: "Centre-to-centre of supports" },
+        { sym: "3. Overall Width of Bridge",    result: fv(i.totalW, 2),         unit: "m",      where: "Carriageway + footpath" },
+        { sym: "4. H.F.L.",                     result: fv(i.HFL, 3),            unit: "m",      where: "Highest Flood Level (m MSL)" },
+        { sym: "5. Flood Discharge (Q)",        result: fv(d.Q, 2),              unit: "Cumecs", where: "Manning's formula  IRC:SP:13 Art.5" },
+        { sym: "6. River Bed Slope",            result: `1 in ${fi(i.S_denom)}`, unit: "",       where: "From survey data" },
+        { sym: "7. Design Velocity (V)",        result: fv(d.V, 3),              unit: "m/s",    where: "V = (1/n)R^(2/3)S^(1/2)" },
+=== SummarySection 110-135 ===
+        IS:1893(Pt1):2016  IS:6403-1981  IS:7784(Pt-I)-1975
+      </Prose>
+
+      {/*  ENGINEERING NARRATIVE (deterministic prose from computed values)  */}
+      <HydraulicNarrative i={i} d={d} />
+      <StructuralNarrative i={i} d={d} />
+      <ClosingNarrative i={i} d={d} />
+    </Page>
+  );
+}
+
+/* 
+   SECTION TECH REPORT  (Sheet 31)
+ */
+export function SectionTechReport({ i, d }: { i: Inputs; d: Derived }) {
+  const pierSafe = d.pierLCs.every(lc => lc.slidFOS >= 1.5 && lc.qmax <= d.SBC);
+  const abtSafe  = d.abtCases.every(c => c.slidOK && c.bearOK);
+  return (
+    <Page id="s-techreport">
+      <HR />
+      <SectionHead>TECHNICAL REPORT  ASSESSMENT MATRIX</SectionHead>
+      <Prose>
+        This assessment matrix summarises the design verification across all major
+        structural components. Each check references the governing IRC/IS clause and
+        states the computed value against the permissible limit.
+      </Prose>

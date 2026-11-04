@@ -1,0 +1,4 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+templates=20 case-pairs=100 geometry identical=20 differing=0
+DIVERGENCES: none — engine Type-1 and C1 outputs are identical case by case today

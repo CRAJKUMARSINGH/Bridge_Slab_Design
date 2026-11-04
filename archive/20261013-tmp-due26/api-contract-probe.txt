@@ -1,0 +1,33 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+templates probed: 21
+rejected by the API contract: 21
+
+--- rejection counts by field ---
+ 21  bedSlope
+ 21  deckSlabThickness
+ 21  dwl
+  1  numberOfLanes
+
+--- first issue per rejected input ---
+<PHASE1_DEFAULT_PROJECT_INPUT>: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+larathi-stabil: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+kherwara-golden: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+high-level-reference: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+small-bridge: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+medium-bridge: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+large-bridge: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+irc-bedach-bedla: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+irc-jakham-mandvi: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+irc-t01-jethliya: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+irc-sukanaka-matoon: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+irc-ayad-maharashtra: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+irc-gumaniya-udaipur: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+irc-katumbi-chandrod: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+irc-sisarama-highlevel: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+irc-kumbhalgarh-kelwara: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+irc-parwan-highlevel: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+irc-banas-highlevel: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+irc-ayad-fatehpura: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+irc-kherka-teegirder: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)
+irc-sukanaka-highlevel: bedSlope: bedSlope must be <= 0.05 m/m — check units (% entered instead of m/m?)

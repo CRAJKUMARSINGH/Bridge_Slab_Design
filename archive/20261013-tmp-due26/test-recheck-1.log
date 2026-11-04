@@ -1,0 +1,881 @@
+
+> workspace@0.0.0 test E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run test:integration
+
+
+> @workspace/scripts@0.0.0 test:integration E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./run-integration-tests.ts
+
+▶ API Integration — Calculation & Optimise
+  ✖ POST /api/design/calculate with valid input returns binary excel sheet (154.4053ms)
+  ✔ POST /api/design/calculate with invalid body returns 400 or 500 with error info (15.6049ms)
+  ✖ POST /api/design/optimise runs the search and forwards the engine verdict (8.4367ms)
+  ✔ GET /api/design/templates returns list of design templates (15.6215ms)
+  ✔ GET /api/design/demo-seed returns fully populated default input set (9.4004ms)
+✖ API Integration — Calculation & Optimise (208.5955ms)
+ℹ tests 5
+ℹ suites 1
+ℹ pass 3
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9213.7874
+
+✖ failing tests:
+
+test at tests\integration\api-calculate.test.ts:2:2117
+✖ POST /api/design/calculate with valid input returns binary excel sheet (154.4053ms)
+  Error: expected 200 "OK", got 400 "Bad Request"
+      at TestContext.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\tests\integration\api-calculate.test.ts:78:8)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.start (node:internal/test_runner/test:1015:17)
+      at node:internal/test_runner/test:1531:71
+      at node:internal/per_context/primordials:466:82
+      at new Promise (<anonymous>)
+      at new SafePromise (node:internal/per_context/primordials:435:3)
+      at node:internal/per_context/primordials:466:9
+      at Array.map (<anonymous>)
+      at arrayToSafePromiseIterable (node:internal/per_context/primordials:463:5)
+      at node:internal/per_context/primordials:480:21
+      at new Promise (<anonymous>)
+      at node:internal/per_context/primordials:479:3
+  ----
+      at Test._assertStatus (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:309:14)
+      at E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:365:13
+      at Test._assertFunction (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:342:13)
+      at Test.assert (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:195:23)
+      at localAssert (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:138:14)
+      at Server.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:152:11)
+      at Object.onceWrapper (node:events:622:28)
+      at Server.emit (node:events:508:28)
+      at emitCloseNT (node:net:2427:8)
+      at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+
+test at tests\integration\api-calculate.test.ts:2:3021
+✖ POST /api/design/optimise runs the search and forwards the engine verdict (8.4367ms)
+  Error: expected 200 "OK", got 400 "Bad Request"
+      at TestContext.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\tests\integration\api-calculate.test.ts:103:8)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:787:7)
+  ----
+      at Test._assertStatus (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:309:14)
+      at E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:365:13
+      at Test._assertFunction (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:342:13)
+      at Test.assert (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:195:23)
+      at localAssert (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:138:14)
+      at Server.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:152:11)
+      at Object.onceWrapper (node:events:622:28)
+      at Server.emit (node:events:508:28)
+      at emitCloseNT (node:net:2427:8)
+      at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+▶ API Integration — D4 CRUD Operations
+  ✔ GET /api/projects lists projects (92.2018ms)
+  ✔ POST /api/projects creates a project (58.9441ms)
+  ✔ GET /api/projects/:id returns single project details (9.4625ms)
+  ✔ PATCH /api/projects/:id updates project info (11.3057ms)
+  ✔ POST /api/files registers a file (9.7036ms)
+  ✔ GET /api/files lists uploaded design files (6.0579ms)
+  ✔ POST /api/records creates a run record (7.378ms)
+  ✔ POST /api/comparisons generates a comparison set (8.6984ms)
+  ✔ GET /api/stats/summary returns status counters (7.2174ms)
+  ✔ DELETE /api/comparisons/:id cleans up comparison (0.5958ms)
+  ✔ DELETE /api/records/:id cleans up record (0.2396ms)
+  ✔ DELETE /api/files/:id cleans up file (0.1958ms)
+  ✔ DELETE /api/projects/:id cleans up project (14.8152ms)
+✔ API Integration — D4 CRUD Operations (235.9207ms)
+ℹ tests 13
+ℹ suites 1
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4173.8848
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 276.50 m is ABOVE the IRC-required scour founding level 252.11 m (bed − 2·dsm = 28.09 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+▶ API Integration — Drawings & SVG
+  ✔ GET /api/design/drawings/svg/gad returns valid SVG content (126.4198ms)
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+  ✔ POST /api/design/drawings/svg/gad returns valid SVG content (52.6951ms)
+  ✔ GET /api/design/drawings/svg/pier returns valid SVG content (8.9441ms)
+  ✔ POST /api/design/drawings/svg/pier returns valid SVG content (8.4339ms)
+  ✔ GET /api/design/drawings/svg/abutment returns valid SVG content (11.873ms)
+  ✔ POST /api/design/drawings/svg/abutment returns valid SVG content (7.7291ms)
+  ✔ GET /api/design/drawings/svg/slab returns valid SVG content (10.6504ms)
+  ✔ POST /api/design/drawings/svg/slab returns valid SVG content (7.4342ms)
+  ✔ GET /api/design/drawings/svg/scour-profile returns valid SVG content (7.7995ms)
+  ✔ POST /api/design/drawings/svg/scour-profile returns valid SVG content (12.8788ms)
+  ✔ GET /api/design/drawings/svg/pier-stability returns valid SVG content (6.2033ms)
+  ✔ POST /api/design/drawings/svg/pier-stability returns valid SVG content (6.4371ms)
+  ✔ GET /api/design/drawings/svg/abutment-pressure returns valid SVG content (11.5747ms)
+  ✔ POST /api/design/drawings/svg/abutment-pressure returns valid SVG content (5.6193ms)
+  ✔ GET /api/design/drawings/svg/slab-reinf-plan returns valid SVG content (6.4119ms)
+  ✔ POST /api/design/drawings/svg/slab-reinf-plan returns valid SVG content (10.9637ms)
+  ✖ POST /api/design/dxf returns valid DXF stream/file (14.5593ms)
+✖ API Integration — Drawings & SVG (328.5799ms)
+ℹ tests 17
+ℹ suites 1
+ℹ pass 16
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5022.0463
+
+✖ failing tests:
+
+test at tests\integration\api-drawings.test.ts:2:2487
+✖ POST /api/design/dxf returns valid DXF stream/file (14.5593ms)
+  Error: expected 200 "OK", got 400 "Bad Request"
+      at TestContext.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\tests\integration\api-drawings.test.ts:78:8)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:787:7)
+  ----
+      at Test._assertStatus (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:309:14)
+      at E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:365:13
+      at Test._assertFunction (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:342:13)
+      at Test.assert (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:195:23)
+      at localAssert (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:138:14)
+      at Server.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:152:11)
+      at Object.onceWrapper (node:events:622:28)
+      at Server.emit (node:events:508:28)
+      at emitCloseNT (node:net:2427:8)
+      at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+▶ API Integration — Health & Metadata
+  ✔ GET /api/health returns 200 with system features (173.3713ms)
+  ✔ GET /health (legacy) returns 200 with deprecation note (36.9916ms)
+  ✔ GET /api/openapi.yaml returns spec or status check (23.8469ms)
+  ✔ GET /api/design/feature-flags returns 200 and valid flag object (17.895ms)
+✔ API Integration — Health & Metadata (325.9105ms)
+ℹ tests 4
+ℹ suites 1
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5035.4843
+▶ API Integration — Pier Case Recommendation Engine
+  ✔ GET /api/design/pier-cases/catalog returns a scored catalog from the installed library (108.5133ms)
+  ✔ catalog root does not depend on the server working directory (§T-9) (1.8944ms)
+  ✔ GET /api/design/pier-cases/catalog answers 503 when PIER_ASSET_ROOT points at nothing (12.3766ms)
+  ✔ GET /api/design/pier-cases/catalog answers 400 for a missing root instead of 500 (13.5375ms)
+  ✔ GET /api/design/pier-cases/catalog answers 400 for a root outside the asset library (7.2489ms)
+  ✔ GET /api/design/pier-cases/master-schema returns JSON schema validation schema (12.6239ms)
+  ✔ POST /api/design/pier-cases/recommend outputs recommended pier profile config (40.4359ms)
+  ✔ POST /api/design/pier-cases/generate produces template payload (10.4764ms)
+✔ API Integration — Pier Case Recommendation Engine (214.3298ms)
+ℹ tests 8
+ℹ suites 1
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4002.6671
+▶ API Integration — Report Generation
+  ✖ POST /api/design/report/html returns full HTML report (133.0819ms)
+  ✖ POST /api/design/validate returns validation results JSON (9.9896ms)
+  ✖ POST /api/design/validate/html returns validation checklist HTML (9.4668ms)
+  ✖ POST /api/design/checklist/html returns raw structural audit checklist (11.4584ms)
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+  ✔ POST /api/design/report-model returns clean structured report JSON (34.9263ms)
+✖ API Integration — Report Generation (204.0895ms)
+ℹ tests 5
+ℹ suites 1
+ℹ pass 1
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4253.9838
+
+✖ failing tests:
+
+test at tests\integration\api-reports.test.ts:2:1678
+✖ POST /api/design/report/html returns full HTML report (133.0819ms)
+  Error: expected 200 "OK", got 400 "Bad Request"
+      at TestContext.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\tests\integration\api-reports.test.ts:51:8)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Promise.all (index 0)
+      at async Suite.run (node:internal/test_runner/test:1533:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+  ----
+      at Test._assertStatus (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:309:14)
+      at E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:365:13
+      at Test._assertFunction (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:342:13)
+      at Test.assert (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:195:23)
+      at localAssert (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:138:14)
+      at Server.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:152:11)
+      at Object.onceWrapper (node:events:622:28)
+      at Server.emit (node:events:508:28)
+      at emitCloseNT (node:net:2427:8)
+      at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+
+test at tests\integration\api-reports.test.ts:2:2137
+✖ POST /api/design/validate returns validation results JSON (9.9896ms)
+  Error: expected 200 "OK", got 400 "Bad Request"
+      at TestContext.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\tests\integration\api-reports.test.ts:60:8)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Promise.all (index 0)
+      at async Suite.run (node:internal/test_runner/test:1533:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+  ----
+      at Test._assertStatus (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:309:14)
+      at E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:365:13
+      at Test._assertFunction (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:342:13)
+      at Test.assert (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:195:23)
+      at localAssert (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:138:14)
+      at Server.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:152:11)
+      at Object.onceWrapper (node:events:622:28)
+      at Server.emit (node:events:508:28)
+      at emitCloseNT (node:net:2427:8)
+      at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+
+test at tests\integration\api-reports.test.ts:2:2431
+✖ POST /api/design/validate/html returns validation checklist HTML (9.4668ms)
+  Error: expected 200 "OK", got 400 "Bad Request"
+      at TestContext.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\tests\integration\api-reports.test.ts:69:8)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:787:7)
+  ----
+      at Test._assertStatus (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:309:14)
+      at E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:365:13
+      at Test._assertFunction (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:342:13)
+      at Test.assert (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:195:23)
+      at localAssert (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:138:14)
+      at Server.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:152:11)
+      at Object.onceWrapper (node:events:622:28)
+      at Server.emit (node:events:508:28)
+      at emitCloseNT (node:net:2427:8)
+      at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+
+test at tests\integration\api-reports.test.ts:2:2728
+✖ POST /api/design/checklist/html returns raw structural audit checklist (11.4584ms)
+  Error: expected 200 "OK", got 400 "Bad Request"
+      at TestContext.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\tests\integration\api-reports.test.ts:78:8)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:787:7)
+  ----
+      at Test._assertStatus (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:309:14)
+      at E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:365:13
+      at Test._assertFunction (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:342:13)
+      at Test.assert (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:195:23)
+      at localAssert (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:138:14)
+      at Server.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:152:11)
+      at Object.onceWrapper (node:events:622:28)
+      at Server.emit (node:events:508:28)
+      at emitCloseNT (node:net:2427:8)
+      at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+▶ API Integration — Specialty Endpoints
+  ✖ POST /api/design/reinforcement/schedule generates bar bending schedule json (183.4368ms)
+  ✔ POST /api/design/reinforcement/drawing/:element returns reinforcement layout svg (15.141ms)
+  ✔ POST /api/design/reinforcement/section/:element returns cross sectional detail svg (18.9276ms)
+  ✔ POST /api/design/detailed-abutment/:type performs structural analysis of abutment (24.9608ms)
+  ✔ POST /api/design/detailed-estimation calculates cost assessment metrics (17.0532ms)
+  ✔ POST /api/design/deck-anchorage computes anchorage requirements (16.9052ms)
+  ✔ GET /api/design/slabdraw-health checks slab drawing package health (92.6892ms)
+✖ API Integration — Specialty Endpoints (376.3035ms)
+ℹ tests 7
+ℹ suites 1
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5409.9187
+
+✖ failing tests:
+
+test at tests\integration\api-specialty.test.ts:2:1635
+✖ POST /api/design/reinforcement/schedule generates bar bending schedule json (183.4368ms)
+  Error: expected 200 "OK", got 400 "Bad Request"
+      at TestContext.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\tests\integration\api-specialty.test.ts:46:8)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.start (node:internal/test_runner/test:1015:17)
+      at node:internal/test_runner/test:1531:71
+      at node:internal/per_context/primordials:466:82
+      at new Promise (<anonymous>)
+      at new SafePromise (node:internal/per_context/primordials:435:3)
+      at node:internal/per_context/primordials:466:9
+      at Array.map (<anonymous>)
+      at arrayToSafePromiseIterable (node:internal/per_context/primordials:463:5)
+      at node:internal/per_context/primordials:480:21
+      at new Promise (<anonymous>)
+      at node:internal/per_context/primordials:479:3
+  ----
+      at Test._assertStatus (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:309:14)
+      at E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:365:13
+      at Test._assertFunction (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:342:13)
+      at Test.assert (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:195:23)
+      at localAssert (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:138:14)
+      at Server.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\supertest@7.2.2\node_modules\supertest\lib\test.js:152:11)
+      at Object.onceWrapper (node:events:622:28)
+      at Server.emit (node:events:508:28)
+      at emitCloseNT (node:net:2427:8)
+      at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+▶ Deployment Configuration Readiness (Vercel is the only live lane)
+  ✔ DEP-001: vercel.json exists and has valid rewrites (4.7009ms)
+  ✔ DEP-002: netlify.toml stays quarantined in archive/, not at the repo root (2.4403ms)
+  ✔ DEP-003: the Vercel API entry and build script referenced by vercel.json both exist (1.4085ms)
+  ✔ DEP-004: node version is pinned to one major across nvmrc, CI and Docker (1.919ms)
+✔ Deployment Configuration Readiness (Vercel is the only live lane) (14.5383ms)
+ℹ tests 4
+ℹ suites 1
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 525.8422
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.00 m is ABOVE the IRC-required scour founding level 83.34 m (bed − 2·dsm = 12.83 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.00 m is ABOVE the IRC-required scour founding level 83.04 m (bed − 2·dsm = 13.13 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✔ optimiser reports non-convergence honestly instead of claiming success (65.8507ms)
+✔ optimiser stops on its compute budget and reports the budget (2.2088ms)
+✔ POST /api/design/optimise rejects a payload the design contract rejects (98.5814ms)
+✖ POST /api/design/optimise mirrors the engine verdict rather than forcing success (21.7969ms)
+✔ POST /api/design/optimise refuses a payload beyond the body cap (55.2864ms)
+[2026-10-13 23:19:24.693 +0530] [31mERROR[39m: [36mServer error[39m
+    err: {
+      "type": "PayloadTooLargeError",
+      "message": "request entity too large",
+      "stack":
+          PayloadTooLargeError: request entity too large
+              at readStream (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\raw-body@3.0.2\node_modules\raw-body\index.js:163:17)
+              at getRawBody (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\raw-body@3.0.2\node_modules\raw-body\index.js:116:12)
+              at read (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\body-parser@2.3.0\node_modules\body-parser\lib\read.js:113:3)
+              at jsonParser (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\body-parser@2.3.0\node_modules\body-parser\lib\types\json.js:60:5)
+              at Layer.handleRequest (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+              at trimPrefix (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:342:13)
+              at E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+              at processParams (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+              at next (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+              at router.handle (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3)
+              at app.handle (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\application.js:177:15)
+              at Server.app (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\express.js:38:9)
+              at Server.emit (node:events:508:28)
+              at parserOnIncoming (node:_http_server:1210:12)
+              at HTTPParser.parserOnHeadersComplete (node:_http_common:125:17)
+      "expected": 1109851,
+      "length": 1109851,
+      "limit": 204800,
+      "status": 413,
+      "statusCode": 413,
+      "expose": true
+    }
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5249.4586
+
+✖ failing tests:
+
+test at tests\integration\design-optimise-limits.test.ts:2:2590
+✖ POST /api/design/optimise mirrors the engine verdict rather than forcing success (21.7969ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  400 !== 200
+  
+      at TestContext.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\tests\integration\design-optimise-limits.test.ts:49:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 400,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+🚀 Starting Excel generation...
+Project: Excel Integrity Test Bridge
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+🚀 Starting Excel generation...
+Project: Excel Integrity Test Bridge
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+▶ Excel Workbook Integrity & Recalculation Structure
+  ✔ generates a workbook buffer and validates the 46-sheet contract via ExcelJS (1120.239ms)
+🚀 Starting Excel generation...
+Project: Excel Integrity Test Bridge
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+  ✔ verifies Excel size is within sanity bounds (50 KB - 5 MB) (499.3615ms)
+🚀 Starting Excel generation...
+Project: Excel Integrity Test Bridge
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+  ✔ E-006 validates Excel generation determinism (866.6114ms)
+✔ Excel Workbook Integrity & Recalculation Structure (2490.6385ms)
+ℹ tests 3
+ℹ suites 1
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4319.8794
+🚀 Starting Excel generation...
+Project: HTML Report Integrity Test Bridge
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 90.00 m is ABOVE the IRC-required scour founding level 70.59 m (bed − 2·dsm = 24.41 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+▶ Narrative & HTML Report Integrity
+  ✔ renders design report and checks structural completeness (1344.0782ms)
+✔ Narrative & HTML Report Integrity (1347.9436ms)
+ℹ tests 1
+ℹ suites 1
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3312.8163
+▶ Security & Hardening Integration Tests
+  ✔ SEC-001: enforces body parser size limit below 200 KB (97.3273ms)
+  ✔ SEC-002: rejects or safely handles path traversal attempts in pier cases catalog (14.2401ms)
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 276.50 m is ABOVE the IRC-required scour founding level 247.05 m (bed − 2·dsm = 33.15 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+[2026-10-13 23:19:36.969 +0530] [31mERROR[39m: [36mServer error[39m
+    err: {
+      "type": "PayloadTooLargeError",
+      "message": "request entity too large",
+      "stack":
+          PayloadTooLargeError: request entity too large
+              at readStream (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\raw-body@3.0.2\node_modules\raw-body\index.js:163:17)
+              at getRawBody (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\raw-body@3.0.2\node_modules\raw-body\index.js:116:12)
+              at read (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\body-parser@2.3.0\node_modules\body-parser\lib\read.js:113:3)
+              at jsonParser (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\body-parser@2.3.0\node_modules\body-parser\lib\types\json.js:60:5)
+              at Layer.handleRequest (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\lib\layer.js:152:17)
+              at trimPrefix (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:342:13)
+              at E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:297:9
+              at processParams (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:582:12)
+              at next (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:291:5)
+              at router.handle (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\router@2.2.0\node_modules\router\index.js:186:3)
+              at app.handle (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\application.js:177:15)
+              at Server.app (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\express@5.2.1\node_modules\express\lib\express.js:38:9)
+              at Server.emit (node:events:508:28)
+              at parserOnIncoming (node:_http_server:1210:12)
+              at HTTPParser.parserOnHeadersComplete (node:_http_common:125:17)
+      "expected": 250018,
+      "length": 250018,
+      "limit": 204800,
+      "status": 413,
+      "statusCode": 413,
+      "expose": true
+    }
+🚀 Starting Excel generation...
+Project: <script>alert('xss')</script> Safe Bridge
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 276.50 m is ABOVE the IRC-required scour founding level 247.05 m (bed − 2·dsm = 33.15 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+  ✔ SEC-003: escapes HTML characters in report payload inputs to prevent XSS (1286.3133ms)
+  ✔ SEC-010: response headers contain standard security metadata (11.266ms)
+✔ Security & Hardening Integration Tests (1412.9706ms)
+ℹ tests 4
+ℹ suites 1
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4987.4739
+▶ Zod Schema API Contract Enforcement
+  ✖ passes validation with a fully valid inputs object (20.3461ms)
+  ✔ rejects validation when finite constraints are violated (e.g. negative numbers for positive constraints) (2.176ms)
+  ✔ rejects invalid enumeration values (2.3405ms)
+  ✖ strips out unknown properties from request payload (1.8969ms)
+✖ Zod Schema API Contract Enforcement (31.0269ms)
+ℹ tests 4
+ℹ suites 1
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 906.0433
+
+✖ failing tests:
+
+test at tests\integration\zod-contract.test.ts:2:1525
+✖ passes validation with a fully valid inputs object (20.3461ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\tests\integration\zod-contract.test.ts:41:12)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.start (node:internal/test_runner/test:1015:17)
+      at node:internal/test_runner/test:1531:71
+      at node:internal/per_context/primordials:466:82
+      at new Promise (<anonymous>)
+      at new SafePromise (node:internal/per_context/primordials:435:3)
+      at node:internal/per_context/primordials:466:9
+      at Array.map (<anonymous>) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\integration\zod-contract.test.ts:2:2309
+✖ strips out unknown properties from request payload (1.8969ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (E:\Rajkumar\Bridge_Slab_Design\tests\integration\zod-contract.test.ts:59:12)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+Integration lane: 7/13 files passed.
+Failed: api-calculate.test.ts, api-drawings.test.ts, api-reports.test.ts, api-specialty.test.ts, design-optimise-limits.test.ts, zod-contract.test.ts
+▶ calcDesignUDL
+  ✔ gammaG×dead + gammaQ×live (3.5478ms)
+✔ calcDesignUDL (21.5535ms)
+▶ calcMaximumMoment
+  ✔ wL²/8 (1.3773ms)
+✔ calcMaximumMoment (1.8813ms)
+▶ calcMaximumShear
+  ✔ wL/2 + gammaQ×P (1.2148ms)
+✔ calcMaximumShear (1.8316ms)
+▶ calcBendingStress
+  ✔ M×1e6/Z (1.0929ms)
+✔ calcBendingStress (1.6453ms)
+▶ calcBendingUtilisation PASS
+  ✔ 300 MPa vs fy=415 → PASS (1.0023ms)
+✔ calcBendingUtilisation PASS (1.9645ms)
+▶ calcDeflectionLimit
+  ✔ L/k3 = 8000/1.2 (0.6954ms)
+✔ calcDeflectionLimit (1.1213ms)
+▶ calculate (full pipeline)
+  ✔ runs without throwing (9.3691ms)
+  ✔ returns correct engine version (0.9298ms)
+  ✔ fingerprint stable (3.8837ms)
+  ✔ fingerprint changes with different input (2.0991ms)
+  ✔ trace sourceCells non-empty for all intermediates (1.734ms)
+  ✔ oversized section → PASS (0.9033ms)
+✔ calculate (full pipeline) (20.0214ms)
+ℹ tests 12
+ℹ suites 7
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1141.2863
+▶ Golden parity — Kherwara v0.5.0 snapshot
+  ✔ golden snapshot file exists (7.0345ms)
+  ✔ designUDL matches golden (rtol=1e-6) (1.0839ms)
+  ✔ maximumMoment matches calculated engine value (367.5 kNm) (0.8833ms)
+  ✔ maximumShear matches golden (0.9202ms)
+  ✔ bendingStress matches calculated engine value (8.166667 MPa) (0.986ms)
+  ✔ deflectionLimit matches golden (1.0646ms)
+  ✔ bendingUtilisation status matches golden (1.2046ms)
+  ✔ deflectionCheck status (PASS for high I baseline) (1.0422ms)
+  ✔ shearCheck status matches golden (1.0629ms)
+  ✔ governingUtilisation status evaluated (1.5575ms)
+  ✔ overallStatus evaluated (0.8951ms)
+  ✔ failedChecks array exists (0.4469ms)
+  ✔ engine version matches golden snapshot version (0.383ms)
+✔ Golden parity — Kherwara v0.5.0 snapshot (25.6658ms)
+▶ Tamper tests
+  ✔ mutating span changes fingerprint (9.4835ms)
+  ✔ mutating liveLoadUDL changes fingerprint (0.8427ms)
+  ✔ mutating steelYieldStrength changes utilisation status (0.8824ms)
+  ✔ doubling span produces different moment value (1.5228ms)
+  ✔ identical inputs produce byte-identical fingerprint (0.7043ms)
+✔ Tamper tests (14.4736ms)
+▶ Boundary — load functions
+  ✔ zero liveLoadUDL → only dead load contribution (2.1829ms)
+  ✔ zero deckThickness → only live load contribution (0.6271ms)
+  ✔ very small span → very small moment (0.563ms)
+  ✔ very large span → very large moment (0.5249ms)
+  ✔ zero concentrated load → shear = wL/2 only (1.023ms)
+✔ Boundary — load functions (6.622ms)
+▶ Boundary — resistance functions
+  ✔ zero bending stress → zero utilisation (PASS) (0.6997ms)
+  ✔ exactly at allowable → utilisation = 1.0 (PASS) (0.3737ms)
+  ✔ just over allowable → FAIL (0.3049ms)
+  ✔ shear stress below capacity → PASS (0.276ms)
+  ✔ shear stress at capacity → PASS (0.3014ms)
+  ✔ shear stress above capacity → FAIL (0.2934ms)
+✔ Boundary — resistance functions (3.0508ms)
+▶ Boundary — serviceability functions
+  ✔ very stiff section → deflection ≈ 0 (0.6645ms)
+  ✔ deflection exactly at limit → PASS (0.3741ms)
+  ✔ deflection just over limit → FAIL (1.0048ms)
+  ✔ governing utilisation selects max of bending and deflection ratio (0.4591ms)
+  ✔ adjusted utilisation applies alpha and k3 correctly (0.4397ms)
+✔ Boundary — serviceability functions (7.2807ms)
+▶ Full pipeline — parametric variations
+  ✔ short span + large section → PASS overall (0.9173ms)
+  ✔ long span + weak section → FAIL overall (0.5133ms)
+  ✔ default alpha and k3 used when not provided (0.501ms)
+  ✔ custom alpha=1.0 and k3=1.0 changes adjusted utilisation (0.4263ms)
+  ✔ all intermediate values are finite numbers (0.5072ms)
+  ✔ all constraint checks have valid status (0.4886ms)
+  ✔ assumptions and limitations arrays are non-empty (0.4382ms)
+✔ Full pipeline — parametric variations (4.759ms)
+▶ Traceability — all intermediates have metadata
+  ✔ designUDL has non-empty sourceCells (1.4328ms)
+  ✔ designUDL has formula string (0.3523ms)
+  ✔ designUDL has unit (0.3025ms)
+  ✔ maximumMoment has non-empty sourceCells (0.1902ms)
+  ✔ maximumMoment has formula string (0.2003ms)
+  ✔ maximumMoment has unit (0.1946ms)
+  ✔ maximumShear has non-empty sourceCells (0.2112ms)
+  ✔ maximumShear has formula string (0.1975ms)
+  ✔ maximumShear has unit (0.2123ms)
+  ✔ bendingStress has non-empty sourceCells (0.3205ms)
+  ✔ bendingStress has formula string (0.2ms)
+  ✔ bendingStress has unit (0.2105ms)
+  ✔ liveLoadDeflection has non-empty sourceCells (0.1779ms)
+  ✔ liveLoadDeflection has formula string (0.1784ms)
+  ✔ liveLoadDeflection has unit (0.1904ms)
+  ✔ deflectionLimit has non-empty sourceCells (0.196ms)
+  ✔ deflectionLimit has formula string (0.1708ms)
+  ✔ deflectionLimit has unit (0.1768ms)
+  ✔ shearStress has non-empty sourceCells (0.1768ms)
+  ✔ shearStress has formula string (0.2172ms)
+  ✔ shearStress has unit (0.1925ms)
+  ✔ bendingUtilisation has non-empty trace (0.3151ms)
+  ✔ deflectionCheck has non-empty trace (0.1943ms)
+  ✔ shearCheck has non-empty trace (0.1703ms)
+  ✔ governingUtilisation has non-empty trace (0.2172ms)
+  ✔ adjustedGoverningUtilisation has non-empty trace (0.2042ms)
+✔ Traceability — all intermediates have metadata (9.4103ms)
+ℹ tests 67
+ℹ suites 7
+ℹ pass 67
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1399.4134
+
+Engine unit lane: 2/2 files passed.
+Test lanes: 9/15 files passed in 2 lanes.
+E:\Rajkumar\Bridge_Slab_Design\scripts:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @workspace/scripts@0.0.0 test:integration: `tsx ./run-integration-tests.ts`
+Exit status 1
+ ELIFECYCLE  Test failed. See above for more details.
+EXIT=1

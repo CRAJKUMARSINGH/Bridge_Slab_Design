@@ -1,0 +1,13 @@
+== the 3 non-evidence D ==
+ D tmp-due15-candidate.log
+ D tmp-due15-test.log
+ D tmp-golden-hash.txt
+== ?? by top dir ==
+    320 evidence
+      5 archive
+      2 scripts
+== does assets/ exist? ==
+assets
+== Attached_Assets tracked vs on disk ==
+715
+715

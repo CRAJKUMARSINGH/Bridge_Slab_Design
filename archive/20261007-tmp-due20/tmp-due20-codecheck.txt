@@ -1,0 +1,44 @@
+=== stabilityAcceptance in client ===
+client/src/components/CompareModal.tsx → stabilityAcceptance;
+client/src/components/DesignCheckDashboard.tsx → stabilityAcceptance;
+client/src/components/EngineeringCopilot.tsx → stabilityAcceptance;
+client/src/components/WindLoadPanel.tsx → stabilityAcceptance;
+client/src/stores/useDesignStore.ts → stabilityAcceptance) return null;
+=== STABILITY_LIMITS anywhere in client ===
+=== store guard ===
+17:    const results = parsed?.results;
+18-    // A payload saved before the response carried its acceptance rule (§Y-5) has verdicts with no
+19-    // limits to gauge them against; treat it as absent so the app refetches instead of painting
+20-    // gauges whose pass mark is invisible.
+=== CompareModal fosCols ===
+158-  // buildRows emits no FOS rows, so there is nothing to mark and no numbers to invent.
+159-  const limits = engineResults?.stabilityAcceptance;
+160:  const fosCols = new Set(['Pier sliding FOS (worst)', 'Pier overturning FOS (worst)', 'Pier bearing FOS (worst)', 'Abutment sliding FOS (worst)', 'Abutment overturning FOS (worst)']);
+161-  const fosReq: Record<string, number> = limits ? {
+162-    'Pier sliding FOS (worst)': limits.slidingFosMin,
+163-    'Pier overturning FOS (worst)': limits.overturningFosMin,
+164-    'Pier bearing FOS (worst)': limits.bearingFosMin,
+165-    'Abutment sliding FOS (worst)': limits.slidingFosMin,
+166-    'Abutment overturning FOS (worst)': limits.overturningFosMin,
+167-  } : {};
+168-
+169-  return (
+170-    <GlassModal open={open} onOpenChange={o => !o && onClose()} title="Side-by-side Project Comparison" size="full">
+171-      <div className="overflow-x-auto">
+172-
+--
+204-                );
+205-              }
+206:              const isFos   = fosCols.has(row.label);
+207-              const req     = fosReq[row.label];
+208-              const isResult = row.b === '—';
+209-              return (
+210-                <tr key={i} className="border-b border-[var(--app-glass-border)]/40 transition hover:bg-app-card/30">
+211-                  <td className="px-3 py-2 text-xs text-app-muted">{row.label}</td>
+212-                  <ValueCell value={row.a} unit={row.unit} fmt={row.fmt} isResult={isResult} />
+213-                  <ValueCell value={row.b} unit={isResult ? undefined : row.unit} fmt={row.fmt} />
+214-                  <DeltaCell a={row.a} b={row.b} higherIsBetter={row.higherIsBetter} />
+215-                  {isFos && typeof row.a === 'number' && (
+216-                    <td className="pr-3">
+217-                      <FosIndicator value={row.a} required={req} />
+218-                    </td>

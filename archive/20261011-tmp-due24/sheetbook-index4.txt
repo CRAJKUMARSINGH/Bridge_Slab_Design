@@ -1,0 +1,76 @@
+pages 118
+sheet pages banded: 55 distinct sheets: 20
+index pages: [2, 3, 4, 5] divider pages: [6, 60]
+unstamped (cover excluded): [7, 9, 13, 16, 17, 22, 24, 27, 28, 29, 30, 32, 34, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 51, 54, 57, 61, 62, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 88, 91, 108, 113, 116]
+stamps that disagree: []
+MISMATCH  'INDEX' cited 7, real 8
+MISMATCH  'DESIGN CRITERIA' cited 9, real 10
+MISMATCH  'INPUT DATA SUMMARY' cited 13, real 14
+MISMATCH  'INSERT- HYDRAULICS' cited 16, real None
+MISMATCH  'afflux calculation' cited 17, real 18
+MISMATCH  'HYDRAULICS' cited 22, real 23
+MISMATCH  'Deck Anchorage' cited 24, real 25
+MISMATCH  'CROSS SECTION' cited 27, real None
+MISMATCH  'Bed Slope' cited 28, real None
+MISMATCH  'SBC' cited 29, real None
+MISMATCH  'SEISMIC ANALYSIS (IS 1893)' cited 30, real 31
+MISMATCH  'WIND LOAD ANALYSIS (IS 875)' cited 32, real 33
+MISMATCH  'STABILITY CHECK FOR PIER' cited 34, real 35
+MISMATCH  'abstract of stresses' cited 38, real None
+MISMATCH  'STEEL IN FLARED PIER BASE' cited 39, real None
+MISMATCH  'STEEL IN PIER' cited 40, real None
+MISMATCH  'FOOTING DESIGN' cited 41, real None
+MISMATCH  'Footing STRESS DIAGRAM' cited 42, real None
+MISMATCH  'Pier Cap LL tracked vehicle' cited 43, real None
+MISMATCH  'Pier Cap' cited 44, real None
+MISMATCH  'LLOAD' cited 45, real None
+MISMATCH  'loadsumm' cited 46, real None
+MISMATCH  'LL-ABSTRACT' cited 47, real 48
+MISMATCH  'BEARING DETAILS' cited 51, real 52
+MISMATCH  'EXPANSION JOINT & DRAINAGE' cited 54, real 55
+MISMATCH  'APPROACH SLAB DESIGN' cited 57, real 58
+MISMATCH  'TYPE1-AbutMENT Drawing' cited 61, real None
+MISMATCH  'TYPE1-STABILITY CHECK ABUTMENT' cited 62, real 63
+MISMATCH  'TYPE1-ABUTMENT FOOTING DESIGN' cited 64, real None
+MISMATCH  'TYPE1- Abut Footing STRESS' cited 65, real None
+MISMATCH  'TYPE1-STEEL IN ABUTMENT' cited 66, real None
+MISMATCH  'TYPE1-Abutment Cap' cited 67, real None
+MISMATCH  'TYPE1-DIRT WALL REINFORCEMENT' cited 68, real None
+MISMATCH  'TYPE1-DIRT DirectLoad_BM' cited 69, real None
+MISMATCH  'TYPE1-DIRT LL_BM' cited 70, real None
+MISMATCH  'INSERT C1-ABUT' cited 71, real None
+MISMATCH  'C1-AbutMENT Drawing' cited 72, real None
+MISMATCH  'C1-STABILITY CHECK ABUTMENT' cited 73, real None
+MISMATCH  'C1-ABUTMENT FOOTING DESIGN' cited 74, real None
+MISMATCH  'C1-Abut Footing STRESS DIAGRAM' cited 75, real None
+MISMATCH  'CAN-RETURN FOOTING DESIGN' cited 76, real None
+MISMATCH  'STEEL IN CANT-ABUTMENT' cited 77, real None
+MISMATCH  'STEEL IN CANT-RETURNS' cited 78, real None
+MISMATCH  'C1-Abutment Cap' cited 79, real None
+MISMATCH  'C1-DIRT WALL REINFORCEMENT' cited 80, real None
+MISMATCH  'C1-DIRT DirectLoad_BM' cited 81, real None
+MISMATCH  'C1-DIRT LL_BM' cited 82, real None
+MISMATCH  'TechNote' cited 83, real None
+MISMATCH  'INSERT ESTIMATE' cited 84, real None
+MISMATCH  'Tech Report' cited 85, real None
+MISMATCH  'General Abs.' cited 86, real 87
+MISMATCH  'Abstract' cited 88, real 89
+MISMATCH  'Bridge measurements' cited 91, real 92
+MISMATCH  'IRC CODE COMPLIANCE CHECKLIST' cited 108, real 109
+MISMATCH  'SERVICEABILITY CHECK' cited 113, real 114
+MISMATCH  'REVISION SHEET' cited 116, real 117
+index claims 58 mismatches 56
+sheets banded but absent from index: []
+multi-page sheets 14
+    DESIGN CRITERIA [10, 11, 12]
+    INPUT DATA SUMMARY [14, 15]
+    AFFLUX CALCULATION [18, 19, 20, 21]
+    DECK ANCHORAGE [25, 26]
+    STABILITY CHECK FOR PIER [35, 36, 37]
+    LL-ABSTRACT [48, 49, 50]
+    BEARING DETAILS [52, 53]
+    EXPANSION JOINT & DRAINAGE [55, 56]
+    APPROACH SLAB DESIGN [58, 59]
+    ABSTRACT [89, 90]
+    BRIDGE MEASUREMENTS [92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107]
+    IRC CODE COMPLIANCE CHECKLIST [109, 110, 111, 112]

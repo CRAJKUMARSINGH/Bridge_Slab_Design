@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "1.0.0",
+  "bridgeCode": "SOM-KHW",
+  "oracleVersion": "1.0.0",
+  "sourceFile": "Stability Analysis SUBMERSIBLE BRIDGE ACROSS SOM RIVER 1.xls",
+  "bridgeClass": "submersible",
+  "skewDeg": 0,
+  "spans": 12,
+  "spanLength": 8,
+  "hfl": 100.6,
+  "toleranceCategories": {
+    "ARITH": 0.000001,
+    "ROUNDED": 0.0001,
+    "HAND": 0.02
+  },
+  "inputSnapshot": null,
+  "inputSnapshotRejected": {
+    "fixture": "scripts/fixtures/kherwara-project-input.ts",
+    "sha256": "2799ce87e5339941c265df9ce9c807858495b734987e0672416600b3041b5237",
+    "reason": "The only repository input for this bridge (scripts/fixtures/kherwara-project-input.ts, hfl 100.6 / 12 spans / spanLength 8 m) reproduces A = 141.5 m2, Q = 243.1 cumecs — which corpus/oracle/GOLDEN-ORACLE.json already lists under \"superseded\" as \"A=141.5 vs 490.30; Q=243.1 vs 899.93\". The oracle is therefore right and the repository input is known-wrong (its cross-section spans only 60 m against a 96 m waterway). SOM-KHW is frozen as EXPECTATIONS ONLY; gate:parity reports it as SKIP (never a silent pass). Owner: W02 verifier (Kiro) — requires a corrected cross-section for SOM-KHW."
+  },
+  "inputSnapshotGap": "The only repository input for this bridge (scripts/fixtures/kherwara-project-input.ts, hfl 100.6 / 12 spans / spanLength 8 m) reproduces A = 141.5 m2, Q = 243.1 cumecs — which corpus/oracle/GOLDEN-ORACLE.json already lists under \"superseded\" as \"A=141.5 vs 490.30; Q=243.1 vs 899.93\". The oracle is therefore right and the repository input is known-wrong (its cross-section spans only 60 m against a 96 m waterway). SOM-KHW is frozen as EXPECTATIONS ONLY; gate:parity reports it as SKIP (never a silent pass). Owner: W02 verifier (Kiro) — requires a corrected cross-section for SOM-KHW.",
+  "inputs": null,
+  "baselinedKeys": [],
+  "gateParityExpectation": "SKIP",
+  "baseline": null,
+  "oracleVsComputed": [
+    {
+      "label": "A",
+      "computed": 141.49999999999977,
+      "oracle": 490.3,
+      "rtol": 0.000001,
+      "absErr": 348.80000000000024,
+      "relErr": 0.7114011829492153,
+      "within": false
+    },
+    {
+      "label": "V",
+      "computed": 1.7180898181421296,
+      "oracle": 1.835468,
+      "rtol": 0.0001,
+      "absErr": 0.11737818185787052,
+      "relErr": 0.0639500017749536,
+      "within": false
+    },
+    {
+      "label": "Q",
+      "computed": 243.10970926711096,
+      "oracle": 899.93,
+      "rtol": 0.0001,
+      "absErr": 656.820290732889,
+      "relErr": 0.7298570896990756,
+      "within": false
+    }
+  ],
+  "perimeterRootCause": null,
+  "perimeterRootCauseNote": "Not probed for this bridge. The probe solves for the wetted perimeter implied by the oracle V, which requires the computed area to be correct first; here the computed area (141.5) is wrong because the only repository input is itself superseded, so any implied perimeter would be an artefact of that wrong area. The oracle states P directly for this bridge: 190.707 m (ARITH), against 60.773 m from the superseded cross-section.",
+  "expected": {
+    "A": {
+      "value": 490.3,
+      "unit": "m2",
+      "sheet": "HYDRAULICS",
+      "tolerance": "ARITH",
+      "rtol": 0.000001
+    },
+    "P": {
+      "value": 190.707,
+      "unit": "m",
+      "sheet": "HYDRAULICS",
+      "tolerance": "ARITH",
+      "rtol": 0.000001
+    },
+    "V": {
+      "value": 1.835468,
+      "unit": "m/s",
+      "sheet": "HYDRAULICS",
+      "tolerance": "ROUNDED",
+      "rtol": 0.0001
+    },
+    "Q": {
+      "value": 899.93,
+      "unit": "cumecs",
+      "sheet": "HYDRAULICS",
+      "tolerance": "ROUNDED",
+      "rtol": 0.0001
+    },
+    "dsm": {
+      "value": 5.82,
+      "unit": "m",
+      "sheet": "afflux calc",
+      "tolerance": "HAND",
+      "rtol": 0.02
+    },
+    "afflux": {
+      "value": 0.23,
+      "unit": "m",
+      "sheet": "afflux calc",
+      "tolerance": "HAND",
+      "rtol": 0.02
+    },
+    "Ka": {
+      "value": 0.496,
+      "unit": "-",
+      "sheet": "STABILITY CHECK ABUTMENT",
+      "tolerance": "ROUNDED",
+      "rtol": 0.0001
+    },
+    "dragFS": {
+      "value": 34.59,
+      "unit": "-",
+      "sheet": "Deck Anchorage",
+      "tolerance": "HAND",
+      "rtol": 0.02
+    },
+    "Pmax": {
+      "value": 137.304,
+      "unit": "kN/m2",
+      "sheet": "STABILITY CHECK PIER",
+      "tolerance": "ROUNDED",
+      "rtol": 0.0001
+    },
+    "FS_overturning": {
+      "value": 8.77,
+      "unit": "-",
+      "sheet": "STABILITY CHECK ABUTMENT",
+      "tolerance": "HAND",
+      "rtol": 0.02
+    },
+    "FS_sliding": {
+      "value": 3.1,
+      "unit": "-",
+      "sheet": "STABILITY CHECK ABUTMENT",
+      "tolerance": "HAND",
+      "rtol": 0.02
+    }
+  },
+  "expectedOutputHash": "fe0d607b30c60d62f2df7b8b65a5ee714bd6ab05fa989cf54202f50232b51b5a"
+}

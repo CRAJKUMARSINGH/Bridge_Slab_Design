@@ -1,0 +1,732 @@
+I’ll inspect the repo’s stack, test setup, and project guidance first, then give you a Trae prompt that’s test-first and bounded to this codebase.
+
+The repo is reachable, but Git LFS blocked the first checkout on a missing attached document. I’ll skip LFS downloads for inspection; source and test configuration should still be available.
+
+The repo is a TypeScript/React + Express app with Vitest and project-specific engineering guardrails. I also found conflicting status signals in the README and charter, so I’m shaping the prompt to make Trae establish the real baseline first and avoid silently changing structural-design formulas.
+
+I checked the repo’s visible `main` snapshot: it’s a React/Vite + Express/TypeScript application, and CI runs type-checking, Vitest, a production build, and an audit gate. The README says “Week 3,” while `creat.md` says Weeks 1–15 are implemented, so the prompt tells Trae to verify the active scope instead of trusting either status blindly. 
+
+Paste this into Trae with the repository open:
+
+```text
+Act as a senior QA engineer and careful bug fixer in this repository:
+https://github.com/CRAJKUMARSINGH/Bridge_Slab_Design
+
+MISSION
+Test the application and fix confirmed software bugs with small, reviewable changes. Work from the current checkout, not assumptions from old notes. Preserve engineering safety: this software produces bridge structural-design outputs.
+
+1. ORIENT BEFORE EDITING
+- Check the current branch, commit, and working-tree status. Preserve any existing user changes; do not reset, clean, overwrite, or discard them.
+- Read README.md, creat.md, and any current instructions for the active week or task.
+- Reconcile conflicting project-status claims before choosing scope. README.md and creat.md may not describe the same current state.
+- Verify which calculation engine is actually imported and used at runtime. Do not assume a documented path is current or patch an inactive duplicate.
+- Respect the active week’s exit gate. Do not advance to another week or add new features unless the user explicitly asks.
+
+2. ENGINEERING SAFETY RULES
+- Do not silently change structural formulas, load combinations, coefficients, units, material factors, limits, defaults, or standards interpretations.
+- If a suspected bug affects engineering calculations, first reproduce it, trace the inputs and formula, and add a regression test. If correcting it requires engineering judgment or changes the intended design method, explain the evidence and stop for a licensed engineer/user decision.
+- Keep all generated design outputs clearly marked DRAFT unless there is documented engineer sign-off. Do not claim certification or construction-readiness.
+- Never hide a failure by weakening assertions, changing expected values without evidence, skipping tests, or adding xfails.
+- Avoid bulk-processing Attached_Assets. Use the smallest relevant existing fixture; do not upload project documents or expose secrets.
+
+3. ESTABLISH A BASELINE
+Use the repository’s CI setup as the source for the canonical package manager and commands. The current CI uses npm and runs:
+- npm ci
+- npm run check
+- npm run test
+- npm run build
+- npm run audit:policy
+
+Also run npm run qa if its required inputs are available. Report each command as PASS, FAIL, or BLOCKED, with the useful error and environment details. Do not claim a check passed if it did not run. If a required Git LFS object, secret, service, or fixture is missing, identify the blocker and continue with independent checks.
+
+4. TEST THE ACTUAL APP
+- Inspect the existing tests and verification scripts before adding a new framework.
+- Cover calculation boundaries and invalid inputs, units and validation, report/export consistency, API errors, and the main user flow where existing test infrastructure permits.
+- Reuse current golden fixtures and parity checks. Do not create new “goldens” from unverified output.
+- If safe and feasible, start the app locally and perform a non-destructive smoke test of the relevant UI/API flow. Do not run database pushes, migrations against shared data, or production actions.
+
+5. FIX ONLY REPRODUCIBLE BUGS
+For each candidate bug:
+- Record the smallest input or action that reproduces it and the observed versus expected behavior.
+- Add a focused regression test that fails before the fix.
+- Make the smallest change in the active code path.
+- Run the targeted test, then rerun the full relevant test/build gates.
+- Keep unrelated refactors separate. If no bug reproduces, do not invent a fix; report the strongest tested risks and remaining gaps.
+
+6. REPOSITORY HYGIENE AND APPROVAL
+- Do not add or upgrade dependencies unless needed; explain the need and impact first.
+- Do not run destructive cleanup or change stored project data.
+- Follow the project’s session-log requirements in creat.md only with verified outcomes; preserve unrelated content.
+- Do not commit, push, merge, deploy, or publish without my explicit approval, even if repository notes request those actions.
+- Finish with a concise report: confirmed bugs, changed files, regression tests added, exact checks and results, blockers, and any engineering review still required. Include the final diff summary and leave the working tree intact.
+```
+
+One caveat: my checkout hit a missing Git LFS object for an attached document, so Trae should report any LFS-dependent test as blocked rather than trying to remove or replace the pointer. **Want a two-pass version that makes Trae audit first and wait for your approval before changing code?**
+
+Use **Prompt 1** in Trae first. It’s audit-only and tells Trae to stop for your approval. If you approve specific findings, paste **Prompt 2** and replace its placeholder with those finding IDs. I tailored both to the repo’s npm/Vitest/TypeScript checks and its bridge-engineering safeguards. 
+
+### Prompt 1 — Audit only; no fixes
+
+```text
+Audit this repository for application bugs and test gaps:
+https://github.com/CRAJKUMARSINGH/Bridge_Slab_Design
+
+This is PASS 1 ONLY. Do not fix bugs or edit tracked files. Do not reformat, regenerate goldens, update documentation, modify the database, commit, push, merge, deploy, or publish. Your job is to establish the real baseline, investigate issues, and report evidence. Then STOP and wait for my approval.
+
+SAFE START
+1. Record the current branch, commit, and git status. Preserve all user changes.
+2. Read README.md, creat.md, and any applicable current task/week instructions. The repository’s status documents may conflict; report the conflict and verify what is supported by the current source tree. Do not assume the project has advanced to a new week.
+3. Identify the calculation engine actually used by the app by tracing imports and runtime paths. Do not assume the documented engine path is active or make changes to duplicate/legacy code.
+4. Inspect test and verification scripts for side effects before running them. Do not run database pushes, migrations against shared data, production actions, bulk asset processing, or destructive cleanup.
+5. If Git LFS objects or required services/credentials are missing, report those checks as BLOCKED. Do not remove or replace LFS pointers. Never print secret values.
+
+BASELINE
+The current CI workflow uses npm. If the working tree and environment allow, run:
+- npm ci
+- npm run check
+- npm test
+- npm run build
+- npm run audit:policy
+
+Also inspect whether npm run qa is safe to run in this environment. Run it only if its verification scripts will not modify tracked files or shared data. Report every command as PASS, FAIL, or BLOCKED; include the relevant error and environment details. Do not claim a check passed if it did not run.
+
+AUDIT THE APP
+- Trace the main user flow through UI, API, validation, calculations, and report/export.
+- Review existing unit, property, golden/parity, and integration tests before proposing new tests.
+- Look for reproducible crashes, incorrect validation, unit/boundary errors, inconsistent API/UI behavior, calculation/report mismatches, and unsafe error handling.
+- Use the smallest existing fixtures that can reproduce a problem. Do not recursively process Attached_Assets or upload documents to external services.
+- Distinguish confirmed bugs from hypotheses and missing coverage.
+
+ENGINEERING SAFETY
+This app generates bridge design outputs. Do not treat a formula or structural-design difference as an ordinary code bug. Do not recommend silently changing formulas, load combinations, units, material factors, coefficients, defaults, limits, or standards interpretations.
+For any possible calculation issue, show the input, current result, expected result, formula/source trail, and regression-test evidence. If the intended engineering method is uncertain, mark it “requires licensed-engineer decision,” not “fixed.”
+Do not describe outputs as certified, approved, or construction-ready. Preserve DRAFT status unless documented engineer sign-off exists.
+
+REPORT FORMAT
+Return:
+1. Baseline: commit, branch, status, commands and PASS/FAIL/BLOCKED results.
+2. Findings ranked by severity, each with file/path, reproduction steps, observed vs expected behavior, evidence, and confidence (confirmed / likely / unknown).
+3. Engineering-sensitive findings separated from ordinary software defects.
+4. Existing tests that cover each finding, plus the smallest missing regression test.
+5. Recommended fix order and any blockers.
+6. Explicit statement that no tracked files were changed.
+
+Then STOP. Ask me which finding IDs I approve for PASS 2. Do not begin PASS 2 until I explicitly approve specific IDs.
+```
+
+### Prompt 2 — Fix only approved findings
+
+```text
+This is PASS 2 for the same repository. Fix ONLY the finding IDs I explicitly approved:
+[PASTE APPROVED FINDING IDS HERE]
+
+Before editing, re-check the current branch, commit, working-tree status, and the exact approved findings. Preserve all existing user changes. If an approved finding cannot be reproduced on the current checkout, stop and report that rather than guessing.
+
+RULES
+- Make the smallest change in the active runtime code path.
+- Add a focused regression test that fails before the fix and passes after it.
+- Do not weaken tests, lower thresholds, add skips/xfails, or change golden outputs just to get a green run.
+- Do not include unrelated refactors, new features, or unapproved findings.
+- Do not change structural formulas, loads, units, standards interpretations, coefficients, material factors, defaults, or design limits without a separate explicit engineering decision. If an approved finding requires such a change, prepare the evidence and stop for licensed-engineer review.
+- Preserve DRAFT status. Do not claim engineering approval or construction readiness.
+- Follow the repository’s applicable task/week gate. Update the session log only with verified facts and preserve unrelated charter content.
+- Do not commit, push, merge, deploy, or publish without my explicit approval.
+
+VERIFY
+Run the targeted regression first, then the applicable full gates:
+- npm run check
+- npm test
+- npm run build
+- npm run audit:policy
+- npm run qa, if its scripts are safe and required inputs are available
+
+Report each command as PASS, FAIL, or BLOCKED. Finish with the approved finding IDs addressed, files changed, tests added, exact test results, remaining risks, and a concise diff summary. Leave the changes uncommitted and do not start work on any unapproved finding.
+```
+
+The key is to approve findings by ID after Trae’s audit—not a blanket “fix everything”—so calculation-method questions remain visible before any engineering-sensitive change.
+Cxxxxxxxxxxx
+
+I am working for almost one year on this particular repo>>> improving and improving>>> not a single agent reported that the repo is complete now>>> does it imply that every agent gave me insincere incomplete guide? What about u this morning?
+
+No—not by itself. It **does** suggest a serious process failure: if agents keep recommending more improvements but never measure the repo against a fixed definition of done, you’re left without a trustworthy answer about completion. I can’t know whether any agent was insincere; confident guidance without evidence is still incomplete guidance.
+
+About me: **my earlier 10-day plan was not a completion assessment of this repo.** I was discussing a different repository, BridgeCAD Enterprise Suite. For Bridge_Slab_Design, I only inspected a public snapshot; I did not run its tests or verify the full roadmap. I should have made that limitation explicit. The snapshot’s README calls the project Week 3/prototype, while `creat.md` says Weeks 1–15 are implemented. That conflict means the status is **unproven**, not that I can honestly declare it complete or incomplete.  The snapshot I inspected was commit `55f4d0f`, dated September 14, 2026. 
+
+The useful next move is **not another improvement plan**. Freeze new features and do one evidence-based completion audit: check every declared exit gate, run the repo’s CI checks, and classify each item as **complete with evidence, incomplete, or blocked**. Then fix only the blockers. For a bridge-design system, keep software completion separate from licensed-engineer review; passing tests alone cannot establish engineering approval.
+Use a more capable model when needed for this request?
+Got it, staying on Free.
+
+The install paths are blocked, so I’m finishing the read-only checks that don’t need dependencies and will separate confirmed repo issues from anything the test runner couldn’t verify.
+The reproducible install error is confirmed from a fresh clone of the current public main. I’m checking the project’s own release gates and CI coverage now, so the final status can distinguish “not complete” from “not proven complete.”
+Yes—I did the honest review, read-only, against the current public main at commit 55f4d0f9467a022faaedcbd62112ed3753a6874b. The short verdict: this repo is not presently verifiably complete, and it has at least one confirmed release blocker. That does not prove every feature is incomplete or that prior agents were insincere; it means nobody should call it release-ready without reproducible checks and recorded acceptance evidence. 
+Confirmed blocker: a fresh clean install using npm ci --ignore-scripts fails before tests can start. The error says package.json requires nanoid 6.0.2, but package-lock.json resolves nanoid 3.3.11 and is missing another required lock entry. The repository’s GitHub Actions workflow also starts with npm ci, so that install gate needs fixing before its downstream checks can be trusted. I did not edit the repo. 
+Test result, stated plainly: install gate failed. Unit tests, typecheck, production build, golden regressions, and report/export checks are not run—I cannot honestly label them passed or failed. A pnpm fallback also could not finish because the package proxy returned 403. This is a limit on what I could verify here, not evidence that those tests pass or that the app itself is broken.
+What’s good: the repo has meaningful calculation and regression tests, dedicated engine/Excel/narrative verification scripts, and a CI workflow for typecheck, unit tests, build, and audit. Its charter explicitly separates software completion from licensed-engineer approval and requires traceable numerical evidence. Those are good foundations—not proof that the gates currently pass.
+Important shortcomings to resolve:
+	•	CI does not run the package’s broader qa script, which includes the engine, Excel-golden, Excel-generator, and narrative checks. The charter’s release criteria also call for negative tests, report-export evidence, release notes, handover material, and a recorded review decision. 
+	•	The documentation gives conflicting status: README says “Week 3 of 15,” prototype/review build, and no engineering sign-off; creat.md calls itself a completed release candidate for Weeks 1–15. The README also points to two verification scripts that are absent from the checkout. This makes the project’s completion claim hard to audit. 
+	•	The architecture map names lib/engine/src as the single authoritative calculation engine, but that path is absent in this checkout. The visible UI imports calculations from client/src/report-engine, while server routes import bridge-excel-generator/design-engine. There is also a report-engine-weaver test tree with duplicate-looking tests and no references found to that tree. This is a verified documentation/ownership ambiguity, not proof that the two active engines produce different numbers; that requires parity tests. 
+Honest status: not release-verified; clean install is currently blocked; application behavior and numerical correctness remain unverified in this run; the repo’s own docs say engineering approval is still separate and outputs remain drafts. The next defensible sequence is: repair and commit a consistent lockfile, run the full workflow on its declared Node 22 version, add the missing golden/export gates to CI, reconcile the documented engine and project status, then record acceptance evidence and the licensed engineer’s decision. Do not change engineering formulas as part of the dependency/doc cleanup.
+Smallest safe lockfile-fix plan
+Scope: keep package.json as the source of intent (it declares nanoid ^6.0.1), repair only package-lock.json, and make no calculation, application, or unrelated dependency changes. The current lock has nanoid 3.3.11 where the manifest requires the 6.x line, which is why npm ci stops before tests.
+	1.	Use the CI runtime. In a fresh branch/checkout, use Node 22 as the workflow specifies and record npm --version. This avoids generating the lock with a different Node/npm combination than CI.
+	2.	Regenerate only the lockfile. Run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund. Do not change the nanoid range in package.json and do not hand-edit lock entries. If the resulting diff is unexpectedly broad, stop and inspect it rather than committing a wholesale dependency refresh.
+	3.	Review the diff. Confirm package.json is unchanged; package-lock.json is the only changed file; its root dependency matches the manifest’s ^6.0.1 range; and the resolved direct nanoid version satisfies that range. Other nested nanoid versions are acceptable if separate dependencies require them.
+	4.	Prove a clean install. In a fresh checkout or clean CI runner, run npm ci, then npm ls nanoid --depth=0. The first must complete and the second must show the direct dependency resolving in the declared range.
+	5.	Use the existing CI as the acceptance gate. Run the workflow’s current typecheck, unit tests, production build, and audit policy. Do not describe the fix as verified until those jobs pass. This plan does not add new CI gates; the broader qa-script coverage is a separate follow-up.
+	6.	Commit narrowly. The fix commit should contain only package-lock.json unless the diff demonstrates a concrete reason otherwise. If npm ci still fails, stop before changing versions and inspect the new npm error and lockfile diff.
+That is the minimum repair I recommend. It corrects the inconsistency without masking it by downgrading nanoid or changing engineering code. I have prepared the plan only; I have not modified the repository.
+
+
+PR checklist: restore a reproducible npm install
+Scope
+	•	 Regenerate package-lock.json only, using Node 22 as configured in CI.
+	•	 Keep package.json and the declared nanoid ^6.0.1 range unchanged.
+	•	 Make no application, calculation, or unrelated dependency changes.
+Review the diff
+	•	 Confirm package.json is unchanged and package-lock.json is the only modified file.
+	•	 Confirm the lockfile root dependency matches package.json and the resolved direct nanoid version satisfies ^6.0.1.
+	•	 Confirm the lockfile diff contains only the dependency-resolution changes needed; no broad refresh or unexplained removals.
+Required verification
+	•	 From a fresh checkout on Node 22, npm ci completes successfully.
+	•	 npm ls nanoid --depth=0 shows the direct dependency installed within the declared range.
+	•	 CI passes TypeScript check, unit tests, production build, and audit policy.
+Acceptance criteria
+	•	A clean npm ci succeeds on the CI Node version.
+	•	All existing CI jobs pass on the PR commit.
+	•	The diff is limited to the lockfile and the intended nanoid resolution; no formulas or application behavior were changed.
+PR summary: “Regenerated package-lock.json to match the existing nanoid ^6.0.1 manifest requirement, restoring clean npm ci. No application or calculation code changed.”
+This is intentionally limited to the lockfile repair. It does not claim the broader engineering golden/export release gates pass, because those are not currently part of the CI workflow.
+Run this from a clean PR branch with no unrelated edits. Make Node 22 active first; the version check below stops if a different major is selected.
+set -euo pipefail
+node --version
+npm --version
+node --version | grep -E '^v22\.'
+
+# Regenerate only the lockfile from the existing package.json manifest.
+npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+
+# Review scope and whitespace before installing.
+git diff --check
+git diff --exit-code -- package.json
+git diff --stat
+git diff -- package-lock.json
+test "$(git diff --name-only)" = "package-lock.json" || { echo 'Stop: expected package-lock.json to be the only changed file.'; exit 1; }
+
+# Run from a fresh checkout; npm ci replaces node_modules.
+npm ci
+npm ls nanoid --depth=0
+
+# Match the current GitHub Actions quality gates.
+npm run check && npm run test && npm run build && npm run audit:policy
+
+# Confirm no generated or unrelated files were added.
+git status --short
+
+
+Pass criteria: the lockfile is the only changed file; clean npm ci completes on Node 22; npm ls reports nanoid in the declared ^6.0.1 range; and typecheck, unit tests, build, and audit policy all exit successfully. Attach the CI run link and its green result to the PR. If the lock diff is unexpectedly broad or any command fails, stop and inspect rather than changing the package version or application/calculation code.
+This sequence checks the existing CI gates only. It does not run the separate golden/Excel/narrative qa script, which is outside this minimal lockfile PR.
+
+I need to understand what the current scripts do, including their runtime requirements, LFS assets, and the database environment. It's crucial to assess these relevant factors. I plan to send an update regarding inspecting the scripts and analyzing the dependencies of the artifacts before defining the smallest Continuous Integration (CI) plan. After that, I can proceed to the next steps. This systematic approach will help ensure everything is in order!
+I’ll scope this around the repo’s actual golden/export scripts and CI environment, so the follow-up adds meaningful gates without accidentally requiring local assets, secrets, or production services.
+Separate CI follow-up: golden and export gates
+Scope: after the lockfile PR is merged, make a small CI-only PR. Reuse the repository’s existing QA command rather than adding test code or changing expected results. The package’s qa script already runs typecheck, four hydraulics golden cases, Excel workbook checks, an Excel generation smoke, and narrative checks. 
+Proposed workflow change
+In .github/workflows/ci.yml, replace the standalone TypeScript-check step with a named QA step running npm run qa. That avoids running typecheck twice while adding the existing checks. Leave the unit-test, production-build, and audit-policy steps intact. Keep the workflow’s Node 22 runtime and current install command. 
+- name: Typecheck, golden, export, and narrative QA
+run: npm run qa
+
+
+What this actually gates
+	•	Hydraulics: four committed JSON snapshot cases plus algebraic identities. This is not coverage of every calculation path. 
+	•	Excel export: generates three fixture workbooks and checks the 46-sheet count, required sheet names, and selected formula links. It is a workbook-structure regression, not a full numerical comparison against a reference workbook. 
+	•	Export smoke: generates a Kherwara workbook and writes TEST_CURRENT_OUTPUT.xlsx; that filename is gitignored and the GitHub runner is ephemeral. 
+	•	Narrative: checks that six report sheets contain expected step logic, design data, verdict, and non-placeholder wording. 
+The fixture inputs and hydraulics snapshots are committed source/JSON files, so these specific checks do not require secrets, a database, or downloading reference workbooks. Do not add broad LFS checkout or production credentials for this PR.
+Acceptance criteria
+	•	The PR changes only the CI workflow; no formulas, fixtures, or golden snapshots are edited to make the job green.
+	•	On Node 22, npm ci succeeds and npm run qa, npm run test, npm run build, and npm run audit:policy all pass in CI.
+	•	The workbook smoke completes; its ignored output is not uploaded or committed.
+	•	Record the observed job duration. Keep the current 20-minute timeout unless the run shows it needs adjustment.
+Explicit limitation: green CI would prove these defined regression checks pass; it would not establish complete numerical parity across all bridge calculations, validate every workbook cell, or replace licensed-engineer review. Those need separately scoped evidence. No repository files were changed while preparing this plan.
+
+Follow-up scope: numerical parity testing
+Purpose: add evidence that a chosen implementation reproduces an independently approved bridge-design reference for named outputs and inputs. This is a separate validation effort from the lockfile and CI wiring PRs; it must not change calculation formulas or auto-update expected values.
+First gate: settle what is being compared
+Before writing parity assertions, record which engine and user path are authoritative. The inspected UI pages import calculations from client/src/report-engine, while server routes import bridge-excel-generator/design-engine; the repo’s architecture documentation describes a different canonical path. A parity test against only one engine could otherwise validate the wrong route. 
+Open decision: identify the exact approved reference workbook/revision and calculation route to validate. The repo evidence reviewed so far does not establish that choice or which outputs have licensed-engineer approval.
+Staged implementation
+	1.	Freeze one reference case. Select one representative project input and its independently reviewed workbook/result set. Record source filename and hash, revision/date, units, workbook recalculation method/version, and the approving reviewer. Store a compact normalized expected-results fixture in the repo; do not require the original workbook or LFS assets at CI runtime unless there is a specific reason.
+	2.	Define the output contract. For each compared result, capture a stable name, expected value, unit, source sheet/cell or approved calculation record, comparison type, and engineer-approved absolute/relative tolerance. Use exact comparison for categorical outcomes such as governing case or safe/unsafe status. Do not choose one blanket tolerance for all quantities.
+	3.	Add one deterministic parity verifier. Run the selected input through the agreed UI/API/report calculation path and compare only named engineering outputs against the frozen fixture. Failure output should identify the case, field, unit, expected value, actual value, delta, and allowed tolerance. Never regenerate or accept new expected values automatically.
+	4.	Test the verifier itself. Include a controlled test proving a deliberately altered expected value fails. Keep existing hydraulic snapshot and Excel structure checks unchanged; they cover hydraulic snapshots and workbook structure/formula links, not full numerical parity. 
+	5.	Wire it into CI. Add the verifier as a named Node 22 CI step after dependencies install. It should be deterministic, use committed inputs/expected values, need no credentials or external services, and run within a measured timeout. Keep the lockfile/CI wiring PR separate from this parity-test PR.
+	6.	Expand only after review. After the first case passes review, add boundary/failure cases and other calculation paths in separate increments. Each fixture needs its own source provenance and approved tolerance record.
+Acceptance criteria
+	•	The authoritative calculation route and the reference source are explicitly documented before fixture creation.
+	•	A clean CI run reproduces the approved values within field-specific, reviewed tolerances; categorical pass/fail and governing-case outcomes match exactly.
+	•	A deliberate mismatch makes the check fail with a useful field-level report.
+	•	Expected values are reviewed and versioned; no snapshots are silently refreshed to make CI green.
+	•	No engineering formula or coefficient changes are bundled with the test-only PR.
+Limits: passing one parity fixture demonstrates agreement only for its selected inputs and outputs. It does not prove all bridge designs, standards interpretations, or edge cases are correct, and it does not replace licensed-engineer approval. The existing Excel checks validate selected workbook structure/formula links rather than every cell’s computed result. 
+
+Draft format: versioned parity fixture
+Use a JSON fixture committed beside its input fixture. Keep provenance and per-output comparison rules in the file so reviewers can audit where each expected result came from. This is a schema draft, not a populated or runnable engineering baseline; nulls and angle-bracket placeholders must be replaced with approved data before CI accepts the fixture.
+{
+"fixtureSchemaVersion": "1.0.0",
+"caseId": "approved-case-001",
+"description": "Replace with the reviewed case description",
+"target": {
+"calculationRoute": "REQUIRES_ENGINE_OWNER_DECISION",
+"outputSchemaVersion": "REQUIRES_PINNED_VERSION"
+},
+"input": {
+"path": "scripts/fixtures/<tracked-input-fixture>",
+"sha256": "<sha256-of-input-file>"
+},
+"baseline": {
+"id": "reference-001",
+"artifact": {
+"fileName": "<approved-source-workbook>",
+"sha256": "<sha256-of-source-workbook>",
+"revision": "<workbook-revision-or-date>",
+"recalculatedWith": "<spreadsheet-engine-and-version>"
+},
+"approval": {
+"status": "approved",
+"recordRef": "<review-record-reference>",
+"reviewedOn": "YYYY-MM-DD"
+}
+},
+"outputs": [
+{
+"id": "hydraulics.discharge",
+"outputPath": "hydraulics.discharge",
+"expected": { "value": null, "unit": "m3/s" },
+"comparison": {
+"kind": "numeric",
+"absoluteTolerance": null,
+"relativeTolerance": null
+},
+"sourceLocation": {
+"kind": "workbook_cell",
+"baselineId": "reference-001",
+"sheet": "HYDRAULICS",
+"cell": "<approved-cell-reference>",
+"label": "<visible-row-or-output-label>",
+"formula": "<optional-source-formula>"
+}
+}
+]
+}
+
+
+Field rules
+	•	Numeric output: expected.value must be a finite JSON number. absoluteTolerance is non-negative and uses the same unit as expected.value; relativeTolerance is a non-negative dimensionless fraction. Compare using abs(actual - expected) <= absoluteTolerance + relativeTolerance * abs(expected). Each field gets its own values, approved by an engineer; never use a blanket tolerance.
+	•	Exact output: for status, governing-case labels, or other categories, use comparison.kind = exact and compare the value exactly. Do not apply numeric tolerance to a pass/fail result.
+	•	Provenance: sourceLocation must identify a stable workbook sheet/cell and visible label, or the schema can later add another explicit source type. baseline.artifact.sha256 pins the source artifact; approval.recordRef points to the review evidence. Record the recalculation engine because cached spreadsheet results can depend on it.
+	•	Target and input: calculationRoute must name the path actually exercised; outputPath must be a stable data path, not UI text. Hash the exact tracked input fixture. The current repo has different visible UI and server calculation paths, so the authoritative target is an open decision—not something the fixture should guess. 
+	•	Validation: CI should reject nulls, unresolved placeholders, missing hashes/source locations, unknown units, duplicate output IDs, negative tolerances, missing output paths, and non-finite actual results. Expected values must be reviewed and checked in; no auto-refresh command should bless new baselines.
+Versioning
+Treat fixtureSchemaVersion as the format version, independent of the app or calculation-engine version. A breaking field or comparison-semantics change requires a major schema version; backward-compatible optional metadata can increment the minor version; typo/provenance corrections that do not change meaning can increment the patch version. Keep outputSchemaVersion separately pinned so a calculation API change cannot silently redirect the comparator.
+The sample is intentionally not an approved design fixture: it contains no engineering values, a placeholder engine route, and null tolerances. Do not enable it in CI until the engine owner, reference workbook, expected values, units, and tolerances are approved.
+
+I'm considering how to create a file using writeFile in CodeExecution and then present it as an asset. It seems like a JSON Schema "file" would be deliverable. The instructions say files should be invisible until presented, though embedding is an option. The user’s request suggests generating a schema file, and an ideal approach might be to create a downloadable .schema.json.
+I realize I need the read skill for working with files in Replit. It sounds like there's a specific skill for this, so I’ll check the necessary documentation to proceed.
+I’ll make this a standalone JSON Schema artifact, with strict shape checks and explicit rules for numeric versus exact comparisons, then include a tiny validation example so the contract is clear.
+Here is a strict Draft 2020-12 JSON Schema for the fixture contract. It requires an approved, hashed baseline; pinned input and calculation-route metadata; source workbook cells; and one comparison mode per output. It rejects unknown fields, unresolved placeholder markers, null/non-scalar expected values, malformed hashes/dates/cell references, negative or missing tolerances, and numeric tolerances where both absolute and relative values are zero.
+
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bridge design numerical parity fixture",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "fixtureSchemaVersion",
+    "caseId",
+    "description",
+    "target",
+    "input",
+    "baseline",
+    "outputs"
+  ],
+  "properties": {
+    "fixtureSchemaVersion": {
+      "const": "1.0.0"
+    },
+    "caseId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "description": {
+      "$ref": "#/$defs/nonPlaceholderText",
+      "maxLength": 1000
+    },
+    "target": {
+      "$ref": "#/$defs/target"
+    },
+    "input": {
+      "$ref": "#/$defs/input"
+    },
+    "baseline": {
+      "$ref": "#/$defs/baseline"
+    },
+    "outputs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/output"
+      }
+    }
+  },
+  "$defs": {
+    "nonPlaceholderText": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![\\s\\S]*(?:<|>|PLACEHOLDER|REQUIRES_|TODO))[\\s\\S]*\\S[\\s\\S]*$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{64}$"
+    },
+    "relativeRepoPath": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/nonPlaceholderText"
+        },
+        {
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\s\\\\]+$"
+        }
+      ]
+    },
+    "unitCode": {
+      "type": "string",
+      "pattern": "^(?:enum|1|[A-Za-z][A-Za-z0-9]*(?:[*/.^_-][A-Za-z0-9]+)*)$"
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calculationRoute",
+        "outputSchemaVersion"
+      ],
+      "properties": {
+        "calculationRoute": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._/-]*$"
+        },
+        "outputSchemaVersion": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+        }
+      }
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/relativeRepoPath"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "artifact",
+        "approval"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "artifact": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "fileName",
+            "sha256",
+            "revision",
+            "recalculatedWith"
+          ],
+          "properties": {
+            "fileName": {
+              "$ref": "#/$defs/nonPlaceholderText",
+              "maxLength": 255
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "revision": {
+              "$ref": "#/$defs/nonPlaceholderText",
+              "maxLength": 200
+            },
+            "recalculatedWith": {
+              "$ref": "#/$defs/nonPlaceholderText",
+              "maxLength": 200
+            }
+          }
+        },
+        "approval": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "recordRef",
+            "reviewedOn"
+          ],
+          "properties": {
+            "status": {
+              "const": "approved"
+            },
+            "recordRef": {
+              "$ref": "#/$defs/nonPlaceholderText",
+              "maxLength": 500
+            },
+            "reviewedOn": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+            }
+          }
+        }
+      }
+    },
+    "numericComparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "absoluteTolerance",
+        "relativeTolerance"
+      ],
+      "properties": {
+        "kind": {
+          "const": "numeric"
+        },
+        "absoluteTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "relativeTolerance": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "anyOf": [
+        {
+          "properties": {
+            "absoluteTolerance": {
+              "exclusiveMinimum": 0
+            }
+          }
+        },
+        {
+          "properties": {
+            "relativeTolerance": {
+              "exclusiveMinimum": 0
+            }
+          }
+        }
+      ]
+    },
+    "exactComparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "const": "exact"
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "outputPath",
+        "expected",
+        "comparison",
+        "sourceLocation"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)*$"
+        },
+        "outputPath": {
+          "$ref": "#/$defs/nonPlaceholderText",
+          "maxLength": 300
+        },
+        "expected": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "unit"
+          ],
+          "properties": {
+            "value": {
+              "oneOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "$ref": "#/$defs/nonPlaceholderText",
+                  "maxLength": 300
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "unit": {
+              "$ref": "#/$defs/unitCode"
+            }
+          }
+        },
+        "comparison": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/numericComparison"
+            },
+            {
+              "$ref": "#/$defs/exactComparison"
+            }
+          ]
+        },
+        "sourceLocation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "sheet",
+            "cell",
+            "label"
+          ],
+          "properties": {
+            "kind": {
+              "const": "workbook_cell"
+            },
+            "sheet": {
+              "$ref": "#/$defs/nonPlaceholderText",
+              "maxLength": 100
+            },
+            "cell": {
+              "type": "string",
+              "pattern": "^\\$?[A-Z]{1,3}\\$?[1-9][0-9]*$"
+            },
+            "label": {
+              "$ref": "#/$defs/nonPlaceholderText",
+              "maxLength": 200
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "properties": {
+                "expected": {
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "comparison": {
+                  "$ref": "#/$defs/numericComparison"
+                }
+              }
+            },
+            {
+              "properties": {
+                "comparison": {
+                  "$ref": "#/$defs/exactComparison"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "if": {
+            "properties": {
+              "expected": {
+                "properties": {
+                  "value": {
+                    "type": [
+                      "string",
+                      "boolean"
+                    ]
+                  }
+                }
+              }
+            },
+            "required": [
+              "expected"
+            ]
+          },
+          "then": {
+            "properties": {
+              "expected": {
+                "properties": {
+                  "unit": {
+                    "const": "enum"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "expected": {
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "required": [
+              "expected"
+            ]
+          },
+          "then": {
+            "properties": {
+              "expected": {
+                "properties": {
+                  "unit": {
+                    "not": {
+                      "const": "enum"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+Semantic checks still needed in the validator: JSON Schema cannot ensure output IDs are unique when the objects differ, verify that outputPath exists in the actual result, compare the fixture’s calculationRoute with the runner, check that the input and baseline hashes match file contents, or prove an absolute tolerance is appropriate for the expected unit. Add these runtime assertions; enable date format assertion in the chosen JSON Schema validator. The schema deliberately does not impose an arbitrary maximum tolerance—an engineer-approved tolerance cap should be a separate project policy. For string/boolean expected values, unit must be enum; numeric values must use a physical or dimensionless unit code.
+The schema syntax was serialized and parsed as JSON in preparing this draft. I have not installed a JSON Schema validator or run valid/invalid fixture test cases, and I have not changed repository files.
+
+You've reached your monthly free quota limit. It will reset on November 26, 2026.

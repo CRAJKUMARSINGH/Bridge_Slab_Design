@@ -1,0 +1,23 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+Golden: 485 outputs checked, 11 drifted, tamper moved 44 (tolerance 0.000001 relative).
+Diagnostic: +50 m³/s on the declared ProjectInput.discharge moved 5 of 485 pinned outputs — the engine derives Q from the section and its own velocity and reads the field nowhere on this path; sheet 3 prints it separately (§M-4).
+Boundary: 61 modules feed the artefacts from 4 entries; 0 of them under lib/engine/.
+Calculators in the engine closure: bridge-excel-generator/design-engine.ts [calculateCompleteDesign], shared/design-engine-types.ts [calculateDetailedEstimation].
+Snapshot: 490 outputs pinned for tests/golden/deliverable-engine/kherwara.json.
+
+ENGINE BOUNDARY GATE: 1 defect(s)
+
+ 1. C. 11 of 490 pinned outputs moved:
+     pier.loadCases[0].slidingFOS: 1.0664933924628486 != 0.7109955949752323 (rel 5.00e-1 > 0.000001)
+     pier.loadCases[1].slidingFOS: 0.6884410586625092 != 0.4589607057750061 (rel 5.00e-1 > 0.000001)
+     pier.loadCases[2].slidingFOS: 0.4047312395546503 != 0.26982082636976684 (rel 5.00e-1 > 0.000001)
+     pier.loadCases[3].slidingFOS: 0.4828356637649525 != 0.32189044250996834 (rel 5.00e-1 > 0.000001)
+     pier.loadCases[4].slidingFOS: 1.6269403193015728 != 1.0846268795343819 (rel 5.00e-1 > 0.000001)
+     pier.loadCases[4].status: "SAFE" != "UNSAFE"
+     pier.loadCases[0].passiveResistance: new output 161.15962325376375 is not pinned
+     pier.loadCases[1].passiveResistance: new output 105 is not pinned
+     pier.loadCases[2].passiveResistance: new output 61.15962325376377 is not pinned
+     pier.loadCases[3].passiveResistance: new output 86.15962325376377 is not pinned
+     pier.loadCases[4].passiveResistance: new output 247.90962325376375 is not pinned
+     If the move is intended, re-accept with `pnpm run verify:engine -- --emit` and record what changed in august-due.md — numbers in this file are what an engineer reads in the PDF.

@@ -1,0 +1,22 @@
+A2 ok records: 16   (lfs-stub left: 0)
+cell-count distribution of ok records:
+      7181 cells   5 sheets  Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/RCC T Girder BS/RCC Deck Slab BS.xls
+      5360 cells   5 sheets  Attached_Assets/ASTRA 15 TUTORIALS/TABLES/Steel Table/Dimentions and Propertis of Rolled Steel Beams.xls
+      5360 cells   5 sheets  Attached_Assets/ASTRA 15 TUTORIALS/TABLES/Indian Standard/Steel Table/Dimentions and Propertis of Rolled Steel Beams.xls
+      1106 cells   1 sheets  Attached_Assets/ASTRA 15 TUTORIALS/TABLES/British Standard/Steel Table/Tata Steel Excel Files/Advance UKA (Unequal Angles).xls
+      1085 cells   4 sheets  Attached_Assets/plus Detailed ESTIMATE HL Bridge BEDACH.xls
+       787 cells   1 sheets  Attached_Assets/ASTRA 15 TUTORIALS/TABLES/British Standard/Steel Table/Tata Steel Excel Files/Advance UKBP.xls
+       731 cells   1 sheets  Attached_Assets/ASTRA 15 TUTORIALS/TABLES/British Standard/Steel Table/Tata Steel Excel Files/Advance UKPFC.xls
+       638 cells   1 sheets  Attached_Assets/ASTRA 15 TUTORIALS/TABLES/British Standard/Steel Table/Tata Steel Excel Files/Advance UKA (Equal Angles).xls
+       558 cells   1 sheets  Attached_Assets/ASTRA 15 TUTORIALS/TABLES/British Standard/Steel Table/Tata Steel Excel Files/Advance UKB.xls
+       553 cells   2 sheets  Attached_Assets/ASTRA 15 TUTORIALS/TABLES/Indian Standard/Steel Table/Table 7_1(b).xls
+       551 cells   2 sheets  Attached_Assets/ASTRA 15 TUTORIALS/TABLES/Indian Standard/Steel Table/Table 7_1(f).xls
+       545 cells   1 sheets  Attached_Assets/ASTRA 15 TUTORIALS/TABLES/Indian Standard/Steel Table/Table 7_1(d).xls
+       519 cells   1 sheets  Attached_Assets/ASTRA 15 TUTORIALS/TABLES/British Standard/Steel Table/Tata Steel Excel Files/Advance UKC.xls
+       470 cells   1 sheets  Attached_Assets/ASTRA 15 TUTORIALS/TABLES/Indian Standard/Steel Table/Table 4_4.xls
+       342 cells   3 sheets  Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Section Properties/Section Properties.xls
+        82 cells   1 sheets  Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Siesmic Coefficient/Calculation for Siesmic Coefficient.xls
+ok records with <=6 non-empty cells: 0
+
+xlrd 2.0.2 at C:\Users\Rajkumar.DESKTOP-4ISBKM0\AppData\Roaming\Python\Python314\site-packages\xlrd
+  book.py::943  ...        caption = "** UNKNOWN ENCRYPTION METHOD **" |                     fprintf(logf, "%s\n", caption) |         raise XLRDError("Workbook is encrypted") |  |     def handle_name(self, data): |         blah = DEBUG or self.verbo

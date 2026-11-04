@@ -1,0 +1,37 @@
+1 line=296 type=Explore name=None bg=None
+   prompt_head: 'Research-only task (no edits). Repo root: E:\\Rajkumar\\Bridge_Slab_Design. Ignore node_modules, Attached_Assets, assets, out, artifacts builds, and .git.\n\nThe runtime mainline is: bridge-excel-generator/ (Excel engine, 46 sheets), server/ (r'
+   readonly_word=False modify_word=WRITE-ONLY-INSTRUCTION
+2 line=7733 type=Explore name=None bg=None
+   prompt_head: 'You are auditing a TypeScript monorepo at E:\\Rajkumar\\Bridge_Slab_Design (a bridge design workbook/report generator). A stale audit register dated 2026-10-04 lists "critical engineering defects". Some claims are probably already fixed, some'
+   readonly_word=False modify_word=WRITE-ONLY-INSTRUCTION
+3 line=7734 type=Explore name=None bg=None
+   prompt_head: 'You are auditing the repo at E:\\Rajkumar\\Bridge_Slab_Design (pnpm monorepo, TypeScript; a bridge design engine that emits a 46-sheet Excel workbook, PDFs and HTML reports). A stale audit register (august-due.md, dated 2026-10-04) claims sev'
+   readonly_word=False modify_word=WRITE-ONLY-INSTRUCTION
+4 line=8592 type=Explore name=None bg=True
+   prompt_head: 'You are auditing a React + TypeScript client app for form-accessibility defects. Repo root: E:\\Rajkumar\\Bridge_Slab_Design. The UI source is under client/src (pages, components).\n\nGoal: find every interactive form control (`<input>`, `<sele'
+   readonly_word=False modify_word=WRITE-ONLY-INSTRUCTION
+5 line=20899 type=Explore name=None bg=None
+   prompt_head: 'Research task in the repo at E:\\Rajkumar\\Bridge_Slab_Design (a pnpm monorepo for a bridge design calculation/report generator). Do NOT write or edit any files \u2014 this is read-only reconnaissance. Report in under 600 words with exact file pat'
+   readonly_word=True modify_word=WRITE-ONLY-INSTRUCTION
+6 line=31359 type=general-purpose name=audit-excel bg=True
+   prompt_head: 'You are auditing a READ-ONLY slice of a bridge-design repository at E:\\Rajkumar\\Bridge_Slab_Design. DO NOT MODIFY, CREATE OR DELETE ANY FILE. Do not run `pnpm`, `npm` or any build/test/deliverable command (a gate run is executing concurrent'
+   readonly_word=True modify_word=WRITE-ONLY-INSTRUCTION
+7 line=31364 type=general-purpose name=audit-server bg=True
+   prompt_head: 'You are auditing a READ-ONLY slice of a bridge-design repository at E:\\Rajkumar\\Bridge_Slab_Design. DO NOT MODIFY, CREATE OR DELETE ANY FILE. Do not run `pnpm`, `npm` or any build/test/deliverable command (a gate run is executing concurrent'
+   readonly_word=True modify_word=WRITE-ONLY-INSTRUCTION
+8 line=31369 type=general-purpose name=audit-client bg=True
+   prompt_head: 'You are auditing a READ-ONLY slice of a bridge-design repository at E:\\Rajkumar\\Bridge_Slab_Design. DO NOT MODIFY, CREATE OR DELETE ANY FILE. Do not run `pnpm`, `npm`, `vite`, or any build/test command \u2014 a gate run is executing concurrently'
+   readonly_word=True modify_word=WRITE-ONLY-INSTRUCTION
+9 line=31374 type=general-purpose name=audit-engine bg=True
+   prompt_head: 'You are auditing a READ-ONLY slice of a bridge-design repository at E:\\Rajkumar\\Bridge_Slab_Design. DO NOT MODIFY, CREATE OR DELETE ANY FILE. Do not run `pnpm`, `npm`, `vitest`, `node --test` or any build/test/deliverable command \u2014 a gate r'
+   readonly_word=True modify_word=WRITE-ONLY-INSTRUCTION
+10 line=31379 type=general-purpose name=None bg=True
+   prompt_head: 'You are auditing a READ-ONLY slice of a bridge-design repository at E:\\Rajkumar\\Bridge_Slab_Design. DO NOT MODIFY, CREATE OR DELETE ANY FILE. Do not run `pnpm`, `npm`, or any build/test/deliverable command \u2014 a gate run is executing concurre'
+   readonly_word=True modify_word=WRITE-ONLY-INSTRUCTION
+11 line=31386 type=general-purpose name=audit-config bg=True
+   prompt_head: 'You are auditing a READ-ONLY slice of a bridge-design repository at E:\\Rajkumar\\Bridge_Slab_Design. DO NOT MODIFY, CREATE OR DELETE ANY FILE. Do not run `pnpm`, `npm`, `docker`, `vite` or any build/test/deliverable command \u2014 a gate run is e'
+   readonly_word=True modify_word=WRITE-ONLY-INSTRUCTION
+12 line=31401 type=general-purpose name=None bg=True
+   prompt_head: 'You are auditing a READ-ONLY area of a bridge-design repository at E:\\Rajkumar\\Bridge_Slab_Design. DO NOT MODIFY, CREATE OR DELETE ANY FILE. Do not run `pnpm`, `npm`, or any build/test/deliverable command (a gate run is executing concurrent'
+   readonly_word=True modify_word=WRITE-ONLY-INSTRUCTION
+TOTAL Agent calls=12

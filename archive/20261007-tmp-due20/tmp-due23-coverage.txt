@@ -1,0 +1,56 @@
+reference billed lines : 35  (Rs 110032581.09)
+our billed lines       : 25
+our priced rates       : 25 distinct
+
+STATUS      | UNIT      |       RATE | RS           | REFERENCE ITEM
+----------------------------------------------------------------------------------------------------------------------
+BILLED      | Cum       |       51.0 |     95140.62 | Excavation for Structures (Earth work in excavation of foundation of structure
+BILLED      | Cum       |       57.0 |     52832.73 | Above 3m to 6m depth
+NOT-BILLED  | Cum       |       63.0 |    166312.30 | Ordinary/Soft rock (not requiring blasting) [MoRTH Specification : Clause 301]
+NOT-BILLED  | Cum       |      514.0 |    952842.99 | Hard rock ( requiring blasting )
+BILLED      | Cum       |     4508.0 |   5284377.76 | Plain/Reinforced cement concrete in open foundation complete as per drawing an
+NOT-BILLED  | Cum       |     4995.0 |   2039931.56 | RCC Grade M20
+BILLED      | Cum       |     5372.0 |   9142226.79 | RCC Grade M25
+BILLED      | MT        |    88817.0 |  17283496.77 | Providing and laying steel reinforcement at any level in foundation complete a
+BILLED      | Cum       |     5696.0 |  14646760.04 | Structural cement concrete for plain concrete/ reinforced concrete for substru
+BILLED      | MT        |    89690.0 |  25402851.06 | Supplying, fitting and placing HYSD bar reinforcement in sub-structure complet
+BILLED      | Rmt       |      128.0 |     50411.52 | Providing weep holes in Brick masonry/Plain/Reinforced concrete abutment, wing
+BILLED      | Cum       |      663.0 |    500976.06 | Back filling behind abutment, wing wall and return wall, in 150mm layers, with
+BILLED      | Cum       |     1214.0 |    385700.92 | Providing and laying of Filter media with granular materials/stone crushed agg
+BILLED      | Cum       |     6272.0 |  10956550.80 | Structural RCC/PSC upto a height of 5 mtr. for reinforced concrete in superstr
+BILLED      | MT        |    90000.0 |  18512762.60 | a) Supplying, fitting and placing HYSD bar reinforcement in super-structure co
+BILLED      | Cum       |    10009.0 |   1467657.09 | Providing and laying Cement concrete wearing coat M-30 grade including reinfor
+BILLED      | Cum       |     4335.0 |    298854.90 | PCC M15 Grade leveling course below approach slab complete as per drawing and 
+BILLED      | Cum       |     8202.0 |    124014.24 | Reinforced cement concrete approach slab including reinforcement and formwork 
+BILLED      | Sqm       |     1227.0 |    274159.86 | Providing & fixing 20 mm thick compressible fibre board in expansion joint com
+BILLED      | Sqm       |      269.0 |     59131.93 | Providing and laying 12mm thick Bitumen Mastic wearing coat with bitumen of gr
+NOT-BILLED  | Cum       |       46.0 |     93536.40 | Excavation in Soil using Hydraulic Excavator CK 90 and Tippers with disposal u
+NOT-BILLED  | Cum       |       61.0 |     82691.60 | Excavation in Ordinary Rock using Hydraulic ExcavatorCK-90 and Tippers with di
+NOT-BILLED  | Cum       |     6046.0 |    494804.64 | Providing and Laying un-reinforced, dowel jointed, plain cement concrete pavem
+BILLED      | M         |     1747.0 |    813235.37 | Construction of RCC railing of M30 Grade in-situ with 20 mm nominal size aggre
+BILLED      | Each      |     7040.0 |     14080.00 | Providing and Erecting typical Citizens Information Board as per approved draw
+BILLED      | Each      |     3300.0 |      9900.00 | Supply of villege Name Board size 600x900 mm made out of 1.25 mm thick M.S. Sh
+BILLED      | Each      |     2709.0 |     16254.00 | Retro-Reflectorised Traffic Signs Providing and fixing of retro- reflectorised
+BILLED      | Each      |     2263.0 |     13578.00 | Retro-Reflectorised Traffic Signs Providing and fixing of retro- reflectorised
+BILLED      | Each      |      191.0 |     76400.00 | Raised Pavment Marker ( Cats Eyes): Supplying and Fixing of Molded Shank Raise
+BILLED      | Per Sqm   |      632.0 |    316110.60 | Road Marking with Hot Applied Thermoplastic Compound with Reflectorising Glass
+NOT-BILLED  | Per Cum   |     1048.0 |     84362.37 | Providing and laying graded stone aggregate filter Material underneath pitchin
+NOT-BILLED  | Per Cum   |      937.0 |    113140.57 | Providing and laying pitching on slopes laid over prepared filter media includ
+NOT-BILLED  | Per RM    |     5261.0 |     78915.00 | Providing and laying Reinforced cement concrete pipes NP-3 for culverts includ
+NOT-BILLED  | Per RM    |     3476.0 |     52140.00 | Providing and laying Reinforced cement concrete pipes NP-3 for culverts includ
+NOT-BILLED  | Per RM    |     1274.0 |     76440.00 | Providing and laying Reinforced cement concrete pipes NP-3 for culverts includ
+
+TOTALS  billed 24 lines / Rs 105797463.66   not-billed 11 lines / Rs 4235117.43  (share of reference cost not billed: 3.8 %)
+
+Is every not-billed family named in our Abstract exclusion note?
+  rate 63.0     Ordinary/Soft rock (not  -> note word found: ordinary
+  rate 514.0    Hard rock ( requiring bl -> note word found: NONE
+  rate 4995.0   RCC Grade M20            -> note word found: grade
+  rate 46.0     Excavation in Soil using -> note word found: excavation
+  rate 61.0     Excavation in Ordinary R -> note word found: excavation
+  rate 6046.0   Providing and Laying un- -> note word found: cement
+  rate 1048.0   Providing and laying gra -> note word found: graded
+  rate 937.0    Providing and laying pit -> note word found: pitching
+  rate 5261.0   Providing and laying Rei -> note word found: cement
+  rate 3476.0   Providing and laying Rei -> note word found: cement
+  rate 1274.0   Providing and laying Rei -> note word found: cement

@@ -6,7 +6,7 @@ Date: 2026-10-04 · Owner: agent (auto mode, ~3 h window) · Directive: "NOW PRO
 - A1 ✅ (11 stale/self-referencing formulas in sheet 3 fixed; derived rows now live)
 - A2 ✅ (anchors A=+2/P=+3/V=+7/Q=+8 verified; Critical-Levels heights linked)
 - A3/A4 ✅ (sheets 6 & 7 fully linked)
-- B1 ✅ (waterway mismatch documented in `computeLegacyAffluxChain`) · B2 ✅ (sheet 9 section D live delta) · B3 ⏳ user decision
+- B1 ✅ (waterway mismatch documented) · B2 ✅ (sheet 9 section D live delta) · B3 ✅ **DECIDED 2026-10-15 + applied 2026-10-16** — unify on the engine definition: `computeAffluxChain` (renamed from `computeLegacyAffluxChain`) now uses the engine's canonical waterway `spans × spanLength` + engine obstruction areas, so `AFL == DWL`; sheet 9 §D reads 0
 - C1–C3 ✅ (link auditor extended; same-sheet refs + divergence check; footing diagram relabelled & linked; sheet 5 completed) — final: 465 formulas / 163 xrefs / 0 broken / 0 divergences
 - C6 ✅ (BOQ "TOTAL" pseudo-item double-count removed) · C7 ✅ (loadsumm rows verified)
 - C8 ✅ turn 7 (auditor now re-executes **every** formula — IF/AND/MAX/SUM/ranges/text — over all 20 Phase-1 templates; 0 broken / 0 divergences, no unaudited cells)
@@ -96,16 +96,18 @@ Plan (no sign-off available in auto mode → choose provably-safe route):
 
 ## Explicitly OUT OF SCOPE (needs human decision — stays DUE)
 
-- Adopting one waterway definition project-wide (B3) — and with it **which water level governs**:
-  sheet 3's surveyed-section chain (AFL 101.375) and the engine's `spans × span` rectangle
-  (DWL 100.856) still disagree. Unifying them moves freeboard/scour and can flip structural
-  verdicts, so it is a sign-off call; sheet 9 section D keeps the gap visible.
-- `large-bridge` reads UNSAFE (FOS 1.11) on hydrodynamic uplift alone — a real review item, left flagged.
-- Licensed-engineer sign-off on CHECK/UNSAFE outcomes
-- SSR/DSR rate register for unpriced concrete grades, IRC impact-factor config
-- `zod` is imported by `bridge-excel-generator/input-contract.ts` but declared by no `package.json`;
-  it resolves only from a pnpm store copy (documented `baseUrl` in `tsconfig.flat.json`). Declare the
-  dependency instead of leaning on the store path.
+- ~~Adopting one waterway definition project-wide (B3) / which water level governs~~ — **CLOSED 2026-10-16.**
+  Decided 2026-10-15: unify on the engine definition. Sheet 3 now uses the engine waterway (`spans × spanLength`)
+  and the engine obstruction areas, so `AFL == DWL` (printed AFL 100.856, was 101.375); sheet 9 §D → 0;
+  structural/freeboard/scour verdicts did not move. The parity gate's water-level exclusion is retired.
+- ~~`large-bridge` reads UNSAFE (FOS 1.11) on hydrodynamic uplift alone~~ — **CLOSED 2026-10-16.** Decided
+  2026-10-15: add hold-down anchorage at the pier bases (`sheets/05-deck-anchorage.ts`). `verify:uplift` now
+  reports large-bridge **FOS 1.25 SAFE**, 20/20 templates SAFE.
+- Licensed-engineer sign-off on CHECK/UNSAFE outcomes (184 → after §M-1: **105 UNSAFE of 300**, 20/20 templates)
+- SSR/DSR rate register for unpriced concrete grades (**partly decided 2026-10-15**: M30/M35/M40 = 5111/6111/7111;
+  IRC impact-factor config fixed) — official schedule still owed
+- ~~`zod` declared by no `package.json`~~ — **CLOSED 2026-10-15.** `"zod": "catalog:"` now declared at
+  `package.json:70`; the `tsconfig.flat.json` `baseUrl` hack removed.
 - ~~Hard-rock excavation split~~ — **turn 9** flat 80 %/20 % (`EXCAVATION_ROCK_SHARE`),
   **superseded turn 11** by the PWD depth-head model (C18): soil down to the 1.5 m rock head,
   then soft/hard rock bands.

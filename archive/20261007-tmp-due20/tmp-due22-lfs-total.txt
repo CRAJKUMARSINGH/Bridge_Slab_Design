@@ -1,0 +1,6 @@
+Attached_Assets/ : pointers=710 non-pointer=5 payload=922.69 MB
+assets/ : pointers=1876 non-pointer=204 payload=6798.39 MB
+project/ : pointers=0 non-pointer=5 payload=0.00 MB
+docs/ : pointers=0 non-pointer=82 payload=0.00 MB
+Attached_Assets pointers=710, bracket-containing=267
+TOTAL payload across scanned roots=7721.08 MB

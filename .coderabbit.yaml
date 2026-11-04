@@ -1,0 +1,123 @@
+# CodeRabbit Configuration
+# https://docs.coderabbit.ai/configure-coderabbit/
+#
+# This project has its own security controls that complement CodeRabbit:
+# - pnpm audit:policy gate in CI (scripts/check-audit-threshold.mjs) with documented
+#   risk acceptance (reason, owner, review date per accepted advisory).
+# - .env.example contains only placeholder credentials (user:password@ep-xxx…).
+# - merge-refs/ and archive/ contain reference / external code, not our own.
+
+language: en-US
+
+reviews:
+  profile: chill
+
+  # ── Global review instructions ──────────────────────────────────────────
+  instructions: |
+    This is a TypeScript / Node.js bridge-engineering design suite (pnpm workspace).
+
+    Security context — do NOT re-flag these:
+    - Dependency vulnerabilities are tracked in scripts/check-audit-threshold.mjs
+      with documented risk acceptance (reasons, owners, review dates). The CI
+      "Audit policy gate" step enforces this. Do not re-report accepted CVEs.
+    - .env.example contains PLACEHOLDER credentials only (user:password@ep-xxx…).
+      No real secrets exist in the repository.
+    - Command execution in artifacts/api-server uses spawnSync with argument
+      arrays — no shell interpolation. This is the safe pattern; do not
+      suggest execSync or shell strings.
+    - Input validation uses Zod schemas in server/ routes.
+    - CORS is configured via the ALLOWED_ORIGINS environment variable.
+    - Path traversal is guarded by isDirectoryWithin() / isWithinAssetLibrary().
+
+    Do not comment on:
+    - Import ordering (handled by linters)
+    - Line length (handled by Prettier)
+    - Missing JSDoc on internal functions
+    - Dependency vulnerabilities already documented in check-audit-threshold.mjs
+
+  # ── Path filters — exclude reference, archived, generated, vendored ──────
+  path_filters:
+    - "!archive/**"
+    - "!merge-refs/**"
+    - "!node_modules/**"
+    - "!dist/**"
+    - "!.local/**"
+    - "!out/**"
+    - "!test-output/**"
+    - "!parity-dump/**"
+    - "!python_cad/**"
+    - "!sample/**"
+    - "!Attached_Assets/**"
+    - "!assets/**"
+    - "!Drawing_Module/**"
+    - "!CODE-JUNCTION/**"
+    - "!data/**"
+    - "!**/*.lock"
+    - "!pnpm-lock.yaml"
+    - "!**/*.tsbuildinfo"
+    - "!pnpm-audit.json"
+
+  # ── Path-specific review instructions ────────────────────────────────────
+  path_instructions:
+    - path: ".env.example"
+      instructions: |
+        Template file with PLACEHOLDER values only (user:password@ep-xxx…).
+        No real secrets, tokens, or credentials. Do not flag connection
+        strings or credential patterns as security issues.
+
+    - path: "scripts/check-audit-threshold.mjs"
+      instructions: |
+        Implements the dependency audit policy gate. The ACCEPTED_HIGH list
+        is documented risk acceptance with reasons, owners, and review dates.
+        Do not flag accepted vulnerabilities as unaddressed security issues.
+
+    - path: "SECURITY-AUDIT-*.md"
+      instructions: |
+        Security audit reports, not source code. Do not flag content as
+        security findings.
+
+    - path: "artifacts/api-server/**"
+      instructions: |
+        Deployable API server. Uses spawnSync with argument arrays (no shell
+        injection). Review for security, correctness, and quality.
+
+    - path: "server/**"
+      instructions: |
+        Express API routes. Input validation via Zod schemas. Path traversal
+        guarded by isDirectoryWithin() / isWithinAssetLibrary().
+
+    - path: "**/*.py"
+      instructions: |
+        Python scripts in scripts/assimilate/ are build-time tooling, not
+        deployed code. Review for correctness but do not apply production
+        security standards.
+
+  auto_review:
+    enabled: true
+    drafts: false
+    incremental_reviews: true
+
+  # ── Tools ────────────────────────────────────────────────────────────────
+  # Disable tools that produce false positives or duplicate the project's
+  # own CI security gate (pnpm run audit:policy).
+  tools:
+    # Secret scanner flags .env.example placeholder credentials as leaks.
+    # The repo has no real secrets (verified by manual TruffleHog scan).
+    gitleaks:
+      enabled: false
+    # TruffleHog requires a config file in the repo; none exists, so it is
+    # already skipped — disable explicitly to keep the config self-documenting.
+    trufflehog:
+      enabled: false
+    # OSV-Scanner flags dependency vulnerabilities already tracked and
+    # accepted by the project's own audit:policy gate in CI.
+    osv-scanner:
+      enabled: false
+
+chat:
+  auto_reply: true
+
+knowledge_base:
+  opt_out: false
+  learnings:
+    scope: auto

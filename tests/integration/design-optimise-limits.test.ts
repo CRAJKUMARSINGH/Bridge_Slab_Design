@@ -30,6 +30,9 @@ test('optimiser stops on its compute budget and reports the budget', async () =>
   assert.equal(result.success, false);
   assert.equal(result.trials.length, 0);
   assert.match(result.message, /compute budget exhausted/);
+  // The message must quote the budget that was asked for. It used to interpolate the 5 000 ms
+  // default, so a caller told "5000 ms compute budget exhausted" had never asked for 5000 ms.
+  assert.match(result.message, /^Stopped at iteration 0: 0 ms compute budget exhausted/);
 });
 
 test('POST /api/design/optimise rejects a payload the design contract rejects', async () => {

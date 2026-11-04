@@ -1,0 +1,4 @@
+assets             files=  2080 lfs-pointers=  1876  top ext=[('.dwg', 624), ('.pdf', 460), ('.xls', 205), ('.gif', 143), ('.jpg', 102), ('.dxf', 93)]
+Attached_Assets    files=   715 lfs-pointers=   614  top ext=[('.vdml', 345), ('.txt', 208), ('.fil', 25), ('.ast', 19), ('.rtf', 12), ('.jpg', 2)]
+== tracked totals ==
+5015

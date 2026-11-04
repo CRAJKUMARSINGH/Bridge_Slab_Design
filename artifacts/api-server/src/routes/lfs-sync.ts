@@ -1,7 +1,7 @@
 import { Router, type IRouter } from "express";
 import { resolve } from "path";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
-import { spawn, execSync } from "child_process";
+import { spawn, spawnSync } from "child_process";
 
 const router: IRouter = Router();
 
@@ -145,11 +145,21 @@ router.post("/lfs-sync/pull", (req, res) => {
       }
 
       // 4 — inventory
+      // Safe argument arrays — no shell interpolation, so localPath cannot inject commands.
       send("phase", { n: 4, total: 4, label: "Counting files and building inventory" });
       let fileCount = 0, lfsFiles = 0, lastCommit = "";
-      try { fileCount = parseInt(execSync(`find "${localPath}" -not -path '*/.git/*' -type f | wc -l`).toString().trim(), 10); } catch {}
-      try { lfsFiles = parseInt(execSync(`git -C "${localPath}" lfs ls-files 2>/dev/null | wc -l`).toString().trim(), 10); } catch {}
-      try { lastCommit = execSync(`git -C "${localPath}" log -1 --pretty=format:"%h  %ai  %s"`, { encoding: "utf8" }).trim(); } catch {}
+      try {
+        const findRes = spawnSync("find", [localPath, "-not", "-path", "*/.git/*", "-type", "f"], { encoding: "utf8" });
+        fileCount = findRes.stdout.trim().split("\n").filter(Boolean).length;
+      } catch {}
+      try {
+        const lfsRes = spawnSync("git", ["-C", localPath, "lfs", "ls-files"], { encoding: "utf8" });
+        lfsFiles = lfsRes.stdout.trim().split("\n").filter(Boolean).length;
+      } catch {}
+      try {
+        const logRes = spawnSync("git", ["-C", localPath, "log", "-1", "--pretty=format:%h  %ai  %s"], { encoding: "utf8" });
+        lastCommit = logRes.stdout.trim();
+      } catch {}
 
       send("log", { line: `Repository inventory: ${fileCount} files total, ${lfsFiles} tracked by Git LFS` });
       send("log", { line: `Latest commit: ${lastCommit || "(unknown)"}` });

@@ -3,6 +3,8 @@
 import json, re, sys
 from pathlib import Path
 
+from output_currency import relocate_stale
+
 WORKSPACE = Path(__file__).resolve().parents[2]
 NORM_DIR = WORKSPACE / 'evidence' / 'assimilation' / 'normalized'
 OUT_DIR = WORKSPACE / 'evidence' / 'assimilation' / 'narrative'
@@ -25,7 +27,8 @@ def main():
                     candidates.add(h.strip())
         out = {'id': data.get('id'), 'status': 'ok', 'candidate_sentences': sorted(candidates)}
         (OUT_DIR / f.name).write_text(json.dumps(out, indent=2), encoding='utf-8')
-    print(f'A4 narrative: scanned {len(files)} normalized files')
+    stale = relocate_stale(OUT_DIR, [f.name for f in files])
+    print(f'A4 narrative: scanned {len(files)} normalized files, relocated-pointer-era={len(stale)}')
     sys.exit(0)
 
 if __name__ == '__main__':

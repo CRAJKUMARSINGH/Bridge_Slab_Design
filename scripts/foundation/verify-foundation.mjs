@@ -104,10 +104,11 @@ for (const r of manifest.registries) {
 // instead of a magic `> 20` that a shrinking manifest walks straight past.
 // `fixed` counts the structural assertions that do not come from a list:
 // requiredPaths-array, charterClaimsAbsentPaths-array, engineModules-array,
-// lockfiles-exact, lfsWatch-array, and this budget assertion itself.
+// lockfiles-exact, lfsWatch-array. The budget assertion itself is NOT counted:
+// it is evaluated before its own assert() call increments the counter.
 // `engineModules.length * 2` because each module produces BOTH a hash-check and
 // an orphan-check assertion (gate-contracts guarantees lock keys == engineModules).
-const fixed = 6;
+const fixed = 5;
 const budget =
   manifest.requiredPaths.length +
   manifest.charterClaimsAbsentPaths.length +

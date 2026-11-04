@@ -1,0 +1,26 @@
+{
+  "sheet_names": [
+    "Advance UKBP"
+  ],
+  "column_headers": {
+    "Advance UKBP": [
+      "Section",
+      "Mass",
+      "Depth",
+      "Width",
+      "Area",
+      "Thickness",
+      "",
+      "Root",
+      "Depth",
+      "Radius for",
+      "",
+      "Second Moment",
+      ""
+    ]
+  },
+  "non_empty_cell_count": 787,
+  "id": "89578c894b2f_Advance_UKBP.xls",
+  "status": "ok",
+  "path": "Attached_Assets/ASTRA 15 TUTORIALS/TABLES/British Standard/Steel Table/Tata Steel Excel Files/Advance UKBP.xls"
+}

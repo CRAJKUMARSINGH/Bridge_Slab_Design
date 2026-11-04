@@ -1,0 +1,3 @@
+comprehensive-report.pdf           pages=225  {'portrait': 225}  bytes=5014277
+sheet-book.pdf                     pages=119  {'landscape': 50, 'portrait': 69}  bytes=3296996
+short-design-report.pdf            pages= 14  {'portrait': 14}  bytes=225271

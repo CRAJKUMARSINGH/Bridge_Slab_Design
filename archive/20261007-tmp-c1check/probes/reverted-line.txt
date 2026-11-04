@@ -1,0 +1,1 @@
+          { formula: `=${T1}!F${src}`, result: Number(loadCase.slidingFOS.toFixed(4)) },

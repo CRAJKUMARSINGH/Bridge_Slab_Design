@@ -1,0 +1,20 @@
+test-output/comprehensive-report.pdf: 225 pages
+pages with no Page n of N stamp: []
+stamps that disagree with the real length: [] count 0
+section   cited   real  match
+IN1-3         3      3  OK
+01            7      7  OK
+02            8      8  OK
+03            9      9  OK
+04           10     10  OK
+05-08        11     11  OK
+09-18        15     15  OK
+19-28        32     32  OK
+29           43     43  OK
+30-41        44     44  OK
+42-46        57     57  OK
+ANNEX        62     62  OK
+APPX         66     66  OK
+SUM         225    225  OK
+
+all TOC entries land on their real first page: True

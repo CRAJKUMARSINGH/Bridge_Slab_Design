@@ -1,6 +1,6 @@
 
 > workspace@0.0.0 check E:\Rajkumar\Bridge_Slab_Design
-> pnpm run typecheck && pnpm run lint:narrative
+> pnpm run typecheck && pnpm run lint:narrative && pnpm run lint:pdf-glyphs
 
 
 > workspace@0.0.0 typecheck E:\Rajkumar\Bridge_Slab_Design
@@ -33,4 +33,9 @@ artifacts/mockup-sandbox typecheck: Done
 > workspace@0.0.0 lint:narrative E:\Rajkumar\Bridge_Slab_Design
 > tsx scripts/lint-narrative-no-hardcoded-numbers.ts
 
-NARRATIVE LINT: OK — 158 prose spans checked across lib/narrative/src, bridge-excel-generator/narrative-engine.ts; no hard-coded numbers (citations and units allowed by the explicit list).
+NARRATIVE LINT: OK — 159 prose spans checked across lib/narrative/src, bridge-excel-generator/narrative-engine.ts; no hard-coded numbers (citations and units allowed by the explicit list).
+
+> workspace@0.0.0 lint:pdf-glyphs E:\Rajkumar\Bridge_Slab_Design
+> tsx scripts/lint-pdf-glyph-encodability.ts
+
+lint-pdf-glyphs: OK — 1461 string literals across 5 PDF exporters are cp1252-encodable.

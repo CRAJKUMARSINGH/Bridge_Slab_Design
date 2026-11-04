@@ -1,0 +1,59 @@
+generated workbook: E:\Rajkumar\Bridge_Slab_Design\test-output\design-workbook.xlsx
+sheets: 56
+
+ 1  INDEX                                          dims=A4:C72       rows=  72 cols=  3 orient=portrait
+ 2  DESIGN CRITERIA                                dims=A1:H63       rows=  63 cols=  8 orient=landscape
+ 3  INPUT DATA SUMMARY                             dims=A1:H55       rows=  55 cols=  8 orient=landscape
+ 4  INSERT- HYDRAULICS                             dims=A1:A7        rows=   7 cols=  1 orient=portrait
+ 5  afflux calculation                             dims=A1:H92       rows=  92 cols=  8 orient=landscape
+ 6  HYDRAULICS                                     dims=A1:G42       rows=  42 cols=  7 orient=portrait
+ 7  Deck Anchorage                                 dims=A1:H41       rows=  41 cols=  8 orient=landscape
+ 8  CROSS SECTION                                  dims=A1:H20       rows=  20 cols=  8 orient=portrait
+ 9  Bed Slope                                      dims=A1:H22       rows=  22 cols=  8 orient=portrait
+10  SBC                                            dims=A1:H18       rows=  18 cols=  8 orient=portrait
+11  SEISMIC ANALYSIS (IS 1893)                     dims=A1:H35       rows=  35 cols=  8 orient=landscape
+12  WIND LOAD ANALYSIS (IS 875)                    dims=A1:H28       rows=  28 cols=  8 orient=landscape
+13  STABILITY CHECK FOR PIER                       dims=A1:N76       rows=  76 cols= 14 orient=landscape
+14  abstract of stresses                           dims=A1:I27       rows=  27 cols=  9 orient=landscape
+15  STEEL IN FLARED PIER BASE                      dims=A1:C22       rows=  22 cols=  3 orient=portrait
+16  STEEL IN PIER                                  dims=A1:B20       rows=  20 cols=  2 orient=portrait
+17  FOOTING DESIGN                                 dims=A1:C12       rows=  12 cols=  3 orient=portrait
+18  Footing STRESS DIAGRAM                         dims=A1:E26       rows=  26 cols=  5 orient=portrait
+19  Pier Cap LL tracked vehicle                    dims=A1:C20       rows=  20 cols=  3 orient=landscape
+20  Pier Cap                                       dims=A1:C21       rows=  21 cols=  3 orient=landscape
+21  LLOAD                                          dims=A1:E14       rows=  14 cols=  5 orient=landscape
+22  loadsumm                                       dims=A1:D23       rows=  23 cols=  4 orient=landscape
+23  LL-ABSTRACT                                    dims=A1:L35       rows=  35 cols= 12 orient=landscape
+24  BEARING DETAILS                                dims=A1:H42       rows=  42 cols=  8 orient=landscape
+25  EXPANSION JOINT & DRAINAGE                     dims=A1:H41       rows=  41 cols=  8 orient=portrait
+26  APPROACH SLAB DESIGN                           dims=A1:H45       rows=  45 cols=  8 orient=portrait
+27  TYPE1-AbutMENT Drawing                         dims=A1:C17       rows=  17 cols=  3 orient=landscape
+28  TYPE1-STABILITY CHECK ABUTMENT                 dims=A1:O46       rows=  46 cols= 15 orient=landscape
+29  TYPE1-ABUTMENT FOOTING DESIGN                  dims=A1:C13       rows=  13 cols=  3 orient=portrait
+30  TYPE1- Abut Footing STRESS                     dims=A1:E19       rows=  19 cols=  5 orient=portrait
+31  TYPE1-STEEL IN ABUTMENT                        dims=A1:B15       rows=  15 cols=  2 orient=portrait
+32  TYPE1-Abutment Cap                             dims=A1:B12       rows=  12 cols=  2 orient=portrait
+33  TYPE1-DIRT WALL REINFORCEMENT                  dims=A1:C12       rows=  12 cols=  3 orient=portrait
+34  TYPE1-DIRT DirectLoad_BM                       dims=A1:C14       rows=  14 cols=  3 orient=portrait
+35  TYPE1-DIRT LL_BM                               dims=A1:C14       rows=  14 cols=  3 orient=portrait
+36  INSERT C1-ABUT                                 dims=A1:C14       rows=  14 cols=  3 orient=portrait
+37  C1-AbutMENT Drawing                            dims=A1:C18       rows=  18 cols=  3 orient=landscape
+38  C1-STABILITY CHECK ABUTMENT                    dims=A1:F20       rows=  20 cols=  6 orient=landscape
+39  C1-ABUTMENT FOOTING DESIGN                     dims=A1:C14       rows=  14 cols=  3 orient=portrait
+40  C1-Abut Footing STRESS DIAGRAM                 dims=A1:E17       rows=  17 cols=  5 orient=portrait
+41  CAN-RETURN FOOTING DESIGN                      dims=A1:C12       rows=  12 cols=  3 orient=portrait
+42  STEEL IN CANT-ABUTMENT                         dims=A1:C13       rows=  13 cols=  3 orient=portrait
+43  STEEL IN CANT-RETURNS                          dims=A1:C13       rows=  13 cols=  3 orient=portrait
+44  C1-Abutment Cap                                dims=A1:C13       rows=  13 cols=  3 orient=portrait
+45  C1-DIRT WALL REINFORCEMENT                     dims=A1:C13       rows=  13 cols=  3 orient=portrait
+46  C1-DIRT DirectLoad_BM                          dims=A1:C15       rows=  15 cols=  3 orient=portrait
+47  C1-DIRT LL_BM                                  dims=A1:C15       rows=  15 cols=  3 orient=portrait
+48  TechNote                                       dims=A1:A35       rows=  35 cols=  1 orient=portrait
+49  INSERT ESTIMATE                                dims=A1:C19       rows=  19 cols=  3 orient=portrait
+50  Tech Report                                    dims=A1:B30       rows=  30 cols=  2 orient=portrait
+51  General Abs.                                   dims=A1:D42       rows=  42 cols=  4 orient=portrait
+52  Abstract                                       dims=A1:F70       rows=  70 cols=  6 orient=portrait
+53  Bridge measurements                            dims=A1:K97       rows=  97 cols= 11 orient=portrait
+54  IRC CODE COMPLIANCE CHECKLIST                  dims=A1:H79       rows=  79 cols=  8 orient=portrait
+55  SERVICEABILITY CHECK                           dims=A1:H46       rows=  46 cols=  8 orient=landscape
+56  REVISION SHEET                                 dims=A1:H43       rows=  43 cols=  8 orient=portrait

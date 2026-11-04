@@ -1,4 +1,5 @@
 // IS 456:2000 Bridge / Building Slab Design — Calculation Engine
+import { parseSlabInputs, collectSlabWarnings } from "./slabInputSchema";
 
 export type ConcreteGrade = "M15" | "M20" | "M25" | "M30" | "M35" | "M40";
 export type SteelGrade = "Fe250" | "Fe415" | "Fe500" | "Fe550";
@@ -239,7 +240,18 @@ export function calcAst(
   const B = -(fy * d);
   const C = Mu / 0.87;
   const disc = B * B - 4 * A * C;
-  if (disc < 0) return 0;
+  // DEV-004: negative discriminant means the section cannot carry Mu with these
+  // grades — the slab is geometrically under-sized.  Returning 0 silently masks
+  // the failure, so we throw instead.  The caller (designSlab) uses
+  // parseSlabInputs, which already guards lx/thickness ranges; a negative disc
+  // here means the combination of loads, geometry and grades is impossible.
+  if (disc < 0) {
+    throw new Error(
+      `calcAst: section under-sized — discriminant negative at Mu=${Mu_kNm.toFixed(2)} kN·m ` +
+      `(fck=${fck} MPa, fy=${fy} MPa, d=${d.toFixed(1)} mm). ` +
+      `Increase slab thickness or reduce span/load. [DEV-004]`
+    );
+  }
   return (-B - Math.sqrt(disc)) / (2 * A);
 }
 
@@ -247,12 +259,24 @@ export function calcAst(
 export function barSpacing(
   astReq: number,
   dia: number,
-): { spacing: number; astPrv: number } {
+): { spacing: number; astPrv: number; clamped: boolean; clampReason: string } {
   const abar = (Math.PI * dia * dia) / 4;
-  if (astReq <= 0) return { spacing: 300, astPrv: (abar * 1000) / 300 };
-  let s = Math.floor((abar * 1000) / astReq / 5) * 5;
-  s = Math.max(75, Math.min(300, s));
-  return { spacing: s, astPrv: (abar * 1000) / s };
+  if (astReq <= 0)
+    return { spacing: 300, astPrv: (abar * 1000) / 300, clamped: false, clampReason: "" };
+  const raw = (abar * 1000) / astReq;
+  let s = Math.floor(raw / 5) * 5;
+  let clamped = false;
+  let clampReason = "";
+  if (s < 75) {
+    clamped = true;
+    clampReason = `computed spacing ${s} mm < 75 mm minimum — slab needs thicker bars or denser layout`;
+    s = 75;
+  } else if (s > 300) {
+    clamped = true;
+    clampReason = `computed spacing ${s} mm > 300 mm maximum — governs minimum-steel rule`;
+    s = 300;
+  }
+  return { spacing: s, astPrv: (abar * 1000) / s, clamped, clampReason };
 }
 
 // IS 456 Table 23 — basic span/depth ratio
@@ -274,8 +298,17 @@ function mfFactor(astReq: number, astPrv: number, fy: number): number {
   return Math.min(Math.max(mf, 0.5), 2.0);
 }
 
-export function designSlab(inp: SlabInputs): SlabResult {
-  const warnings: string[] = [];
+export function designSlab(inpRaw: SlabInputs): SlabResult {
+  // ── Physical-bounds gate ──────────────────────────────────────────────────
+  // Reject impossible inputs LOUDLY instead of computing checks from garbage.
+  // Throws SlabInputValidationError with {path, message}[] issues — the same
+  // shape as server/project-input-zod.ts formatZodIssues().
+  // Audit probes that previously returned silent "OK": lx=0, lx=-3,
+  // thickness=20 (d=-5 mm), liveLoad=1e6 kN/m², lx=NaN.
+  const inp = parseSlabInputs(inpRaw);
+  // Non-fatal code-practice advisories go into the same warnings channel the
+  // report already renders ("failed checks are never suppressed").
+  const warnings: string[] = [...collectSlabWarnings(inp)];
   const fck = getFck(inp.concreteGrade);
   const fy = getFy(inp.steelGrade);
 
@@ -291,6 +324,11 @@ export function designSlab(inp: SlabInputs): SlabResult {
   }
 
   const selfWeight = (inp.thickness / 1000) * 25; // kN/m²
+  // DEV-001: this module uses 25 kN/m³ for RC slab (IS 456 Table 1, reinforced).
+  // loadCalc.ts DEFAULT_DEAD_LOAD uses 24 kN/m³ and docs/week-0/coefficients.json
+  // records 25. Engineering decision is PENDING — the ledger is containment/DEVIATIONS.json,
+  // which is the only ledger path; gate-deviations fails on any second file named deviations.json.
+  warnings.push("DEV-001: concrete unit weight = 25 kN/m³ (RC slab per IS 456 Table 1); loadCalc.ts uses 24 — the open engineering decision is recorded in containment/DEVIATIONS.json");
   const totalDL = selfWeight + inp.floorFinish + inp.sunkLoad;
   const totalLL = inp.liveLoad;
   const w = 1.5 * (totalDL + totalLL); // factored load (kN/m²)
@@ -332,6 +370,7 @@ export function designSlab(inp: SlabInputs): SlabResult {
 
     const astMid = Math.max(calcAst(Mmid, fck, fy, d), minSteel);
     const midDet = barSpacing(astMid, inp.barDia);
+    if (midDet.clamped) warnings.push(`Main Mid Span bar spacing: ${midDet.clampReason}`);
 
     steelPositions.push({
       position: "Main Mid Span",
@@ -347,6 +386,7 @@ export function designSlab(inp: SlabInputs): SlabResult {
     if (Msupp > 0) {
       const astS = Math.max(calcAst(Msupp, fck, fy, d), minSteel);
       const sDet = barSpacing(astS, inp.barDia);
+      if (sDet.clamped) warnings.push(`Support bar spacing: ${sDet.clampReason}`);
       const edgeName = inp.lx <= inp.ly ? "Right Edge" : "Left Edge";
       steelPositions.push({
         position: edgeName,

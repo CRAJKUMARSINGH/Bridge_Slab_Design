@@ -1,0 +1,38 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+--- SHEET 9 Section A passive-resistance rows ---
+B22  Friction coefficient μ                         0.5
+B28  Soil unit weight γ (passive resistance)        18
+B29  Passive earth pressure coefficient Kp          {"formula":"=TAN((45+B27/2)*PI()/180)^2","result":3}
+B30  Passive cap as fraction of μV                  0.5
+B31  null                                           null
+
+--- SHEET 9 case 1 and case 5 sliding + status ---
+row 51  case: Service Condition (DL+LL)
+   K51: {"formula":"=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)","result":1.066}
+   N51: {"formula":"=IF(AND(K51>=1.5,L51>=1.8,M51>=1),\"SAFE\",\"UNSAFE\")","result":"UNSAFE"}
+row 55  case: Ultimate Limit State (ULS)
+   K55: {"formula":"=(B22*ABS(H55)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H55)))/MAX(ABS(I55),1)","result":1.627}
+   N55: {"formula":"=IF(AND(K55>=1.5,L55>=1.8,M55>=1),\"SAFE\",\"UNSAFE\")","result":"SAFE"}
+
+row 58 note: Status is computed live from the FOS formulas above against IRC limits; it is not an engineering approval.
+row 3 prose: Wind per IRC:6-2017 §209; seismic per IS:1893:2002; stability limits: sliding ≥ 1.5, overturning ≥ 1.8, bearing ≥ 1.
+
+--- SHEET 20 TYPE1 abutment ---
+A2  Rankine earth pressure; stability limits: sliding ≥ 1.5, overturning ≥ 1.8, bearing ≥ 1 (pressure ≤ SBC). μ is the Section-A cell B18. All derived cells are live formulas.
+B18 0.5
+F21 {"formula":"=$B$18*C21/D21","result":1.7216}
+I21 {"formula":"=IF(AND(F21>=1.5,G21>=1.8,H21>=1),\"SAFE\",\"UNSAFE\")","result":"SAFE"}
+
+--- QA checklist D3-D5 ---
+row 41: Grp | ID | Requirement / Criterion
+row 42: D | D1 | Five load cases analysed for Pier stability (Case 1–5) — see §STABILITY-CHECK-FOR-PIER
+row 43: D | D2 | Five load cases analysed for Type1 + C1 Abutment stability — §TYPE1/§C1 sheets
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+A21: Seismic zone (IS:1893:2002) | B21: 3
+A27: Soil friction angle φ (passive resistance) | B27: 30
+A32: B) LOAD COMPUTATIONS — derived by formula from Section A cells | B32: null
+A33: Pier body volume | B33: {"formula":"=B7*B8*B9","result":16.8}
+defined names: []
+case rows 51.. 55  L(last)= {"formula":"=ABS(H55)*(B11/2)/MAX(ABS(J55),1)","result":3.44}  M(last)= {"formula":"=B15/MAX(ABS(H55)/(B10*B11),1)","result":1.702}

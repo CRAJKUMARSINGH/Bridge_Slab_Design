@@ -1,0 +1,231 @@
+{
+  "schemaVersion": "1.0.0",
+  "bridgeCode": "SOM-LAR",
+  "oracleVersion": "1.0.0",
+  "sourceFile": "Stability Analysis LARATHI SOM RIVER.xls",
+  "bridgeClass": "submersible",
+  "skewDeg": 0,
+  "spans": 12,
+  "spanLength": 8,
+  "hfl": 99.5,
+  "toleranceCategories": {
+    "ARITH": 0.000001,
+    "ROUNDED": 0.0001,
+    "HAND": 0.02
+  },
+  "inputSnapshot": {
+    "fixture": "scripts/fixtures/larathi-stabil-project-input.ts",
+    "export": "LARATHI_STABIL_REFERENCE_INPUT",
+    "matchBasis": "hfl 99.5, 12 spans, spanLength 8 m; computed A 440.825 == oracle A 440.825",
+    "sha256": "f42e86e9c7789964cd9bc966fd0559cc92229db827c31dd9526ed3a09e007b1c"
+  },
+  "inputSnapshotRejected": null,
+  "inputSnapshotGap": null,
+  "inputs": {
+    "source": "derived by parsing scripts/fixtures/larathi-stabil-project-input.ts (crossSectionData + scalar fields) — not hand-transcribed",
+    "hydraulics": {
+      "crossSectionPoints": [
+        {
+          "chainage": 0,
+          "bedLevel": 99.35
+        },
+        {
+          "chainage": 5,
+          "bedLevel": 98.08
+        },
+        {
+          "chainage": 10,
+          "bedLevel": 94.39
+        },
+        {
+          "chainage": 20,
+          "bedLevel": 93.84
+        },
+        {
+          "chainage": 30,
+          "bedLevel": 92.69
+        },
+        {
+          "chainage": 40,
+          "bedLevel": 93.59
+        },
+        {
+          "chainage": 50,
+          "bedLevel": 94.02
+        },
+        {
+          "chainage": 60,
+          "bedLevel": 94.62
+        },
+        {
+          "chainage": 70,
+          "bedLevel": 94.34
+        },
+        {
+          "chainage": 80,
+          "bedLevel": 95.58
+        },
+        {
+          "chainage": 90,
+          "bedLevel": 97.61
+        },
+        {
+          "chainage": 95,
+          "bedLevel": 98.98
+        },
+        {
+          "chainage": 100,
+          "bedLevel": 99.49
+        },
+        {
+          "chainage": 105,
+          "bedLevel": 99.78
+        },
+        {
+          "chainage": 110,
+          "bedLevel": 100.12
+        },
+        {
+          "chainage": 115,
+          "bedLevel": 100.573
+        }
+      ],
+      "slope": 926,
+      "rugosity": 0.033,
+      "numSpans": 12,
+      "spanLength": 8,
+      "numPiers": 11,
+      "pierWidth": 1.2,
+      "hfl": 99.5,
+      "siltFactor": 1.5
+    },
+    "unavailable": [
+      "numAbutments",
+      "abutTopWidth",
+      "abutBottomWidth",
+      "avgRiverBedLevel",
+      "lwl",
+      "lbl",
+      "sofitLevel",
+      "topOfDeck",
+      "deckThickness",
+      "observedVelocity",
+      "dischargeMethod",
+      "userDischarge",
+      "F1",
+      "F2",
+      "crossSectionalArea",
+      "perimeter",
+      "workName"
+    ],
+    "unavailableNote": "These fields are absent from the repository reference input. gate:parity fills them from DEFAULT_HYDRAULIC so the module can run; the baseline therefore locks the port's output for (parsed inputs + declared defaults)."
+  },
+  "baselinedKeys": [
+    "computedArea",
+    "computedPerimeter",
+    "waterSpread",
+    "velocityManning",
+    "dischargeManning",
+    "regimeWidth",
+    "effectiveWaterway"
+  ],
+  "gateParityExpectation": "ASSERT",
+  "baseline": {
+    "hydraulics": {
+      "computedArea": 440.825,
+      "computedPerimeter": 117.05675460673912,
+      "waterSpread": 115,
+      "velocityManning": 2.410425564901543,
+      "dischargeManning": 1062.5758496477226,
+      "regimeWidth": 156.4664423315221,
+      "effectiveWaterway": 96
+    }
+  },
+  "oracleVsComputed": [
+    {
+      "label": "A",
+      "computed": 440.825,
+      "oracle": 440.825,
+      "rtol": 0.000001,
+      "absErr": 0,
+      "relErr": 0,
+      "within": true
+    },
+    {
+      "label": "V",
+      "computed": 2.410425564901543,
+      "oracle": 2.410981,
+      "rtol": 0.0001,
+      "absErr": 0.0005554350984571244,
+      "relErr": 0.00023037721925520124,
+      "within": false
+    },
+    {
+      "label": "Q",
+      "computed": 1062.5758496477226,
+      "oracle": 1062.821,
+      "rtol": 0.0001,
+      "absErr": 0.24515035227727822,
+      "relErr": 0.00023066005684614646,
+      "within": false
+    }
+  ],
+  "perimeterRootCause": {
+    "polylinePerimeter": 117.05675460673912,
+    "impliedByOracleV": 117.01630612213314,
+    "absDiff": 0.0404484846059745,
+    "relDiff": 0.00034566536875431104
+  },
+  "expected": {
+    "A": {
+      "value": 440.825,
+      "unit": "m2",
+      "sheet": "HYDRAULICS",
+      "tolerance": "ARITH",
+      "rtol": 0.000001
+    },
+    "V": {
+      "value": 2.410981,
+      "unit": "m/s",
+      "sheet": "HYDRAULICS",
+      "tolerance": "ROUNDED",
+      "rtol": 0.0001
+    },
+    "Q": {
+      "value": 1062.821,
+      "unit": "cumecs",
+      "sheet": "HYDRAULICS",
+      "tolerance": "ROUNDED",
+      "rtol": 0.0001
+    },
+    "dsm": {
+      "value": 6.44,
+      "unit": "m",
+      "sheet": "afflux calc",
+      "tolerance": "HAND",
+      "rtol": 0.02
+    },
+    "afflux": {
+      "value": 0.32,
+      "unit": "m",
+      "sheet": "afflux calc",
+      "tolerance": "HAND",
+      "rtol": 0.02
+    },
+    "dragFS": {
+      "value": 15.7,
+      "unit": "-",
+      "sheet": "Deck Anchorage",
+      "tolerance": "HAND",
+      "rtol": 0.02
+    },
+    "Pmax": {
+      "value": 153.891,
+      "unit": "kN/m2",
+      "sheet": "STABILITY CHECK PIER",
+      "tolerance": "ROUNDED",
+      "rtol": 0.0001
+    }
+  },
+  "expectedOutputHash": "5b2e40fe3a90cb66c359066afdfbecde9456bff99929466110d0d126bc363761"
+}

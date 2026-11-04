@@ -1,0 +1,82 @@
+test-output/comprehensive-report.pdf: 225 pages
+pages with no Page n of N stamp: []
+stamps that disagree with the real length: [] count 0
+
+--- page 1 ---
+BRIDGE DESIGN REPORT
+Complete Calculation Sheets (56-Sheet Workbook)
+IRC:6-2016 | IRC:112-2015 | IRC:78-1983
+PROJECT DETAILS
+Project Name:
+Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Bridge Type:
+Submersible Slab Bridge
+Location:
+KM 9/000, KHERWARA - JAWAS - SUVERI ROAD
+River:
+SOM
+Total Length:
+96m (12 × 8m spans)
+Carriageway:
+7.5m
+Design Standard:
+IRC Standards
+Report Pages:
+225 pages
+Generated:
+12/10/2026
+This document contains complete bridge design calculations
+Page 1 of 225
+
+--- page 2 ---
+ABOUT THIS DESIGN REPORT
+Page 2 of 225
+About this design report
+This report is generated directly from the bridge design engine. Narrative prose, governing values, quantities and
+annexure diagrams are all tied back to the same design state so reviewers can trace the engineering story without
+manually reconciling separate documents.
+Scope block
+Declared report scope
+Scope
+Hydraulics, slab, pier, abutment, estimation, workbook appendix and annexure drawings.
+Governing codes
+IRC:6, IRC:112, IRC:78, IRC:SP:13.
+Deliverables
+Excel workbook, HTML report, comprehensive PDF, DXF and SVG engineering annexures.
+Narrative mode
+Deterministic prose computed from project inputs and derived design results.
+
+--- page 225 ---
+DESIGN SUMMARY
+Page 225 of 225
+BRIDGE DESIGN SUMMARY
+Narrative closure: this summary consolidates final geometry, hydraulics, stability, and deliverable counts.
+Project Name:
+Construction of Submersible Bridge on KHERWARA - JAWAS - SU
+Total Length:
+96.00 m
+Span Configuration:
+12 spans x 8.00 m
+Carriageway Width:
+7.50 m
+Highest Flood Level:
+100.60 m MSL
+Design Discharge:
+243.11 cumecs
+Design Velocity:
+1.72 m/s
+Pier Sliding FOS (min):
+0.40
+Pier Overturning FOS (min):
+0.86
+Pier Bearing FOS (min):
+1.70
+Number of Piers:
+11
+Total Sheets:
+56
+Total Pages:
+225
+This design has been prepared in accordance with IRC standards.
+End of Report
+

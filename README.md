@@ -2,7 +2,8 @@
 
 Bridge Report Studio is a report-first bridge slab design pipeline for IRC-standard bridges.
 It accepts a controlled engineering input set, runs a TypeScript calculation core, and
-produces a narrative HTML report and a 46-sheet Excel workbook export.
+produces a narrative HTML report and a 56-sheet Excel workbook export (a retained
+`legacy-46` compatibility book remains selectable).
 
 > **Status: Prototype / Review Build** — Not an approved structural design tool.
 > All generated reports are marked `DRAFT` until a licensed engineer records review status.
@@ -17,7 +18,7 @@ produces a narrative HTML report and a 46-sheet Excel workbook export.
 | Material rates registry | `bridge-excel-generator/material-rates.ts` | Done — 17 BOQ items |
 | Narrative engine | `bridge-excel-generator/narrative-engine.ts` | Done |
 | Report model | `bridge-excel-generator/report-model.ts` | Done |
-| 46-sheet Excel contract | `bridge-excel-generator/sheet-contract.ts` | Done — names/order frozen |
+| 56-sheet Excel contract | `bridge-excel-generator/sheet-contract.ts` | Done — names/order frozen (expanded from 46 on 2026-10-05) |
 | Sheets 3 & 4 (Afflux, Hydraulics) | `bridge-excel-generator/sheets/` | Done — live Excel formulas |
 | Sheet 19 (LL-ABSTRACT) | `bridge-excel-generator/sheets/19-ll-abstract.ts` | Done — wired in `index.ts` |
 | Sheets 1, 5–11, 12–18, 20–28, 29–46 | `bridge-excel-generator/sheets/` | Done as engine-backed views (not 468-row workbook clones) |
@@ -138,9 +139,8 @@ git lfs pull --include="reference-design-examples/**"
 ## Known gaps (still due)
 
 1. Full FINAL_RESULT.xls row/formula clones (e.g. pier stability 468 rows, LLOAD 334 rows) — current sheets are engine views, not cell-level replicas.
-2. `sheets-extracted/` remains unused TODO skeletons.
-3. Week-0 reorient branch (`reorient-week0`), `xlwings` Excel driver, and archive-by-`git mv` of `client/`/`api/` were **not** executed; the live engine is TypeScript (`design-engine.ts`), not xlwings.
-4. Licensed-engineer sign-off is not recorded.
+2. Week-0 reorient branch (`reorient-week0`), `xlwings` Excel driver, and archive-by-`git mv` of `client/`/`api/` were **not** executed; the live engine is TypeScript (`design-engine.ts`), not xlwings.
+3. Licensed-engineer sign-off is not recorded.
 
 ---
 
@@ -156,7 +156,20 @@ git lfs pull --include="reference-design-examples/**"
 
 ## Project documentation
 
-- Implementation plan: `CODE-JUNCTION/bridge_slab_design_comprehensive_impl_plan.md`
-- Audit findings: `CODE-JUNCTION/BRIDGE 12 AUD.txt`
-- Weekly plan: `origin-weekly-plan.md`
+- Canonical plan: `creat.md` — `CANONICAL.md` declares which document is authoritative
+- Phase-2 kit: `PHASE-2-MASTER-PLAN.md` → `PHASE-2-INDEX.md`
 - Audit report: `AUDIT-REPORT-v1.0.md`
+- Superseded weekly plan (kept for provenance): `archive/20261023-w00-closeout/origin-weekly-plan.md`
+
+---
+
+## Standing instructions (persistent)
+
+These rules apply to every tool, agent, and engineer working on this repository.
+
+1. **Rolling chatlog:** Keep a rolling last-24h chatlog in `creat.md` for tool/engineer continuity. Delete older entries when appending. Do not let the file grow unbounded.
+2. **Git identity:** `user.email = "crajkumarsingh@hotmail.com"` · `user.name = "RAJKUMAR SINGH CHAUHAN"` for all commits.
+3. **Package manager:** This repo uses **pnpm** (pinned via `packageManager: "pnpm@10.33.0"`). The `preinstall` script rejects npm and deletes `package-lock.json`. Do not use `npm ci` — use `pnpm install --frozen-lockfile`.
+4. **Reference design examples:** `reference-design-examples/` is the permanent external research corpus (tier 0 / EXTERNAL). It is stored in Git LFS. Read it for revalidation and enrichment; do not cite its values silently or write derived values back into it.
+5. **Engineering safety:** This software produces bridge structural-design outputs. Do not silently change formulas, load combinations, coefficients, units, material factors, limits, or standards interpretations. All generated outputs are `DRAFT` until a licensed engineer records review status.
+6. **Attached assets:** `Attached_Assets/`, `Test_Files/`, and any "how to use" guide files are exempt from redundant-file removal.

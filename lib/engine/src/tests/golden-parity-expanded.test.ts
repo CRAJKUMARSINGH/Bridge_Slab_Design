@@ -14,7 +14,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 import { calculate, ENGINE_VERSION } from "../calculate.js";
 import { calcDesignUDL, calcMaximumMoment, calcMaximumShear } from "../functions/loads.js";
-import { calcBendingStress, calcBendingUtilisation, calcShearStress, calcShearCheck } from "../functions/resistance.js";
+import { calcBendingUtilisation, calcShearCheck } from "../functions/resistance.js";
 import {
   calcLiveLoadDeflection, calcDeflectionLimit, calcDeflectionCheck,
   calcGoverningUtilisation, calcAdjustedGoverningUtilisation,

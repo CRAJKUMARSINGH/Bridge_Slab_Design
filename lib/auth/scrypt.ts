@@ -3,8 +3,8 @@
 // Chosen over `argon2`/`@node-rs/argon2` because the deployed target is Netlify
 // Functions, where a native build is the thing that breaks, not the thing that
 // helps. `node:crypto` is zero-dependency and present in Node 20/22/24.
-// Decision: ADR-0009 is reserved and not yet written (see docs/adr/README.md);
-// the opening record is DL-004 in CODE-JUNCTION/VENICE-GUIDE.MD (2026-10-23).
+// Decision: ADR-0009 (docs/adr/0009-scrypt-not-argon2.md); the opening record
+// was DL-004 in CODE-JUNCTION/VENICE-GUIDE.MD (2026-10-23).
 import { randomBytes, scrypt, timingSafeEqual } from "node:crypto";
 
 const N = 16384, r = 8, p = 1, KEYLEN = 64;

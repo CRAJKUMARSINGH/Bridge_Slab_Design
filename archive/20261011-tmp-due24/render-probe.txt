@@ -1,0 +1,27 @@
+== node: puppeteer/playwright installed? ==
+jspdf
+jspdf-autotable
+== python pdf libs ==
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+  HAVE fitz
+  HAVE pypdfium2
+  HAVE pdf2image
+  HAVE PyPDF2
+  HAVE pypdf
+  no pikepdf
+== chrome binaries on PATH ==
+  no chrome.exe
+  no msedge.exe
+  no pdftoppm.exe
+  no magick.exe
+== python -m pip list (pdf/img) ==
+docx2pdf                  0.1.8
+pdf2image                 1.17.0
+pdfminer.six              20260107
+pdfplumber                0.11.10
+pillow                    12.3.0
+pymupdf                   1.28.2
+pypdf                     6.9.2
+PyPDF2                    3.0.1
+pypdfium2                 5.13.0
+xhtml2pdf                 0.2.17

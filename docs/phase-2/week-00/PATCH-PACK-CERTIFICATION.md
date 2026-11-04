@@ -790,3 +790,216 @@ changes the module map, which is counted from the index. `README.md` was regener
   by hand to get there. No gate asserts that the two agree, so the agreement can drift
   again. That is the next hole, not a closed one.
 
+---
+
+## 13. Rev. 7 — the reference the deletion left behind (2026-10-26)
+
+Rev. 6 removed the second deviation ledger. The removal was correct and the uniqueness
+assertion in `scripts/gates/gate-deviations.ts` still holds. What rev. 6 did not do is
+check what the *engine* still said. This revision was prompted by re-reading the SET ONE
+guide against the committed tree, and the defect it found was created by rev. 6 itself.
+
+### 13.1 The finding
+
+`client/src/report-engine/lib/slabCalc.ts` is a shipped engine module. Its `designSlab`
+pushes a DEV-001 advisory into `warnings`, and that string ended:
+
+```
+DEV-001: concrete unit weight = 25 kN/m³ (RC slab per IS 456 Table 1); loadCalc.ts uses 24
+— see foundation/deviations.json for engineering decision
+```
+
+That warning is rendered in the report the user reads. It names a file that this harness
+now requires to be absent, so a reader who follows it finds nothing. The comment directly
+above it said the same, and the F06 numeric pin in
+`client/src/report-engine/lib/__tests__/slabCalc.test.ts` carried a third copy in its
+"record what changed" instructions. Three references, one path, none of which resolves.
+
+This is the class ADR-0012 exists for — `REFERENCED_BUT_ABSENT`, a reference that reads as
+a claim about the tree and is false. It is the first instance of that class found in code
+rather than in prose.
+
+### 13.2 Why no gate could see it
+
+Both doors were shut, and each for a defensible reason:
+
+- **P-01 scans instruction prose, not code.** Its scope is backticked path tokens under
+  `docs/phase-2/**`. A path inside a TypeScript string or comment is outside that scope, so
+  the assertion that would have caught this never looked at the file.
+- **The uniqueness assertion is satisfied by the defect.** `gate-deviations` asserts that no
+  second file named deviations.json exists. That assertion is now *stronger* than ever
+  because the file is gone — and it is exactly why the reference to it is stale. The gate
+  that removed the ledger cannot notice that something still points at where it used to be.
+
+So the repair and the regression arrived in the same commit, and every assertion in the
+harness stayed green across both.
+
+### 13.3 The repair, and the pin catching it
+
+The three references now name the canonical ledger, `containment/DEVIATIONS.json`. Preferring
+the referent over the repointing (ADR-0012, rule 3) is not available here: creating
+foundation/deviations.json would re-open hole #7, which rev. 4 closed and which
+`gate-deviations` fails on. The instruction is what was stale, so the instruction is what
+changed.
+
+Editing an engine module is not free. `gate:contracts` holds the sha256 of every module
+declared in `foundation/manifest.json` against `foundation/engine.lock.json`, so the edit
+made the pin fail on itself. That failure is the evidence the pin is live:
+
+```
+=== gate-contracts BEFORE re-lock
+GATE gate-contracts: FAIL 4 assertions
+  client/src/report-engine/lib/slabCalc.ts: pinned c6de23e5c29e…, disk 8fb71676a8c9…
+exit=1
+
+=== lock:engine, then gate-contracts AGAIN
+engine.lock.json written — 8 modules pinned
+GATE gate-contracts: PASS 4 assertions
+exit=0
+```
+
+This RED is a real edit rather than a poison pill, which is a stronger demonstration than
+the pill in `scripts/gates/.pills.json` provides: the pill proves the gate fails when it is
+fed a corrupted artefact, and this proves it fails when a developer genuinely changes engine
+bytes and forgets the lock.
+
+### 13.4 Evidence that no number moved — and the second line of evidence retracted
+
+A repair to a warning string must not move a calculation. That is claimed here only at the
+strength the evidence actually supports.
+
+The supported part: the edit touches a comment and one warning string literal in
+`client/src/report-engine/lib/slabCalc.ts`, and no arithmetic. The `gate-contracts` RED above
+is the evidence for the shape of the change — the sha256 changed before the lock was
+refreshed and matched after, so the module's bytes moved by exactly the edit.
+
+An earlier draft of this section offered a re-bless of the golden snapshot as a second, and
+stronger, line of evidence: two runs producing the same 699 numeric leaves and the same file
+hash, `F451EB5A7F5F62B28B906114E69AF2C39667C1D4D1033BDEBE11328BED01DABE`. **That evidence is
+withdrawn.** It was true of two consecutive runs, and it proves only that the bless script is
+deterministic. It says nothing about this edit, for two reasons, both established by running
+the check rather than by reading it:
+
+1. `bridge-excel-generator/design-engine.ts` does not import
+   `client/src/report-engine/lib/slabCalc.ts`, nor anything under
+   `client/src/report-engine/`. A golden of the authoritative engine cannot move because a
+   report-engine module changed, so its stability is not evidence about a report-engine edit.
+2. `pnpm run golden:bless` writes `tests/golden/kherwara/expected.json` unconditionally, and
+   that path is the one `scripts/src/verify-golden.ts` reads in a different schema. The bless
+   run replaced the committed document with 699 flat numeric leaves and the runnable check
+   went RED:
+
+```
+=== verify:golden against the bless-overwritten tree
+Error: Schema mismatch: bridge-calculation.v1 != undefined
+exit=1
+
+=== the file restored from HEAD, verify:golden re-run
+Golden regression passed; tamper input changed the result as expected.
+exit=0
+```
+
+The file was restored from HEAD, so this revision carries no change to the golden. The
+collision itself is a real hole and is named in §13.6, not repaired here.
+
+### 13.5 Transcript
+
+```
+GATE preflight: PASS 15 assertions
+GATE gate-deps: PASS 4 assertions
+GATE gate-scripts: PASS 2 assertions
+GATE gate-contracts: PASS 4 assertions
+GATE gate-tiers: PASS 3 assertions
+GATE gate-proven-red: PASS 2 assertions
+GATE gate-hygiene: PASS 7 assertions
+GATE gate-chain: PASS 2 assertions
+GATE gate-tasks: PASS 2 assertions
+GATE gate-docs: PASS 3 assertions
+GATE gate-readme: PASS 1 assertions
+GATE gate-index: PASS 4 assertions
+GATE gate-deviations: PASS 7 assertions
+GATE gate-vacuity: PASS 3 assertions
+GATE gate-ratchet: PASS 2 assertions
+
+TOTAL ASSERTIONS: 61   FAILING GATES: 0
+```
+
+No gate, assertion, threshold or count changed in this revision. The count is 61 before and
+after, which is why the ratchet and the vacuity budget are untouched.
+
+### 13.6 What rev. 7 does not claim
+
+- **No new assertion was added for this class.** The same mistake can be made again in
+  another code file and nothing in the harness would object; P-01 still scans prose only.
+  Extending the resolution check to code is a design decision with a false-positive cost of
+  its own — every literal path in every script would become a claim — and it has not been
+  taken here. It is named as the open hole rather than closed quietly.
+- **`client/src/report-engine/lib/slabCalc.ts` remains named in `foundation/manifest.json` as
+  an engine module**, so the pin covers it. That was already true; this revision only
+  produced the first real demonstration that the pin fires.
+- **The other rev. 6 reds are unchanged.** The literal guard is still RED at roughly 1079
+  unjustified literals over 1898 scanned code lines, the baseline test count is still a
+  claim because `@vitest/utils` is absent so no reporter can run, and `build` plus
+  `audit:policy` were still not run. None of that is touched by a warning string.
+- **The guide's own checklist item about `creat.md` is still unmet.** No "NOT YET CLOSED"
+  marker re-opening the Week 6 gate exists in that charter, and this revision does not add
+  one.
+- **A tag was still not created and nothing was pushed.** `git tag -l` is empty. The freeze
+  step is not performed, so the guide's victory condition — green on a fresh clone — has not
+  been demonstrated in this environment and is not claimed.
+- **The golden-path collision is named, not repaired.** Two npm targets write and read one
+  path in mutually exclusive schemas. `pnpm run golden:bless` (`scripts/golden/bless.ts`)
+  writes `tests/golden/kherwara/expected.json` as a flat map of 699 numeric leaves, and
+  `pnpm run verify:golden` (`scripts/src/verify-golden.ts`) reads that same path as a
+  structured document with `schemaVersion`, `intermediates` and `constraintStatus`. The
+  committed file is the structured one, so `verify:golden` is green and G3a
+  (`tests/golden/kherwara/golden.test.ts`), which wants the flat form, could not pass it. The
+  two cannot both be satisfied by one file. This was latent until rev. 7 ran the bless as
+  evidence; it is not a rev. 7 regression, and it is not fixed here because choosing a side
+  means changing a test's input or splitting the fixture, which is a decision for the owner of
+  that fixture. Until it is settled, `pnpm run golden:bless` is destructive to the only
+  golden consumer that runs.
+
+---
+
+## 14. The guide's victory definition, audited against the tree (2026-10-26)
+
+The guide closes with a binary checklist and the instruction "do not proceed to Week 7 until
+all are true". It is a claim list, so it is audited here item by item, with the evidence in
+the same row. Eleven items. **Two are met, one is met under different names, one is red by
+design, two are red, and five are unmet.** Nothing below is inferred from the guide's own
+prose; each verdict was taken from the tree or from a command run against it.
+
+| # | The guide's item | Verdict | Evidence |
+| --- | --- | --- | --- |
+| 1 | Four `foundation/` files committed | Red by design (3 of 4) | `foundation/manifest.json`, `foundation/engine.lock.json` and `foundation/tolerances.json` are tracked. The fourth cannot be: the ledger is `containment/DEVIATIONS.json`, and `gate:deviations` assertion 7 fails on any second file named deviations.json. That collision is hole #7, closed in rev. 4. |
+| 2 | `npm run gate` green on a fresh clone | Unmet | `package.json` `preinstall` rejects npm, so the literal command fails by construction. Its pnpm equivalent is not green either: `verify:literals` is RED, and `build` and `audit:policy` have not been run here. No fresh clone was made. |
+| 3 | Golden numeric goes red on one hand-edited number, green when restored | **Met** | Run 2026-10-26 against the runnable consumer: editing `designUdl` from 33.75 to 33.76 produced `Golden mismatch designUdl: actual=33.75 expected=33.76`; restoring the file produced `Golden regression passed`. The vitest copy of the same idea, G3a, cannot run. |
+| 4 | Tamper meta-test proves a 10% span change breaks tolerance | Unmet | The tamper that exists perturbs `liveLoadUdl` by +1 and asserts `designUdl` moved. It does not touch span and does not demonstrate a tolerance breaking. |
+| 5 | Every `DEFAULT_*` silent fill surfaced via `req()`/`opt()` | Unmet | `foundation/provenance.ts` implements all three functions and **nothing imports the module** — no engine file routes a default through it. 90 `DEFAULT_*` occurrences remain across 20 files, 6 of them in `bridge-excel-generator/design-engine.ts`. This is the guard existing as an island. |
+| 6 | Zero bare numeric literals without `//@k:` or `//@lit` | RED | `verify:literals`: scanned 1898 code lines, 1079 unexplained literals. |
+| 7 | All five deviations OPEN, with probes and a resolve-by | **Met under different names** | `containment/DEVIATIONS.json` holds 8 — a superset — of which 7 are OPEN. The probe mechanism is `anchors`, a file+regex+value triple, which `gate-deviations` enforces in both directions; the resolve-by is `closingWeek` plus `owner`. Stricter than the item asked for, under different field names. |
+| 8 | `verify:testcount` floor set to the real observed baseline | RED — a claim, not an observation | `foundation/BASE_TEST_COUNT.txt` records 107 and says of itself that it was never measured, because `@vitest/utils` is absent so no reporter runs. A wrong baseline is a wrong floor, silently. |
+| 9 | CI runs `npm run gate`, `lfs: true`, separate api-server typecheck job | Partly met | `.github/workflows/ci.yml` has `lfs: true`, and `gate:foundation` is a blocking step. But there is no `npm run gate` — CI runs the pnpm form, since npm is rejected — and the api-server step is a build inside the same job, not a separate typecheck job. The step's label still reads "preflight + 13 gates" while the harness is 15. |
+| 10 | `foundation-v1.0-frozen` tag pushed; CI green on main | Unmet | `git tag -l` is empty, nothing has been pushed, HEAD is on `foundation/set-one-hardening`, and `main` is corrupt (a bad object), so `master` is the working ref. |
+| 11 | `creat.md` re-opened and marked NOT YET CLOSED | Unmet | `creat.md` exists and carries no such marker. |
+
+### 14.1 What the audit changes
+
+Item 3 is the one item that moved from unproven to proven in this pass, and the proof is a
+real hand-edit rather than a poison pill. Item 1 is the one item that should not be met as
+written, and that is a deliberate, recorded adjudication rather than an omission.
+
+### 14.2 What the audit does not claim
+
+- **The audit is not a pass.** Five items are unmet, two are red, and item 2's command does
+  not exist in this repository. The guide's threshold — "only then re-enter Week 4" — is not
+  cleared.
+- **Three of the reds cannot be closed from this checkout.** `verify:testcount`, the literal
+  guard's remediation, and any fresh-clone verification all need a working `node_modules`
+  with a functioning vitest, which this environment does not have; `pnpm` cannot repair it.
+- **Item 3 is met by `verify:golden`, not by G3a.** The guide names one golden numeric test;
+  there are two, they read the same path in different schemas, and only one of them runs.
+  See §13.6.
+
+

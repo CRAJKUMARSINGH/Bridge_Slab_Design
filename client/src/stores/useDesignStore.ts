@@ -14,7 +14,12 @@ function readStoredResults(): CompleteDesignResult | null {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw) as { results?: CompleteDesignResult };
-    return parsed?.results ?? null;
+    const results = parsed?.results;
+    // A payload saved before the response carried its acceptance rule (§Y-5) has verdicts with no
+    // limits to gauge them against; treat it as absent so the app refetches instead of painting
+    // gauges whose pass mark is invisible.
+    if (!results?.stabilityAcceptance) return null;
+    return results;
   } catch {
     return null;
   }

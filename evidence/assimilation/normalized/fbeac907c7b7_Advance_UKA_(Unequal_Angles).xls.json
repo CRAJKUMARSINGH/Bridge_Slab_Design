@@ -1,0 +1,36 @@
+{
+  "sheet_names": [
+    "Advance UKA (Unequal Angles)"
+  ],
+  "column_headers": {
+    "Advance UKA (Unequal Angles)": [
+      "Section Designation",
+      "",
+      "Mass",
+      "Radius",
+      "",
+      "Area",
+      "Dimension",
+      "",
+      "Second Moment of Area",
+      "",
+      "",
+      "",
+      "Radius of Gyration",
+      "",
+      "",
+      "",
+      "Elastic",
+      "Elastic",
+      "Angle",
+      "Torsional",
+      "Equivalent Slenderness ",
+      "",
+      "Mono-"
+    ]
+  },
+  "non_empty_cell_count": 1106,
+  "id": "fbeac907c7b7_Advance_UKA_(Unequal_Angles).xls",
+  "status": "ok",
+  "path": "Attached_Assets/ASTRA 15 TUTORIALS/TABLES/British Standard/Steel Table/Tata Steel Excel Files/Advance UKA (Unequal Angles).xls"
+}

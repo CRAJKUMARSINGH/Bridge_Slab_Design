@@ -1,0 +1,39 @@
+TOTAL lines: 28   TOTAL literals: 34
+  8  client/src/components/SeismicZonePanel.tsx
+  6  client/src/pages/AbutmentStability.tsx
+  6  client/src/report-engine/sheets/engineeringNarrative.tsx
+  2  client/src/pages/Design.tsx
+  2  client/src/pages/FormulaEvaluator.tsx
+  1  client/src/pages/BridgeSlabReport.tsx
+  1  client/src/report-engine/exportUtils.ts
+  1  client/src/report-engine/sheets/PierOptimiser.tsx
+  1  client/src/report-engine/sheets/SummarySection.tsx
+
+client/src/components/SeismicZonePanel.tsx:94  [1.25]  const pierOK = pierFOS >= 1.25;
+client/src/components/SeismicZonePanel.tsx:95  [1.25]  const abtOK  = abtFOS >= 1.25;
+client/src/components/SeismicZonePanel.tsx:107  [1.25]  <span style={{ color: pierFOS >= 1.25 ? 'rgb(16 185 129)' : 'rgb(239 68 68)' }} className="font-mono text-sm font-semibold">
+client/src/components/SeismicZonePanel.tsx:112  [1.25]  <span style={{ color: abtFOS >= 1.25 ? 'rgb(16 185 129)' : 'rgb(239 68 68)' }} className="font-mono text-sm font-semibold">
+client/src/components/SeismicZonePanel.tsx:196  [1.25]  const pierSlideOK = FOS_pier_slide_seismic >= 1.25;
+client/src/components/SeismicZonePanel.tsx:197  [1.25]  const abtSlideOK  = FOS_abt_slide_seismic  >= 1.25;
+client/src/components/SeismicZonePanel.tsx:198  [1.50]  const pierOTOK    = FOS_pier_OT_seismic     >= 1.50;
+client/src/components/SeismicZonePanel.tsx:199  [1.50]  const abtOTOK     = FOS_abt_OT_seismic      >= 1.50;
+client/src/pages/AbutmentStability.tsx:222  [1.50]  slide_ok:     FOS_sliding    >= 1.50,
+client/src/pages/AbutmentStability.tsx:223  [2.00]  overturn_ok:  FOS_overturning >= 2.00,
+client/src/pages/AbutmentStability.tsx:496  [1.5]  `FOS Sliding,${f.FOS_sliding.toFixed(2)},${f.slide_ok ? 'PASS' : 'FAIL'} (req >= 1.5)`,
+client/src/pages/AbutmentStability.tsx:497  [2.0]  `FOS Overturning,${f.FOS_overturning.toFixed(2)},${f.overturn_ok ? 'PASS' : 'FAIL'} (req >= 2.0)`,
+client/src/pages/AbutmentStability.tsx:834  [1.50]  <p>           = {forces.FOS_sliding.toFixed(3)}  {forces.slide_ok ? '≥ 1.50 ✓' : '< 1.50 ✗'}</p>
+client/src/pages/AbutmentStability.tsx:837  [2.00]  <p>           = {forces.FOS_overturning.toFixed(3)}  {forces.overturn_ok ? '≥ 2.00 ✓' : '< 2.00 ✗'}</p>
+client/src/pages/BridgeSlabReport.tsx:830  [1.5]  (lc) => lc.slidFOS >= 1.5 && lc.qmax <= d.SBC,
+client/src/pages/Design.tsx:202  [1.25,1.50,1.10]  const sVerd: 'PASS' | 'WARN' | 'FAIL' = sSlideFOS >= 1.25 && sOTFOS >= 1.50 ? 'PASS' : sSlideFOS >= 1.10 ? 'WARN' : 'FAIL';
+client/src/pages/Design.tsx:227  [1.25,1.50]  const wVerd: 'PASS' | 'WARN' | 'FAIL' = wFOS >= acc.slidingFosMin && wOTFOS >= acc.overturningFosMin ? 'PASS' : (wFOS >= 1.25 || wOTFOS >= 1.50) ? 'WA
+client/src/pages/FormulaEvaluator.tsx:280  [1.5,1.3]  <ResultRow label="FOS Sliding" formula="FOS = μ·ΣW / (Pa_h + ΔPa_q)" result={`${N(FOS_slide, 3)}`} verdict={FOS_slide >= 1.5 ? 'PASS' : FOS_slide >= 1
+client/src/pages/FormulaEvaluator.tsx:281  [2.0,1.7]  <ResultRow label="FOS Overturning" formula="FOS = ΣM_restoring / ΣM_overturn" result={`${N(FOS_overturn, 3)}`} verdict={FOS_overturn >= 2.0 ? 'PASS' :
+client/src/report-engine/exportUtils.ts:294  [1.5]  const status = lc.slidFOS >= 1.5 && lc.qmax <= d.SBC ? "SAFE âœ“" : "CHECK âœ—";
+client/src/report-engine/sheets/engineeringNarrative.tsx:154  [1.5]  const pierSlideOK = pierMinFOS >= 1.5;
+client/src/report-engine/sheets/engineeringNarrative.tsx:156  [1.5]  const abtSlideOK = abtMinFOS >= 1.5;
+client/src/report-engine/sheets/engineeringNarrative.tsx:243  [1.5]  pierMinFOS >= 1.5 &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:244  [1.5]  abtMinFOS >= 1.5 &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:296  [1.5]  pierMinFOS >= 1.5 &&
+client/src/report-engine/sheets/engineeringNarrative.tsx:297  [1.5]  abtMinFOS >= 1.5 &&
+client/src/report-engine/sheets/PierOptimiser.tsx:224  [1.25,1.50]  const slidColor = r.worstSlid < 1.25 ? C.red : r.worstSlid < 1.50 ? C.amber : C.green;
+client/src/report-engine/sheets/SummarySection.tsx:125  [1.5]  const pierSafe = d.pierLCs.every(lc => lc.slidFOS >= 1.5 && lc.qmax <= d.SBC);

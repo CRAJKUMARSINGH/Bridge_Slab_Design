@@ -1,0 +1,26 @@
+{
+  "sheet_names": [
+    "Advance UKC"
+  ],
+  "column_headers": {
+    "Advance UKC": [
+      "Section",
+      "Mass",
+      "Depth",
+      "Width",
+      "Area",
+      "Thickness",
+      "",
+      "Root",
+      "Depth",
+      "Radius for",
+      "",
+      "Second Moment",
+      ""
+    ]
+  },
+  "non_empty_cell_count": 519,
+  "id": "60a898e0779c_Advance_UKC.xls",
+  "status": "ok",
+  "path": "Attached_Assets/ASTRA 15 TUTORIALS/TABLES/British Standard/Steel Table/Tata Steel Excel Files/Advance UKC.xls"
+}

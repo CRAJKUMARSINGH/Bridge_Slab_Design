@@ -1,0 +1,508 @@
+{
+  "sheet_names": [
+    "1.Input",
+    "2.LiveLoad",
+    "Cantilever(LIMIT STATE)",
+    "Design Cantilever",
+    "5.Design"
+  ],
+  "column_headers": {
+    "1.Input": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "2.LiveLoad": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "Cantilever(LIMIT STATE)": [
+      "Design of Transverse Cantilever of Slab ",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "Design Cantilever": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "5.Design": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "non_empty_cell_count": 7181,
+  "id": "ce521517aeeb_RCC_Deck_Slab_BS.xls",
+  "status": "ok",
+  "path": "Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Limit State Method/RCC T Girder BS/RCC Deck Slab BS.xls",
+  "classified_headers": {
+    "1.Input": [
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      }
+    ],
+    "2.LiveLoad": [
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      }
+    ],
+    "Cantilever(LIMIT STATE)": [
+      {
+        "header": "Design of Transverse Cantilever of Slab ",
+        "category": "label"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      }
+    ],
+    "Design Cantilever": [
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      }
+    ],
+    "5.Design": [
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      }
+    ]
+  },
+  "classification_status": "ok"
+}

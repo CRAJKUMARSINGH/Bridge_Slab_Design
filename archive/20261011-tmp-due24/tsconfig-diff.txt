@@ -1,0 +1,21 @@
+diff --git a/tsconfig.base.json b/tsconfig.base.json
+index 1088a70..2d8c9bb 100644
+--- a/tsconfig.base.json
++++ b/tsconfig.base.json
+@@ -7,13 +7,13 @@
+     "moduleResolution": "bundler",
+     "noEmitOnError": true,
+     "noFallthroughCasesInSwitch": true,
+-    "noImplicitOverride": false,
++    "noImplicitOverride": true,
+     "noImplicitReturns": true,
+-    "noUnusedLocals": false,
++    "noUnusedLocals": true,
+     "noImplicitAny": true,
+     "noImplicitThis": true,
+     "strictNullChecks": true,
+-    "strictFunctionTypes": false,
++    "strictFunctionTypes": true,
+     "strictBindCallApply": true,
+     "strictPropertyInitialization": true,
+     "useUnknownInCatchVariables": true,

@@ -1,0 +1,55 @@
+=== top-level dirs (ts/tsx/js counts, excl node_modules/archive) ===
+Attached_Assets/             0 files
+CODE-JUNCTION/               0 files
+Drawing_Module/              1 files
+api/                         1 files
+artifacts/                   82 files
+assets/                      0 files
+bridge-excel-generator/      28 files
+client/                      111 files
+data/                        0 files
+design-reports/              1 files
+dist/                        15 files
+docs/                        2 files
+engineering/                 0 files
+inputs/                      0 files
+lib/                         56 files
+openapi/                     0 files
+out/                         0 files
+pipeline/                    1 files
+project/                     0 files
+python_cad/                  3 files
+sample/                      0 files
+scripts/                     75 files
+server/                      36 files
+shared/                      6 files
+src/                         1 files
+tests/                       13 files
+
+=== root loose files ===
+Dockerfile
+asset-register.json
+orval.config.ts
+package.json
+pnpm-lock.yaml
+pnpm-workspace.yaml
+tsconfig.base.json
+tsconfig.client.json
+tsconfig.flat.json
+tsconfig.json
+vercel.json
+vite-plugin-meta-images.ts
+vite.config.prod.ts
+vite.config.ts
+
+=== deliverable exporters ===
+server/checklist-export.ts
+server/comprehensive-pdf-export.ts
+server/comprehensive-pdf-export.ts
+server/dxf-export.ts
+server/fiftysix-sheet-book-pdf.ts
+server/landscape-pdf-export.ts
+server/landscape-pdf-export.ts
+server/pdf-export.ts
+server/pdf-export.ts
+server/pdf-input-template-sheets.ts

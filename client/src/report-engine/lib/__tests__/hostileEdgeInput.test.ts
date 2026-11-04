@@ -8,9 +8,7 @@
  * Cast hostile values with `as any` to bypass TypeScript — these are
  * intentionally invalid inputs; the tsconfig excludes test files.
  *
- * Run environment: vitest (same as other __tests__ files in this folder)
- * These tests are NOT in the pnpm run test integration lane (that lane uses
- * node:test); they are documentation + vitest-runnable specs.
+ * Run environment: `pnpm run test:client` (vitest, part of the root `test` chain since 2026-10-17).
  */
 import { describe, it, expect } from "vitest";
 
@@ -22,6 +20,13 @@ import { IRCSlabInputValidationError } from "../ircSlabInputSchema";
 import { calcPier } from "../pierCalc";
 import { calcDeadLoad } from "../loadCalc";
 import { SHEETS, CATEGORIES } from "../sheets";
+
+// These engines echo the whole input object as `inputs`, so a full-JSON diff changes for any
+// input, even one the engine never reads. Un-used-parameter probes must exclude it.
+function computed<T extends object>(result: T): string {
+  const { inputs: _inputs, ...rest } = result;
+  return JSON.stringify(rest);
+}
 
 // ── Shared valid base inputs ──────────────────────────────────────────────────
 const VALID_SLAB = {
@@ -235,12 +240,15 @@ describe("ircSlabCalc hostile inputs", () => {
     expect(r.m).not.toBe(10); // must not be the old hardcoded value
   });
 
-  it("Q is derived from m and sigmaSt (not hardcoded 1.11)", () => {
+  it("Q is the full WSD moment-of-resistance coefficient ½·σcb·k·j", () => {
     const r = designIRCSlab({ ...VALID_IRC_SLAB, barDia: 20 });
     const m = 280 / (3 * 8.5);
-    const expectedQ = (8.5 / 2) * (m * 190) / (m * 190 + 8.5);
-    expect(r.Q).toBeCloseTo(expectedQ, 2);
-    expect(r.Q).not.toBe(1.11); // must not be the old hardcoded value
+    const k = (m * 8.5) / (m * 8.5 + 190);
+    const expectedQ = 0.5 * 8.5 * k * (1 - k / 3);
+    expect(r.Q).toBeCloseTo(expectedQ, 4);
+    // Neither of the superseded forms: the 1.11 table literal, nor the lever-arm-less σcb/2·(…) ≈ 4.23.
+    expect(r.Q).not.toBe(1.11);
+    expect(r.Q).toBeLessThan(2);
   });
 
   it("shearStatus is OK or FAIL (not undefined)", () => {
@@ -248,8 +256,12 @@ describe("ircSlabCalc hostile inputs", () => {
     expect(["OK", "FAIL"]).toContain(r.shearStatus);
   });
 
-  it("DEFAULT_IRC_SLAB (cover=30) throws because cover < 40 mm schema limit", () => {
-    expect(() => designIRCSlab(DEFAULT_IRC_SLAB))
+  it("DEFAULT_IRC_SLAB is schema-legal (cover 40 mm = the IRC:21 floor)", () => {
+    expect(() => designIRCSlab(DEFAULT_IRC_SLAB)).not.toThrow();
+  });
+
+  it("cover below the 40 mm floor throws IRCSlabInputValidationError", () => {
+    expect(() => designIRCSlab({ ...DEFAULT_IRC_SLAB, cover: 30 }))
       .toThrow(IRCSlabInputValidationError);
   });
 
@@ -307,8 +319,8 @@ describe("hydraulicCalc hostile inputs", () => {
     // a schema gate. When a gate is added this test should be promoted to a plain it().
     const r1 = computeHydraulics({ ...VALID_HYDRAULIC } as any);
     const r2 = computeHydraulics({ ...VALID_HYDRAULIC, fck: 99999 } as any);
-    // If fck were used, results would differ — they don't, confirming it's unused.
-    expect(JSON.stringify(r1)).not.toBe(JSON.stringify(r2));
+    // If fck were used, computed results would differ — they don't, confirming it's unused.
+    expect(computed(r1)).not.toBe(computed(r2));
   });
 });
 
@@ -377,14 +389,14 @@ describe("pierCalc hostile inputs", () => {
     // when drag is non-zero vs zero.
     const r0 = calcPier({ ...VALID_PIER, drag: 0 });
     const r1 = calcPier({ ...VALID_PIER, drag: 500 });
-    expect(JSON.stringify(r0)).not.toBe(JSON.stringify(r1));
+    expect(computed(r0)).not.toBe(computed(r1));
   });
 
   it.fails("fck is unused in pier design — known gap (no schema gate)", () => {
     // calcPier() does not incorporate fck in any capacity check.
     const r25 = calcPier({ ...VALID_PIER, fck: 25 });
     const r60 = calcPier({ ...VALID_PIER, fck: 60 });
-    expect(JSON.stringify(r25)).not.toBe(JSON.stringify(r60));
+    expect(computed(r25)).not.toBe(computed(r60));
   });
 
   it("NaN DL propagates NaN (no schema gate — documented)", () => {

@@ -92,14 +92,49 @@
       "docs/phase-2/verification/V-02/VERIFICATION-INSTRUCTIONS.md"
     ],
     "W02A": ["docs/phase-2/verification/V-02A/VERIFICATION-INSTRUCTIONS.md"],
-    "W03": ["docs/phase-2/verification/V-03/VERIFICATION-INSTRUCTIONS.md"],
+    "W03": [
+      "docs/phase-2/verification/V-03/VERIFICATION-INSTRUCTIONS.md",
+      "docs/phase-2/ASSUMPTION-REGISTER.md",
+      "docs/phase-2/INPUT-DICTIONARY.md",
+      "docs/phase-2/week-03/AGENT-INSTRUCTIONS.md",
+      "docs/phase-2/week-03/CLAUSE-COVERAGE.md",
+      "docs/phase-2/week-03/REALITY-AUDIT.md",
+      "docs/phase-2/week-03/EXIT-GATE-EVIDENCE.md",
+      "lib/engine/src/clause-registry.ts",
+      "lib/engine/src/validations/source-defects.ts",
+      "scripts/gates/verify-clauses.mjs",
+      "tests/integration/clause-coverage.test.ts",
+      "tests/integration/source-defects.test.ts",
+      "tests/integration/input-dictionary.test.ts"
+    ],
     "W04": [
       "docs/phase-2/verification/V-04/VERIFICATION-INSTRUCTIONS.md",
-      "docs/phase-2/week-04/XLS-STRATEGY.md"
+      "docs/phase-2/week-04/SECURITY-HARDENING.md",
+      "docs/phase-2/week-04/EXIT-GATE-EVIDENCE.md",
+      "server/security.ts",
+      "scripts/gates/gate-security.mjs",
+      "scripts/gates/scan-secrets.mjs",
+      "tests/integration/security-hardening.test.ts",
+      "tests/integration/xls-fuzz-corpus.test.ts"
     ],
     "W05": [
       "docs/phase-2/govt/G-01-digital-signature.md",
-      "docs/phase-2/govt/G-06-data-privacy.md"
+      "docs/phase-2/govt/G-06-data-privacy.md",
+      "docs/phase-2/week-05/REPRO-PROOF.md",
+      "docs/phase-2/week-05/EXIT-GATE-EVIDENCE.md",
+      "lib/engine/src/reproducibility.ts",
+      "scripts/gates/gate-repro.mjs",
+      "tests/integration/reproducibility.test.ts"
+    ],
+    "W06": [
+      "docs/phase-2/week-06/AGENT-INSTRUCTIONS.md",
+      "docs/phase-2/week-06/PERF-BASELINE.md",
+      "docs/phase-2/week-06/EXIT-GATE-EVIDENCE.md",
+      "docs/phase-2/COMPUTE-TOPOLOGY.md",
+      "docs/phase-2/RUNBOOK.md",
+      "server/perf-budget.ts",
+      "scripts/gates/gate-perf.mjs",
+      "tests/integration/perf-budget.test.ts"
     ],
     "W06A": [
       "docs/phase-2/specs/E-01-hydraulics.md",

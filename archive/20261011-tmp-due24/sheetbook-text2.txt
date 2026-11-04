@@ -1,0 +1,21 @@
+=== page 4 ===
+'FILE TOPIC INDEX (CONT.)                                                                                      Page 4 of 118\n\nFILE TOPIC INDEX (CONT.)\n\n\n       - C1-AbutMENT Drawing                                                                                                  Page 72\n\n       - C1-STABILITY CHECK ABUTMENT                                                                                        Page 73\n\n       - C1-ABUTMENT FOOTING DESIGN                                                                                        Page 74\n\n       - C1-Abut Footing STRESS DIAGRAM                                                                                       Page 75\n\n       - CAN-RETURN FOOTING DESIGN                                                                                         Page 76\n\n       - STEEL IN CANT-ABUTMENT                                  
+
+=== page 5 ===
+'FILE TOPIC INDEX (CONT.)                                                                                      Page 5 of 118\n\nFILE TOPIC INDEX (CONT.)\n\n\n       - REVISION SHEET                                                                                                    Page 116'
+
+=== page 6 ===
+'SECTION DIVIDER                                                      Page 6 of 118\n\n\n\n\n\n  SECTION 1: DESIGN REPORTS'
+
+=== page 7 ===
+'SHEET: INDEX                                                                Page 7\n\n\n\n\n Col 1                                                    Col 2                          Col 3\n\n\n\n\n\n DESIGN OF SUBMERSIBLE BRIDGE ACROSS SOM                 DESIGN OF SUBMERSIBLE BRIDGE   DESIGN OF SUBMERSIBLE BRIDGE\n                                                  ACROSS SOM                 ACROSS SOM\n\n\n Name of work :- Construction of Submersible Bridge on KHERWARA -      Name of work :- Construction of       Name of work :- Construction of\n JAWAS - SUVERI ROAD                                               Submersible Bridge on KHERWARA -    Submersible Bridge on KHERWARA -\n                                                   JAWAS - SUVERI ROAD           JAWAS - SUVERI ROAD\n\n\n INDEX\n\n\n S.No                                                                            Particulars 
+
+=== page 8 ===
+'SHEET: INDEX (CONT.)                                                 Page 8 of 118\n\n\n\n\n Col 1                                                    Col 2                          Col 3\n 39                                                    C1-ABUTMENT FOOTING DESIGN     39\n 40                                                                 C1-Abut Footing STRESS DIAGRAM    40\n 41                                                   CAN-RETURN FOOTING DESIGN      41\n 42                                                     STEEL IN CANT-ABUTMENT          42\n 43                                                     STEEL IN CANT-RETURNS           43\n 44                                                               C1-Abutment Cap                    44\n 45                                                            C1-DIRT WALL REINFORCEMENT     45\n 46                                    
+
+=== page 60 ===
+'SECTION DIVIDER                                                                                               Page 60 of 118\n\n\n\n\n\n        SECTION 2: DRAWING SECTION'
+
+=== page 61 ===
+"SHEET: TYPE1-ABUTMENT DRAWING                                                                              Page 61\n\n\n\n\n Col 1                                                                                                                                                                  Col  Col\n                                                                                                                                                                 2    3\n TYPE-1 ABUTMENT - GENERAL ARRANGEMENT\n\n\n Abutment height                                                                                                                                                                           5   m\n Abutment width                                                                                                                                                                               
+

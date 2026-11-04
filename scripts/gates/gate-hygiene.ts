@@ -1,9 +1,11 @@
 #!/usr/bin/env tsx
 // gate-hygiene — repo invariants that are cheap to state and expensive to lose.
-// 7 assertions: one lockfile; .gitignore agrees with what is tracked; a LICENSE
+// 9 assertions: one lockfile; .gitignore agrees with what is tracked; a LICENSE
 // matching package.json; the four root documents; the listed foundation gates
-// wired; every gate file reachable from some package.json script; and CI
-// actually invoking that harness as a blocking step.
+// wired; every gate file reachable from some package.json script; CI actually
+// invoking that harness as a blocking step; the two test runners disjoint (the
+// vitest lane excludes the node:test integration lane); and that excluded lane
+// still owned by the runner that executes it.
 import { run, is } from "./_lib";
 import { existsSync } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
@@ -29,7 +31,7 @@ const REQUIRED_SCRIPTS = [
   "gate:foundation",
 ];
 
-await run("gate-hygiene", 7, async () => {
+await run("gate-hygiene", 9, async () => {
   // 1. one lockfile, and it is the one CI installs with
   is(
     !(existsSync("package-lock.json") && existsSync("pnpm-lock.yaml")),
@@ -107,4 +109,38 @@ await run("gate-hygiene", 7, async () => {
       ciDetail = `${ciPath} invokes gate:foundation with continue-on-error: true — a gate that cannot fail the build is not a gate`;
   }
   is(ciDetail === "", "CI invokes the gate harness as a blocking step", ciDetail);
+
+  // 8. the two test runners must stay disjoint. vitest cannot execute the
+  //    node:test integration lane — `tests/integration/**` is run through
+  //    `tsx --test` — and when vitest's glob also collects it, every file in the
+  //    lane is reported as failing for a reason that has nothing to do with the
+  //    code under test. The overlap is silent and durable precisely because it
+  //    was never a gate input: nothing could go red on it. This assertion can.
+  const vc = existsSync("vitest.config.ts") ? await readFile("vitest.config.ts", "utf8") : "";
+  is(
+    /exclude\s*:/.test(vc) && /['"]tests\/integration\/\*\*['"]/.test(vc),
+    "the vitest lane excludes the node:test integration lane",
+    vc
+      ? "vitest.config.ts does not list 'tests/integration/**' in exclude — vitest will collect node:test files it cannot run"
+      : "vitest.config.ts not found",
+  );
+
+  // 9. ...and the exclusion does not orphan the lane. Excluding a directory from
+  //    vitest is only correct because a different runner executes it; without
+  //    that runner, the exclusion is simply how a lane stops being tested, and
+  //    assertion 8 would be a green that hides a hole.
+  const runner = existsSync("scripts/run-integration-tests.ts")
+    ? await readFile("scripts/run-integration-tests.ts", "utf8")
+    : "";
+  const ownsLane = /'tests'[\s\S]{0,40}'integration'/.test(runner);
+  const laneFiles = existsSync("tests/integration")
+    ? (await readdir("tests/integration")).filter((f) => f.endsWith(".test.ts"))
+    : [];
+  is(
+    laneFiles.length > 0 && ownsLane,
+    "the excluded integration lane is executed by another runner",
+    `tests/integration holds ${laneFiles.length} *.test.ts and scripts/run-integration-tests.ts ${
+      ownsLane ? "names" : "does NOT name"
+    } the lane`,
+  );
 });

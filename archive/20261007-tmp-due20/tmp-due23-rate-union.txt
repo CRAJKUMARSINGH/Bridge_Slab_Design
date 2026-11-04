@@ -1,0 +1,16 @@
+templates scanned: 20
+distinct rates billed somewhere: 27
+
+reference family            | billed by any template? | where
+----------------------------------------------------------------------------------------------------
+rate 63       2 Earthwork in excavation   | YES     | 3 template(s): larathi-stabil, irc-gumaniya-udaipur, irc-kumbhalgarh-kelwara
+rate 514      3 Earthwork in excavation   | YES     | 3 template(s): larathi-stabil, irc-gumaniya-udaipur, irc-kumbhalgarh-kelwara
+rate 4995     (not in our register)       | no      | —
+rate 46       (not in our register)       | no      | —
+rate 61       (not in our register)       | no      | —
+rate 6046     (not in our register)       | no      | —
+rate 1048     (not in our register)       | no      | —
+rate 937      (not in our register)       | no      | —
+rate 5261     (not in our register)       | no      | —
+rate 3476     (not in our register)       | no      | —
+rate 1274     (not in our register)       | no      | —

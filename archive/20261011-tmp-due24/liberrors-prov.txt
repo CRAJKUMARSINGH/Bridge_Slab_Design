@@ -1,0 +1,8 @@
+f6b9211 chore: Turn 24 full sync — Kherwara identity, visual pass, Docker, A2-A5 scripts, package decisions, engine decoupling, 9-gate verification
+ab38f29 feat: complete 46-sheet bridge design engine with LFS
+--- HEAD ---
+8b5730f
+--- status of those files ---
+ M lib/api-client-react/src/custom-fetch.ts
+ M lib/engine/src/tests/calculate.test.ts
+ M lib/engine/src/tests/golden-parity-expanded.test.ts

@@ -1,0 +1,81 @@
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+INDEX                              src   72r x  60c  print   72r x   3c
+DESIGN CRITERIA                    src   63r x  60c  print   63r x   8c
+INPUT DATA SUMMARY                 src   55r x  60c  print   55r x   8c
+INSERT- HYDRAULICS                 src    7r x  60c  print    7r x   1c
+afflux calculation                 src   92r x  60c  print   92r x   8c
+HYDRAULICS                         src   42r x  60c  print   42r x   7c
+Deck Anchorage                     src   41r x  60c  print   41r x   8c
+CROSS SECTION                      src   20r x  60c  print   20r x   8c
+Bed Slope                          src   22r x  60c  print   22r x   8c
+SBC                                src   18r x  60c  print   18r x   8c
+SEISMIC ANALYSIS (IS 1893)         src   35r x  60c  print   35r x   8c
+WIND LOAD ANALYSIS (IS 875)        src   28r x  60c  print   28r x   8c
+STABILITY CHECK FOR PIER           src   76r x  60c  print   76r x  14c
+abstract of stresses               src   27r x  60c  print   27r x   9c
+STEEL IN FLARED PIER BASE          src   22r x  60c  print   22r x   3c
+STEEL IN PIER                      src   20r x  60c  print   20r x   2c
+FOOTING DESIGN                     src   12r x  60c  print   12r x   3c
+Footing STRESS DIAGRAM             src   26r x  60c  print   26r x   5c
+Pier Cap LL tracked vehicle        src   20r x  60c  print   20r x   3c
+Pier Cap                           src   21r x  60c  print   21r x   3c
+LLOAD                              src   14r x  60c  print   14r x   5c
+loadsumm                           src   23r x  60c  print   23r x   4c
+LL-ABSTRACT                        src   35r x  60c  print   35r x  12c
+BEARING DETAILS                    src   42r x  60c  print   42r x   8c
+EXPANSION JOINT & DRAINAGE         src   41r x  60c  print   41r x   8c
+APPROACH SLAB DESIGN               src   45r x  60c  print   45r x   8c
+TYPE1-AbutMENT Drawing             src   17r x  60c  print   17r x   3c
+TYPE1-STABILITY CHECK ABUTMENT     src   46r x  60c  print   46r x  15c
+TYPE1-ABUTMENT FOOTING DESIGN      src   13r x  60c  print   13r x   3c
+TYPE1- Abut Footing STRESS         src   19r x  60c  print   19r x   5c
+TYPE1-STEEL IN ABUTMENT            src   15r x  60c  print   15r x   2c
+TYPE1-Abutment Cap                 src   12r x  60c  print   12r x   2c
+TYPE1-DIRT WALL REINFORCEMENT      src   12r x  60c  print   12r x   3c
+TYPE1-DIRT DirectLoad_BM           src   14r x  60c  print   14r x   3c
+TYPE1-DIRT LL_BM                   src   14r x  60c  print   14r x   3c
+INSERT C1-ABUT                     src   14r x  60c  print   14r x   3c
+C1-AbutMENT Drawing                src   18r x  60c  print   18r x   3c
+C1-STABILITY CHECK ABUTMENT        src   20r x  60c  print   20r x   6c
+C1-ABUTMENT FOOTING DESIGN         src   14r x  60c  print   14r x   3c
+C1-Abut Footing STRESS DIAGRAM     src   17r x  60c  print   17r x   5c
+CAN-RETURN FOOTING DESIGN          src   12r x  60c  print   12r x   3c
+STEEL IN CANT-ABUTMENT             src   13r x  60c  print   13r x   3c
+STEEL IN CANT-RETURNS              src   13r x  60c  print   13r x   3c
+C1-Abutment Cap                    src   13r x  60c  print   13r x   3c
+C1-DIRT WALL REINFORCEMENT         src   13r x  60c  print   13r x   3c
+C1-DIRT DirectLoad_BM              src   15r x  60c  print   15r x   3c
+C1-DIRT LL_BM                      src   15r x  60c  print   15r x   3c
+TechNote                           src   35r x  60c  print   35r x   1c
+INSERT ESTIMATE                    src   19r x  60c  print   19r x   3c
+Tech Report                        src   30r x  60c  print   30r x   2c
+General Abs.                       src   42r x  60c  print   42r x   4c
+Abstract                           src   71r x  60c  print   71r x   6c
+Bridge measurements                src   97r x  60c  print   97r x  11c
+IRC CODE COMPLIANCE CHECKLIST      src   79r x  60c  print   79r x   8c
+SERVICEABILITY CHECK               src   46r x  60c  print   46r x   8c
+REVISION SHEET                     src   43r x  60c  print   43r x   8c
+clipped rows 0, clipped cols 0, total print rows 1720

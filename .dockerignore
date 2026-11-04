@@ -1,7 +1,9 @@
 # Build context exclusions for the headless image.
 #
 # The rule is "exclude what no code path in the image reads". `assets/` and `Attached_Assets/` STAY IN:
-# `server/pier-case-engine.ts` walks Attached_Assets at runtime and scores pier cases from the file
+# `server/pier-case-engine.ts` walks the pier asset library at runtime (by default
+# `assets/COMPONENT_DRAWINGS_SORTED/Pier Geometry & Dimensions`, falling back to `Attached_Assets`, or
+# `PIER_ASSET_ROOT` when set) and scores pier cases from the file
 # *names* it finds, and the authoring tools (`scripts/draft-descriptive-lines-from-workbook.ts`,
 # `run-five-samples-workbook-label-match.ts`, `workbook-standards-config.ts`, `phase-zero/extract-excel.ts`)
 # default to reference workbooks under those two roots. Excluding them would change what those paths

@@ -6,8 +6,11 @@
 
 import ExcelJS from 'exceljs';
 import type { ProjectInput, CrossSectionPoint } from '../bridge-excel-generator/types';
+import { isLikelyXlsxZip, MAX_UPLOAD_XLSX_BYTES } from './security';
 
-export const MAX_UPLOAD_XLSX_BYTES = 10 * 1024 * 1024; // 10 MB
+// Single source of truth is server/security.ts (P2-W04); re-exported for existing callers.
+export { isLikelyXlsxZip, MAX_UPLOAD_XLSX_BYTES };
+
 const MAX_WORKSHEETS_SCANNED = 80;
 const MAX_ROWS_SCANNED_PER_SHEET = 1000;
 const MAX_COLS_SCANNED_PER_ROW = 200;
@@ -20,22 +23,6 @@ interface ParsedExcelResult {
     formulas: { sheet: string; cell: string; formula: string }[];
     values: { sheet: string; cell: string; value: unknown }[];
   };
-}
-
-export function isLikelyXlsxZip(buffer: Buffer): boolean {
-  if (buffer.length < 4) return false;
-  // ZIP signatures accepted by XLSX containers.
-  const sig0 = buffer[0];
-  const sig1 = buffer[1];
-  const sig2 = buffer[2];
-  const sig3 = buffer[3];
-  const isZip =
-    sig0 === 0x50 &&
-    sig1 === 0x4b &&
-    ((sig2 === 0x03 && sig3 === 0x04) ||
-      (sig2 === 0x05 && sig3 === 0x06) ||
-      (sig2 === 0x07 && sig3 === 0x08));
-  return isZip;
 }
 
 /**

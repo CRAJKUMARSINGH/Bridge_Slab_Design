@@ -145,6 +145,29 @@ wrong instruction cannot succeed quietly from week 1 onward.
   because the guide's numbering and the ledger's had collided.
 - `README.md` was regenerated again in rev. 6, for the same reason rev. 5 regenerated it:
   its module map is counted from the index, and tracking the Set One tree changes it.
+- **Rev. 7 repaired the dangling reference that rev. 6's own deletion left behind, and it
+  was found by reading the engine rather than the record.** `containment/` is the only
+  ledger path and `gate:deviations` fails on any second file named deviations.json, so the
+  deletion was right. What was never checked is what the engine still told its reader:
+  `client/src/report-engine/lib/slabCalc.ts` emitted its DEV-001 advisory ending "see
+  foundation/deviations.json for engineering decision" — that path, given here without
+  backticks because the harness requires it to be absent — and the F06 numeric pin in
+  `client/src/report-engine/lib/__tests__/slabCalc.test.ts` pointed at the same place. Two
+  of the three were in the report text a user reads. This is ADR-0012's class, a reference
+  claiming to resolve, in code rather than in prose, where P-01 does not scan. All three now
+  name `containment/DEVIATIONS.json`. The engine pin caught its own edit: `gate:contracts`
+  reported the sha256 mismatch for the changed module before `lock:engine` was run and
+  passed after, so that RED is a real edit and not a poison pill. The edit itself moves no
+  arithmetic — a comment and one warning string — and the pin's RED is the record of exactly
+  what the bytes did. A re-bless of the golden was also run and is **withdrawn as evidence**:
+  the authoritative `bridge-excel-generator/design-engine.ts` does not import `slabCalc.ts`
+  at all, and the run revealed a worse fact — `pnpm run golden:bless` writes
+  `tests/golden/kherwara/expected.json` unconditionally, which is the very path
+  `scripts/src/verify-golden.ts` reads in a different schema. The bless replaced a 6-key
+  structured document with 699 flat numeric leaves and `verify:golden` went RED on "Schema
+  mismatch". The file was restored from HEAD and `verify:golden` passed again; the collision
+  is recorded in PATCH-PACK-CERTIFICATION §13.4 and §13.6, not repaired. The harness stays at
+  `preflight` plus 14 gates at 61 assertions.
 
 ### Recorded, not hidden
 

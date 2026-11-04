@@ -1,0 +1,31 @@
+{
+  "sheet_names": [
+    "Sheet1",
+    "Sheet2",
+    "Sheet3"
+  ],
+  "column_headers": {
+    "Sheet1": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "Sheet2": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "Sheet3": []
+  },
+  "non_empty_cell_count": 342,
+  "id": "ea2dd77d75b0_Section_Properties.xls",
+  "status": "ok",
+  "path": "Attached_Assets/ASTRA 15 TUTORIALS/DESIGN/Section Properties/Section Properties.xls"
+}
