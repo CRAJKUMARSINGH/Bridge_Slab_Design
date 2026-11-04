@@ -1,0 +1,16 @@
+55:  const result = spawnSync(cmd[0], cmd.slice(1), { cwd: repoRoot, encoding: 'buffer', shell: process.platform === 'win32', maxBuffer: 64 * 1024 * 1024 });
+59:  return { cmd: cmd.join(' '), exit: result.status ?? -1, output };
+82:  writeFileSync(join(gatesDir, 'check.txt'), gateRuns.find((g) => g.cmd.includes('check'))?.output ?? '', 'utf-8');
+83:  writeFileSync(join(gatesDir, 'verify.txt'), gateRuns.find((g) => g.cmd.includes('verify'))?.output ?? '', 'utf-8');
+92:    `Refusing to bundle: ${failed.map((g) => `${g.cmd} (exit ${g.exit})`).join(', ')} failed.\n` +
+110:    gates: gateRuns.map((g) => ({ command: g.cmd, exit: g.exit })),
+128:      ? ['| Command | Exit | Transcript |', '| --- | --- | --- |', ...manifest.gates.map((g) => `| \`${g.command}\` | ${g.exit} | \`gates/${g.command.split(' ').pop()}.txt\` |`)].join('\n')
+161:  console.log(`Commit ${manifest.commit.slice(0, 12)} | gates ${manifest.gates.map((g) => `${g.cmd.split(' ').pop()}=${g.exit}`).join(' ') || 'skipped'}`);
+    'A licensed engineer must review the numbers before any artefact here is issued externally.',
+    '',
+  ];
+  writeFileSync(join(outDir, 'MANIFEST.md'), lines.join('\n'), 'utf-8');
+
+  console.log(`\nBundle: ${entries.length} deliverables + gate transcripts at ${outDir}`);
+  console.log(`Commit ${manifest.commit.slice(0, 12)} | gates ${manifest.gates.map((g) => `${g.cmd.split(' ').pop()}=${g.exit}`).join(' ') || 'skipped'}`);
+}

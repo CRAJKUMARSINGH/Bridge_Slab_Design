@@ -1,0 +1,8 @@
+=== assets:inventory script:
+package.json:34:    "assets:inventory": "pnpm --filter @workspace/scripts run assets:inventory"
+scripts/package.json:22:    "assets:inventory": "python ./assimilate/inventory.py --root ../Attached_Assets --out ../asset-register.json"
+=== does cli.ts write a register?
+151:        fs.writeFileSync(path.join(fileOut, 'ERROR.txt'), body, 'utf8');
+182:  fs.writeFileSync(path.join(outDir, 'manifest.json'), JSON.stringify(manifest, null, 2), 'utf8');
+213:  fs.writeFileSync(path.join(outDir, 'INDEX.md'), lines.join('\n'), 'utf8');
+242:  fs.writeFileSync(path.join(outDir, 'README.md'), lines.join('\n'), 'utf8');

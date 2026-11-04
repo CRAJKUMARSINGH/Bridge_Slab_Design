@@ -1,0 +1,3 @@
+=== narrative-engine.ts: any prose import?
+=== sharp / word-extractor in store?
+=== declared in any package.json?

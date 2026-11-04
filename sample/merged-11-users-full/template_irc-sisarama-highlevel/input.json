@@ -1,0 +1,70 @@
+{
+  "projectName": "Construction of High-Level Bridge across SISARAMA Nalah",
+  "location": "SISARAMA Nalah, Rajasthan",
+  "riverName": "SISARAMA",
+  "bridgeType": "high-level",
+  "spanLength": 12,
+  "numberOfSpans": 3,
+  "skew": 0,
+  "carriageWidth": 7.5,
+  "numberOfLanes": 2,
+  "totalLength": 36,
+  "hfl": 421.5,
+  "bedLevel": 417.2,
+  "foundationLevel": 412.5,
+  "discharge": 198.6,
+  "manningN": 0.033,
+  "bedSlope": 1100,
+  "laceysSiltFactor": 1.5,
+  "crossSectionData": [
+    {
+      "chainage": 0,
+      "gl": 421
+    },
+    {
+      "chainage": 15,
+      "gl": 419.3
+    },
+    {
+      "chainage": 30,
+      "gl": 417.4
+    },
+    {
+      "chainage": 45,
+      "gl": 418.1
+    },
+    {
+      "chainage": 60,
+      "gl": 421.2
+    }
+  ],
+  "pierWidth": 1.2,
+  "pierLength": 3.5,
+  "pierDepth": 5.5,
+  "numberOfPiers": 2,
+  "pierBaseWidth": 2.5,
+  "pierBaseLength": 4.5,
+  "abutmentHeight": 8.5,
+  "abutmentWidth": 3.8,
+  "abutmentDepth": 5.2,
+  "dirtWallHeight": 2.5,
+  "returnWallLength": 6,
+  "concreteGrade": "M25",
+  "fck": 25,
+  "steelGrade": "Fe415",
+  "fy": 415,
+  "sbc": 180,
+  "phi": 30,
+  "gamma": 18,
+  "rtl": 424.8,
+  "agl": 418.5,
+  "nbl": 417.2,
+  "ofl": 420.8,
+  "dwl": 422.2,
+  "deckSlabThickness": 0.25,
+  "freeboardAboveHfl": 1.2,
+  "issuingAuthority": "PWD Rajasthan",
+  "jobNumber": "SISARAMA-HIGHLEVEL",
+  "hardRockAvailable": false,
+  "deckSoffitLevel": 424.05
+}

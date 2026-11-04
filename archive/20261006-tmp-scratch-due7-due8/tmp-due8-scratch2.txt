@@ -1,0 +1,5 @@
+sample/tmp-probe.log
+sample/tmp-zero.log
+tmp-parity-dump
+count:
+55

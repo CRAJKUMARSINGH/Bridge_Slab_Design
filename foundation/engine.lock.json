@@ -1,0 +1,10 @@
+{
+  "client/src/report-engine/lib/sheets.ts": "7c262e97eee094525c359cc4a870c92c0c3f7872725f2a35c016c44e3f5f8b7a",
+  "client/src/report-engine/lib/slabCalc.ts": "c6de23e5c29e96c91e16d25f21af416a0f227255144bac833cc5c24bb3af844c",
+  "bridge-excel-generator/design-engine.ts": "74215d2aadb0ac9482fe9b92da51f02f6661f85fb63a6e0328b6c511f0d0ebf0",
+  "client/src/report-engine/lib/hydraulicCalc.ts": "682fa8ed262333a2d6dcf6ce78c92b2835b0e7d3fbf37ab7be0e268a209c1261",
+  "client/src/report-engine/lib/ircSlabCalc.ts": "4c449311115cbce907ad46269b63a78622a84d18ab98dfbe7517126c1798faf9",
+  "bridge-excel-generator/types.ts": "c5a01f96d582e39b3221d0ecf2e38ff20a728813afe7e0f0fc6884e3e3ee0508",
+  "client/src/report-engine/lib/pierCalc.ts": "5c1a0e8718782f2324cab5466d129bdc3926a77afe75c6440b2e69206bc93842",
+  "client/src/report-engine/lib/loadCalc.ts": "e5bde1652d9a4e8fd6fa78758ccf8bb5e89fea6ad36bed91e2bf82ae95fb666c"
+}

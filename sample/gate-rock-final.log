@@ -1,0 +1,178 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+tsc-root=0
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+tsc-scripts=0
+
+> workspace@0.0.0 verify E:\Rajkumar\Bridge_Slab_Design
+> pnpm run verify:sheets && pnpm run verify:links && pnpm run verify:values && pnpm run verify:costing
+
+
+> workspace@0.0.0 verify:sheets E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:sheets
+
+
+> @workspace/scripts@0.0.0 verify:sheets E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-kherwara-excel-golden.ts
+
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 46 sheets with real formulas...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+  → Calculating pier design...
+  → Calculating TYPE1 abutment design...
+  → Calculating C1 abutment design...
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on Larathi to Larathi B Road, across Som River
+Generating 46 sheets with real formulas...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+  → Calculating pier design...
+  → Calculating TYPE1 abutment design...
+  → Calculating C1 abutment design...
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+🚀 Starting Excel generation...
+Project: Fixture — minimal channel hydraulics
+Generating 46 sheets with real formulas...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+  → Calculating pier design...
+  → Calculating TYPE1 abutment design...
+  → Calculating C1 abutment design...
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+verify-kherwara-excel-golden: OK (current 46-sheet contract validated)
+
+> workspace@0.0.0 verify:links E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:links
+
+
+> @workspace/scripts@0.0.0 verify:links E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-workbook-links.ts
+
+OK   larathi-stabil           pts=16 formulas:585 cross:168 same:1047 re-eval:584 broken:0 diverge:0
+OK   kherwara-golden          pts= 7 formulas:465 cross:167 same:764 re-eval:464 broken:0 diverge:0
+OK   high-level-reference     pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+OK   small-bridge             pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+OK   medium-bridge            pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+OK   large-bridge             pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+OK   irc-bedach-bedla         pts= 8 formulas:478 cross:167 same:795 re-eval:477 broken:0 diverge:0
+OK   irc-jakham-mandvi        pts= 7 formulas:465 cross:167 same:764 re-eval:464 broken:0 diverge:0
+OK   irc-t01-jethliya         pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+OK   irc-sukanaka-matoon      pts= 6 formulas:452 cross:167 same:733 re-eval:451 broken:0 diverge:0
+OK   irc-ayad-maharashtra     pts= 7 formulas:465 cross:167 same:764 re-eval:464 broken:0 diverge:0
+OK   irc-gumaniya-udaipur     pts= 5 formulas:442 cross:168 same:706 re-eval:441 broken:0 diverge:0
+OK   irc-katumbi-chandrod     pts= 6 formulas:452 cross:167 same:733 re-eval:451 broken:0 diverge:0
+OK   irc-sisarama-highlevel   pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+OK   irc-kumbhalgarh-kelwara  pts= 5 formulas:442 cross:168 same:706 re-eval:441 broken:0 diverge:0
+OK   irc-parwan-highlevel     pts= 6 formulas:452 cross:167 same:733 re-eval:451 broken:0 diverge:0
+OK   irc-banas-highlevel      pts= 7 formulas:465 cross:167 same:764 re-eval:464 broken:0 diverge:0
+OK   irc-ayad-fatehpura       pts= 6 formulas:452 cross:167 same:733 re-eval:451 broken:0 diverge:0
+OK   irc-kherka-teegirder     pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+OK   irc-sukanaka-highlevel   pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+
+Golden spot-checks:
+  S9 B18 velocity xref: {"formula":"=HYDRAULICS!C21","result":1.718}
+  S9 H47 service V:     {"formula":"=C47*B30+D47*B31-G47*B36","result":644.638}
+  S9 N51 ULS status:    {"formula":"=IF(AND(K51>=1.5,L51>=1.8,M51>=2.5),\"SAFE\",\"UNSAFE\")","result":"UNSAFE"}
+  S10 C12 retrieved V:  {"formula":"='STABILITY CHECK FOR PIER'!H47","result":644.638}
+  S10 I12 status link:  {"formula":"=IF(G12<=H12,'STABILITY CHECK FOR PIER'!N47,\"UNSAFE\")","result":"UNSAFE"}
+
+Done: 20/20 workbooks fully linked.
+
+> workspace@0.0.0 verify:values E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:values
+
+
+> @workspace/scripts@0.0.0 verify:values E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-workbook-value-sanity.ts
+
+OK   larathi-stabil                             cells:2606 formulas:585 nonFinite:0 placeholder:0 missingResult:0
+OK   kherwara-golden                            cells:2425 formulas:465 nonFinite:0 placeholder:0 missingResult:0
+OK   high-level-reference                       cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+OK   small-bridge                               cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+OK   medium-bridge                              cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+OK   large-bridge                               cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-bedach-bedla                           cells:2444 formulas:478 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-jakham-mandvi                          cells:2425 formulas:465 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-t01-jethliya                           cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-sukanaka-matoon                        cells:2406 formulas:452 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-ayad-maharashtra                       cells:2425 formulas:465 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-gumaniya-udaipur                       cells:2397 formulas:442 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-katumbi-chandrod                       cells:2406 formulas:452 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-sisarama-highlevel                     cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-kumbhalgarh-kelwara                    cells:2397 formulas:442 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-parwan-highlevel                       cells:2406 formulas:452 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-banas-highlevel                        cells:2425 formulas:465 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-ayad-fatehpura                         cells:2406 formulas:452 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-kherka-teegirder                       cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-sukanaka-highlevel                     cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+
+Templates: 20 | cells: 48264 | formulas: 9127 | defects: 0
+
+> workspace@0.0.0 verify:costing E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:costing
+
+
+> @workspace/scripts@0.0.0 verify:costing E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-estimation-consistency.ts
+
+OK   larathi-stabil             excavation=1156.8 m3 (rock 231.4) coat=720.0 m2
+OK   kherwara-golden            excavation=826.3 m3 (rock 0.0) coat=720.0 m2
+OK   high-level-reference       excavation=656.8 m3 (rock 0.0) coat=360.0 m2
+OK   small-bridge               excavation=520.0 m3 (rock 0.0) coat=108.0 m2
+OK   medium-bridge              excavation=668.8 m3 (rock 0.0) coat=360.0 m2
+OK   large-bridge               excavation=1116.0 m3 (rock 0.0) coat=840.0 m2
+OK   irc-bedach-bedla           excavation=1054.6 m3 (rock 0.0) coat=480.0 m2
+OK   irc-jakham-mandvi          excavation=1147.1 m3 (rock 0.0) coat=600.0 m2
+OK   irc-t01-jethliya           excavation=689.0 m3 (rock 0.0) coat=300.0 m2
+OK   irc-sukanaka-matoon        excavation=784.0 m3 (rock 0.0) coat=360.0 m2
+OK   irc-ayad-maharashtra       excavation=1018.9 m3 (rock 0.0) coat=600.0 m2
+OK   irc-gumaniya-udaipur       excavation=627.0 m3 (rock 125.4) coat=240.0 m2
+OK   irc-katumbi-chandrod       excavation=938.0 m3 (rock 0.0) coat=420.0 m2
+OK   irc-sisarama-highlevel     excavation=732.4 m3 (rock 0.0) coat=270.0 m2
+OK   irc-kumbhalgarh-kelwara    excavation=976.5 m3 (rock 195.3) coat=480.0 m2
+OK   irc-parwan-highlevel       excavation=1135.6 m3 (rock 0.0) coat=840.0 m2
+OK   irc-banas-highlevel        excavation=1296.9 m3 (rock 0.0) coat=720.0 m2
+OK   irc-ayad-fatehpura         excavation=796.6 m3 (rock 0.0) coat=360.0 m2
+OK   irc-kherka-teegirder       excavation=771.8 m3 (rock 0.0) coat=285.0 m2
+OK   irc-sukanaka-highlevel     excavation=732.4 m3 (rock 0.0) coat=270.0 m2
+
+Templates: 20 | defects: 0
+verify=0
+artifacts=0

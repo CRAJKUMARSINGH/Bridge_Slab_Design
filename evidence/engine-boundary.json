@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "engine-boundary.v1",
+  "generatedBy": "scripts/verify-engine-boundary.ts",
+  "deliverableEntries": [
+    "pipeline/run.ts",
+    "bridge-excel-generator/index.ts",
+    "server/api-routes.ts",
+    "scripts/regenerate-test-output.ts"
+  ],
+  "deliverableClosure": [
+    "bridge-excel-generator/design-engine.ts",
+    "bridge-excel-generator/index.ts",
+    "bridge-excel-generator/input-contract.ts",
+    "bridge-excel-generator/material-rates.ts",
+    "bridge-excel-generator/narrative-engine.ts",
+    "bridge-excel-generator/report-model.ts",
+    "bridge-excel-generator/sheet-contract.ts",
+    "bridge-excel-generator/sheets/01-index.ts",
+    "bridge-excel-generator/sheets/02-insert-hydraulics.ts",
+    "bridge-excel-generator/sheets/03-afflux-calculation.ts",
+    "bridge-excel-generator/sheets/04-hydraulics.ts",
+    "bridge-excel-generator/sheets/05-deck-anchorage.ts",
+    "bridge-excel-generator/sheets/06-cross-section.ts",
+    "bridge-excel-generator/sheets/07-bed-slope.ts",
+    "bridge-excel-generator/sheets/08-sbc.ts",
+    "bridge-excel-generator/sheets/09-stability-check-pier.ts",
+    "bridge-excel-generator/sheets/10-abstract-of-stresses.ts",
+    "bridge-excel-generator/sheets/11-steel-flared-pier.ts",
+    "bridge-excel-generator/sheets/12-18-pier-remaining.ts",
+    "bridge-excel-generator/sheets/19-28-abutment-type1.ts",
+    "bridge-excel-generator/sheets/19-ll-abstract.ts",
+    "bridge-excel-generator/sheets/29-46-estimation.ts",
+    "bridge-excel-generator/sheets/A01-admin-substructure.ts",
+    "bridge-excel-generator/sheets/B01-superstructure-approaches.ts",
+    "bridge-excel-generator/sheets/C01-qa-admin.ts",
+    "bridge-excel-generator/types.ts",
+    "bridge-excel-generator/utils.ts",
+    "pipeline/run.ts",
+    "scripts/fixtures/high-level-project-input.ts",
+    "scripts/fixtures/kherwara-project-input.ts",
+    "scripts/fixtures/larathi-stabil-project-input.ts",
+    "scripts/generate-gad-csv.ts",
+    "scripts/regenerate-test-output.ts",
+    "server/api-routes.ts",
+    "server/checklist-export.ts",
+    "server/claude-validator.ts",
+    "server/comprehensive-pdf-export.ts",
+    "server/default-project-inputs.ts",
+    "server/design-report.ts",
+    "server/dxf-export.ts",
+    "server/excel-parser.ts",
+    "server/landscape-pdf-export.ts",
+    "server/logger.ts",
+    "server/optimisation-engine.ts",
+    "server/pdf-export.ts",
+    "server/pdf-input-template-sheets.ts",
+    "server/pier-case-engine.ts",
+    "server/pier-recommendation-engine.ts",
+    "server/pier-template-mapper.ts",
+    "server/project-input-zod.ts",
+    "server/reinforcement-drawings.ts",
+    "server/remote-app-adapter.ts",
+    "server/svg-diagrams.ts",
+    "server/workbook-line-report.ts",
+    "server/workbook-sheets-preview.ts",
+    "shared/db.ts",
+    "shared/design-engine-types.ts",
+    "shared/feature-flags.ts",
+    "shared/hydraulics-sheet-preview.ts",
+    "shared/input-workbook-previews.ts",
+    "shared/schema.ts"
+  ],
+  "libEngineOnDeliverablePath": [],
+  "engineClosure": [
+    "bridge-excel-generator/design-engine.ts",
+    "bridge-excel-generator/input-contract.ts",
+    "bridge-excel-generator/material-rates.ts",
+    "bridge-excel-generator/types.ts",
+    "shared/design-engine-types.ts"
+  ],
+  "engineCalculators": [
+    {
+      "module": "bridge-excel-generator/design-engine.ts",
+      "exports": [
+        "calculateCompleteDesign"
+      ]
+    },
+    {
+      "module": "shared/design-engine-types.ts",
+      "exports": [
+        "calculateDetailedEstimation"
+      ]
+    }
+  ],
+  "pinnedOutputs": 485,
+  "defects": []
+}

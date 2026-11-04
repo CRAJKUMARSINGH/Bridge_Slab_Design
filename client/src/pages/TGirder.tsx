@@ -14,7 +14,7 @@
  *   5. All 16 ASTRA/IRC vehicle load types
  *   6. ASTRA input data summary (copy-paste ready)
  */
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useId } from 'react';
 import { AstraContextPanel } from '@/components/AstraContextPanel';
 import {
   GitBranch, ChevronDown, ChevronUp, Info, Copy, Check,
@@ -213,14 +213,16 @@ function Card({ label, value, unit, note }: { label: string; value: number | str
 function NumInput({ label, val, unit, step = 0.1, onChange }: {
   label: string; val: number; unit?: string; step?: number; onChange: (v: number) => void;
 }) {
+  const inputId = useId();
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-[10px] text-app-muted">{label}{unit && <span className="ml-1 text-app-muted/60">({unit})</span>}</label>
+      <label htmlFor={inputId} className="text-[10px] text-app-muted">{label}{unit && <span className="ml-1 text-app-muted/60">({unit})</span>}</label>
       <input
+        id={inputId}
         type="number"
         value={val}
         step={step}
-        onChange={e => onChange(Number(e.target.value))}
+        onChange={e => { const n = Number(e.target.value); if (Number.isFinite(n)) onChange(n); }}
         className="w-full rounded border border-[var(--app-glass-border)] bg-app-card/60 px-2 py-1 text-xs font-mono text-app-fg focus:border-app-accent focus:outline-none"
       />
     </div>

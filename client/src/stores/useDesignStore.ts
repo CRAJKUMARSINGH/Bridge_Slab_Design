@@ -9,8 +9,21 @@ type DesignState = {
 
 const STORAGE_KEY = 'lastDesignResults';
 
+function readStoredResults(): CompleteDesignResult | null {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { results?: CompleteDesignResult };
+    return parsed?.results ?? null;
+  } catch {
+    return null;
+  }
+}
+
 export const useDesignStore = create<DesignState>((set) => ({
-  results: null,
+  // Read at store creation: the previous effect-based hydration painted one empty frame
+  // before the stored design appeared.
+  results: readStoredResults(),
 
   setResults: (results) => {
     set({ results });
@@ -24,13 +37,7 @@ export const useDesignStore = create<DesignState>((set) => ({
   },
 
   hydrateFromStorage: () => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return;
-      const parsed = JSON.parse(raw) as { results?: CompleteDesignResult };
-      if (parsed?.results) set({ results: parsed.results });
-    } catch {
-      /* ignore */
-    }
+    const stored = readStoredResults();
+    if (stored) set({ results: stored });
   },
 }));

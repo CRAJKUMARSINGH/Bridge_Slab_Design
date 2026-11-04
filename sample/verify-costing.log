@@ -1,0 +1,24 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+OK   larathi-stabil             items:23 dig=1156.8 m³ (rock 821.2) steel=179.42 MT bearings=66 total=₹326.20 L
+OK   kherwara-golden            items:22 dig=826.3 m³ (rock 0.0) steel=78.01 MT bearings=66 total=₹161.19 L
+OK   high-level-reference       items:22 dig=656.8 m³ (rock 0.0) steel=159.46 MT bearings=18 total=₹271.87 L
+OK   small-bridge               items:22 dig=520.0 m³ (rock 0.0) steel=90.58 MT bearings=12 total=₹155.09 L
+OK   medium-bridge              items:22 dig=668.8 m³ (rock 0.0) steel=144.36 MT bearings=18 total=₹247.59 L
+OK   large-bridge               items:22 dig=1116.0 m³ (rock 0.0) steel=238.16 MT bearings=24 total=₹407.04 L
+OK   irc-bedach-bedla           items:22 dig=1054.6 m³ (rock 0.0) steel=141.57 MT bearings=42 total=₹251.93 L
+OK   irc-jakham-mandvi          items:22 dig=1147.1 m³ (rock 0.0) steel=161.44 MT bearings=54 total=₹288.78 L
+OK   irc-t01-jethliya           items:22 dig=689.0 m³ (rock 0.0) steel=100.19 MT bearings=24 total=₹177.04 L
+OK   irc-sukanaka-matoon        items:22 dig=784.0 m³ (rock 0.0) steel=114.23 MT bearings=30 total=₹202.67 L
+OK   irc-ayad-maharashtra       items:22 dig=1018.9 m³ (rock 0.0) steel=156.64 MT bearings=42 total=₹277.37 L
+OK   irc-gumaniya-udaipur       items:23 dig=627.0 m³ (rock 456.0) steel=94.86 MT bearings=18 total=₹167.78 L
+OK   irc-katumbi-chandrod       items:22 dig=938.0 m³ (rock 0.0) steel=136.56 MT bearings=36 total=₹241.29 L
+OK   irc-sisarama-highlevel     items:22 dig=732.5 m³ (rock 0.0) steel=154.29 MT bearings=12 total=₹260.69 L
+OK   irc-kumbhalgarh-kelwara    items:23 dig=976.5 m³ (rock 744.0) steel=190.49 MT bearings=18 total=₹326.80 L
+OK   irc-parwan-highlevel       items:22 dig=1135.7 m³ (rock 0.0) steel=254.40 MT bearings=18 total=₹432.54 L
+OK   irc-banas-highlevel        items:22 dig=1296.9 m³ (rock 0.0) steel=243.51 MT bearings=30 total=₹416.38 L
+OK   irc-ayad-fatehpura         items:22 dig=796.6 m³ (rock 0.0) steel=174.01 MT bearings=18 total=₹295.58 L
+OK   irc-kherka-teegirder       items:22 dig=771.8 m³ (rock 0.0) steel=188.18 MT bearings=6 total=₹314.21 L
+OK   irc-sukanaka-highlevel     items:22 dig=732.5 m³ (rock 0.0) steel=156.12 MT bearings=12 total=₹263.87 L
+
+Templates: 20 | defects: 0

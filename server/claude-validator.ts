@@ -5,6 +5,7 @@
  */
 
 import type { ProjectInput, HydraulicsResult, PierDesignResult, AbutmentDesignResult } from '../bridge-excel-generator/types';
+import { deckSlabThicknessOf } from '../bridge-excel-generator/input-contract';
 
 interface ValidationPrompt {
   role: 'user' | 'assistant';
@@ -53,7 +54,7 @@ BRIDGE CONFIGURATION:
 - Total Length: ${input.totalLength}m
 - Spans: ${input.numberOfSpans} × ${input.spanLength}m
 - Carriageway: ${input.carriageWidth}m
-${input.bridgeType === 'high-level' ? `- Deck soffit (MSL): ${(input.deckSoffitLevel ?? (input.rtl - (input.deckSlabThickness ?? 0.25))).toFixed(2)} m; governing min clearance above HFL: ${(hydraulics.requiredFreeboardAboveHfl ?? (input.freeboardAboveHfl ?? 1.2)).toFixed(2)} m (IRC discharge-based minimum vs project minimum)\n` : ''}
+${input.bridgeType === 'high-level' ? `- Deck soffit (MSL): ${(input.deckSoffitLevel ?? (input.rtl - (deckSlabThicknessOf(input)))).toFixed(2)} m; governing min clearance above HFL: ${(hydraulics.requiredFreeboardAboveHfl ?? (input.freeboardAboveHfl ?? 1.2)).toFixed(2)} m (IRC discharge-based minimum vs project minimum)\n` : ''}
 HYDRAULIC DATA:
 - HFL: ${input.hfl}m MSL
 - Bed Level: ${input.bedLevel}m MSL
@@ -95,7 +96,7 @@ export function performLocalValidation(input: ProjectInput, designResults: {
   const validations: ValidationResult[] = [];
   const ircRefs: string[] = [];
   const isHighLevelBridge = input.bridgeType === 'high-level';
-  const deckSlabThickness = input.deckSlabThickness ?? 0.25;
+  const deckSlabThickness = deckSlabThicknessOf(input);
   const deckSoffitLevel =
     input.deckSoffitLevel ?? (input.rtl - deckSlabThickness);
 

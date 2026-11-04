@@ -1,0 +1,29 @@
+
+> workspace@0.0.0 assimilate E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run assimilate
+
+
+> @workspace/scripts@0.0.0 assimilate E:\Rajkumar\Bridge_Slab_Design\scripts
+> python ./assimilate/inventory.py --root ../Attached_Assets --out ../asset-register.json --report
+
+Indexed 97 Office assets
+Register: ..\asset-register.json
+
+Assimilation coverage (0 decision record(s) loaded from asset-classification.json)
+| Bucket | Count | Meaning |
+| --- | --- | --- |
+| used:numbers | 0 | feeds a variable, coefficient or constraint |
+| used:narrative | 0 | contributed a template or clause |
+| used:drawing | 0 | mapped into the layout manifest |
+| superseded | 0 | duplicate of a higher-precedence source (hash logged) |
+| out-of-scope | 0 | explicitly excluded, with a written reason |
+| unclassified | 97 | no decision record � the gate fails on these |
+
+LFS pointer stubs among indexed assets: 96 of 97
+Coverage report: E:\Rajkumar\Bridge_Slab_Design\evidence\assimilation-coverage.md
+FAIL: 97 of 97 assets are unclassified. A2-A5 must not run over an unclassified corpus (Action 1.6).
+E:\Rajkumar\Bridge_Slab_Design\scripts:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @workspace/scripts@0.0.0 assimilate: `python ./assimilate/inventory.py --root ../Attached_Assets --out ../asset-register.json --report`
+Exit status 1
+ ELIFECYCLE  Command failed with exit code 1.
+ASSIM_EXIT=1

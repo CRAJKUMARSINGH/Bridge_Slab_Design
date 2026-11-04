@@ -83,16 +83,19 @@ export function createApp(options: AppOptions = {}) {
   });
 
   // Global error handler
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
-    
+  app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
+    const cause = err && typeof err === 'object'
+      ? err as { status?: number; statusCode?: number; message?: string; stack?: string }
+      : {};
+    const status = cause.status ?? cause.statusCode ?? 500;
+    const message = cause.message ?? 'Internal Server Error';
+
     logger.error({ err }, 'Server error');
-    
-    res.status(status).json({ 
-      success: false, 
+
+    res.status(status).json({
+      success: false,
       error: message,
-      ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+      ...(process.env.NODE_ENV === 'development' && { stack: cause.stack })
     });
   });
 

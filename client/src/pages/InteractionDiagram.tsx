@@ -5,7 +5,7 @@
  * Biaxial bending: Bresler contour method (IS:456 Annex B)
  * ASTRA Library reference: Interaction Diagrams module
  */
-import { useState, useMemo, useCallback, useRef } from 'react';
+import { useState, useMemo, useCallback, useRef, useId } from 'react';
 import { Link } from 'wouter';
 import {
   ArrowLeft, RefreshCw, Download, BookOpen,
@@ -362,16 +362,19 @@ function Field({
   label: string; unit?: string; value: number; min?: number; max?: number; step?: number;
   onChange: (v: number) => void; tooltip?: string;
 }) {
+  const inputId = useId();
   return (
     <div className="flex flex-col gap-0.5">
-      <label className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-app-muted">
+      <label htmlFor={inputId} className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-app-muted">
         {label}
         {tooltip && <span title={tooltip} className="cursor-help text-app-muted/50"><Info className="h-3 w-3" /></span>}
       </label>
       <div className="flex items-center gap-1">
         <input
+          id={inputId}
           type="number" value={value} min={min} max={max} step={step}
-          onChange={e => onChange(parseFloat(e.target.value) || 0)}
+          // Discard non-finite input: a cleared or malformed box must not silently become 0.
+          onChange={e => { const n = parseFloat(e.target.value); if (Number.isFinite(n)) onChange(n); }}
           className="w-full rounded-lg border border-[var(--app-glass-border)] bg-app-card/60 px-2.5 py-1.5 text-sm text-app-fg focus:border-app-accent focus:outline-none"
         />
         {unit && <span className="shrink-0 text-[10px] text-app-muted">{unit}</span>}
@@ -446,10 +449,11 @@ export default function InteractionDiagram() {
     <div className="mx-auto max-w-[1400px] px-4 py-8 md:px-8">
 
       {/* Back nav */}
-      <Link href="/astra-library">
-        <a className="mb-6 inline-flex items-center gap-2 text-sm text-app-muted hover:text-app-accent transition">
-          <ArrowLeft className="h-4 w-4" /> ASTRA Library
-        </a>
+      <Link
+        href="/astra-library"
+        className="mb-6 inline-flex items-center gap-2 text-sm text-app-muted hover:text-app-accent transition"
+      >
+        <ArrowLeft className="h-4 w-4" /> ASTRA Library
       </Link>
 
       {/* ASTRA Reference banner */}
@@ -461,10 +465,11 @@ export default function InteractionDiagram() {
           Biaxial check per IS:456 Annex B (Bresler contour, α from P/Pu0 ratio).
           Cross-reference SP:16 non-dimensional charts (p/(fck) vs Pu/bD·fck, Mu/bD²·fck).
         </p>
-        <Link href="/astra-library">
-          <a className="flex shrink-0 items-center gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-[11px] font-semibold text-amber-400 hover:bg-amber-500/20 transition">
-            <BookOpen className="h-3.5 w-3.5" /> Library
-          </a>
+        <Link
+          href="/astra-library"
+          className="flex shrink-0 items-center gap-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-[11px] font-semibold text-amber-400 hover:bg-amber-500/20 transition"
+        >
+          <BookOpen className="h-3.5 w-3.5" /> Library
         </Link>
       </div>
 
@@ -534,15 +539,15 @@ export default function InteractionDiagram() {
             <h2 className="mb-3 text-[11px] font-bold uppercase tracking-wide text-app-muted">Materials</h2>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-app-muted">Concrete fck</label>
-                <select value={inp.fck} onChange={e => set('fck', +e.target.value)}
+                <label htmlFor="fck-grade" className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-app-muted">Concrete fck</label>
+                <select id="fck-grade" value={inp.fck} onChange={e => set('fck', +e.target.value)}
                   className="w-full rounded-lg border border-[var(--app-glass-border)] bg-app-card/60 px-2.5 py-1.5 text-sm text-app-fg focus:border-app-accent focus:outline-none">
                   {fckGrades.map(g => <option key={g} value={g}>M{g}</option>)}
                 </select>
               </div>
               <div>
-                <label className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-app-muted">Steel fy</label>
-                <select value={inp.fy} onChange={e => set('fy', +e.target.value)}
+                <label htmlFor="fy-grade" className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-app-muted">Steel fy</label>
+                <select id="fy-grade" value={inp.fy} onChange={e => set('fy', +e.target.value)}
                   className="w-full rounded-lg border border-[var(--app-glass-border)] bg-app-card/60 px-2.5 py-1.5 text-sm text-app-fg focus:border-app-accent focus:outline-none">
                   {fyGrades.map(g => <option key={g} value={g}>Fe{g}</option>)}
                 </select>

@@ -126,7 +126,7 @@ function ProfileChart({ stations, yn, yc, bedLevel }: {
 
   // Yn and Yc reference lines at distance x: they slope with the bed
   const ynPoints  = stations.map(s => `${px(s.x).toFixed(1)},${py(s.zBed + yn).toFixed(1)}`).join(' ');
-  const ycPoints  = stations.map(s => `${px(s.x).toFixed(1)},${py(s.zBed + yc).toFixed(1)}`).join(' `');
+  const ycPoints  = stations.map(s => `${px(s.x).toFixed(1)},${py(s.zBed + yc).toFixed(1)}`).join(' ');
 
   // Y-axis labels
   const yTicks = 4;

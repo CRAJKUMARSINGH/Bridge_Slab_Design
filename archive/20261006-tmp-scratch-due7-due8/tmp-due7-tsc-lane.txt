@@ -1,0 +1,12 @@
+=== scripts/tsconfig.json:
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "types": ["node"]
+  },
+  "include": ["src"]
+}
+=== does typecheck see the file?
+0

@@ -10,6 +10,9 @@
 import type { BOQItem, EnhancedProjectInput } from '../bridge-excel-generator/types';
 import { WORKBOOK_LINE_REPORT_CSS, buildHydraulicsWorkbookHtmlFragment } from './workbook-line-report';
 import { getFullTechnicalComputationNarrativeChunks } from '../bridge-excel-generator/narrative-engine';
+import { buildWorkbookSheetPreviews, buildSingleWorkbookSheetPreview, STABILITY_CHECK_PIER_SHEET_NAME, MAX_ROWS, MAX_COLS } from './workbook-sheets-preview';
+import type { WorkbookSheetPreview } from './workbook-sheets-preview';
+import { deckSlabThicknessOf } from '../bridge-excel-generator/input-contract';
 import {
   generateAbutmentPressureSvg,
   generatePierStabilitySvg,
@@ -40,9 +43,9 @@ interface ReportSection {
 /**
  * Generate HTML report with STRUDS-style layout (see {@link REF_STRUDS_SLAB_SAMPLE}).
  */
-export function generateHTMLDesignReport(input: EnhancedProjectInput): string {
+export async function generateHTMLDesignReport(input: EnhancedProjectInput): Promise<string> {
   const bridgeType = input.bridgeType === 'high-level' ? 'High-Level Slab Bridge' : 'Submersible Slab Bridge';
-  const deckSlabThickness = input.deckSlabThickness ?? 0.25;
+  const deckSlabThickness = deckSlabThicknessOf(input);
   const deckSoffitLevel = input.deckSoffitLevel ?? (input.rtl - deckSlabThickness);
   const governingFreeboardAboveHfl =
     input.bridgeType === 'high-level'
@@ -66,6 +69,20 @@ export function generateHTMLDesignReport(input: EnhancedProjectInput): string {
   const coverHtml = generateStrudsCoverHtml(input, bridgeType);
   const forewordHtml = generateStrudsForewordHtml(input);
   const annexureHtml = generateAnnexureDrawingsHtml(input);
+  // Build basic previews (truncated to default limits)
+  const basicPreviews = await buildWorkbookSheetPreviews(input);
+  const previews: WorkbookSheetPreview[] = [];
+  for (const p of basicPreviews) {
+    // If a sheet hit the default row or column cap, regenerate it without caps
+    if (p.rowCount >= MAX_ROWS || p.colCount >= MAX_COLS) {
+      const full = await buildSingleWorkbookSheetPreview(input, p.name);
+      previews.push(full ?? p);
+    } else {
+      previews.push(p);
+    }
+  }
+
+  const sheetsHtml = generateWorkbookSheetsHtml(previews);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -173,6 +190,10 @@ export function generateHTMLDesignReport(input: EnhancedProjectInput): string {
       color: #555;
       text-align: center;
     }
+    @page {
+      size: A4;
+      margin: 15mm;
+    }
     @media print {
       body { background: #fff; padding: 0; }
       .report { border: 0; }
@@ -253,6 +274,7 @@ export function generateHTMLDesignReport(input: EnhancedProjectInput): string {
     ${narrativeSectionHtml}
     ${hydraulicsWorkbookHtml}
     ${sections.map((s) => generateSection(s)).join('')}
+    ${sheetsHtml}
     ${annexureHtml}
     ${generateFooter(input)}
   </div>
@@ -895,3 +917,22 @@ function formatValue(v: string | number): string {
   if (typeof v === 'number') return formatNum(v);
   return escapeHtml(v);
 }
+
+function generateWorkbookSheetsHtml(previews: WorkbookSheetPreview[]): string {
+  if (!previews || previews.length === 0) {
+    return '<p>No workbook sheets available.</p>';
+  }
+  const tocItems = previews.map(p => `<li><a href="#${slugify(p.name)}">${escapeHtml(p.name)}</a></li>`).join('');
+  const toc = `<nav class="struds-toc"><h2>Workbook Sheets</h2><ul>${tocItems}</ul></nav>`;
+  const sheets = previews.map(p => {
+    const rowsHtml = p.rows.map((row: string[]) => `<tr>${row.map(cell => `<td>${escapeHtml(cell)}</td>`).join('')}</tr>`).join('');
+    return `<section class="struds-workbook-sheet" id="${slugify(p.name)}"><h3>${escapeHtml(p.name)}</h3><table class="struds-calc-table">${rowsHtml}</table></section>`;
+  }).join('');
+  return `${toc}<div class="struds-workbook-sheets">${sheets}</div>`;
+}
+
+
+function slugify(text: string): string {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+

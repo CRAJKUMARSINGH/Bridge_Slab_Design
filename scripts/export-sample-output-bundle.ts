@@ -1,7 +1,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import sharp from 'sharp';
-import calculateCompleteDesign from '../bridge-excel-generator/design-engine';
+import { calculateCompleteDesign } from '../bridge-excel-generator/design-engine.ts';
 import type { EnhancedProjectInput } from '../bridge-excel-generator/types';
 import { generateCompleteExcel } from '../bridge-excel-generator/index';
 import { generateHTMLDesignReport } from '../server/design-report';
@@ -90,7 +90,7 @@ async function main(): Promise<void> {
   const comprehensivePdf = await generateComprehensivePDF(enhanced);
   writeFileSync(join(dirs.pdf, `${projectTag}_report-short.pdf`), shortPdf);
   writeFileSync(join(dirs.pdf, `${projectTag}_report-comprehensive.pdf`), comprehensivePdf);
-  writeFileSync(join(dirs.html, `${projectTag}_report.html`), generateHTMLDesignReport(enhanced), 'utf-8');
+  writeFileSync(join(dirs.html, `${projectTag}_report.html`), await generateHTMLDesignReport(enhanced), 'utf-8');
 
   writeFileSync(
     join(dirs.dxf, `${projectTag}_acad_AC1018.dxf`),

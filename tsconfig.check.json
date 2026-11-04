@@ -1,0 +1,30 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "include": [
+    "client/src/**/*",
+    "shared/**/*",
+    "server/**/*",
+    "Drawing_Module/src/**/*",
+    "bridge-excel-generator/**/*",
+    "scripts/**/*",
+    "api/**/*",
+    "tests/**/*",
+    "foundation/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    "archive",
+    ".pnpm-store-local",
+    "merge-refs",
+    "VENICE-REFERENCES",
+    "Attached_Assets",
+    "assets"
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "skipLibCheck": true
+  }
+}

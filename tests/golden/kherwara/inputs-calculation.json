@@ -1,0 +1,27 @@
+{
+  "_schemaVersion": "0.4.0",
+  "_project": "kherwara",
+  "_status": "DRAFT — pending canonical workbook confirmation (OQ-001, OQ-002)",
+  "_note": "Representative values based on existing scripts/fixtures/kherwara-project-input.ts. Replace with values from the canonical Kherwara/Kharka workbook once confirmed.",
+
+  "projectCode":      "KHERWARA-001",
+  "projectName":      "Construction of Submersible Bridge on KHERWARA-JAWAS-SUVERI ROAD",
+  "revision":         "R0-DRAFT",
+  "designer":         "To be confirmed",
+  "designCode":       "IRC:112-2020 (to be confirmed)",
+  "schemaVersion":    "0.4.0",
+
+  "spanLength":        8.0,
+  "deckWidth":         7.5,
+  "girderSpacing":     2.5,
+  "girderCount":       3,
+  "concreteStrength":  25.0,
+  "steelGrade":        415.0,
+  "deckThickness":     0.25,
+  "liveLoadUdl":       25.0,
+  "liveLoadPoint":     150.0,
+  "secondMoment":      65000000000.0,
+  "sectionModulus":    45000000.0,
+  "alpha":             0.9,
+  "correctionK3":      1.2
+}

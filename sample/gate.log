@@ -1,0 +1,26 @@
+== tsc root ==
+0
+== tsc scripts ==
+0
+== integration lanes ==
+lanes=12 laneFails=0
+== golden contract ==
+Total sheets: 46/46
+verify-kherwara-excel-golden: OK (current 46-sheet contract validated)
+== hydraulics ==
+  OK (snapshot + identities)
+verify:engine OK — all hydraulics fixtures passed
+== narrative ==
+OK Tech Report (13 paragraphs)
+OK ESTIMATION (5 paragraphs)
+== engine golden ==
+Golden regression passed; tamper input changed the result as expected.
+== design smoke ==
+
+Done: 26/26 passed.
+== links ==
+OK   irc-sukanaka-highlevel   pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+Done: 20/20 workbooks fully linked.
+== value sanity ==
+Templates: 20 | cells: 48234 | formulas: 9118 | defects: 0
+GATE COMPLETE

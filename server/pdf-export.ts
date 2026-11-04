@@ -8,6 +8,7 @@ import type { EnhancedProjectInput, ProjectInput } from '../bridge-excel-generat
 import { buildHydraulicsPreviewRows } from '../shared/hydraulics-sheet-preview';
 import { drawWbInputTemplateSheets } from './pdf-input-template-sheets';
 import { getFullTechnicalComputationNarrativeChunks } from '../bridge-excel-generator/narrative-engine';
+import { deckSlabThicknessOf } from '../bridge-excel-generator/input-contract';
 
 const DARK_BLUE: [number, number, number] = [31, 73, 107];
 const MID_BLUE:  [number, number, number] = [40, 80, 150];
@@ -17,7 +18,7 @@ const DARK_TEXT: [number, number, number] = [50, 50, 50];
 
 export async function generateDesignPDF(input: EnhancedProjectInput): Promise<Buffer> {
   const bridgeTypeLabel = input.bridgeType === 'high-level' ? 'High-Level Slab Bridge' : 'Submersible Slab Bridge';
-  const deckSlabThickness = input.deckSlabThickness ?? 0.25;
+  const deckSlabThickness = deckSlabThicknessOf(input);
   const deckSoffitLevel = input.deckSoffitLevel ?? (input.rtl - deckSlabThickness);
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
   const PW = doc.internal.pageSize.getWidth();
@@ -259,43 +260,133 @@ export async function generateDesignPDF(input: EnhancedProjectInput): Promise<Bu
   }
 
   // ── PAGE 6: ESTIMATION BOQ ─────────────────────────────────────────────────
+  /**
+   * BSR particulars run to several lines, so rows size themselves to their
+   * tallest wrapped cell instead of overwriting the next row. A `strong` row is
+   * a section banner spanning the table.
+   */
+  type WrappedRow = { cells: string[]; strong?: boolean };
+  const tableWrapped = (headers: string[], rows: WrappedRow[], colW: number[]) => {
+    const lineH = 4.1;
+    const wrapRow = (cells: string[]) =>
+      cells.map((cell, i) => doc.splitTextToSize(String(cell ?? ''), colW[i] - 2) as string[]);
+    const rowHeight = (cells: string[][]) => Math.max(...cells.map((c) => c.length)) * lineH + 1.6;
+
+    doc.setFontSize(8);
+    const drawHeader = () => {
+      const lines = wrapRow(headers);
+      const height = rowHeight(lines) + 0.6;
+      if (y + height > PH - 15) newPage();
+      doc.setFillColor(...DARK_BLUE);
+      doc.rect(M, y - 3.4, CW, height, 'F');
+      doc.setTextColor(...WHITE);
+      doc.setFont('helvetica', 'bold');
+      let x = M;
+      lines.forEach((cell, i) => { doc.text(cell, x + 1, y); x += colW[i]; });
+      y += height;
+    };
+
+    drawHeader();
+    rows.forEach((row, idx) => {
+      const cells = wrapRow(row.cells);
+      const height = rowHeight(cells);
+      if (y + height > PH - 15) drawHeader();
+      doc.setFont('helvetica', row.strong ? 'bold' : 'normal');
+      doc.setTextColor(...(row.strong ? MID_BLUE : DARK_TEXT));
+      if (row.strong) {
+        doc.setFillColor(232, 238, 246);
+        doc.rect(M, y - 3.4, CW, height, 'F');
+        doc.text(row.cells[0], M + 2, y);
+      } else {
+        if (idx % 2 === 0) {
+          doc.setFillColor(...ROW_ALT);
+          doc.rect(M, y - 3.4, CW, height, 'F');
+        }
+        let x = M;
+        cells.forEach((cell, i) => { doc.text(cell, x + 1, y); x += colW[i]; });
+      }
+      y += height;
+    });
+    y += 3;
+  };
+
   newPage();
   heading('BILL OF QUANTITIES', 16);
   const est = input.estimation;
   if (est) {
-    table(
-      ['Item', 'Description', 'Unit', 'Qty', 'Rate (₹)', 'Amount (₹)'],
-      est.boq.map(b => [b.itemNo, b.description, b.unit, b.quantity.toFixed(2), b.rate.toLocaleString('en-IN'), b.amount.toLocaleString('en-IN')]),
-      [12, 65, 12, 18, 22, 25]
+    const sectionByItem = new Map(est.measurements.map((m) => [m.item, m.section]));
+    let currentSection = '';
+    const boqRows: WrappedRow[] = [];
+    est.boq.forEach((b) => {
+      const section = sectionByItem.get(b.itemNo) ?? 'ESTIMATE';
+      if (section !== currentSection) {
+        currentSection = section;
+        boqRows.push({ cells: [section], strong: true });
+      }
+      boqRows.push({
+        cells: [
+          b.itemNo,
+          b.description,
+          b.unit,
+          b.quantity.toFixed(3),
+          b.rate.toLocaleString('en-IN', { maximumFractionDigits: 2 }),
+          b.amount.toLocaleString('en-IN', { maximumFractionDigits: 2 }),
+        ],
+      });
+    });
+    tableWrapped(
+      ['Item', 'Particulars', 'Unit', 'Quantity', 'Rate (₹)', 'Amount (₹)'],
+      boqRows,
+      [10, 88, 12, 20, 25, 25]
     );
+
+    y += 2;
+    subheading('ABSTRACT — PWD OVERHEAD LADDER');
+    const rupee = (v: number) => v.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const ladder: WrappedRow[] = [
+      { cells: ['Subtotal (A)', rupee(est.cost.subtotal)] },
+      { cells: ['Add: Quality Control @ 1.00 %', rupee(est.cost.qualityControl)] },
+      { cells: ['Add: Contingency provision @ 3.00 % (booked nil)', rupee(est.cost.contingencyProvision)] },
+      { cells: ['Add: Contingencies @ 1.50 %', rupee(est.cost.contingencies)] },
+      { cells: ['G.TOTAL (B)', rupee(est.cost.gTotal)], strong: true },
+      { cells: ['Add: Prorata Overheads & Profit @ 13.00 %', rupee(est.cost.prorataOverheads)] },
+      { cells: ['GRAND TOTAL (₹)', rupee(est.cost.total)], strong: true },
+      { cells: ['SAY (₹ Lakh)', est.cost.totalInLacs.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })], strong: true },
+      { cells: ['Cost per Running Metre (₹/m)', est.cost.ratePerMeter.toLocaleString('en-IN', { maximumFractionDigits: 0 })] },
+    ];
+    tableWrapped(['Description', 'Amount (₹)'], ladder, [130, 50]);
   }
 
-  // ── PAGE 7: COST SUMMARY ───────────────────────────────────────────────────
+  // ── PAGE 7: QUANTITY SUMMARY ───────────────────────────────────────────────
   newPage();
-  heading('COST SUMMARY', 16);
+  heading('QUANTITY SUMMARY', 16);
   if (est) {
-    const cost = est.cost;
-    table(
-      ['Description', 'Amount (₹)'],
+    const q = est.quantities;
+    const qty = (v: number) => v.toLocaleString('en-IN', { maximumFractionDigits: 3 });
+    tableWrapped(
+      ['Material', 'Quantity', 'Unit'],
       [
-        ['Subtotal',                  cost.subtotal.toLocaleString('en-IN')],
-        ["Contractor's Profit (10%)", (cost.profit ?? 0).toLocaleString('en-IN')],
-        ['Overhead Charges (8%)',     (cost.overhead ?? 0).toLocaleString('en-IN')],
-        ['GST (18%)',                 cost.gst.toLocaleString('en-IN')],
-        ['GRAND TOTAL',               cost.total.toLocaleString('en-IN')],
-        ['Cost per Running Metre',    cost.ratePerMeter.toLocaleString('en-IN')],
+        { cells: ['PCC / RCC M-15 (blinding, levelling)', qty(q.concrete.m15), 'm³'] },
+        { cells: ['RCC M-20', qty(q.concrete.m20), 'm³'] },
+        { cells: ['RCC / DM M-25', qty(q.concrete.m25), 'm³'] },
+        { cells: ['DM M-30 (deck, wearing coat, approach slabs)', qty(q.concrete.m30), 'm³'] },
+        { cells: ['RCC M-35', qty(q.concrete.m35), 'm³'] },
+        { cells: ['Total structural concrete', qty(q.concrete.total), 'm³'], strong: true },
+        { cells: ['TMT steel reinforcement', qty(q.steel.total), 'MT'] },
+        { cells: ['Formwork area (priced inside the concrete rates)', qty(q.formwork), 'm²'] },
+        { cells: ['Earthwork in soil up to 3 m', qty(q.excavation.soilUpto3m), 'm³'] },
+        { cells: ['Earthwork in soil deeper than 3 m', qty(q.excavation.soil3to6m), 'm³'] },
+        { cells: ['Earthwork in soft rock (no blasting)', qty(q.excavation.softRock), 'm³'] },
+        { cells: ['Earthwork in hard rock (blasting)', qty(q.excavation.hardRock), 'm³'] },
+        { cells: ['Total excavation', qty(q.excavation.total), 'm³'], strong: true },
+        { cells: ['Gravelly backfill behind walls', qty(q.backfill), 'm³'] },
       ],
-      [100, 80]
+      [120, 35, 25]
     );
-
-    y += 5;
-    subheading('Quantities Summary');
-    kv('Total Concrete (M25)', est.quantities.concrete.m25, 'm³');
-    kv('Total Concrete (M30)', est.quantities.concrete.m30, 'm³');
-    kv('Total Concrete (M35)', est.quantities.concrete.m35, 'm³');
-    kv('Total Steel', est.quantities.steel.total, 'MT');
-    kv('Formwork', est.quantities.formwork, 'm²');
-    kv('Excavation', est.quantities.excavation.total, 'm³');
+    paragraphs('RATE BASIS', [
+      'Rates are the location-specific PWD/BSR items of the Rajasthan BSR 2022 register: structural concrete rates include formwork and scaffolding, and reinforcement is billed as a percentage of the RCC volume it reinforces.',
+      'The cost build-up follows the PWD overhead ladder — Quality Control, contingency provision, Contingencies, G.Total, then prorata overheads and profit. GST is not added: this is a departmental (non-GST) abstract.',
+    ]);
   }
 
   const buffer = doc.output('arraybuffer');

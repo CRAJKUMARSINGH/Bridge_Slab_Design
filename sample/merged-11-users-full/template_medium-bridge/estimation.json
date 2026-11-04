@@ -1,6 +1,7 @@
 {
   "quantities": {
     "concrete": {
+      "m20": 0,
       "m25": 1246.75,
       "m30": 0,
       "m35": 0,
@@ -13,11 +14,11 @@
     },
     "formwork": 601,
     "excavation": {
-      "ordinary": 0,
+      "ordinary": 668.75,
       "hardRock": 0,
-      "total": 0
+      "total": 668.75
     },
-    "backfill": 0
+    "backfill": 267.5
   },
   "boq": [
     {
@@ -25,8 +26,8 @@
       "description": "Concrete M25",
       "unit": "m³",
       "quantity": 1246.75,
-      "rate": 6500,
-      "amount": 8103875
+      "rate": 5500,
+      "amount": 6857125
     },
     {
       "itemNo": "2",
@@ -46,19 +47,19 @@
     },
     {
       "itemNo": "4",
-      "description": "Excavation",
+      "description": "Excavation in ordinary soil",
       "unit": "m³",
-      "quantity": 0,
+      "quantity": 668.75,
       "rate": 250,
-      "amount": 0
+      "amount": 167187.5
     },
     {
       "itemNo": "5",
       "description": "Backfill",
       "unit": "m³",
-      "quantity": 0,
-      "rate": 180,
-      "amount": 0
+      "quantity": 267.5,
+      "rate": 150,
+      "amount": 40125
     },
     {
       "itemNo": "6",
@@ -71,10 +72,10 @@
     {
       "itemNo": "7",
       "description": "Wearing Coat",
-      "unit": "m³",
-      "quantity": 18,
-      "rate": 8000,
-      "amount": 144000
+      "unit": "m²",
+      "quantity": 360,
+      "rate": 1200,
+      "amount": 432000
     },
     {
       "itemNo": "8",
@@ -88,9 +89,9 @@
       "itemNo": "9",
       "description": "Bearings",
       "unit": "nos",
-      "quantity": 6,
+      "quantity": 18,
       "rate": 25000,
-      "amount": 150000
+      "amount": 450000
     },
     {
       "itemNo": "10",
@@ -98,14 +99,14 @@
       "unit": "",
       "quantity": 0,
       "rate": 0,
-      "amount": 13581387.5
+      "amount": 13129950
     }
   ],
   "cost": {
-    "subtotal": 13581387.5,
-    "gst": 2444649.75,
-    "total": 16026037.25,
-    "ratePerMeter": 333875.7760416667,
+    "subtotal": 13129950,
+    "gst": 2363391,
+    "total": 15493341,
+    "ratePerMeter": 322777.9375,
     "profit": 0,
     "overhead": 0
   }

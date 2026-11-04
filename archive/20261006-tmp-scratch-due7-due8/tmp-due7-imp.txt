@@ -1,0 +1,20 @@
+=== export-sample-output-bundle.ts 1-8:
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import sharp from 'sharp';
+import { calculateCompleteDesign } from '../bridge-excel-generator/design-engine.ts';
+import type { EnhancedProjectInput } from '../bridge-excel-generator/types';
+import { generateCompleteExcel } from '../bridge-excel-generator/index';
+import { generateHTMLDesignReport } from '../server/design-report';
+import { generateComprehensivePDF } from '../server/comprehensive-pdf-export';
+=== extract-word.ts 1-10:
+/**
+ * Extract plain text from .doc / .docx via word-extractor (no Word install).
+ */
+
+import fs from 'fs';
+import path from 'path';
+import WordExtractor from 'word-extractor';
+import type { WordExtractSummary } from './types';
+
+const extractor = new WordExtractor();

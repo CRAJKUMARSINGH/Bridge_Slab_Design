@@ -1,0 +1,59 @@
+=== prose modules exist?
+ls: cannot access 'bridge-excel-generator/prose/': No such file or directory
+--- fixtures:
+ls: cannot access 'bridge-excel-generator/fixtures/': No such file or directory
+=== sharp / word-extractor declared?
+=== candidate line 155-165:
+    'A licensed engineer must review the numbers before any artefact here is issued externally.',
+    '',
+  ];
+  writeFileSync(join(outDir, 'MANIFEST.md'), lines.join('\n'), 'utf-8');
+
+  console.log(`\nBundle: ${entries.length} deliverables + gate transcripts at ${outDir}`);
+  console.log(`Commit ${manifest.commit.slice(0, 12)} | gates ${manifest.gates.map((g) => `${g.command.split(' ').pop()}=${g.exit}`).join(' ') || 'skipped'}`);
+}
+=== stress-test-251 120-130:
+      JSON.stringify({
+        success: true,
+        type: user.type,
+        spans: payload.numberOfSpans,
+        hydraulics_discharge: results.hydraulics.discharge,
+        pier_max_moment: results.pier?.maxMoment ?? 0,
+        duration
+      })
+    );
+    
+    if (user.id % 25 === 0) {
+=== test-storytelling 35-55:
+    const outPath = path.resolve(`user_${i + 1}_${user.id}_design.xlsx`);
+    fs.writeFileSync(outPath, buffer);
+    console.log(`✅ Saved: ${outPath} (${(buffer.length / 1024).toFixed(2)} KB)`);
+    
+    // Load workbook to read narrative
+    const wb = new ExcelJS.Workbook();
+    await wb.xlsx.load(buffer);
+    
+    reportText += `## User ${i + 1}: ${user.name}\n\n`;
+    
+    const narrativeSheets = ['TechNote', 'Tech Report'];
+    for (const sheetName of narrativeSheets) {
+      const sheet = wb.getWorksheet(sheetName) || wb.worksheets.find(s => s.name === sheetName);
+      if (sheet) {
+        reportText += `### ${sheetName} Content\n`;
+        let text = '';
+        sheet.eachRow((row) => {
+          const rowText = row.values.map(v => typeof v === 'object' && v && 'richText' in v ? v.richText.map(r => r.text).join('') : String(v || '')).join(' ').trim();
+          if (rowText) text += rowText + '\n';
+        });
+        assertNoNarrativePlaceholders(text, `${user.id}/${sheetName}`);
+=== debug-ctx 1-10:
+import { calculateCompleteDesign } from '../bridge-excel-generator/design-engine';
+import { KHERWARA_REFERENCE_PROJECT_INPUT as inp } from './fixtures/kherwara-project-input';
+import { computeDeckNarrativeBundle } from '../bridge-excel-generator/prose/deck-narrative-math';
+
+const result = calculateCompleteDesign(inp, { quiet: true });
+const hyd = (result.hydraulics ?? {}) as Record<string, unknown>;
+const deckNarrative = computeDeckNarrativeBundle(inp);
+const globalCtx: Record<string, unknown> = {
+  ...hyd,
+  pierData: result.pier,

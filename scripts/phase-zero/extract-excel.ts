@@ -5,6 +5,7 @@
 import fs from 'fs';
 import path from 'path';
 import * as XLSX from 'xlsx';
+import { assertNotLfsPointer } from '../read-office-workbook';
 import type { ExtractedCell, SheetSummary, WorkbookExtractSummary } from './types';
 
 function colIndexToLetter(c0: number): string {
@@ -38,6 +39,7 @@ export function extractWorkbookToDir(
   opts: ExcelExtractOptions,
 ): WorkbookExtractSummary {
   const buf = fs.readFileSync(absoluteFilePath);
+  assertNotLfsPointer(buf, absoluteFilePath);
   const wb = XLSX.read(buf, {
     type: 'buffer',
     cellDates: true,

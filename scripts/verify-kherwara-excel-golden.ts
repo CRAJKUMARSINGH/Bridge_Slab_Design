@@ -23,6 +23,7 @@ const REQUIRED_SHEETS = [
   'SBC',
   'STABILITY CHECK FOR PIER',
   'abstract of stresses',
+  'LL-ABSTRACT',
   'LLOAD',
   'loadsumm',
   'TYPE1-STABILITY CHECK ABUTMENT',
@@ -33,6 +34,18 @@ const REQUIRED_SHEETS = [
   'General Abs.',
   'Abstract',
   'Bridge measurements',
+  'INSERT C1-ABUT',
+  'C1-AbutMENT Drawing',
+  'C1-STABILITY CHECK ABUTMENT',
+  'C1-ABUTMENT FOOTING DESIGN',
+  'C1-Abut Footing STRESS DIAGRAM',
+  'CAN-RETURN FOOTING DESIGN',
+  'STEEL IN CANT-ABUTMENT',
+  'STEEL IN CANT-RETURNS',
+  'C1-Abutment Cap',
+  'C1-DIRT WALL REINFORCEMENT',
+  'C1-DIRT DirectLoad_BM',
+  'C1-DIRT LL_BM',
 ] as const;
 
 function getFormula(cell: ExcelJS.Cell): string | undefined {
@@ -70,6 +83,60 @@ function verifyWorkbook(tag: string, wb: ExcelJS.Workbook, failedRef: { v: boole
     wb.worksheets.length === 46,
     `${tag}: expected 46 worksheets, got ${wb.worksheets.length}`,
     failedRef
+  );
+
+  const expectedOrder = [
+    'INDEX',
+    'INSERT- HYDRAULICS',
+    'afflux calculation',
+    'HYDRAULICS',
+    'Deck Anchorage',
+    'CROSS SECTION',
+    'Bed Slope',
+    'SBC',
+    'STABILITY CHECK FOR PIER',
+    'abstract of stresses',
+    'STEEL IN FLARED PIER BASE',
+    'STEEL IN PIER',
+    'FOOTING DESIGN',
+    'Footing STRESS DIAGRAM',
+    'Pier Cap LL tracked vehicle',
+    'Pier Cap',
+    'LLOAD',
+    'loadsumm',
+    'LL-ABSTRACT',
+    'TYPE1-AbutMENT Drawing',
+    'TYPE1-STABILITY CHECK ABUTMENT',
+    'TYPE1-ABUTMENT FOOTING DESIGN',
+    'TYPE1- Abut Footing STRESS',
+    'TYPE1-STEEL IN ABUTMENT',
+    'TYPE1-Abutment Cap',
+    'TYPE1-DIRT WALL REINFORCEMENT',
+    'TYPE1-DIRT DirectLoad_BM',
+    'TYPE1-DIRT LL_BM',
+    'INSERT C1-ABUT',
+    'C1-AbutMENT Drawing',
+    'C1-STABILITY CHECK ABUTMENT',
+    'C1-ABUTMENT FOOTING DESIGN',
+    'C1-Abut Footing STRESS DIAGRAM',
+    'CAN-RETURN FOOTING DESIGN',
+    'STEEL IN CANT-ABUTMENT',
+    'STEEL IN CANT-RETURNS',
+    'C1-Abutment Cap',
+    'C1-DIRT WALL REINFORCEMENT',
+    'C1-DIRT DirectLoad_BM',
+    'C1-DIRT LL_BM',
+    'TechNote',
+    'INSERT ESTIMATE',
+    'Tech Report',
+    'General Abs.',
+    'Abstract',
+    'Bridge measurements',
+  ];
+  assertCondition(
+    expectedOrder.every((name, index) => wb.worksheets[index]?.name === name),
+    `${tag}: worksheet order does not match the corrected 46-sheet contract`,
+    failedRef,
   );
 
   for (const name of REQUIRED_SHEETS) {
@@ -114,9 +181,9 @@ function verifyWorkbook(tag: string, wb: ExcelJS.Workbook, failedRef: { v: boole
 }
 
 async function verifyInput(tag: string, input: ProjectInput, failedRef: { v: boolean }) {
-  const buffer = await generateCompleteExcel(input);
+  const buffer = await generateCompleteExcel(input, { book: 'legacy-46' });
   const wb = new ExcelJS.Workbook();
-  await wb.xlsx.load(buffer);
+  await wb.xlsx.load(buffer as unknown as ArrayBuffer);
   verifyWorkbook(tag, wb, failedRef);
 }
 
@@ -139,4 +206,3 @@ main().catch((e) => {
   console.error(e);
   process.exit(1);
 });
-

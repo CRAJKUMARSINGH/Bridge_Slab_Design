@@ -1,51 +1,34 @@
 /**
- * Sheet 11: STEEL IN FLARED PIER BASE
- * Reinforcement design for flared pier base
+ * Sheet 11: STEEL IN FLARED PIER BASE.
  */
 
 import ExcelJS from 'exceljs';
-import { ProjectInput } from '../types';
+import type { EnhancedProjectInput } from '../types';
 import { setColumnWidths, setCellValue } from '../utils';
 
 export async function generateSteelFlaredPierSheet(
   workbook: ExcelJS.Workbook,
-  input: ProjectInput
+  input: EnhancedProjectInput,
 ): Promise<void> {
   const ws = workbook.addWorksheet('STEEL IN FLARED PIER BASE');
-  
-  setColumnWidths(ws, [5, 30, 12, 12, 12, 12, 12]);
-  
-  let row = 1;
-  
-  setCellValue(ws, row, 1, 'REINFORCEMENT DESIGN - FLARED PIER BASE');
-  ws.getCell(row, 1).font = { bold: true, size: 14 };
-  row += 2;
-  
-  setCellValue(ws, row, 1, 'Design as per IRC:112-2015');
-  row += 2;
-  
-  // Vertical reinforcement
-  setCellValue(ws, row, 1, 'A. VERTICAL REINFORCEMENT');
-  ws.getCell(row, 1).font = { bold: true };
-  row++;
-  
-  setCellValue(ws, row, 2, 'Required Ast');
-  setCellValue(ws, row, 3, '=');
-  setCellValue(ws, row, 4, '0.8% of gross area');
-  row++;
-  
-  setCellValue(ws, row, 2, 'Provide');
-  setCellValue(ws, row, 3, '32 nos 25mm φ bars');
-  row += 2;
-  
-  // Horizontal ties
-  setCellValue(ws, row, 1, 'B. HORIZONTAL TIES');
-  ws.getCell(row, 1).font = { bold: true };
-  row++;
-  
-  setCellValue(ws, row, 2, 'Provide');
-  setCellValue(ws, row, 3, '10mm φ @ 150mm c/c');
-  row += 2;
-  
-  setCellValue(ws, row, 1, 'NOTE: Reinforcement details as per standard drawings');
+  setColumnWidths(ws, [6, 36, 22, 18]);
+  setCellValue(ws, 1, 1, 'REINFORCEMENT DESIGN - FLARED PIER BASE');
+  ws.getCell(1, 1).font = { bold: true, size: 14 };
+  const pier = input.pier;
+  if (!pier) {
+    setCellValue(ws, 3, 1, 'CHECK: calculated pier result unavailable.');
+    ws.getCell(3, 1).font = { bold: true, color: { argb: 'FF9C0006' } };
+    return;
+  }
+  const steel = pier.reinforcement.flaredBase;
+  setCellValue(ws, 3, 1, 'Provided reinforcement');
+  setCellValue(ws, 3, 2, `${steel.numberOfBars} nos ${steel.diameter} mm dia @ ${steel.spacing} mm c/c`);
+  setCellValue(ws, 4, 1, 'Steel area');
+  setCellValue(ws, 4, 2, steel.area);
+  setCellValue(ws, 4, 3, 'mm²');
+  setCellValue(ws, 5, 1, 'Steel weight');
+  setCellValue(ws, 5, 2, steel.weight);
+  setCellValue(ws, 5, 3, 'kg');
+  setCellValue(ws, 7, 1, 'Detailed flared-base bending/shear design is not separately represented in the current result contract; engineering review required.');
+  ws.getCell(7, 1).alignment = { wrapText: true };
 }

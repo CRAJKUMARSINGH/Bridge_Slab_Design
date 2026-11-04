@@ -1,0 +1,74 @@
+{
+  "projectName": "Construction of High-Level Bridge across PARWAN River (70R Loading)",
+  "location": "PARWAN River, Rajasthan",
+  "riverName": "PARWAN",
+  "bridgeType": "high-level",
+  "spanLength": 20,
+  "numberOfSpans": 4,
+  "skew": 0,
+  "carriageWidth": 10.5,
+  "numberOfLanes": 3,
+  "totalLength": 80,
+  "hfl": 389.6,
+  "bedLevel": 383.2,
+  "foundationLevel": 377.5,
+  "discharge": 1142.3,
+  "manningN": 0.033,
+  "bedSlope": 920,
+  "laceysSiltFactor": 1.5,
+  "crossSectionData": [
+    {
+      "chainage": 0,
+      "gl": 389
+    },
+    {
+      "chainage": 20,
+      "gl": 386.4
+    },
+    {
+      "chainage": 40,
+      "gl": 383.2
+    },
+    {
+      "chainage": 60,
+      "gl": 384.1
+    },
+    {
+      "chainage": 80,
+      "gl": 387.8
+    },
+    {
+      "chainage": 100,
+      "gl": 389.8
+    }
+  ],
+  "pierWidth": 1.5,
+  "pierLength": 4.5,
+  "pierDepth": 7,
+  "numberOfPiers": 3,
+  "pierBaseWidth": 3,
+  "pierBaseLength": 5.5,
+  "abutmentHeight": 12,
+  "abutmentWidth": 4.5,
+  "abutmentDepth": 6,
+  "dirtWallHeight": 3,
+  "returnWallLength": 7,
+  "concreteGrade": "M25",
+  "fck": 30,
+  "steelGrade": "Fe415",
+  "fy": 500,
+  "sbc": 260,
+  "phi": 32,
+  "gamma": 18,
+  "rtl": 394.2,
+  "agl": 384.2,
+  "nbl": 383.2,
+  "ofl": 388,
+  "dwl": 390.2,
+  "deckSlabThickness": 0.25,
+  "freeboardAboveHfl": 1.5,
+  "issuingAuthority": "PWD / NHAI, Rajasthan",
+  "jobNumber": "PARWAN-HIGHLEVEL-70R",
+  "hardRockAvailable": false,
+  "deckSoffitLevel": 392.5
+}

@@ -1,0 +1,25 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+OK   larathi-stabil                             cells:2596 formulas:582 nonFinite:0 placeholder:0 missingResult:0
+OK   kherwara-golden                            cells:2425 formulas:465 nonFinite:0 placeholder:0 missingResult:0
+OK   high-level-reference                       cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+OK   small-bridge                               cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+OK   medium-bridge                              cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+OK   large-bridge                               cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-bedach-bedla                           cells:2444 formulas:478 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-jakham-mandvi                          cells:2425 formulas:465 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-t01-jethliya                           cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-sukanaka-matoon                        cells:2406 formulas:452 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-ayad-maharashtra                       cells:2425 formulas:465 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-gumaniya-udaipur                       cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-katumbi-chandrod                       cells:2406 formulas:452 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-sisarama-highlevel                     cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-kumbhalgarh-kelwara                    cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-parwan-highlevel                       cells:2406 formulas:452 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-banas-highlevel                        cells:2425 formulas:465 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-ayad-fatehpura                         cells:2406 formulas:452 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-kherka-teegirder                       cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-sukanaka-highlevel                     cells:2387 formulas:439 nonFinite:0 placeholder:0 missingResult:0
+
+Templates: 20 | cells: 48234 | formulas: 9118 | defects: 0
+sanity_exit=0

@@ -36,7 +36,7 @@
 /* ─── A4 LANDSCAPE PRINT MASTER ───────────────────────────────────────────── */
 @page {
   size: A4 landscape;
-  margin: 14mm 12mm 16mm 12mm;
+  margin: 15mm;
   @top-left {
     content: "Submersible Bridge Slab Designer";
     font: 9pt Verdana, sans-serif;
@@ -441,6 +441,15 @@
     box-shadow: none !important;
     margin: 0 !important;
   }
+  /* The screen sheets are drawn as 297 x 210 mm paper. Once @page applies its
+     15 mm margin the printable area is 267 x 180 mm, so the printed boxes must
+     shrink to it or the right edge of cover/foreword/ToC clips off the page. */
+  .struds-cover,
+  .struds-foreword,
+  .struds-toc { width: 267mm; }
+  .struds-cover { height: 180mm; }
+  .struds-foreword,
+  .struds-toc { min-height: 180mm; }
   .page-section,
   .struds-foreword,
   .struds-toc { break-before: page; }

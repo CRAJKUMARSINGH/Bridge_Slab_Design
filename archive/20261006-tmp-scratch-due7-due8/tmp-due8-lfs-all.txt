@@ -1,0 +1,13 @@
+{
+ "lfsFilteredTracked": 1659,
+ "pointerStubs": 1529,
+ "materialized": 17,
+ "missingFromWorktree": 113,
+ "byTopDir": {
+  "Attached_Assets": 68,
+  "VARIABLE_SELECTION_SHEET.xlsx": 1,
+  "assets": 1400,
+  "sample": 60
+ }
+}
+rc=0

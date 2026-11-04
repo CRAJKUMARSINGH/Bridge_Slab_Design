@@ -5,6 +5,7 @@
  */
 
 import type { EnhancedProjectInput, SteelDetails, BOQItem } from '../bridge-excel-generator/types';
+import { developmentLengthForBar } from '../bridge-excel-generator/design-engine';
 
 // Bar weights in kg/m for standard diameters
 const BAR_WEIGHTS: Record<number, number> = {
@@ -80,10 +81,19 @@ function calculatePierReinforcement(input: EnhancedProjectInput): ReinforcementS
   const baseW = pier?.footing.width ?? input.pierBaseWidth;
   const baseL = pier?.footing.length ?? input.pierBaseLength;
   const capW = pier?.pierCap.width ?? (pW + 0.5);
+  // Grade-aware tension development length per IS 456 §26.2, used wherever the
+  // legacy hard-coded 0.6 m / 45φ shortcut was being applied.
+  const ldM = (diameter: number) =>
+    developmentLengthForBar(diameter, input.fck, input.fy, input.steelGrade).tension / 1000; // mm → m
   const capL = pier?.pierCap.length ?? (pL + 0.5);
   
   const concreteVolume = (pW * pL * pD) + (baseW * baseL * 1.0) + (capW * capL * 0.8);
   
+  const ld_20 = ldM(20);
+  const ld_16 = ldM(16);
+  const ld_25 = ldM(25);
+  const footingEmbed = Math.max(ld_20, 0.5);
+
   const bars: ReinforcementBar[] = [
     // Main vertical bars in pier body
     {
@@ -91,10 +101,10 @@ function calculatePierReinforcement(input: EnhancedProjectInput): ReinforcementS
       description: 'Vertical bars - Pier body',
       diameter: 25,
       numberOfBars: 32,
-      lengthPerBar: pD + 0.5, // embedment into footing
-      totalLength: 32 * (pD + 0.5),
+      lengthPerBar: pD + Math.max(ld_25, 0.5), // depth + Ld-based footing embedment
+      totalLength: 32 * (pD + Math.max(ld_25, 0.5)),
       unitWeight: BAR_WEIGHTS[25],
-      totalWeight: 32 * (pD + 0.5) * BAR_WEIGHTS[25],
+      totalWeight: 32 * (pD + Math.max(ld_25, 0.5)) * BAR_WEIGHTS[25],
       shape: 'Straight'
     },
     // Vertical bars in footing
@@ -103,10 +113,10 @@ function calculatePierReinforcement(input: EnhancedProjectInput): ReinforcementS
       description: 'Vertical bars - Footing',
       diameter: 20,
       numberOfBars: 24,
-      lengthPerBar: 1.0 + 0.5, // footing thickness + development
-      totalLength: 24 * 1.5,
+      lengthPerBar: 1.0 + footingEmbed, // footing thickness + grade-aware development
+      totalLength: 24 * (1.0 + footingEmbed),
       unitWeight: BAR_WEIGHTS[20],
-      totalWeight: 24 * 1.5 * BAR_WEIGHTS[20],
+      totalWeight: 24 * (1.0 + footingEmbed) * BAR_WEIGHTS[20],
       shape: 'Straight with L-bend at bottom'
     },
     // Horizontal ties in pier
@@ -127,10 +137,10 @@ function calculatePierReinforcement(input: EnhancedProjectInput): ReinforcementS
       description: 'Main bars - Pier cap',
       diameter: 20,
       numberOfBars: 16,
-      lengthPerBar: capL + 0.6, // development length
-      totalLength: 16 * (capL + 0.6),
+      lengthPerBar: capL + ld_20, // grade-aware tension development length
+      totalLength: 16 * (capL + ld_20),
       unitWeight: BAR_WEIGHTS[20],
-      totalWeight: 16 * (capL + 0.6) * BAR_WEIGHTS[20],
+      totalWeight: 16 * (capL + ld_20) * BAR_WEIGHTS[20],
       shape: 'Straight'
     },
     // Pier cap distribution bars
@@ -139,10 +149,10 @@ function calculatePierReinforcement(input: EnhancedProjectInput): ReinforcementS
       description: 'Distribution bars - Pier cap',
       diameter: 16,
       numberOfBars: 12,
-      lengthPerBar: capW + 0.6,
-      totalLength: 12 * (capW + 0.6),
+      lengthPerBar: capW + ld_16,
+      totalLength: 12 * (capW + ld_16),
       unitWeight: BAR_WEIGHTS[16],
-      totalWeight: 12 * (capW + 0.6) * BAR_WEIGHTS[16],
+      totalWeight: 12 * (capW + ld_16) * BAR_WEIGHTS[16],
       shape: 'Straight'
     },
     // Footing bottom mesh
@@ -314,6 +324,10 @@ export function generateReinforcementDetailSVG(input: EnhancedProjectInput, elem
   const reinforcement = calculateReinforcement(input);
   let schedule: ReinforcementSchedule;
   let title: string;
+  // Grade-aware Ld for the note block — use the largest typical pier/abutment
+  // main-bar diameter (25 mm) so the note reflects the most demanding bar.
+  const ld25 = developmentLengthForBar(25, input.fck, input.fy, input.steelGrade);
+  const ld16 = developmentLengthForBar(16, input.fck, input.fy, input.steelGrade);
   
   if (element === 'pier') {
     schedule = reinforcement.pier;
@@ -396,15 +410,19 @@ export function generateReinforcementDetailSVG(input: EnhancedProjectInput, elem
     svg += `<text x="160" y="${s.y}" font-size="9" fill="#333">${s.desc}</text>`;
   });
   
-  // Drawing notes
+  // Drawing notes — concrete/steel/Ld from the actual project inputs so a
+  // Fe415/M25 project no longer prints the Fe500/M30 "default" shortcut.
   const notesY = legendY + 90;
   svg += `<text x="30" y="${notesY}" font-size="10" font-weight="bold" fill="#1565c0">NOTES:</text>`;
+  const fyDisplay = Math.round(input.fy);
+  const gradeLabel = (input.steelGrade || (fyDisplay >= 490 ? 'Fe500' : 'Fe415')).toUpperCase();
   const notes = [
     '1. All dimensions are in mm unless otherwise noted.',
-    '2. Concrete grade: M30 as per IRC:112-2015.',
-    '3. Steel grade: Fe500 with fy = 500 MPa.',
-    '4. Development length: Ld = 45φ for M30 concrete.',
-    '5. Cover to reinforcement: 50mm for footing, 40mm for pier/abutment.'
+    `2. Concrete grade: M${Math.round(input.fck)} as per IRC:112-2015.`,
+    `3. Steel grade: ${gradeLabel} with fy = ${fyDisplay} MPa.`,
+    `4. ${ld25.gradeNote}`,
+    `5. Lap splice (tension) = 1.3·Ld = ${ld25.lapTension.toFixed(0)} mm (min 300 mm), compression = ${ld25.compression.toFixed(0)} mm.`,
+    `6. Cover to reinforcement: 50 mm for footing, 40 mm for pier/abutment. Distribution bars φ16 Ld = ${ld16.tension.toFixed(0)} mm.`
   ];
   notes.forEach((n, i) => {
     svg += `<text x="30" y="${notesY + 15 + i*14}" font-size="9" fill="#555">${n}</text>`;

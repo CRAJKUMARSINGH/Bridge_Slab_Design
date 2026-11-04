@@ -1,0 +1,62 @@
+
+> workspace@0.0.0 book:56 E:\Rajkumar\Bridge_Slab_Design
+> tsx scripts/generate-56sheet-book.ts
+
+🤖 No seed — running in fully robotic mode.
+📘 Generating 56-sheet executive engineering book …
+🚀 Starting Excel generation...
+Project: Sukher River High-Level Slab Bridge at Chittorgarh
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.40) = 1081 mm (M30 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.40) = 865 mm (M30 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.40) = 865 mm (M30 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+🚀 Starting Excel generation...
+Project: Sukher River High-Level Slab Bridge at Chittorgarh
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.40) = 1081 mm (M30 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.40) = 865 mm (M30 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.40) = 865 mm (M30 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+✅ Book generated.
+{
+  "pdfPath": "E:\\Rajkumar\\Bridge_Slab_Design\\out\\robotic-56sheet-book.pdf",
+  "sheetCount": 56,
+  "pageCount": 133,
+  "roboticMode": true,
+  "durationMs": 4106,
+  "pdfSizeKB": 2429
+}
+exit=0

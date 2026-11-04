@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense } from 'react';
 import { Route, Switch, Router } from 'wouter';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AppShell } from '@/components/AppShell';
@@ -32,17 +32,6 @@ const queryClient = new QueryClient({
   },
 });
 
-function HydrateDesignStore() {
-  useEffect(() => { 
-    // Try to hydrate if method exists
-    const store = useDesignStore.getState() as any;
-    if (store.hydrateFromStorage) {
-      store.hydrateFromStorage();
-    }
-  }, []);
-  return null;
-}
-
 const LoadingFallback = () => (
   <div className="flex h-screen items-center justify-center bg-slate-950">
     <div className="text-center">
@@ -56,7 +45,6 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <HydrateDesignStore />
         <Router base="/suite">
         <AppShell>
           <Suspense fallback={<LoadingFallback />}>

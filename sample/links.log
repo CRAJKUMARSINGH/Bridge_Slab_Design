@@ -1,0 +1,32 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+OK   larathi-stabil           pts=16 formulas:582 cross:167 same:1043 re-eval:581 broken:0 diverge:0
+OK   kherwara-golden          pts= 7 formulas:465 cross:167 same:764 re-eval:464 broken:0 diverge:0
+OK   high-level-reference     pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+OK   small-bridge             pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+OK   medium-bridge            pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+OK   large-bridge             pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+OK   irc-bedach-bedla         pts= 8 formulas:478 cross:167 same:795 re-eval:477 broken:0 diverge:0
+OK   irc-jakham-mandvi        pts= 7 formulas:465 cross:167 same:764 re-eval:464 broken:0 diverge:0
+OK   irc-t01-jethliya         pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+OK   irc-sukanaka-matoon      pts= 6 formulas:452 cross:167 same:733 re-eval:451 broken:0 diverge:0
+OK   irc-ayad-maharashtra     pts= 7 formulas:465 cross:167 same:764 re-eval:464 broken:0 diverge:0
+OK   irc-gumaniya-udaipur     pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+OK   irc-katumbi-chandrod     pts= 6 formulas:452 cross:167 same:733 re-eval:451 broken:0 diverge:0
+OK   irc-sisarama-highlevel   pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+OK   irc-kumbhalgarh-kelwara  pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+OK   irc-parwan-highlevel     pts= 6 formulas:452 cross:167 same:733 re-eval:451 broken:0 diverge:0
+OK   irc-banas-highlevel      pts= 7 formulas:465 cross:167 same:764 re-eval:464 broken:0 diverge:0
+OK   irc-ayad-fatehpura       pts= 6 formulas:452 cross:167 same:733 re-eval:451 broken:0 diverge:0
+OK   irc-kherka-teegirder     pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+OK   irc-sukanaka-highlevel   pts= 5 formulas:439 cross:167 same:702 re-eval:438 broken:0 diverge:0
+
+Golden spot-checks:
+  S9 B18 velocity xref: {"formula":"=HYDRAULICS!C21","result":1.718}
+  S9 H47 service V:     {"formula":"=C47*B30+D47*B31-G47*B36","result":644.638}
+  S9 N51 ULS status:    {"formula":"=IF(AND(K51>=1.5,L51>=1.8,M51>=2.5),\"SAFE\",\"UNSAFE\")","result":"UNSAFE"}
+  S10 C12 retrieved V:  {"formula":"='STABILITY CHECK FOR PIER'!H47","result":644.638}
+  S10 I12 status link:  {"formula":"=IF(G12<=H12,'STABILITY CHECK FOR PIER'!N47,\"UNSAFE\")","result":"UNSAFE"}
+
+Done: 20/20 workbooks fully linked.
+links_exit=0

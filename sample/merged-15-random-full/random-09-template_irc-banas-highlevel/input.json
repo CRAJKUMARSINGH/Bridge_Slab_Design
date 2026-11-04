@@ -1,0 +1,78 @@
+{
+  "projectName": "Construction of High-Level Bridge across BANAS River",
+  "location": "BANAS River, Rajasthan",
+  "riverName": "BANAS",
+  "bridgeType": "high-level",
+  "spanLength": 15.955,
+  "numberOfSpans": 6,
+  "skew": 0,
+  "carriageWidth": 7.5,
+  "numberOfLanes": 2,
+  "totalLength": 96,
+  "hfl": 296.824,
+  "bedLevel": 291.4,
+  "foundationLevel": 285.8,
+  "discharge": 2229.553,
+  "manningN": 0.03602,
+  "bedSlope": 804.947,
+  "laceysSiltFactor": 1.6,
+  "crossSectionData": [
+    {
+      "chainage": 0,
+      "gl": 296.1
+    },
+    {
+      "chainage": 20,
+      "gl": 294.2
+    },
+    {
+      "chainage": 40,
+      "gl": 291.5
+    },
+    {
+      "chainage": 60,
+      "gl": 291.2
+    },
+    {
+      "chainage": 80,
+      "gl": 292.4
+    },
+    {
+      "chainage": 100,
+      "gl": 295.8
+    },
+    {
+      "chainage": 120,
+      "gl": 297.2
+    }
+  ],
+  "pierWidth": 1.5,
+  "pierLength": 4.5,
+  "pierDepth": 7,
+  "numberOfPiers": 5,
+  "pierBaseWidth": 3,
+  "pierBaseLength": 5.5,
+  "abutmentHeight": 11,
+  "abutmentWidth": 4.2,
+  "abutmentDepth": 6,
+  "dirtWallHeight": 2.8,
+  "returnWallLength": 7,
+  "concreteGrade": "M25",
+  "fck": 30,
+  "steelGrade": "Fe415",
+  "fy": 415,
+  "sbc": 293.859,
+  "phi": 32,
+  "gamma": 18,
+  "rtl": 301.2,
+  "agl": 292.5,
+  "nbl": 291.4,
+  "ofl": 295.5,
+  "dwl": 297.5,
+  "deckSlabThickness": 0.25,
+  "freeboardAboveHfl": 1.5,
+  "issuingAuthority": "PWD Rajasthan, Tonk Division",
+  "jobNumber": "BANAS-HIGHLEVEL",
+  "hardRockAvailable": false,
+  "deckSoffitLevel": 299.5
+}

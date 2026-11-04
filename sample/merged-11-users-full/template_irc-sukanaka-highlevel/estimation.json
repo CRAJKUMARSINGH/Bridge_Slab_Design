@@ -1,0 +1,113 @@
+{
+  "quantities": {
+    "concrete": {
+      "m20": 0,
+      "m25": 1350.1999999999998,
+      "m30": 0,
+      "m35": 0,
+      "total": 1350.1999999999998
+    },
+    "steel": {
+      "fe415": 79.111,
+      "fe500": 0,
+      "total": 79.111
+    },
+    "formwork": 615.4,
+    "excavation": {
+      "ordinary": 732.4499999999986,
+      "hardRock": 0,
+      "total": 732.4499999999986
+    },
+    "backfill": 292.97999999999945
+  },
+  "boq": [
+    {
+      "itemNo": "1",
+      "description": "Concrete M25",
+      "unit": "m³",
+      "quantity": 1350.1999999999998,
+      "rate": 5500,
+      "amount": 7426099.999999999
+    },
+    {
+      "itemNo": "2",
+      "description": "Steel Fe415",
+      "unit": "MT",
+      "quantity": 79.111,
+      "rate": 65000,
+      "amount": 5142215
+    },
+    {
+      "itemNo": "3",
+      "description": "Formwork",
+      "unit": "m²",
+      "quantity": 615.4,
+      "rate": 350,
+      "amount": 215390
+    },
+    {
+      "itemNo": "4",
+      "description": "Excavation in ordinary soil",
+      "unit": "m³",
+      "quantity": 732.4499999999986,
+      "rate": 250,
+      "amount": 183112.49999999965
+    },
+    {
+      "itemNo": "5",
+      "description": "Backfill",
+      "unit": "m³",
+      "quantity": 292.97999999999945,
+      "rate": 150,
+      "amount": 43946.99999999992
+    },
+    {
+      "itemNo": "6",
+      "description": "PCC Blinding",
+      "unit": "m³",
+      "quantity": 12.850000000000001,
+      "rate": 5000,
+      "amount": 64250.00000000001
+    },
+    {
+      "itemNo": "7",
+      "description": "Wearing Coat",
+      "unit": "m²",
+      "quantity": 270,
+      "rate": 1200,
+      "amount": 324000
+    },
+    {
+      "itemNo": "8",
+      "description": "Expansion Joints",
+      "unit": "m",
+      "quantity": 15,
+      "rate": 5000,
+      "amount": 75000
+    },
+    {
+      "itemNo": "9",
+      "description": "Bearings",
+      "unit": "nos",
+      "quantity": 12,
+      "rate": 25000,
+      "amount": 300000
+    },
+    {
+      "itemNo": "10",
+      "description": "TOTAL",
+      "unit": "",
+      "quantity": 0,
+      "rate": 0,
+      "amount": 13774014.5
+    }
+  ],
+  "cost": {
+    "subtotal": 13774014.5,
+    "gst": 2479322.61,
+    "total": 16253337.11,
+    "ratePerMeter": 451481.5863888889,
+    "profit": 0,
+    "overhead": 0
+  }
+}

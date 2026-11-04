@@ -36,8 +36,6 @@ import { AnnexureDrawings } from "@/report-engine/sheets/AnnexureDrawings";
 import { ReportFooter } from "@/report-engine/sheets/ReportFooter";
 import { ReportSourceNotice } from "@/report-engine/sheets/workbookSource";
 import {
-  generateExcelModelA,
-  generateExcelModelB,
   generateProfessionalPDF,
   exportToCSV,
   exportAuditManifest,

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "bridge-calculation.v1",
+  "projectCode": "KHERWARA",
+  "intermediates": {
+    "deadLoadSlab": 0,
+    "deadLoadAsphalt": 0,
+    "designUdl": 33.75,
+    "maxBendingMoment": 8542.96875,
+    "maxShear": 961.875,
+    "bendingStress": 189.84375,
+    "bendingUtilisation": 0.802156690140845,
+    "deflectionLiveLoad": 18669075.06555944,
+    "deflectionLimit": 180,
+    "shearStress": 0.08015625,
+    "governingUtilisation": 0.802156690140845,
+    "adjustedGoverningUtilisation": 0.8663292253521125
+  },
+  "constraintStatus": {
+    "Calc!B11": "PASS",
+    "Calc!B12": "PASS",
+    "Calc!B16": "FAIL",
+    "Calc!B20": "PASS",
+    "Calc!B22": "PASS",
+    "Calc!B23": "PASS"
+  },
+  "overallStatus": "FAIL",
+  "failedChecks": ["Calc!B16"]
+}

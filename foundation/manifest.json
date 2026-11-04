@@ -1,0 +1,51 @@
+{
+  "version": "1.0.0",
+  "frozenOn": "2026-10-26",
+  "charter": "creat.md",
+  "authoritativeEngine": "bridge-excel-generator/design-engine.ts",
+  "engineModules": [
+    "bridge-excel-generator/design-engine.ts",
+    "bridge-excel-generator/types.ts",
+    "client/src/report-engine/lib/slabCalc.ts",
+    "client/src/report-engine/lib/loadCalc.ts",
+    "client/src/report-engine/lib/ircSlabCalc.ts",
+    "client/src/report-engine/lib/hydraulicCalc.ts",
+    "client/src/report-engine/lib/pierCalc.ts",
+    "client/src/report-engine/lib/sheets.ts"
+  ],
+  "mirrors": ["client/src/report-engine-weaver"],
+  "registries": [
+    "docs/week-0/variables.json",
+    "docs/week-0/coefficients.json",
+    "docs/week-0/constraints.json",
+    "docs/week-0/registry.json"
+  ],
+  "requiredPaths": [
+    "creat.md",
+    "package.json",
+    ".github/workflows/ci.yml",
+    "bridge-excel-generator/design-engine.ts",
+    "client/src/report-engine/lib/slabCalc.ts",
+    "client/src/report-engine/lib/loadCalc.ts",
+    "docs/week-0/coefficients.json",
+    "docs/week-0/constraints.json",
+    "docs/week-0/variables.json",
+    "docs/week-0/registry.json",
+    "scripts/fixtures/kherwara-project-input.ts",
+    "tests/golden/kherwara/golden.test.ts",
+    "tests/golden/kherwara/expected.json",
+    "tests/helpers/tolerance.ts",
+    "foundation/tolerances.json",
+    "foundation/literals.allow.json",
+    "foundation/imports.allow.json"
+  ],
+  "charterClaimsAbsentPaths": [],
+  "lfsWatch": [
+    "VARIABLE_SELECTION_SHEET.xlsx",
+    "docs/week-0/demo_bridge_raw.xlsx",
+    "docs/week-0/bridge_pipeline_week0_bundle_1786286346945.zip"
+  ],
+  "baselineTestCount": 81,
+  "baselineTestCountProvenance": "MEASURED — vitest 4.1.11, run 2026-10-25 from a clean checkout of THIS tree (git worktree add --detach, node_modules junctioned from the installed store): 16 collected test files, numTotalTests=81, numPassedTests=70, numFailedTests=11. Replaces 172, which was reproducible only in a working tree that carried an untracked test file (client/src/report-engine/lib/__tests__/slabInputSchema.test.ts, +24 tests), a modified hostileEdgeInput.test.ts (0 to 61 tests — its committed form imports ../slabInputSchema, a module this tree does not contain), and a modified slabCalc.test.ts (6 to 12). 172 = 81 + 61 + 24 + 6. NOTE: the lane is currently RED, so 81 is a floor for a failing lane, not a green baseline: the 11 failures are tests/golden/kherwara/golden.test.ts (3), pbt-stats.test.ts (4), ircSlabCalc.test.ts (2), tests/meta/tamper-goes-red.test.ts (1) and engineConsistency.test.ts (1). Raise this to the green count once those are fixed. Consumed as a floor by scripts/foundation/assert-test-count.mjs, which also fails on any failing test, so this figure may rise but must not fall.",
+  "expectedLockfiles": ["pnpm-lock.yaml"]
+}

@@ -1,0 +1,264 @@
+===== SHEET: Tech Report rows=43 cols=11 =====
+A1=Technical - Report
+A3=1.0 | B3=Name of Project | C3=:- | D3=DESIGN OF HIGH-LEVEL SKEW BRIDGE ACROSS BEDACH RIVER | E3=0.0 | F3=0.0 | G3=0.0 | H3=0.0 | I3=0.0 | J3=0.0 | K3=0.0
+A6=2.0 | B6=Authority | C6=:-
+A8=3.0 | B8=Necessity | C8=:-
+A11=4.0 | B11=Specification Proposed : | C11=:- | D11=The following specifications are proposed in this estimete as under -
+D12=The administrative sanction for Construction of High Level Bridge having 8 Nos. span of 10.00 M each and open foundation has been proposed. The substructure in RCC wall type piers in M-25 and RCC solid slab simply supprted dacking also in M-30 (Design Mix Concreate). The solid slab has deck slab proposed to be properly Anchored into The pier cap against uplifting and drag. The pier footing has also proposed to be similarly anchored into the rocky strata.
+D14=(a) Foundation Concreate P.C.C. M-15 grade  20 mm nominal size aggregate.
+D16=(b) Foundation Footing of Piers - it has been proposed of RCC mix M-25. The annular space filled with M-15 with 20 mm nominal Size stone aggregate upto the top of the rock.
+D18=(C) Foundation Footing of Abutments - It has been proposed of RCC mix M-20 The annular space filled with P.C.C. M-15 grade concreate with 20mm nominal Size stone aggregate upto the top of the rock.
+D20=(D) Piers, Pier caps - These has been proposed of RCC Mix M-25
+D22=(E) Abutments, Abutment caps and Dirt wall - These has been proposed of RCC Mix M-25
+D24=(F) Deck Slab - The simply supported deck slab has been proposed of R.C.C. mix M-30. The deck slab shall be anchored at both ends with 25mm dia anchor bolts to prevent it from uplift and the drag of flowing water.
+D26=(G) Railing - RCC railing has been proposed of mix M-25 as per recommendations of IRC special publiciation on Submersible bridges.
+D28=(H) Wearing Coat - M-30 concreate with reinforcement as per IRC recommendation is proposed. The average thickness of the wearing coat 75mm.
+D30=(I) Approach slab - Approach slab has been proposed of RCC M-25 overlaid   /           The wearing coat similar to that on deck slab has been proposed provided over the approach slab.
+D32=(J) Filling behind Abutment & Wing walls- The back Fill has been proposed of locally available granular material it shall be compacted as per specifications.
+D34=(K) Earth work in cutting for grade improvement on approches has been proposed.
+A38=5.0 | B38=Estimated Cost of Work | C38=:- | D38=The Estimated Cost comes to Rs.1274.46 Lacs
+A41=6.0 | B41=Rates | C41=:- | D41=The Estimate based on PWD BSR Road 2022  (Rajasthan).
+A43=7.0 | B43=Job No. | C43=:-
+===== SHEET: General Abs.  rows=26 cols=7 =====
+A1=PUBLIC WORKS  DEPARTMENT, DIVISION -
+A3=GENERAL ABSTRACT
+A5=Name of Work  :-
+B6=DESIGN OF HIGH-LEVEL SKEW BRIDGE ACROSS BEDACH RIVER
+A7=Sr.No. | B7=Items | G7=Amount
+A9=1.0 | B9=Bridge Work | G9=110032581.0
+E11=Total => Rs. | G11=110032581.0
+B13=Add 1.00% for Quality Control Charges | G13=1100326.0
+B15=Add 3% for Contengency Charges | G15=0.0
+B17=Add 1.50 % for Contingencies Charges | G17=1650489.0
+F19=G. Total Rs. :- | G19=112783396.0
+B21=Add 13.00 % for Prorata Charges | G21=14661841.0
+F23=G. Total Rs. :- | G23=127445237.0
+F25=Say Rs. :- | G25=1274.46
+G26=Lacs.
+===== SHEET: Abstract rows=113 cols=10 =====
+A1=ABSTRACT OF COST
+A2=Name of Work  :-
+B3=DESIGN OF HIGH-LEVEL SKEW BRIDGE ACROSS BEDACH RIVER
+A4=S.No. | B4=Particulars | C4=Qty. | E4=Rate | F4=Unit | G4=Amount
+A6=1 (a) | B6=Excavation for Structures (Earth work in excavation of foundation of structures as per drawing and technical specification,  including setting out,  construction of shoring and bracing,  removal of stumps and other deleterious matter,  dressing of sides and bottom and backfilling with approved material.) Ordinary soil. Mechanical Means.  Depth upto 3 m | J6=116.0
+B7=Foundation Work | C7=823.9023 | D7=Cum
+B8=Approches | C8=1041.6 | D8=Cum
+C9=1865.5023 | D9=Cum | E9=51.0 | F9=Cum | G9=95140.6165
+A11=(b) | B11=Above 3m to 6m depth | J11=116.0
+B12=Foundation Work | C12=926.8901 | D12=Cum | E12=57.0 | F12=Cum | G12=52832.734
+A14=© | B14=Ordinary/Soft rock (not requiring blasting) [MoRTH Specification : Clause 301]. BY MECHANICAL MEANS | J14=146.0
+B15=Foundation Work | C15=1029.8779 | D15=Cum
+B16=Approches | C16=1610.0 | D16=Cum
+C17=2639.8779 | D17=Cum | E17=63.0 | F17=Cum | G17=166312.3049
+A19=(d) | B19=Hard rock ( requiring blasting ) | J19=273.0
+B20=Foundation Work | C20=1853.7801 | D20=Cum | E20=514.0 | F20=Cum | G20=952842.9913
+A22=5.0 | B22=Plain/Reinforced cement concrete in open foundation complete as per drawing and technical specifications | J22=3005.0
+B23=PCC Grade M15
+B24=Foundation Work | C24=1172.2222 | D24=Cum | E24=4508.0 | F24=Cum | G24=5284377.7587
+A26=6.0 | B26=RCC Grade M20 | J26=3455.0
+B27=Using concrete mixer
+B28=Foundation Work | C28=330.2747 | D28=Cum
+B29=Approches | C29=78.12 | D29=Cum
+C30=408.3947 | D30=Cum | E30=4995.0 | F30=Cum | G30=2039931.561
+A32=7.0 | B32=RCC Grade M25 | J32=3995.0
+B33=Using concrete mixer
+B34=Foundation Work | C34=1517.3173 | D34=Cum
+B35=Approches | C35=184.512 | D35=Cum
+C36=1701.8293 | D36=Cum | E36=5372.0 | F36=Cum | G36=9142226.7947
+A38=8.0 | B38=Providing and laying steel reinforcement  at any level in foundation   complete   as   per   drawing   and   technical specification.  [MoRTH  Specification  :  Section  1600]. / HYSD bar reinforcement | J38=64397.0
+B39=Foundation Work | C39=178.6641 | D39=MT
+B40=Approches | C40=15.9326 | D40=MT
+C41=194.5967 | D41=MT | E41=88817.0 | F41=MT | G41=17283496.7723
+A43=9.0 | B43=Structural cement concrete for plain concrete/ reinforced concrete for substructure at any level, complete as per drawing and technical specification. / Design mix concrete – [MoRTH Specification : Section 1500 & 1700]. / RCC M-25 grade, including form work / Upto 5 mtr. height | J43=4380.0
+B44=Sub Structure Work | C44=2169.6515 | D44=Cum
+B45=Approches | C45=401.76 | D45=Cum
+C46=2571.4115 | D46=Cum | E46=5696.0 | F46=Cum | G46=14646760.0445
+A48=10.0 | B48=Supplying,  fitting and placing HYSD bar reinforcement in sub-structure complete as per drawing and technical specifications | J48=64478.0
+B49=Sub Structure Work | C49=246.9606 | D49=MT
+B50=Approches | C50=36.2689 | D50=MT
+C51=283.2295 | D51=MT | E51=89690.0 | F51=MT | G51=25402851.0563
+A53=11.0 | B53=Providing weep holes in Brick masonry/Plain/Reinforced concrete abutment,  wing wall/return wall with 100 mm dia AC pipe, extending through the full width of the structure with slope of 1V :20H towards drawing foce. Complete as per drawing and Technical specifications | J53=90.0
+B54=Sub Structure Work | C54=200.4 | D54=Rmt
+B55=Approches | C55=193.44 | D55=Rmt
+C56=393.84 | D56=Rmt | E56=128.0 | F56=Rmt | G56=50411.52
+A58=12.0 | B58=Back filling behind abutment, wing wall and return wall, in 150mm layers, with mechanical compaction, complete with all lead and lift, as per drawing and technical specification. [MoRTH Specification : Clause 304]. Gravelly Material | J58=320.0
+B59=Sub Structure Work | C59=272.02 | D59=Cum
+B60=Approches | C60=483.6 | D60=Cum
+C61=755.62 | D61=Cum | E61=663.0 | F61=Cum | G61=500976.06
+A63=13.0 | B63=Providing and laying of Filter media with granular materials/stone crushed aggregates satisfying the requirements laid down in clause 2504.2.2. of MoRTH specifications to a thickness of not less than 600 mm with smaller size towards the soil and bigger size towards the wall and provided over the entire surface behind abutment,  wing wall and return wall to the full height compacted to a firm condition complete as per drawing and technical specification. | J63=516.0
+B64=Sub Structure Work | C64=75.9108 | D64=Cum
+B65=Approches | C65=241.8 | D65=Cum
+C66=317.7108 | D66=Cum | E66=1214.0 | F66=Cum | G66=385700.9226
+A68=14.0 | B68=Structural RCC/PSC upto a height of 5 mtr. for reinforced concrete in superstructure complete including steel formwork, scaffolding etc. As per drawing and technical specification. / Design mix concrete. [MoRTH Specification : 1500  & 1700]. / RCC M-30 grade Solid slab superstructure | J68=5190.0
+B69=Superstructure Work | C69=1746.899 | D69=Cum | E69=6272.0 | F69=Cum | G69=10956550.7957
+A71=15.0 | B71=a)     Supplying, fitting and placing HYSD bar reinforcement in super-structure complete as per drawing and technical specifications | J71=65429.0
+B72=Superstructure Work | C72=205.6974 | D72=MT | E72=90000.0 | F72=MT | G72=18512762.6048
+A74=16.0 | B74=Providing and laying Cement concrete wearing coat M-30 grade including reinforcement complete as per drawing and Technical Specifications | J74=8395.0
+B75=Superstructure Work | C75=146.6337 | D75=Cum | E75=10009.0 | F75=Cum | G75=1467657.0943
+A77=17.0 | B77=PCC M15 Grade leveling course below approach slab complete as per drawing and Technical specification | J77=3010.0
+B78=Superstructure Work | C78=7.56 | D78=Cum
+B79=Approches | C79=61.38 | D79=Cum
+C80=68.94 | D80=Cum | E80=4335.0 | F80=Cum | G80=298854.9
+A82=18.0 | B82=Reinforced cement concrete approach slab including reinforcement and formwork complete as per drawing and Technical specification | J82=7075.0
+B83=Superstructure Work | C83=15.12 | D83=Cum | E83=8202.0 | F83=Cum | G83=124014.24
+A85=19.0 | B85=Providing & fixing 20 mm thick compressible fibre board in expansion joint complete as per drawing & Technical Specification. | J85=795.6
+B86=Superstructure Work | C86=223.4392 | D86=Sqm | E86=1227.0 | F86=Sqm | G86=274159.8637
+A88=20.0 | B88=Providing and laying 12mm thick Bitumen Mastic wearing coat with bitumen of grade S35 as per Table 500-27, 10.2% by weight on prepared base including coarse aggregate as per table 500-29, and lime stone powder as filler, complete including tack coat. (MoRTH specification : Clause 515). | J88=590.0
+B89=Superstructure Work | C89=219.8213 | D89=Sqm | E89=269.0 | F89=Sqm | G89=59131.9302
+A91=21.0 | B91=Excavation in Soil using Hydraulic Excavator CK 90 and Tippers with disposal upto 1000 metres. (Excavation for roadwork in soil with hydraulic excavator of0.9 cum bucket capacity including cutting and loading in tippers, trimming bottom and side slopes, in accordance with requirements of lines, grades and cross sections, and transporting to the embankment location within all lifts and lead upto 1000m) | J91=3005.0
+B92=Approches | C92=2033.4 | D92=Cum | E92=46.0 | F92=Cum | G92=93536.4
+A94=22.0 | B94=Excavation in Ordinary Rock using Hydraulic ExcavatorCK-90 and Tippers with disposal upto 1000 metres. (Excavation for roadway in ordinary rock with hydraulic excavator of 0.9 cum bucket capacity including cutting and loading in tippers, transporting to embankment site within all lifts and lead upto 1000 m, trimming bottom and side slopes in accordance with requirements of lines, grades and cross sections.) | J94=3005.0
+B95=Approches | C95=1355.6 | D95=Cum | E95=61.0 | F95=Cum | G95=82691.6
+A97=23.0 | B97=Providing and Laying un-reinforced, dowel jointed, plain cement  concrete  pavement  over a prepared  sub-base with  43  grade   cement,   coarse   and   fine  aggregate conforming   to   IS:383,   maximum    size   of   coarse aggregate not exceeding 25mm,  mixed in a batching and   mixing   plant   as   per    approved    mix   design, transported  to  site,  laid  with  slip  form  paver,  spread, compacted   and   finished   in  a  continuous   operation  including      provision      of     contraction,      expansion, construction     and    longitudinal     joints,     joint     filler, separation   membrane,   sealant   primer,   joint   sealant, debonding  strip,  dowel  bar,  tie  rod,  admixtures  and vacuum    processing    pump    as    approved,    curing compound, finishing to lines and grades as per drawing as  per  MoRTH  Specification  :  Clause  No.  602,  112. Using Cement concrete M-30 pavement Grade | I97=6.4
+C98=81.84 | D98=Cum | E98=6046.0 | F98=Cum | G98=494804.64
+A100=24.0 | B100=Construction of RCC railing of M30 Grade in-situ with 20 mm nominal size aggregate,  true to line and grade,  tolurence of vertical RCC post not to exceed 1 in 500,  centre to centre spacing between vertical post not to exceed 2000 mm,  leaving adequate space between vertical post for expansion,  complete as per approved drawings and technical specifications. | I100=6.4
+C101=465.5039 | D101=M | E101=1747.0 | F101=M | G101=813235.3719
+A102=25.0 | B102=Providing   and   Erecting   typical   Citizens   Information Board  as  per  approved  drawing  &   specification   of MoRD, made of two MS Sheet of 1.6 mm thick each of size 900 mm × 750 mm stiffened by angle iron 25 mm ×25 mm × 3 mm all around the plate and plates fixed on frame of 75 mm dia pipe of 12 SWG sheet (vertical post 3050  m  with  angle  holdfasts  and  horizontal  member 900 mm)  to be joined  by 5 mm thick  MS plate  at  12 places   (65   ×   50   mm)   duly   embedded   in   cement concrete M-15 grade of block of 600 mm × 600 mm × 750  mm  size  below  ground  level  as  per   enclosed drawings & as directed by Engineering  - In-Charge. All MS  will  be  stove  enameled  on  both  side,  Lettering, figuring  and border  will be with  ready  mixed  synthetic enamel paint of superior  quality in required shade and colour  etc.  complete   in  all  respect.   All  sections   of framed post and  steel tube will be painted  with primer and two coat of epoxy paint as per drawing and as per MoRD specification. | C102=2.0 | D102=Nos. | E102=7040.0 | F102=Each | G102=14080.0
+A103=26.0 | B103=Supply of villege Name Board size 600x900 mm made out  of  1.25  mm  thick  M.S.  Sheet  duly  framed  with 30mm Outer Dia Mild Steel tube tightened with M.S. flat 12x3 mm fixed on two posts of size 40 mm ODMS tube 3M long whole board is processed in blue/white stoving enamel paint and white/red machine cut reflective sheet complete    in   all   respect   posts    duly   painted   with black/white synthetic enamel. | C103=3.0 | D103=Nos. | E103=3300.0 | F103=Each | G103=9900.0
+A104=27.0 | B104=Retro-Reflectorised  Traffic Signs Providing and fixing of retro-     reflectorised      cautionary,      mandatory     and informatory sign as per IRC :67 made of high intensity grade sheeting vide clause 801.3, fixed over aluminium sheeting, 1.5 mm thick supported on a mild steel angle iron post 75 mm x 75 mm x 6  mm firmly fixed to the ground by means of properly designed foundation  with M15 grade cement concrete 45 cm x 45 cm x 60 cm, 60 cm below ground level as per approved drawing 90 cm equilateral triangle | C104=6.0 | D104=Nos. | E104=2709.0 | F104=Each | G104=16254.0
+A105=28.0 | B105=Retro-Reflectorised  Traffic Signs Providing and fixing of retro-     reflectorised      cautionary,      mandatory     and informatory sign as per IRC :67 made of high intensity grade sheeting vide clause 801.3, fixed over aluminium sheeting, 1.5 mm thick supported on a mild steel angle iron post 75 mm x 75 mm x 6  mm firmly fixed to the ground by means of properly designed foundation  with M15 grade cement concrete 45 cm x 45 cm x 60 cm, 60 cm below ground level as per approved drawing 60 cm equilateral triangle | C105=6.0 | D105=Nos. | E105=2263.0 | F105=Each | G105=13578.0
+A106=29.0 | B106=Raised  Pavment  Marker  ( Cats Eyes):  Supplying   and Fixing  of  Molded  Shank  Raised  Pavement  Markers made  of  polycarbonate  and  ABS  moulded  body  and reflective  panels  with  micro  prismatic  lens  capable  of providing total internal reflection of the light entering the lens face and shall support a load of 16000 kg tested in accordance to ASTM D 4280 Type H and complying to Specifications  of  Category A  of  MORTH  Circular  No RW/NH/33023/10-97   –  DO  III  Dt  11.06.  1997.  The height, width and length shall not exceed 50  mm, 100 mm and 100 mm and with minimum  reflective  area of / 13 Sqcm on each side and the slope to the base shall be 35 +/- 5 degree.  The strength of detachment of the integrated cylindrical shanks, (of diameter not less than / 19 +/- 2 mm and height not less than 30+/- 2 mm) from the body is to be a minimum  value of 700  Kgf.  Fixing will be by drilling holes on the road for the shanks to go inside,  without  nails  and  using   epoxy   resin   based adhesive  as  per  manufacturer’s  recommendation and complete as  directed  by the engineer.  The contractor shall  submit  2 years  pre  qualified  warranty  certificate from the manufacturer for satisfactory field performance | C106=400.0 | D106=Nos. | E106=191.0 | F106=Each | G106=76400.0
+A107=30.0 | B107=Road    Marking    with    Hot    Applied    Thermoplastic Compound    with    Reflectorising    Glass    Beads    on Bituminous  Surface Providing and laying of hot applied thermoplastic    compound    2.5    mm    thick    including reflectorising  glass  beads  @ 250  gms  per  sqm  area, thickness  of  2.5  mm  is  exclusive  of  surface  applied glass beads as per IRC:35 .The finished surface to be level, uniform and free from streaks and holes. | C107=500.175 | D107=Sqm | E107=632.0 | F107=Per Sqm | G107=316110.6
+A108=31.0 | B108=Providing   and   laying   graded   stone   aggregate   filter Material underneath pitching on slopes complete as per drawing     and     technical      specification.      (MoRTH / specification : clause 2504). | C108=80.4984 | D108=Cum | E108=1048.0 | F108=Per Cum | G108=84362.3727
+A109=32.0 | B109=Providing   and   laying   pitching   on   slopes   laid   over prepared filter media including boulder apron laid dry in front  of  toe  of  embankment  complete  as  per  drawing and   technical   specifications.   (MoRTH   specification: Clause 2504 & 1700). With  R.R.  stone,  weighing  not less than 40 kg thickness not less than 150mm (specific gravity not less than 2.65) | C109=120.7477 | D109=Per Cum | E109=937.0 | F109=Per Cum | G109=113140.5675
+A110=33.0 | B110=Providing and laying Reinforced cement concrete pipes NP-3  for  culverts  including   jointing  ends   and  fixing collar with cement mortar 1:2. (MoRTH  specification  : / clause 1000/2900). 1000 mm dia | C110=15.0 | D110=RM | E110=5261.0 | F110=Per RM | G110=78915.0
+A111=34.0 | B111=Providing and laying Reinforced cement concrete pipes NP-3  for  culverts  including   jointing  ends   and  fixing collar with cement mortar 1:2. (MoRTH  specification  : / clause 1000/2900). 600 mm dia | C111=15.0 | D111=RM | E111=3476.0 | F111=Per RM | G111=52140.0
+A112=35.0 | B112=Providing and laying Reinforced cement concrete pipes NP-3  for  culverts  including   jointing  ends   and  fixing collar with cement mortar 1:2. (MoRTH  specification  : / clause 1000/2900). 300 mm dia | C112=60.0 | D112=RM | E112=1274.0 | F112=Per RM | G112=76440.0
+F113=Total  => | G113=110032581.1175
+===== SHEET: Bridge measurements rows=184 cols=12 =====
+A1=DETAILED - ESTIMATE
+A2=Name of Work  :-
+B3=DESIGN OF HIGH-LEVEL SKEW BRIDGE ACROSS BEDACH RIVER
+A5=S.No. | B5=Particulars | C5=Particulars | D5=Details
+C7=BRIDGE WORK
+C9=FOUNDATION WORK
+A10=1.0 | B10=B-1 / 1.1.4 | C10=Excavation for Structures (Earth work in excavation of foundation of structures as per drawing and technical specification,  including setting out,  construction of shoring and bracing,  removal of stumps and other deleterious matter,  dressing of sides and bottom and backfilling with approved material.) Ordinary soil. Mechanical Means.  Depth upto 3 m
+A11=1.0 | B11=B-1 / 1.1.4 | C11=In ordinary soil BY MECHANICAL MEANS / Depth upto 3m
+C12=Pier | D12=17.0 | E12=11.8452 | F12=4.33 | G12=0.8 | H12=697.5423 | I12=Cum
+C13=Abutment | D13=2.0 | E13=11.7 | F13=6.75 | G13=0.8 | H13=126.36 | I13=Cum
+G14=Total:- | H14=823.9023 | I14=Cum
+A16=2.0 | B16=B-1 / 1.1.5 | C16=Earthwork in excavation for foundation of structure complete with all lift, dewatering, shoring and shuttering etc. including refilling of trenches in 250 mm layer, ramming, watering and disposal of surplus soil within a lead of 1000 meters, as per drawing and technical Earth in excavation for foundation of specification. [MoRTH Specification : Clause 304]. / In ordinary soil [MoRTH Specification : clause 301] BY MECHANICAL MEANS / Above 3m to 6m depth
+C17=Pier | D17=17.0 | E17=11.8452 | F17=4.33 | G17=0.9 | H17=784.7351 | I17=Cum
+C18=Abutment | D18=2.0 | E18=11.7 | F18=6.75 | G18=0.9 | H18=142.155 | I18=Cum
+G19=Total:- | H19=926.8901 | I19=Cum
+A21=3.0 | B21=1.3.2 | C21=Earthwork in excavation for foundation of structure complete with all lift, dewatering, shoring and shuttering etc. including refilling of trenches in 250 mm layer, ramming, watering and disposal of surplus soil within a lead of 1000 meters, as per drawing and technical Earth in excavation for foundation of specification. [MoRTH Specification : Clause 304]. / In Ordinary/Soft rock (not requiring blasting) [MoRTH Specification : Clause 301]. BY MECHANICAL MEANS
+C22=Pier | D22=17.0 | E22=11.8452 | F22=4.33 | G22=1.0 | H22=871.9279 | I22=Cum
+C23=Abutment | D23=2.0 | E23=11.7 | F23=6.75 | G23=1.0 | H23=157.95 | I23=Cum
+G25=Total:- | H25=1029.8779 | I25=Cum
+A27=4.0 | B27=1.4.1 | C27=Earthwork in excavation for foundation of structure complete with all lift, dewatering, shoring and shuttering etc. including refilling of trenches in 250 mm layer, ramming, watering and disposal of surplus soil within a lead of 1000 meters, as per drawing and technical Earth in excavation for foundation of specification. [MoRTH Specification : Clause 304]. / In Hard Rock [MoRTH Specification : Clause 301, 302, 303]. Requiring Blasting
+C28=Pier | D28=17.0 | E28=11.8452 | F28=4.33 | G28=1.8 | H28=1569.4701 | I28=Cum
+C29=Abutment | D29=2.0 | E29=11.7 | F29=6.75 | G29=1.8 | H29=284.31 | I29=Cum
+G31=Total:- | H31=1853.7801 | I31=Cum
+A33=5.0 | B33=B-2 /  / 6.3 | C33=Structural cement concrete (Design Mix) in open foundations, with form work, at any level. Cement concrete for plain/reinforced concrete in open foundations as per drawing and technical specification. [MoRTH Specification : Section 1700 & 1500]. With 20mm nominal size aggregate / P.C.C.  M-15 grade
+C34=Pier | D34=17.0 | E34=11.8452 | F34=4.33 | G34=1.8 | H34=1569.4701 | I34=Cum
+C35=Abutment | D35=2.0 | E35=11.7 | F35=6.75 | G35=1.8 | H35=284.31 | I35=Cum
+C36=Annualar  Filling | D36=17.0 | E36=32.3505 | F36=0.3 | G36=1.8 | H36=296.9773 | I36=Cum
+D37=2.0 | E37=36.9 | F37=0.3 | G37=1.3 | H37=28.782 | I37=Cum
+H38=2179.5395 | I38=Cum
+C39=Deductions
+C41=Pier Foundation | D41=17.0 | E41=11.5452 | F41=4.1148 | G41=1.0 | H41=807.6078 | I41=Cum
+C42=Abutment Foundation | D42=2.0 | E42=10.7371 | F42=9.3 | G42=1.0 | H42=199.7095 | I42=Cum
+H43=1007.3173 | I43=Cum
+G45=Net Qty. :- | H45=1172.2222 | I45=Cum
+A47=6.0 | B47=B-2 / 6.3 | C47=Structural cement concrete (Design Mix) in open foundations, with form work, at any level. Cement concrete for plain/reinforced concrete in open foundations as per drawing and technical specification. [MoRTH Specification : Section 1700 & 1500]. With 20mm nominal size aggregate / P.C.C.  M-20 grade
+C48=Pier | D48=17.0 | E48=11.8452 | F48=4.4148 | G48=0.3 | H48=266.7012 | I48=Cum
+C49=Abutment A1-A2 | D49=2.0 | E49=11.0371 | F49=9.6 | G49=0.3 | H49=63.5735 | I49=Cum
+G51=Total:- | H51=330.2747 | I51=Cum
+A53=7.0 | B53=B-2 / 6.6 | C53=Structural cement concrete (Design Mix) in open foundations, with form work, at any level. Cement concrete for plain/reinforced concrete in open foundations as per drawing and technical specification. [MoRTH Specification : Section 1700 & 1500]. With 20mm nominal size aggregate / R.C.C.  M-25 grade
+C54=Pier | D54=17.0 | E54=11.5452 | F54=4.1148 | G54=1.0 | H54=807.6078 | I54=Cum
+C55=Abutment (Average thickness= (0.30+1.60)/2 | D55=2.0 | E55=10.7371 | F55=9.3 | G55=1.0 | H55=199.7095 | I55=Cum
+C56=Foundation Protection | D56=17.0 | E56=12.5 | F56=4.0 | G56=0.6 | H56=510.0 | I56=Cum
+G57=Total:- | H57=1517.3173 | I57=Cum
+A59=8.0 | B59=B-2 / 13.3 | C59=Providing and laying steel reinforcement at any level in foundation complete as per drawing and technical specification. [MoRTH Specification : Section 1600]. / TMT Bar
+C60=1.50% RCC quantity | D60=0.015 | E60=1517.3173 | F60=7850.0 | H60=178.6641 | I60=MT
+C63=(ii) SUB STRUCTURE WORK
+A65=9.0 | B65=B-3 / 5.2.1.1 | C65=Structural cement concrete for plain concrete/ reinforced concrete for substructure at any level, complete as per drawing and technical specification. / Design mix concrete – [MoRTH Specification : Section 1500 & 1700]. / RCC M-25 grade, including form work / Upto 5 mtr. height
+C66=Piers (Average Height) | D66=17.0 | E66=9.8135 | F66=1.2 | G66=7.474 | H66=1496.2529 | I66=Cum
+C67=Circular Section pier | D67=17.0 | E67=0.785 | F67=1.44 | G67=7.474 | H67=143.6264 | I67=Cum
+C68=Pier Cap | D68=17.0 | E68=9.8135 | F68=1.5 | G68=0.3 | H68=75.0729 | I68=Cum
+C69=Abutment wall (Average Height) | D69=2.0 | E69=9.8135 | F69=1.1 | G69=6.304 | H69=136.1008 | I69=Cum
+C70=Abutment Cap | D70=2.0 | E70=9.8135 | F70=1.0 | G70=0.3 | H70=5.8881 | I70=Cum
+C71=Dirt wall | D71=2.0 | E71=9.8135 | F71=0.3 | G71=0.8 | H71=4.7105 | I71=Cum
+C72=Returns | D72=4.0 | E72=7.0 | F72=0.5 | G72=1.0 | H72=14.0 | I72=Cum
+C73=Returns | D73=4.0 | E73=7.0 | F73=1.0 | G73=1.5 | H73=42.0 | I73=Cum
+C74=Returns | D74=4.0 | E74=7.0 | F74=1.5 | G74=1.5 | H74=63.0 | I74=Cum
+C75=Returns | D75=4.0 | E75=7.0 | F75=2.0 | G75=1.5 | H75=84.0 | I75=Cum
+C76=Returns | D76=4.0 | E76=7.0 | F76=2.5 | G76=1.5 | H76=105.0 | I76=Cum
+G77=Total:- | H77=2169.6515 | I77=Cum
+A79=10.0 | B79=B-3 / 9.3 | C79=Steel reinforcement in substructure complete. [MoRTH Specification : Section 1600]. TMT Bars
+C80=1.45% RCC quantity | D80=0.0145 | E80=2169.6515 | F80=7850.0 | H80=246.9606 | I80=MT
+A82=11.0 | B82=B-3 / 15 | C82=Providing A.C. pipe Weep holes 150mm dia in Masonry/plain Concrete/Reinforced Concrete abutment, wing wall/return wall complete as per drawing and technical specification. [MoRTH Specification : Clause 2205].
+C83=Abutments | D83=2.0 | E83=48.0 | F83=0.95 | H83=91.2 | I83=Rm
+C84=Returns | D84=4.0 | E84=42.0 | F84=0.65 | H84=109.2 | I84=Rm
+G85=Total:- | H85=200.4 | I85=Rm
+A87=12.0 | B87=B-1 / 3.1 | C87=Back filling behind abutment, wing wall and return wall, in 150mm layers, with mechanical compaction, complete with all lead and lift, as per drawing and technical specification. [MoRTH Specification : Clause 304]. Gravelly Material
+C88=Abutments | D88=2.0 | E88=7.0 | F88=6.7 | G88=2.9 | H88=272.02 | I88=Cum
+A90=13.0 | B90=B-1 / 4 | C90=Filter medium behind abutment, wing wall and return wall, complete as per drawing and technical specification. (Same as R7.20.3) [MoRTH Specification : Clause 2504].
+C91=Abutment | D91=2.0 | E91=9.8135 | F91=0.6 | G91=2.9 | H91=34.1508 | I91=Cum
+C92=Return | D92=4.0 | E92=6.0 | F92=0.6 | G92=2.9 | H92=41.76 | I92=Cum
+G93=Total:- | H93=75.9108 | I93=Cum
+C95=(iii) SUPERSTRUCTURE
+A96=14.0 | B96=B-4 / 1.1.3 | C96=Structural RCC/PSC upto a height of 5 mtr. for reinforced concrete in superstructure complete including steel formwork, scaffolding etc. As per drawing and technical specification. / Design mix concrete. [MoRTH Specification : 1500  & 1700]. / RCC M-30 grade / Solid slab superstructure
+C97=Deck slab | D97=18.0 | E97=12.9307 | F97=8.4 | G97=0.85 | H97=1661.849 | I97=Cum
+C98=Circular section | D98=18.0 | E98=8.4 | F98=0.785 x0.75x0.75 | H98=85.05 | I98=Cum
+H99=1746.899 | I99=Cum
+A101=15.0 | B101=B-4 / 3 | C101=Providing and laying TMT bar reinforcement at any level in superstructure complete as per drawing and technical Specification. [MoRTH Specification : Section 1600]
+C102=1.50% RCC quantity | D102=0.015 | E102=1746.899 | F102=7850.0 | H102=205.6974 | I102=MT
+A104=16.0 | B104=B-4 / 5 | C104=Reinforced cement concrete wearing coat M-30 grade at any level including formwork and reinforcement complete as per drawing and technical Specification. [MoRTH Specification : Clause 2204, 1500 & 1700].
+C105=Bridge length | D105=18.0 | E105=12.9307 | F105=8.4 | G105=0.075 | H105=146.6337 | I105=Cum
+A107=17.0 | B107=B-4 / 16 | C107=Providing and Laying PCC M-15 grade leveling course below approach slab complete as per drawing and technical specifications. [MoRTH specification : 2700]
+D108=2.0 | E108=7.2 | F108=3.5 | G108=0.15 | H108=7.56 | I108=Cum
+A110=18.0 | B110=B-4 / 17 | C110=Reinforced cement concrete M-30 grade approach slab including reinforcement and formwork complete as per drawing and technical specifications. [MoRTH specification : 1500, 1600, 1700, 2704]
+C111=Approch Slab | D111=2.0 | E111=7.2 | F111=3.5 | G111=0.3 | H111=15.12 | I111=Cum
+A113=19.0 | B113=B-4 / 11.2 | C113=Providing and fixing 20mm thick Compressible Fibre Board in expansion joint complete as per drawing and technical specification in MoRTH specification : clause 2605.
+C114=Slab | D114=18.0 | E114=12.9307 | F114=0.85 | H114=197.8392 | I114=Sqm
+C115=abutment | D115=4.0 | E115=(0.40+1.20)/2 x 8.00 | H115=25.6 | I115=Sqm
+H116=223.4392 | I116=Sqm
+A118=20.0 | B118=B-4 / 7 | C118=Providing and laying 12mm thick Bitumen Mastic wearing coat with bitumen of grade S35 as per Table 500-27, 10.2% by weight on prepared base including coarse aggregate as per table 500-29, and lime stone powder as filler, complete including tack coat. (MoRTH specification : Clause 515).
+C119=Piers | D119=17.0 | E119=1.2 | F119=9.8135 | H119=200.1944 | I119=Sqm
+C120=Abutment | D120=2.0 | E120=1.0 | F120=9.8135 | H120=19.6269 | I120=Sqm
+G121=Total:- | H121=219.8213 | I121=Sqm
+C123=Approaches
+A125=21.0 | C125=Earthwork in excavation in ordinary rock,  including stacking / disposal of surplus Material exclusive of compensation of earth. / By Hydraulic Excavator CK-90 of 0.9 cum bucket capacity and tipper with disposal upto 1000 mtrs.
+C126=Qty. as per Sheet | E126=3389.0 | F126=Cum
+G127=Qty. 60%Sheet | H127=2033.4 | I127=Cum
+A129=22.0 | C129=Earthwork in excavation for roadway in hard rock,  including stacking / disposal of surplus Material exclusive of compensation of earth Requiring blasting
+G130=Qty. 40%Sheet | H130=1355.6 | I130=Cum
+A132=23.0 | B132=B-1 / 1.1.4 | C132=Earthwork in excavation for foundation of structure complete with all lift, dewatering, shoring and shuttering etc. including refilling of trenches in 250 mm layer, ramming, watering and disposal of surplus soil within a lead of 1000 meters, as per drawing and technical Earth in excavation for foundation of specification. [MoRTH Specification : Clause 304]. / In ordinary soil [MoRTH Specification : clause 301] BY MECHANICAL MEANS / Depth upto 3m
+C133=Solid RCC Retatining Wall | D133=4.0 | E133=37.2 | F133=3.5 | G133=2.0 | H133=1041.6 | I133=Cum | L133=127445237.0
+A135=24.0 | B135=1.3.2 | C135=Earthwork in excavation for foundation of structure complete with all lift, dewatering, shoring and shuttering etc. including refilling of trenches in 250 mm layer, ramming, watering and disposal of surplus soil within a lead of 1000 meters, as per drawing and technical Earth in excavation for foundation of specification. [MoRTH Specification : Clause 304]. / In Ordinary/Soft rock (not requiring blasting) [MoRTH Specification : Clause 301]. BY MECHANICAL MEANS
+C136=Solid RCC Retatining Wall | D136=4.0 | E136=37.2 | F136=3.5 | G136=1.0 | H136=1610.0 | I136=Cum
+A138=25.0 | B138=B-2 / 6.3 | C138=Structural cement concrete (Design Mix) in open foundations, with form work, at any level. Cement concrete for plain/reinforced concrete in open foundations as per drawing and technical specification. [MoRTH Specification : Section 1700 & 1500]. With 20mm nominal size aggregate / P.C.C.  M-20 grade
+C139=Solid RCC Retatining Wall | D139=4.0 | E139=37.2 | F139=3.5 | G139=0.15 | H139=78.12 | I139=Cum
+A141=26.0 | B141=B-2 / 6.6 | C141=Structural cement concrete (Design Mix) in open foundations, with form work, at any level. Cement concrete for plain/reinforced concrete in open foundations as per drawing and technical specification. [MoRTH Specification : Section 1700 & 1500]. With 20mm nominal size aggregate / R.C.C.  M-25 grade
+C142=Solid RCC Retatining Wall | D142=4.0 | E142=37.2 | F142=3.1 | G142=0.4 | H142=184.512 | I142=Cum
+A144=27.0 | B144=B-2 / 13.3 | C144=Providing and laying steel reinforcement at any level in foundation complete as per drawing and technical specification. [MoRTH Specification : Section 1600]. / TMT Bar
+C145=1.10% RCC quantity | D145=0.011 | E145=184.512 | F145=7850.0 | H145=15.9326 | I145=MT
+A147=28.0 | B147=B-3 / 5.2.1.1 | C147=Structural cement concrete for plain concrete/ reinforced concrete for substructure at any level, complete as per drawing and technical specification. / Design mix concrete – [MoRTH Specification : Section 1500 & 1700]. / RCC M-25 grade, including form work / Upto 5 mtr. height | F147=(0.35+0.85)/2
+C148=Solid RCC Retatining Wall | D148=4.0 | E148=37.2 | F148=0.6 | G148=4.5 | H148=401.76 | I148=Cum
+H149=401.76 | I149=Cum
+A151=29.0 | B151=B-3 / 9.3 | C151=Steel reinforcement in substructure complete. [MoRTH Specification : Section 1600]. TMT Bars
+C152=1.15% RCC quantity | D152=0.0115 | E152=401.76 | F152=7850.0 | H152=36.2689 | I152=MT
+A155=30.0 | B155=B-1 / 3.1 | C155=Back filling behind abutment, wing wall and return wall, in 150mm layers, with mechanical compaction, complete with all lead and lift, as per drawing and technical specification. [MoRTH Specification : Clause 304]. Gravelly Material
+C156=Solid RCC Retatining Wall | D156=2.0 | E156=37.2 | F156=6.5 | G156=1.0 | H156=483.6 | I156=Cum
+A159=31.0 | B159=B-3 / 15 | C159=Providing A.C. pipe Weep holes 150mm dia in Masonry/plain Concrete/Reinforced Concrete abutment, wing wall/return wall complete as per drawing and technical specification. [MoRTH Specification : Clause 2205].
+C160=Solid RCC Retatining Wall | D160=4.0 | E160=37.2 | F160=2.0 | G160=0.65 | H160=193.44 | I160=Rmt
+A162=32.0 | B162=B-1 / 4 | C162=Filter medium behind abutment, wing wall and return wall, complete as per drawing and technical specification. (Same as R7.20.3) [MoRTH Specification : Clause 2504].
+C163=Solid RCC Retatining Wall | D163=2.0 | E163=37.2 | F163=6.5 | G163=0.5 | H163=241.8 | I163=Cum
+A165=33.0 | B165=B-4 / 16 | C165=Providing and Laying PCC M-15 grade leveling course below approach slab complete as per drawing and technical specifications. [MoRTH specification : 2700]
+D166=2.0 | E166=37.2 | F166=5.5 | G166=0.15 | H166=61.38 | I166=Cum
+A168=34.0 | B168=R-7 / (2.3) | C168=Providing and Laying un-reinforced, dowel jointed, plain cement concrete pavement over a prepared sub-base with 43 grade cement, coarse and fine aggregate conforming to IS:383, maximum size of coarse aggregate not exceeding 25mm, mixed in a batching and mixing plant as per approved mix design, transported to site, laid with a fixed form or slip form paver, spread, compacted and finished in a continuous operation including provision of contraction, expansion, construction and longitudinal joints, joint filler, separation membrane, sealant primer, joint sealant, debonding strip, dowel bar, tie rod, admixtures and vacuum processing pump as approved, curing compound, finishing to lines and grades as per drawing as per MoRTH Specification : Clause No. 602, 112. Using Cement concrete M-30 pavement Grade
+C169=up to RCC Retatining Wall | D169=2.0 | E169=37.2 | F169=5.5 | G169=0.2 | H169=81.84 | I169=Cum
+A171=35.0 | B171=B-4 / 16 | C171=Construction of RCC railing of M30 Grade in-situ with 20 mm nominal size aggregate,  true to line and grade,  tolurence of vertical RCC post not to exceed 1 in 500,  centre to centre spacing between vertical post not to exceed 2000 mm,  leaving adequate space between vertical post for expansion,  complete as per approved drawings and technical specifications.
+D172=2.0 | E172=18.0 | F172=12.9307 | H172=465.5039 | I172=M
+A174=36.0 | B174=Providing   and   Erecting   typical   Citizens   Information Board  as  per  approved  drawing  &   specification   of MoRD, made of two MS Sheet of 1.6 mm thick each of size 900 mm × 750 mm stiffened by angle iron 25 mm ×25 mm × 3 mm all around the plate and plates fixed on frame of 75 mm dia pipe of 12 SWG sheet (vertical post 3050  m  with  angle  holdfasts  and  horizontal  member 900 mm)  to be joined  by 5 mm thick  MS plate  at  12 places   (65   ×   50   mm)   duly   embedded   in   cement concrete M-15 grade of block of 600 mm × 600 mm × 750  mm  size  below  ground  level  as  per   enclosed drawings & as directed by Engineering  - In-Charge. All MS  will  be  stove  enameled  on  both  side,  Lettering, figuring  and border  will be with  ready  mixed  synthetic enamel paint of superior  quality in required shade and colour  etc.  complete   in  all  respect.   All  sections   of framed post and  steel tube will be painted  with primer and two coat of epoxy paint as per drawing and as per MoRD specification. | C174=Providing   and   Erecting   typical   Citizens   Information Board  as  per  approved  drawing  &   specification   of MoRD, made of two MS Sheet of 1.6 mm thick each of size 900 mm × 750 mm stiffened by angle iron 25 mm ×25 mm × 3 mm all around the plate and plates fixed on frame of 75 mm dia pipe of 12 SWG sheet (vertical post 3050  m  with  angle  holdfasts  and  horizontal  member 900 mm)  to be joined  by 5 mm thick  MS plate  at  12 places   (65   ×   50   mm)   duly   embedded   in   cement concrete M-15 grade of block of 600 mm × 600 mm × 750  mm  size  below  ground  level  as  per   enclosed drawings & as directed by Engineering  - In-Charge. All MS  will  be  stove  enameled  on  both  side,  Lettering, figuring  and border  will be with  ready  mixed  synthetic enamel paint of superior  quality in required shade and colour  etc.  complete   in  all  respect.   All  sections   of framed post and  steel tube will be painted  with primer and two coat of epoxy paint as per drawing and as per MoRD specification. | D174=2.0 | H174=2.0 | I174=Nos.
+A175=37.0 | B175=Supply of villege Name Board size 600x900 mm made out  of  1.25  mm  thick  M.S.  Sheet  duly  framed  with 30mm Outer Dia Mild Steel tube tightened with M.S. flat 12x3 mm fixed on two posts of size 40 mm ODMS tube 3M long whole board is processed in blue/white stoving enamel paint and white/red machine cut reflective sheet complete    in   all   respect   posts    duly   painted   with black/white synthetic enamel. | C175=Supply of villege Name Board size 600x900 mm made out  of  1.25  mm  thick  M.S.  Sheet  duly  framed  with 30mm Outer Dia Mild Steel tube tightened with M.S. flat 12x3 mm fixed on two posts of size 40 mm ODMS tube 3M long whole board is processed in blue/white stoving enamel paint and white/red machine cut reflective sheet complete    in   all   respect   posts    duly   painted   with black/white synthetic enamel. | D175=3.0 | H175=3.0 | I175=Nos.
+A176=38.0 | B176=Retro-Reflectorised  Traffic Signs Providing and fixing of retro-     reflectorised      cautionary,      mandatory     and informatory sign as per IRC :67 made of high intensity grade sheeting vide clause 801.3, fixed over aluminium sheeting, 1.5 mm thick supported on a mild steel angle iron post 75 mm x 75 mm x 6  mm firmly fixed to the ground by means of properly designed foundation  with M15 grade cement concrete 45 cm x 45 cm x 60 cm, 60 cm below ground level as per approved drawing 90 cm equilateral triangle | C176=Retro-Reflectorised  Traffic Signs Providing and fixing of retro-     reflectorised      cautionary,      mandatory     and informatory sign as per IRC :67 made of high intensity grade sheeting vide clause 801.3, fixed over aluminium sheeting, 1.5 mm thick supported on a mild steel angle iron post 75 mm x 75 mm x 6  mm firmly fixed to the ground by means of properly designed foundation  with M15 grade cement concrete 45 cm x 45 cm x 60 cm, 60 cm below ground level as per approved drawing 90 cm equilateral triangle | D176=6.0 | H176=6.0 | I176=Nos.
+A177=39.0 | B177=Retro-Reflectorised  Traffic Signs Providing and fixing of retro-     reflectorised      cautionary,      mandatory     and informatory sign as per IRC :67 made of high intensity grade sheeting vide clause 801.3, fixed over aluminium sheeting, 1.5 mm thick supported on a mild steel angle iron post 75 mm x 75 mm x 6  mm firmly fixed to the ground by means of properly designed foundation  with M15 grade cement concrete 45 cm x 45 cm x 60 cm, 60 cm below ground level as per approved drawing 60 cm equilateral triangle | C177=Retro-Reflectorised  Traffic Signs Providing and fixing of retro-     reflectorised      cautionary,      mandatory     and informatory sign as per IRC :67 made of high intensity grade sheeting vide clause 801.3, fixed over aluminium sheeting, 1.5 mm thick supported on a mild steel angle iron post 75 mm x 75 mm x 6  mm firmly fixed to the ground by means of properly designed foundation  with M15 grade cement concrete 45 cm x 45 cm x 60 cm, 60 cm below ground level as per approved drawing 60 cm equilateral triangle | D177=6.0 | H177=6.0 | I177=Nos.
+A178=40.0 | B178=Raised  Pavment  Marker  ( Cats Eyes):  Supplying   and Fixing  of  Molded  Shank  Raised  Pavement  Markers made  of  polycarbonate  and  ABS  moulded  body  and reflective  panels  with  micro  prismatic  lens  capable  of providing total internal reflection of the light entering the lens face and shall support a load of 16000 kg tested in accordance to ASTM D 4280 Type H and complying to Specifications  of  Category A  of  MORTH  Circular  No RW/NH/33023/10-97   –  DO  III  Dt  11.06.  1997.  The height, width and length shall not exceed 50  mm, 100 mm and 100 mm and with minimum  reflective  area of / 13 Sqcm on each side and the slope to the base shall be 35 +/- 5 degree.  The strength of detachment of the integrated cylindrical shanks, (of diameter not less than / 19 +/- 2 mm and height not less than 30+/- 2 mm) from the body is to be a minimum  value of 700  Kgf.  Fixing will be by drilling holes on the road for the shanks to go inside,  without  nails  and  using   epoxy   resin   based adhesive  as  per  manufacturer’s  recommendation and complete as  directed  by the engineer.  The contractor shall  submit  2 years  pre  qualified  warranty  certificate from the manufacturer for satisfactory field performance | C178=Raised  Pavment  Marker  ( Cats Eyes):  Supplying   and Fixing  of  Molded  Shank  Raised  Pavement  Markers made  of  polycarbonate  and  ABS  moulded  body  and reflective  panels  with  micro  prismatic  lens  capable  of providing total internal reflection of the light entering the lens face and shall support a load of 16000 kg tested in accordance to ASTM D 4280 Type H and complying to Specifications  of  Category A  of  MORTH  Circular  No RW/NH/33023/10-97   –  DO  III  Dt  11.06.  1997.  The height, width and length shall not exceed 50  mm, 100 mm and 100 mm and with minimum  reflective  area of 13 Sqcm on each side and the slope to the base shall be 35 +/- 5 degree.  The strength of detachment of the integrated cylindrical shanks, (of diameter not less than / 19 +/- 2 mm and height not less than 30+/- 2 mm) from the body is to be a minimum  value of 700  Kgf.  Fixing will be by drilling holes on the road for the shanks to go inside,  without  nails  and  using   epoxy   resin   based adhesive  as  per  manufacturer’s  recommendation and complete as  directed  by the engineer.  The contractor shall  submit  2 years  pre  qualified  warranty  certificate from the manufacturer for satisfactory field performance | D178=2.0 | E178=200.0 | H178=400.0 | I178=Nos.
+A179=41.0 | B179=Road    Marking    with    Hot    Applied    Thermoplastic Compound    with    Reflectorising    Glass    Beads    on Bituminous  Surface Providing and laying of hot applied thermoplastic    compound    2.5    mm    thick    including reflectorising  glass  beads  @ 250  gms  per  sqm  area, thickness  of  2.5  mm  is  exclusive  of  surface  applied glass beads as per IRC:35 .The finished surface to be level, uniform and free from streaks and holes. | C179=Road    Marking    with    Hot    Applied    Thermoplastic Compound    with    Reflectorising    Glass    Beads    on Bituminous  Surface Providing and laying of hot applied thermoplastic    compound    2.5    mm    thick    including reflectorising  glass  beads  @ 250  gms  per  sqm  area, thickness  of  2.5  mm  is  exclusive  of  surface  applied glass beads as per IRC:35 .The finished surface to be level, uniform and free from streaks and holes. | D179=2223.0 | E179=1.5 | F179=0.15 | H179=500.175 | I179=Sqm
+A180=42.0 | B180=Providing   and   laying   graded   stone   aggregate   filter Material underneath pitching on slopes complete as per drawing     and     technical      specification.      (MoRTH / specification : clause 2504). | C180=Providing   and   laying   graded   stone   aggregate   filter Material underneath pitching on slopes complete as per drawing     and     technical      specification.      (MoRTH / specification : clause 2504). | D180=4.0 | E180=15.0 | F180=4.4721 | G180=0.3 | H180=80.4984 | I180=Cum
+A181=43.0 | B181=Providing   and   laying   pitching   on   slopes   laid   over prepared filter media including boulder apron laid dry in front  of  toe  of  embankment  complete  as  per  drawing and   technical   specifications.   (MoRTH   specification: Clause 2504 & 1700). With  R.R.  stone,  weighing  not less than 40 kg thickness not less than 150mm (specific gravity not less than 2.65) | C181=Providing   and   laying   pitching   on   slopes   laid   over prepared filter media including boulder apron laid dry in front  of  toe  of  embankment  complete  as  per  drawing and   technical   specifications.   (MoRTH   specification: Clause 2504 & 1700). With  R.R.  stone,  weighing  not less than 40 kg thickness not less than 150mm (specific gravity not less than 2.65) | D181=4.0 | E181=15.0 | F181=4.4721 | G181=0.45 | H181=120.7477 | I181=Per Cum
+A182=44.0 | B182=Providing and laying Reinforced cement concrete pipes NP-3  for  culverts  including   jointing  ends   and  fixing collar with cement mortar 1:2. (MoRTH  specification  : / clause 1000/2900). 1000 mm dia | C182=Providing and laying Reinforced cement concrete pipes NP-3  for  culverts  including   jointing  ends   and  fixing collar with cement mortar 1:2. (MoRTH  specification  : / clause 1000/2900). 1000 mm dia | D182=2.0 | E182=7.5 | H182=15.0 | I182=RM
+A183=45.0 | B183=Providing and laying Reinforced cement concrete pipes NP-3  for  culverts  including   jointing  ends   and  fixing collar with cement mortar 1:2. (MoRTH  specification  : / clause 1000/2900). 600 mm dia | C183=Providing and laying Reinforced cement concrete pipes NP-3  for  culverts  including   jointing  ends   and  fixing collar with cement mortar 1:2. (MoRTH  specification  : / clause 1000/2900). 600 mm dia | D183=2.0 | E183=7.5 | H183=15.0 | I183=RM
+A184=46.0 | B184=Providing and laying Reinforced cement concrete pipes NP-3  for  culverts  including   jointing  ends   and  fixing collar with cement mortar 1:2. (MoRTH  specification  : / clause 1000/2900). 300 mm dia | C184=Providing and laying Reinforced cement concrete pipes NP-3  for  culverts  including   jointing  ends   and  fixing collar with cement mortar 1:2. (MoRTH  specification  : / clause 1000/2900). 300 mm dia | D184=8.0 | E184=7.5 | H184=60.0 | I184=RM

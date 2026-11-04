@@ -17,9 +17,10 @@
 import fs from 'fs';
 import path from 'path';
 import * as XLSX from 'xlsx';
+import { readOfficeWorkbook } from './read-office-workbook';
 
 const DEFAULT_REF = path.resolve(
-  'Attached_Assets/Stability Analysis SUBMERSIBLE BRIDGE ACROSS LARATHI SOM RIVER.xls',
+  'assets/E_DRIVE_BRIDGE_DESIGN/KHERWARA BRIDGE II/Stability Analysis SUBMERSIBLE BRIDGE ACROSS LARATHI SOM RIVER.xls',
 );
 
 const MAX_ROWS = 600;
@@ -59,8 +60,7 @@ function cellStaticText(sheet: XLSX.WorkSheet, r0: number, c0: number): string |
 }
 
 function emitLines(filePath: string, outPath?: string): void {
-  const buf = fs.readFileSync(filePath);
-  const wb = XLSX.read(buf, { type: 'buffer', cellDates: true });
+  const wb = readOfficeWorkbook(filePath);
   const lines: string[] = [];
 
   for (const sheetName of wb.SheetNames) {

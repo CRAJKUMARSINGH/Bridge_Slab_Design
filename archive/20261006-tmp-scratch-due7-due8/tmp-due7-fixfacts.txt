@@ -1,0 +1,67 @@
+=== moment-ish fields in PierDesignResult region (130-186):
+43:      max: number;
+=== qa-ultra-strict reference:
+101:    command: 'pnpm tsx scripts/stress-test-251-users.ts'
+=== stress-test-251 100-130:
+}
+
+async function runTest(user: UserSimulation): Promise<{ ok: boolean; duration: number }> {
+  const payload = generatePayload(user);
+  const start = Date.now();
+  try {
+    const results = calculateCompleteDesign(payload);
+    const duration = Date.now() - start;
+    
+    // Strict verification bounds:
+    if (!results.hydraulics || !results.pier || !results.abutmentType1) {
+      throw new Error("Results payload missing vital calculation components");
+    }
+
+    if (duration > 5000) {
+      throw new Error(`Performance Budget Exceeded: took ${duration}ms`);
+    }
+
+    fs.writeFileSync(
+      path.join(OUTPUT_DIR, `user_${user.id}_${user.type.toLowerCase()}.json`), 
+      JSON.stringify({
+        success: true,
+        type: user.type,
+        spans: payload.numberOfSpans,
+        hydraulics_discharge: results.hydraulics.discharge,
+        pier_max_moment: results.pier?.maxMoment ?? 0,
+        duration
+      })
+    );
+    
+    if (user.id % 25 === 0) {
+      console.log(`[User ${user.id}/${TOTAL_USERS}] ✅ ${user.type} completed successfully in ${duration}ms.`);
+    }
+=== test-storytelling 36-60:
+    fs.writeFileSync(outPath, buffer);
+    console.log(`✅ Saved: ${outPath} (${(buffer.length / 1024).toFixed(2)} KB)`);
+    
+    // Load workbook to read narrative
+    const wb = new ExcelJS.Workbook();
+    await wb.xlsx.load(buffer);
+    
+    reportText += `## User ${i + 1}: ${user.name}\n\n`;
+    
+    const narrativeSheets = ['TechNote', 'Tech Report'];
+    for (const sheetName of narrativeSheets) {
+      const sheet = wb.getWorksheet(sheetName) || wb.worksheets.find(s => s.name === sheetName);
+      if (sheet) {
+        reportText += `### ${sheetName} Content\n`;
+        let text = '';
+        sheet.eachRow((row) => {
+          const rowText = row.values.map(v => typeof v === 'object' && v && 'richText' in v ? v.richText.map(r => r.text).join('') : String(v || '')).join(' ').trim();
+          if (rowText) text += rowText + '\n';
+        });
+        assertNoNarrativePlaceholders(text, `${user.id}/${sheetName}`);
+        reportText += `\`\`\`text\n${text}\n\`\`\`\n\n`;
+      } else {
+        reportText += `### ${sheetName} Content\n*Sheet not found*\n\n`;
+      }
+    }
+=== cli.ts extract-word usage:
+24:import { extractWordToDir } from './extract-word';
+149:          body += `\n\nHint: word-extractor only handles standard .doc/.docx. Try opening in Word and Save As .docx, or use LibreOffice to export plain text.`;

@@ -1,0 +1,73 @@
+{
+  "projectName": "Construction of Bridge on Katumbi to Chandrod Road",
+  "location": "Katumbi to Chandrod Road, Rajasthan",
+  "riverName": "Nalah",
+  "bridgeType": "submersible",
+  "spanLength": 8,
+  "numberOfSpans": 7,
+  "skew": 0,
+  "carriageWidth": 7.5,
+  "numberOfLanes": 2,
+  "totalLength": 56,
+  "hfl": 342.6,
+  "bedLevel": 338.4,
+  "foundationLevel": 333.8,
+  "discharge": 312.8,
+  "manningN": 0.033,
+  "bedSlope": 1050,
+  "laceysSiltFactor": 1.5,
+  "crossSectionData": [
+    {
+      "chainage": 0,
+      "gl": 342.1
+    },
+    {
+      "chainage": 10,
+      "gl": 340.3
+    },
+    {
+      "chainage": 20,
+      "gl": 338.5
+    },
+    {
+      "chainage": 35,
+      "gl": 338.2
+    },
+    {
+      "chainage": 50,
+      "gl": 339
+    },
+    {
+      "chainage": 60,
+      "gl": 341.8
+    }
+  ],
+  "pierWidth": 1.2,
+  "pierLength": 3.5,
+  "pierDepth": 4,
+  "numberOfPiers": 6,
+  "pierBaseWidth": 2.5,
+  "pierBaseLength": 4.5,
+  "abutmentHeight": 6.5,
+  "abutmentWidth": 3.5,
+  "abutmentDepth": 4.5,
+  "dirtWallHeight": 2.5,
+  "returnWallLength": 6,
+  "concreteGrade": "M25",
+  "fck": 25,
+  "steelGrade": "Fe415",
+  "fy": 415,
+  "sbc": 165,
+  "phi": 30,
+  "gamma": 18,
+  "rtl": 343.8,
+  "agl": 339.1,
+  "nbl": 338.4,
+  "ofl": 342.2,
+  "dwl": 342.9,
+  "deckSlabThickness": 0.25,
+  "freeboardAboveHfl": 1,
+  "issuingAuthority": "PWD Rajasthan",
+  "jobNumber": "KATUMBI-CHANDROD-SUBM",
+  "hardRockAvailable": false
+}

@@ -33,6 +33,24 @@ export const BORDERS = {
 // ==================== CELL FORMATTING ====================
 
 /**
+ * Read a cell's value with its TRUE cached formula result.
+ *
+ * ExcelJS rebuilds formula cells through `_copyModel`, whose `if (value)` guard
+ * drops falsy keys — so a cached result of 0 or FALSE vanishes from `cell.value`
+ * and `cell.text` renders empty, even though the .xlsx stores `<v>0</v>`.
+ * Anything reading a generated workbook (previews, reports, auditors) must go
+ * through this helper or it will show a raw formula string where a number is.
+ */
+export function readCellValue(cell: ExcelJS.Cell): any {
+  const v = cell.value;
+  if (v && typeof v === 'object' && 'formula' in v && (v as any).result === undefined) {
+    const raw = (cell as any).model?.result;
+    if (raw !== undefined) return { ...(v as object), formula: (v as any).formula, result: raw };
+  }
+  return v;
+}
+
+/**
  * Set cell value with formula
  */
 export function setCellFormula(
@@ -143,6 +161,9 @@ export function styleSubheader(
   
   mergeCells(ws, row, startCol, row, endCol);
 }
+
+/** Alias kept for 56-sheet book generators — same signature as styleSubheader. */
+export const addSubheader = styleSubheader;
 
 /**
  * Add calculation row (label = value unit)
@@ -377,6 +398,195 @@ export function addSectionDivider(
   return row + 1;
 }
 
+// ---------------------------------------------------------------------------
+// Excel dropdown (data-validation list) helper — comma-safe.
+//
+// The naive pattern `formula1 = '"a,b,c"'` silently breaks when any option
+// itself contains a comma, double-quote or equals sign:
+//   • commas in values get misinterpreted by Excel as list separators
+//   • unescaped quotes cause ExcelJS / Excel to write the option as blank
+//   • leading '=' are treated as a formula and #NAME? appears
+//
+// This helper:
+//   1. Escapes any embedded `"` → `""` inside each option
+//   2. Refuses to inline options where ANY option contains ',' or exceeds
+//      255 chars — instead it writes the options to a hidden scratch sheet
+//      (one per workbook, lazily created) and returns a range reference.
+//      This is the OOXML standard's preferred approach for complex lists.
+//   3. Prefix-strips a leading '=' / '@' / '+' so a text option can never
+//      be reinterpreted as a formula when the user clicks the dropdown.
+// ---------------------------------------------------------------------------
+
+const DROPDOWN_SHEET_NAME = '__BridgeCAD_Dropdowns';
+
+export interface DropdownOptions {
+  /** Allow inline comma-containing options by forcing a range-backed list. */
+  forceRange?: boolean;
+  /** Optional prefix for the scratch-sheet column name (keeps columns grouped). */
+  group?: string;
+}
+
+export interface DropdownResult {
+  formula1: string;
+  /** True when options were persisted to the scratch sheet instead of inlined. */
+  usedRange: boolean;
+  /** Sheet-qualified address if usedRange, else empty string. */
+  rangeAddress: string;
+}
+
+function sanitizeDropdownToken(token: string): string {
+  const t = String(token ?? '');
+  const escaped = t.replace(/"/g, '""');
+  if (/^[=+@-]/.test(escaped)) return `'${escaped}`;
+  return escaped;
+}
+
+export function addDropdownList(
+  workbook: ExcelJS.Workbook,
+  ws: ExcelJS.Worksheet,
+  address: string,
+  options: readonly string[],
+  opts: DropdownOptions = {},
+): DropdownResult {
+  const sanitized = options.map(sanitizeDropdownToken);
+  const anyComma = sanitized.some((s) => s.includes(','));
+  const anyLong = sanitized.some((s) => s.length > 255);
+  const totalInlinable = sanitized.reduce((n, s) => n + s.length + 1, 0);
+  const useRange = Boolean(opts.forceRange) || anyComma || anyLong || totalInlinable > 220;
+
+  let formula1: string;
+  let usedRange = false;
+  let rangeAddress = '';
+
+  if (!useRange) {
+    formula1 = `"${sanitized.join(',')}"`;
+  } else {
+    let scratch = workbook.getWorksheet(DROPDOWN_SHEET_NAME);
+    if (!scratch) {
+      scratch = workbook.addWorksheet(DROPDOWN_SHEET_NAME, { properties: { tabColor: { argb: 'FF999999' } } });
+      scratch.state = 'veryHidden';
+    }
+    const prefix = opts.group ? `${opts.group}_` : '';
+    const headerValue = prefix + 'options_index';
+    let col = -1;
+    // Scan header row 1 to see if this group already has a home column; reuse if so.
+    const headerRow = scratch.getRow(1);
+    const lastCol = scratch.lastColumn?.number ?? 0;
+    for (let c = 1; c <= lastCol; c += 1) {
+      if (String(headerRow.getCell(c).value ?? '') === headerValue) {
+        col = c;
+        break;
+      }
+    }
+    if (col < 0) {
+      col = lastCol + 2; // leave 1 blank column between groups for readability
+      scratch.getCell(1, col).value = headerValue;
+    }
+    let row = 2;
+    for (const opt of sanitized) {
+      scratch.getCell(row, col).value = opt;
+      row += 1;
+    }
+    const top = `${columnToLetter(col)}2`;
+    const bot = `${columnToLetter(col)}${Math.max(row - 1, 2)}`;
+    rangeAddress = `'${DROPDOWN_SHEET_NAME}'!${top}:${bot}`;
+    formula1 = rangeAddress;
+    usedRange = true;
+  }
+
+  ws.getCell(address).dataValidation = {
+    type: 'list',
+    allowBlank: true,
+    showErrorMessage: true,
+    errorTitle: 'BridgeCAD — Invalid selection',
+    error: 'Please select a value from the dropdown list.',
+    formulae: [formula1],
+  } as any;
+
+  return { formula1, usedRange, rangeAddress };
+}
+
+// ---------------------------------------------------------------------------
+// Excel Named Range helpers.
+//
+// A workbook built with raw `'PIER STABILITY'!B16` references will silently
+// break if someone inserts a row above B16. Excel's "Defined Names" are the
+// canonical fix — a name points at a `Sheet!$A$1` address and Excel updates
+// the address automatically on insert/delete. This module provides:
+//
+//   • defineName(workbook, name, ref) — register a global name
+//   • nameRef(name)                   — returns the `=NAME` formula string
+//
+// Naming convention (BridgeCAD local standard):
+//   Sheet-level stable outputs: `<SHEET_CODE>_<FIELD>` e.g. PS__DWL for
+//     Pier Stability DWL, AB1_PIERW for Type1 Abutment pier width
+//   Shared input parameters: `IN_<FIELD>` e.g. IN_PROJECT_CODE
+//   Scratch / lookup columns: `LOOKUP_<SCOPE>_<KEY>`
+//
+// Callers should call defineName *right after* writing the value to a cell so
+// the address is known at the moment of definition.
+// ---------------------------------------------------------------------------
+
+export interface NameDefinition {
+  name: string;
+  ref: string;
+  comment?: string;
+}
+
+/**
+ * ExcelJS 4.4 `workbook.definedNames` is positional (`add(ref, name)`), not the
+ * `{name, formula}` object this helper used to pass, and it has no `find`.
+ * A re-`add` of an existing name *extends* its range list instead of replacing it,
+ * so every prior range has to be removed first or the name stops being scalar.
+ * ExcelJS also cannot attach a comment to a defined name; `opts.comment` documents
+ * the name for readers of this source only.
+ */
+function replaceName(
+  workbook: ExcelJS.Workbook,
+  name: string,
+  ref: string,
+): void {
+  const dn = workbook.definedNames;
+  for (const previous of dn.getRanges(name).ranges) {
+    dn.remove(previous, name);
+  }
+  dn.add(ref, name);
+}
+
+export function defineName(
+  workbook: ExcelJS.Workbook,
+  name: string,
+  sheetName: string,
+  row: number,
+  col: number,
+  opts: { comment?: string; sheetLocal?: boolean } = {},
+): string {
+  const ref = `'${sheetName}'!$${columnToLetter(col)}$${row}`;
+  replaceName(workbook, name, ref);
+  return ref;
+}
+
+export function defineNameRange(
+  workbook: ExcelJS.Workbook,
+  name: string,
+  sheetName: string,
+  startRow: number,
+  startCol: number,
+  endRow: number,
+  endCol: number,
+  opts: { comment?: string } = {},
+): string {
+  const ref =
+    `'${sheetName}'!$${columnToLetter(startCol)}$${startRow}:$${columnToLetter(endCol)}$${endRow}`;
+  replaceName(workbook, name, ref);
+  return ref;
+}
+
+/** Escape token that downstream formulae can rely on. */
+export function nameRef(name: string): string {
+  return name;
+}
+
 // Export all utilities
 export default {
   COLORS,
@@ -398,5 +608,9 @@ export default {
   cellRef,
   rangeRef,
   addEmptyRows,
-  addSectionDivider
+  addSectionDivider,
+  addDropdownList,
+  defineName,
+  defineNameRange,
+  nameRef,
 };

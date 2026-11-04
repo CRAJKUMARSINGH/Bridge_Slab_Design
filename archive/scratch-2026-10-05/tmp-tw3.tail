@@ -1,0 +1,15 @@
+Scope: all 11 workspace projects
+Progress: resolved 0, reused 1, downloaded 0, added 0
+artifacts/mockup-sandbox                 |  WARN  deprecated recharts@2.15.4
+Progress: resolved 92, reused 92, downloaded 0, added 0
+Progress: resolved 308, reused 300, downloaded 0, added 0
+Progress: resolved 563, reused 556, downloaded 0, added 0
+ WARN  6 deprecated subdependencies found: fstream@1.0.12, glob@7.2.3, inflight@1.0.6, lodash.isequal@4.5.0, rimraf@2.7.1, uuid@8.3.2
+Packages: +2
+++
+Progress: resolved 597, reused 590, downloaded 1, added 2, done
+. preinstall$ sh -c 'rm -f package-lock.json yarn.lock; case "$npm_config_user_agent" in pnpm/*) ;; *) echo "Use pnpm instead" >&2; exit 1 ;; esac'
+. preinstall: Done
+
+Done in 6.7s using pnpm v10.33.0
+exit=0

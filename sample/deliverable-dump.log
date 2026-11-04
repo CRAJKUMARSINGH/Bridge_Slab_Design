@@ -1,0 +1,39 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+sheets: 46
+--- Abstract ---
+  1: DETAILED ABSTRACT OF COST
+  3: Item | Description | Unit | Quantity | Rate (₹) | Amount (₹)
+  4: 1 | Concrete M25 | m³ | 670.55 | 5500 | 3688025
+  5: 2 | Steel Fe415 | MT | 48.6465 | 65000 | 3162022.5
+  6: 3 | Formwork | m² | 636.6 | 350 | 222810
+  7: 4 | Excavation | m³ | 826.25 | 250 | 206562.5
+  8: 5 | Backfill | m³ | 330.5 | 150 | 49575
+  9: 6 | PCC Blinding | m³ | 16.525 | 5000 | 82625
+  10: 7 | Wearing Coat | m² | 720 | 1200 | 864000
+  11: 8 | Expansion Joints | m | 15 | 5000 | 75000
+  12: 9 | Bearings | nos | 22 | 25000 | 550000
+  14: SUBTOTAL | 8900620
+  15: GST | 1602111.6
+  16: GRAND TOTAL | 10502731.6
+  18: STORY - Estimation is the quantity-traceability story: every amount should descend from verified geometry, reinforcement
+  19: Design data: BOQ line count 10, project total Rs 1,05,02,731.60, and workbook-derived geometry driving concrete, steel, 
+  20: Step 1 - quantity extraction converts dimensions and reinforcement outputs into measurable line items.
+--- General Abs. ---
+  1: GENERAL ABSTRACT OF COST
+  3: S.No. | Category / item | Amount (₹) | % of subtotal
+  4: 1 | Concrete M25 | 3688025 | 41.44
+  5: 2 | Steel Fe415 | 3162022.5 | 35.53
+  6: 3 | Formwork | 222810 | 2.5
+  7: 4 | Excavation | 206562.5 | 2.32
+  8: 5 | Backfill | 49575 | 0.56
+  9: 6 | PCC Blinding | 82625 | 0.93
+  10: 7 | Wearing Coat | 864000 | 9.71
+  11: 8 | Expansion Joints | 75000 | 0.84
+  12: 9 | Bearings | 550000 | 6.18
+  14: SUBTOTAL | 8900620
+  15: GST | 1602111.6
+  16: TOTAL | 10502731.6
+  18: STORY - General Abs. belongs to the same engineering narrative chain: inputs must lead to visible design logic, then to 
+  19: Design data: project Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD, bridge length 96.00 m, span 8
+  20: Step 1 - identify the governing phenomenon of this sheet rather than reusing unrelated formulas.

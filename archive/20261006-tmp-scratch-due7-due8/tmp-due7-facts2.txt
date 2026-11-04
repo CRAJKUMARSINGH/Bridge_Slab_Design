@@ -1,0 +1,36 @@
+=== extract-word referenced by?
+./CODE-JUNCTION/bridge_slab_design_comprehensive_impl_plan.md:146:- `scripts/phase-zero/extract-word.ts`
+./scripts/phase-zero/cli.ts:24:import { extractWordToDir } from './extract-word';
+=== PierDesignResult fields:
+130:export interface PierDesignResult {
+131-  // Geometry
+132-  geometry: {
+133-    width: number;
+134-    length: number;
+135-    depth: number;
+136-    baseWidth: number;
+137-    baseLength: number;
+138-    spacing: number;
+139-  };
+140-  
+141-  // Loads
+142-  loads: {
+143-    deadLoad: number;           // kN
+144-    liveLoad: number;           // kN
+145-    hydrostaticForce: number;   // kN
+146-    dragForce: number;          // kN
+147-    /** IRC:6-2017 §209 wind force on pier (kN) */
+148-    windForce: number;
+149-    /** IS:1893:2002 horizontal seismic force on pier (kN) */
+150-    seismicForce: number;
+151-    totalHorizontalForce: number; // kN
+152-    buoyancy: number;           // kN
+153-  };
+154-  
+155-  // Stability (5 Load Cases)
+156-  loadCases: LoadCase[];
+157-  
+158-  // Reinforcement
+159-  reinforcement: {
+160-    mainSteel: SteelDetails;
+=== word-extractor/sharp in any package.json?

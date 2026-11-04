@@ -1,0 +1,113 @@
+{
+  "suiteRunAt": "2026-08-16T10:29:43.692Z",
+  "phasesResults": [
+    {
+      "phaseId": 1,
+      "name": "Static Analysis & Build Verification Gate",
+      "passed": false,
+      "durationMs": 65170,
+      "errorLog": "Command failed: pnpm tsx scripts/qa-gate-static.ts"
+    },
+    {
+      "phaseId": 2,
+      "name": "Engine Calculation Parity & Regression Tests",
+      "passed": true,
+      "durationMs": 2472,
+      "errorLog": ""
+    },
+    {
+      "phaseId": 3,
+      "name": "API Endpoint Health & Metadata Tests",
+      "passed": true,
+      "durationMs": 32642,
+      "errorLog": ""
+    },
+    {
+      "phaseId": 4,
+      "name": "API Calculation, Design & Optimisation Tests",
+      "passed": false,
+      "durationMs": 6778,
+      "errorLog": "Command failed: pnpm tsx --test tests/integration/api-calculate.test.ts"
+    },
+    {
+      "phaseId": 5,
+      "name": "API Report Generation Tests",
+      "passed": true,
+      "durationMs": 6536,
+      "errorLog": ""
+    },
+    {
+      "phaseId": 6,
+      "name": "API Drawings, SVG & DXF Output Tests",
+      "passed": true,
+      "durationMs": 5475,
+      "errorLog": ""
+    },
+    {
+      "phaseId": 7,
+      "name": "API D4 Projects & Files CRUD Tests",
+      "passed": true,
+      "durationMs": 5775,
+      "errorLog": ""
+    },
+    {
+      "phaseId": 8,
+      "name": "API Pier Case Recommendation Engine Tests",
+      "passed": true,
+      "durationMs": 5839,
+      "errorLog": ""
+    },
+    {
+      "phaseId": 9,
+      "name": "API Specialty, Reinforcement & Estimation Tests",
+      "passed": true,
+      "durationMs": 5252,
+      "errorLog": ""
+    },
+    {
+      "phaseId": 10,
+      "name": "Excel Workbook Integrity Structural Tests",
+      "passed": false,
+      "durationMs": 3087,
+      "errorLog": "Command failed: pnpm tsx --test tests/integration/excel-integrity.test.ts"
+    },
+    {
+      "phaseId": 11,
+      "name": "Narrative Report Output Completeness Tests",
+      "passed": false,
+      "durationMs": 3090,
+      "errorLog": "Command failed: pnpm tsx --test tests/integration/report-integrity.test.ts"
+    },
+    {
+      "phaseId": 12,
+      "name": "Zod API Payload Contract Validation Tests",
+      "passed": true,
+      "durationMs": 1937,
+      "errorLog": ""
+    },
+    {
+      "phaseId": 13,
+      "name": "Security Vulnerability, Rate Limit & Header Tests",
+      "passed": false,
+      "durationMs": 6204,
+      "errorLog": "Command failed: pnpm tsx --test tests/integration/security.test.ts"
+    },
+    {
+      "phaseId": 14,
+      "name": "Deployment Config & Readiness Check Tests",
+      "passed": true,
+      "durationMs": 2308,
+      "errorLog": ""
+    },
+    {
+      "phaseId": 15,
+      "name": "251-User Calculation Stress Test",
+      "passed": true,
+      "durationMs": 2595,
+      "errorLog": ""
+    }
+  ],
+  "allPhasesPassed": false,
+  "totalPhases": 15,
+  "passedPhases": 10
+}

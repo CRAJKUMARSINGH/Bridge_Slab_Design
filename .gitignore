@@ -1,24 +1,79 @@
-node_modules
-\ CURSOR SLAB DESIGN/
-CURSOR SLAB DESIGN/
-D1/
-D2/
-D3/
-D4/
-Dwg-Dxf-Record-Keeper/
-M2/
-M3/
-M4/
-Qoder_Expert_Bridge_Doctor_Complete/
-.tmp_merge_repo/
-research_assets/drawings_from_rajkumar_designs/CHITORGARH PWD/
-research_assets/drawings_from_rajkumar_designs/
-TEST_CURRENT_OUTPUT.xlsx
-git-repos/
+# See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
-# Deployment build artifacts (source files are committed, compiled outputs are not)
-api/index.js
-netlify/functions/api.js
-.netlify/
-.vercel/
-dist/
+# compiled output
+dist
+tmp
+out-tsc
+*.tsbuildinfo
+.expo
+.expo-shared
+.env
+.env.local
+.env.production
+.env.development
+.env.test
+
+
+# dependencies
+node_modules
+
+# stray lockfile copies (e.g. pnpm-lock.yaml.2557159217) — one lockfile, tracked by the manifest
+pnpm-lock.yaml.*
+package-lock.json.*
+yarn.lock.*
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# Python
+__pycache__/
+*.pyc
+
+# System Files
+.DS_Store
+Thumbs.db
+
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
+
+# Replit
+.cache/
+.local/
+
+# Security scan outputs and temp files — never commit these.
+# They contain raw scanner output with secret-like strings from test/reference data.
+trufflehog*.jsonl
+th-*.jsonl
+pnpm-audit.json
+_tmp_*
+tmp-*.log
+
+# Local pnpm content-addressable store — regenerable via `pnpm install`, never commit.
+.pnpm-store-local/
+
+# Transient parity dumps and install logs — regenerable, never commit.
+parity-dump/
+install.log

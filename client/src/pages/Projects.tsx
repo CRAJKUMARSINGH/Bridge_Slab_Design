@@ -188,12 +188,14 @@ function MyProjectsSection({ onLoadIntoDesign }: { onLoadIntoDesign: (p: DbProje
           <input
             autoFocus
             required
+            aria-label="New project name"
             placeholder="Project name *"
             value={newName}
             onChange={e => setNewName(e.target.value)}
             className="w-full rounded-lg border border-[var(--app-glass-border)] bg-app-card/60 px-3 py-2 text-xs text-app-fg placeholder:text-app-muted focus:outline-none focus:ring-1 focus:ring-app-accent"
           />
           <input
+            aria-label="New project location"
             placeholder="Location (optional)"
             value={newLocation}
             onChange={e => setNewLocation(e.target.value)}
@@ -379,6 +381,7 @@ export function Projects() {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-app-muted" />
             <input
+              aria-label="Search projects by name, river or code"
               className="h-8 w-52 rounded-lg border border-[var(--app-glass-border)] bg-app-card/60 pl-8 pr-3 text-xs text-app-fg placeholder:text-app-muted focus:outline-none focus:ring-1 focus:ring-app-accent"
               placeholder="Search by name, river, code…"
               value={query}

@@ -41,17 +41,20 @@ function CellInput({
   value,
   type,
   className,
+  ariaLabel,
   onCommit,
 }: {
   value: string;
   type: 'text' | 'number';
   className: string;
+  ariaLabel: string;
   onCommit: (raw: string) => void;
 }) {
   return (
     <input
       type={type === 'number' ? 'text' : 'text'}
       inputMode={type === 'number' ? 'decimal' : undefined}
+      aria-label={ariaLabel}
       defaultValue={value}
       key={value}
       className={`box-border w-full min-w-0 border border-[#bfbfbf] px-1 py-0.5 text-[11px] ${className}`}
@@ -96,16 +99,20 @@ function renderRow(
               <CellInput
                 value={text}
                 type="number"
+                ariaLabel={`${cells[0] || `row ${ri + 1}`} — ${cross.field} for point ${cross.pointIndex + 1}`}
                 className={styleClass('in-red')}
                 onCommit={(raw) => {
                   const n = parseFloat(raw);
+                  // Non-finite input keeps the stored value; coercing to 0 silently
+                  // rewrites a geometry row with a zero chainage/level.
+                  if (!Number.isFinite(n)) return;
                   onApply((prev) => {
                     const pts = [...prev.crossSectionData];
                     const p = pts[cross.pointIndex];
                     if (!p) return prev;
                     pts[cross.pointIndex] = {
                       ...p,
-                      [cross.field]: Number.isFinite(n) ? n : 0,
+                      [cross.field]: n,
                     };
                     return { ...prev, crossSectionData: pts };
                   });
@@ -121,6 +128,7 @@ function renderRow(
               <CellInput
                 value={text}
                 type={editType === 'text' ? 'text' : 'number'}
+                ariaLabel={`${cells[0] || `row ${ri + 1}`} — ${String(editField)}`}
                 className={styleClass(st as WbCellStyle)}
                 onCommit={(raw) => {
                   onApply((prev) => {
@@ -128,8 +136,8 @@ function renderRow(
                       return { ...prev, [editField]: raw } as ProjectInput;
                     }
                     const n = parseFloat(raw);
-                    const num = Number.isFinite(n) ? n : 0;
-                    return { ...prev, [editField]: num } as ProjectInput;
+                    if (!Number.isFinite(n)) return prev;
+                    return { ...prev, [editField]: n } as ProjectInput;
                   });
                 }}
               />

@@ -5,7 +5,7 @@
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import calculateCompleteDesign from '../bridge-excel-generator/design-engine';
+import { calculateCompleteDesign } from '../bridge-excel-generator/design-engine.ts';
 import type { EnhancedProjectInput } from '../bridge-excel-generator/types';
 import { generateComprehensivePDFWithPageCount } from '../server/comprehensive-pdf-export';
 import { buildElevenBridgeCases, expectedDesignSmokeCaseCount } from './eleven-bridge-cases';

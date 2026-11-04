@@ -1,8 +1,6 @@
 import { Link } from 'wouter';
 import { useQuery } from '@tanstack/react-query';
 import { GitMerge, ArrowRight, LayoutDashboard, FileText, Droplets, Layers, Ruler } from 'lucide-react';
-import { ModelSwitcher } from '@/components/ModelSwitcher';
-import { useModelStore } from '@/stores/useModelStore';
 
 type FeatureFlagsResponse = {
   success?: boolean;
@@ -23,7 +21,6 @@ async function fetchFeatureFlags(): Promise<NonNullable<FeatureFlagsResponse['fl
 }
 
 export function MergeIntegration() {
-  const activeModel = useModelStore((s) => s.activeModel);
   const { data: flags, isLoading: flagsLoading, error: flagsError } = useQuery({
     queryKey: ['feature-flags'],
     queryFn: fetchFeatureFlags,
@@ -32,7 +29,7 @@ export function MergeIntegration() {
 
   const mergeLinks = [
     { href: '/design', label: 'Design', desc: 'Full workbook inputs, exports, previews', icon: Layers },
-    { href: '/dashboard', label: 'Dashboard', desc: '50-sheet registry and model banner', icon: LayoutDashboard },
+    { href: '/dashboard', label: 'Dashboard', desc: 'Sheet registry and stability verdicts', icon: LayoutDashboard },
     { href: '/report', label: 'Narrative Report', desc: 'Repo B-style prose report', icon: FileText },
     { href: '/hydraulics', label: 'Hydraulics', desc: 'Standalone hydraulic flow', icon: Droplets },
     { href: '/slab-design', label: 'Slab Design', desc: 'IRC slab strip checks', icon: Ruler },
@@ -52,7 +49,7 @@ export function MergeIntegration() {
             <p className="mt-2 max-w-3xl text-sm text-app-muted leading-relaxed">
               This build combines <strong className="text-app-fg">Repo A</strong> (production bridge workbook generator,
               API, and primary UI) with <strong className="text-app-fg">Repo B</strong> additions (narrative reporting,
-              dashboard patterns, optional slab/hydraulic entry points). The merge is part of the app: choose Model A or B,
+              dashboard patterns, optional slab/hydraulic entry points). One design engine, one workbook:
               use the routes below, and verify server flags when deploying.
             </p>
           </div>
@@ -82,12 +79,10 @@ export function MergeIntegration() {
         <div className="glass-panel p-6">
           <h3 className="text-lg font-semibold text-app-fg">Calculation model</h3>
           <p className="mt-1 text-sm text-app-muted">
-            Active: <strong className="text-app-fg">{activeModel === 'model-a' ? 'Model A' : 'Model B'}</strong>. Selection
-            is stored in the browser and shown on Design and Dashboard. Final choice after the AprilùMay 2026 trial.
+            One design engine emits one 56-sheet ExcelJS workbook per project. The earlier
+            Model A / Model B preference was retired on 2026-10-05: nothing in the pipeline read
+            it, so offering the choice would have implied two sets of numbers where only one exists.
           </p>
-          <div className="mt-4 max-w-md">
-            <ModelSwitcher />
-          </div>
         </div>
 
         <div className="glass-panel p-6">
@@ -95,7 +90,7 @@ export function MergeIntegration() {
           <p className="mt-1 text-sm text-app-muted">
             From <code className="rounded bg-app-card px-1 text-xs">GET /api/design/feature-flags</code> (Refapp rollout).
           </p>
-          {flagsLoading && <p className="mt-4 text-sm text-app-muted">Loading flagsù</p>}
+          {flagsLoading && <p className="mt-4 text-sm text-app-muted">Loading flagsÔøΩ</p>}
           {flagsError && (
             <p className="mt-4 text-sm text-amber-600 dark:text-amber-400">
               Could not load flags (is the API running?). Defaults apply on the server.
@@ -123,21 +118,19 @@ export function MergeIntegration() {
       <div className="glass-panel p-6 md:p-8">
         <h3 className="text-lg font-semibold text-app-fg">Merge routes in this app</h3>
         <p className="mt-1 text-sm text-app-muted">
-          These screens are wired in <code className="rounded bg-app-card px-1 text-xs">App.tsx</code> ù use them together as one product.
+          These screens are wired in <code className="rounded bg-app-card px-1 text-xs">App.tsx</code> ÔøΩ use them together as one product.
         </p>
         <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {mergeLinks.map(({ href, label, desc, icon: Icon }) => (
-            <Link key={href} href={href}>
-              <a className="group flex items-start gap-3 rounded-xl border border-[var(--app-glass-border)] bg-app-card/40 p-4 transition hover:border-app-accent/40 hover:bg-app-card/60">
-                <Icon className="mt-0.5 h-5 w-5 shrink-0 text-app-accent" aria-hidden />
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="font-medium text-app-fg">{label}</span>
-                    <ArrowRight className="h-4 w-4 shrink-0 text-app-muted opacity-0 transition group-hover:opacity-100" />
-                  </div>
-                  <p className="mt-1 text-xs text-app-muted">{desc}</p>
+            <Link key={href} href={href} className="group flex items-start gap-3 rounded-xl border border-[var(--app-glass-border)] bg-app-card/40 p-4 transition hover:border-app-accent/40 hover:bg-app-card/60">
+              <Icon className="mt-0.5 h-5 w-5 shrink-0 text-app-accent" aria-hidden />
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-medium text-app-fg">{label}</span>
+                  <ArrowRight className="h-4 w-4 shrink-0 text-app-muted opacity-0 transition group-hover:opacity-100" />
                 </div>
-              </a>
+                <p className="mt-1 text-xs text-app-muted">{desc}</p>
+              </div>
             </Link>
           ))}
         </div>

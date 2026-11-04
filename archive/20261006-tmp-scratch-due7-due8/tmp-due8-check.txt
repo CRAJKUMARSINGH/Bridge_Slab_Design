@@ -1,0 +1,38 @@
+
+> workspace@0.0.0 check E:\Rajkumar\Bridge_Slab_Design
+> pnpm run typecheck && pnpm run lint:narrative
+
+
+> workspace@0.0.0 typecheck E:\Rajkumar\Bridge_Slab_Design
+> pnpm run typecheck:libs && pnpm run typecheck:flat && pnpm run typecheck:client && pnpm run typecheck:tools && pnpm -r --filter "./artifacts/**" --filter "./scripts" --if-present run typecheck
+
+
+> workspace@0.0.0 typecheck:libs E:\Rajkumar\Bridge_Slab_Design
+> tsc --build
+
+
+> workspace@0.0.0 typecheck:flat E:\Rajkumar\Bridge_Slab_Design
+> tsc -p tsconfig.flat.json --noEmit
+
+
+> workspace@0.0.0 typecheck:client E:\Rajkumar\Bridge_Slab_Design
+> tsc -p tsconfig.client.json --noEmit
+
+
+> workspace@0.0.0 typecheck:tools E:\Rajkumar\Bridge_Slab_Design
+> tsc -p scripts/tsconfig.tools.json --noEmit
+
+Scope: 3 of 11 workspace projects
+artifacts/mockup-sandbox typecheck$ tsc -p tsconfig.json --noEmit
+artifacts/api-server typecheck$ tsc -p tsconfig.json --noEmit
+scripts typecheck$ tsc -p tsconfig.json --noEmit
+scripts typecheck: Done
+artifacts/api-server typecheck: Done
+artifacts/mockup-sandbox typecheck: Done
+
+> workspace@0.0.0 lint:narrative E:\Rajkumar\Bridge_Slab_Design
+> tsx scripts/lint-narrative-no-hardcoded-numbers.ts
+
+NARRATIVE LINT: OK — 158 prose spans checked across lib/narrative/src, bridge-excel-generator/narrative-engine.ts; no hard-coded numbers (citations and units allowed by the explicit list).
+CHECK_EXIT=0
+37:CHECK_EXIT=0

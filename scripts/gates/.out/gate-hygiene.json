@@ -1,0 +1,9 @@
+{
+  "name": "gate-hygiene",
+  "ts": "2026-10-24T14:38:11.572Z",
+  "commit": "local",
+  "pass": true,
+  "assertions": 7,
+  "declared": 7,
+  "detail": ""
+}

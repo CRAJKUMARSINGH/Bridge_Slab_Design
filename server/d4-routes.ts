@@ -1,8 +1,10 @@
-import { Router } from "express";
-import { and, desc, eq, sql } from "drizzle-orm";
+import { Router, type Response } from "express";
+import { and, desc, eq, sql, type SQL } from "drizzle-orm";
 import { z } from "zod";
+import { readFileSync, mkdirSync, writeFileSync, existsSync } from "node:fs";
+import { dirname, join } from "node:path";
 import { dbGuard } from "./db-guard";
-import { requireDb } from "../shared/db";
+import { db, requireDb } from "../shared/db";
 import { isSimilar } from "./similarity";
 import {
   analysisRecords,
@@ -10,6 +12,68 @@ import {
   fileRecords,
   projects,
 } from "../shared/schema";
+
+// ---------------------------------------------------------------------------
+// LOVABLE-003: local JSON file-store for projects, used when no Neon DB is
+// configured.  This keeps the My Projects section working for local dev and
+// preview deployments that do not set DATABASE_URL.
+// ---------------------------------------------------------------------------
+type LocalProject = {
+  id: number;
+  name: string;
+  location: string | null;
+  district: string | null;
+  engineer: string | null;
+  designData: Record<string, unknown> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+const LOCAL_STORE_PATH = join(process.cwd(), "data", "projects-local.json");
+
+function ensureStoreDir(): void {
+  try { mkdirSync(dirname(LOCAL_STORE_PATH), { recursive: true }); } catch { /* already exists */ }
+}
+
+function loadLocalProjects(): LocalProject[] {
+  ensureStoreDir();
+  if (!existsSync(LOCAL_STORE_PATH)) return [];
+  try {
+    const raw = readFileSync(LOCAL_STORE_PATH, "utf-8");
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed as LocalProject[] : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveLocalProjects(rows: LocalProject[]): void {
+  ensureStoreDir();
+  writeFileSync(LOCAL_STORE_PATH, JSON.stringify(rows, null, 2), "utf-8");
+}
+
+function nextLocalId(rows: LocalProject[]): number {
+  return rows.reduce((max, r) => Math.max(max, r.id), 0) + 1;
+}
+
+function mapLocalProject(p: LocalProject, fileCount = 0, recordCount = 0) {
+  const designData = p.designData && typeof p.designData === "object" ? p.designData : {};
+  return {
+    id: p.id,
+    name: p.name,
+    description: typeof designData.description === "string" ? designData.description : null,
+    bridgeType: typeof designData.bridgeType === "string" ? designData.bridgeType : null,
+    location: p.location,
+    status: typeof designData.status === "string" ? designData.status : "active",
+    fileCount,
+    recordCount,
+    createdAt: p.createdAt,
+    updatedAt: p.updatedAt,
+  };
+}
+
+// Helper that picks DB when available otherwise falls back to local file store.
+// Used ONLY for /projects routes — files / records / comparisons still require DB.
+const useDbForProjects = !!db;
 
 function parseId(raw: string): number | null {
   const id = Number.parseInt(raw, 10);
@@ -91,7 +155,7 @@ const recordsQuerySchema = z.object({
   fileId: z.coerce.number().int().positive().optional(),
 });
 
-function badRequest(res: any, issues: z.ZodIssue[], message = "Invalid request body") {
+function badRequest(res: Response, issues: z.ZodIssue[], message = "Invalid request body") {
   return res.status(400).json({
     error: message,
     issues: issues.map((i) => ({
@@ -101,7 +165,7 @@ function badRequest(res: any, issues: z.ZodIssue[], message = "Invalid request b
   });
 }
 
-function parseIdOrBad(req: { params: { id?: string } }, res: any): number | null {
+function parseIdOrBad(req: { params: { id?: string } }, res: Response): number | null {
   const parsed = idParamSchema.safeParse(req.params ?? {});
   if (!parsed.success) {
     badRequest(res, parsed.error.issues, "Invalid id parameter");
@@ -201,37 +265,36 @@ function mapComparisonRow(row: typeof comparisons.$inferSelect) {
 }
 
 const router = Router();
-router.use(dbGuard);
+
+// NOTE: dbGuard is NOT blanket-applied here. /projects routes work against a
+// local JSON file-store when no Neon DB is configured (LOVABLE-003). The
+// remaining routes (/files, /records, /comparisons) still require a DB and
+// have dbGuard applied on a per-route basis.
 
 router.get("/projects", async (_req, res, next) => {
   try {
-    const db = requireDb();
-    const projectRows = await db.select().from(projects).orderBy(desc(projects.id));
-    const fileCounts = await db
-      .select({
-        projectId: fileRecords.projectId,
-        count: sql<number>`count(*)`,
-      })
-      .from(fileRecords)
-      .groupBy(fileRecords.projectId);
-    const recordCounts = await db
-      .select({
-        projectId: analysisRecords.projectId,
-        count: sql<number>`count(*)`,
-      })
-      .from(analysisRecords)
-      .groupBy(analysisRecords.projectId);
-    const fileCountMap = new Map<number, number>();
-    const recordCountMap = new Map<number, number>();
-    for (const item of fileCounts) {
-      if (item.projectId) fileCountMap.set(item.projectId, item.count);
+    if (useDbForProjects) {
+      const d = requireDb();
+      const projectRows = await d.select().from(projects).orderBy(desc(projects.id));
+      const fileCounts = await d
+        .select({ projectId: fileRecords.projectId, count: sql<number>`count(*)` })
+        .from(fileRecords)
+        .groupBy(fileRecords.projectId);
+      const recordCounts = await d
+        .select({ projectId: analysisRecords.projectId, count: sql<number>`count(*)` })
+        .from(analysisRecords)
+        .groupBy(analysisRecords.projectId);
+      const fileCountMap = new Map<number, number>();
+      const recordCountMap = new Map<number, number>();
+      for (const item of fileCounts) if (item.projectId) fileCountMap.set(item.projectId, item.count);
+      for (const item of recordCounts) if (item.projectId) recordCountMap.set(item.projectId, item.count);
+      res.json(
+        projectRows.map((row) => mapProjectRow(row, fileCountMap.get(row.id) ?? 0, recordCountMap.get(row.id) ?? 0)),
+      );
+    } else {
+      const rows = loadLocalProjects().sort((a, b) => b.id - a.id);
+      res.json(rows.map((r) => mapLocalProject(r, 0, 0)));
     }
-    for (const item of recordCounts) {
-      if (item.projectId) recordCountMap.set(item.projectId, item.count);
-    }
-    res.json(
-      projectRows.map((row) => mapProjectRow(row, fileCountMap.get(row.id) ?? 0, recordCountMap.get(row.id) ?? 0)),
-    );
   } catch (err) {
     next(err);
   }
@@ -239,25 +302,44 @@ router.get("/projects", async (_req, res, next) => {
 
 router.post("/projects", async (req, res, next) => {
   try {
-    const db = requireDb();
     const parsed = createProjectSchema.safeParse(req.body ?? {});
     if (!parsed.success) return badRequest(res, parsed.error.issues);
     const body = parsed.data;
-    const [created] = await db
-      .insert(projects)
-      .values({
+    const now = new Date().toISOString();
+    const designData = {
+      description: body.description ?? null,
+      bridgeType: body.bridgeType ?? null,
+      status: body.status ?? "active",
+    };
+    if (useDbForProjects) {
+      const d = requireDb();
+      const [created] = await d
+        .insert(projects)
+        .values({
+          name: body.name,
+          location: body.location ?? null,
+          district: null,
+          engineer: null,
+          designData,
+        })
+        .returning();
+      res.status(201).json(mapProjectRow(created));
+    } else {
+      const rows = loadLocalProjects();
+      const created: LocalProject = {
+        id: nextLocalId(rows),
         name: body.name,
         location: body.location ?? null,
         district: null,
         engineer: null,
-        designData: {
-          description: body.description ?? null,
-          bridgeType: body.bridgeType ?? null,
-          status: body.status ?? "active",
-        },
-      })
-      .returning();
-    res.status(201).json(mapProjectRow(created));
+        designData,
+        createdAt: now,
+        updatedAt: now,
+      };
+      rows.push(created);
+      saveLocalProjects(rows);
+      res.status(201).json(mapLocalProject(created));
+    }
   } catch (err) {
     next(err);
   }
@@ -267,10 +349,16 @@ router.get("/projects/:id", async (req, res, next) => {
   try {
     const id = parseIdOrBad(req, res);
     if (!id) return;
-    const db = requireDb();
-    const [row] = await db.select().from(projects).where(eq(projects.id, id)).limit(1);
-    if (!row) return res.status(404).json({ error: "Project not found" });
-    res.json(mapProjectRow(row));
+    if (useDbForProjects) {
+      const d = requireDb();
+      const [row] = await d.select().from(projects).where(eq(projects.id, id)).limit(1);
+      if (!row) return res.status(404).json({ error: "Project not found" });
+      res.json(mapProjectRow(row));
+    } else {
+      const row = loadLocalProjects().find((r) => r.id === id);
+      if (!row) return res.status(404).json({ error: "Project not found" });
+      res.json(mapLocalProject(row));
+    }
   } catch (err) {
     next(err);
   }
@@ -280,33 +368,57 @@ router.patch("/projects/:id", async (req, res, next) => {
   try {
     const id = parseIdOrBad(req, res);
     if (!id) return;
-    const db = requireDb();
     const parsed = updateProjectSchema.safeParse(req.body ?? {});
     if (!parsed.success) return badRequest(res, parsed.error.issues);
     const body = parsed.data;
-    const [existing] = await db.select().from(projects).where(eq(projects.id, id)).limit(1);
-    if (!existing) return res.status(404).json({ error: "Project not found" });
-    const existingData =
-      existing.designData && typeof existing.designData === "object"
-        ? (existing.designData as Record<string, unknown>)
-        : {};
-    const [updated] = await db
-      .update(projects)
-      .set({
-        name: body.name ?? undefined,
-        location: body.location ?? undefined,
+    const now = new Date().toISOString();
+    if (useDbForProjects) {
+      const d = requireDb();
+      const [existing] = await d.select().from(projects).where(eq(projects.id, id)).limit(1);
+      if (!existing) return res.status(404).json({ error: "Project not found" });
+      const existingData =
+        existing.designData && typeof existing.designData === "object"
+          ? (existing.designData as Record<string, unknown>)
+          : {};
+      const [updated] = await d
+        .update(projects)
+        .set({
+          name: body.name ?? undefined,
+          location: body.location ?? undefined,
+          designData: {
+            ...existingData,
+            ...(body.description !== undefined ? { description: body.description } : {}),
+            ...(body.bridgeType !== undefined ? { bridgeType: body.bridgeType } : {}),
+            ...(body.status !== undefined ? { status: body.status } : {}),
+          },
+          updatedAt: new Date(),
+        })
+        .where(eq(projects.id, id))
+        .returning();
+      if (!updated) return res.status(404).json({ error: "Project not found" });
+      res.json(mapProjectRow(updated));
+    } else {
+      const rows = loadLocalProjects();
+      const idx = rows.findIndex((r) => r.id === id);
+      if (idx === -1) return res.status(404).json({ error: "Project not found" });
+      const existing = rows[idx]!;
+      const existingData = existing.designData ?? {};
+      const merged: LocalProject = {
+        ...existing,
+        name: body.name ?? existing.name,
+        location: body.location ?? existing.location,
         designData: {
           ...existingData,
           ...(body.description !== undefined ? { description: body.description } : {}),
           ...(body.bridgeType !== undefined ? { bridgeType: body.bridgeType } : {}),
           ...(body.status !== undefined ? { status: body.status } : {}),
         },
-        updatedAt: new Date(),
-      })
-      .where(eq(projects.id, id))
-      .returning();
-    if (!updated) return res.status(404).json({ error: "Project not found" });
-    res.json(mapProjectRow(updated));
+        updatedAt: now,
+      };
+      rows[idx] = merged;
+      saveLocalProjects(rows);
+      res.json(mapLocalProject(merged));
+    }
   } catch (err) {
     next(err);
   }
@@ -316,13 +428,21 @@ router.delete("/projects/:id", async (req, res, next) => {
   try {
     const id = parseIdOrBad(req, res);
     if (!id) return;
-    const db = requireDb();
-    await db.delete(projects).where(eq(projects.id, id));
+    if (useDbForProjects) {
+      const d = requireDb();
+      await d.delete(projects).where(eq(projects.id, id));
+    } else {
+      const rows = loadLocalProjects().filter((r) => r.id !== id);
+      saveLocalProjects(rows);
+    }
     res.status(204).send();
   } catch (err) {
     next(err);
   }
 });
+
+// ── DB-only routes below (files / records / comparisons) ─────────────────────
+router.use(dbGuard);
 
 router.get("/files", async (req, res, next) => {
   try {
@@ -331,7 +451,7 @@ router.get("/files", async (req, res, next) => {
     if (!q.success) return badRequest(res, q.error.issues, "Invalid query parameters");
     const queryProjectId = q.data.projectId ?? null;
     const queryFileType = q.data.fileType ?? null;
-    const conditions = [];
+    const conditions: SQL[] = [];
     if (queryProjectId) conditions.push(eq(fileRecords.projectId, queryProjectId));
     if (queryFileType) conditions.push(eq(fileRecords.fileType, queryFileType));
     const rows = conditions.length
@@ -464,7 +584,7 @@ router.get("/records", async (req, res, next) => {
     if (!q.success) return badRequest(res, q.error.issues, "Invalid query parameters");
     const queryProjectId = q.data.projectId ?? null;
     const queryFileId = q.data.fileId ?? null;
-    const conditions = [];
+    const conditions: SQL[] = [];
     if (queryProjectId) conditions.push(eq(analysisRecords.projectId, queryProjectId));
     if (queryFileId) conditions.push(eq(analysisRecords.fileId, queryFileId));
     const rows = conditions.length

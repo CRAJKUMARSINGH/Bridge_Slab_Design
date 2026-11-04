@@ -32,12 +32,18 @@ describe("IRC 21:2000 slab design", () => {
     expect(r.Kfactor).toBeLessThanOrEqual(2.1);
   });
 
-  it("working stress constants — M25/Fe415 per IS 456:2000", () => {
+  it("working stress constants — M25/Fe415 per IS 456:2000 Table 21 (CORRECTED)", () => {
     const r = designIRCSlab(DEFAULT_IRC_SLAB);
-    expect(r.sigmaCb).toBe(8.33);  // IS 456 Table 21
-    expect(r.sigmaSt).toBe(200);   // IS 456 Table 22
-    expect(r.m).toBe(10);
-    expect(r.Q).toBe(1.11);
+    // sigmaCb: M25 = 8.5 N/mm² per IS 456:2000 Table 21 (corrected from 8.33)
+    expect(r.sigmaCb).toBeCloseTo(8.5, 5);
+    // sigmaSt: Fe415 barDia=20mm > 12mm → 190 N/mm² per IS 456:2000 Table 21
+    expect(r.sigmaSt).toBeCloseTo(190, 5);
+    // m = 280/(3*sigmaCb): derived per IS 456:2000 Cl. B-1.3 (corrected from hardcoded 10)
+    expect(r.m).toBeCloseTo(280 / (3 * 8.5), 2);
+    // Q = sigmaCb/2 * (m*sigmaSt)/(m*sigmaSt + sigmaCb): derived (corrected from hardcoded 1.11)
+    const expectedM = 280 / (3 * 8.5);
+    const expectedQ = (8.5 / 2) * (expectedM * 190) / (expectedM * 190 + 8.5);
+    expect(r.Q).toBeCloseTo(expectedQ, 2);
     expect(r.requiredSteel).toBeGreaterThan(0);
   });
 
@@ -57,12 +63,19 @@ describe("IRC 21:2000 slab design", () => {
     expect(long.impactFactor).toBe(10);
   });
 
-  it("IRC:6 impact: 50% at L≤3m, 10% at L>45m", () => {
-    const short = designIRCSlab({ ...DEFAULT_IRC_SLAB, clearSpan: 2.0, impactMethod: "irc6" });
+  it("IRC:6 impact: 50% at L≤3m, formula 4.5/(6+L) for 3<L≤45m", () => {
+    // Short span — L≤3m → IRC:6 caps impact at 50%.
+    // Set a1 < clearSpan to satisfy the cross-field load-patch rule.
+    const short = designIRCSlab({ ...DEFAULT_IRC_SLAB, clearSpan: 2.0, a1: 1.8, impactMethod: "irc6" });
     expect(short.impactFactor).toBe(50);
 
-    const long = designIRCSlab({ ...DEFAULT_IRC_SLAB, clearSpan: 50.0, impactMethod: "irc6" });
-    expect(long.impactFactor).toBe(10);
+    // Long span — slab-bridge spans are capped at 40 m (schema), so the IRC:6
+    // >45 m / 10 % floor is not reachable through designIRCSlab. Verify the
+    // 4.5/(6+L) formula is applied on the effective span instead.
+    const long = designIRCSlab({ ...DEFAULT_IRC_SLAB, clearSpan: 40.0, impactMethod: "irc6" });
+    const expectedIF = (4.5 / (6 + long.effectiveSpan)) * 100;
+    expect(long.impactFactor).toBeCloseTo(expectedIF, 2);
+    expect(long.impactFactor).toBeLessThan(50);
   });
 
   it("shear check returns OK or FAIL (not undefined)", () => {

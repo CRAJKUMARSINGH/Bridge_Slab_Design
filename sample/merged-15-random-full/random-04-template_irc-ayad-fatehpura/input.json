@@ -1,0 +1,74 @@
+{
+  "projectName": "Construction of High-Level Bridge across AYAD River at Fatehpura",
+  "location": "Fatehpura, AYAD River, Udaipur",
+  "riverName": "AYAD",
+  "bridgeType": "high-level",
+  "spanLength": 11.808,
+  "numberOfSpans": 4,
+  "skew": 0,
+  "carriageWidth": 7.5,
+  "numberOfLanes": 2,
+  "totalLength": 48,
+  "hfl": 584.726,
+  "bedLevel": 580.2,
+  "foundationLevel": 575.5,
+  "discharge": 404.25,
+  "manningN": 0.03308,
+  "bedSlope": 984.313,
+  "laceysSiltFactor": 1.5,
+  "crossSectionData": [
+    {
+      "chainage": 0,
+      "gl": 584
+    },
+    {
+      "chainage": 15,
+      "gl": 582.1
+    },
+    {
+      "chainage": 30,
+      "gl": 580.3
+    },
+    {
+      "chainage": 45,
+      "gl": 580
+    },
+    {
+      "chainage": 60,
+      "gl": 581.5
+    },
+    {
+      "chainage": 75,
+      "gl": 584.3
+    }
+  ],
+  "pierWidth": 1.2,
+  "pierLength": 3.5,
+  "pierDepth": 6,
+  "numberOfPiers": 3,
+  "pierBaseWidth": 2.5,
+  "pierBaseLength": 4.5,
+  "abutmentHeight": 9.5,
+  "abutmentWidth": 3.8,
+  "abutmentDepth": 5.5,
+  "dirtWallHeight": 2.5,
+  "returnWallLength": 6.5,
+  "concreteGrade": "M25",
+  "fck": 25,
+  "steelGrade": "Fe415",
+  "fy": 415,
+  "sbc": 192.112,
+  "phi": 30,
+  "gamma": 18,
+  "rtl": 588.5,
+  "agl": 581.2,
+  "nbl": 580.2,
+  "ofl": 584,
+  "dwl": 585.3,
+  "deckSlabThickness": 0.25,
+  "freeboardAboveHfl": 1.2,
+  "issuingAuthority": "PWD Rajasthan, Udaipur Division",
+  "jobNumber": "AYAD-FATEHPURA-HL",
+  "hardRockAvailable": false,
+  "deckSoffitLevel": 587
+}

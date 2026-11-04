@@ -1,0 +1,19 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+--- LLOAD ---
+  D5: value={"formula":"='STABILITY CHECK FOR PIER'!$B31*C5"} rawResult=0 text=""
+  D6: value={"formula":"='STABILITY CHECK FOR PIER'!$B31*C6"} rawResult=0 text=""
+--- General Abs. ---
+  C7: value={"formula":"='Abstract'!F7"} rawResult=0 text=""
+  D7: value={"formula":"=C7/$C14*100"} rawResult=0 text=""
+  C8: value={"formula":"='Abstract'!F8"} rawResult=0 text=""
+  D8: value={"formula":"=C8/$C14*100"} rawResult=0 text=""
+--- Abstract ---
+  F7: value={"formula":"=D7*E7"} rawResult=0 text=""
+  F8: value={"formula":"=D8*E8"} rawResult=0 text=""
+--- HYDRAULICS ---
+  C12: value={"formula":"=IF($F$4-B12>0,$F$4-B12,0)"} rawResult=0 text=""
+--- CROSS SECTION ---
+  C13: value={"formula":"=MAX(0,$E$4-B13)"} rawResult=0 text=""
+--- Bed Slope ---
+  D13: value={"formula":"=B13-B12","result":2.299999999999997} rawResult=2.299999999999997 text="2.299999999999997"

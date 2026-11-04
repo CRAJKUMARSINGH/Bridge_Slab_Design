@@ -1,0 +1,25 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+▶ API Integration — D4 CRUD Operations
+  ✔ GET /api/projects lists projects (102.8293ms)
+  ✔ POST /api/projects creates a project (40.0317ms)
+  ✔ GET /api/projects/:id returns single project details (0.6971ms)
+  ✔ PATCH /api/projects/:id updates project info (0.7457ms)
+  ✔ POST /api/files registers a file (7.4555ms)
+  ✔ GET /api/files lists uploaded design files (6.404ms)
+  ✔ POST /api/records creates a run record (9.533ms)
+  ✔ POST /api/comparisons generates a comparison set (8.2533ms)
+  ✔ GET /api/stats/summary returns status counters (6.4183ms)
+  ✔ DELETE /api/comparisons/:id cleans up comparison (0.4679ms)
+  ✔ DELETE /api/records/:id cleans up record (0.3091ms)
+  ✔ DELETE /api/files/:id cleans up file (0.389ms)
+  ✔ DELETE /api/projects/:id cleans up project (0.323ms)
+✔ API Integration — D4 CRUD Operations (190.0435ms)
+ℹ tests 13
+ℹ suites 1
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 206.8151

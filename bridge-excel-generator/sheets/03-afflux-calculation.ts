@@ -14,12 +14,57 @@
 import ExcelJS from 'exceljs';
 import { ProjectInput } from '../types';
 import { setColumnWidths, setCellFormula, setCellValue, mergeCells } from '../utils';
+import { computeCrossSectionHydraulics, getHydraulicsTotalRow } from './04-hydraulics';
+import { deckSlabThicknessOf } from '../input-contract';
+
+/**
+ * TS mirror of this sheet's calculation chain (cached formula results).
+ * NOTE: the legacy waterway definition used here — (spans−1)·span + 2×1.2
+ * screen width, minus pier blockage — differs from the engine definition
+ * (spans × spanLength). Until engineering picks one, the resulting AFL is
+ * exposed to other sheets for reconciliation only, not as their input.
+ */
+export function computeLegacyAffluxChain(input: ProjectInput) {
+  const hyd = computeCrossSectionHydraulics(input);
+  const ABUT_END_WIDTH_M = 1.2; // screening allowance for both abutment ends; pending survey end widths
+  const bridgeWidth = (input.numberOfSpans - 1) * input.spanLength + 2 * ABUT_END_WIDTH_M;
+  const slabThickness = deckSlabThicknessOf(input);
+  const avgDepth = input.hfl - input.bedLevel;
+  const effectiveWaterway = bridgeWidth - input.numberOfPiers * input.pierWidth;
+  const qPerMetre = effectiveWaterway > 0 ? input.discharge / effectiveWaterway : 0;
+  const meanScour = input.laceysSiltFactor > 0
+    ? 1.34 * Math.cbrt((qPerMetre * qPerMetre) / input.laceysSiltFactor)
+    : 0;
+  const unobstructedArea = bridgeWidth * avgDepth;
+  const totalObstruction =
+    bridgeWidth * slabThickness +
+    input.numberOfPiers * input.pierWidth * avgDepth +
+    2 * input.abutmentWidth * avgDepth;
+  // Molesworth pairs the natural flow section (A) with that same section after the
+  // bridge has choked it (a); mixing the surveyed A with a width x depth net area
+  // inverts the ratio and yields negative or absurd afflux.
+  const obstructedArea = Math.max(0, hyd.area - totalObstruction);
+  const afflux = obstructedArea > 0 && hyd.velocity >= 0
+    ? ((hyd.velocity ** 2 / 17.85) + 0.0152) * ((hyd.area / obstructedArea) ** 2 - 1)
+    : 0;
+  const afl = input.hfl + afflux;
+  return { hyd, bridgeWidth, slabThickness, avgDepth, meanScour, unobstructedArea, totalObstruction, obstructedArea, afflux, afl };
+}
 
 export async function generateAffluxCalculationSheet(
   workbook: ExcelJS.Workbook,
   input: ProjectInput
 ): Promise<void> {
   const ws = workbook.addWorksheet('afflux calculation');
+
+  const {
+    hyd, bridgeWidth, slabThickness, meanScour, unobstructedArea,
+    totalObstruction, obstructedArea, afflux, afl,
+  } = computeLegacyAffluxChain(input);
+  const avgDepth = input.hfl - input.bedLevel;
+  const hydTotalRow = getHydraulicsTotalRow(input.crossSectionData.length);
+  const hydARow = hydTotalRow + 2; // HYDRAULICS writes A (col C) / P (col C)
+  const hydPRow = hydTotalRow + 3;
   
   // Set column widths (matching original exactly)
   setColumnWidths(ws, [45, 8, 15, 15, 12, 12, 30, 20]);
@@ -60,7 +105,7 @@ export async function generateAffluxCalculationSheet(
   // Row 6: A = (cross-sectional area) - FORMULA REFERENCE
   setCellValue(ws, row, 1, 'A');
   setCellValue(ws, row, 2, '=');
-  setCellFormula(ws, row, 3, '=HYDRAULICS!B28', 490.30);
+  setCellFormula(ws, row, 3, `=HYDRAULICS!C${hydARow}`, Number(hyd.area.toFixed(3)));
   setCellValue(ws, row, 4, 'm2 ');
   setCellValue(ws, row, 7, 'A =');
   setCellValue(ws, row, 8, 'Cross sectional area in m2');
@@ -69,7 +114,7 @@ export async function generateAffluxCalculationSheet(
   // Row 7: P = (wetted perimeter) - FORMULA REFERENCE
   setCellValue(ws, row, 1, 'P');
   setCellValue(ws, row, 2, '=');
-  setCellFormula(ws, row, 3, '=HYDRAULICS!B29', 190.71);
+  setCellFormula(ws, row, 3, `=HYDRAULICS!C${hydPRow}`, Number(hyd.perimeter.toFixed(3)));
   setCellValue(ws, row, 4, ' m');
   setCellValue(ws, row, 7, 'P = ');
   setCellValue(ws, row, 8, 'Perimeter calculated in m');
@@ -113,7 +158,7 @@ export async function generateAffluxCalculationSheet(
   setCellValue(ws, row, 1, '  ');
   setCellValue(ws, row, 2, '=');
   // Manning's equation: V = (1/n) × (A/P)^(2/3) × √(1/S)
-  setCellFormula(ws, row, 3, '=(1/C10)*POWER(C6/C7,2/3)*SQRT(1/E8)', 1.84);
+  setCellFormula(ws, row, 3, '=(1/C10)*POWER(C6/C7,2/3)*SQRT(1/E8)', Number(hyd.velocity.toFixed(3)));
   setCellValue(ws, row, 4, 'm/sec.');
   row++;
   
@@ -121,7 +166,7 @@ export async function generateAffluxCalculationSheet(
   setCellValue(ws, row, 1, 'Q');
   setCellValue(ws, row, 2, '=');
   // Q = A × V
-  setCellFormula(ws, row, 3, '=C6*C13', 902.15);
+  setCellFormula(ws, row, 3, '=C6*C13', Number(hyd.discharge.toFixed(3)));
   setCellValue(ws, row, 4, 'Cumecs');
   row++;
   
@@ -142,7 +187,7 @@ export async function generateAffluxCalculationSheet(
   // Row 17: Regime width calculated - REAL FORMULA
   setCellValue(ws, row, 2, '=');
   // L = 4.8 × √Q
-  setCellFormula(ws, row, 3, '=4.8*SQRT(C14)', 144.18);
+  setCellFormula(ws, row, 3, '=4.8*SQRT(C14)', Number((4.8 * Math.sqrt(Math.max(0, hyd.discharge))).toFixed(3)));
   setCellValue(ws, row, 4, 'm');
   row++;
   
@@ -218,8 +263,8 @@ export async function generateAffluxCalculationSheet(
   
   // Row 29: Calculation - REAL FORMULA
   setCellValue(ws, row, 1, '=');
-  const totalWidth = (input.numberOfSpans - 1) * input.spanLength + 2 * 1.2; // Approximate
-  setCellValue(ws, row, 2, totalWidth);
+  const totalWidth = bridgeWidth;
+  setCellFormula(ws, row, 2, '=((C18-1)*F18)+2.4', totalWidth);
   setCellValue(ws, row, 3, '- (');
   setCellValue(ws, row, 4, input.numberOfPiers);
   setCellValue(ws, row, 5, 'x');
@@ -250,12 +295,14 @@ export async function generateAffluxCalculationSheet(
   // Row 33: Scour depth result - REAL FORMULA
   setCellValue(ws, row, 1, 'dsm =');
   // dsm = 1.34 × (Db²/Ksf)^(1/3)
-  setCellFormula(ws, row, 2, '=1.34*POWER(POWER(C32,2)/G27,1/3)', 5.82);
+  setCellFormula(ws, row, 2, '=1.34*POWER(POWER(C32,2)/G27,1/3)', Number(meanScour.toFixed(3)));
   setCellValue(ws, row, 3, 'm');
   row++;
   
-  // Row 34: IRC note
-  setCellValue(ws, row, 1, 'As per Clause No. 703-2-3-1 of IRC 78-1983 considering Scour at the pier two times of calculated scour depth below the highest flood level. But hard rock is available in foundation so the foundation will be anchored in the rock as per IRC guidelines.');
+  // Row 34: IRC note — must state the project's own ground condition, not assume rock.
+  setCellValue(ws, row, 1, input.hardRockAvailable
+    ? 'As per Clause No. 703-2-3-1 of IRC 78-1983 considering Scour at the pier two times of calculated scour depth below the highest flood level. But hard rock is available in foundation so the foundation will be anchored in the rock as per IRC guidelines.'
+    : 'As per Clause No. 703-2-3-1 of IRC 78-1983 considering Scour at the pier two times of calculated scour depth below the highest flood level. Hard rock is not stated at foundation level, so the founding depth is checked in soil as per IRC guidelines.');
   mergeCells(ws, row, 1, row, 8);
   row++;
   
@@ -310,27 +357,25 @@ export async function generateAffluxCalculationSheet(
   
   // Row 45: Unobstructed area calculation - REAL FORMULA
   setCellValue(ws, row, 1, 'Unobstructed Area of Flow after Bridge Construction =');
-  const bridgeWidth = (input.numberOfSpans - 1) * input.spanLength + 2 * 1.2;
-  setCellValue(ws, row, 3, bridgeWidth);
+  setCellFormula(ws, row, 3, '=((C18-1)*F18)+2.4', bridgeWidth);
   setCellValue(ws, row, 4, 'x');
-  const avgDepth = input.hfl - input.bedLevel;
-  setCellValue(ws, row, 5, avgDepth);
+  setCellFormula(ws, row, 5, '=B49-B59', avgDepth);
   setCellValue(ws, row, 6, '=');
-  setCellFormula(ws, row, 7, '=C45*E45', bridgeWidth * avgDepth);
+  setCellFormula(ws, row, 7, '=C45*E45', Number(unobstructedArea.toFixed(3)));
   setCellValue(ws, row, 8, 'm2 ');
   row++;
   
   // Row 46: A value
   setCellValue(ws, row, 1, 'A');
   setCellValue(ws, row, 2, '=');
-  setCellFormula(ws, row, 3, '=C6', 490.30);
+  setCellFormula(ws, row, 3, '=C6', Number(hyd.area.toFixed(3)));
   setCellValue(ws, row, 4, 'm2 ');
   row++;
   
   // Row 47: V value
   setCellValue(ws, row, 1, 'V');
   setCellValue(ws, row, 2, '=');
-  setCellFormula(ws, row, 3, '=C13', 1.84);
+  setCellFormula(ws, row, 3, '=C13', Number(hyd.velocity.toFixed(3)));
   setCellValue(ws, row, 4, 'm/sec.');
   row++;
   
@@ -348,33 +393,33 @@ export async function generateAffluxCalculationSheet(
   row++;
   
   setCellValue(ws, row, 1, 'Top Level of Deck slab : ');
-  setCellValue(ws, row, 2, input.hfl + 1.0);
+  setCellFormula(ws, row, 2, '=B49+1', input.hfl + 1.0);
   setCellValue(ws, row, 3, 'm');
   row++;
   
   setCellValue(ws, row, 1, 'Thickness of Slab and Wearing Coat');
-  setCellValue(ws, row, 2, 0.83);
+  setCellValue(ws, row, 2, slabThickness);
   setCellValue(ws, row, 3, 'm');
   row++;
   
   setCellValue(ws, row, 1, 'Length Of Slab');
-  setCellValue(ws, row, 2, bridgeWidth);
+  setCellFormula(ws, row, 2, '=C45', bridgeWidth);
   setCellValue(ws, row, 3, 'm');
   row++;
   
   setCellValue(ws, row, 1, 'Height of Obstruction');
-  setCellValue(ws, row, 2, 0.83);
+  setCellFormula(ws, row, 2, '=B51', slabThickness);
   setCellValue(ws, row, 3, 'm');
   row++;
   
   setCellValue(ws, row, 1, 'Area obstructed by deck slab');
-  setCellValue(ws, row, 2, bridgeWidth);
+  setCellFormula(ws, row, 2, '=C45', bridgeWidth);
   setCellValue(ws, row, 3, 'x');
-  setCellValue(ws, row, 4, 0.83);
+  setCellFormula(ws, row, 4, '=B51', slabThickness);
   row++;
   
   setCellValue(ws, row, 2, '=');
-  setCellFormula(ws, row, 3, '=B54*D54', bridgeWidth * 0.83);
+  setCellFormula(ws, row, 3, '=B54*D54', Number((bridgeWidth * slabThickness).toFixed(3)));
   setCellValue(ws, row, 4, 'm2 ');
   row++;
   
@@ -392,7 +437,7 @@ export async function generateAffluxCalculationSheet(
   row++;
   
   setCellValue(ws, row, 1, 'Soffit of Deck slab : ');
-  setCellValue(ws, row, 2, input.hfl + 0.17);
+  setCellFormula(ws, row, 2, '=B49+1-B51', input.hfl + 1.0 - slabThickness);
   setCellValue(ws, row, 3, 'm');
   row++;
   
@@ -422,12 +467,12 @@ export async function generateAffluxCalculationSheet(
   row++;
   
   setCellValue(ws, row, 2, '=');
-  setCellFormula(ws, row, 3, '=B63*D63', input.pierWidth * (input.hfl - input.bedLevel));
+  setCellFormula(ws, row, 3, '=B62*D62', input.pierWidth * (input.hfl - input.bedLevel));
   setCellValue(ws, row, 4, 'm2 ');
   row++;
   
   setCellValue(ws, row, 1, 'Total Area obstructed by piers  = ');
-  setCellFormula(ws, row, 2, '=C60*C64', input.numberOfPiers * input.pierWidth * (input.hfl - input.bedLevel));
+  setCellFormula(ws, row, 2, '=C60*C63', input.numberOfPiers * input.pierWidth * (input.hfl - input.bedLevel));
   setCellValue(ws, row, 3, 'm2 ');
   row++;
   
@@ -452,16 +497,16 @@ export async function generateAffluxCalculationSheet(
   setCellValue(ws, row, 1, 'Area obstructed by one Abutment  = ');
   setCellValue(ws, row, 2, input.abutmentWidth);
   setCellValue(ws, row, 3, 'x');
-  setCellFormula(ws, row, 4, '=B68', input.hfl - input.bedLevel);
+  setCellFormula(ws, row, 4, '=B67', input.hfl - input.bedLevel);
   row++;
   
   setCellValue(ws, row, 2, '=');
-  setCellFormula(ws, row, 3, '=B69*D69', input.abutmentWidth * (input.hfl - input.bedLevel));
+  setCellFormula(ws, row, 3, '=B68*D68', input.abutmentWidth * (input.hfl - input.bedLevel));
   setCellValue(ws, row, 4, 'm2 ');
   row++;
   
   setCellValue(ws, row, 1, 'Total Area obstructed by Abutments  = ');
-  setCellFormula(ws, row, 2, '=2*C70', 2 * input.abutmentWidth * (input.hfl - input.bedLevel));
+  setCellFormula(ws, row, 2, '=2*C69', 2 * input.abutmentWidth * (input.hfl - input.bedLevel));
   setCellValue(ws, row, 3, 'm2 ');
   row++;
   
@@ -469,15 +514,16 @@ export async function generateAffluxCalculationSheet(
   
   // Row 73: Total obstruction
   setCellValue(ws, row, 1, 'Total Area obstructed  = ');
-  setCellFormula(ws, row, 2, '=C55+B65+B71', 0);
+  setCellFormula(ws, row, 2, '=C55+B64+B70', Number(totalObstruction.toFixed(3)));
   setCellValue(ws, row, 3, 'm2 ');
   row++;
   
   // Row 74: Obstructed area 'a'
   setCellValue(ws, row, 1, 'a');
   setCellValue(ws, row, 2, '=');
-  setCellFormula(ws, row, 3, '=G45-B73', 0);
+  setCellFormula(ws, row, 3, '=C46-B71', Number(obstructedArea.toFixed(3)));
   setCellValue(ws, row, 4, 'm2 ');
+  setCellValue(ws, row, 5, 'a = A − total obstruction (net flow area under the bridge)');
   row++;
   
   // Row 75: Afflux calculation - MOLESWORTH FORMULA
@@ -487,7 +533,7 @@ export async function generateAffluxCalculationSheet(
   
   setCellValue(ws, row, 2, '=');
   // Molesworth formula: h = ((V²/17.85) + 0.0152) × (A²/a² - 1)
-  setCellFormula(ws, row, 3, '=((POWER(C47,2)/17.85)+0.0152)*(POWER(C46/C74,2)-1)', 0.45);
+  setCellFormula(ws, row, 3, '=((POWER(C47,2)/17.85)+0.0152)*(POWER(C46/C72,2)-1)', Number(afflux.toFixed(3)));
   setCellValue(ws, row, 4, 'm');
   row++;
   
@@ -498,7 +544,7 @@ export async function generateAffluxCalculationSheet(
   row++;
   
   setCellValue(ws, row, 2, '=');
-  setCellFormula(ws, row, 3, '=B49+D76', input.hfl + 0.45);
+  setCellFormula(ws, row, 3, '=B49+C74', Number(afl.toFixed(3)));
   setCellValue(ws, row, 4, 'm');
   row++;
   
@@ -539,12 +585,12 @@ export async function generateAffluxCalculationSheet(
   row++;
   
   setCellValue(ws, row, 1, 'Afflux Flood Level (AFL)');
-  setCellFormula(ws, row, 2, '=C78', input.hfl + 0.45);
+  setCellFormula(ws, row, 2, '=C76', Number(afl.toFixed(3)));
   setCellValue(ws, row, 3, 'm MSL');
   row++;
   
   setCellValue(ws, row, 1, 'Design Water Level (DWL)');
-  setCellFormula(ws, row, 2, '=C86', input.hfl + 0.45);
+  setCellFormula(ws, row, 2, '=B84', Number(afl.toFixed(3)));
   setCellValue(ws, row, 3, 'm MSL');
   row++;
   

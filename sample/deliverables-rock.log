@@ -1,0 +1,96 @@
+
+> workspace@0.0.0 deliverables E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run deliverables
+
+
+> @workspace/scripts@0.0.0 deliverables E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./regenerate-test-output.ts
+
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 46 sheets with real formulas...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+  → Calculating pier design...
+  → Calculating TYPE1 abutment design...
+  → Calculating C1 abutment design...
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 46 sheets with real formulas...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+  → Calculating pier design...
+  → Calculating TYPE1 abutment design...
+  → Calculating C1 abutment design...
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 46 sheets with real formulas...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+  → Calculating pier design...
+  → Calculating TYPE1 abutment design...
+  → Calculating C1 abutment design...
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 46 sheets with real formulas...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+  → Calculating pier design...
+  → Calculating TYPE1 abutment design...
+  → Calculating C1 abutment design...
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+  design-workbook.xlsx         69,537 bytes
+  sheet-book.pdf               1,610,984 bytes
+  comprehensive-report.pdf     4,528,506 bytes
+  short-design-report.pdf      202,761 bytes
+  design-report.html           274,604 bytes
+  irc-checklist.html           39,467 bytes
+
+Wrote 6 deliverables to E:\Rajkumar\Bridge_Slab_Design\scripts\test-output

@@ -91,6 +91,16 @@ export function mergeProjectInput(partial: Partial<ProjectInput> | null | undefi
         ? cloneCrossSection(partial.crossSectionData as ProjectInput['crossSectionData'])
         : cloneCrossSection(base.crossSectionData),
   };
+  // Overriding the span geometry must not leave the default totalLength standing:
+  // {spanLength: 8} alone used to merge into 8 m × 4 spans with totalLength 40 m, so the
+  // engine calculated one bridge while the deck length said another, and the workbook
+  // contract — which enforces that agreement — threw inside the report lane as an HTTP 500.
+  if (
+    partial.totalLength === undefined &&
+    (partial.spanLength !== undefined || partial.numberOfSpans !== undefined)
+  ) {
+    merged.totalLength = merged.spanLength * merged.numberOfSpans;
+  }
   return merged;
 }
 
@@ -195,6 +205,11 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
     }),
   },
   {
+    // STRUCTURAL REVIEW REQUIRED: Pier sliding FOS = 0.677 (worst case, all 5 load cases below 1.5 threshold).
+    // The iterative solver failed to converge after 200 × 100 mm increments — increasing pier depth and base
+    // dimensions alone cannot overcome the high horizontal hydraulic force at this discharge (1800 cumecs).
+    // Consider shear key provision at pier base or increased embedment depth — signing engineer must verify
+    // per IRC:78 §706 before issuing construction drawings.
     id: 'large-bridge',
     name: 'Large bridge (16 m span)',
     description: 'Wider waterway, higher discharge',
@@ -228,6 +243,7 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
       abutmentDepth: 6,
       sbc: 280,
       phi: 32,
+      seismicZone: 2, // Zone II — generic template, no site-specific study
     }),
   },
 
@@ -567,6 +583,12 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
   },
 
   {
+    // STRUCTURAL REVIEW REQUIRED: Abutment bearing FOS = 0.930 (below 2.5 threshold).
+    // Pier sliding and overturning pass (min FOS 1.505 and 6.006 respectively), but abutment
+    // bearing pressure exceeds SBC under the combined load envelope — increasing abutmentDepth
+    // alone could not converge after 200 × 100 mm solver iterations.
+    // Consider deeper abutment footing embedment or ground improvement to raise effective SBC —
+    // signing engineer must verify per IRC:78 §706 before issuing construction drawings.
     id: 'irc-parwan-highlevel',
     name: 'PARWAN River — High-Level (70R Loading)',
     description: 'High-level bridge across PARWAN River designed for 70R tracked loading. IRC:6-2016 + IRC:112-2015.',
@@ -597,7 +619,12 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
       freeboardAboveHfl: 1.5,
       pierWidth: 1.5, pierLength: 4.5, pierDepth: 7.0, pierBaseWidth: 3.0, pierBaseLength: 5.5,
       abutmentHeight: 12.0, abutmentWidth: 4.5, abutmentDepth: 6.0, dirtWallHeight: 3.0, returnWallLength: 7,
-      fck: 30, fy: 500, sbc: 260, phi: 32, gamma: 18,
+      // Fe500 declared explicitly: this template overrides fy to 500 while every
+      // other template inherits the base Fe415, and the input contract rejects a
+      // fy that disagrees with steelGrade. The source PARWAN record does not state
+      // a bar grade, so the grade here follows fy — confirm at sign-off.
+      fck: 30, steelGrade: 'Fe500', fy: 500, sbc: 260, phi: 32, gamma: 18,
+      seismicZone: 2, // Zone II per IS:1893 Part-1 — PARWAN River, Rajasthan
       issuingAuthority: 'PWD / NHAI, Rajasthan',
       jobNumber: 'PARWAN-HIGHLEVEL-70R',
       hardRockAvailable: false,
@@ -682,6 +709,12 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
   },
 
   {
+    // STRUCTURAL REVIEW REQUIRED: Abutment bearing FOS = 0.902 (below 2.5 threshold).
+    // Pier sliding and overturning pass (min FOS 1.504 and 7.921 respectively), but abutment
+    // bearing pressure exceeds SBC under the combined load envelope — increasing abutmentDepth
+    // alone could not converge after 200 × 100 mm solver iterations.
+    // Consider deeper abutment footing embedment or ground improvement to raise effective SBC —
+    // signing engineer must verify per IRC:78 §706 before issuing construction drawings.
     id: 'irc-kherka-teegirder',
     name: 'KHERKA Bridge — 19m Tee Beam (Courbon)',
     description: 'High-level Tee Beam bridge, 19 m clear span, designed by Courbon method. IRC:6-2016 + IRC:21.',
@@ -713,6 +746,7 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
       pierWidth: 1.5, pierLength: 4.5, pierDepth: 6.5, pierBaseWidth: 2.5, pierBaseLength: 5.0,
       abutmentHeight: 10.5, abutmentWidth: 4.0, abutmentDepth: 6.0, dirtWallHeight: 3.0, returnWallLength: 7,
       fck: 30, fy: 415, sbc: 220, phi: 30, gamma: 18,
+      seismicZone: 2, // Zone II per IS:1893 Part-1 — KHERKA Bridge, Rajasthan
       issuingAuthority: 'PWD Rajasthan',
       jobNumber: 'KHERKA-TEEGIRDER-19M',
       hardRockAvailable: false,
@@ -720,6 +754,12 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
   },
 
   {
+    // STRUCTURAL REVIEW REQUIRED: Abutment bearing FOS = 0.871 (below 2.5 threshold).
+    // Pier sliding and overturning pass (min FOS 1.508 and 8.488 respectively), but abutment
+    // bearing pressure exceeds SBC under the combined load envelope — increasing abutmentDepth
+    // alone could not converge after 200 × 100 mm solver iterations.
+    // Consider deeper abutment footing embedment or ground improvement to raise effective SBC —
+    // signing engineer must verify per IRC:78 §706 before issuing construction drawings.
     id: 'irc-sukanaka-highlevel',
     name: 'SUKANAKA Nalah — High-Level Bridge',
     description: 'High-level bridge across SUKANAKA Nalah. IRC:6-2016 + IRC:112-2015. Deck above flood level.',
@@ -751,6 +791,7 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
       pierWidth: 1.2, pierLength: 3.5, pierDepth: 5.5, pierBaseWidth: 2.5, pierBaseLength: 4.5,
       abutmentHeight: 9.0, abutmentWidth: 3.8, abutmentDepth: 5.0, dirtWallHeight: 2.5, returnWallLength: 6,
       fck: 25, fy: 415, sbc: 180, phi: 30, gamma: 18,
+      seismicZone: 2, // Zone II per IS:1893 Part-1 — SUKANAKA Nalah, Rajasthan
       issuingAuthority: 'PWD Rajasthan',
       jobNumber: 'SUKANAKA-HIGHLEVEL',
       hardRockAvailable: false,

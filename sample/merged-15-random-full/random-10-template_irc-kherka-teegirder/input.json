@@ -1,0 +1,70 @@
+{
+  "projectName": "Construction of High-Level Tee Beam Bridge at KHERKA — 19 m Span (Courbon Method)",
+  "location": "KHERKA Bridge, Rajasthan",
+  "riverName": "Nalah",
+  "bridgeType": "high-level",
+  "spanLength": 18.904,
+  "numberOfSpans": 2,
+  "skew": 0,
+  "carriageWidth": 7.5,
+  "numberOfLanes": 2,
+  "totalLength": 38,
+  "hfl": 415.685,
+  "bedLevel": 410.5,
+  "foundationLevel": 405.2,
+  "discharge": 376.227,
+  "manningN": 0.03318,
+  "bedSlope": 1094.669,
+  "laceysSiltFactor": 1.5,
+  "crossSectionData": [
+    {
+      "chainage": 0,
+      "gl": 415.2
+    },
+    {
+      "chainage": 15,
+      "gl": 412.8
+    },
+    {
+      "chainage": 30,
+      "gl": 410.6
+    },
+    {
+      "chainage": 45,
+      "gl": 411
+    },
+    {
+      "chainage": 60,
+      "gl": 415.5
+    }
+  ],
+  "pierWidth": 1.5,
+  "pierLength": 4.5,
+  "pierDepth": 6.5,
+  "numberOfPiers": 1,
+  "pierBaseWidth": 2.5,
+  "pierBaseLength": 5,
+  "abutmentHeight": 10.5,
+  "abutmentWidth": 4,
+  "abutmentDepth": 6,
+  "dirtWallHeight": 3,
+  "returnWallLength": 7,
+  "concreteGrade": "M25",
+  "fck": 30,
+  "steelGrade": "Fe415",
+  "fy": 415,
+  "sbc": 227.021,
+  "phi": 30,
+  "gamma": 18,
+  "rtl": 420.2,
+  "agl": 411.4,
+  "nbl": 410.5,
+  "ofl": 414.5,
+  "dwl": 416.5,
+  "deckSlabThickness": 0.25,
+  "freeboardAboveHfl": 1.5,
+  "issuingAuthority": "PWD Rajasthan",
+  "jobNumber": "KHERKA-TEEGIRDER-19M",
+  "hardRockAvailable": false,
+  "deckSoffitLevel": 418.8
+}

@@ -1,0 +1,70 @@
+{
+  "projectName": "Construction of High-Level Bridge across SUKANAKA Nalah",
+  "location": "SUKANAKA Nalah, Rajasthan",
+  "riverName": "SUKANAKA",
+  "bridgeType": "high-level",
+  "spanLength": 12,
+  "numberOfSpans": 3,
+  "skew": 0,
+  "carriageWidth": 7.5,
+  "numberOfLanes": 2,
+  "totalLength": 36,
+  "hfl": 492.7,
+  "bedLevel": 488.5,
+  "foundationLevel": 483.8,
+  "discharge": 265.4,
+  "manningN": 0.03,
+  "bedSlope": 1050,
+  "laceysSiltFactor": 1.5,
+  "crossSectionData": [
+    {
+      "chainage": 0,
+      "gl": 492.1
+    },
+    {
+      "chainage": 15,
+      "gl": 490.4
+    },
+    {
+      "chainage": 30,
+      "gl": 488.6
+    },
+    {
+      "chainage": 45,
+      "gl": 489
+    },
+    {
+      "chainage": 60,
+      "gl": 492.5
+    }
+  ],
+  "pierWidth": 1.2,
+  "pierLength": 3.5,
+  "pierDepth": 5.5,
+  "numberOfPiers": 2,
+  "pierBaseWidth": 2.5,
+  "pierBaseLength": 4.5,
+  "abutmentHeight": 9,
+  "abutmentWidth": 3.8,
+  "abutmentDepth": 5,
+  "dirtWallHeight": 2.5,
+  "returnWallLength": 6,
+  "concreteGrade": "M25",
+  "fck": 25,
+  "steelGrade": "Fe415",
+  "fy": 415,
+  "sbc": 180,
+  "phi": 30,
+  "gamma": 18,
+  "rtl": 496.4,
+  "agl": 489.5,
+  "nbl": 488.5,
+  "ofl": 492.1,
+  "dwl": 493.4,
+  "deckSlabThickness": 0.25,
+  "freeboardAboveHfl": 1.2,
+  "issuingAuthority": "PWD Rajasthan",
+  "jobNumber": "SUKANAKA-HIGHLEVEL",
+  "hardRockAvailable": false,
+  "deckSoffitLevel": 495.6
+}

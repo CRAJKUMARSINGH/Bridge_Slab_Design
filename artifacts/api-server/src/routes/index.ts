@@ -1,12 +1,10 @@
 import { Router, type IRouter } from "express";
 import healthRouter from "./health";
-import reportsRouter from "./reports";
-import lfsSyncRouter from "./lfs-sync";
+import designRouter from "./design";
 
 const router: IRouter = Router();
 
 router.use(healthRouter);
-router.use(reportsRouter);
-router.use(lfsSyncRouter);
+router.use(designRouter);
 
 export default router;

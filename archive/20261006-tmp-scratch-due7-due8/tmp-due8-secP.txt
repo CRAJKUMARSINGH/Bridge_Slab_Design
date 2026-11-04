@@ -1,0 +1,16 @@
+| P-5 | **Three scripts import a module layer that is gone.** `debug-ctx.ts`, `debug-wind.ts` and `test-narratives-output.ts` import `bridge-excel-generator/prose/deck-narrative-math`, `…/prose/sheet-narratives` and `…/fixtures/kherwara-design`. `bridge-excel-generator/prose/` does not exist, and no live file defines `computeDeckNarrativeBundle` or `getComprehensiveNarrative` — the narrative
+
+| P-6 | **The LFS stub problem is repo-wide, and §O-4 understated it by scoping it to `assets/`.** Two independent censuses run this pass. **(a) tracked files** (`git ls-files`, filtered to `xls xlsx xlsm pdf dwg doc docx csv`): 1,659 tracked, **1,529 still pointer stubs**, 17 materialised, 113 absent from the worktree — those 113 are the pre-existing `Attached_Assets/**` and `bridge-excel-gene
+| P-7 | **§J-9 was half wrong: the A1 inventory is not a stub, and it is not even TypeScript.** `pnpm run assets:inventory` runs `python scripts/assimilate/inventory.py --root ../Attached_Assets --out ../asset-register.json`. It exited 0 and replaced the 985-byte `asset-register.json` with a **46,396-byte register of 97 Office/CAD assets** (`schemaVersion: asset-register.v1`, sha256 per file; kin
+| P-8 | **Evidence after the lane was wired.** | `pnpm run check` **exit 0** including the new `typecheck:tools` step (43 root files compiled); `pnpm run candidate` **exit 0**, with `MANIFEST.md`'s gate table rendering and six deliverable digests matching a fresh `pnpm run deliverables`. Those digests differ from the previous bundle while every gate value is unchanged: ExcelJS and the PDF writer s
+
+---
+
+## SUMMARY — WHAT IS STILL DUE (PRIORITY ORDER)
+
+### 🔴 BLOCKING — Must be done before any output is called authoritative
+1. **Licensed engineer sign-off** — `engineering/review/` is empty, and §J-4 moved real verdicts: Kherwara TYPE1/C1 are now SAFE/UNSAFE/UNSAFE/UNSAFE/SAFE and 19/20 templates report 15/15 cases not SAFE. Nothing in the code can close this.
+2. **Kherwara vs Kharka identity** — still OPEN in `project/canonical-projects/kherwara-kharka-decision.md`.
+3. **Governing water level** — sheet 3 AFL says 101.375 m, the engine's DWL is 100.856 m; two afflux models remain unreconciled.
+4. **Asset assimilation A2–A5** — `normalize.py`, `classify_cells.py`, `mine_narrative.py`, `map_drawings.py` all still missing; `knowledge/` does not exist. A1 itself now works (§P-7: `assets:inventory` → 97-asset, 46 KB register). **The blocking prerequisite (§O-4, §P-6): the corpus is Git LFS pointer stubs** — 1,529 of 1,659 tracked binary assets, of which `assets/` holds 1,876 stubs
+5. ~~**`evidence/release-candidate/`**~~ **DONE 2026-10-05 (§N-3)** — `pnpm run candidate` builds the bundle from a live gate run, with digests and transcripts; a failing chain writes no manifest. What remains under this heading is the sign-off itself (row 1), not the bundle.

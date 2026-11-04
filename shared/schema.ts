@@ -8,6 +8,23 @@ import {
   timestamp,
 } from 'drizzle-orm/pg-core';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
+import { z } from 'zod';
+
+// ── Typed designData JSON sub-schema (CURSOR-003 fix) ──────────────────────
+// Replaces the drizzle-default z.any() for jsonb design_data with a
+// structurally-typed Zod schema matching the client's project fields.
+// Fields are optional so partial saves from POST /api/projects are accepted.
+const designDataSchema = z.object({
+  description: z.string().nullable().optional(),
+  bridgeType:  z.string().nullable().optional(),
+  status:      z.string().nullable().optional(),
+  location:    z.string().nullable().optional(),
+  district:    z.string().nullable().optional(),
+  engineer:    z.string().nullable().optional(),
+  // Free-form additional metadata (design snapshots, tags, labels) is
+  // preserved via catchall passthrough so consumer-specific extensions do
+  // not have to be re-declared in the schema.
+}).passthrough().nullable().optional();
 
 // ── projects ──────────────────────────────────────────────────────────────────
 export const projects = pgTable('projects', {
@@ -21,7 +38,10 @@ export const projects = pgTable('projects', {
   updatedAt:  timestamp('updated_at', { withTimezone: true }).defaultNow(),
 });
 
-export const insertProjectSchema = createInsertSchema(projects);
+export const insertProjectSchema = createInsertSchema(projects, {
+  name: (s) => s.min(1, 'Project name is required'),
+  designData: designDataSchema as any,
+});
 export const selectProjectSchema = createSelectSchema(projects);
 export type InsertProject = typeof projects.$inferInsert;
 export type SelectProject = typeof projects.$inferSelect;

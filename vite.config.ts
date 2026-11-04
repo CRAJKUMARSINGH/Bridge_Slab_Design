@@ -3,22 +3,17 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import { fileURLToPath } from "node:url";
-import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { metaImagesPlugin } from "./vite-plugin-meta-images";
-import { cartographer } from "@replit/vite-plugin-cartographer";
-import { devBanner } from "@replit/vite-plugin-dev-banner";
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [
     react(),
-    runtimeErrorOverlay(),
+    // client/src/index.css is Tailwind v4 (`@import "tailwindcss"`); without this
+    // plugin the CSS transform fails and the dev server serves the HTML fallback.
     tailwindcss(),
     metaImagesPlugin(),
-    ...(process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined
-      ? [cartographer(), devBanner()]
-      : []),
   ],
   resolve: {
     alias: {

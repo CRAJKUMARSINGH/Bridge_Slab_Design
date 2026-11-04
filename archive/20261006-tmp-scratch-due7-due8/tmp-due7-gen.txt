@@ -1,0 +1,18 @@
+=== bridge-excel-generator dir:
+design-engine.ts
+index.ts
+input-contract.ts
+material-rates.ts
+narrative-engine.ts
+report-model.ts
+robotic-input.ts
+sheet-contract.ts
+sheets
+types.ts
+utils.ts
+=== narrative-engine.ts imports:
+1:﻿import type { EnhancedProjectInput } from './types';
+2:import { deckSlabThicknessOf } from './input-contract';
+3:import { STABILITY_ACCEPTANCE } from './design-engine';
+=== does prose exist:
+NO

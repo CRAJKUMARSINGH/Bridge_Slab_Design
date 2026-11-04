@@ -13,6 +13,7 @@
 import fs from 'fs';
 import path from 'path';
 import * as XLSX from 'xlsx';
+import { readOfficeWorkbook } from './read-office-workbook';
 import { listResolvedStandards, type WorkbookStandardDef } from './workbook-standards-config';
 
 const OUT_DIR = path.resolve('archive/test-outputs');
@@ -70,8 +71,7 @@ function assimilateOneStandard(
   sheets: SheetResult[];
   totalStaticCells: number;
 } {
-  const buf = fs.readFileSync(filePath);
-  const wb = XLSX.read(buf, { type: 'buffer', cellDates: true });
+  const wb = readOfficeWorkbook(filePath);
   const names = wb.SheetNames;
   const sheets: SheetResult[] = [];
   let totalStaticCells = 0;
@@ -131,8 +131,7 @@ function assimilateOneStandard(
 }
 
 function writePerSheetLines(filePath: string, standardId: string): void {
-  const buf = fs.readFileSync(filePath);
-  const wb = XLSX.read(buf, { type: 'buffer', cellDates: true });
+  const wb = readOfficeWorkbook(filePath);
   fs.mkdirSync(LINES_DIR, { recursive: true });
 
   let si = 0;
@@ -167,7 +166,7 @@ function writePerSheetLines(filePath: string, standardId: string): void {
 async function main(): Promise<void> {
   const resolved = listResolvedStandards();
   if (resolved.length === 0) {
-    console.error('No workbook standards resolved. Place stabil*.xls in Attached_Assets or set paths in workbook-standards-config.ts');
+    console.error('No workbook standards resolved. Expected the LARATHI stability workbook under assets/E_DRIVE_BRIDGE_DESIGN/ (or Attached_Assets/) — see scripts/workbook-standards-config.ts');
     process.exit(1);
   }
 

@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Mandatory 12-Min Chat Log → CREAT.md",
+      "trigger": "UserPromptSubmit",
+      "description": "Every time a user prompt is submitted, appends a timestamped chat log entry to CREAT.md. Mandatory for all agents.",
+      "action": {
+        "type": "command",
+        "command": "powershell -NoProfile -Command \"\n$logFile = Join-Path $PSScriptRoot '..\\..\\CREAT.md'\n$now = Get-Date -Format 'yyyy-MM-dd HH:mm'\n$stdin = [Console]::In.ReadToEnd()\ntry { $ctx = $stdin | ConvertFrom-Json } catch { $ctx = @{} }\n$prompt = if ($ctx.userPrompt) { ($ctx.userPrompt -replace '`r`n','  ' -replace '`n','  ')[0..200] -join '' } else { '(prompt not captured)' }\n$entry = \\\"`n## [$now] — Kiro (AutoLog)`n`n**User said:** $prompt`n`n**Agent did:** (session in progress — see subsequent entries)`n`n**Files changed:** (pending)`n`n---`n\\\"\nAdd-Content -Path $logFile -Value $entry -Encoding UTF8\n\"\n",
+        "timeout": 30
+      }
+    }
+  ]
+}

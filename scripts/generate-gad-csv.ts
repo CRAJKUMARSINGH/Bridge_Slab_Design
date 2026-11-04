@@ -7,7 +7,7 @@
 import { writeFileSync } from 'fs';
 import { join, resolve } from 'path';
 import { fileURLToPath } from 'url';
-import calculateCompleteDesign from '../bridge-excel-generator/design-engine';
+import { calculateCompleteDesign } from '../bridge-excel-generator/design-engine';
 import type { ProjectInput } from '../bridge-excel-generator/types';
 
 interface GADParameters {

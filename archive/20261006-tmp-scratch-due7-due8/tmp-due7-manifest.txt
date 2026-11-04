@@ -1,0 +1,54 @@
+=== bundle tree:
+evidence/release-candidate/MANIFEST.md
+evidence/release-candidate/deliverables/comprehensive-report.pdf
+evidence/release-candidate/deliverables/design-report.html
+evidence/release-candidate/deliverables/design-workbook.xlsx
+evidence/release-candidate/deliverables/irc-checklist.html
+evidence/release-candidate/deliverables/sheet-book.pdf
+evidence/release-candidate/deliverables/short-design-report.pdf
+evidence/release-candidate/gates/check.txt
+evidence/release-candidate/gates/verify.txt
+evidence/release-candidate/manifest.json
+
+=== MANIFEST.md:
+# Release candidate — evidence bundle
+
+Generated 2026-10-05T19:38:51.496Z at commit `ab38f29359444f0abea31078ee030ef4e21b55e7`
+Working tree had uncommitted changes when this bundle was assembled.
+Toolchain: Node v24.14.0, pnpm 10.33.0.
+
+## Gate runs
+
+| Command | Exit | Transcript |
+| --- | --- | --- |
+| `pnpm run check` | 0 | `gates/check.txt` |
+| `pnpm run verify` | 0 | `gates/verify.txt` |
+
+Every gate above passed, which is why this file exists: a failing lane leaves the previous manifest
+untouched rather than dressing up a broken tree as a candidate.
+
+## Deliverables
+
+| File | Bytes | SHA-256 |
+| --- | --- | --- |
+| `deliverables/design-workbook.xlsx` | 1,09,032 | `58d98b7528253d248d81d2745d5108002bfc95ed9333a9fe4115e6906d1585ec` |
+| `deliverables/sheet-book.pdf` | 32,19,695 | `9b0edd62e71ef053be365cbfab66e63010da1dab801495e11abafe5eea605342` |
+| `deliverables/comprehensive-report.pdf` | 49,13,586 | `0071a981569a82470b1e7494ceabf35424b7b650e0e4d2a08de3a2dc23f0e3e2` |
+| `deliverables/short-design-report.pdf` | 2,21,114 | `98f8068cfaa7bf209760210b2913bb78d3cccd25d7ada77158f14dcbb527e749` |
+| `deliverables/design-report.html` | 4,19,685 | `639dd1590feb74bd6da7ca3ef8b6848a09e338caba3e1674239ce1c000b18128` |
+| `deliverables/irc-checklist.html` | 39,954 | `87181a953cd133b838cf6bbd2d4f70edc2e541f02a4c0a1cc45332fa0cff672e` |
+
+Copied from `test-output/`, which is written by `pnpm run deliverables` (Kherwara golden project).
+
+## What this bundle does not say
+
+**It is not an engineering clearance.** The gates above certify that the machinery reports honestly
+and that the two report formats agree; they do not certify that the bridge stands.
+Of 300 pier load cases across 20 templates, the engine verdicts are **4 SAFE and 296 UNSAFE**, and every template carries at least one unsafe case.
+
+Open sign-off questions, each of which moves verdicts and none of which code can settle (§M of
+`august-due.md`): the bearing acceptance factor (2.5 against the conventional `pressure ≤ SBC`, on
+which 184 cases turn), the governing water level, the legacy hydraulics block the comprehensive PDF
+prints beside the engine figures, and which discharge is the design discharge.
+
+A licensed engineer must review the numbers before any artefact here is issued externally.

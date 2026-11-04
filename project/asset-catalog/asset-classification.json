@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "asset-classification.v1",
+  "purpose": "The only place an assimilation bucket may be granted. scripts/assimilate/inventory.py reads this file and nothing else when it decides whether an indexed asset is classified, so `pnpm run assimilate` (the A1 coverage gate) can only go green when a human has written a decision here. Filenames, extensions and project hints never classify anything.",
+  "keyedOn": "sha256 of the file as stored. relativePath is accepted as a fallback key for assets whose bytes are still Git LFS pointer stubs, because after `git lfs pull` the hash changes and every hash key must be re-checked.",
+  "buckets": {
+    "used:numbers": "the asset feeds a variable, coefficient or constraint in the engine or workbook",
+    "used:narrative": "the asset contributed a report template or clause wording",
+    "used:drawing": "the asset is mapped into the layout/drawing manifest",
+    "superseded": "a duplicate of a higher-precedence source; the superseded hash stays here",
+    "out-of-scope": "deliberately excluded — the reason is the deliverable, not an omission"
+  },
+  "rules": [
+    "Every decision needs `reason` and `decidedBy`. A bucket without both is treated as unclassified.",
+    "`unclassified` is not a valid value here; leaving a file out of this list is how it stays unclassified.",
+    "Do not classify a Git LFS pointer stub. Materialise it (`git lfs pull --include=\"<path>\"`), re-run `pnpm run assets:inventory`, then classify the real bytes.",
+    "Decisions are engineering/review claims about provenance. They belong to the same licensed-engineer review that `engineering/review/` is still waiting for."
+  ],
+  "example": {
+    "sha256": "<64 hex chars>",
+    "relativePath": "Attached_Assets/<file>.xls",
+    "bucket": "used:numbers",
+    "reason": "Supplies the pier design moment envelope reproduced on sheet 12.",
+    "decidedBy": "Name, role, date"
+  },
+  "decisions": []
+}

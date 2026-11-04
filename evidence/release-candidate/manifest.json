@@ -1,0 +1,78 @@
+{
+  "generatedAt": "2026-10-06T12:30:52.416Z",
+  "commit": "13cdf0b8b1dd30fc1df50d451d517a7b2d3afea9",
+  "workingTreeDirty": true,
+  "toolchain": {
+    "node": "v24.14.0",
+    "pnpm": "10.33.0"
+  },
+  "gates": [
+    {
+      "command": "pnpm run check",
+      "exit": 0,
+      "transcript": "gates/check.txt"
+    },
+    {
+      "command": "pnpm run verify",
+      "exit": 0,
+      "transcript": "gates/verify.txt"
+    },
+    {
+      "command": "pnpm run test",
+      "exit": 0,
+      "transcript": "gates/test.txt"
+    },
+    {
+      "command": "pnpm run audit:policy",
+      "exit": 0,
+      "transcript": "gates/audit-policy.txt"
+    }
+  ],
+  "deliverables": [
+    {
+      "name": "design-workbook.xlsx",
+      "bytes": 109039,
+      "sha256": "cf2b649aaf7a8204994a4ce3694903b2de924ae6ed163fa0b16819678f5101d1"
+    },
+    {
+      "name": "sheet-book.pdf",
+      "bytes": 3203059,
+      "sha256": "a0d4cdcd09d1866efdea3e73a696c0d5205f33fbeee4e69dac5249da6797d993"
+    },
+    {
+      "name": "comprehensive-report.pdf",
+      "bytes": 4913586,
+      "sha256": "9eee4c70e47110a0e93c7391b4a99c88f9905e08e8ff23acae6a47f3f375ea3e"
+    },
+    {
+      "name": "short-design-report.pdf",
+      "bytes": 221114,
+      "sha256": "cd6058d18ae76027d9f9dfa3c47afe83423442c565c5a15590f3f4bf7884d7bc"
+    },
+    {
+      "name": "design-report.html",
+      "bytes": 419689,
+      "sha256": "bca3fc2ab7bbf2f33f0beb9d34b5559788d4cb8ebabb32839487fc6a7c936df9"
+    },
+    {
+      "name": "irc-checklist.html",
+      "bytes": 39954,
+      "sha256": "415e1ac5f31a0f51e5c9222c609ee2e5a887e46db75f20eeedcefb1eb02200ef"
+    }
+  ],
+  "engineeringOutcomes": {
+    "totals": {
+      "templates": 20,
+      "cases": 300,
+      "safe": 4,
+      "unsafe": 296,
+      "templatesWithUnsafe": 20
+    },
+    "thresholds": {
+      "sliding": 1.5,
+      "overturning": 1.8,
+      "bearing": 2.5
+    },
+    "file": "gates/verify.txt"
+  }
+}

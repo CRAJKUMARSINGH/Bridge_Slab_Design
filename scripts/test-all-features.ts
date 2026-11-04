@@ -5,7 +5,7 @@
 
 import { writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';
-import calculateCompleteDesign from '../bridge-excel-generator/design-engine';
+import { calculateCompleteDesign } from '../bridge-excel-generator/design-engine';
 import { generateCompleteExcel } from '../bridge-excel-generator/index';
 import { generateHTMLDesignReport } from '../server/design-report';
 import { validateDesign, generateValidationHTML } from '../server/claude-validator';
@@ -50,7 +50,7 @@ async function runTests() {
   // 3. Generate HTML Report
   console.log('3️⃣ Generating HTML Design Report...');
   try {
-    const html = generateHTMLDesignReport(enhancedInput);
+    const html = await generateHTMLDesignReport(enhancedInput);
     const htmlPath = join(OUTPUT_DIR, 'test_report.html');
     writeFileSync(htmlPath, html);
     console.log('   ✅ HTML report generated');
