@@ -70,3 +70,10 @@ th-*.jsonl
 pnpm-audit.json
 _tmp_*
 tmp-*.log
+
+# Local pnpm content-addressable store — regenerable via `pnpm install`, never commit.
+.pnpm-store-local/
+
+# Transient parity dumps and install logs — regenerable, never commit.
+parity-dump/
+install.log
