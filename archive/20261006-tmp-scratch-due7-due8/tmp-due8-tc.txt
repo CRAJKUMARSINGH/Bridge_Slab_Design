@@ -1,5 +1,0 @@
-
-> workspace@0.0.0 typecheck:tools E:\Rajkumar\Bridge_Slab_Design
-> tsc -p scripts/tsconfig.tools.json --noEmit
-
-TCEXIT=0
