@@ -108,10 +108,10 @@ export const projectInputBodySchema = z
     // Water-level ordering: a high flood level below the bed is impossible.
     if (v.hfl !== undefined && v.bedLevel !== undefined && v.hfl <= v.bedLevel)
       add('hfl', `hfl (${v.hfl} m) must be above bedLevel (${v.bedLevel} m).`);
-    // dwl may be up to 0.5 m above hfl for submersible bridges (design water
-    // level can exceed HFL slightly); anything beyond 0.5 m is a data error.
-    if (v.dwl !== undefined && v.hfl !== undefined && v.dwl > v.hfl + 0.5)
-      add('dwl', `dwl (${v.dwl} m) exceeds hfl (${v.hfl} m) by more than 0.5 m — check values (submersible bridges allow dwl slightly above hfl).`);
+    // No DWL/HFL ordering is asserted: this repo defines DWL as HFL + afflux
+    // (narrative-engine.ts, the DWL defined name on sheet 09), which puts it above HFL by any
+    // afflux — 0.6 m to 1.33 m across the shipped templates — while robotic-input.ts clamps DWL
+    // to at most HFL. Which convention governs is the open owner decision (august-due.md §M-2).
     if (v.foundationLevel !== undefined && v.bedLevel !== undefined && v.foundationLevel > v.bedLevel)
       add('foundationLevel', `foundationLevel (${v.foundationLevel} m) must be at or below bedLevel (${v.bedLevel} m).`);
     if (v.deckSoffitLevel !== undefined && v.hfl !== undefined && v.deckSoffitLevel < v.hfl)

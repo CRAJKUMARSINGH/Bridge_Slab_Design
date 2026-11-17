@@ -1,0 +1,43 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+[2026-10-16 14:03:57.494 +0530] [32mINFO[39m: [36mServer listening on http://localhost:5178[39m
+[2026-10-16 14:37:04.990 +0530] [32mINFO[39m: [36mrequest errored[39m
+    [35mreq[39m: {
+      "id": 1,
+      "method": "GET",
+      "url": "/api/reports/som-river-kherwara.html",
+      "query": {},
+      "params": {},
+      "headers": {
+        "host": "localhost:5178",
+        "user-agent": "curl/8.17.0",
+        "accept": "*/*"
+      },
+      "remoteAddress": "127.0.0.1",
+      "remotePort": 58177
+    }
+    [35misApi[39m: false
+    [35mres[39m: {
+      "statusCode": 503,
+      "headers": {
+        "x-powered-by": "Express",
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "51",
+        "etag": "W/\"33-k+YsQZshX8TQiCFCT+Z2R9yrEa0\""
+      }
+    }
+    [35mresponseTime[39m: 15
+    err: {
+      "type": "Error",
+      "message": "failed with status code 503",
+      "stack":
+          Error: failed with status code 503
+              at onResFinished (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\pino-http@10.5.0\node_modules\pino-http\logger.js:115:39)
+              at ServerResponse.onResponseComplete (E:\Rajkumar\Bridge_Slab_Design\node_modules\.pnpm\pino-http@10.5.0\node_modules\pino-http\logger.js:178:14)
+              at ServerResponse.emit (node:events:520:35)
+              at onFinish (node:_http_outgoing:1026:10)
+              at callback (node:internal/streams/writable:764:21)
+              at afterWrite (node:internal/streams/writable:708:5)
+              at afterWriteTick (node:internal/streams/writable:694:10)
+              at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+    }

@@ -1,6 +1,7 @@
 // IRC 21:2000 Deck Strip Method for RCC Slab Bridges
 // References: IRC 21:2000, IRC 112:2011, ASTRA Pro methodology
 // Working Stress Design (permissible stress method)
+import { parseIRCSlabInputs, collectIRCSlabWarnings } from "./ircSlabInputSchema";
 
 export type ConcreteGrade = "M15" | "M20" | "M25" | "M30" | "M35" | "M40";
 export type SteelGrade = "Fe250" | "Fe415" | "Fe500" | "Fe550";
@@ -58,9 +59,10 @@ export interface IRCSlabResult {
   sigmaCb: number; // permissible concrete stress (N/mm²)
   sigmaSt: number; // permissible steel stress (N/mm²)
   m: number; // modular ratio
-  Q: number; // lever arm factor
+  k: number; // neutral-axis factor, m·σcb/(m·σcb+σst)
+  Q: number; // moment-of-resistance coefficient ½·σcb·k·(1−k/3) (N/mm²); d = √(M/Q)
   requiredDepth: number; // d (mm)
-  leverArmJ: number; // j
+  leverArmJ: number; // j used for Ast — see the method note in august-due.md
   requiredSteel: number; // Ast (mm²/m)
   barSpacing: number; // mm
   providedSteel: number; // Ast_prov (mm²/m)
@@ -81,27 +83,39 @@ export interface IRCSlabResult {
 
 // ─── Permissible Stresses (Working Stress) ─────────────────────────────────────
 function getSigmaCb(grade: ConcreteGrade): number {
-  // Permissible bending stress in concrete (N/mm²) per IS 456
+  // Permissible bending stress in concrete (N/mm²) per IS 456:2000 Table 21.
+  // CORRECTED: previous values were 8.33/11.0/12.0 for M25/M35/M40 —
+  // IS 456:2000 Table 21 gives 8.5/11.5/12.5. Gap recorded per repo charter.
   const map: Record<ConcreteGrade, number> = {
     M15: 5.0,
     M20: 7.0,
-    M25: 8.33,
+    M25: 8.5,   // was 8.33 — IS 456:2000 Table 21
     M30: 10.0,
-    M35: 11.0,
-    M40: 12.0,
+    M35: 11.5,  // was 11.0 — IS 456:2000 Table 21
+    M40: 12.5,  // was 12.0 — IS 456:2000 Table 21
   };
   return map[grade];
 }
 
-function getSigmaSt(grade: SteelGrade): number {
-  // Permissible tensile stress in steel (N/mm²) per IS 456
-  const map: Record<SteelGrade, number> = {
+function getSigmaSt(grade: SteelGrade, barDia: number = 12): number {
+  // Permissible tensile stress in steel (N/mm²) per IS 456:2000 Table 21.
+  // NOTE: Fe415 bars > 12 mm dia have σst = 190 N/mm² (not 200).
+  // The barDia parameter enables diameter-aware lookup; callers that do not
+  // pass a diameter get the ≤12 mm value (conservative for most deck steel).
+  // ASSUMPTION recorded: the ≤12 mm / >12 mm split is the only diameter
+  // boundary in IS 456:2000 Table 21 for Fe415; Fe500/Fe550 are not split.
+  const base: Record<SteelGrade, number> = {
     Fe250: 140,
-    Fe415: 200,
+    Fe415: 200, // ≤12 mm dia
     Fe500: 230,
     Fe550: 250,
   };
-  return map[grade];
+  let sigma = base[grade];
+  // IS 456:2000 Table 21 footnote: Fe415 bars > 12 mm → 190 N/mm²
+  if (grade === "Fe415" && barDia > 12) {
+    sigma = 190;
+  }
+  return sigma;
 }
 
 export function getFck(grade: ConcreteGrade): number {
@@ -151,10 +165,14 @@ function interpolateK(BlRatio: number): number {
 
 // ─── Impact Factor Calculations ───────────────────────────────────────────────
 function impactFactorIRC6(L: number): number {
-  // IRC:6 Cl.208
+  // IRC:6 Cl.208 — impact factor expressed as a PERCENTAGE.
+  // (The engine applies it as `totalLiveLoad * (1 + impactFactor/100)`.)
+  // IRC:6 Class A/B: I = 4.5/(6+L), max 0.5 (50%) for L≤3m, min 0.10 (10%) for L>45m.
+  // NOTE: the earlier `1 + 4.5/(6+L)` form was the loadCalc.ts MULTIPLIER convention
+  // (IF=1.5 means +50%); here we return the percentage so the `1 +` must be dropped.
   if (L <= 3) return 50; // 50%
-  if (L <= 45) return (1 + 4.5 / (6 + L)) * 100;
-  return 10; // 10%
+  if (L <= 45) return (4.5 / (6 + L)) * 100;
+  return 10; // 10% floor for long spans
 }
 
 function impactFactorAstra(L: number): number {
@@ -165,14 +183,26 @@ function impactFactorAstra(L: number): number {
 }
 
 // ─── Main IRC Slab Design Function ───────────────────────────────────────────
-export function designIRCSlab(inp: IRCSlabInputs): IRCSlabResult {
-  const warnings: string[] = [];
+export function designIRCSlab(inpRaw: IRCSlabInputs): IRCSlabResult {
+  // ── Physical-bounds gate ──────────────────────────────────────────────────
+  // Reject impossible inputs LOUDLY instead of computing checks from garbage.
+  // Throws IRCSlabInputValidationError with {path, message}[] issues.
+  const inp = parseIRCSlabInputs(inpRaw);
+  // Non-fatal code-practice advisories go into the same warnings channel.
+  const warnings: string[] = [...collectIRCSlabWarnings(inp)];
   const fck = getFck(inp.concreteGrade);
   const fy = getFy(inp.steelGrade);
   const sigmaCb = getSigmaCb(inp.concreteGrade);
-  const sigmaSt = getSigmaSt(inp.steelGrade);
-  const m = 10; // modular ratio (working stress)
-  const Q = 1.11; // lever arm factor
+  const sigmaSt = getSigmaSt(inp.steelGrade, inp.barDia);
+  // ASSUMPTION recorded: m, k, j and Q follow IS 456 WSD theory, not table literals.
+  // m = 280/(3·σcbc) per IS 456:2000 Cl. B-1.3 (e.g. M25 → 280/(3×8.5) ≈ 10.98).
+  const m = 280 / (3 * sigmaCb); // derived per IS 456:2000 Cl. B-1.3 (was fixed 10)
+  // Q is the moment-of-resistance coefficient used as d = √(M/Q) below, so it must be the full
+  // ½·σcb·k·j. Omitting j made Q ≈ 4.23 where the theory and the previous literal give ≈ 1.11,
+  // i.e. it under-sized the required effective depth by √(4.23/1.11) ≈ 1.95×.
+  const k = (m * sigmaCb) / (m * sigmaCb + sigmaSt);
+  const j = 1 - k / 3;
+  const Q = 0.5 * sigmaCb * k * j;
 
   // ── Effective depth
   const effectiveDepth = inp.slabThickness - inp.cover - inp.barDia / 2;
@@ -311,6 +341,7 @@ export function designIRCSlab(inp: IRCSlabInputs): IRCSlabResult {
     sigmaCb,
     sigmaSt,
     m,
+    k,
     Q,
     requiredDepth,
     leverArmJ,
@@ -342,7 +373,7 @@ export const DEFAULT_IRC_SLAB: IRCSlabInputs = {
   wearingCoatThickness: 80,
   carriagewayWidth: 4.57,
   footpathWidth: 0,
-  cover: 30,
+  cover: 40,
   barDia: 20,
   a1: 3.6,
   b1: 0.85,

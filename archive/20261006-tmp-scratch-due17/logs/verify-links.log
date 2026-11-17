@@ -1,0 +1,221 @@
+
+> workspace@0.0.0 verify:links E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:links
+
+
+> @workspace/scripts@0.0.0 verify:links E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-workbook-links.ts
+
+FAIL larathi-stabil           pts=16 formulas:733 cross:213 same:1418 re-eval:732 broken:19 diverge:39
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=0.853 recomputed=19.6622
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.548 recomputed=19.3063
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.327 recomputed=19.3114
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.401 recomputed=16.9600
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=1.3 recomputed=19.8230
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=648.755 recomputed=995.7550
+     DIVERGE abstract of stresses!D12 [='STABILITY CHECK FOR PIER'!J51] cached=789.92 recomputed=795.6350
+     … 50 more
+FAIL kherwara-golden          pts= 7 formulas:609 cross:211 same:1125 re-eval:608 broken:19 diverge:39
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=1.066 recomputed=24.7250
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.688 recomputed=24.2515
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.405 recomputed=24.2838
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.483 recomputed=20.6576
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=1.627 recomputed=24.8991
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=644.638 recomputed=991.6380
+     DIVERGE abstract of stresses!D12 [='STABILITY CHECK FOR PIER'!J51] cached=643.153 recomputed=648.5410
+     … 50 more
+FAIL high-level-reference     pts= 5 formulas:582 cross:211 same:1059 re-eval:581 broken:19 diverge:36
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=0.537 recomputed=13.8311
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.306 recomputed=13.6078
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.146 recomputed=13.5704
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.223 recomputed=12.4728
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=0.836 recomputed=13.9679
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=823.363 recomputed=1288.7380
+     EMPTY TARGET STABILITY CHECK FOR PIER!A52 from abstract of stresses!A13 [='STABILITY CHECK FOR PIER'!A52]
+     … 47 more
+FAIL small-bridge             pts= 5 formulas:583 cross:211 same:1063 re-eval:582 broken:19 diverge:36
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=0.225 recomputed=2.8126
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.129 recomputed=2.7388
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.028 recomputed=2.6812
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.074 recomputed=2.6008
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=0.367 recomputed=2.8989
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=456.199 recomputed=748.0740
+     EMPTY TARGET STABILITY CHECK FOR PIER!A52 from abstract of stresses!A13 [='STABILITY CHECK FOR PIER'!A52]
+     … 47 more
+FAIL medium-bridge            pts= 5 formulas:583 cross:211 same:1063 re-eval:582 broken:19 diverge:36
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=0.311 recomputed=10.8165
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.196 recomputed=10.7042
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.086 recomputed=10.6668
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.135 recomputed=10.1353
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=0.49 recomputed=10.9041
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=830.708 recomputed=1314.4580
+     EMPTY TARGET STABILITY CHECK FOR PIER!A52 from abstract of stresses!A13 [='STABILITY CHECK FOR PIER'!A52]
+     … 47 more
+FAIL large-bridge             pts= 5 formulas:583 cross:211 same:1063 re-eval:582 broken:19 diverge:36
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=0.228 recomputed=17.5615
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.183 recomputed=17.4870
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.084 recomputed=17.4651
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.117 recomputed=17.0240
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=0.364 recomputed=17.6122
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=1261.618 recomputed=2015.9930
+     EMPTY TARGET STABILITY CHECK FOR PIER!A52 from abstract of stresses!A13 [='STABILITY CHECK FOR PIER'!A52]
+     … 47 more
+FAIL irc-bedach-bedla         pts= 8 formulas:622 cross:211 same:1156 re-eval:621 broken:19 diverge:38
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=0.805 recomputed=19.3280
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.539 recomputed=19.0018
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.287 recomputed=18.9827
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.365 recomputed=16.7046
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=1.245 recomputed=19.4869
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=621.559 recomputed=968.5590
+     DIVERGE abstract of stresses!D12 [='STABILITY CHECK FOR PIER'!J51] cached=930.065 recomputed=936.7730
+     … 49 more
+FAIL irc-jakham-mandvi        pts= 7 formulas:609 cross:211 same:1125 re-eval:608 broken:19 diverge:38
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=0.743 recomputed=17.8855
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.499 recomputed=17.5929
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.264 recomputed=17.5660
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.339 recomputed=15.6022
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=1.151 recomputed=18.0401
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=620.014 recomputed=967.0140
+     DIVERGE abstract of stresses!D12 [='STABILITY CHECK FOR PIER'!J51] cached=1012.831 recomputed=1019.7140
+     … 49 more
+FAIL irc-t01-jethliya         pts= 5 formulas:583 cross:211 same:1063 re-eval:582 broken:19 diverge:38
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=0.959 recomputed=14.7328
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.594 recomputed=14.3614
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.306 recomputed=14.2980
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.402 recomputed=12.3465
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=1.482 recomputed=14.9664
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=587.948 recomputed=916.5730
+     DIVERGE abstract of stresses!D12 [='STABILITY CHECK FOR PIER'!J51] cached=668.163 recomputed=673.6800
+     … 49 more
+FAIL irc-sukanaka-matoon      pts= 6 formulas:596 cross:211 same:1094 re-eval:595 broken:19 diverge:38
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=0.763 recomputed=14.4744
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.5 recomputed=14.1930
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.258 recomputed=14.1378
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.338 recomputed=12.5359
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=1.183 recomputed=14.6591
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=603.991 recomputed=943.6410
+     DIVERGE abstract of stresses!D12 [='STABILITY CHECK FOR PIER'!J51] cached=937.222 recomputed=943.6940
+     … 49 more
+FAIL irc-ayad-maharashtra     pts= 7 formulas:609 cross:211 same:1125 re-eval:608 broken:19 diverge:38
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=0.845 recomputed=23.4444
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.519 recomputed=23.0572
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.292 recomputed=23.0753
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.376 recomputed=20.2593
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=1.296 recomputed=23.5922
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=763.566 recomputed=1178.9410
+     DIVERGE abstract of stresses!D12 [='STABILITY CHECK FOR PIER'!J51] cached=1145.09 recomputed=1152.7950
+     … 49 more
+FAIL irc-gumaniya-udaipur     pts= 5 formulas:590 cross:213 same:1077 re-eval:589 broken:19 diverge:38
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=0.909 recomputed=14.0108
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.565 recomputed=13.6681
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.288 recomputed=13.5972
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.383 recomputed=11.8241
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=1.407 recomputed=14.2409
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=585.889 recomputed=914.5140
+     DIVERGE abstract of stresses!D12 [='STABILITY CHECK FOR PIER'!J51] cached=710.544 recomputed=716.0130
+     … 49 more
+FAIL irc-katumbi-chandrod     pts= 6 formulas:596 cross:211 same:1094 re-eval:595 broken:19 diverge:38
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=0.77 recomputed=18.4233
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.514 recomputed=18.1198
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.276 recomputed=18.0943
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.352 recomputed=16.0159
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=1.19 recomputed=18.5833
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=623.804 recomputed=970.8040
+     DIVERGE abstract of stresses!D12 [='STABILITY CHECK FOR PIER'!J51] cached=964.796 recomputed=971.3070
+     … 49 more
+FAIL irc-sisarama-highlevel   pts= 5 formulas:582 cross:211 same:1059 re-eval:581 broken:19 diverge:39
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=1.365 recomputed=53.3705
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.793 recomputed=52.3729
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.531 recomputed=52.8144
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.607 recomputed=43.4659
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=2.041 recomputed=53.2657
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=981.895 recomputed=1484.0200
+     DIVERGE abstract of stresses!D12 [='STABILITY CHECK FOR PIER'!J51] cached=853.693 recomputed=862.8300
+     … 50 more
+FAIL irc-kumbhalgarh-kelwara  pts= 5 formulas:589 cross:213 same:1073 re-eval:588 broken:19 diverge:39
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=1.257 recomputed=85.8210
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.83 recomputed=84.6814
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.57 recomputed=85.3626
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.616 recomputed=71.0277
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=1.877 recomputed=85.4644
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=1462.592 recomputed=2203.8420
+     DIVERGE abstract of stresses!D12 [='STABILITY CHECK FOR PIER'!J51] cached=1543.665 recomputed=1557.7770
+     … 50 more
+FAIL irc-parwan-highlevel     pts= 6 formulas:595 cross:211 same:1090 re-eval:594 broken:19 diverge:38
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=0.871 recomputed=77.2285
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.588 recomputed=76.4494
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.37 recomputed=76.8941
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.454 recomputed=70.5457
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=1.32 recomputed=76.9961
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=1736.812 recomputed=2650.2500
+     DIVERGE abstract of stresses!D12 [='STABILITY CHECK FOR PIER'!J51] cached=3345.186 recomputed=3368.5550
+     … 49 more
+FAIL irc-banas-highlevel      pts= 7 formulas:608 cross:211 same:1121 re-eval:607 broken:19 diverge:39
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=1.092 recomputed=104.8489
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.797 recomputed=103.6833
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.547 recomputed=104.4855
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.579 recomputed=88.6240
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=1.633 recomputed=104.3363
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=1602.89 recomputed=2416.3270
+     DIVERGE abstract of stresses!D12 [='STABILITY CHECK FOR PIER'!J51] cached=2096.416 recomputed=2114.1400
+     … 50 more
+FAIL irc-ayad-fatehpura       pts= 6 formulas:595 cross:211 same:1090 re-eval:594 broken:19 diverge:39
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=1.214 recomputed=58.6135
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.735 recomputed=57.6642
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.506 recomputed=58.1415
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.572 recomputed=48.8135
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=1.81 recomputed=58.4431
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=1028.697 recomputed=1549.1970
+     DIVERGE abstract of stresses!D12 [='STABILITY CHECK FOR PIER'!J51] cached=1035.162 recomputed=1045.4300
+     … 50 more
+FAIL irc-kherka-teegirder     pts= 5 formulas:582 cross:211 same:1059 re-eval:581 broken:19 diverge:39
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=1.137 recomputed=76.7577
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.743 recomputed=75.7923
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.488 recomputed=76.3249
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.583 recomputed=68.4545
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=1.71 recomputed=76.5069
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=1664.666 recomputed=2523.5730
+     DIVERGE abstract of stresses!D12 [='STABILITY CHECK FOR PIER'!J51] cached=2111.8 recomputed=2129.5220
+     … 50 more
+FAIL irc-sukanaka-highlevel   pts= 5 formulas:582 cross:211 same:1059 re-eval:581 broken:19 diverge:39
+     DIVERGE STABILITY CHECK FOR PIER!K47 [=(B22*ABS(H47)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H47)))/MAX(ABS(I47),1)] cached=1.223 recomputed=47.9295
+     DIVERGE STABILITY CHECK FOR PIER!K48 [=(B22*ABS(H48)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H48)))/MAX(ABS(I48),1)] cached=0.713 recomputed=47.0720
+     DIVERGE STABILITY CHECK FOR PIER!K49 [=(B22*ABS(H49)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H49)))/MAX(ABS(I49),1)] cached=0.474 recomputed=47.4301
+     DIVERGE STABILITY CHECK FOR PIER!K50 [=(B22*ABS(H50)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H50)))/MAX(ABS(I50),1)] cached=0.589 recomputed=42.3645
+     DIVERGE STABILITY CHECK FOR PIER!K51 [=(B22*ABS(H51)+MIN(0.5*B29*B28*B9^2*B11,B30*B22*ABS(H51)))/MAX(ABS(I51),1)] cached=1.832 recomputed=47.8692
+     DIVERGE abstract of stresses!A12 [='STABILITY CHECK FOR PIER'!A51] cached=1 recomputed=5.0000
+     DIVERGE abstract of stresses!C12 [='STABILITY CHECK FOR PIER'!H51] cached=979.822 recomputed=1481.9470
+     DIVERGE abstract of stresses!D12 [='STABILITY CHECK FOR PIER'!J51] cached=960.646 recomputed=970.2430
+     … 50 more
+
+Golden spot-checks:
+  S9 B18 velocity xref: {"formula":"=HYDRAULICS!C21","result":1.718}
+  S9 H47 service V:     {"formula":"=C47*B30+D47*B31-G47*B36","result":644.638}
+  S9 N51 ULS status:    {"formula":"=IF(AND(K51>=1.5,L51>=1.8,M51>=1),\"SAFE\",\"UNSAFE\")","result":"SAFE"}
+  S10 C12 retrieved V:  {"formula":"='STABILITY CHECK FOR PIER'!H51","result":644.638}
+  S10 I12 status link:  {"formula":"=IF(G12<=H12,'STABILITY CHECK FOR PIER'!N51,\"UNSAFE\")","result":"UNSAFE"}
+
+Done: 0/20 workbooks fully linked.
+E:\Rajkumar\Bridge_Slab_Design\scripts:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @workspace/scripts@0.0.0 verify:links: `tsx ./verify-workbook-links.ts`
+Exit status 1
+ ELIFECYCLE  Command failed with exit code 1.

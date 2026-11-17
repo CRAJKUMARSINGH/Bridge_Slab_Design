@@ -84,6 +84,34 @@ overrides:
   # tailwind/vite pin source-map-js ^1.0.x; 1.2.2 fixes the event-loop DoS in indexed
   # source-map section offsets (GHSA-68fv-2mgg-jv7q). Same major, dev build tooling only.
   source-map-js: "^1.2.2"
+  # ---- Security patch overrides (2026-10-12) --------------------------------
+  # fast-uri: 6 SSRF/host-confusion CVEs (CVE-2026-18446/75931/75975/75899/76172/84292/86472)
+  # Transitive via ajv > orval > @scalar/openapi-parser. Pin to >=3.1.8.
+  fast-uri: "^3.1.8"
+  # brace-expansion: Stack exhaustion + CPU DoS (CVE-2026-102276/102277/102278, CVE-2026-69152)
+  # Appears at v1, v2, and v5. Pin all three majors to their safe minimums.
+  "brace-expansion@1": "^1.1.21"
+  "brace-expansion@2": "^2.1.7"
+  "brace-expansion@5": "^5.0.12"
+  # js-yaml: CPU DoS via !!omap + maxTotalMergeKeys bypass (CVE-2026-59870, CVE-2026-84375)
+  js-yaml: "^4.3.2"
+  # qs: Array-limit bypass + isBuffer DoS (CVE-2026-82562, CVE-2026-82417)
+  qs: "^6.16.0"
+  # markdown-it: Quadratic linkify paths causing event-loop block
+  markdown-it: "^14.3.1"
+  # fast-copy: Stack exhaustion on deeply-nested values
+  fast-copy: "^4.1.0"
+  # dompurify: DOM XSS via IN_PLACE afterSanitize hook (two advisories)
+  dompurify: "^3.4.16"
+  # braces: Stack-exhaustion DoS (CVE-2026-93687) via micromatch > fast-glob > mockup-sandbox
+  # No patched version published yet — this override will pick it up when one lands.
+  braces: "^3.0.3"
+  # uuid: Missing buffer bounds check in v3/v5/v6 (CVE-2026-41907) via exceljs.
+  # The advisory's only patched line is >=11.1.1 — no v8 patch exists, so the previous
+  # "uuid@8: ^8.3.2" pin stayed vulnerable. ExcelJS 4.4.0 imports uuid solely as
+  # `const { v4: uuidv4 } = require('uuid')` (cf-rule-ext-xform.js), and v4's signature is
+  # unchanged across the major, so forcing the whole tree onto the patched line is safe here.
+  "uuid@8": "^11.1.1"
   "@expo/ngrok-bin>@expo/ngrok-bin-darwin-arm64": "-"
   "@expo/ngrok-bin>@expo/ngrok-bin-darwin-x64": "-"
   "@expo/ngrok-bin>@expo/ngrok-bin-freebsd-ia32": "-"
@@ -107,7 +135,7 @@ overrides:
   # host, but this repo is also run locally on Windows, where Tailwind v4 needs the
   # native oxide and lightningcss bindings. Keeping the win32-x64 optionals installed
   # costs nothing on Linux (platform-mismatched optionals are skipped anyway).
-  esbuild: "0.27.3"
+  esbuild: "0.28.1"
   "esbuild>@esbuild/aix-ppc64": '-'
   "esbuild>@esbuild/android-arm": '-'
   "esbuild>@esbuild/android-arm64": '-'

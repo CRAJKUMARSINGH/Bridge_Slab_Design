@@ -38,7 +38,8 @@ export async function optimiseBridgeDesign(
   let currentInput = { ...input };
   const trials: OptimisationResult['trials'] = [];
   const maxIterations = budget.maxIterations ?? DEFAULT_MAX_ITERATIONS;
-  const deadline = Date.now() + (budget.deadlineMs ?? DEFAULT_DEADLINE_MS);
+  const deadlineMs = budget.deadlineMs ?? DEFAULT_DEADLINE_MS;
+  const startedAt = Date.now();
 
   let success = false;
   let message = '';
@@ -46,8 +47,13 @@ export async function optimiseBridgeDesign(
   for (let i = 1; i <= maxIterations; i++) {
     // Yield between trials so the bounded loop cannot starve other requests.
     await new Promise<void>((resolve) => setImmediate(resolve));
-    if (Date.now() > deadline) {
-      message = `Stopped at iteration ${i - 1}: ${DEFAULT_DEADLINE_MS} ms compute budget exhausted before a safe design was reached.`;
+    // `>=`, not `>`: a `deadlineMs: 0` caller is asking for no compute at all, and `Date.now() > started`
+    // only becomes true once a millisecond has ticked over — so the same call returned 0 or 1 trial
+    // depending on clock granularity (it did, under load, in the 2026-10-06 candidate run).
+    if (Date.now() - startedAt >= deadlineMs) {
+      // The caller's budget, not the default: this string reaches the UI, and quoting 5000 ms for a
+      // request that asked for 500 is the report disagreeing with the calculation it describes.
+      message = `Stopped at iteration ${i - 1}: ${deadlineMs} ms compute budget exhausted before a safe design was reached.`;
       break;
     }
     const design = calculateCompleteDesign(currentInput);

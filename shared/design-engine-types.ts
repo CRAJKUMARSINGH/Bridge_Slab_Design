@@ -66,6 +66,8 @@ export const SOFT_ROCK_BAND_THICKNESS_M = 1.0;
 export const WEEP_HOLE_SPACING_M = 1.5;
 export const RETURN_WALL_THICKNESS_M = 0.3;
 export const WALL_BACKFILL_WIDTH_M = 1.5;
+/** Backfill volume taken as this fraction of the total foundation excavation. */
+export const BACKFILL_RATIO_OF_EXCAVATION = 0.4;
 export const WALL_FILTER_THICKNESS_M = 0.6;
 export const APPROACH_SLAB_LENGTH_M = 6;
 export const APPROACH_SLAB_THICKNESS_M = 0.3;
@@ -75,6 +77,15 @@ export const MARKING_LINE_WIDTH_M = 0.15;
 export const CATS_EYE_SPACING_M = 3;
 export const INFO_BOARDS = 2;
 export const NAME_BOARDS = 2;
+/** Railing is billed along both edges of the carried deck. */
+export const RAILING_EDGES = 2;
+/**
+ * Retro-reflectivised cautionary signs billed per approach, the count the
+ * authority's own bridge estimates use (three of each size per approach).
+ */
+export const SIGNS_90CM_PER_APPROACH = 3;
+export const SIGNS_60CM_PER_APPROACH = 3;
+export const APPROACH_COUNT = 2;
 
 // ---------------------------------------------------------------------------
 // Types
@@ -247,6 +258,7 @@ export function calculateDetailedEstimation(
   ): number => {
     if (basis === 'count') return nos;
     if (basis === 'plan') return nos * l * b;
+    if (basis === 'run') return nos * l;
     if (basis === 'steel') return (nos * l * b * h) / 100 / 1000;
     return nos * l * b * h;
   };
@@ -458,23 +470,20 @@ export function calculateDetailedEstimation(
     [steelPart('substructure', substructureRcc)],
   );
 
-  add(SECTION.substructure, 'B-1/3.1', `Back filling behind abutment, wing wall and return wall in 150 mm layers with mechanical compaction, gravelly material (${WALL_BACKFILL_WIDTH_M} m wide behind the walls up to ${wallHeight} m high)`, 'm³', ITEM_RATES.backfillGravelly, [
+  const totalExcavationVolume = digPlan.reduce(
+    (sum, d) => sum + d.nos * d.l * d.b,
+    0,
+  ) * excavationDepth;
+  const backfillVolume = BACKFILL_RATIO_OF_EXCAVATION * totalExcavationVolume;
+
+  add(SECTION.substructure, 'B-1/3.1', `Back filling behind abutment, wing wall and return wall in 150 mm layers with mechanical compaction, gravelly material (${(BACKFILL_RATIO_OF_EXCAVATION * 100).toFixed(0)} % of total excavation = ${backfillVolume.toFixed(2)} m³)`, 'm³', ITEM_RATES.backfillGravelly, [
     {
-      desc: 'Behind abutment',
+      desc: 'Backfill (40% of excavation)',
       basis: 'volume',
-      nos: 2,
-      l: bandLen,
-      b: WALL_BACKFILL_WIDTH_M,
-      h: wallHeight,
-      unit: 'm³',
-    },
-    {
-      desc: 'Behind returns',
-      basis: 'volume',
-      nos: 4,
-      l: input.returnWallLength,
-      b: WALL_BACKFILL_WIDTH_M,
-      h: wallHeight,
+      nos: 1,
+      l: backfillVolume,
+      b: 1,
+      h: 1,
       unit: 'm³',
     },
   ]);
@@ -568,6 +577,18 @@ export function calculateDetailedEstimation(
     ],
   );
 
+  add(SECTION.superstructure, 'R-7/2.3', `RCC M-30 railing in-situ with 20 mm aggregate, ${RAILING_EDGES} edges along the carried deck including steel and formwork`, 'Rmt', ITEM_RATES.railingPerMetre, [
+    {
+      desc: 'Both edges of deck',
+      basis: 'run',
+      nos: RAILING_EDGES,
+      l: input.totalLength,
+      b: 0,
+      h: 0,
+      unit: 'Rmt',
+    },
+  ]);
+
   add(SECTION.superstructure, 'B-4/7', '12 mm thick bitumen mastic wearing coat / damp-proof course to pier and abutment faces, including tack coat', 'm²', ITEM_RATES.bitumenMasticCoat, [
     {
       desc: 'Pier faces',
@@ -591,9 +612,18 @@ export function calculateDetailedEstimation(
 
   add(SECTION.superstructure, 'B-4/11.2', `20 mm thick compressible fibre board in expansion joint, ${Math.round(jointDepth * 1000)} mm deep (deck slab plus wearing coat)`, 'm²', ITEM_RATES.expansionJointCfb, [
     {
+      desc: 'At piers (one face per span junction)',
+      basis: 'plan',
+      nos: input.numberOfPiers,
+      l: input.carriageWidth,
+      b: jointDepth,
+      h: 0,
+      unit: 'm²',
+    },
+    {
       desc: 'At abutments',
       basis: 'plan',
-      nos: 2,
+      nos: APPROACH_COUNT,
       l: input.carriageWidth,
       b: jointDepth,
       h: 0,
@@ -705,6 +735,44 @@ export function calculateDetailedEstimation(
         desc: 'Name boards',
         basis: 'count',
         nos: NAME_BOARDS,
+        l: 0,
+        b: 0,
+        h: 0,
+        unit: 'Nos',
+      },
+    ],
+  );
+
+  add(
+    SECTION.approaches,
+    '500-33',
+    `Retro-reflectivised 90 cm equilateral cautionary sign as per IRC:67 on MS angle post with M-15 concrete foundation, ${SIGNS_90CM_PER_APPROACH} per approach`,
+    'Nos',
+    ITEM_RATES.signCautionary90,
+    [
+      {
+        desc: 'Cautionary signs at both approaches',
+        basis: 'count',
+        nos: APPROACH_COUNT * SIGNS_90CM_PER_APPROACH,
+        l: 0,
+        b: 0,
+        h: 0,
+        unit: 'Nos',
+      },
+    ],
+  );
+
+  add(
+    SECTION.approaches,
+    '500-34',
+    `Retro-reflectivised 60 cm equilateral cautionary sign as per IRC:67 on MS angle post with M-15 concrete foundation, ${SIGNS_60CM_PER_APPROACH} per approach`,
+    'Nos',
+    ITEM_RATES.signCautionary60,
+    [
+      {
+        desc: 'Secondary cautionary signs at both approaches',
+        basis: 'count',
+        nos: APPROACH_COUNT * SIGNS_60CM_PER_APPROACH,
         l: 0,
         b: 0,
         h: 0,

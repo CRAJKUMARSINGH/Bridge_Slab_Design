@@ -15,6 +15,7 @@
 import ExcelJS from 'exceljs';
 import { generateCompleteExcel } from '../bridge-excel-generator/index.ts';
 import { readCellValue } from '../bridge-excel-generator/utils.ts';
+import { PIER_STABILITY_ROWS } from '../bridge-excel-generator/sheets/09-stability-check-pier.ts';
 import type { ProjectInput } from '../bridge-excel-generator/types.ts';
 import { PHASE1_QUICK_TEMPLATES } from '../server/default-project-inputs.ts';
 
@@ -24,7 +25,7 @@ const CROSS_RE = /(?:'([^']+)'|([A-Za-z0-9_ -]+))!\$?([A-Z]{1,3})\$?(\d+)/g;
 const SAME_RE = /(?<![A-Za-z0-9_$!:'"])\$?([A-Z]{1,3})\$?(\d{1,5})(?![A-Za-z0-9_(.])/g;
 const CROSS_RANGE_RE = /(?:'([^']+)'|([A-Za-z0-9_ -]+))!\$?([A-Z]{1,3})\$?(\d{1,5}):\$?([A-Z]{1,3})\$?(\d{1,5})/g;
 const SAME_RANGE_RE = /(?<![A-Za-z0-9_$!:'"])\$?([A-Z]{1,3})\$?(\d{1,5}):\$?([A-Z]{1,3})\$?(\d{1,5})(?![A-Za-z0-9_(.])/g;
-const SUPPORTED_FNS = ['IF', 'AND', 'OR', 'MAX', 'MIN', 'SUM', 'ABS', 'POWER', 'SQRT', 'TAN', 'COS', 'SIN', 'ROUND', 'MOD', 'PI'];
+const SUPPORTED_FNS = ['IF', 'AND', 'OR', 'MAX', 'MIN', 'SUM', 'ABS', 'POWER', 'SQRT', 'TAN', 'COS', 'SIN', 'ROUND', 'MOD', 'CEILING', 'PI'];
 
 function cellNumber(ws: ExcelJS.Worksheet, addr: string): number | undefined {
   const v = readCellValue(ws.getCell(addr)) as any;
@@ -145,7 +146,7 @@ function tryEvaluate(wb: ExcelJS.Workbook, ws: ExcelJS.Worksheet, formula: strin
     // eslint-disable-next-line no-new-func
     const compiled = Function(
       '__IF', '__AND', '__OR', '__MAX', '__MIN', '__SUM', '__ABS', '__POWER', '__SQRT',
-      '__TAN', '__COS', '__SIN', '__ROUND', '__MOD', '__PI',
+      '__TAN', '__COS', '__SIN', '__ROUND', '__MOD', '__PI', '__CEILING',
       `"use strict";return (${expr});`,
     );
     const val = compiled(
@@ -159,6 +160,8 @@ function tryEvaluate(wb: ExcelJS.Workbook, ws: ExcelJS.Worksheet, formula: strin
       (x: number, d = 0) => Number(x.toFixed(d)),
       (a: number, b: number) => a % b,
       Math.PI,
+      // Excel CEILING(n, s) rounds n away from zero to the next multiple of s.
+      (n: number, s: number) => Math.ceil(n / s) * s,
     );
     if (typeof val === 'number') return Number.isFinite(val) ? val : undefined;
     if (typeof val === 'string') return val;
@@ -263,7 +266,12 @@ async function auditWorkbook(input: ProjectInput) {
 async function main() {
   let failed = 0;
   const shapes = new Map<string, number>();
+  let unauditedTotal = 0;
 
+  if (PHASE1_QUICK_TEMPLATES.length === 0) {
+    console.error('verify-workbook-links: the template roster is empty — this gate would exit 0 having linked no workbook.');
+    process.exit(1);
+  }
   for (const template of PHASE1_QUICK_TEMPLATES) {
     const input = template.input;
     const { counts, issues, unauditedCells } = await auditWorkbook(input);
@@ -273,6 +281,7 @@ async function main() {
     });
     const ok = counts.badRefs + counts.divergences === 0;
     if (!ok) failed++;
+    unauditedTotal += counts.unaudited;
     console.log(
       `${ok ? 'OK  ' : 'FAIL'} ${template.id.padEnd(24)} pts=${String(input.crossSectionData.length).padStart(2)} ` +
       `formulas:${counts.formulas} cross:${counts.cross} same:${counts.sameRefs} ` +
@@ -286,16 +295,36 @@ async function main() {
   const { wb } = await auditWorkbook(golden.input);
   const p9 = wb.getWorksheet('STABILITY CHECK FOR PIER')!;
   const p10 = wb.getWorksheet('abstract of stresses')!;
+  // Addresses come from PIER_STABILITY_ROWS, the same map sheets 10 and 12-18 link by, and each
+  // line prints the case label it is pointing at. A hard-coded 'H47' here kept describing a row
+  // the layout had already moved, so the gate's own evidence was the thing that was stale.
+  let lastCaseRow = PIER_STABILITY_ROWS.firstCaseRow;
+  while (typeof readCellValue(p9.getCell(`A${lastCaseRow + 1}`)) === 'number') lastCaseRow++;
+  const caseLabel = (r: number) => String(readCellValue(p9.getCell(`B${r}`)) ?? '?');
   console.log('\nGolden spot-checks:');
-  console.log('  S9 B18 velocity xref:', JSON.stringify(p9.getCell('B18').value));
-  console.log('  S9 H47 service V:    ', JSON.stringify(p9.getCell('H47').value));
-  console.log('  S9 N51 ULS status:   ', JSON.stringify(p9.getCell('N51').value));
+  console.log(`  S9 B${PIER_STABILITY_ROWS.velocity} velocity xref:`, JSON.stringify(p9.getCell(`B${PIER_STABILITY_ROWS.velocity}`).value));
+  console.log(
+    `  S9 ${PIER_STABILITY_ROWS.colV}${PIER_STABILITY_ROWS.firstCaseRow} V (${caseLabel(PIER_STABILITY_ROWS.firstCaseRow)}):`,
+    JSON.stringify(p9.getCell(`${PIER_STABILITY_ROWS.colV}${PIER_STABILITY_ROWS.firstCaseRow}`).value),
+  );
+  console.log(
+    `  S9 ${PIER_STABILITY_ROWS.colStatus}${lastCaseRow} status (${caseLabel(lastCaseRow)}):`,
+    JSON.stringify(p9.getCell(`${PIER_STABILITY_ROWS.colStatus}${lastCaseRow}`).value),
+  );
   console.log('  S10 C12 retrieved V: ', JSON.stringify(p10.getCell('C12').value));
   console.log('  S10 I12 status link: ', JSON.stringify(p10.getCell('I12').value));
 
   if (shapes.size > 0) {
     console.log(`\nFormula shapes the mini-interpreter cannot re-execute (${shapes.size}):`);
     [...shapes.entries()].slice(0, 20).forEach(([shape, n]) => console.log(`  x${n} ${shape}`));
+  }
+
+  // The header promises every cached result is re-checked against its own formula. A cell the
+  // interpreter cannot run was previously just tallied, so a workbook whose verdicts all used one
+  // unsupported function would still print "fully linked". Either teach it here or stop shipping it.
+  if (unauditedTotal > 0) {
+    console.error(`\n${unauditedTotal} formula cell(s) could not be re-executed — their cached values are unverified.`);
+    failed += 1;
   }
 
   console.log(`\nDone: ${PHASE1_QUICK_TEMPLATES.length - failed}/${PHASE1_QUICK_TEMPLATES.length} workbooks fully linked.`);

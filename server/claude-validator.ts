@@ -6,6 +6,7 @@
 
 import type { ProjectInput, HydraulicsResult, PierDesignResult, AbutmentDesignResult } from '../bridge-excel-generator/types';
 import { deckSlabThicknessOf } from '../bridge-excel-generator/input-contract';
+import { STABILITY_ACCEPTANCE } from '../bridge-excel-generator/design-engine';
 
 interface ValidationPrompt {
   role: 'user' | 'assistant';
@@ -170,20 +171,23 @@ export function performLocalValidation(input: ProjectInput, designResults: {
   }
   ircRefs.push("IRC:78-1983: Pier depth ≥ 1.33 × Lacey's scour depth");
   
-  // 3. Pier stability validation
+  // 3. Pier stability validation — the SAME acceptance rule the design engine applied when it
+  // wrote `status`. Local literals (1.5 / 1.8 / 2.5) made this validator fail designs the engine
+  // had passed, once the bearing limit moved to pressure ≤ SBC.
+  const A = STABILITY_ACCEPTANCE;
   pier.loadCases.forEach(lc => {
     const issues: string[] = [];
-    
-    if (lc.slidingFOS < 1.5) {
-      issues.push(`Sliding FOS ${lc.slidingFOS.toFixed(2)} < 1.5 required`);
+
+    if (lc.slidingFOS < A.slidingFosMin) {
+      issues.push(`Sliding FOS ${lc.slidingFOS.toFixed(2)} < ${A.slidingFosMin} required`);
     }
-    if (lc.overturningFOS < 1.8) {
-      issues.push(`Overturning FOS ${lc.overturningFOS.toFixed(2)} < 1.8 required`);
+    if (lc.overturningFOS < A.overturningFosMin) {
+      issues.push(`Overturning FOS ${lc.overturningFOS.toFixed(2)} < ${A.overturningFosMin} required`);
     }
-    if (lc.bearingFOS < 2.5) {
-      issues.push(`Bearing FOS ${lc.bearingFOS.toFixed(2)} < 2.5 required`);
+    if (lc.bearingFOS < A.bearingFosMin) {
+      issues.push(`Bearing FOS ${lc.bearingFOS.toFixed(2)} < ${A.bearingFosMin} required`);
     }
-    
+
     if (issues.length > 0) {
       validations.push({
         section: `Pier Stability - ${lc.description}`,
@@ -198,9 +202,9 @@ export function performLocalValidation(input: ProjectInput, designResults: {
         status: 'PASS',
         message: `All stability criteria satisfied for ${lc.description}`,
         details: [
-          `Sliding FOS: ${lc.slidingFOS.toFixed(2)} ≥ 1.5`,
-          `Overturning FOS: ${lc.overturningFOS.toFixed(2)} ≥ 1.8`,
-          `Bearing FOS: ${lc.bearingFOS.toFixed(2)} ≥ 2.5`
+          `Sliding FOS: ${lc.slidingFOS.toFixed(2)} ≥ ${A.slidingFosMin}`,
+          `Overturning FOS: ${lc.overturningFOS.toFixed(2)} ≥ ${A.overturningFosMin}`,
+          `Bearing FOS: ${lc.bearingFOS.toFixed(2)} ≥ ${A.bearingFosMin}`
         ]
       });
     }

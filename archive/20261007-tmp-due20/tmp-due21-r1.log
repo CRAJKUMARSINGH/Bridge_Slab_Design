@@ -1,0 +1,52 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+OK   larathi-stabil           UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   kherwara-golden          UNSAFE (4/5)  UNSAFE (3/5)  UNSAFE (3/5)
+OK   high-level-reference     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   small-bridge             UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   medium-bridge            UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   large-bridge             UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-bedach-bedla         UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-jakham-mandvi        UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-t01-jethliya         UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-sukanaka-matoon      UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-ayad-maharashtra     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-gumaniya-udaipur     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-katumbi-chandrod     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-sisarama-highlevel   UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-kumbhalgarh-kelwara  UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-parwan-highlevel     UNSAFE (5/5)  UNSAFE (1/5)  UNSAFE (1/5)
+OK   irc-banas-highlevel      UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-ayad-fatehpura       UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-kherka-teegirder     UNSAFE (4/5)  UNSAFE (1/5)  UNSAFE (1/5)
+OK   irc-sukanaka-highlevel   UNSAFE (4/5)  UNSAFE (1/5)  UNSAFE (1/5)
+OK   acceptance rule reaches the browser from the response
+DEFECT client thresholds are declared with a stated basis
+       - client/src/components/SeismicZonePanel.tsx: declared thresholds are [__FILL__] but the file now uses [1.25 / 1.50] — update the declaration WITH its basis, never by copying the number in. Basis on file: seismic reduced edges (sliding 1.25 / overturning 1.50), cited in-file as IRC:6-2016 Cl.219 — the citation is not verified against the code text (§AB-4)
+       - client/src/pages/AbutmentStability.tsx: declared thresholds are [__FILL__] but the file now uses [1.50 / 2.00] — update the declaration WITH its basis, never by copying the number in. Basis on file: standalone hand-calculator with its own force model: sliding 1.5 agrees with the engine, overturning 2.00 does NOT (the engine applies 1.80) — open owner decision (§AB-3)
+       - client/src/pages/BridgeSlabReport.tsx: declared thresholds are [__FILL__] but the file now uses [1.5] — update the declaration WITH its basis, never by copying the number in. Basis on file: client report model — no engine response exists in this tree; sliding >= 1.5 with qmax <= SBC, i.e. bearing expressed as pressure <= SBC, matching the engine's 1.0 intent (§AB-2)
+       - client/src/pages/Design.tsx: declared thresholds are [__FILL__] but the file now uses [1.10 / 1.25 / 1.50] — update the declaration WITH its basis, never by copying the number in. Basis on file: quick preview: seismic band 1.25/1.50 and UI caution band 1.10/1.25/1.50. The wind PASS edge reads stabilityAcceptance (§AB-1)
+       - client/src/pages/FormulaEvaluator.tsx: declared thresholds are [__FILL__] but the file now uses [1.3 / 1.5 / 1.7 / 2.0] — update the declaration WITH its basis, never by copying the number in. Basis on file: teaching evaluator, own arithmetic; PASS 1.5 / WARN 1.3 sliding and PASS 2.0 / WARN 1.7 overturning are its own bands, not the engine rule (§AB-3)
+       - client/src/report-engine/exportUtils.ts: declared thresholds are [__FILL__] but the file now uses [1.5] — update the declaration WITH its basis, never by copying the number in. Basis on file: client report model export (§AB-2)
+       - client/src/report-engine/sheets/engineeringNarrative.tsx: declared thresholds are [__FILL__] but the file now uses [1.5] — update the declaration WITH its basis, never by copying the number in. Basis on file: client report model narrative (§AB-2)
+       - client/src/report-engine/sheets/SummarySection.tsx: declared thresholds are [__FILL__] but the file now uses [1.5] — update the declaration WITH its basis, never by copying the number in. Basis on file: client report model (§AB-2)
+
+==============================================================================
+STABILITY OUTCOMES — 300 load cases across 20 templates
+  SAFE   195
+  UNSAFE 105
+  templates carrying at least one UNSAFE case: 20 of 20
+
+WHICH CHECK FAILS (cases may fail more than one):
+  sliding < 1.5            99
+  overturning < 1.8      82
+  bearing < 1            6
+  failing bearing ALONE    6 — everything else in those cases passes
+==============================================================================
+These are engineering verdicts, not gate failures. 20 template(s)
+must NOT be signed off on this run's numbers without a licensed engineer. A zero exit code
+below means the machinery reported the truth, not that the bridge stands.
+
+Evidence written: E:/Rajkumar/Bridge_Slab_Design/evidence/stability-outcomes.json
+Templates: 20 | defects: 8
+EXIT=1

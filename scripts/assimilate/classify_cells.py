@@ -10,6 +10,8 @@ dependency-graph analysis), see classify_workbook.py in this same directory.
 import json, re, sys
 from pathlib import Path
 
+from output_currency import relocate_stale
+
 WORKSPACE = Path(__file__).resolve().parents[2]
 NORM_DIR = WORKSPACE / 'evidence' / 'assimilation' / 'normalized'
 OUT_DIR = WORKSPACE / 'evidence' / 'assimilation' / 'classified'
@@ -45,7 +47,8 @@ def main():
             out = {**data, 'classified_headers': classified, 'classification_status': 'ok'}
             processed += 1
         (OUT_DIR / f.name).write_text(json.dumps(out, indent=2), encoding='utf-8')
-    print(f'A3 classify: processed={processed} of {len(files)}')
+    stale = relocate_stale(OUT_DIR, [f.name for f in files])
+    print(f'A3 classify: processed={processed} of {len(files)}, relocated-pointer-era={len(stale)}')
     sys.exit(0)
 
 if __name__ == '__main__':

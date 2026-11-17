@@ -60,7 +60,8 @@ describe('Slab Calculation Engine (IS 456 Category B)', () => {
       concreteGrade: 'M25',
       steelGrade: 'Fe500',
       lx: 3.0,
-      ly: 10.0,
+      // ly is transverse; the one-way effective span is lx. Ratio 3.0 = the schema ceiling.
+      ly: 9.0,
       thickness: 200,
       floorFinish: 1.0,
       sunkLoad: 0,
@@ -87,7 +88,7 @@ describe('Slab Calculation Engine (IS 456 Category B)', () => {
       concreteGrade: 'M25',
       steelGrade: 'Fe500',
       lx: 1.5,
-      ly: 5.0,
+      ly: 4.5,
       thickness: 150,
       floorFinish: 1.0,
       sunkLoad: 0,
@@ -121,7 +122,7 @@ describe('Slab Calculation Engine (IS 456 Category B)', () => {
       concreteGrade: 'M25',
       steelGrade: 'Fe500',
       lx: 3.0,
-      ly: 10.0,
+      ly: 9.0,
       thickness: 200, // Very thick
       floorFinish: 1.0,
       sunkLoad: 0,

@@ -1,0 +1,6 @@
+
+> workspace@0.0.0 assimilate:normalize E:\Rajkumar\Bridge_Slab_Design
+> python scripts/assimilate/normalize.py
+
+A2 normalize: processed=16, lfs-stub=0, errors=49
+A2_EXIT=0

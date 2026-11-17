@@ -12,7 +12,11 @@ export type WorkbookSheetPreview = {
   rowCount: number;
   colCount: number;
   rows: string[][];
+  /** Row count of the worksheet in the workbook, before any print window clipped it. */
+  sourceRowCount: number;
 };
+
+export type PreviewWindow = { maxRows: number; maxCols: number };
 
 export const MAX_ROWS = 140;
 export const MAX_COLS = 18;
@@ -33,6 +37,9 @@ function numberDisplay(n: number): string {
 }
 
 function cellDisplay(cell: ExcelJS.Cell): string {
+  // ExcelJS hands every cell of a merged range the master's value. Printing that per column
+  // repeats one long note across the whole grid, so only the anchor cell keeps the text.
+  if (cell.isMerged && cell.master.address !== cell.address) return '';
   // readCellValue recovers cached results of 0/FALSE that cell.value hides.
   const v = readCellValue(cell);
   if (v == null || v === '') return '';
@@ -60,7 +67,8 @@ function cellDisplay(cell: ExcelJS.Cell): string {
 }
 
 export async function buildWorkbookSheetPreviews(
-  input: ProjectInput
+  input: ProjectInput,
+  window: PreviewWindow = { maxRows: MAX_ROWS, maxCols: MAX_COLS }
 ): Promise<WorkbookSheetPreview[]> {
   const buffer = await generateCompleteExcel(input);
   const wb = new ExcelJS.Workbook();
@@ -71,14 +79,14 @@ export async function buildWorkbookSheetPreviews(
   const out: WorkbookSheetPreview[] = [];
 
   for (const ws of wb.worksheets) {
-    const rowEnd = Math.min(ws.rowCount || 1, MAX_ROWS);
+    const rowEnd = Math.min(ws.rowCount || 1, window.maxRows);
     const rows: string[][] = [];
     let maxCol = 1;
 
     for (let r = 1; r <= rowEnd; r++) {
       const row = ws.getRow(r);
       const line: string[] = [];
-      for (let c = 1; c <= MAX_COLS; c++) {
+      for (let c = 1; c <= window.maxCols; c++) {
         const s = cellDisplay(row.getCell(c));
         line.push(s);
         if (s) maxCol = Math.max(maxCol, c);
@@ -95,6 +103,7 @@ export async function buildWorkbookSheetPreviews(
       rowCount: rows.length,
       colCount: maxCol,
       rows: rows.map((line) => line.slice(0, maxCol)),
+      sourceRowCount: ws.rowCount || rows.length,
     });
   }
 
@@ -141,5 +150,6 @@ export async function buildSingleWorkbookSheetPreview(
     rowCount: rows.length,
     colCount: maxCol,
     rows: rows.map((line) => line.slice(0, maxCol)),
+    sourceRowCount: ws.rowCount || rows.length,
   };
 }

@@ -205,7 +205,11 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
     }),
   },
   {
-    // STRUCTURAL REVIEW REQUIRED: Pier sliding FOS = 0.677 (worst case, all 5 load cases below 1.5 threshold).
+    // STRUCTURAL REVIEW REQUIRED: Pier sliding FOS = 0.084 worst (case 3, Flood), all 5 load cases
+    // below the 1.5 threshold (0.228 / 0.183 / 0.084 / 0.117 / 0.364; overturning 0.110 worst).
+    // Re-measured 2026-10-07 from the committed engine (npx tsx scripts/verify-stability-outcomes.ts,
+    // evidence/stability-outcomes.json); the figures first written against this flag on 2026-10-06
+    // were 0.677 sliding / all-five-below-1.5 and no longer match any template the engine produces.
     // The iterative solver failed to converge after 200 × 100 mm increments — increasing pier depth and base
     // dimensions alone cannot overcome the high horizontal hydraulic force at this discharge (1800 cumecs).
     // Consider shear key provision at pier base or increased embedment depth — signing engineer must verify
@@ -583,10 +587,13 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
   },
 
   {
-    // STRUCTURAL REVIEW REQUIRED: Abutment bearing FOS = 0.930 (below 2.5 threshold).
-    // Pier sliding and overturning pass (min FOS 1.505 and 6.006 respectively), but abutment
-    // bearing pressure exceeds SBC under the combined load envelope — increasing abutmentDepth
-    // alone could not converge after 200 × 100 mm solver iterations.
+    // STRUCTURAL REVIEW REQUIRED: Abutment bearing FOS = 0.985 worst (case 5, ULS) — base pressure
+    // exceeds SBC, i.e. below the 1.0 acceptance limit set by STABILITY_ACCEPTANCE on 2026-10-06.
+    // Pier does NOT pass either: sliding 0.370 and overturning 0.606 worst across the five cases.
+    // (This flag was written on 2026-10-06 quoting bearing 0.930 and a passing pier at 1.505 / 6.006;
+    // those figures match no current engine run — re-measured 2026-10-07 via
+    // npx tsx scripts/verify-stability-outcomes.ts, evidence/stability-outcomes.json.)
+    // Increasing abutmentDepth alone could not converge after 200 × 100 mm solver iterations.
     // Consider deeper abutment footing embedment or ground improvement to raise effective SBC —
     // signing engineer must verify per IRC:78 §706 before issuing construction drawings.
     id: 'irc-parwan-highlevel',
@@ -709,10 +716,13 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
   },
 
   {
-    // STRUCTURAL REVIEW REQUIRED: Abutment bearing FOS = 0.902 (below 2.5 threshold).
-    // Pier sliding and overturning pass (min FOS 1.504 and 7.921 respectively), but abutment
-    // bearing pressure exceeds SBC under the combined load envelope — increasing abutmentDepth
-    // alone could not converge after 200 × 100 mm solver iterations.
+    // STRUCTURAL REVIEW REQUIRED: Abutment bearing FOS = 0.979 worst (case 5, ULS) — base pressure
+    // exceeds SBC, i.e. below the 1.0 acceptance limit set by STABILITY_ACCEPTANCE on 2026-10-06.
+    // Pier does NOT pass either: sliding 0.488 and overturning 0.846 worst across the five cases.
+    // (This flag was written on 2026-10-06 quoting bearing 0.902 and a passing pier at 1.504 / 7.921;
+    // those figures match no current engine run — re-measured 2026-10-07 via
+    // npx tsx scripts/verify-stability-outcomes.ts, evidence/stability-outcomes.json.)
+    // Increasing abutmentDepth alone could not converge after 200 × 100 mm solver iterations.
     // Consider deeper abutment footing embedment or ground improvement to raise effective SBC —
     // signing engineer must verify per IRC:78 §706 before issuing construction drawings.
     id: 'irc-kherka-teegirder',
@@ -754,10 +764,13 @@ export const PHASE1_QUICK_TEMPLATES: Array<{
   },
 
   {
-    // STRUCTURAL REVIEW REQUIRED: Abutment bearing FOS = 0.871 (below 2.5 threshold).
-    // Pier sliding and overturning pass (min FOS 1.508 and 8.488 respectively), but abutment
-    // bearing pressure exceeds SBC under the combined load envelope — increasing abutmentDepth
-    // alone could not converge after 200 × 100 mm solver iterations.
+    // STRUCTURAL REVIEW REQUIRED: Abutment bearing FOS = 0.967 worst (case 5, ULS) — base pressure
+    // exceeds SBC, i.e. below the 1.0 acceptance limit set by STABILITY_ACCEPTANCE on 2026-10-06.
+    // Pier does NOT pass either: sliding 0.474 and overturning 0.890 worst across the five cases.
+    // (This flag was written on 2026-10-06 quoting bearing 0.871 and a passing pier at 1.508 / 8.488;
+    // those figures match no current engine run — re-measured 2026-10-07 via
+    // npx tsx scripts/verify-stability-outcomes.ts, evidence/stability-outcomes.json.)
+    // Increasing abutmentDepth alone could not converge after 200 × 100 mm solver iterations.
     // Consider deeper abutment footing embedment or ground improvement to raise effective SBC —
     // signing engineer must verify per IRC:78 §706 before issuing construction drawings.
     id: 'irc-sukanaka-highlevel',

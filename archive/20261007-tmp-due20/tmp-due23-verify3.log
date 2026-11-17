@@ -1,0 +1,493 @@
+
+> workspace@0.0.0 verify E:\Rajkumar\Bridge_Slab_Design
+> pnpm run verify:golden && pnpm run verify:sheets && pnpm run verify:links && pnpm run verify:values && pnpm run verify:costing && pnpm run verify:uplift && pnpm run verify:cases && pnpm run verify:outcomes && pnpm run verify:parity && pnpm run verify:presentation && pnpm run verify:engine
+
+
+> workspace@0.0.0 verify:golden E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:golden
+
+
+> @workspace/scripts@0.0.0 verify:golden E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./src/verify-golden.ts
+
+Golden regression passed; tamper input changed the result as expected.
+
+> workspace@0.0.0 verify:sheets E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:sheets
+
+
+> @workspace/scripts@0.0.0 verify:sheets E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-kherwara-excel-golden.ts
+
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 46 sheets with real formulas (legacy 46-sheet contract)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on Larathi to Larathi B Road, across Som River
+Generating 46 sheets with real formulas (legacy 46-sheet contract)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.00 m is ABOVE the IRC-required scour founding level 83.34 m (bed − 2·dsm = 12.83 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+🚀 Starting Excel generation...
+Project: Fixture — minimal channel hydraulics
+Generating 46 sheets with real formulas (legacy 46-sheet contract)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 97.00 m is ABOVE the IRC-required scour founding level 40.52 m (bed − 2·dsm = 59.48 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+verify-kherwara-excel-golden: OK (current 46-sheet contract validated)
+
+> workspace@0.0.0 verify:links E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:links
+
+
+> @workspace/scripts@0.0.0 verify:links E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-workbook-links.ts
+
+OK   larathi-stabil           pts=16 formulas:753 cross:219 same:1449 re-eval:752 broken:0 diverge:0
+OK   kherwara-golden          pts= 7 formulas:629 cross:217 same:1156 re-eval:628 broken:0 diverge:0
+OK   high-level-reference     pts= 5 formulas:602 cross:217 same:1090 re-eval:601 broken:0 diverge:0
+OK   small-bridge             pts= 5 formulas:603 cross:217 same:1094 re-eval:602 broken:0 diverge:0
+OK   medium-bridge            pts= 5 formulas:603 cross:217 same:1094 re-eval:602 broken:0 diverge:0
+OK   large-bridge             pts= 5 formulas:603 cross:217 same:1094 re-eval:602 broken:0 diverge:0
+OK   irc-bedach-bedla         pts= 8 formulas:642 cross:217 same:1187 re-eval:641 broken:0 diverge:0
+OK   irc-jakham-mandvi        pts= 7 formulas:629 cross:217 same:1156 re-eval:628 broken:0 diverge:0
+OK   irc-t01-jethliya         pts= 5 formulas:603 cross:217 same:1094 re-eval:602 broken:0 diverge:0
+OK   irc-sukanaka-matoon      pts= 6 formulas:616 cross:217 same:1125 re-eval:615 broken:0 diverge:0
+OK   irc-ayad-maharashtra     pts= 7 formulas:629 cross:217 same:1156 re-eval:628 broken:0 diverge:0
+OK   irc-gumaniya-udaipur     pts= 5 formulas:610 cross:219 same:1108 re-eval:609 broken:0 diverge:0
+OK   irc-katumbi-chandrod     pts= 6 formulas:616 cross:217 same:1125 re-eval:615 broken:0 diverge:0
+OK   irc-sisarama-highlevel   pts= 5 formulas:602 cross:217 same:1090 re-eval:601 broken:0 diverge:0
+OK   irc-kumbhalgarh-kelwara  pts= 5 formulas:609 cross:219 same:1104 re-eval:608 broken:0 diverge:0
+OK   irc-parwan-highlevel     pts= 6 formulas:615 cross:217 same:1121 re-eval:614 broken:0 diverge:0
+OK   irc-banas-highlevel      pts= 7 formulas:628 cross:217 same:1152 re-eval:627 broken:0 diverge:0
+OK   irc-ayad-fatehpura       pts= 6 formulas:615 cross:217 same:1121 re-eval:614 broken:0 diverge:0
+OK   irc-kherka-teegirder     pts= 5 formulas:602 cross:217 same:1090 re-eval:601 broken:0 diverge:0
+OK   irc-sukanaka-highlevel   pts= 5 formulas:602 cross:217 same:1090 re-eval:601 broken:0 diverge:0
+
+Golden spot-checks:
+  S9 B18 velocity xref: {"formula":"=HYDRAULICS!C21","result":1.718}
+  S9 H51 V (Service Condition (DL+LL)): {"formula":"=C51*B34+D51*B35-G51*B40","result":644.638}
+  S9 N55 status (Ultimate Limit State (ULS)): {"formula":"=IF(AND(K55>=1.5,L55>=1.8,M55>=1),\"SAFE\",\"UNSAFE\")","result":"SAFE"}
+  S10 C12 retrieved V:  {"formula":"='STABILITY CHECK FOR PIER'!H51","result":644.638}
+  S10 I12 status link:  {"formula":"=IF(G12<=H12,'STABILITY CHECK FOR PIER'!N51,\"UNSAFE\")","result":"UNSAFE"}
+
+Done: 20/20 workbooks fully linked.
+
+> workspace@0.0.0 verify:values E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:values
+
+
+> @workspace/scripts@0.0.0 verify:values E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-workbook-value-sanity.ts
+
+OK   larathi-stabil                             cells:5447 formulas:753 nonFinite:0 placeholder:0 missingResult:0
+OK   kherwara-golden                            cells:5236 formulas:629 nonFinite:0 placeholder:0 missingResult:0
+OK   high-level-reference                       cells:5203 formulas:602 nonFinite:0 placeholder:0 missingResult:0
+OK   small-bridge                               cells:5203 formulas:603 nonFinite:0 placeholder:0 missingResult:0
+OK   medium-bridge                              cells:5203 formulas:603 nonFinite:0 placeholder:0 missingResult:0
+OK   large-bridge                               cells:5203 formulas:603 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-bedach-bedla                           cells:5260 formulas:642 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-jakham-mandvi                          cells:5241 formulas:629 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-t01-jethliya                           cells:5203 formulas:603 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-sukanaka-matoon                        cells:5222 formulas:616 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-ayad-maharashtra                       cells:5241 formulas:629 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-gumaniya-udaipur                       cells:5238 formulas:610 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-katumbi-chandrod                       cells:5222 formulas:616 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-sisarama-highlevel                     cells:5198 formulas:602 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-kumbhalgarh-kelwara                    cells:5233 formulas:609 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-parwan-highlevel                       cells:5222 formulas:615 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-banas-highlevel                        cells:5236 formulas:628 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-ayad-fatehpura                         cells:5217 formulas:615 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-kherka-teegirder                       cells:5198 formulas:602 nonFinite:0 placeholder:0 missingResult:0
+OK   irc-sukanaka-highlevel                     cells:5198 formulas:602 nonFinite:0 placeholder:0 missingResult:0
+
+Templates: 20 | cells: 104624 | formulas: 12411 | defects: 0
+
+> workspace@0.0.0 verify:costing E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:costing
+
+
+> @workspace/scripts@0.0.0 verify:costing E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-estimation-consistency.ts
+
+OK   larathi-stabil             items:26 dig=1156.8 m³ (rock 821.2) steel=179.42 MT bearings=66 total=₹330.81 L
+OK   kherwara-golden            items:25 dig=826.3 m³ (rock 0.0) steel=78.01 MT bearings=66 total=₹165.80 L
+OK   high-level-reference       items:25 dig=656.8 m³ (rock 0.0) steel=159.46 MT bearings=18 total=₹274.27 L
+OK   small-bridge               items:25 dig=520.0 m³ (rock 0.0) steel=90.58 MT bearings=12 total=₹156.45 L
+OK   medium-bridge              items:25 dig=668.8 m³ (rock 0.0) steel=144.36 MT bearings=18 total=₹249.98 L
+OK   large-bridge               items:25 dig=1116.0 m³ (rock 0.0) steel=238.16 MT bearings=24 total=₹410.81 L
+OK   irc-bedach-bedla           items:25 dig=1054.6 m³ (rock 0.0) steel=141.57 MT bearings=42 total=₹255.10 L
+OK   irc-jakham-mandvi          items:25 dig=1147.1 m³ (rock 0.0) steel=161.44 MT bearings=54 total=₹292.68 L
+OK   irc-t01-jethliya           items:25 dig=689.0 m³ (rock 0.0) steel=100.19 MT bearings=24 total=₹179.14 L
+OK   irc-sukanaka-matoon        items:25 dig=784.0 m³ (rock 0.0) steel=114.23 MT bearings=30 total=₹205.13 L
+OK   irc-ayad-maharashtra       items:25 dig=1018.9 m³ (rock 0.0) steel=156.64 MT bearings=42 total=₹281.20 L
+OK   irc-gumaniya-udaipur       items:26 dig=627.0 m³ (rock 456.0) steel=94.86 MT bearings=18 total=₹169.52 L
+OK   irc-katumbi-chandrod       items:25 dig=938.0 m³ (rock 0.0) steel=136.56 MT bearings=36 total=₹244.11 L
+OK   irc-sisarama-highlevel     items:25 dig=732.5 m³ (rock 0.0) steel=154.29 MT bearings=12 total=₹262.56 L
+OK   irc-kumbhalgarh-kelwara    items:26 dig=976.5 m³ (rock 744.0) steel=190.49 MT bearings=18 total=₹329.84 L
+OK   irc-parwan-highlevel       items:25 dig=1135.7 m³ (rock 0.0) steel=254.40 MT bearings=18 total=₹436.27 L
+OK   irc-banas-highlevel        items:25 dig=1296.9 m³ (rock 0.0) steel=243.51 MT bearings=30 total=₹420.79 L
+OK   irc-ayad-fatehpura         items:25 dig=796.6 m³ (rock 0.0) steel=174.01 MT bearings=18 total=₹297.98 L
+OK   irc-kherka-teegirder       items:25 dig=771.8 m³ (rock 0.0) steel=188.18 MT bearings=6 total=₹316.13 L
+OK   irc-sukanaka-highlevel     items:25 dig=732.5 m³ (rock 0.0) steel=156.12 MT bearings=12 total=₹265.74 L
+
+Templates: 20 | defects: 0
+
+> workspace@0.0.0 verify:uplift E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:uplift
+
+
+> @workspace/scripts@0.0.0 verify:uplift E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-uplift-sanity.ts
+
+OK   larathi-stabil           FOS=  4.15 sheet=4.15 SAFE
+OK   kherwara-golden          FOS=  8.16 sheet=8.17 SAFE
+OK   high-level-reference     FOS= 99.00 sheet=99.00 SAFE
+OK   small-bridge             FOS=  2.10 sheet=2.10 SAFE
+OK   medium-bridge            FOS=  1.73 sheet=1.73 SAFE
+OK   large-bridge             FOS=  1.11 sheet=1.10 UNSAFE
+OK   irc-bedach-bedla         FOS=  7.26 sheet=7.26 SAFE
+OK   irc-jakham-mandvi        FOS=  5.98 sheet=5.98 SAFE
+OK   irc-t01-jethliya         FOS=  8.88 sheet=8.88 SAFE
+OK   irc-sukanaka-matoon      FOS=  6.17 sheet=6.17 SAFE
+OK   irc-ayad-maharashtra     FOS=  5.87 sheet=5.87 SAFE
+OK   irc-gumaniya-udaipur     FOS=  8.02 sheet=8.02 SAFE
+OK   irc-katumbi-chandrod     FOS=  5.95 sheet=5.95 SAFE
+OK   irc-sisarama-highlevel   FOS= 99.00 sheet=99.00 SAFE
+OK   irc-kumbhalgarh-kelwara  FOS= 99.00 sheet=99.00 SAFE
+OK   irc-parwan-highlevel     FOS= 99.00 sheet=99.00 SAFE
+OK   irc-banas-highlevel      FOS= 99.00 sheet=99.00 SAFE
+OK   irc-ayad-fatehpura       FOS= 99.00 sheet=99.00 SAFE
+OK   irc-kherka-teegirder     FOS= 99.00 sheet=99.00 SAFE
+OK   irc-sukanaka-highlevel   FOS= 99.00 sheet=99.00 SAFE
+
+Templates: 20 | defects: 0
+
+> workspace@0.0.0 verify:cases E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:cases
+
+
+> @workspace/scripts@0.0.0 verify:cases E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-load-case-diversity.ts
+
+OK   larathi-stabil           abutment cases: 5 distinct, horizontal spread 367.0 kN
+OK   kherwara-golden          abutment cases: 5 distinct, horizontal spread 54.0 kN
+OK   high-level-reference     abutment cases: 5 distinct, horizontal spread 435.5 kN
+OK   small-bridge             abutment cases: 5 distinct, horizontal spread 197.3 kN
+OK   medium-bridge            abutment cases: 5 distinct, horizontal spread 367.0 kN
+OK   large-bridge             abutment cases: 5 distinct, horizontal spread 428.1 kN
+OK   irc-bedach-bedla         abutment cases: 5 distinct, horizontal spread 271.6 kN
+OK   irc-jakham-mandvi        abutment cases: 5 distinct, horizontal spread 322.3 kN
+OK   irc-t01-jethliya         abutment cases: 5 distinct, horizontal spread 181.7 kN
+OK   irc-sukanaka-matoon      abutment cases: 5 distinct, horizontal spread 219.8 kN
+OK   irc-ayad-maharashtra     abutment cases: 5 distinct, horizontal spread 322.3 kN
+OK   irc-gumaniya-udaipur     abutment cases: 5 distinct, horizontal spread 181.7 kN
+OK   irc-katumbi-chandrod     abutment cases: 5 distinct, horizontal spread 271.6 kN
+OK   irc-sisarama-highlevel   abutment cases: 5 distinct, horizontal spread 435.5 kN
+OK   irc-kumbhalgarh-kelwara  abutment cases: 5 distinct, horizontal spread 535.0 kN
+OK   irc-parwan-highlevel     abutment cases: 5 distinct, horizontal spread 512.5 kN
+OK   irc-banas-highlevel      abutment cases: 5 distinct, horizontal spread 704.3 kN
+OK   irc-ayad-fatehpura       abutment cases: 5 distinct, horizontal spread 512.6 kN
+OK   irc-kherka-teegirder     abutment cases: 5 distinct, horizontal spread 405.5 kN
+OK   irc-sukanaka-highlevel   abutment cases: 5 distinct, horizontal spread 279.4 kN
+
+Templates: 20 | defects: 0
+
+> workspace@0.0.0 verify:outcomes E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:outcomes
+
+
+> @workspace/scripts@0.0.0 verify:outcomes E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-stability-outcomes.ts
+
+OK   larathi-stabil           UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   kherwara-golden          UNSAFE (4/5)  UNSAFE (3/5)  UNSAFE (3/5)
+OK   high-level-reference     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   small-bridge             UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   medium-bridge            UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   large-bridge             UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-bedach-bedla         UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-jakham-mandvi        UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-t01-jethliya         UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-sukanaka-matoon      UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-ayad-maharashtra     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-gumaniya-udaipur     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-katumbi-chandrod     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-sisarama-highlevel   UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-kumbhalgarh-kelwara  UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-parwan-highlevel     UNSAFE (5/5)  UNSAFE (1/5)  UNSAFE (1/5)
+OK   irc-banas-highlevel      UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-ayad-fatehpura       UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-kherka-teegirder     UNSAFE (4/5)  UNSAFE (1/5)  UNSAFE (1/5)
+OK   irc-sukanaka-highlevel   UNSAFE (4/5)  UNSAFE (1/5)  UNSAFE (1/5)
+OK   acceptance rule reaches the browser from the response
+OK   client thresholds are declared with a stated basis
+
+==============================================================================
+STABILITY OUTCOMES — 300 load cases across 20 templates
+  SAFE   195
+  UNSAFE 105
+  templates carrying at least one UNSAFE case: 20 of 20
+
+WHICH CHECK FAILS (cases may fail more than one):
+  sliding < 1.5            99
+  overturning < 1.8      82
+  bearing < 1            6
+  failing bearing ALONE    6 — everything else in those cases passes
+==============================================================================
+These are engineering verdicts, not gate failures. 20 template(s)
+must NOT be signed off on this run's numbers without a licensed engineer. A zero exit code
+below means the machinery reported the truth, not that the bridge stands.
+
+Evidence written: E:/Rajkumar/Bridge_Slab_Design/evidence/stability-outcomes.json
+Templates: 20 | defects: 0
+
+> workspace@0.0.0 verify:parity E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:parity
+
+
+> @workspace/scripts@0.0.0 verify:parity E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-html-pdf-parity.ts
+
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+
+kherwara-golden
+  OK   facts matched: 11/11
+🚀 Starting Excel generation...
+Project: High Level Slab Bridge Template
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 277.50 m is ABOVE the IRC-required scour founding level 259.65 m (bed − 2·dsm = 21.55 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+🚀 Starting Excel generation...
+Project: High Level Slab Bridge Template
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 277.50 m is ABOVE the IRC-required scour founding level 259.65 m (bed − 2·dsm = 21.55 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×500/(4×2.40) = 1302 mm (M30 concrete, FE500 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×500/(4×2.40) = 1042 mm (M30 concrete, FE500 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+
+high-level-reference
+  OK   facts matched: 11/11
+
+Projects: 2 | shared facts compared: 22 | defects: 0 | self-contradictions reported: 0
+Parity means: whatever the reader sees in the browser, the same reader sees in the signed PDF.
+It says nothing about whether the number itself is right — that is the engineering sign-off.
+
+> workspace@0.0.0 verify:presentation E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:presentation
+
+
+> @workspace/scripts@0.0.0 verify:presentation E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-presentation-policy.ts
+
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 56 sheets with real formulas (56-sheet executive engineering book)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 56/56
+  workbook [executive-56]: 56 sheets, 19 landscape / 37 portrait
+🚀 Starting Excel generation...
+Project: Construction of Submersible Bridge on KHERWARA - JAWAS - SUVERI ROAD
+Generating 46 sheets with real formulas (legacy 46-sheet contract)...
+🔧 Design Engine: Starting calculations...
+  → Calculating hydraulics...
+    ⚠ Hydraulics: foundation level 92.60 m is ABOVE the IRC-required scour founding level 91.80 m (bed − 2·dsm = 4.80 m below bed). Risk of pier undermining — engineer review required.
+  → Calculating pier design...
+    ✎ Pier main bars: Ld = φ·fy/(4·τbd) = 25×415/(4×2.24) = 1158 mm (M25 concrete, FE415 steel)
+  → Calculating TYPE1 abutment design...
+    ✎ TYPE1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+  → Calculating C1 abutment design...
+    ✎ C1 abutment stem bars: Ld = φ·fy/(4·τbd) = 20×415/(4×2.24) = 926 mm (M25 concrete, FE415 steel)
+✅ Design Engine: All calculations complete
+✓ Sheet 1: INDEX generated
+✓ Sheet 2: INSERT- HYDRAULICS generated
+✓ Sheet 3: afflux calculation complete (88 rows with formulas)
+✓ Sheet 4: HYDRAULICS complete (49 rows with formulas)
+✓ Sheet 5: Deck Anchorage complete
+✓ Sheet 6: CROSS SECTION complete
+✓ Sheet 7: Bed Slope complete
+✓ Sheet 8: SBC complete
+✓ Sheet 19: LL-ABSTRACT generated (29 rows, 6 cross-sheet formulas)
+✅ Excel generation complete!
+Total sheets: 46/46
+  workbook [legacy-46]: 46 sheets, 13 landscape / 33 portrait
+  @page      : client/src/styles/struds-report.css::@page:first margin "0" — allowed (full-bleed cover page)
+  @page      : 6 print rules scanned in client/server/pipeline sources
+  pdf pages  : comprehensive-report.pdf — 225 pages, 0 landscape / 225 portrait
+  pdf pages  : sheet-book.pdf — 119 pages, 50 landscape / 69 portrait
+  pdf pages  : short-design-report.pdf — 14 pages, 0 landscape / 14 portrait
+verify-presentation-policy: OK (A4 / 15 mm / orientation proven on artefacts)
+
+> workspace@0.0.0 verify:engine E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:engine
+
+
+> @workspace/scripts@0.0.0 verify:engine E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-engine-boundary.ts
+
+Golden: 493 outputs checked, 0 drifted, tamper moved 48 (tolerance 0.000001 relative).
+Diagnostic: +50 m³/s on the declared ProjectInput.discharge moved 0 of 493 pinned outputs — the engine derives Q from the section and its own velocity and reads the field nowhere on this path; sheet 3 prints it separately (§M-4).
+Boundary: 61 modules feed the artefacts from 4 entries; 0 of them under lib/engine/.
+Calculators in the engine closure: bridge-excel-generator/design-engine.ts [calculateCompleteDesign], shared/design-engine-types.ts [calculateDetailedEstimation].
+Snapshot: 493 outputs pinned for tests/golden/deliverable-engine/kherwara.json.
+verify-engine-boundary: OK (deliverable engine pinned, boundary measured, tamper control live). Green here does not certify the design — see §M-1.
+VERIFY_EXIT=0

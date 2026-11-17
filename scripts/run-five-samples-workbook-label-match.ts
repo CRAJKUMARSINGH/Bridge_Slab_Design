@@ -178,7 +178,7 @@ function multisetsEqual(a: Multiset, b: Multiset): boolean {
 function loadWorkbook(buffer: Buffer): Promise<ExcelJS.Workbook> {
   const wb = new ExcelJS.Workbook();
   // ExcelJS pins a pre-generic @types/node Buffer; Node 24's Buffer<ArrayBufferLike> is the same value.
-  const load = wb.xlsx.load.bind(wb.xlsx) as (data: Uint8Array) => Promise<ExcelJS.Workbook>;
+  const load = wb.xlsx.load.bind(wb.xlsx) as unknown as (data: Uint8Array) => Promise<ExcelJS.Workbook>;
   return load(buffer);
 }
 

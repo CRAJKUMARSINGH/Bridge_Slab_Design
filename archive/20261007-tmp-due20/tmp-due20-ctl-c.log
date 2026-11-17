@@ -1,0 +1,42 @@
+
+> workspace@0.0.0 verify:outcomes E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:outcomes
+
+
+> @workspace/scripts@0.0.0 verify:outcomes E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-stability-outcomes.ts
+
+OK   larathi-stabil           UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   kherwara-golden          UNSAFE (4/5)  UNSAFE (3/5)  UNSAFE (3/5)
+OK   high-level-reference     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   small-bridge             UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   medium-bridge            UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   large-bridge             UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-bedach-bedla         UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-jakham-mandvi        UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-t01-jethliya         UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-sukanaka-matoon      UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-ayad-maharashtra     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-gumaniya-udaipur     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-katumbi-chandrod     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-sisarama-highlevel   UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-kumbhalgarh-kelwara  UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-parwan-highlevel     UNSAFE (5/5)  UNSAFE (1/5)  UNSAFE (1/5)
+OK   irc-banas-highlevel      UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-ayad-fatehpura       UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-kherka-teegirder     UNSAFE (4/5)  UNSAFE (1/5)  UNSAFE (1/5)
+OK   irc-sukanaka-highlevel   UNSAFE (4/5)  UNSAFE (1/5)  UNSAFE (1/5)
+E:\Rajkumar\Bridge_Slab_Design\scripts\verify-stability-outcomes.ts:323
+  for (const literal of src.matchAll(LIMIT_LITERAL)) {
+                            ^
+
+TypeError: String.prototype.matchAll called with a non-global RegExp argument
+    at String.matchAll (<anonymous>)
+    at <anonymous> (E:\Rajkumar\Bridge_Slab_Design\scripts\verify-stability-outcomes.ts:323:29)
+
+Node.js v24.14.0
+E:\Rajkumar\Bridge_Slab_Design\scripts:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @workspace/scripts@0.0.0 verify:outcomes: `tsx ./verify-stability-outcomes.ts`
+Exit status 1
+ ELIFECYCLE  Command failed with exit code 1.
+CTL_C_EXIT=1

@@ -1,0 +1,83 @@
+
+> workspace@0.0.0 check E:\Rajkumar\Bridge_Slab_Design
+> pnpm run typecheck && pnpm run lint:narrative && pnpm run lint:pdf-glyphs
+
+
+> workspace@0.0.0 typecheck E:\Rajkumar\Bridge_Slab_Design
+> pnpm run typecheck:libs && pnpm run typecheck:flat && pnpm run typecheck:client && pnpm run typecheck:tools && pnpm -r --filter "./artifacts/**" --filter "./scripts" --if-present run typecheck
+
+
+> workspace@0.0.0 typecheck:libs E:\Rajkumar\Bridge_Slab_Design
+> tsc --build
+
+
+> workspace@0.0.0 typecheck:flat E:\Rajkumar\Bridge_Slab_Design
+> tsc -p tsconfig.flat.json --noEmit
+
+
+> workspace@0.0.0 typecheck:client E:\Rajkumar\Bridge_Slab_Design
+> tsc -p tsconfig.client.json --noEmit
+
+
+> workspace@0.0.0 typecheck:tools E:\Rajkumar\Bridge_Slab_Design
+> tsc -p scripts/tsconfig.tools.json --noEmit
+
+Scope: 3 of 11 workspace projects
+artifacts/api-server typecheck$ tsc -p tsconfig.json --noEmit
+artifacts/mockup-sandbox typecheck$ tsc -p tsconfig.json --noEmit
+scripts typecheck$ tsc -p tsconfig.json --noEmit
+scripts typecheck: Done
+artifacts/api-server typecheck: Done
+artifacts/mockup-sandbox typecheck: Done
+
+> workspace@0.0.0 lint:narrative E:\Rajkumar\Bridge_Slab_Design
+> tsx scripts/lint-narrative-no-hardcoded-numbers.ts
+
+NARRATIVE LINT: OK — 159 prose spans checked across lib/narrative/src, bridge-excel-generator/narrative-engine.ts; no hard-coded numbers (citations and units allowed by the explicit list).
+
+> workspace@0.0.0 lint:pdf-glyphs E:\Rajkumar\Bridge_Slab_Design
+> tsx scripts/lint-pdf-glyph-encodability.ts
+
+lint-pdf-glyphs: OK — 1462 string literals across 5 PDF exporters are cp1252-encodable.
+CHECK_EXIT=0
+✔ Full pipeline — parametric variations (3.6101ms)
+▶ Traceability — all intermediates have metadata
+  ✔ designUDL has non-empty sourceCells (3.1318ms)
+  ✔ designUDL has formula string (0.4876ms)
+  ✔ designUDL has unit (0.3969ms)
+  ✔ maximumMoment has non-empty sourceCells (0.2824ms)
+  ✔ maximumMoment has formula string (0.2213ms)
+  ✔ maximumMoment has unit (0.2425ms)
+  ✔ maximumShear has non-empty sourceCells (0.1998ms)
+  ✔ maximumShear has formula string (0.2427ms)
+  ✔ maximumShear has unit (0.2328ms)
+  ✔ bendingStress has non-empty sourceCells (0.427ms)
+  ✔ bendingStress has formula string (0.2609ms)
+  ✔ bendingStress has unit (0.5194ms)
+  ✔ liveLoadDeflection has non-empty sourceCells (0.1938ms)
+  ✔ liveLoadDeflection has formula string (0.1755ms)
+  ✔ liveLoadDeflection has unit (0.1988ms)
+  ✔ deflectionLimit has non-empty sourceCells (0.1754ms)
+  ✔ deflectionLimit has formula string (0.1844ms)
+  ✔ deflectionLimit has unit (0.1843ms)
+  ✔ shearStress has non-empty sourceCells (0.1742ms)
+  ✔ shearStress has formula string (0.1794ms)
+  ✔ shearStress has unit (0.1814ms)
+  ✔ bendingUtilisation has non-empty trace (0.354ms)
+  ✔ deflectionCheck has non-empty trace (0.2081ms)
+  ✔ shearCheck has non-empty trace (0.1967ms)
+  ✔ governingUtilisation has non-empty trace (0.1987ms)
+  ✔ adjustedGoverningUtilisation has non-empty trace (0.1943ms)
+✔ Traceability — all intermediates have metadata (12.5773ms)
+ℹ tests 67
+ℹ suites 7
+ℹ pass 67
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 696.2029
+
+Engine unit lane: 2/2 files passed.
+Test lanes: 15/15 files passed in 2 lanes.
+TEST_DONE

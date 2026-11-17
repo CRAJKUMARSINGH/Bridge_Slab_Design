@@ -204,6 +204,7 @@ function ArcGauge({
 function UtilizationGauges({ draft, results }: { draft: ProjectInput; results: CompleteDesignResult }) {
   const hyd  = results.hydraulics;
   const pier = results.pier;
+  const limits = results.stabilityAcceptance;
 
   const worstPier = [...pier.loadCases].sort((a, b) => a.slidingFOS - b.slidingFOS)[0];
   const worstAbt  = [...results.abutmentType1.loadCases].sort((a, b) => a.slidingFOS - b.slidingFOS)[0];
@@ -219,13 +220,13 @@ function UtilizationGauges({ draft, results }: { draft: ProjectInput; results: C
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
         {worstPier && (
           <>
-            <ArcGauge label="Pier Sliding FOS" value={worstPier.slidingFOS}   max={4} required={1.5} />
-            <ArcGauge label="Pier Overturn FOS" value={worstPier.overturningFOS} max={5} required={1.8} />
-            <ArcGauge label="Pier Bearing FOS"  value={worstPier.bearingFOS}  max={6} required={2.5} />
+            <ArcGauge label="Pier Sliding FOS" value={worstPier.slidingFOS}   max={4} required={limits.slidingFosMin} />
+            <ArcGauge label="Pier Overturn FOS" value={worstPier.overturningFOS} max={5} required={limits.overturningFosMin} />
+            <ArcGauge label="Pier Bearing FOS"  value={worstPier.bearingFOS}  max={6} required={limits.bearingFosMin} />
           </>
         )}
         {worstAbt && (
-          <ArcGauge label="Abt Sliding FOS"  value={worstAbt.slidingFOS}   max={4} required={1.5} />
+          <ArcGauge label="Abt Sliding FOS"  value={worstAbt.slidingFOS}   max={4} required={limits.slidingFosMin} />
         )}
         <ArcGauge
           label="Afflux / Limit"

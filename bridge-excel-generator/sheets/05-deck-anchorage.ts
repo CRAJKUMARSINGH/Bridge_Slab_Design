@@ -79,7 +79,15 @@ export async function generateDeckAnchorageSheet(
   const parapet = input.spanLength * 2 * PARAPET_KN_PER_M;
   const friction = weight * FRICTION_COEFF;
   const resisting = weight + wearingCoat + parapet + friction;
-  const safetyFactor = totalUplift > 0 ? resisting / totalUplift : 99;
+  const baseSafetyFactor = totalUplift > 0 ? resisting / totalUplift : 99;
+
+  const BOLT_CAPACITY_KN = 45.2;
+  const minimumBolts = submerged > 0.1 ? 4 : 0;
+  const anchorageRequired = baseSafetyFactor < 1.2 || submerged > 0.1;
+  const boltForce = anchorageRequired ? Math.max(0, totalUplift * 1.2 - resisting) * 1.5 : 0;
+  const numberOfBolts = Math.max(Math.ceil(boltForce / BOLT_CAPACITY_KN), minimumBolts);
+  const anchorageCapacity = numberOfBolts * BOLT_CAPACITY_KN;
+  const safetyFactor = totalUplift > 0 ? (resisting + anchorageCapacity) / totalUplift : 99;
   const ok = safetyFactor >= 1.2;
 
   const dwlRow = row;
@@ -137,14 +145,36 @@ export async function generateDeckAnchorageSheet(
     result: resisting,
   }, 'kN');
   const resistingRow = row - 1;
-  row = addCalcRow(ws, row, 'Factor of safety against uplift', {
+  row = addCalcRow(ws, row, 'Base FOS (self-weight only, no anchorage)', {
     formula: `=IF(D${upliftRow}>0,D${resistingRow}/D${upliftRow},99)`,
+    result: baseSafetyFactor,
+  }, '');
+  const baseFosRow = row - 1;
+  row = addCalcRow(ws, row, 'Hold-down bolt capacity (20 mm grade 8.8)', BOLT_CAPACITY_KN, 'kN/bolt');
+  const boltCapRow = row - 1;
+  row = addCalcRow(ws, row, 'Bolt force required (1.5× margin to FOS 1.2)', {
+    formula: `=IF(OR(D${baseFosRow}<1.2,D${submergedRow}>0.1),MAX(0,D${upliftRow}*1.2-D${resistingRow})*1.5,0)`,
+    result: boltForce,
+  }, 'kN');
+  const boltForceRow = row - 1;
+  row = addCalcRow(ws, row, 'Number of hold-down bolts', {
+    formula: `=MAX(CEILING(D${boltForceRow}/D${boltCapRow},1),IF(D${submergedRow}>0.1,4,0))`,
+    result: numberOfBolts,
+  }, 'nos');
+  const boltCountRow = row - 1;
+  row = addCalcRow(ws, row, 'Anchorage capacity (bolts × capacity)', {
+    formula: `=D${boltCountRow}*D${boltCapRow}`,
+    result: anchorageCapacity,
+  }, 'kN');
+  const anchorageCapRow = row - 1;
+  row = addCalcRow(ws, row, 'Factor of safety against uplift (with anchorage)', {
+    formula: `=IF(D${upliftRow}>0,(D${resistingRow}+D${anchorageCapRow})/D${upliftRow},99)`,
     result: safetyFactor,
   }, '');
   const fosRow = row - 1;
   row = addCalcRow(ws, row, 'Anchorage / hold-down required', {
-    formula: `=IF(OR(D${fosRow}<1.2,D${submergedRow}>0.1),"YES","NO")`,
-    result: safetyFactor < 1.2 || submerged > 0.1 ? 'YES' : 'NO',
+    formula: `=IF(OR(D${baseFosRow}<1.2,D${submergedRow}>0.1),"YES","NO")`,
+    result: anchorageRequired ? 'YES' : 'NO',
   }, '', true);
   row = addCalcRow(ws, row, 'Verdict', {
     formula: `=IF(D${fosRow}>=1.2,"Hence O.K.","CHECK - licensed engineer sign-off")`,

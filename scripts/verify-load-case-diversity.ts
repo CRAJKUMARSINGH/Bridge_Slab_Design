@@ -10,11 +10,14 @@
  *  3. no two cases share the same factor set, and no two share the same
  *     (vertical, horizontal, moment) triple — a labelled case that is not distinct is a
  *     duplicate, not a check;
- *  4. every force is finite and the status follows the 1.5 / 1.8 / 2.5 thresholds.
+ *  4. every force is finite and the status follows the engine's own acceptance rule.
  *
  * Run: npx tsx scripts/verify-load-case-diversity.ts
  */
-import { calculateCompleteDesign } from '../bridge-excel-generator/design-engine.ts';
+import { calculateCompleteDesign, STABILITY_ACCEPTANCE } from '../bridge-excel-generator/design-engine.ts';
+
+/** Read from the module that applies the rule: restating 1.5/1.8/2.5 here tested the copy, not the engine. */
+const THRESHOLDS = STABILITY_ACCEPTANCE;
 import { PHASE1_QUICK_TEMPLATES } from '../server/default-project-inputs.ts';
 import type { LoadCase, ProjectInput } from '../bridge-excel-generator/types.ts';
 
@@ -56,11 +59,15 @@ function checkStructure(name: Structure, cases: LoadCase[] | undefined): string[
         problems.push(`${name} case ${i + 1}: ${field} = ${value}`);
       }
     }
-    const qualifies = c.slidingFOS >= 1.5 && c.overturningFOS >= 1.8 && c.bearingFOS >= 2.5;
+    const qualifies =
+      c.slidingFOS >= THRESHOLDS.slidingFosMin &&
+      c.overturningFOS >= THRESHOLDS.overturningFosMin &&
+      c.bearingFOS >= THRESHOLDS.bearingFosMin;
     if (qualifies !== (c.status === 'SAFE')) {
       problems.push(
         `${name} case ${i + 1} "${c.description}": status ${c.status} but ` +
-        `sliding ${c.slidingFOS.toFixed(2)} / overturning ${c.overturningFOS.toFixed(2)} / bearing ${c.bearingFOS.toFixed(2)}`
+        `sliding ${c.slidingFOS.toFixed(2)} / overturning ${c.overturningFOS.toFixed(2)} / bearing ${c.bearingFOS.toFixed(2)} ` +
+        `(rule: >= ${THRESHOLDS.slidingFosMin} / >= ${THRESHOLDS.overturningFosMin} / >= ${THRESHOLDS.bearingFosMin})`
       );
     }
   });
@@ -82,6 +89,10 @@ function check(input: ProjectInput) {
 }
 
 let defects = 0;
+if (PHASE1_QUICK_TEMPLATES.length === 0) {
+  console.error('verify-load-case-diversity: the template roster is empty — this gate would exit 0 having checked nothing.');
+  process.exit(1);
+}
 for (const template of PHASE1_QUICK_TEMPLATES) {
   const r = check(template.input);
   defects += r.problems.length;

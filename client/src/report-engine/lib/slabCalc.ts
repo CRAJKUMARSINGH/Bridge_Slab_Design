@@ -1,4 +1,5 @@
 // IS 456:2000 Bridge / Building Slab Design — Calculation Engine
+import { parseSlabInputs, collectSlabWarnings } from "./slabInputSchema";
 
 export type ConcreteGrade = "M15" | "M20" | "M25" | "M30" | "M35" | "M40";
 export type SteelGrade = "Fe250" | "Fe415" | "Fe500" | "Fe550";
@@ -274,8 +275,17 @@ function mfFactor(astReq: number, astPrv: number, fy: number): number {
   return Math.min(Math.max(mf, 0.5), 2.0);
 }
 
-export function designSlab(inp: SlabInputs): SlabResult {
-  const warnings: string[] = [];
+export function designSlab(inpRaw: SlabInputs): SlabResult {
+  // ── Physical-bounds gate ──────────────────────────────────────────────────
+  // Reject impossible inputs LOUDLY instead of computing checks from garbage.
+  // Throws SlabInputValidationError with {path, message}[] issues — the same
+  // shape as server/project-input-zod.ts formatZodIssues().
+  // Audit probes that previously returned silent "OK": lx=0, lx=-3,
+  // thickness=20 (d=-5 mm), liveLoad=1e6 kN/m², lx=NaN.
+  const inp = parseSlabInputs(inpRaw);
+  // Non-fatal code-practice advisories go into the same warnings channel the
+  // report already renders ("failed checks are never suppressed").
+  const warnings: string[] = [...collectSlabWarnings(inp)];
   const fck = getFck(inp.concreteGrade);
   const fy = getFy(inp.steelGrade);
 

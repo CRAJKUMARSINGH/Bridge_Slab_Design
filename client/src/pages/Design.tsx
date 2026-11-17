@@ -145,6 +145,7 @@ export function Design() {
         const laceyW = 4.75 * Math.sqrt(Math.max(body.discharge ?? 0, 0));
         const provW  = body.numberOfSpans * body.spanLength;
         const worstPier = [...r.pier.loadCases].sort((a, b) => a.slidingFOS - b.slidingFOS)[0];
+        const acc = r.stabilityAcceptance;
         const isHL = body.bridgeType === 'high-level';
         const affluxLim = isHL ? 0.50 : 0.30;
         const wRatio    = laceyW > 0 ? provW / laceyW : 0;
@@ -194,6 +195,10 @@ export function Design() {
             const sArm    = r.pier.geometry.depth * 0.6;
             const sOTRatio = sW > 0 ? (sFeq * sArm) / (sW * (r.pier.geometry.baseWidth / 2)) : 0;
             const sOTFOS  = (worstPier?.overturningFOS ?? 1) / (1 + sOTRatio);
+            // Deliberately NOT `acc`: the seismic combination is judged against the reduced edges
+            // SeismicZonePanel prints (sliding 1.25 / overturning 1.50, cited there as IRC:6-2016
+            // Cl. 219). The citation is not verified against the code text — registered as an open
+            // question in august-due §AB; do not "fix" these to `acc` without that answer.
             const sVerd: 'PASS' | 'WARN' | 'FAIL' = sSlideFOS >= 1.25 && sOTFOS >= 1.50 ? 'PASS' : sSlideFOS >= 1.10 ? 'WARN' : 'FAIL';
             return { seismicAh: sAh, seismicPierSlideFOS: sSlideFOS, seismicPierOTFOS: sOTFOS, seismicVerdict: sVerd };
           })()),
@@ -217,7 +222,9 @@ export function Design() {
             const wMS    = (worstPier?.overturningFOS ?? 1) * wMbase;
             const wMwind = FwP * wOTarm + FwDk * pierH;
             const wOTFOS = wMbase > 0 ? wMS / (wMbase + wMwind) : 0;
-            const wVerd: 'PASS' | 'WARN' | 'FAIL' = wFOS >= 1.50 && wOTFOS >= 1.80 ? 'PASS' : (wFOS >= 1.25 || wOTFOS >= 1.50) ? 'WARN' : 'FAIL';
+            // PASS edge is the engine's own acceptance rule, taken from the response. The lower pair
+            // (1.25 / 1.50) is this preview's caution band — a WARN is a UI shade, not a code verdict.
+            const wVerd: 'PASS' | 'WARN' | 'FAIL' = wFOS >= acc.slidingFosMin && wOTFOS >= acc.overturningFosMin ? 'PASS' : (wFOS >= 1.25 || wOTFOS >= 1.50) ? 'WARN' : 'FAIL';
             return { windVd: wVd, windPd: wPd * 1000, windPierSlideFOS: wFOS, windVerdict: wVerd };
           })()),
           draft:            { ...body },

@@ -17,6 +17,7 @@ import {
   setColumnWidths,
   styleHeader,
 } from '../utils';
+import { STABILITY_ACCEPTANCE } from '../design-engine';
 
 // ---------------------------------------------------------------------------
 // IRC CODE COMPLIANCE CHECKLIST — Sheet 53
@@ -79,10 +80,10 @@ export async function generateComplianceChecklistSheet(
   // Section D — Analysis & Design (9)
   const D: Array<[string, string, string]> = [
     ['D1', 'Five load cases analysed for Pier stability (Case 1–5) — see §STABILITY-CHECK-FOR-PIER', 'YES'],
-    ['D2', 'Five load cases analysed for Type1 + C1 Abutment stability — §TYPE1/§C1 sheets', 'YES'],
-    ['D3', 'Sliding FOS ≥ 1.50 (IRC:6 §114) in every governing case', 'CHECK'],
-    ['D4', 'Overturning FOS ≥ 1.80 (IRC:6 §114) in every governing case', 'CHECK'],
-    ['D5', 'Bearing FOS (σ_max / SBC) ≥ 2.50 across footing & abut footing', 'CHECK'],
+    ['D2', 'Five load cases analysed for Abutment stability on ONE shared model — §TYPE1 computes them and §C1 mirrors it cell-for-cell (C1 has no separate geometry yet; august-due §Z)', 'YES'],
+    ['D3', `Sliding FOS ≥ ${STABILITY_ACCEPTANCE.slidingFosMin.toFixed(2)} (IRC:6 §114) in every governing case`, 'CHECK'],
+    ['D4', `Overturning FOS ≥ ${STABILITY_ACCEPTANCE.overturningFosMin.toFixed(2)} (IRC:6 §114) in every governing case`, 'CHECK'],
+    ['D5', `Bearing FOS (σ_max / SBC) ≥ ${STABILITY_ACCEPTANCE.bearingFosMin.toFixed(2)} across footing & abut footing (project decision 2026-10-06: pressure ≤ SBC)`, 'CHECK'],
     ['D6', 'SLS L/d ratio ≤ 350 — deck + approach slab — see §SERVICEABILITY sheet', 'YES'],
     ['D7', 'Crack width SLS wcr ≤ 0.30 mm — §SERVICEABILITY (IRC:112 §7.6.3 XS1/XS2)', 'YES'],
     ['D8', 'Footing base pressure ≤ SBC — footing & abutment footing stress diagrams', 'CHECK'],

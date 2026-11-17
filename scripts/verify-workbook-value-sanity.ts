@@ -90,6 +90,10 @@ async function main() {
   let totalFormulas = 0;
   let defects = 0;
 
+  if (PHASE1_QUICK_TEMPLATES.length === 0) {
+    console.error('verify-workbook-value-sanity: the template roster is empty — this gate would exit 0 having scanned no cells.');
+    process.exit(1);
+  }
   for (const template of PHASE1_QUICK_TEMPLATES) {
     const input = (typeof template === 'object' && template && 'input' in template ? (template as any).input : template) as ProjectInput;
     const label = String((template as any)?.id ?? input?.projectName ?? 'template').slice(0, 42);

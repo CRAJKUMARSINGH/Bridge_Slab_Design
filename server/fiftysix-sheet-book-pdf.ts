@@ -185,7 +185,7 @@ export async function generateFiftysixSheetBookPDF(
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(10);
     doc.setFont('helvetica', 'bold');
-    doc.text('⚠  ROBOTICALLY GENERATED — ENGINEER-OF-RECORD SIGN-OFF REQUIRED (IRC:112 §1.2)', A4_LANDSCAPE_W / 2, A4_LANDSCAPE_H - 11, { align: 'center' });
+    doc.text('!! ROBOTICALLY GENERATED — ENGINEER-OF-RECORD SIGN-OFF REQUIRED (IRC:112 §1.2)', A4_LANDSCAPE_W / 2, A4_LANDSCAPE_H - 11, { align: 'center' });
   }
 
   // -------------------------------------------------------------------------
@@ -244,7 +244,7 @@ export async function generateFiftysixSheetBookPDF(
       if (isLandscapeSheet(name)) {
         doc.setTextColor(180, 100, 20);
         doc.setFontSize(7.5);
-        doc.text('〔L〕', x + 132, y + 1.5);
+        doc.text('[L]', x + 132, y + 1.5);
         doc.setFontSize(8.5);
         doc.setTextColor(...DARK_TEXT);
       }

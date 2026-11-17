@@ -40,10 +40,15 @@ describe("IRC 21:2000 slab design", () => {
     expect(r.sigmaSt).toBeCloseTo(190, 5);
     // m = 280/(3*sigmaCb): derived per IS 456:2000 Cl. B-1.3 (corrected from hardcoded 10)
     expect(r.m).toBeCloseTo(280 / (3 * 8.5), 2);
-    // Q = sigmaCb/2 * (m*sigmaSt)/(m*sigmaSt + sigmaCb): derived (corrected from hardcoded 1.11)
+    // Q = ½·σcb·k·j, k = m·σcb/(m·σcb+σst), j = 1−k/3 (IS 456 WSD, Cl. B-1.1/B-1.2)
     const expectedM = 280 / (3 * 8.5);
-    const expectedQ = (8.5 / 2) * (expectedM * 190) / (expectedM * 190 + 8.5);
-    expect(r.Q).toBeCloseTo(expectedQ, 2);
+    const expectedK = (expectedM * 8.5) / (expectedM * 8.5 + 190);
+    const expectedQ = 0.5 * 8.5 * expectedK * (1 - expectedK / 3);
+    expect(r.Q).toBeCloseTo(expectedQ, 4);
+    // Guards the regression this replaced: σcb/2·(m·σst)/(m·σst+σcb) omitted the lever arm and
+    // returned ≈4.23, under-sizing requiredDepth by √(4.23/1.25) ≈ 1.8×.
+    expect(r.Q).toBeLessThan(2);
+    expect(r.k).toBeCloseTo(expectedK, 4);
     expect(r.requiredSteel).toBeGreaterThan(0);
   });
 

@@ -16,18 +16,21 @@ import { ProjectInput } from '../types';
 import { setColumnWidths, setCellFormula, setCellValue, mergeCells } from '../utils';
 import { computeCrossSectionHydraulics, getHydraulicsTotalRow } from './04-hydraulics';
 import { deckSlabThicknessOf } from '../input-contract';
+import { DECK_OBSTRUCTION_DEPTH_M } from '../design-engine';
 
 /**
  * TS mirror of this sheet's calculation chain (cached formula results).
- * NOTE: the legacy waterway definition used here — (spans−1)·span + 2×1.2
- * screen width, minus pier blockage — differs from the engine definition
- * (spans × spanLength). Until engineering picks one, the resulting AFL is
- * exposed to other sheets for reconciliation only, not as their input.
+ *
+ * Unified 2026-10-16 on the engine's canonical definition (owner decision):
+ * the waterway is `spans × spanLength` and the Molesworth areas are the
+ * engine's — A = bridgeWidth × flow depth, deck blockage = bridgeWidth ×
+ * DECK_OBSTRUCTION_DEPTH_M, plus pier and abutment widths × flow depth.
+ * design-engine.ts `calculateHydraulics` computes the same chain, so the AFL
+ * printed here equals the engine's designWaterLevel by construction.
  */
-export function computeLegacyAffluxChain(input: ProjectInput) {
+export function computeAffluxChain(input: ProjectInput) {
   const hyd = computeCrossSectionHydraulics(input);
-  const ABUT_END_WIDTH_M = 1.2; // screening allowance for both abutment ends; pending survey end widths
-  const bridgeWidth = (input.numberOfSpans - 1) * input.spanLength + 2 * ABUT_END_WIDTH_M;
+  const bridgeWidth = input.numberOfSpans * input.spanLength;
   const slabThickness = deckSlabThicknessOf(input);
   const avgDepth = input.hfl - input.bedLevel;
   const effectiveWaterway = bridgeWidth - input.numberOfPiers * input.pierWidth;
@@ -35,17 +38,16 @@ export function computeLegacyAffluxChain(input: ProjectInput) {
   const meanScour = input.laceysSiltFactor > 0
     ? 1.34 * Math.cbrt((qPerMetre * qPerMetre) / input.laceysSiltFactor)
     : 0;
+  // Molesworth pairs the unobstructed bridge-channel area (A) with the same area
+  // after the bridge has choked it (a); both must use the same waterway definition.
   const unobstructedArea = bridgeWidth * avgDepth;
-  const totalObstruction =
-    bridgeWidth * slabThickness +
-    input.numberOfPiers * input.pierWidth * avgDepth +
-    2 * input.abutmentWidth * avgDepth;
-  // Molesworth pairs the natural flow section (A) with that same section after the
-  // bridge has choked it (a); mixing the surveyed A with a width x depth net area
-  // inverts the ratio and yields negative or absurd afflux.
-  const obstructedArea = Math.max(0, hyd.area - totalObstruction);
+  const deckObstruction = bridgeWidth * DECK_OBSTRUCTION_DEPTH_M;
+  const pierObstruction = input.numberOfPiers * input.pierWidth * avgDepth;
+  const abutmentObstruction = 2 * input.abutmentWidth * avgDepth;
+  const totalObstruction = deckObstruction + pierObstruction + abutmentObstruction;
+  const obstructedArea = Math.max(0, unobstructedArea - totalObstruction);
   const afflux = obstructedArea > 0 && hyd.velocity >= 0
-    ? ((hyd.velocity ** 2 / 17.85) + 0.0152) * ((hyd.area / obstructedArea) ** 2 - 1)
+    ? ((hyd.velocity ** 2 / 17.85) + 0.0152) * ((unobstructedArea / obstructedArea) ** 2 - 1)
     : 0;
   const afl = input.hfl + afflux;
   return { hyd, bridgeWidth, slabThickness, avgDepth, meanScour, unobstructedArea, totalObstruction, obstructedArea, afflux, afl };
@@ -60,7 +62,7 @@ export async function generateAffluxCalculationSheet(
   const {
     hyd, bridgeWidth, slabThickness, meanScour, unobstructedArea,
     totalObstruction, obstructedArea, afflux, afl,
-  } = computeLegacyAffluxChain(input);
+  } = computeAffluxChain(input);
   const avgDepth = input.hfl - input.bedLevel;
   const hydTotalRow = getHydraulicsTotalRow(input.crossSectionData.length);
   const hydARow = hydTotalRow + 2; // HYDRAULICS writes A (col C) / P (col C)
@@ -264,7 +266,8 @@ export async function generateAffluxCalculationSheet(
   // Row 29: Calculation - REAL FORMULA
   setCellValue(ws, row, 1, '=');
   const totalWidth = bridgeWidth;
-  setCellFormula(ws, row, 2, '=((C18-1)*F18)+2.4', totalWidth);
+  // Effective waterway = numberOfSpans × spanLength (engine canonical definition).
+  setCellFormula(ws, row, 2, '=C18*F18', totalWidth);
   setCellValue(ws, row, 3, '- (');
   setCellValue(ws, row, 4, input.numberOfPiers);
   setCellValue(ws, row, 5, 'x');
@@ -357,18 +360,20 @@ export async function generateAffluxCalculationSheet(
   
   // Row 45: Unobstructed area calculation - REAL FORMULA
   setCellValue(ws, row, 1, 'Unobstructed Area of Flow after Bridge Construction =');
-  setCellFormula(ws, row, 3, '=((C18-1)*F18)+2.4', bridgeWidth);
+  // Waterway = numberOfSpans × spanLength (engine canonical definition).
+  setCellFormula(ws, row, 3, '=C18*F18', bridgeWidth);
   setCellValue(ws, row, 4, 'x');
   setCellFormula(ws, row, 5, '=B49-B59', avgDepth);
   setCellValue(ws, row, 6, '=');
   setCellFormula(ws, row, 7, '=C45*E45', Number(unobstructedArea.toFixed(3)));
   setCellValue(ws, row, 8, 'm2 ');
   row++;
-  
-  // Row 46: A value
+
+  // Row 46: A value — the engine's unobstructed bridge-channel area (C45×E45),
+  // not the surveyed section: Molesworth's A and a must share one definition.
   setCellValue(ws, row, 1, 'A');
   setCellValue(ws, row, 2, '=');
-  setCellFormula(ws, row, 3, '=C6', Number(hyd.area.toFixed(3)));
+  setCellFormula(ws, row, 3, '=G45', Number(unobstructedArea.toFixed(3)));
   setCellValue(ws, row, 4, 'm2 ');
   row++;
   
@@ -407,19 +412,23 @@ export async function generateAffluxCalculationSheet(
   setCellValue(ws, row, 3, 'm');
   row++;
   
+  // Deck blockage depth: engine's Molesworth obstruction depth (BEDACH-002),
+  // not the slab thickness — the engine blocks bridgeWidth × DECK_OBSTRUCTION_DEPTH_M.
   setCellValue(ws, row, 1, 'Height of Obstruction');
-  setCellFormula(ws, row, 2, '=B51', slabThickness);
+  setCellValue(ws, row, 2, DECK_OBSTRUCTION_DEPTH_M);
   setCellValue(ws, row, 3, 'm');
+  setCellValue(ws, row, 5, 'Molesworth deck blockage depth (design-engine DECK_OBSTRUCTION_DEPTH_M)');
+  ws.getCell(row, 5).font = { italic: true, size: 9, color: { argb: 'FF666666' } };
   row++;
-  
+
   setCellValue(ws, row, 1, 'Area obstructed by deck slab');
   setCellFormula(ws, row, 2, '=C45', bridgeWidth);
   setCellValue(ws, row, 3, 'x');
-  setCellFormula(ws, row, 4, '=B51', slabThickness);
+  setCellFormula(ws, row, 4, '=B53', DECK_OBSTRUCTION_DEPTH_M);
   row++;
-  
+
   setCellValue(ws, row, 2, '=');
-  setCellFormula(ws, row, 3, '=B54*D54', Number((bridgeWidth * slabThickness).toFixed(3)));
+  setCellFormula(ws, row, 3, '=B54*D54', Number((bridgeWidth * DECK_OBSTRUCTION_DEPTH_M).toFixed(3)));
   setCellValue(ws, row, 4, 'm2 ');
   row++;
   

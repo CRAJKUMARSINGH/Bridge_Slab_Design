@@ -65,11 +65,11 @@ function FosRow({ label, value, req, note }: { label: string; value: number; req
 }
 
 // ── Wind speed comparison row ─────────────────────────────────────────────────
-function SpeedRow({ Vb, Vd, pd, Fw, pierSlideFOS, active }: {
+function SpeedRow({ Vb, Vd, pd, Fw, pierSlideFOS, active, required }: {
   Vb: number; Vd: number; pd: number; Fw: number;
-  pierSlideFOS: number; active: boolean;
+  pierSlideFOS: number; active: boolean; required: number;
 }) {
-  const ok = pierSlideFOS >= 1.5;
+  const ok = pierSlideFOS >= required;
   return (
     <tr className={`border-b border-[var(--app-glass-border)]/40 ${active ? 'bg-app-accent/5 font-semibold' : 'hover:bg-app-card/30'}`}>
       <td className="px-3 py-2 text-sm">
@@ -79,7 +79,7 @@ function SpeedRow({ Vb, Vd, pd, Fw, pierSlideFOS, active }: {
       <td className="px-3 py-2 text-center font-mono text-sm">{pd.toFixed(0)}</td>
       <td className="px-3 py-2 text-center font-mono text-sm">{Fw.toFixed(1)}</td>
       <td className="px-3 py-2 text-center">
-        <span style={{ color: pierSlideFOS >= 1.5 ? 'rgb(16 185 129)' : 'rgb(239 68 68)' }}
+        <span style={{ color: pierSlideFOS >= required ? 'rgb(16 185 129)' : 'rgb(239 68 68)' }}
           className="font-mono text-sm font-semibold">
           {pierSlideFOS.toFixed(3)}
         </span>
@@ -102,6 +102,10 @@ export function WindLoadPanel({ draft, results }: { draft: ProjectInput; results
   const [k1,         setK1]         = useState(1.06);   // 100-yr return (IRC default)
   const [k3,         setK3]         = useState(1.0);    // flat terrain
   const [collapsed,  setCollapsed]  = useState(false);
+  // The wind case is judged with the same normal-case rule the engine applied to the pier load
+  // cases (Cl. 212 combines wind into the normal load group), so it comes from the response
+  // rather than from numbers typed into this panel (august-due §AA).
+  const limits = results.stabilityAcceptance;
 
   const calc = useMemo(() => {
     const pier       = results.pier;
@@ -151,8 +155,8 @@ export function WindLoadPanel({ draft, results }: { draft: ProjectInput; results
       return { Vb: v, Vd: vd, pd: pd * 1000, Fw: fw, pierSlideFOS: fos };
     });
 
-    const slideOK   = slideFOS_wind >= 1.50;
-    const overturnOK = overturnFOS_wind >= 1.80;
+    const slideOK   = slideFOS_wind >= limits.slidingFosMin;
+    const overturnOK = overturnFOS_wind >= limits.overturningFosMin;
     const verdict: WindStatus = (slideOK && overturnOK) ? 'PASS' : (slideOK || overturnOK) ? 'WARN' : 'FAIL';
 
     return {
@@ -311,13 +315,13 @@ export function WindLoadPanel({ draft, results }: { draft: ProjectInput; results
               <FosRow
                 label={`Pier sliding — normal (${calc.H_normal.toFixed(1)} kN) + wind (${calc.Fw_total.toFixed(1)} kN) = ${calc.H_wind.toFixed(1)} kN total lateral`}
                 value={calc.slideFOS_wind}
-                req={1.50}
+                req={limits.slidingFosMin}
                 note={`Normal FOS = ${calc.worstPier.slidingFOS.toFixed(2)} · wind adds ${((calc.Fw_total / calc.H_normal) * 100).toFixed(0)}% to lateral force`}
               />
               <FosRow
                 label={`Pier overturning — additional moment from wind: Fw_pier × h/2 + Fw_deck × h`}
                 value={calc.overturnFOS_wind}
-                req={1.80}
+                req={limits.overturningFosMin}
                 note={`Normal FOS = ${calc.worstPier.overturningFOS.toFixed(2)} · overturning arm = pier depth ${results.pier.geometry.depth.toFixed(1)} m`}
               />
             </tbody>
@@ -336,13 +340,13 @@ export function WindLoadPanel({ draft, results }: { draft: ProjectInput; results
                 <th className="px-3 py-2 text-center text-[11px] font-bold text-app-muted">Vd (m/s)</th>
                 <th className="px-3 py-2 text-center text-[11px] font-bold text-app-muted">pd (N/m²)</th>
                 <th className="px-3 py-2 text-center text-[11px] font-bold text-app-muted">Fw total (kN)</th>
-                <th className="px-3 py-2 text-center text-[11px] font-bold text-app-muted">Pier slide FOS<br/><span className="font-normal">(≥ 1.50)</span></th>
+                <th className="px-3 py-2 text-center text-[11px] font-bold text-app-muted">Pier slide FOS<br/><span className="font-normal">(≥ {limits.slidingFosMin.toFixed(2)})</span></th>
                 <th className="px-3 py-2 text-center text-[11px] font-bold text-app-muted">Verdict</th>
               </tr>
             </thead>
             <tbody>
               {calc.comparison.map(row => (
-                <SpeedRow key={row.Vb} {...row} active={row.Vb === Vb} />
+                <SpeedRow key={row.Vb} {...row} active={row.Vb === Vb} required={limits.slidingFosMin} />
               ))}
             </tbody>
           </table>
@@ -374,7 +378,7 @@ export function WindLoadPanel({ draft, results }: { draft: ProjectInput; results
               ? <CheckCircle2 className="h-3.5 w-3.5 shrink-0 mt-0.5 text-emerald-400" />
               : <AlertTriangle className="h-3.5 w-3.5 shrink-0 mt-0.5 text-amber-400" />}
             <span>
-              <strong className="text-app-fg">FOS limits (wind case):</strong> same as normal — sliding ≥ 1.50, overturning ≥ 1.80 (IRC:6-2016 Cl. 202.3).
+              <strong className="text-app-fg">FOS limits (wind case):</strong> same as normal — sliding ≥ {limits.slidingFosMin.toFixed(2)}, overturning ≥ {limits.overturningFosMin.toFixed(2)} (IRC:6-2016 Cl. 202.3).
               Wind and seismic are <strong className="text-app-fg">not combined</strong> per IRC:6-2016 Cl. 219.1 — check each independently.
             </span>
           </div>

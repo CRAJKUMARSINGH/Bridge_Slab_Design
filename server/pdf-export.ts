@@ -166,15 +166,15 @@ export async function generateDesignPDF(input: EnhancedProjectInput): Promise<Bu
   kv('Steel Grade', input.steelGrade);
   kv('fy', input.fy, 'MPa');
   kv('SBC', input.sbc, 'kN/m²');
-  kv('Phi (φ)', input.phi, '°');
-  kv('Gamma (γ)', input.gamma, 'kN/m³');
+  kv('Phi (phi)', input.phi, '°');
+  kv('Gamma (gamma)', input.gamma, 'kN/m³');
   y += 2;
   heading('FULL TECHNICAL COMPUTATION TRACE', 14);
   doc.setFontSize(8.5);
   doc.setFont('helvetica', 'italic');
   doc.setTextColor(...DARK_TEXT);
   const traceLead =
-    'Workbook-aligned narrative (hydraulics → pier → Type1 → C1 → structural → closure → verification → estimation), same chain as the HTML design report.';
+    'Workbook-aligned narrative (hydraulics -> pier -> Type1 -> C1 -> structural -> closure -> verification -> estimation), same chain as the HTML design report.';
   const traceLeadLines = doc.splitTextToSize(traceLead, CW - 4);
   for (const ln of traceLeadLines) {
     checkY(5);
@@ -335,7 +335,7 @@ export async function generateDesignPDF(input: EnhancedProjectInput): Promise<Bu
       });
     });
     tableWrapped(
-      ['Item', 'Particulars', 'Unit', 'Quantity', 'Rate (₹)', 'Amount (₹)'],
+      ['Item', 'Particulars', 'Unit', 'Quantity', 'Rate (Rs)', 'Amount (Rs)'],
       boqRows,
       [10, 88, 12, 20, 25, 25]
     );
@@ -350,11 +350,11 @@ export async function generateDesignPDF(input: EnhancedProjectInput): Promise<Bu
       { cells: ['Add: Contingencies @ 1.50 %', rupee(est.cost.contingencies)] },
       { cells: ['G.TOTAL (B)', rupee(est.cost.gTotal)], strong: true },
       { cells: ['Add: Prorata Overheads & Profit @ 13.00 %', rupee(est.cost.prorataOverheads)] },
-      { cells: ['GRAND TOTAL (₹)', rupee(est.cost.total)], strong: true },
-      { cells: ['SAY (₹ Lakh)', est.cost.totalInLacs.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })], strong: true },
-      { cells: ['Cost per Running Metre (₹/m)', est.cost.ratePerMeter.toLocaleString('en-IN', { maximumFractionDigits: 0 })] },
+      { cells: ['GRAND TOTAL (Rs)', rupee(est.cost.total)], strong: true },
+      { cells: ['SAY (Rs Lakh)', est.cost.totalInLacs.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })], strong: true },
+      { cells: ['Cost per Running Metre (Rs/m)', est.cost.ratePerMeter.toLocaleString('en-IN', { maximumFractionDigits: 0 })] },
     ];
-    tableWrapped(['Description', 'Amount (₹)'], ladder, [130, 50]);
+    tableWrapped(['Description', 'Amount (Rs)'], ladder, [130, 50]);
   }
 
   // ── PAGE 7: QUANTITY SUMMARY ───────────────────────────────────────────────
@@ -431,15 +431,17 @@ function drawHydraulicsWorkbookSheet(
   y += 7;
 
   ensureSpace(6);
-  doc.setFillColor(217, 217, 217);
   doc.setDrawColor(191, 191, 191);
   let x = M;
+  /** PDF text and shape fill share one colour operator, so each cell re-arms its own fill. */
+  doc.setFillColor(217, 217, 217);
   doc.rect(x, y, RN, 4.5, 'FD');
   doc.setFontSize(6.5);
   doc.setTextColor(0, 0, 0);
   doc.text('#', x + RN - 0.5, y + 3, { align: 'right' });
   x += RN;
   for (let i = 0; i < 8; i++) {
+    doc.setFillColor(217, 217, 217);
     doc.rect(x, y, W8, 4.5, 'FD');
     doc.text(letters[i], x + W8 / 2, y + 3, { align: 'center' });
     x += W8;

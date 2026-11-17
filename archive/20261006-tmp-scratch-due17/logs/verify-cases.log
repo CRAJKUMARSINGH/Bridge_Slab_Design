@@ -1,0 +1,218 @@
+
+> workspace@0.0.0 verify:cases E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:cases
+
+
+> @workspace/scripts@0.0.0 verify:cases E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-load-case-diversity.ts
+
+FAIL larathi-stabil           abutment cases: 5 distinct, horizontal spread 367.0 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.23 / overturning 15.43 / bearing 1.67
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.27 / overturning 14.81 / bearing 1.71
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.08 / overturning 11.39 / bearing 1.71
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.05 / overturning 4.36 / bearing 1.70
+       - abutmentType1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.33 / overturning 13.39 / bearing 1.23
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.23 / overturning 15.43 / bearing 1.67
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.27 / overturning 14.81 / bearing 1.71
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.08 / overturning 11.39 / bearing 1.71
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.05 / overturning 4.36 / bearing 1.70
+       - abutmentC1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.33 / overturning 13.39 / bearing 1.23
+OK   kherwara-golden          abutment cases: 5 distinct, horizontal spread 54.0 kN
+FAIL high-level-reference     abutment cases: 5 distinct, horizontal spread 435.5 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.77 / overturning 16.41 / bearing 1.68
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.77 / overturning 15.66 / bearing 1.72
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.46 / overturning 12.08 / bearing 1.72
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.13 / overturning 4.44 / bearing 1.71
+       - abutmentType1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.78 / overturning 14.17 / bearing 1.24
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.77 / overturning 16.41 / bearing 1.68
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.77 / overturning 15.66 / bearing 1.72
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.46 / overturning 12.08 / bearing 1.72
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.13 / overturning 4.44 / bearing 1.71
+       - abutmentC1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.78 / overturning 14.17 / bearing 1.24
+FAIL small-bridge             abutment cases: 5 distinct, horizontal spread 197.3 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 7.42 / overturning 16.70 / bearing 1.78
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 7.46 / overturning 15.95 / bearing 1.88
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 5.56 / overturning 12.50 / bearing 1.88
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 2.87 / overturning 4.97 / bearing 1.85
+       - abutmentType1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 6.67 / overturning 14.58 / bearing 1.31
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 7.42 / overturning 16.70 / bearing 1.78
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 7.46 / overturning 15.95 / bearing 1.88
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 5.56 / overturning 12.50 / bearing 1.88
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 2.87 / overturning 4.97 / bearing 1.85
+       - abutmentC1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 6.67 / overturning 14.58 / bearing 1.31
+FAIL medium-bridge            abutment cases: 5 distinct, horizontal spread 367.0 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.23 / overturning 15.43 / bearing 1.67
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.27 / overturning 14.81 / bearing 1.71
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.08 / overturning 11.39 / bearing 1.71
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.05 / overturning 4.36 / bearing 1.70
+       - abutmentType1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.33 / overturning 13.39 / bearing 1.23
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.23 / overturning 15.43 / bearing 1.67
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.27 / overturning 14.81 / bearing 1.71
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.08 / overturning 11.39 / bearing 1.71
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.05 / overturning 4.36 / bearing 1.70
+       - abutmentC1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.33 / overturning 13.39 / bearing 1.23
+FAIL large-bridge             abutment cases: 5 distinct, horizontal spread 685.0 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 11.15 / overturning 20.06 / bearing 1.72
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 10.95 / overturning 18.75 / bearing 1.74
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 8.14 / overturning 14.65 / bearing 1.74
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.41 / overturning 4.57 / bearing 1.74
+       - abutmentType1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 9.77 / overturning 17.07 / bearing 1.27
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 11.15 / overturning 20.06 / bearing 1.72
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 10.95 / overturning 18.75 / bearing 1.74
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 8.14 / overturning 14.65 / bearing 1.74
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.41 / overturning 4.57 / bearing 1.74
+       - abutmentC1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 9.77 / overturning 17.07 / bearing 1.27
+FAIL irc-bedach-bedla         abutment cases: 5 distinct, horizontal spread 271.6 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.96 / overturning 20.67 / bearing 1.86
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.96 / overturning 19.59 / bearing 1.93
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.73 / overturning 15.53 / bearing 1.93
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.12 / overturning 5.45 / bearing 1.92
+       - abutmentType1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.97 / overturning 17.82 / bearing 1.37
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.96 / overturning 20.67 / bearing 1.86
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.96 / overturning 19.59 / bearing 1.93
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.73 / overturning 15.53 / bearing 1.93
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.12 / overturning 5.45 / bearing 1.92
+       - abutmentC1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.97 / overturning 17.82 / bearing 1.37
+FAIL irc-jakham-mandvi        abutment cases: 5 distinct, horizontal spread 322.3 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 9.28 / overturning 19.89 / bearing 1.61
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 9.32 / overturning 18.98 / bearing 1.67
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.94 / overturning 14.88 / bearing 1.67
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.17 / overturning 5.13 / bearing 1.65
+       - abutmentType1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 8.26 / overturning 17.19 / bearing 1.19
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 9.28 / overturning 19.89 / bearing 1.61
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 9.32 / overturning 18.98 / bearing 1.67
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.94 / overturning 14.88 / bearing 1.67
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.17 / overturning 5.13 / bearing 1.65
+       - abutmentC1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 8.26 / overturning 17.19 / bearing 1.19
+FAIL irc-t01-jethliya         abutment cases: 5 distinct, horizontal spread 181.7 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.02 / overturning 19.69 / bearing 1.93
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.06 / overturning 18.72 / bearing 2.05
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.06 / overturning 14.88 / bearing 2.05
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 2.95 / overturning 5.53 / bearing 2.01
+       - abutmentType1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.21 / overturning 17.15 / bearing 1.42
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.02 / overturning 19.69 / bearing 1.93
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.06 / overturning 18.72 / bearing 2.05
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.06 / overturning 14.88 / bearing 2.05
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 2.95 / overturning 5.53 / bearing 2.01
+       - abutmentC1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.21 / overturning 17.15 / bearing 1.42
+FAIL irc-sukanaka-matoon      abutment cases: 5 distinct, horizontal spread 219.8 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.30 / overturning 18.68 / bearing 1.86
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.39 / overturning 17.94 / bearing 1.96
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.25 / overturning 14.06 / bearing 1.96
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.01 / overturning 5.16 / bearing 1.93
+       - abutmentType1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.46 / overturning 16.30 / bearing 1.37
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.30 / overturning 18.68 / bearing 1.86
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.39 / overturning 17.94 / bearing 1.96
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.25 / overturning 14.06 / bearing 1.96
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.01 / overturning 5.16 / bearing 1.93
+       - abutmentC1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.46 / overturning 16.30 / bearing 1.37
+FAIL irc-ayad-maharashtra     abutment cases: 5 distinct, horizontal spread 322.3 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 9.28 / overturning 19.89 / bearing 1.66
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 9.32 / overturning 18.98 / bearing 1.71
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.94 / overturning 14.88 / bearing 1.71
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.17 / overturning 5.13 / bearing 1.70
+       - abutmentType1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 8.26 / overturning 17.19 / bearing 1.23
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 9.28 / overturning 19.89 / bearing 1.66
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 9.32 / overturning 18.98 / bearing 1.71
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.94 / overturning 14.88 / bearing 1.71
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.17 / overturning 5.13 / bearing 1.70
+       - abutmentC1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 8.26 / overturning 17.19 / bearing 1.23
+FAIL irc-gumaniya-udaipur     abutment cases: 5 distinct, horizontal spread 181.7 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.02 / overturning 19.69 / bearing 1.93
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.06 / overturning 18.72 / bearing 2.05
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.06 / overturning 14.88 / bearing 2.05
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 2.95 / overturning 5.53 / bearing 2.01
+       - abutmentType1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.21 / overturning 17.15 / bearing 1.42
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.02 / overturning 19.69 / bearing 1.93
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.06 / overturning 18.72 / bearing 2.05
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.06 / overturning 14.88 / bearing 2.05
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 2.95 / overturning 5.53 / bearing 2.01
+       - abutmentC1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.21 / overturning 17.15 / bearing 1.42
+FAIL irc-katumbi-chandrod     abutment cases: 5 distinct, horizontal spread 271.6 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.96 / overturning 20.67 / bearing 1.71
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.96 / overturning 19.59 / bearing 1.77
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.73 / overturning 15.53 / bearing 1.77
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.12 / overturning 5.45 / bearing 1.76
+       - abutmentType1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.97 / overturning 17.82 / bearing 1.26
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.96 / overturning 20.67 / bearing 1.71
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.96 / overturning 19.59 / bearing 1.77
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.73 / overturning 15.53 / bearing 1.77
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.12 / overturning 5.45 / bearing 1.76
+       - abutmentC1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.97 / overturning 17.82 / bearing 1.26
+FAIL irc-sisarama-highlevel   abutment cases: 5 distinct, horizontal spread 435.5 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.77 / overturning 16.41 / bearing 1.38
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.77 / overturning 15.66 / bearing 1.41
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.46 / overturning 12.08 / bearing 1.41
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.13 / overturning 4.44 / bearing 1.40
+       - abutmentType1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.78 / overturning 14.17 / bearing 1.02
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.77 / overturning 16.41 / bearing 1.38
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.77 / overturning 15.66 / bearing 1.41
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.46 / overturning 12.08 / bearing 1.41
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.13 / overturning 4.44 / bearing 1.40
+       - abutmentC1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.78 / overturning 14.17 / bearing 1.02
+FAIL irc-kumbhalgarh-kelwara  abutment cases: 5 distinct, horizontal spread 535.0 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 9.55 / overturning 16.59 / bearing 1.61
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 9.46 / overturning 15.66 / bearing 1.64
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.98 / overturning 12.12 / bearing 1.64
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.24 / overturning 4.23 / bearing 1.63
+       - abutmentType1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 8.42 / overturning 14.23 / bearing 1.19
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 9.55 / overturning 16.59 / bearing 1.61
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 9.46 / overturning 15.66 / bearing 1.64
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.98 / overturning 12.12 / bearing 1.64
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.24 / overturning 4.23 / bearing 1.63
+       - abutmentC1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 8.42 / overturning 14.23 / bearing 1.19
+FAIL irc-parwan-highlevel     abutment cases: 5 distinct, horizontal spread 820.0 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 9.42 / overturning 14.14 / bearing 1.33
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 9.28 / overturning 13.35 / bearing 1.35
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.78 / overturning 10.17 / bearing 1.35
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.24 / overturning 3.66 / bearing 1.34
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 9.42 / overturning 14.14 / bearing 1.33
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 9.28 / overturning 13.35 / bearing 1.35
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.78 / overturning 10.17 / bearing 1.35
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.24 / overturning 3.66 / bearing 1.34
+FAIL irc-banas-highlevel      abutment cases: 5 distinct, horizontal spread 704.3 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 9.54 / overturning 14.83 / bearing 1.53
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 9.44 / overturning 14.05 / bearing 1.55
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.90 / overturning 10.73 / bearing 1.55
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.25 / overturning 3.80 / bearing 1.55
+       - abutmentType1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 8.41 / overturning 12.75 / bearing 1.13
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 9.54 / overturning 14.83 / bearing 1.53
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 9.44 / overturning 14.05 / bearing 1.55
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.90 / overturning 10.73 / bearing 1.55
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.25 / overturning 3.80 / bearing 1.55
+       - abutmentC1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 8.41 / overturning 12.75 / bearing 1.13
+FAIL irc-ayad-fatehpura       abutment cases: 5 distinct, horizontal spread 512.6 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.37 / overturning 14.01 / bearing 1.36
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.38 / overturning 13.45 / bearing 1.39
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.11 / overturning 10.23 / bearing 1.39
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.08 / overturning 3.93 / bearing 1.38
+       - abutmentType1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.44 / overturning 12.14 / bearing 1.01
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.37 / overturning 14.01 / bearing 1.36
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.38 / overturning 13.45 / bearing 1.39
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.11 / overturning 10.23 / bearing 1.39
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.08 / overturning 3.93 / bearing 1.38
+       - abutmentC1 case 5 "Ultimate Limit State (1.35DL+1.5LL+EP×1.5+0.9Wind)": status SAFE but sliding 7.44 / overturning 12.14 / bearing 1.01
+FAIL irc-kherka-teegirder     abutment cases: 5 distinct, horizontal spread 645.5 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.75 / overturning 13.75 / bearing 1.32
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.74 / overturning 13.20 / bearing 1.34
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.35 / overturning 9.98 / bearing 1.34
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.14 / overturning 3.75 / bearing 1.34
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.75 / overturning 13.75 / bearing 1.32
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.74 / overturning 13.20 / bearing 1.34
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 6.35 / overturning 9.98 / bearing 1.34
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.14 / overturning 3.75 / bearing 1.34
+FAIL irc-sukanaka-highlevel   abutment cases: 5 distinct, horizontal spread 443.4 kN
+       - abutmentType1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.01 / overturning 14.16 / bearing 1.31
+       - abutmentType1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.00 / overturning 13.53 / bearing 1.34
+       - abutmentType1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 5.86 / overturning 10.36 / bearing 1.34
+       - abutmentType1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.03 / overturning 4.09 / bearing 1.33
+       - abutmentC1 case 1 "Service Condition (DL+LL+EP×1.0+Surcharge)": status SAFE but sliding 8.01 / overturning 14.16 / bearing 1.31
+       - abutmentC1 case 2 "Construction Stage (DL+EP×1.0+Wind, no LL)": status SAFE but sliding 8.00 / overturning 13.53 / bearing 1.34
+       - abutmentC1 case 3 "Flood Condition (DL+EP×1.5, no LL — submerged backfill, hydro uplift)": status SAFE but sliding 5.86 / overturning 10.36 / bearing 1.34
+       - abutmentC1 case 4 "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)": status SAFE but sliding 3.03 / overturning 4.09 / bearing 1.33
+
+Templates: 20 | defects: 184
+E:\Rajkumar\Bridge_Slab_Design\scripts:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @workspace/scripts@0.0.0 verify:cases: `tsx ./verify-load-case-diversity.ts`
+Exit status 1
+ ELIFECYCLE  Command failed with exit code 1.

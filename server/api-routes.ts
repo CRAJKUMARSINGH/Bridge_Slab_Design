@@ -4,6 +4,7 @@ import { Router, type Request, type Response } from 'express';
 import { generateCompleteExcel } from '../bridge-excel-generator/index';
 import calculateCompleteDesign from '../bridge-excel-generator/design-engine';
 import type { EnhancedProjectInput, ProjectInput } from '../bridge-excel-generator/types';
+import { EXPECTED_SHEET_COUNT } from '../bridge-excel-generator/sheet-contract';
 import { mergeProjectInput, PHASE1_QUICK_TEMPLATES } from './default-project-inputs';
 import { generateDesignPDF } from './pdf-export';
 import { generateBridgeDXF } from './dxf-export';
@@ -37,7 +38,12 @@ import {
   STABILITY_CHECK_PIER_SHEET_NAME,
 } from './workbook-sheets-preview';
 import { resolveFeatureFlags } from '../shared/feature-flags';
-import { buildPierCaseCatalog, resolveDefaultPierAssetRoot } from './pier-case-engine';
+import {
+  buildPierCaseCatalog,
+  isExistingDirectory,
+  pierAssetTrees,
+  resolveDefaultPierAssetRoot,
+} from './pier-case-engine';
 import { PIER_MASTER_SCHEMA, recommendPierType, type PierMasterVariables } from './pier-recommendation-engine';
 import { generatePierPayload } from './pier-template-mapper';
 import { optimiseBridgeDesign } from './optimisation-engine';
@@ -76,12 +82,16 @@ async function saveAnalysisRecord(
   }
 }
 
-/** Reject pier catalog roots outside the resolved default asset tree (no arbitrary drive traversal). */
+/** Reject pier catalog roots outside the installed asset library (no arbitrary drive traversal). */
 function isDirectoryWithin(rootAbs: string, candidateAbs: string): boolean {
   const root = resolve(rootAbs);
   const dir = resolve(candidateAbs);
   const rel = relative(root, dir);
   return rel === '' || !rel.startsWith('..');
+}
+
+function isWithinAssetLibrary(candidateAbs: string): boolean {
+  return pierAssetTrees().some((tree) => isDirectoryWithin(tree, candidateAbs));
 }
 
 function getPositiveIntEnv(name: string, fallback: number): number {
@@ -500,7 +510,8 @@ router.get('/drawings/svg/slab-reinf-plan', svgSlabReinfPlanHandler);
 router.post('/drawings/svg/slab-reinf-plan', svgSlabReinfPlanHandler);
 
 /**
- * POST /api/design/pdf/comprehensive — returns ~200 page PDF with all 46 sheets
+ * POST /api/design/pdf/comprehensive — returns the full report PDF for the
+ * {@link EXPECTED_SHEET_COUNT}-sheet workbook (measured length: ~225 A4 pages)
  */
 router.post('/pdf/comprehensive', async (req, res) => {
   try {
@@ -518,7 +529,7 @@ router.post('/pdf/comprehensive', async (req, res) => {
     const enhancedInput = { ...input, ...designResults } as EnhancedProjectInput;
     const buffer = await generateComprehensivePDF(enhancedInput);
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename="${input.projectName.replace(/\s+/g, '_')}_Complete_46_Sheets.pdf"`);
+    res.setHeader('Content-Disposition', `attachment; filename="${input.projectName.replace(/\s+/g, '_')}_Complete_${EXPECTED_SHEET_COUNT}_Sheets.pdf"`);
     res.send(buffer);
   } catch (error) {
     res.status(500).json({ success: false, error: errorMessage(error) });
@@ -955,24 +966,34 @@ router.get('/feature-flags', (_req, res) => {
  * Scans local pier asset library and returns classified + scored best-case defaults.
  */
 router.get('/pier-cases/catalog', (req, res) => {
+  const defaultRoot = resolveDefaultPierAssetRoot();
+  if (!defaultRoot) {
+    res.status(503).json({
+      success: false,
+      error:
+        'Pier asset library is not installed. Set PIER_ASSET_ROOT to an existing directory of pier drawings, ' +
+        'or deploy the repository assets/ tree alongside the server.',
+    });
+    return;
+  }
+  const requestedRoot =
+    typeof req.query.root === 'string' && req.query.root.trim().length > 0
+      ? req.query.root.trim()
+      : defaultRoot;
+  const resolvedRoot = resolve(requestedRoot);
+  if (!isExistingDirectory(resolvedRoot)) {
+    res.status(400).json({ success: false, error: `root is not a directory: ${resolvedRoot}` });
+    return;
+  }
+  if (!isWithinAssetLibrary(resolvedRoot)) {
+    res.status(400).json({
+      success: false,
+      error: `root must be within the installed asset library: ${pierAssetTrees().join(', ')}`,
+    });
+    return;
+  }
   try {
-    const defaultRoot = resolveDefaultPierAssetRoot();
-    const requestedRoot =
-      typeof req.query.root === 'string' && req.query.root.trim().length > 0
-        ? req.query.root.trim()
-        : defaultRoot;
-    const resolvedRoot = resolve(requestedRoot);
-    const resolvedDefaultRoot = resolve(defaultRoot);
-    const withinAllowedRoot = isDirectoryWithin(resolvedDefaultRoot, resolvedRoot);
-    if (!withinAllowedRoot) {
-      res.status(400).json({
-        success: false,
-        error: `root must be within configured asset root: ${resolvedDefaultRoot}`,
-      });
-      return;
-    }
-    const catalog = buildPierCaseCatalog(resolvedRoot);
-    res.json({ success: true, catalog });
+    res.json({ success: true, catalog: buildPierCaseCatalog(resolvedRoot) });
   } catch (error) {
     res.status(500).json({ success: false, error: errorMessage(error) });
   }

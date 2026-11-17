@@ -5,7 +5,7 @@
  *   npx tsx scripts/regenerate-test-output.ts
  *
  * Files (all A4, 15 mm margins; sheet-book honours the orientation contract):
- *   design-workbook.xlsx      46-sheet live-linked workbook
+ *   design-workbook.xlsx      56-sheet live-linked workbook
  *   sheet-book.pdf            every worksheet, one sheet per page
  *   comprehensive-report.pdf  full IRC design narrative
  *   short-design-report.pdf   executive summary
