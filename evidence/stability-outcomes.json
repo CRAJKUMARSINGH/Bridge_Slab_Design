@@ -1,26 +1,25 @@
 {
-  "generatedAt": "2026-10-06T12:53:45.956Z",
+  "generatedAt": "2026-11-17T05:53:34.932Z",
   "thresholds": {
     "sliding": 1.5,
     "overturning": 1.8,
-    "bearing": 2.5
+    "bearing": 1
   },
   "totals": {
     "templates": 20,
     "cases": 300,
-    "safe": 4,
-    "unsafe": 296,
+    "safe": 195,
+    "unsafe": 105,
     "templatesWithUnsafe": 20
   },
   "attribution": {
-    "unsafe": 296,
+    "unsafe": 105,
     "byThreshold": {
-      "sliding": 106,
+      "sliding": 99,
       "overturning": 82,
-      "bearing": 218
+      "bearing": 6
     },
-    "bearingOnly": 190,
-    "bearingWouldPassAtSbcLimit": 184
+    "bearingOnly": 6
   },
   "templates": [
     {
@@ -34,7 +33,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.5689132825202606,
+              "slidingFOS": 0.853369923780391,
               "overturningFOS": 1.8479059920183554,
               "bearingFOS": 3.4681821345841626,
               "status": "UNSAFE",
@@ -43,7 +42,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.36537394051032157,
+              "slidingFOS": 0.5480609107654824,
               "overturningFOS": 1.1867831438306002,
               "bearingFOS": 5.357142857142857,
               "status": "UNSAFE",
@@ -52,7 +51,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.21814085895325622,
+              "slidingFOS": 0.32721128842988434,
               "overturningFOS": 0.7085505168345184,
               "bearingFOS": 9.04504957041175,
               "status": "UNSAFE",
@@ -61,7 +60,7 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.26738022494297997,
+              "slidingFOS": 0.40107033741447,
               "overturningFOS": 0.868486525100163,
               "bearingFOS": 6.451523079080961,
               "status": "UNSAFE",
@@ -70,7 +69,7 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 0.866936281560613,
+              "slidingFOS": 1.3004044223409192,
               "overturningFOS": 2.815924322063822,
               "bearingFOS": 2.259592295525327,
               "status": "UNSAFE",
@@ -79,7 +78,7 @@
           ],
           "safeCases": 0,
           "unsafeCases": 5,
-          "worstSliding": 0.21814085895325622,
+          "worstSliding": 0.32721128842988434,
           "worstOverturning": 0.7085505168345184,
           "worstBearing": 2.259592295525327,
           "verdict": "UNSAFE"
@@ -94,7 +93,7 @@
               "slidingFOS": 8.231707317073168,
               "overturningFOS": 15.434451219512189,
               "bearingFOS": 1.6666666666666667,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -103,7 +102,7 @@
               "slidingFOS": 8.26659703031954,
               "overturningFOS": 14.810894667239364,
               "bearingFOS": 1.7142857142857142,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -112,7 +111,7 @@
               "slidingFOS": 6.076388888888887,
               "overturningFOS": 11.393229166666663,
               "bearingFOS": 1.7142857142857142,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -121,7 +120,7 @@
               "slidingFOS": 3.0457949308755756,
               "overturningFOS": 4.355914982425307,
               "bearingFOS": 1.702127659574468,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -130,16 +129,16 @@
               "slidingFOS": 7.3331987199174264,
               "overturningFOS": 13.392646612325729,
               "bearingFOS": 1.2307692307692308,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.0457949308755756,
           "worstOverturning": 4.355914982425307,
           "worstBearing": 1.2307692307692308,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         },
         {
           "member": "Abutment cantilever (C1)",
@@ -151,7 +150,7 @@
               "slidingFOS": 8.231707317073168,
               "overturningFOS": 15.434451219512189,
               "bearingFOS": 1.6666666666666667,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -160,7 +159,7 @@
               "slidingFOS": 8.26659703031954,
               "overturningFOS": 14.810894667239364,
               "bearingFOS": 1.7142857142857142,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -169,7 +168,7 @@
               "slidingFOS": 6.076388888888887,
               "overturningFOS": 11.393229166666663,
               "bearingFOS": 1.7142857142857142,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -178,7 +177,7 @@
               "slidingFOS": 3.0457949308755756,
               "overturningFOS": 4.355914982425307,
               "bearingFOS": 1.702127659574468,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -187,16 +186,16 @@
               "slidingFOS": 7.3331987199174264,
               "overturningFOS": 13.392646612325729,
               "bearingFOS": 1.2307692307692308,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.0457949308755756,
           "worstOverturning": 4.355914982425307,
           "worstBearing": 1.2307692307692308,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         }
       ]
     },
@@ -211,7 +210,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.7109955949752323,
+              "slidingFOS": 1.0664933924628486,
               "overturningFOS": 2.255198153835669,
               "bearingFOS": 2.617746253574389,
               "status": "UNSAFE",
@@ -220,7 +219,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.4589607057750061,
+              "slidingFOS": 0.6884410586625092,
               "overturningFOS": 1.4557717989560337,
               "bearingFOS": 4.017857142857142,
               "status": "UNSAFE",
@@ -229,7 +228,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.26982082636976684,
+              "slidingFOS": 0.4047312395546503,
               "overturningFOS": 0.8558413495047181,
               "bearingFOS": 6.897933269627161,
               "status": "UNSAFE",
@@ -238,7 +237,7 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.32189044250996834,
+              "slidingFOS": 0.4828356637649525,
               "overturningFOS": 1.021000322387532,
               "bearingFOS": 4.896435059348649,
               "status": "UNSAFE",
@@ -247,16 +246,16 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 1.0846268795343819,
+              "slidingFOS": 1.6269403193015728,
               "overturningFOS": 3.440314614623863,
               "bearingFOS": 1.701729019079517,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
-          "worstSliding": 0.26982082636976684,
+          "safeCases": 1,
+          "unsafeCases": 4,
+          "worstSliding": 0.4047312395546503,
           "worstOverturning": 0.8558413495047181,
           "worstBearing": 1.701729019079517,
           "verdict": "UNSAFE"
@@ -388,7 +387,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.3578441246837215,
+              "slidingFOS": 0.5367661870255823,
               "overturningFOS": 0.7989288769759437,
               "bearingFOS": 3.0059637413209166,
               "status": "UNSAFE",
@@ -397,7 +396,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.20429030237287013,
+              "slidingFOS": 0.3064354535593052,
               "overturningFOS": 0.4561020025020346,
               "bearingFOS": 5.238095238095237,
               "status": "UNSAFE",
@@ -406,7 +405,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.09707649708517897,
+              "slidingFOS": 0.14561474562776847,
               "overturningFOS": 0.21673463792529502,
               "bearingFOS": 11.080606492219774,
               "status": "UNSAFE",
@@ -415,7 +414,7 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.14843100830625078,
+              "slidingFOS": 0.2226465124593762,
               "overturningFOS": 0.3313895928271319,
               "bearingFOS": 6.6289335288258044,
               "status": "UNSAFE",
@@ -424,7 +423,7 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 0.5574883168926642,
+              "slidingFOS": 0.8362324753389964,
               "overturningFOS": 1.2446578949309948,
               "bearingFOS": 1.9204831145467087,
               "status": "UNSAFE",
@@ -433,7 +432,7 @@
           ],
           "safeCases": 0,
           "unsafeCases": 5,
-          "worstSliding": 0.09707649708517897,
+          "worstSliding": 0.14561474562776847,
           "worstOverturning": 0.21673463792529502,
           "worstBearing": 1.9204831145467087,
           "verdict": "UNSAFE"
@@ -448,7 +447,7 @@
               "slidingFOS": 8.770486229173747,
               "overturningFOS": 16.405968358101475,
               "bearingFOS": 1.681600372179577,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -457,7 +456,7 @@
               "slidingFOS": 8.76727876804285,
               "overturningFOS": 15.657220669570581,
               "bearingFOS": 1.7216480114312935,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -466,7 +465,7 @@
               "slidingFOS": 6.457516339869278,
               "overturningFOS": 12.079354094579,
               "bearingFOS": 1.7216480114312935,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -475,7 +474,7 @@
               "slidingFOS": 3.1289661473122785,
               "overturningFOS": 4.439301467834118,
               "bearingFOS": 1.7114583333333337,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -484,16 +483,16 @@
               "slidingFOS": 7.7808930675775,
               "overturningFOS": 14.167456155702292,
               "bearingFOS": 1.2424187741142707,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.1289661473122785,
           "worstOverturning": 4.439301467834118,
           "worstBearing": 1.2424187741142707,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         },
         {
           "member": "Abutment cantilever (C1)",
@@ -505,7 +504,7 @@
               "slidingFOS": 8.770486229173747,
               "overturningFOS": 16.405968358101475,
               "bearingFOS": 1.681600372179577,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -514,7 +513,7 @@
               "slidingFOS": 8.76727876804285,
               "overturningFOS": 15.657220669570581,
               "bearingFOS": 1.7216480114312935,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -523,7 +522,7 @@
               "slidingFOS": 6.457516339869278,
               "overturningFOS": 12.079354094579,
               "bearingFOS": 1.7216480114312935,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -532,7 +531,7 @@
               "slidingFOS": 3.1289661473122785,
               "overturningFOS": 4.439301467834118,
               "bearingFOS": 1.7114583333333337,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -541,16 +540,16 @@
               "slidingFOS": 7.7808930675775,
               "overturningFOS": 14.167456155702292,
               "bearingFOS": 1.2424187741142707,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.1289661473122785,
           "worstOverturning": 4.439301467834118,
           "worstBearing": 1.2424187741142707,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         }
       ]
     },
@@ -565,7 +564,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.14990387530984567,
+              "slidingFOS": 0.22485581296476853,
               "overturningFOS": 0.22453911775363977,
               "bearingFOS": 2.3016249275045775,
               "status": "UNSAFE",
@@ -574,7 +573,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.08593781395712322,
+              "slidingFOS": 0.1289067209356848,
               "overturningFOS": 0.12872516396073108,
               "bearingFOS": 4,
               "status": "UNSAFE",
@@ -583,7 +582,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.018466733922158543,
+              "slidingFOS": 0.027700100883237818,
               "overturningFOS": 0.027661087040625355,
               "bearingFOS": 18.683460626932,
               "status": "UNSAFE",
@@ -592,7 +591,7 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.0491845932451293,
+              "slidingFOS": 0.07377688986769394,
               "overturningFOS": 0.0736729797779124,
               "bearingFOS": 6.722175244759848,
               "status": "UNSAFE",
@@ -601,7 +600,7 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 0.24499648621236744,
+              "slidingFOS": 0.3674947293185512,
               "overturningFOS": 0.3669771362025196,
               "bearingFOS": 1.4036036331360893,
               "status": "UNSAFE",
@@ -610,7 +609,7 @@
           ],
           "safeCases": 0,
           "unsafeCases": 5,
-          "worstSliding": 0.018466733922158543,
+          "worstSliding": 0.027700100883237818,
           "worstOverturning": 0.027661087040625355,
           "worstBearing": 1.4036036331360893,
           "verdict": "UNSAFE"
@@ -625,7 +624,7 @@
               "slidingFOS": 7.421874999999998,
               "overturningFOS": 16.699218749999996,
               "bearingFOS": 1.7763157894736843,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -634,7 +633,7 @@
               "slidingFOS": 7.458896221062439,
               "overturningFOS": 15.945895527150403,
               "bearingFOS": 1.875,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -643,7 +642,7 @@
               "slidingFOS": 5.555555555555554,
               "overturningFOS": 12.499999999999996,
               "bearingFOS": 1.875,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -652,7 +651,7 @@
               "slidingFOS": 2.869496855345912,
               "overturningFOS": 4.971246973365617,
               "bearingFOS": 1.8493150684931505,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -661,16 +660,16 @@
               "slidingFOS": 6.6702808153583915,
               "overturningFOS": 14.578633473534824,
               "bearingFOS": 1.3081395348837208,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 2.869496855345912,
           "worstOverturning": 4.971246973365617,
           "worstBearing": 1.3081395348837208,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         },
         {
           "member": "Abutment cantilever (C1)",
@@ -682,7 +681,7 @@
               "slidingFOS": 7.421874999999998,
               "overturningFOS": 16.699218749999996,
               "bearingFOS": 1.7763157894736843,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -691,7 +690,7 @@
               "slidingFOS": 7.458896221062439,
               "overturningFOS": 15.945895527150403,
               "bearingFOS": 1.875,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -700,7 +699,7 @@
               "slidingFOS": 5.555555555555554,
               "overturningFOS": 12.499999999999996,
               "bearingFOS": 1.875,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -709,7 +708,7 @@
               "slidingFOS": 2.869496855345912,
               "overturningFOS": 4.971246973365617,
               "bearingFOS": 1.8493150684931505,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -718,16 +717,16 @@
               "slidingFOS": 6.6702808153583915,
               "overturningFOS": 14.578633473534824,
               "bearingFOS": 1.3081395348837208,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 2.869496855345912,
           "worstOverturning": 4.971246973365617,
           "worstBearing": 1.3081395348837208,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         }
       ]
     },
@@ -742,7 +741,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.2072476954387451,
+              "slidingFOS": 0.31087154315811766,
               "overturningFOS": 0.39170906488013824,
               "bearingFOS": 2.7085322944177355,
               "status": "UNSAFE",
@@ -751,7 +750,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.13053881850861537,
+              "slidingFOS": 0.19580822776292303,
               "overturningFOS": 0.2467252454620463,
               "bearingFOS": 4.285714285714286,
               "status": "UNSAFE",
@@ -760,7 +759,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.05755780849488047,
+              "slidingFOS": 0.0863367127423207,
               "overturningFOS": 0.10878729094839783,
               "bearingFOS": 9.752579028255061,
               "status": "UNSAFE",
@@ -769,7 +768,7 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.08993206025620412,
+              "slidingFOS": 0.13489809038430617,
               "overturningFOS": 0.16997633267344986,
               "bearingFOS": 5.910038111860484,
               "status": "UNSAFE",
@@ -778,7 +777,7 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 0.3269437340991896,
+              "slidingFOS": 0.49041560114878435,
               "overturningFOS": 0.6179408850906427,
               "bearingFOS": 1.7117318692559964,
               "status": "UNSAFE",
@@ -787,7 +786,7 @@
           ],
           "safeCases": 0,
           "unsafeCases": 5,
-          "worstSliding": 0.05755780849488047,
+          "worstSliding": 0.0863367127423207,
           "worstOverturning": 0.10878729094839783,
           "worstBearing": 1.7117318692559964,
           "verdict": "UNSAFE"
@@ -802,7 +801,7 @@
               "slidingFOS": 8.231707317073168,
               "overturningFOS": 15.434451219512189,
               "bearingFOS": 1.6666666666666667,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -811,7 +810,7 @@
               "slidingFOS": 8.26659703031954,
               "overturningFOS": 14.810894667239364,
               "bearingFOS": 1.7142857142857142,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -820,7 +819,7 @@
               "slidingFOS": 6.076388888888887,
               "overturningFOS": 11.393229166666663,
               "bearingFOS": 1.7142857142857142,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -829,7 +828,7 @@
               "slidingFOS": 3.0457949308755756,
               "overturningFOS": 4.355914982425307,
               "bearingFOS": 1.702127659574468,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -838,16 +837,16 @@
               "slidingFOS": 7.3331987199174264,
               "overturningFOS": 13.392646612325729,
               "bearingFOS": 1.2307692307692308,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.0457949308755756,
           "worstOverturning": 4.355914982425307,
           "worstBearing": 1.2307692307692308,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         },
         {
           "member": "Abutment cantilever (C1)",
@@ -859,7 +858,7 @@
               "slidingFOS": 8.231707317073168,
               "overturningFOS": 15.434451219512189,
               "bearingFOS": 1.6666666666666667,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -868,7 +867,7 @@
               "slidingFOS": 8.26659703031954,
               "overturningFOS": 14.810894667239364,
               "bearingFOS": 1.7142857142857142,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -877,7 +876,7 @@
               "slidingFOS": 6.076388888888887,
               "overturningFOS": 11.393229166666663,
               "bearingFOS": 1.7142857142857142,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -886,7 +885,7 @@
               "slidingFOS": 3.0457949308755756,
               "overturningFOS": 4.355914982425307,
               "bearingFOS": 1.702127659574468,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -895,16 +894,16 @@
               "slidingFOS": 7.3331987199174264,
               "overturningFOS": 13.392646612325729,
               "bearingFOS": 1.2307692307692308,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.0457949308755756,
           "worstOverturning": 4.355914982425307,
           "worstBearing": 1.2307692307692308,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         }
       ]
     },
@@ -919,7 +918,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.15216631156644883,
+              "slidingFOS": 0.22824946734967325,
               "overturningFOS": 0.30179808301220973,
               "bearingFOS": 3.6619648991568923,
               "status": "UNSAFE",
@@ -928,7 +927,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.12180967852667093,
+              "slidingFOS": 0.18271451779000641,
               "overturningFOS": 0.24159044859038598,
               "bearingFOS": 4.562962962962962,
               "status": "UNSAFE",
@@ -937,7 +936,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.055676667966361025,
+              "slidingFOS": 0.08351500194954153,
               "overturningFOS": 0.11042596411635688,
               "bearingFOS": 10.008280167325662,
               "status": "UNSAFE",
@@ -946,8 +945,8 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.0764562678800782,
-              "overturningFOS": 0.15163905100242467,
+              "slidingFOS": 0.11651471748545571,
+              "overturningFOS": 0.15405914759901435,
               "bearingFOS": 6.9828837588907415,
               "status": "UNSAFE",
               "governing": false
@@ -955,7 +954,7 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 0.2425973233285248,
+              "slidingFOS": 0.36389598499278725,
               "overturningFOS": 0.4811538531146553,
               "bearingFOS": 2.291674882184591,
               "status": "UNSAFE",
@@ -964,7 +963,7 @@
           ],
           "safeCases": 0,
           "unsafeCases": 5,
-          "worstSliding": 0.055676667966361025,
+          "worstSliding": 0.08351500194954153,
           "worstOverturning": 0.11042596411635688,
           "worstBearing": 2.291674882184591,
           "verdict": "UNSAFE"
@@ -979,7 +978,7 @@
               "slidingFOS": 11.146964938802029,
               "overturningFOS": 20.06453688984365,
               "bearingFOS": 1.7167883211678832,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -988,7 +987,7 @@
               "slidingFOS": 10.951182967617603,
               "overturningFOS": 18.74927725846062,
               "bearingFOS": 1.7422222222222221,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -997,16 +996,16 @@
               "slidingFOS": 8.136470758249656,
               "overturningFOS": 14.645647364849381,
               "bearingFOS": 1.7422222222222221,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
-              "slidingFOS": 3.4139288464468054,
-              "overturningFOS": 4.5682420362750475,
+              "slidingFOS": 4.606439887539934,
+              "overturningFOS": 6.422166023673422,
               "bearingFOS": 1.7357933579335796,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1015,16 +1014,16 @@
               "slidingFOS": 9.77030679099091,
               "overturningFOS": 17.0734985609202,
               "bearingFOS": 1.2696356275303644,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
-          "worstSliding": 3.4139288464468054,
-          "worstOverturning": 4.5682420362750475,
+          "safeCases": 5,
+          "unsafeCases": 0,
+          "worstSliding": 4.606439887539934,
+          "worstOverturning": 6.422166023673422,
           "worstBearing": 1.2696356275303644,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         },
         {
           "member": "Abutment cantilever (C1)",
@@ -1036,7 +1035,7 @@
               "slidingFOS": 11.146964938802029,
               "overturningFOS": 20.06453688984365,
               "bearingFOS": 1.7167883211678832,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -1045,7 +1044,7 @@
               "slidingFOS": 10.951182967617603,
               "overturningFOS": 18.74927725846062,
               "bearingFOS": 1.7422222222222221,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1054,16 +1053,16 @@
               "slidingFOS": 8.136470758249656,
               "overturningFOS": 14.645647364849381,
               "bearingFOS": 1.7422222222222221,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
-              "slidingFOS": 3.4139288464468054,
-              "overturningFOS": 4.5682420362750475,
+              "slidingFOS": 4.606439887539934,
+              "overturningFOS": 6.422166023673422,
               "bearingFOS": 1.7357933579335796,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1072,16 +1071,16 @@
               "slidingFOS": 9.77030679099091,
               "overturningFOS": 17.0734985609202,
               "bearingFOS": 1.2696356275303644,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
-          "worstSliding": 3.4139288464468054,
-          "worstOverturning": 4.5682420362750475,
+          "safeCases": 5,
+          "unsafeCases": 0,
+          "worstSliding": 4.606439887539934,
+          "worstOverturning": 6.422166023673422,
           "worstBearing": 1.2696356275303644,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         }
       ]
     },
@@ -1096,7 +1095,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.536451421195149,
+              "slidingFOS": 0.8046771317927235,
               "overturningFOS": 1.5036678364894183,
               "bearingFOS": 3.257934859962447,
               "status": "UNSAFE",
@@ -1105,7 +1104,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.35960910038730226,
+              "slidingFOS": 0.5394136505809535,
               "overturningFOS": 1.007980623402197,
               "bearingFOS": 4.821428571428571,
               "status": "UNSAFE",
@@ -1114,7 +1113,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.1912220314098505,
+              "slidingFOS": 0.28683304711477575,
               "overturningFOS": 0.5359933945529859,
               "bearingFOS": 9.139761631556656,
               "status": "UNSAFE",
@@ -1123,7 +1122,7 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.24311753795386865,
+              "slidingFOS": 0.36467630693080294,
               "overturningFOS": 0.6814559676126616,
               "bearingFOS": 6.297437024473728,
               "status": "UNSAFE",
@@ -1132,7 +1131,7 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 0.8299521125635786,
+              "slidingFOS": 1.244928168845368,
               "overturningFOS": 2.3263472668372596,
               "bearingFOS": 2.090733953554297,
               "status": "UNSAFE",
@@ -1141,7 +1140,7 @@
           ],
           "safeCases": 0,
           "unsafeCases": 5,
-          "worstSliding": 0.1912220314098505,
+          "worstSliding": 0.28683304711477575,
           "worstOverturning": 0.5359933945529859,
           "worstBearing": 2.090733953554297,
           "verdict": "UNSAFE"
@@ -1156,7 +1155,7 @@
               "slidingFOS": 8.959152161706903,
               "overturningFOS": 20.674966527015933,
               "bearingFOS": 1.8613396004700353,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -1165,7 +1164,7 @@
               "slidingFOS": 8.964381609659082,
               "overturningFOS": 19.589073335569076,
               "bearingFOS": 1.934065934065934,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1174,7 +1173,7 @@
               "slidingFOS": 6.730769230769229,
               "overturningFOS": 15.532544378698221,
               "bearingFOS": 1.934065934065934,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1183,7 +1182,7 @@
               "slidingFOS": 3.118557996882698,
               "overturningFOS": 5.448284848014593,
               "bearingFOS": 1.9153567110036274,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1192,16 +1191,16 @@
               "slidingFOS": 7.96917291226255,
               "overturningFOS": 17.822986635474855,
               "bearingFOS": 1.3730334156806658,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.118557996882698,
           "worstOverturning": 5.448284848014593,
           "worstBearing": 1.3730334156806658,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         },
         {
           "member": "Abutment cantilever (C1)",
@@ -1213,7 +1212,7 @@
               "slidingFOS": 8.959152161706903,
               "overturningFOS": 20.674966527015933,
               "bearingFOS": 1.8613396004700353,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -1222,7 +1221,7 @@
               "slidingFOS": 8.964381609659082,
               "overturningFOS": 19.589073335569076,
               "bearingFOS": 1.934065934065934,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1231,7 +1230,7 @@
               "slidingFOS": 6.730769230769229,
               "overturningFOS": 15.532544378698221,
               "bearingFOS": 1.934065934065934,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1240,7 +1239,7 @@
               "slidingFOS": 3.118557996882698,
               "overturningFOS": 5.448284848014593,
               "bearingFOS": 1.9153567110036274,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1249,16 +1248,16 @@
               "slidingFOS": 7.96917291226255,
               "overturningFOS": 17.822986635474855,
               "bearingFOS": 1.3730334156806658,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.118557996882698,
           "worstOverturning": 5.448284848014593,
           "worstBearing": 1.3730334156806658,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         }
       ]
     },
@@ -1273,7 +1272,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.4952155006274547,
+              "slidingFOS": 0.7428232509411821,
               "overturningFOS": 1.3773590282257588,
               "bearingFOS": 3.084606718164463,
               "status": "UNSAFE",
@@ -1282,7 +1281,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.33294683693167026,
+              "slidingFOS": 0.4994202553975054,
               "overturningFOS": 0.9260358998981251,
               "bearingFOS": 4.553571428571428,
               "status": "UNSAFE",
@@ -1291,7 +1290,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.17572895209419984,
+              "slidingFOS": 0.26359342814129977,
               "overturningFOS": 0.48876066759001446,
               "bearingFOS": 8.69262032220952,
               "status": "UNSAFE",
@@ -1300,7 +1299,7 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.22599731707534124,
+              "slidingFOS": 0.33899597561301187,
               "overturningFOS": 0.6285737111098485,
               "bearingFOS": 5.976297100062379,
               "status": "UNSAFE",
@@ -1309,7 +1308,7 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 0.7671566498146002,
+              "slidingFOS": 1.1507349747219002,
               "overturningFOS": 2.133717818498725,
               "bearingFOS": 1.977737223129446,
               "status": "UNSAFE",
@@ -1318,7 +1317,7 @@
           ],
           "safeCases": 0,
           "unsafeCases": 5,
-          "worstSliding": 0.17572895209419984,
+          "worstSliding": 0.26359342814129977,
           "worstOverturning": 0.48876066759001446,
           "worstBearing": 1.977737223129446,
           "verdict": "UNSAFE"
@@ -1333,7 +1332,7 @@
               "slidingFOS": 9.283268101761248,
               "overturningFOS": 19.89271736091696,
               "bearingFOS": 1.6126482213438735,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -1342,7 +1341,7 @@
               "slidingFOS": 9.323620276328048,
               "overturningFOS": 18.983208960893336,
               "bearingFOS": 1.6653061224489796,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1351,7 +1350,7 @@
               "slidingFOS": 6.944444444444442,
               "overturningFOS": 14.880952380952374,
               "bearingFOS": 1.6653061224489796,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1360,7 +1359,7 @@
               "slidingFOS": 3.1726323000513785,
               "overturningFOS": 5.131057787297689,
               "bearingFOS": 1.651821862348178,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1369,16 +1368,16 @@
               "slidingFOS": 8.260042253155483,
               "overturningFOS": 17.18617944572573,
               "bearingFOS": 1.1903719912472648,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.1726323000513785,
           "worstOverturning": 5.131057787297689,
           "worstBearing": 1.1903719912472648,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         },
         {
           "member": "Abutment cantilever (C1)",
@@ -1390,7 +1389,7 @@
               "slidingFOS": 9.283268101761248,
               "overturningFOS": 19.89271736091696,
               "bearingFOS": 1.6126482213438735,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -1399,7 +1398,7 @@
               "slidingFOS": 9.323620276328048,
               "overturningFOS": 18.983208960893336,
               "bearingFOS": 1.6653061224489796,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1408,7 +1407,7 @@
               "slidingFOS": 6.944444444444442,
               "overturningFOS": 14.880952380952374,
               "bearingFOS": 1.6653061224489796,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1417,7 +1416,7 @@
               "slidingFOS": 3.1726323000513785,
               "overturningFOS": 5.131057787297689,
               "bearingFOS": 1.651821862348178,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1426,16 +1425,16 @@
               "slidingFOS": 8.260042253155483,
               "overturningFOS": 17.18617944572573,
               "bearingFOS": 1.1903719912472648,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.1726323000513785,
           "worstOverturning": 5.131057787297689,
           "worstBearing": 1.1903719912472648,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         }
       ]
     },
@@ -1450,7 +1449,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.6391121328045848,
+              "slidingFOS": 0.9586681992068772,
               "overturningFOS": 1.7598953408829412,
               "bearingFOS": 2.5512451628893644,
               "status": "UNSAFE",
@@ -1459,7 +1458,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.39584821409586857,
+              "slidingFOS": 0.5937723211438029,
               "overturningFOS": 1.0900300462566257,
               "bearingFOS": 4.081632653061225,
               "status": "UNSAFE",
@@ -1468,7 +1467,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.20430366950815756,
+              "slidingFOS": 0.30645550426223633,
               "overturningFOS": 0.5625821473845058,
               "bearingFOS": 7.980922424384047,
               "status": "UNSAFE",
@@ -1477,7 +1476,7 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.26824673866637866,
+              "slidingFOS": 0.40237010799956796,
               "overturningFOS": 0.7386594016207624,
               "bearingFOS": 5.209270287546753,
               "status": "UNSAFE",
@@ -1486,7 +1485,7 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 0.9881742655060269,
+              "slidingFOS": 1.4822613982590405,
               "overturningFOS": 2.721092585448104,
               "bearingFOS": 1.6365305038602025,
               "status": "UNSAFE",
@@ -1495,7 +1494,7 @@
           ],
           "safeCases": 0,
           "unsafeCases": 5,
-          "worstSliding": 0.20430366950815756,
+          "worstSliding": 0.30645550426223633,
           "worstOverturning": 0.5625821473845058,
           "worstBearing": 1.6365305038602025,
           "verdict": "UNSAFE"
@@ -1510,7 +1509,7 @@
               "slidingFOS": 8.021390374331547,
               "overturningFOS": 19.688867282450165,
               "bearingFOS": 1.9285714285714288,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -1519,7 +1518,7 @@
               "slidingFOS": 8.060089967027269,
               "overturningFOS": 18.722390303466597,
               "bearingFOS": 2.0454545454545454,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1528,7 +1527,7 @@
               "slidingFOS": 6.060606060606058,
               "overturningFOS": 14.876033057851235,
               "bearingFOS": 2.0454545454545454,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1537,7 +1536,7 @@
               "slidingFOS": 2.9480786154297443,
               "overturningFOS": 5.532222879161654,
               "bearingFOS": 2.014925373134328,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1546,16 +1545,16 @@
               "slidingFOS": 7.208744300904876,
               "overturningFOS": 17.15099023821952,
               "bearingFOS": 1.419558359621451,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 2.9480786154297443,
           "worstOverturning": 5.532222879161654,
           "worstBearing": 1.419558359621451,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         },
         {
           "member": "Abutment cantilever (C1)",
@@ -1567,7 +1566,7 @@
               "slidingFOS": 8.021390374331547,
               "overturningFOS": 19.688867282450165,
               "bearingFOS": 1.9285714285714288,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -1576,7 +1575,7 @@
               "slidingFOS": 8.060089967027269,
               "overturningFOS": 18.722390303466597,
               "bearingFOS": 2.0454545454545454,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1585,7 +1584,7 @@
               "slidingFOS": 6.060606060606058,
               "overturningFOS": 14.876033057851235,
               "bearingFOS": 2.0454545454545454,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1594,7 +1593,7 @@
               "slidingFOS": 2.9480786154297443,
               "overturningFOS": 5.532222879161654,
               "bearingFOS": 2.014925373134328,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1603,16 +1602,16 @@
               "slidingFOS": 7.208744300904876,
               "overturningFOS": 17.15099023821952,
               "bearingFOS": 1.419558359621451,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 2.9480786154297443,
           "worstOverturning": 5.532222879161654,
           "worstBearing": 1.419558359621451,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         }
       ]
     },
@@ -1627,7 +1626,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.5083616221177598,
+              "slidingFOS": 0.7625424331766397,
               "overturningFOS": 1.2888975077557627,
               "bearingFOS": 2.649044640565112,
               "status": "UNSAFE",
@@ -1636,7 +1635,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.3332693870630872,
+              "slidingFOS": 0.4999040805946308,
               "overturningFOS": 0.8449695329231605,
               "bearingFOS": 4.010025062656641,
               "status": "UNSAFE",
@@ -1645,7 +1644,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.17169346448275022,
+              "slidingFOS": 0.25754019672412537,
               "overturningFOS": 0.4353107489662294,
               "bearingFOS": 7.843470539761497,
               "status": "UNSAFE",
@@ -1654,7 +1653,7 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.22552732079053273,
+              "slidingFOS": 0.3382909811857991,
               "overturningFOS": 0.5718008383221675,
               "bearingFOS": 5.263307974688791,
               "status": "UNSAFE",
@@ -1663,7 +1662,7 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 0.78878799970633,
+              "slidingFOS": 1.183181999559495,
               "overturningFOS": 1.9998891394158693,
               "bearingFOS": 1.6955594741040745,
               "status": "UNSAFE",
@@ -1672,7 +1671,7 @@
           ],
           "safeCases": 0,
           "unsafeCases": 5,
-          "worstSliding": 0.17169346448275022,
+          "worstSliding": 0.25754019672412537,
           "worstOverturning": 0.4353107489662294,
           "worstBearing": 1.6955594741040745,
           "verdict": "UNSAFE"
@@ -1687,7 +1686,7 @@
               "slidingFOS": 8.300781249999998,
               "overturningFOS": 18.676757812499996,
               "bearingFOS": 1.8635294117647059,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -1696,7 +1695,7 @@
               "slidingFOS": 8.391258248695245,
               "overturningFOS": 17.939132468044203,
               "bearingFOS": 1.9555555555555557,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1705,7 +1704,7 @@
               "slidingFOS": 6.249999999999998,
               "overturningFOS": 14.062499999999995,
               "bearingFOS": 1.9555555555555557,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1714,7 +1713,7 @@
               "slidingFOS": 3.0102790014684286,
               "overturningFOS": 5.162283156127588,
               "bearingFOS": 1.931707317073171,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1723,16 +1722,16 @@
               "slidingFOS": 7.455590039259597,
               "overturningFOS": 16.29501328655273,
               "bearingFOS": 1.3732119635890767,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.0102790014684286,
           "worstOverturning": 5.162283156127588,
           "worstBearing": 1.3732119635890767,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         },
         {
           "member": "Abutment cantilever (C1)",
@@ -1744,7 +1743,7 @@
               "slidingFOS": 8.300781249999998,
               "overturningFOS": 18.676757812499996,
               "bearingFOS": 1.8635294117647059,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -1753,7 +1752,7 @@
               "slidingFOS": 8.391258248695245,
               "overturningFOS": 17.939132468044203,
               "bearingFOS": 1.9555555555555557,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1762,7 +1761,7 @@
               "slidingFOS": 6.249999999999998,
               "overturningFOS": 14.062499999999995,
               "bearingFOS": 1.9555555555555557,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1771,7 +1770,7 @@
               "slidingFOS": 3.0102790014684286,
               "overturningFOS": 5.162283156127588,
               "bearingFOS": 1.931707317073171,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1780,16 +1779,16 @@
               "slidingFOS": 7.455590039259597,
               "overturningFOS": 16.29501328655273,
               "bearingFOS": 1.3732119635890767,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.0102790014684286,
           "worstOverturning": 5.162283156127588,
           "worstBearing": 1.3732119635890767,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         }
       ]
     },
@@ -1804,7 +1803,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.5635676004304487,
+              "slidingFOS": 0.845351400645673,
               "overturningFOS": 1.500340034031909,
               "bearingFOS": 2.5783613871340223,
               "status": "UNSAFE",
@@ -1813,7 +1812,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.3461516098580772,
+              "slidingFOS": 0.5192274147871159,
               "overturningFOS": 0.921531184046059,
               "bearingFOS": 4.166666666666666,
               "status": "UNSAFE",
@@ -1822,7 +1821,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.19453117122672955,
+              "slidingFOS": 0.2917967568400943,
               "overturningFOS": 0.5178844629032184,
               "bearingFOS": 7.469656049600672,
               "status": "UNSAFE",
@@ -1831,7 +1830,7 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.25078831857919076,
+              "slidingFOS": 0.37618247786878617,
               "overturningFOS": 0.6676532755689252,
               "bearingFOS": 5.0667022168588005,
               "status": "UNSAFE",
@@ -1840,7 +1839,7 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 0.8643290929010639,
+              "slidingFOS": 1.2964936393515958,
               "overturningFOS": 2.301032812509936,
               "bearingFOS": 1.6699303961949727,
               "status": "UNSAFE",
@@ -1849,7 +1848,7 @@
           ],
           "safeCases": 0,
           "unsafeCases": 5,
-          "worstSliding": 0.19453117122672955,
+          "worstSliding": 0.2917967568400943,
           "worstOverturning": 0.5178844629032184,
           "worstBearing": 1.6699303961949727,
           "verdict": "UNSAFE"
@@ -1864,7 +1863,7 @@
               "slidingFOS": 9.283268101761248,
               "overturningFOS": 19.89271736091696,
               "bearingFOS": 1.6600790513833992,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -1873,7 +1872,7 @@
               "slidingFOS": 9.323620276328048,
               "overturningFOS": 18.983208960893336,
               "bearingFOS": 1.7142857142857144,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1882,7 +1881,7 @@
               "slidingFOS": 6.944444444444442,
               "overturningFOS": 14.880952380952374,
               "bearingFOS": 1.7142857142857144,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1891,7 +1890,7 @@
               "slidingFOS": 3.1726323000513785,
               "overturningFOS": 5.131057787297689,
               "bearingFOS": 1.700404858299595,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1900,16 +1899,16 @@
               "slidingFOS": 8.260042253155483,
               "overturningFOS": 17.18617944572573,
               "bearingFOS": 1.225382932166302,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.1726323000513785,
           "worstOverturning": 5.131057787297689,
           "worstBearing": 1.225382932166302,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         },
         {
           "member": "Abutment cantilever (C1)",
@@ -1921,7 +1920,7 @@
               "slidingFOS": 9.283268101761248,
               "overturningFOS": 19.89271736091696,
               "bearingFOS": 1.6600790513833992,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -1930,7 +1929,7 @@
               "slidingFOS": 9.323620276328048,
               "overturningFOS": 18.983208960893336,
               "bearingFOS": 1.7142857142857144,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1939,7 +1938,7 @@
               "slidingFOS": 6.944444444444442,
               "overturningFOS": 14.880952380952374,
               "bearingFOS": 1.7142857142857144,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1948,7 +1947,7 @@
               "slidingFOS": 3.1726323000513785,
               "overturningFOS": 5.131057787297689,
               "bearingFOS": 1.700404858299595,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -1957,16 +1956,16 @@
               "slidingFOS": 8.260042253155483,
               "overturningFOS": 17.18617944572573,
               "bearingFOS": 1.225382932166302,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.1726323000513785,
           "worstOverturning": 5.131057787297689,
           "worstBearing": 1.225382932166302,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         }
       ]
     },
@@ -1981,7 +1980,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.6057544803134858,
+              "slidingFOS": 0.9086317204702287,
               "overturningFOS": 1.6491299277339615,
               "bearingFOS": 2.048168299816356,
               "status": "UNSAFE",
@@ -1990,7 +1989,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.3767383728371289,
+              "slidingFOS": 0.5651075592556933,
               "overturningFOS": 1.0256474293842264,
               "bearingFOS": 3.2653061224489797,
               "status": "UNSAFE",
@@ -1999,7 +1998,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.19219210563021497,
+              "slidingFOS": 0.28828815844532246,
               "overturningFOS": 0.5232313809795822,
               "bearingFOS": 6.455453099811198,
               "status": "UNSAFE",
@@ -2008,7 +2007,7 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.25509755392117167,
+              "slidingFOS": 0.38264633088175753,
               "overturningFOS": 0.6944876585071565,
               "bearingFOS": 4.197428086906567,
               "status": "UNSAFE",
@@ -2017,7 +2016,7 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 0.9382994841621409,
+              "slidingFOS": 1.4074492262432114,
               "overturningFOS": 2.5544635835104956,
               "bearingFOS": 1.3121718604774035,
               "status": "UNSAFE",
@@ -2026,7 +2025,7 @@
           ],
           "safeCases": 0,
           "unsafeCases": 5,
-          "worstSliding": 0.19219210563021497,
+          "worstSliding": 0.28828815844532246,
           "worstOverturning": 0.5232313809795822,
           "worstBearing": 1.3121718604774035,
           "verdict": "UNSAFE"
@@ -2041,7 +2040,7 @@
               "slidingFOS": 8.021390374331547,
               "overturningFOS": 19.688867282450165,
               "bearingFOS": 1.9285714285714288,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -2050,7 +2049,7 @@
               "slidingFOS": 8.060089967027269,
               "overturningFOS": 18.722390303466597,
               "bearingFOS": 2.0454545454545454,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2059,7 +2058,7 @@
               "slidingFOS": 6.060606060606058,
               "overturningFOS": 14.876033057851235,
               "bearingFOS": 2.0454545454545454,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2068,7 +2067,7 @@
               "slidingFOS": 2.9480786154297443,
               "overturningFOS": 5.532222879161654,
               "bearingFOS": 2.014925373134328,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2077,16 +2076,16 @@
               "slidingFOS": 7.208744300904876,
               "overturningFOS": 17.15099023821952,
               "bearingFOS": 1.419558359621451,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 2.9480786154297443,
           "worstOverturning": 5.532222879161654,
           "worstBearing": 1.419558359621451,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         },
         {
           "member": "Abutment cantilever (C1)",
@@ -2098,7 +2097,7 @@
               "slidingFOS": 8.021390374331547,
               "overturningFOS": 19.688867282450165,
               "bearingFOS": 1.9285714285714288,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -2107,7 +2106,7 @@
               "slidingFOS": 8.060089967027269,
               "overturningFOS": 18.722390303466597,
               "bearingFOS": 2.0454545454545454,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2116,7 +2115,7 @@
               "slidingFOS": 6.060606060606058,
               "overturningFOS": 14.876033057851235,
               "bearingFOS": 2.0454545454545454,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2125,7 +2124,7 @@
               "slidingFOS": 2.9480786154297443,
               "overturningFOS": 5.532222879161654,
               "bearingFOS": 2.014925373134328,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2134,16 +2133,16 @@
               "slidingFOS": 7.208744300904876,
               "overturningFOS": 17.15099023821952,
               "bearingFOS": 1.419558359621451,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 2.9480786154297443,
           "worstOverturning": 5.532222879161654,
           "worstBearing": 1.419558359621451,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         }
       ]
     },
@@ -2158,7 +2157,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.5131370981826832,
+              "slidingFOS": 0.7697056472740248,
               "overturningFOS": 1.4547735074432773,
               "bearingFOS": 2.9756941759381554,
               "status": "UNSAFE",
@@ -2167,7 +2166,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.34291775136449326,
+              "slidingFOS": 0.5143766270467399,
               "overturningFOS": 0.9721917625598812,
               "bearingFOS": 4.419642857142857,
               "status": "UNSAFE",
@@ -2176,7 +2175,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.18409972185513765,
+              "slidingFOS": 0.27614958278270646,
               "overturningFOS": 0.5219334151263839,
               "bearingFOS": 8.294086808678161,
               "status": "UNSAFE",
@@ -2185,7 +2184,7 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.23469716833221427,
+              "slidingFOS": 0.3520457524983214,
               "overturningFOS": 0.6653801176544575,
               "bearingFOS": 5.732634138614355,
               "status": "UNSAFE",
@@ -2194,7 +2193,7 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 0.7932235736030001,
+              "slidingFOS": 1.1898353604045,
               "overturningFOS": 2.2488349496537525,
               "bearingFOS": 1.9120748934337206,
               "status": "UNSAFE",
@@ -2203,7 +2202,7 @@
           ],
           "safeCases": 0,
           "unsafeCases": 5,
-          "worstSliding": 0.18409972185513765,
+          "worstSliding": 0.27614958278270646,
           "worstOverturning": 0.5219334151263839,
           "worstBearing": 1.9120748934337206,
           "verdict": "UNSAFE"
@@ -2218,7 +2217,7 @@
               "slidingFOS": 8.959152161706903,
               "overturningFOS": 20.674966527015933,
               "bearingFOS": 1.7062279670975324,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -2227,7 +2226,7 @@
               "slidingFOS": 8.964381609659082,
               "overturningFOS": 19.589073335569076,
               "bearingFOS": 1.772893772893773,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2236,7 +2235,7 @@
               "slidingFOS": 6.730769230769229,
               "overturningFOS": 15.532544378698221,
               "bearingFOS": 1.772893772893773,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2245,7 +2244,7 @@
               "slidingFOS": 3.118557996882698,
               "overturningFOS": 5.448284848014593,
               "bearingFOS": 1.7557436517533251,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2254,16 +2253,16 @@
               "slidingFOS": 7.96917291226255,
               "overturningFOS": 17.822986635474855,
               "bearingFOS": 1.2586139643739436,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.118557996882698,
           "worstOverturning": 5.448284848014593,
           "worstBearing": 1.2586139643739436,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         },
         {
           "member": "Abutment cantilever (C1)",
@@ -2275,7 +2274,7 @@
               "slidingFOS": 8.959152161706903,
               "overturningFOS": 20.674966527015933,
               "bearingFOS": 1.7062279670975324,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -2284,7 +2283,7 @@
               "slidingFOS": 8.964381609659082,
               "overturningFOS": 19.589073335569076,
               "bearingFOS": 1.772893772893773,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2293,7 +2292,7 @@
               "slidingFOS": 6.730769230769229,
               "overturningFOS": 15.532544378698221,
               "bearingFOS": 1.772893772893773,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2302,7 +2301,7 @@
               "slidingFOS": 3.118557996882698,
               "overturningFOS": 5.448284848014593,
               "bearingFOS": 1.7557436517533251,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2311,16 +2310,16 @@
               "slidingFOS": 7.96917291226255,
               "overturningFOS": 17.822986635474855,
               "bearingFOS": 1.2586139643739436,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.118557996882698,
           "worstOverturning": 5.448284848014593,
           "worstBearing": 1.2586139643739436,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         }
       ]
     },
@@ -2335,7 +2334,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.9100683041914858,
+              "slidingFOS": 1.3651024562872287,
               "overturningFOS": 2.58788964149404,
               "bearingFOS": 2.0623389732994464,
               "status": "UNSAFE",
@@ -2344,7 +2343,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.528965103717617,
+              "slidingFOS": 0.7934476555764254,
               "overturningFOS": 1.504176451721159,
               "bearingFOS": 3.5064935064935066,
               "status": "UNSAFE",
@@ -2353,7 +2352,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.35395887245855623,
+              "slidingFOS": 0.5309383086878343,
               "overturningFOS": 1.006524999641865,
               "bearingFOS": 5.30250681120698,
               "status": "UNSAFE",
@@ -2362,7 +2361,7 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.4046599159905896,
+              "slidingFOS": 0.6069898739858843,
               "overturningFOS": 1.1506995684793704,
               "bearingFOS": 3.807143519215621,
               "status": "UNSAFE",
@@ -2371,16 +2370,16 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 1.3608975006258048,
+              "slidingFOS": 2.0413462509387075,
               "overturningFOS": 3.8698771606308164,
               "bearingFOS": 1.3645370115097397,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
-          "worstSliding": 0.35395887245855623,
+          "safeCases": 1,
+          "unsafeCases": 4,
+          "worstSliding": 0.5309383086878343,
           "worstOverturning": 1.006524999641865,
           "worstBearing": 1.3645370115097397,
           "verdict": "UNSAFE"
@@ -2395,7 +2394,7 @@
               "slidingFOS": 8.770486229173747,
               "overturningFOS": 16.405968358101475,
               "bearingFOS": 1.3758548499651084,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -2404,7 +2403,7 @@
               "slidingFOS": 8.76727876804285,
               "overturningFOS": 15.657220669570581,
               "bearingFOS": 1.4086211002619673,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2413,7 +2412,7 @@
               "slidingFOS": 6.457516339869278,
               "overturningFOS": 12.079354094579,
               "bearingFOS": 1.4086211002619673,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2422,7 +2421,7 @@
               "slidingFOS": 3.1289661473122785,
               "overturningFOS": 4.439301467834118,
               "bearingFOS": 1.4002840909090912,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2431,16 +2430,16 @@
               "slidingFOS": 7.7808930675775,
               "overturningFOS": 14.167456155702292,
               "bearingFOS": 1.0165244515480396,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.1289661473122785,
           "worstOverturning": 4.439301467834118,
           "worstBearing": 1.0165244515480396,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         },
         {
           "member": "Abutment cantilever (C1)",
@@ -2452,7 +2451,7 @@
               "slidingFOS": 8.770486229173747,
               "overturningFOS": 16.405968358101475,
               "bearingFOS": 1.3758548499651084,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -2461,7 +2460,7 @@
               "slidingFOS": 8.76727876804285,
               "overturningFOS": 15.657220669570581,
               "bearingFOS": 1.4086211002619673,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2470,7 +2469,7 @@
               "slidingFOS": 6.457516339869278,
               "overturningFOS": 12.079354094579,
               "bearingFOS": 1.4086211002619673,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2479,7 +2478,7 @@
               "slidingFOS": 3.1289661473122785,
               "overturningFOS": 4.439301467834118,
               "bearingFOS": 1.4002840909090912,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2488,16 +2487,16 @@
               "slidingFOS": 7.7808930675775,
               "overturningFOS": 14.167456155702292,
               "bearingFOS": 1.0165244515480396,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.1289661473122785,
           "worstOverturning": 4.439301467834118,
           "worstBearing": 1.0165244515480396,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         }
       ]
     },
@@ -2512,7 +2511,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.8381481647170083,
+              "slidingFOS": 1.2572222470755126,
               "overturningFOS": 2.368701058939751,
               "bearingFOS": 2.461383522200879,
               "status": "UNSAFE",
@@ -2521,7 +2520,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.5531118245205439,
+              "slidingFOS": 0.8296677367808157,
               "overturningFOS": 1.5631562766665132,
               "bearingFOS": 3.6923076923076925,
               "status": "UNSAFE",
@@ -2530,7 +2529,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.37970281320648547,
+              "slidingFOS": 0.5695542198097282,
               "overturningFOS": 1.0730828910521786,
               "bearingFOS": 5.433207261162623,
               "status": "UNSAFE",
@@ -2539,7 +2538,7 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.41075263711774374,
+              "slidingFOS": 0.6161289556766156,
               "overturningFOS": 1.16083318852294,
               "bearingFOS": 4.1734675757771225,
               "status": "UNSAFE",
@@ -2548,16 +2547,16 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 1.2514852342433627,
+              "slidingFOS": 1.877227851365044,
               "overturningFOS": 3.5368381443639048,
               "bearingFOS": 1.6335108866507029,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
-          "worstSliding": 0.37970281320648547,
+          "safeCases": 1,
+          "unsafeCases": 4,
+          "worstSliding": 0.5695542198097282,
           "worstOverturning": 1.0730828910521786,
           "worstBearing": 1.6335108866507029,
           "verdict": "UNSAFE"
@@ -2572,7 +2571,7 @@
               "slidingFOS": 9.551216707121393,
               "overturningFOS": 16.588955333421367,
               "bearingFOS": 1.6112676056338027,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -2581,7 +2580,7 @@
               "slidingFOS": 9.455298264807974,
               "overturningFOS": 15.664657661580836,
               "bearingFOS": 1.6421052631578947,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2590,7 +2589,7 @@
               "slidingFOS": 6.978649383294052,
               "overturningFOS": 12.120812086773881,
               "bearingFOS": 1.6421052631578947,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2599,7 +2598,7 @@
               "slidingFOS": 3.2357062360081903,
               "overturningFOS": 4.231245438361449,
               "bearingFOS": 1.6342857142857143,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2608,16 +2607,16 @@
               "slidingFOS": 8.423426718592442,
               "overturningFOS": 14.229883131231908,
               "bearingFOS": 1.1910463300364391,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.2357062360081903,
           "worstOverturning": 4.231245438361449,
           "worstBearing": 1.1910463300364391,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         },
         {
           "member": "Abutment cantilever (C1)",
@@ -2629,7 +2628,7 @@
               "slidingFOS": 9.551216707121393,
               "overturningFOS": 16.588955333421367,
               "bearingFOS": 1.6112676056338027,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -2638,7 +2637,7 @@
               "slidingFOS": 9.455298264807974,
               "overturningFOS": 15.664657661580836,
               "bearingFOS": 1.6421052631578947,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2647,7 +2646,7 @@
               "slidingFOS": 6.978649383294052,
               "overturningFOS": 12.120812086773881,
               "bearingFOS": 1.6421052631578947,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2656,7 +2655,7 @@
               "slidingFOS": 3.2357062360081903,
               "overturningFOS": 4.231245438361449,
               "bearingFOS": 1.6342857142857143,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2665,16 +2664,16 @@
               "slidingFOS": 8.423426718592442,
               "overturningFOS": 14.229883131231908,
               "bearingFOS": 1.1910463300364391,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.2357062360081903,
           "worstOverturning": 4.231245438361449,
           "worstBearing": 1.1910463300364391,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         }
       ]
     },
@@ -2689,7 +2688,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.5807903197210054,
+              "slidingFOS": 0.8711854795815079,
               "overturningFOS": 1.427793306905662,
               "bearingFOS": 2.4700421842671942,
               "status": "UNSAFE",
@@ -2698,7 +2697,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.3919676255473571,
+              "slidingFOS": 0.5879514383210356,
               "overturningFOS": 0.963598622905871,
               "bearingFOS": 3.6317460317460317,
               "status": "UNSAFE",
@@ -2707,7 +2706,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.24639018220937034,
+              "slidingFOS": 0.36958527331405544,
               "overturningFOS": 0.6057164541151394,
               "bearingFOS": 5.8223772435294565,
               "status": "UNSAFE",
@@ -2716,8 +2715,8 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.2879792154092342,
-              "overturningFOS": 0.7079573855273016,
+              "slidingFOS": 0.453625441236423,
+              "overturningFOS": 0.7434506015304809,
               "bearingFOS": 4.34733067168215,
               "status": "UNSAFE",
               "governing": false
@@ -2725,7 +2724,7 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 0.8800956033553833,
+              "slidingFOS": 1.320143405033075,
               "overturningFOS": 2.163594277038825,
               "bearingFOS": 1.6187152504515991,
               "status": "UNSAFE",
@@ -2734,7 +2733,7 @@
           ],
           "safeCases": 0,
           "unsafeCases": 5,
-          "worstSliding": 0.24639018220937034,
+          "worstSliding": 0.36958527331405544,
           "worstOverturning": 0.6057164541151394,
           "worstBearing": 1.6187152504515991,
           "verdict": "UNSAFE"
@@ -2749,7 +2748,7 @@
               "slidingFOS": 9.423596075938868,
               "overturningFOS": 14.135394113908301,
               "bearingFOS": 1.3317073170731708,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -2758,7 +2757,7 @@
               "slidingFOS": 9.284925440481803,
               "overturningFOS": 13.346285531265137,
               "bearingFOS": 1.348148148148148,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2767,16 +2766,16 @@
               "slidingFOS": 6.780392298541381,
               "overturningFOS": 10.17058844781207,
               "bearingFOS": 1.348148148148148,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
-              "slidingFOS": 3.236850435652276,
-              "overturningFOS": 3.6597383072560823,
+              "slidingFOS": 4.287245690370214,
+              "overturningFOS": 5.061976995050516,
               "bearingFOS": 1.3439999999999999,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2789,10 +2788,10 @@
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
-          "worstSliding": 3.236850435652276,
-          "worstOverturning": 3.6597383072560823,
+          "safeCases": 4,
+          "unsafeCases": 1,
+          "worstSliding": 4.287245690370214,
+          "worstOverturning": 5.061976995050516,
           "worstBearing": 0.9851150202976995,
           "verdict": "UNSAFE"
         },
@@ -2806,7 +2805,7 @@
               "slidingFOS": 9.423596075938868,
               "overturningFOS": 14.135394113908301,
               "bearingFOS": 1.3317073170731708,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -2815,7 +2814,7 @@
               "slidingFOS": 9.284925440481803,
               "overturningFOS": 13.346285531265137,
               "bearingFOS": 1.348148148148148,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2824,16 +2823,16 @@
               "slidingFOS": 6.780392298541381,
               "overturningFOS": 10.17058844781207,
               "bearingFOS": 1.348148148148148,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
-              "slidingFOS": 3.236850435652276,
-              "overturningFOS": 3.6597383072560823,
+              "slidingFOS": 4.287245690370214,
+              "overturningFOS": 5.061976995050516,
               "bearingFOS": 1.3439999999999999,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2846,10 +2845,10 @@
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
-          "worstSliding": 3.236850435652276,
-          "worstOverturning": 3.6597383072560823,
+          "safeCases": 4,
+          "unsafeCases": 1,
+          "worstSliding": 4.287245690370214,
+          "worstOverturning": 5.061976995050516,
           "worstBearing": 0.9851150202976995,
           "verdict": "UNSAFE"
         }
@@ -2866,7 +2865,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.7281281163743714,
+              "slidingFOS": 1.092192174561557,
               "overturningFOS": 2.102610965406627,
               "bearingFOS": 2.7793553706806917,
               "status": "UNSAFE",
@@ -2875,7 +2874,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.5316003001528874,
+              "slidingFOS": 0.797400450229331,
               "overturningFOS": 1.5350988310691993,
               "bearingFOS": 3.7714285714285714,
               "status": "UNSAFE",
@@ -2884,7 +2883,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.3647203873887418,
+              "slidingFOS": 0.5470805810831127,
               "overturningFOS": 1.0532007603956242,
               "bearingFOS": 5.548707614832921,
               "status": "UNSAFE",
@@ -2893,7 +2892,7 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.38607810912714735,
+              "slidingFOS": 0.5791171636907211,
               "overturningFOS": 1.1148753186407914,
               "bearingFOS": 4.442163633667321,
               "status": "UNSAFE",
@@ -2902,16 +2901,16 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 1.088437523990285,
+              "slidingFOS": 1.6326562859854274,
               "overturningFOS": 3.143074167356195,
               "bearingFOS": 1.8437072859519439,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
-          "worstSliding": 0.3647203873887418,
+          "safeCases": 1,
+          "unsafeCases": 4,
+          "worstSliding": 0.5470805810831127,
           "worstOverturning": 1.0532007603956242,
           "worstBearing": 1.8437072859519439,
           "verdict": "UNSAFE"
@@ -2926,7 +2925,7 @@
               "slidingFOS": 9.541182557213526,
               "overturningFOS": 14.832201975304665,
               "bearingFOS": 1.532432432432432,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -2935,7 +2934,7 @@
               "slidingFOS": 9.438797937541663,
               "overturningFOS": 14.051110652837629,
               "bearingFOS": 1.5545454545454545,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2944,7 +2943,7 @@
               "slidingFOS": 6.903672158514861,
               "overturningFOS": 10.732072173691284,
               "bearingFOS": 1.5545454545454545,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2953,7 +2952,7 @@
               "slidingFOS": 3.2457442199090707,
               "overturningFOS": 3.7992273041311067,
               "bearingFOS": 1.548957584471603,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -2962,16 +2961,16 @@
               "slidingFOS": 8.412649619257166,
               "overturningFOS": 12.747868102795218,
               "bearingFOS": 1.133343853558466,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.2457442199090707,
           "worstOverturning": 3.7992273041311067,
           "worstBearing": 1.133343853558466,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         },
         {
           "member": "Abutment cantilever (C1)",
@@ -2983,7 +2982,7 @@
               "slidingFOS": 9.541182557213526,
               "overturningFOS": 14.832201975304665,
               "bearingFOS": 1.532432432432432,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -2992,7 +2991,7 @@
               "slidingFOS": 9.438797937541663,
               "overturningFOS": 14.051110652837629,
               "bearingFOS": 1.5545454545454545,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -3001,7 +3000,7 @@
               "slidingFOS": 6.903672158514861,
               "overturningFOS": 10.732072173691284,
               "bearingFOS": 1.5545454545454545,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -3010,7 +3009,7 @@
               "slidingFOS": 3.2457442199090707,
               "overturningFOS": 3.7992273041311067,
               "bearingFOS": 1.548957584471603,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -3019,16 +3018,16 @@
               "slidingFOS": 8.412649619257166,
               "overturningFOS": 12.747868102795218,
               "bearingFOS": 1.133343853558466,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.2457442199090707,
           "worstOverturning": 3.7992273041311067,
           "worstBearing": 1.133343853558466,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         }
       ]
     },
@@ -3043,7 +3042,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.8092062891117191,
+              "slidingFOS": 1.2138094336675787,
               "overturningFOS": 2.2359495628956636,
               "bearingFOS": 2.187232054542248,
               "status": "UNSAFE",
@@ -3052,7 +3051,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.49017535681447705,
+              "slidingFOS": 0.7352630352217157,
               "overturningFOS": 1.3544227097081312,
               "bearingFOS": 3.571428571428571,
               "status": "UNSAFE",
@@ -3061,7 +3060,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.3372271066364301,
+              "slidingFOS": 0.5058406599546451,
               "overturningFOS": 0.9318054145476304,
               "bearingFOS": 5.248456898782204,
               "status": "UNSAFE",
@@ -3070,7 +3069,7 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.3814139333180717,
+              "slidingFOS": 0.5721208999771076,
               "overturningFOS": 1.053899764448219,
               "bearingFOS": 3.888042129593979,
               "status": "UNSAFE",
@@ -3079,16 +3078,16 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 1.206678065312896,
+              "slidingFOS": 1.810017097969344,
               "overturningFOS": 3.334219381381574,
               "bearingFOS": 1.4523649161780279,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
-          "worstSliding": 0.3372271066364301,
+          "safeCases": 1,
+          "unsafeCases": 4,
+          "worstSliding": 0.5058406599546451,
           "worstOverturning": 0.9318054145476304,
           "worstBearing": 1.4523649161780279,
           "verdict": "UNSAFE"
@@ -3103,7 +3102,7 @@
               "slidingFOS": 8.372141085698537,
               "overturningFOS": 14.01232034343229,
               "bearingFOS": 1.3606516909405084,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -3112,7 +3111,7 @@
               "slidingFOS": 8.380666625314566,
               "overturningFOS": 13.449953198812905,
               "bearingFOS": 1.3880634600856205,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -3121,7 +3120,7 @@
               "slidingFOS": 6.11111111111111,
               "overturningFOS": 10.228070175438594,
               "bearingFOS": 1.3880634600856205,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -3130,7 +3129,7 @@
               "slidingFOS": 3.0840760393591258,
               "overturningFOS": 3.931146847009628,
               "bearingFOS": 1.3811074918566772,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -3139,16 +3138,16 @@
               "slidingFOS": 7.436375359334902,
               "overturningFOS": 12.144877082794117,
               "bearingFOS": 1.0056834250161926,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.0840760393591258,
           "worstOverturning": 3.931146847009628,
           "worstBearing": 1.0056834250161926,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         },
         {
           "member": "Abutment cantilever (C1)",
@@ -3160,7 +3159,7 @@
               "slidingFOS": 8.372141085698537,
               "overturningFOS": 14.01232034343229,
               "bearingFOS": 1.3606516909405084,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -3169,7 +3168,7 @@
               "slidingFOS": 8.380666625314566,
               "overturningFOS": 13.449953198812905,
               "bearingFOS": 1.3880634600856205,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -3178,7 +3177,7 @@
               "slidingFOS": 6.11111111111111,
               "overturningFOS": 10.228070175438594,
               "bearingFOS": 1.3880634600856205,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -3187,7 +3186,7 @@
               "slidingFOS": 3.0840760393591258,
               "overturningFOS": 3.931146847009628,
               "bearingFOS": 1.3811074918566772,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -3196,16 +3195,16 @@
               "slidingFOS": 7.436375359334902,
               "overturningFOS": 12.144877082794117,
               "bearingFOS": 1.0056834250161926,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
+          "safeCases": 5,
+          "unsafeCases": 0,
           "worstSliding": 3.0840760393591258,
           "worstOverturning": 3.931146847009628,
           "worstBearing": 1.0056834250161926,
-          "verdict": "UNSAFE"
+          "verdict": "SAFE"
         }
       ]
     },
@@ -3220,7 +3219,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.7583170939103276,
+              "slidingFOS": 1.1374756408654916,
               "overturningFOS": 1.970672140159721,
               "bearingFOS": 1.6519826901912582,
               "status": "UNSAFE",
@@ -3229,7 +3228,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.4950510671923382,
+              "slidingFOS": 0.7425766007885073,
               "overturningFOS": 1.2865110834329196,
               "bearingFOS": 2.507122507122507,
               "status": "UNSAFE",
@@ -3238,7 +3237,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.3255569567557094,
+              "slidingFOS": 0.48833543513356414,
               "overturningFOS": 0.846039249102732,
               "bearingFOS": 3.8479494503814826,
               "status": "UNSAFE",
@@ -3247,8 +3246,8 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.3655729529938105,
-              "overturningFOS": 0.9500305867376544,
+              "slidingFOS": 0.5827043126878477,
+              "overturningFOS": 1.0095329637926291,
               "bearingFOS": 2.888150785322382,
               "status": "UNSAFE",
               "governing": false
@@ -3256,16 +3255,16 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 1.1400136873040934,
+              "slidingFOS": 1.7100205309561398,
               "overturningFOS": 2.962603943669765,
               "bearingFOS": 1.0897249386828283,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
-          "worstSliding": 0.3255569567557094,
+          "safeCases": 1,
+          "unsafeCases": 4,
+          "worstSliding": 0.48833543513356414,
           "worstOverturning": 0.846039249102732,
           "worstBearing": 1.0897249386828283,
           "verdict": "UNSAFE"
@@ -3280,7 +3279,7 @@
               "slidingFOS": 8.749145591250851,
               "overturningFOS": 13.748657357679908,
               "bearingFOS": 1.3234375,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -3289,7 +3288,7 @@
               "slidingFOS": 8.742884324694334,
               "overturningFOS": 13.197730123240754,
               "bearingFOS": 1.3444444444444446,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -3298,16 +3297,16 @@
               "slidingFOS": 6.349206349206347,
               "overturningFOS": 9.977324263038545,
               "bearingFOS": 1.3444444444444446,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
-              "slidingFOS": 3.144419587372607,
-              "overturningFOS": 3.748552032542227,
+              "slidingFOS": 4.129937969311133,
+              "overturningFOS": 5.145889575089678,
               "bearingFOS": 1.3391304347826087,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -3320,10 +3319,10 @@
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
-          "worstSliding": 3.144419587372607,
-          "worstOverturning": 3.748552032542227,
+          "safeCases": 4,
+          "unsafeCases": 1,
+          "worstSliding": 4.129937969311133,
+          "worstOverturning": 5.145889575089678,
           "worstBearing": 0.9786250722125939,
           "verdict": "UNSAFE"
         },
@@ -3337,7 +3336,7 @@
               "slidingFOS": 8.749145591250851,
               "overturningFOS": 13.748657357679908,
               "bearingFOS": 1.3234375,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -3346,7 +3345,7 @@
               "slidingFOS": 8.742884324694334,
               "overturningFOS": 13.197730123240754,
               "bearingFOS": 1.3444444444444446,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -3355,16 +3354,16 @@
               "slidingFOS": 6.349206349206347,
               "overturningFOS": 9.977324263038545,
               "bearingFOS": 1.3444444444444446,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
-              "slidingFOS": 3.144419587372607,
-              "overturningFOS": 3.748552032542227,
+              "slidingFOS": 4.129937969311133,
+              "overturningFOS": 5.145889575089678,
               "bearingFOS": 1.3391304347826087,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -3377,10 +3376,10 @@
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
-          "worstSliding": 3.144419587372607,
-          "worstOverturning": 3.748552032542227,
+          "safeCases": 4,
+          "unsafeCases": 1,
+          "worstSliding": 4.129937969311133,
+          "worstOverturning": 5.145889575089678,
           "worstBearing": 0.9786250722125939,
           "verdict": "UNSAFE"
         }
@@ -3397,7 +3396,7 @@
             {
               "caseNumber": 1,
               "description": "Service Condition (DL+LL)",
-              "slidingFOS": 0.8155931704456921,
+              "slidingFOS": 1.2233897556685382,
               "overturningFOS": 2.294913549308793,
               "bearingFOS": 2.0667028503194715,
               "status": "UNSAFE",
@@ -3406,7 +3405,7 @@
             {
               "caseNumber": 2,
               "description": "Construction Stage (DL+Wind)",
-              "slidingFOS": 0.4754271193774295,
+              "slidingFOS": 0.7131406790661443,
               "overturningFOS": 1.3377553632185086,
               "bearingFOS": 3.5064935064935066,
               "status": "UNSAFE",
@@ -3415,7 +3414,7 @@
             {
               "caseNumber": 3,
               "description": "Flood Condition (DL+Hydro)",
-              "slidingFOS": 0.3161594726497791,
+              "slidingFOS": 0.47423920897466865,
               "overturningFOS": 0.8896085497256055,
               "bearingFOS": 5.331450979260685,
               "status": "UNSAFE",
@@ -3424,8 +3423,8 @@
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+LL+Seismic)",
-              "slidingFOS": 0.36873551287291195,
-              "overturningFOS": 1.0375468496639642,
+              "slidingFOS": 0.5893243948786285,
+              "overturningFOS": 1.1054927773251673,
               "bearingFOS": 3.822041556929722,
               "status": "UNSAFE",
               "governing": false
@@ -3433,16 +3432,16 @@
             {
               "caseNumber": 5,
               "description": "Ultimate Limit State (ULS)",
-              "slidingFOS": 1.2213540924131872,
+              "slidingFOS": 1.8320311386197807,
               "overturningFOS": 3.436642380969279,
               "bearingFOS": 1.3664460391729607,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
-          "worstSliding": 0.3161594726497791,
+          "safeCases": 1,
+          "unsafeCases": 4,
+          "worstSliding": 0.47423920897466865,
           "worstOverturning": 0.8896085497256055,
           "worstBearing": 1.3664460391729607,
           "verdict": "UNSAFE"
@@ -3457,7 +3456,7 @@
               "slidingFOS": 8.01282051282051,
               "overturningFOS": 14.1559829059829,
               "bearingFOS": 1.308342857142857,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -3466,7 +3465,7 @@
               "slidingFOS": 8.003926037243758,
               "overturningFOS": 13.530840367910232,
               "bearingFOS": 1.3389473684210527,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -3475,16 +3474,16 @@
               "slidingFOS": 5.864197530864196,
               "overturningFOS": 10.360082304526745,
               "bearingFOS": 1.3389473684210527,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
-              "slidingFOS": 3.0260380014074593,
-              "overturningFOS": 4.087525782441036,
+              "slidingFOS": 3.934576232414502,
+              "overturningFOS": 5.559977433176279,
               "bearingFOS": 1.3311627906976744,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -3497,10 +3496,10 @@
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
-          "worstSliding": 3.0260380014074593,
-          "worstOverturning": 4.087525782441036,
+          "safeCases": 4,
+          "unsafeCases": 1,
+          "worstSliding": 3.934576232414502,
+          "worstOverturning": 5.559977433176279,
           "worstBearing": 0.9666877770740975,
           "verdict": "UNSAFE"
         },
@@ -3514,7 +3513,7 @@
               "slidingFOS": 8.01282051282051,
               "overturningFOS": 14.1559829059829,
               "bearingFOS": 1.308342857142857,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": true
             },
             {
@@ -3523,7 +3522,7 @@
               "slidingFOS": 8.003926037243758,
               "overturningFOS": 13.530840367910232,
               "bearingFOS": 1.3389473684210527,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -3532,16 +3531,16 @@
               "slidingFOS": 5.864197530864196,
               "overturningFOS": 10.360082304526745,
               "bearingFOS": 1.3389473684210527,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
               "caseNumber": 4,
               "description": "Seismic Condition (DL+0.25LL+EP×1.0+Seismic)",
-              "slidingFOS": 3.0260380014074593,
-              "overturningFOS": 4.087525782441036,
+              "slidingFOS": 3.934576232414502,
+              "overturningFOS": 5.559977433176279,
               "bearingFOS": 1.3311627906976744,
-              "status": "UNSAFE",
+              "status": "SAFE",
               "governing": false
             },
             {
@@ -3554,10 +3553,10 @@
               "governing": false
             }
           ],
-          "safeCases": 0,
-          "unsafeCases": 5,
-          "worstSliding": 3.0260380014074593,
-          "worstOverturning": 4.087525782441036,
+          "safeCases": 4,
+          "unsafeCases": 1,
+          "worstSliding": 3.934576232414502,
+          "worstOverturning": 5.559977433176279,
           "worstBearing": 0.9666877770740975,
           "verdict": "UNSAFE"
         }

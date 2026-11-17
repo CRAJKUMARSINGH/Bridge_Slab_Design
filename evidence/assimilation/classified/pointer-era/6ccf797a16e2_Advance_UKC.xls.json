@@ -1,0 +1,83 @@
+{
+  "sheet_names": [
+    "Advance UKC"
+  ],
+  "column_headers": {
+    "Advance UKC": [
+      "Section",
+      "Mass",
+      "Depth",
+      "Width",
+      "Area",
+      "Thickness",
+      "",
+      "Root",
+      "Depth",
+      "Radius for",
+      "",
+      "Second Moment",
+      ""
+    ]
+  },
+  "non_empty_cell_count": 519,
+  "id": "6ccf797a16e2_Advance_UKC.xls",
+  "status": "ok",
+  "path": "Attached_Assets/ASTRA 15 TUTORIALS/TABLES/British Standard/Steel Table/Tata Steel Excel Files/Advance UKC.xls",
+  "classified_headers": {
+    "Advance UKC": [
+      {
+        "header": "Section",
+        "category": "label"
+      },
+      {
+        "header": "Mass",
+        "category": "label"
+      },
+      {
+        "header": "Depth",
+        "category": "label"
+      },
+      {
+        "header": "Width",
+        "category": "label"
+      },
+      {
+        "header": "Area",
+        "category": "label"
+      },
+      {
+        "header": "Thickness",
+        "category": "label"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "Root",
+        "category": "label"
+      },
+      {
+        "header": "Depth",
+        "category": "label"
+      },
+      {
+        "header": "Radius for",
+        "category": "label"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      },
+      {
+        "header": "Second Moment",
+        "category": "label"
+      },
+      {
+        "header": "",
+        "category": "blank"
+      }
+    ]
+  },
+  "classification_status": "ok"
+}

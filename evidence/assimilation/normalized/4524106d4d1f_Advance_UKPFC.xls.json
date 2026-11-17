@@ -1,0 +1,27 @@
+{
+  "sheet_names": [
+    "Advance UKPFC"
+  ],
+  "column_headers": {
+    "Advance UKPFC": [
+      "Section",
+      "Mass",
+      "Depth",
+      "Width",
+      "Area",
+      "Thickness",
+      "",
+      "Distance",
+      "Root",
+      "Depth",
+      "Radius for",
+      "",
+      "Second Moment",
+      ""
+    ]
+  },
+  "non_empty_cell_count": 731,
+  "id": "4524106d4d1f_Advance_UKPFC.xls",
+  "status": "ok",
+  "path": "Attached_Assets/ASTRA 15 TUTORIALS/TABLES/British Standard/Steel Table/Tata Steel Excel Files/Advance UKPFC.xls"
+}
