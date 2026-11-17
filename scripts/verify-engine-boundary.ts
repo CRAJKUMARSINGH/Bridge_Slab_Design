@@ -58,6 +58,13 @@ const DELIVERABLE_ENGINE = 'bridge-excel-generator/design-engine.ts';
 const SOURCE_FILE = 'bridge-excel-generator/design-engine.ts';
 const GOLDEN_CALCULATOR = 'bridge-excel-generator/design-engine.ts#calculateCompleteDesign';
 
+/** Engine sections the snapshot covers. */
+const PINNED_SECTIONS = ['hydraulics', 'pier', 'abutmentType1', 'abutmentC1', 'estimation', 'stabilityAcceptance'];
+/** Top-level engine keys deliberately outside the snapshot, and why. */
+const UNPINNED_SECTIONS: Record<string, string> = {
+  input: 'echoed ProjectInput — the golden records it as a fixture path, not as a computed output',
+};
+
 const defects: string[] = [];
 function fail(message: string) {
   defects.push(message);
@@ -105,6 +112,13 @@ function exportedCalculators(file: string): string[] {
   for (const m of text.matchAll(/export\s+(?:async\s+)?function\s+(calculate\w+)/g)) names.add(m[1]);
   for (const m of text.matchAll(/export\s+const\s+(calculate\w+)\s*=/g)) names.add(m[1]);
   return [...names].sort();
+}
+
+for (const entry of DELIVERABLE_ENTRIES) {
+  if (!existsSync(join(repoRoot, entry))) {
+    fail(`A. boundary entry ${entry} is not on disk — closureOf() skips missing files, so the ` +
+         `deliverable closure would shrink silently and this gate would certify fewer modules.`);
+  }
 }
 
 const deliverableClosure = closureOf(DELIVERABLE_ENTRIES);
@@ -195,7 +209,11 @@ function collect(node: unknown, path: string, out: Record<string, Leaf>) {
 
 function pinned(result: Record<string, unknown>): Record<string, Leaf> {
   const out: Record<string, Leaf> = {};
-  for (const key of ['hydraulics', 'pier', 'abutmentType1', 'abutmentC1', 'estimation']) {
+  // `stabilityAcceptance` is in this list on purpose (§AA): the three limits are the rule every
+  // verdict below was made with, and they now ship in the response the browser gauges itself
+  // against. A change to them is an engineering decision, so it must show up here and be re-accepted
+  // deliberately rather than move one report while the others keep the old number.
+  for (const key of PINNED_SECTIONS) {
     collect(result[key], key, out);
   }
   return Object.fromEntries(Object.entries(out).sort(([a], [b]) => a.localeCompare(b)));
@@ -216,6 +234,21 @@ const PROVENANCE =
 
 const result = calculateCompleteDesign(KHERWARA_REFERENCE_PROJECT_INPUT, { quiet: true }) as unknown as Record<string, unknown>;
 const actual = pinned(result);
+
+// The roster used to be a closed list with no tie back to the engine, so a seventh top-level output
+// would simply have gone unpinned and shipped with no baseline at all.
+const engineSections = Object.keys(result);
+const unpinnedSections = engineSections.filter((k) => !PINNED_SECTIONS.includes(k) && !(k in UNPINNED_SECTIONS));
+const missingSections = PINNED_SECTIONS.filter((k) => !engineSections.includes(k));
+if (unpinnedSections.length > 0) {
+  fail(`C. the engine returns ${unpinnedSections.join(', ')} but the snapshot pins no such section — a new subsystem ` +
+       `would ship with no regression baseline. Add it to PINNED_SECTIONS and re-emit, or record it in ` +
+       `UNPINNED_SECTIONS with the reason.`);
+}
+if (missingSections.length > 0) {
+  fail(`C. sections the snapshot pins are no longer returned by the engine: ${missingSections.join(', ')} — their ` +
+       `leaves would vanish from the comparison without a single drifted value.`);
+}
 
 if (emit) {
   const golden: Golden = {
