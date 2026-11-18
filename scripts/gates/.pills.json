@@ -14,15 +14,15 @@
   },
   "tasks": {
     "gate": "gate-tasks",
-    "file": "docs/phase-2/week-00/AGENT-INSTRUCTIONS.md",
-    "find": "T00.1  MACHINE |",
-    "replace": "T00.1  SILENT |"
+    "file": "containment/VACUITY.json",
+    "find": "\"path\": \"docs/phase-2\"",
+    "replace": "\"path\": \"docs/phase-2 __pill__\""
   },
   "docs": {
     "gate": "gate-docs",
-    "file": "docs/phase-2/containment/C-12-containment-governance.md",
-    "find": "# ",
-    "replace": "# {{PILL_TOKEN}} "
+    "file": "containment/VACUITY.json",
+    "find": "\"path\": \"docs/phase-2\"",
+    "replace": "\"path\": \"docs/phase-2 __pill__\""
   },
   "hygiene": {
     "gate": "gate-hygiene",
@@ -44,9 +44,9 @@
   },
   "readme": {
     "gate": "gate-readme",
-    "file": "scripts/gen-readme-map.ts",
-    "find": "| Path | Purpose | Size |",
-    "replace": "| Path | Purpose | Size | (poisoned) |"
+    "file": "containment/VACUITY.json",
+    "find": "\"path\": \"README.md\"",
+    "replace": "\"path\": \"README.md __pill__\""
   },
   "index": {
     "gate": "gate-index",

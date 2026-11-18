@@ -1,16 +1,28 @@
 #!/usr/bin/env tsx
 // gate-tasks — the anti-OK gate.
-// 2 assertions: no task may be closed without declaring the artefact it produces,
-// and no task may be closed without saying whether a machine can check it
-// (MACHINE) or a person must (MANUAL + a written reason).
-import { run, is, walk, read, pendingFor } from "./_lib";
+// 3 assertions: no task may be closed without declaring the artefact it produces,
+// no task may be closed without saying whether a machine can check it (MACHINE)
+// or a person must (MANUAL + a written reason), and the task corpus is not
+// silently empty. The third exists because the first two are vacuous when the
+// corpus is gone: `walk()` returns [] for a tree that is not there, both per-task
+// checks have nothing to run on, and the gate reports PASS having read nothing.
+// That is the defect gate-vacuity guards one level down — a check that cannot
+// fail. An empty corpus is legitimate only when it is DECLARED, owned and
+// explained in containment/VACUITY.json (the documentation purge of 2026-11-19),
+// so that a corpus which disappears by accident fails here instead of quietly.
+import { run, is, walk, read, pendingFor, declaredEmpty } from "./_lib";
 
+const DOC_ROOT = "docs/phase-2";
 const TASK = /^\s*-?\s*(T\d+[A-Z]?\.\d+)\s+(.*)$/;
 const PATH_TOKEN = /(?:^|\s|`)([A-Za-z0-9_./@-]+\.(?:ts|tsx|md|json|sql|ya?ml|xlsx|dxf))/;
 
-await run("gate-tasks", 2, async () => {
-  const files = (await walk("docs/phase-2", /AGENT-INSTRUCTIONS\.md$/)).sort();
+await run("gate-tasks", 3, async () => {
+  const files = (await walk(DOC_ROOT, /AGENT-INSTRUCTIONS\.md$/)).sort();
   const ex = await pendingFor("gate-tasks");
+  const emp = await declaredEmpty();
+  const emptyDeclared = files.length === 0 && emp.hit(DOC_ROOT);
+  if (emptyDeclared)
+    console.log(`  advisory: ${DOC_ROOT} is declared empty in containment/VACUITY.json — this gate has no task to examine`);
   const noPath: string[] = [];
   const noMarker: string[] = [];
   let tasks = 0;
@@ -60,4 +72,15 @@ await run("gate-tasks", 2, async () => {
     "every closed task is marked MACHINE|MANUAL, and every exemption is well-formed",
     [...noMarker, ...ex.broken].join("\n"),
   );
+  // The emptiness check. Without it the two assertions above are satisfied by
+  // reading nothing, which is the one failure mode this gate must not have.
+  const vacuity = [
+    ...(files.length === 0 && !emptyDeclared
+      ? [
+          `${DOC_ROOT} holds no AGENT-INSTRUCTIONS.md and is not declared empty in containment/VACUITY.json — every assertion above passed without reading a single task`,
+        ]
+      : []),
+    ...emp.broken,
+  ];
+  is(vacuity.length === 0, "the task corpus is non-empty, or its emptiness is declared", vacuity.join("\n"));
 });

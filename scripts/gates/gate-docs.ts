@@ -1,14 +1,30 @@
 #!/usr/bin/env tsx
 // gate-docs — the anti-empty-file gate.
-// 3 assertions: no `{{PLACEHOLDER}}` survives, no file under the doc root is a
-// heading with nothing under it, no file is a stub. Scope is the *live*
+// 4 assertions: no `{{PLACEHOLDER}}` survives, no file under the doc root is a
+// heading with nothing under it, no file is a stub, and the doc root is not
+// empty unless containment/VACUITY.json declares it so. Scope is the *live*
 // instruction corpus (docs/phase-2); legacy Set-1 files are exempted by
 // containment/PENDING-RESOLUTIONS.json (PR-04) and printed as advisories.
-import { run, is, walk, read, pendingFor } from "./_lib";
+//
+// The fourth assertion exists because the first three are vacuous when the
+// corpus is empty: `walk()` returns [] for a tree that is not there, every
+// per-file check has nothing to run on, and the gate reports PASS having read
+// nothing at all. That is the defect gate-vacuity guards one level down — a
+// check that cannot fail. An empty corpus is not itself wrong; a deliberately
+// purged tree is a legitimate state. It must be DECLARED, owned and explained in
+// containment/VACUITY.json, so that a corpus which disappears by accident fails
+// here instead of passing quietly.
+import { run, is, walk, read, pendingFor, declaredEmpty } from "./_lib";
 
-await run("gate-docs", 3, async () => {
-  const files = (await walk("docs/phase-2", /\.md$/)).sort();
+const DOC_ROOT = "docs/phase-2";
+
+await run("gate-docs", 4, async () => {
+  const files = (await walk(DOC_ROOT, /\.md$/)).sort();
   const ex = await pendingFor("gate-docs");
+  const emp = await declaredEmpty();
+  const emptyDeclared = files.length === 0 && emp.hit(DOC_ROOT);
+  if (emptyDeclared)
+    console.log(`  advisory: ${DOC_ROOT} is declared empty in containment/VACUITY.json — this gate has no document to examine`);
   const byPlaceholder: string[] = [];
   const byStub: string[] = [];
   const byHeading: string[] = [];
@@ -46,4 +62,13 @@ await run("gate-docs", 3, async () => {
   );
   is(byStub.length === 0, "no doc is a stub", byStub.join("\n"));
   is(byHeading.length === 0, "no doc is a heading with nothing under it", byHeading.join("\n"));
+  // The emptiness check. Without it the three assertions above are satisfied by
+  // reading nothing, which is the one failure mode this gate must not have.
+  const vacuity = [
+    ...(files.length === 0 && !emptyDeclared
+      ? [`${DOC_ROOT} holds no document and is not declared empty in containment/VACUITY.json — every assertion above passed without reading a single file`]
+      : []),
+    ...emp.broken,
+  ];
+  is(vacuity.length === 0, "the doc corpus is non-empty, or its emptiness is declared", vacuity.join("\n"));
 });

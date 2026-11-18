@@ -1,6 +1,6 @@
 {
   "name": "gate-deviations",
-  "ts": "2026-10-24T05:38:38.144Z",
+  "ts": "2026-11-18T18:40:49.733Z",
   "commit": "local",
   "pass": true,
   "assertions": 7,

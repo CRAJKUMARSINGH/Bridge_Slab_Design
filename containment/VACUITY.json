@@ -1,9 +1,71 @@
 {
-  "_note": "Assertion-count budget for gate assertions whose first argument is the bare literal true. Such an assertion can never fail: it inflates the declared count, satisfies gate-ratchet (the count only ever rises), and is invisible to gate-proven-red (poisoning the guarded artefact fails the OTHER assertions, not this one). A count is not a check. This file is the only place a gate may declare one. Adding a literal-true assertion to any gate without raising its number here fails gate-vacuity assertion 2; lowering a number here without removing the assertion fails assertion 3. Both directions are visible ledger edits, which is the whole point.",
-  "version": "1.0.0",
+  "_note": "Two places where a gate may declare, as a visible ledger edit, a check that cannot fail in the tree's current state. `allowed` is the assertion-count budget for gate assertions whose first argument is the bare literal true: such an assertion can never fail — it inflates the declared count, satisfies gate-ratchet, and is invisible to gate-proven-red, so poisoning the guarded artefact fails the OTHER assertions instead. A count is not a check. Adding one to any gate without raising its number here fails gate-vacuity assertion 2; lowering a number here without removing the assertion fails assertion 3. `emptyPaths` declares a path that is deliberately empty — a tree that holds no documents (gate-docs, gate-tasks, preflight P-01/P-08) or a file that is intentionally absent (archive/MANIFEST.md, README.md, docs/phase-2/PHASE-2-GATE-SPECS.md, the four root documents). Without that declaration a gate which scans an empty corpus reports PASS having read nothing, and a gate which requires a file fails on one the repository chose to remove. Every entry needs path, owner and reason; an entry missing any of the three is not a declaration at all — the consuming gate still fails and names the malformed entry.",
+  "version": "1.1.0",
   "allowed": {
     "gate-ratchet": 2
   },
+  "emptyPaths": [
+    {
+      "path": "docs/phase-2",
+      "owner": "W00",
+      "reason": "The Set-1 v2 instruction corpus under docs/phase-2 was removed from the repository on 2026-11-19 as part of the documentation purge (read every md/txt, apply the due instructions, then delete the markdown). gate-docs, gate-tasks and preflight P-01 consequently have no corpus to scan, to read tasks from, or to resolve paths against; this entry records that the emptiness is deliberate, so that a corpus which disappears by accident fails those gates instead of passing quietly."
+    },
+    {
+      "path": "docs/phase-2/specs",
+      "owner": "W00",
+      "reason": "Child of the purged docs/phase-2 tree. preflight P-08 lists it as a required directory; the requirement is declared vacuous here rather than being dropped from the list."
+    },
+    {
+      "path": "docs/phase-2/verification",
+      "owner": "W00",
+      "reason": "Child of the purged docs/phase-2 tree. preflight P-08 lists it as a required directory; the requirement is declared vacuous here rather than being dropped from the list."
+    },
+    {
+      "path": "corpus",
+      "owner": "W00",
+      "reason": "Absent from the working tree (git does not track an empty directory, and the documentation purge removed the files it held). preflight P-08 lists it as a required directory; the requirement is declared vacuous here."
+    },
+    {
+      "path": "generated",
+      "owner": "W00",
+      "reason": "Absent from the working tree for the same reason as corpus/. preflight P-08 lists it as a required directory; the requirement is declared vacuous here."
+    },
+    {
+      "path": "archive/MANIFEST.md",
+      "owner": "W00",
+      "reason": "The archive manifest was a markdown file and was removed by the documentation purge. preflight P-07 requires it so that nothing retired leaves the tree without a manifest row; the requirement is declared vacuous here rather than silently dropped."
+    },
+    {
+      "path": "SECURITY.md",
+      "owner": "W00",
+      "reason": "Root document removed by the documentation purge. gate-hygiene requires the four root documents; their absence is declared here so the assertion keeps failing on an UNdeclared disappearance."
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "owner": "W00",
+      "reason": "Root document removed by the documentation purge. gate-hygiene requires the four root documents; their absence is declared here so the assertion keeps failing on an UNdeclared disappearance."
+    },
+    {
+      "path": "CHANGELOG.md",
+      "owner": "W00",
+      "reason": "Root document removed by the documentation purge. gate-hygiene requires the four root documents; their absence is declared here so the assertion keeps failing on an UNdeclared disappearance."
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "owner": "W00",
+      "reason": "Root document removed by the documentation purge. gate-hygiene requires the four root documents; their absence is declared here so the assertion keeps failing on an UNdeclared disappearance."
+    },
+    {
+      "path": "README.md",
+      "owner": "W00",
+      "reason": "Root document removed by the documentation purge. gate-readme verifies the generated module map inside README.md via scripts/gen-readme-map.ts; with the file gone there is nothing to regenerate or to check, so the requirement is declared vacuous here rather than left as a gate that fails on a file the repository chose to remove."
+    },
+    {
+      "path": "docs/phase-2/PHASE-2-GATE-SPECS.md",
+      "owner": "W00",
+      "reason": "The Phase-2 gate charter was a markdown file and was removed by the documentation purge. containment/DEVIATIONS.json DEV-007 names it as the source of its Week-6 parity mandate, which gate-deviations assertion 6 resolves with existsSync; the requirement is declared vacuous here so the gate still fails on an UNdeclared disappearance of any other named file."
+    }
+  ],
   "_why": {
     "gate-ratchet": "The two assertions in the 'no .ratchet.json yet' early-return branch are literal-true on purpose and are the only legitimate case in the harness: on a first pass there is genuinely nothing to compare against, and the gate may not read a file that does not exist yet. They report the fixpoint ('nothing has regressed') and say so in their detail string. Every other literal-true assertion in any gate is padding, and is treated as such."
   }

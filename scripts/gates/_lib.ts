@@ -37,6 +37,7 @@ export const RATCHET = "scripts/gates/.ratchet.json";
 export const LEDGER = "containment/GATE-LEDGER.json";
 export const TIERS = "containment/ARTIFACT-TIERS.json";
 export const PENDING = "containment/PENDING-RESOLUTIONS.json";
+export const VACUITY = "containment/VACUITY.json";
 
 export class GateFail extends Error {}
 export const fail = (msg: string): never => {
@@ -323,4 +324,38 @@ export async function pendingFor(assertion: string): Promise<{ hit: (p: string) 
     hit: (p: string) => mine.some((e) => e.patterns.some((g) => globToRe(g).test(p.replace(/\\/g, "/")))),
     broken,
   };
+}
+
+export type EmptyPath = { path: string; owner?: string; reason?: string };
+export type VacuityFile = { emptyPaths?: EmptyPath[] };
+
+/**
+ * Is `path` declared deliberately empty in containment/VACUITY.json?
+ *
+ * A gate that scans a tree, or requires a file, is silently defeated by an
+ * absent one: `walk()` returns [] and every per-file assertion passes having read
+ * nothing, and an existence check either fails on a file the repository chose to
+ * remove or — worse — is quietly dropped by whoever noticed. `VACUITY.json`
+ * records the absence instead: the path is named, owned and explained, and the
+ * declaring gate PRINTS that it is scanning nothing but does not fail on it.
+ *
+ * An entry missing path/owner/reason is itself a defect: its path is not
+ * declared, so the consuming assertion still fails, and the entry is returned in
+ * `broken` so the failure names the malformed entry. This mirrors `pendingFor`,
+ * which is the same contract for file-level exemptions.
+ */
+export async function declaredEmpty(): Promise<{ hit: (p: string) => boolean; broken: string[] }> {
+  const broken: string[] = [];
+  if (!existsSync(VACUITY)) return { hit: () => false, broken };
+  const file = await json<VacuityFile>(VACUITY);
+  const declared: string[] = [];
+  for (const [i, e] of (file.emptyPaths ?? []).entries()) {
+    const problems: string[] = [];
+    if (!e?.path) problems.push("no path");
+    if (!e?.owner) problems.push("no owner");
+    if (!e?.reason) problems.push("no reason");
+    if (problems.length) broken.push(`emptyPaths[${i}] (${e?.path ?? "?"}): ${problems.join(", ")}`);
+    else declared.push(e.path.replace(/\\/g, "/"));
+  }
+  return { hit: (p) => declared.includes(p.replace(/\\/g, "/")), broken };
 }
