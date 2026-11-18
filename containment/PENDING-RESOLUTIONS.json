@@ -1,0 +1,69 @@
+{
+  "version": "1.0.0",
+  "note": "Advisory exemptions for defects that already exist in the tree and are owned by a named week. A gate that consults this file still PRINTS the finding, but does not fail on it. Every entry needs id, assertion, patterns, owner, closingWeek and reason. An entry missing any of those — or whose closingWeek has already gone GREEN in containment/GATE-LEDGER.json — is itself a gate failure, so an exemption cannot quietly outlive its fix. The list may only shrink.",
+  "entries": [
+    {
+      "id": "PR-01",
+      "assertion": "P-01",
+      "patterns": [
+        "docs/phase-2/*.md",
+        "docs/phase-2/_templates/**",
+        "docs/phase-2/week-0[1-9]/**",
+        "docs/phase-2/week-1[0-2]/**",
+        "docs/phase-2/week-0[1-9]A/**",
+        "docs/phase-2/week-1[0-2]A/**"
+      ],
+      "owner": "W00",
+      "closingWeek": "W12",
+      "reason": "H-17: the Set-1 v2 instruction corpus references paths that will be created by their owning weeks (W01..W12A). The reference resolution gate would fail every path not yet written. The exemption covers the whole instruction corpus and expires with W12, the last week to run — at that point every referenced path must exist."
+    },
+    {
+      "id": "PR-02",
+      "assertion": "P-02",
+      "patterns": [
+        "docs/phase-2/*.md",
+        "docs/phase-2/_templates/**",
+        "docs/phase-2/week-0[1-9]/**",
+        "docs/phase-2/week-1[0-2]/**",
+        "docs/phase-2/week-0[1-9]A/**",
+        "docs/phase-2/week-1[0-2]A/**"
+      ],
+      "owner": "W00",
+      "closingWeek": "W12",
+      "reason": "Same corpus as PR-01: the instruction files name npm run targets that are wired by their owning week, not by W00. Expires with W12."
+    },
+    {
+      "id": "PR-03",
+      "assertion": "gate-tasks",
+      "patterns": [
+        "docs/phase-2/*.md",
+        "docs/phase-2/_templates/**",
+        "docs/phase-2/week-0[1-9]/**",
+        "docs/phase-2/week-1[0-2]/**",
+        "docs/phase-2/week-0[1-9]A/**",
+        "docs/phase-2/week-1[0-2]A/**"
+      ],
+      "owner": "W00",
+      "closingWeek": "W12",
+      "reason": "The Set-1 v2 week instructions use narrative task syntax without MACHINE|MANUAL markers; those are added by their owning week at execution time. Expires with W12."
+    },
+    {
+      "id": "PR-04",
+      "assertion": "gate-docs",
+      "patterns": [
+        "docs/phase-2/_templates/**"
+      ],
+      "owner": "W00",
+      "closingWeek": "W12",
+      "reason": "The template pack is deliberately placeholder-bearing by design; each skeleton is filled by its owning week. The templates themselves are not documents — they are the source of documents. Expires with W12."
+    },
+    {
+      "id": "PR-07",
+      "assertion": "P-02",
+      "patterns": ["docs/phase-2/govt/**"],
+      "owner": "W11",
+      "closingWeek": "W11",
+      "reason": "G-11 names `npm run diag:bundle` as its single-attachment support bundle. That script is a W11 deliverable, not a W00 claim: it cannot be declared in PATH-MANIFEST.json because P-02 resolves npm targets against package.json, not against the manifest. The exemption retires when the script is wired in W11, which is why the closing week is W11 and not W00."
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "_note": "Poison pills: one per gate. `gate-prove <gate>` corrupts the artefact below, runs the gate, requires exit 1 (proven RED), then restores the original bytes and records redAt in .proven.json. GREEN is recorded automatically by _lib.run(). `find`/`replace` are plain string substitutions (first occurrence); `write` replaces the whole file. No bash, no git, no network — the reference pills shelled out to bash and git checkout, neither of which is dependable on a Windows checkout.",
+  "tiers": {
+    "gate": "gate-tiers",
+    "file": "containment/ARTIFACT-TIERS.json",
+    "find": "{ \"glob\": \"*\", \"tier\": 4, \"trust\": \"ASSERTED\", \"assertedBy\": \"various\" }",
+    "replace": "{ \"glob\": \"__pill__/**\", \"tier\": 4 }"
+  },
+  "chain": {
+    "gate": "gate-chain",
+    "file": "containment/GATE-LEDGER.json",
+    "find": "\"W05\": \"PENDING\"",
+    "replace": "\"W05\": \"GREEN\""
+  },
+  "tasks": {
+    "gate": "gate-tasks",
+    "file": "docs/phase-2/week-00/AGENT-INSTRUCTIONS.md",
+    "find": "T00.1  MACHINE |",
+    "replace": "T00.1  SILENT |"
+  },
+  "docs": {
+    "gate": "gate-docs",
+    "file": "docs/phase-2/containment/C-12-containment-governance.md",
+    "find": "# ",
+    "replace": "# {{PILL_TOKEN}} "
+  },
+  "hygiene": {
+    "gate": "gate-hygiene",
+    "file": ".github/workflows/ci.yml",
+    "find": "run: pnpm run gate:foundation",
+    "replace": "run: echo \"harness disabled by pill\""
+  },
+  "scripts": {
+    "gate": "gate-scripts",
+    "file": "package.json",
+    "find": "\"gate:chain\": \"tsx scripts/gates/gate-chain.ts\"",
+    "replace": "\"gate:chain\": \"tsx scripts/gates/__pill-missing.ts\""
+  },
+  "deps": {
+    "gate": "gate-deps",
+    "file": "shared/schema.ts",
+    "find": "from 'zod';",
+    "replace": "from 'zod-from-the-future';"
+  },
+  "readme": {
+    "gate": "gate-readme",
+    "file": "scripts/gen-readme-map.ts",
+    "find": "| Path | Purpose | Size |",
+    "replace": "| Path | Purpose | Size | (poisoned) |"
+  },
+  "index": {
+    "gate": "gate-index",
+    "file": "containment/claims.json",
+    "find": "\"status\": \"TRUE\"",
+    "replace": "\"status\": \"\""
+  },
+  "deviations": {
+    "gate": "gate-deviations",
+    "file": "containment/DEVIATIONS.json",
+    "find": "\"value\": 24",
+    "replace": "\"value\": 23"
+  },
+  "ratchet": {
+    "gate": "gate-ratchet",
+    "file": "scripts/gates/.ratchet.json",
+    "write": "{ \"version\": \"1.0.0\", \"gates\": { \"gate-ratchet\": 99 } }"
+  },
+  "vacuity": {
+    "gate": "gate-vacuity",
+    "file": "containment/VACUITY.json",
+    "find": "\"gate-ratchet\": 2",
+    "replace": "\"gate-ratchet\": 0"
+  },
+  "proven-red": {
+    "gate": "gate-proven-red",
+    "file": "scripts/gates/.proven.json",
+    "write": "{}"
+  }
+}

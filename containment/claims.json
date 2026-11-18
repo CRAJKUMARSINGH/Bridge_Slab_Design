@@ -1,0 +1,114 @@
+[
+  {
+    "id": "C-001",
+    "claim": "README.md advertises lib/engine/src/ as the single authoritative calculation engine",
+    "source": "README.md",
+    "locator": "README.md",
+    "status": "TRUE",
+    "adjudicator": "trae",
+    "adjudicatedAt": "2026-10-23",
+    "closingWeek": "W00"
+  },
+  {
+    "id": "C-002",
+    "claim": "scripts/gates contains only NOT IMPLEMENTED gate stubs",
+    "source": "scripts/gates",
+    "locator": "scripts/gates/gate-docs.mjs",
+    "status": "TRUE",
+    "adjudicator": "trae",
+    "adjudicatedAt": "2026-10-23",
+    "closingWeek": "W00"
+  },
+  {
+    "id": "C-003",
+    "claim": "The 8 legacy .xls workbooks in VENICE-REFERENCES are a valid parity oracle",
+    "source": "VENICE-REFERENCES",
+    "status": "UNADJ",
+    "closingWeek": "W02A"
+  },
+  {
+    "id": "C-004",
+    "claim": "The kherwara golden fixtures correspond to the SOM-KHW source workbook",
+    "source": "tests/golden/kherwara",
+    "status": "UNADJ",
+    "closingWeek": "W02A"
+  },
+  {
+    "id": "C-005",
+    "claim": "Weeks 1 through 15 of the Phase 2 plan are implemented",
+    "source": "creat.md",
+    "status": "PARTIAL",
+    "counterEvidence": "Only a subset of weeks have artefacts; PHASE-2-INDEX lists W01..W12A as the plan, not the state",
+    "adjudicator": "trae",
+    "adjudicatedAt": "2026-10-23",
+    "closingWeek": "W00"
+  },
+  {
+    "id": "C-006",
+    "claim": "CI and production disagree on the Node version",
+    "source": ".github/workflows/ci.yml",
+    "locator": ".nvmrc",
+    "status": "FALSE",
+    "counterEvidence": ".nvmrc = 24 and .github/workflows/ci.yml node-version = 24 agree",
+    "adjudicator": "trae",
+    "adjudicatedAt": "2026-10-23",
+    "closingWeek": "W00"
+  },
+  {
+    "id": "C-007",
+    "claim": "The @drawing/* TypeScript alias is phantom and should be removed",
+    "source": "AUDIT-REPORT-v1.0.md",
+    "locator": "Drawing_Module/src/components.tsx",
+    "status": "FALSE",
+    "counterEvidence": "Drawing_Module/src/components.tsx exists; the alias resolves",
+    "adjudicator": "trae",
+    "adjudicatedAt": "2026-10-23",
+    "closingWeek": "W00"
+  },
+  {
+    "id": "C-008",
+    "claim": "The application deploys to Netlify (netlify.toml at repo root)",
+    "source": "CODE-JUNCTION/VENICE-GUIDE.MD",
+    "locator": "vercel.json",
+    "status": "FALSE",
+    "counterEvidence": "No netlify.toml at repo root; vercel.json is present",
+    "adjudicator": "trae",
+    "adjudicatedAt": "2026-10-23",
+    "closingWeek": "W00"
+  },
+  {
+    "id": "C-009",
+    "claim": "The findings in AUDIT-REPORT-v1.0.md are accurate",
+    "source": "AUDIT-REPORT-v1.0.md",
+    "status": "UNADJ",
+    "closingWeek": "W00"
+  },
+  {
+    "id": "C-010",
+    "claim": "The golden suite is green and meaningful",
+    "source": "tests/golden",
+    "status": "UNADJ",
+    "closingWeek": "W02A"
+  },
+  {
+    "id": "C-011",
+    "claim": "The enrichment plan path referenced by the README resolves",
+    "source": "CODE-JUNCTION",
+    "locator": "CODE-JUNCTION/VENICE-GUIDE.MD",
+    "status": "FALSE",
+    "counterEvidence": "The referenced docs/phase-2/... instruction tree does not exist under CODE-JUNCTION; only VENICE-GUIDE.MD is present",
+    "adjudicator": "trae",
+    "adjudicatedAt": "2026-10-23",
+    "closingWeek": "W00"
+  },
+  {
+    "id": "C-012",
+    "claim": "All 24 gate scripts named in the plan exist under scripts/gates",
+    "source": "scripts/gates",
+    "status": "PARTIAL",
+    "counterEvidence": "15 gate scripts exist, most are NOT IMPLEMENTED stubs; the plan's real gate names (gate-tiers, gate-proven-red, gate-chain, gate-hygiene, gate-tasks, gate-deps, gate-scripts, preflight) are new",
+    "adjudicator": "trae",
+    "adjudicatedAt": "2026-10-23",
+    "closingWeek": "W00"
+  }
+]

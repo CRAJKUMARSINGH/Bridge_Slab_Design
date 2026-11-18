@@ -15,6 +15,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # lfs: true smudges .xlsx/.xls/.pdf fixtures tracked in .gitattributes.
+          # Without this, any step that reads a workbook gets a 130-byte pointer.
+          lfs: true
 
       # The repo is a pnpm workspace and package.json's preinstall script rejects npm,
       # so pnpm must be the only installer here.
@@ -85,6 +89,18 @@ jobs:
 
       - name: Audit policy gate
         run: pnpm run audit:policy
+
+      # The containment harness — the only step that runs the gates at all, and
+      # deliberately the last one: everything above exercises the product, this
+      # exercises the proof that the product's checks still work. Before this step
+      # existed, every gate in scripts/gates/ was unreachable from CI, so the
+      # containment layer was decorative on every push. Each gate here is
+      # falsifiable (gate-proven-red requires a recorded RED and GREEN for each),
+      # its assertion count may only rise (gate-ratchet), the executed count must
+      # equal the declared one (_lib.run), and no gate may pad that count with
+      # assertions that cannot fail (gate-vacuity).
+      - name: Foundation gate harness (preflight + 13 gates)
+        run: pnpm run gate:foundation
 
   # The headless container image (Dockerfile, august-due.md §R). This is its FIRST build attempt: no
   # Docker engine exists on the machine the Dockerfile was written on, so nothing about it is proven
