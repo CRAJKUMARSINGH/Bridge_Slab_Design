@@ -11,26 +11,6 @@
       "reason": "The Set-1 v2 instruction corpus under docs/phase-2 was removed from the repository on 2026-11-19 as part of the documentation purge (read every md/txt, apply the due instructions, then delete the markdown). gate-docs, gate-tasks and preflight P-01 consequently have no corpus to scan, to read tasks from, or to resolve paths against; this entry records that the emptiness is deliberate, so that a corpus which disappears by accident fails those gates instead of passing quietly."
     },
     {
-      "path": "docs/phase-2/specs",
-      "owner": "W00",
-      "reason": "Child of the purged docs/phase-2 tree. preflight P-08 lists it as a required directory; the requirement is declared vacuous here rather than being dropped from the list."
-    },
-    {
-      "path": "docs/phase-2/verification",
-      "owner": "W00",
-      "reason": "Child of the purged docs/phase-2 tree. preflight P-08 lists it as a required directory; the requirement is declared vacuous here rather than being dropped from the list."
-    },
-    {
-      "path": "corpus",
-      "owner": "W00",
-      "reason": "Absent from the working tree (git does not track an empty directory, and the documentation purge removed the files it held). preflight P-08 lists it as a required directory; the requirement is declared vacuous here."
-    },
-    {
-      "path": "generated",
-      "owner": "W00",
-      "reason": "Absent from the working tree for the same reason as corpus/. preflight P-08 lists it as a required directory; the requirement is declared vacuous here."
-    },
-    {
       "path": "archive/MANIFEST.md",
       "owner": "W00",
       "reason": "The archive manifest was a markdown file and was removed by the documentation purge. preflight P-07 requires it so that nothing retired leaves the tree without a manifest row; the requirement is declared vacuous here rather than silently dropped."
@@ -54,11 +34,6 @@
       "path": "ARCHITECTURE.md",
       "owner": "W00",
       "reason": "Root document removed by the documentation purge. gate-hygiene requires the four root documents; their absence is declared here so the assertion keeps failing on an UNdeclared disappearance."
-    },
-    {
-      "path": "README.md",
-      "owner": "W00",
-      "reason": "Root document removed by the documentation purge. gate-readme verifies the generated module map inside README.md via scripts/gen-readme-map.ts; with the file gone there is nothing to regenerate or to check, so the requirement is declared vacuous here rather than left as a gate that fails on a file the repository chose to remove."
     },
     {
       "path": "docs/phase-2/PHASE-2-GATE-SPECS.md",

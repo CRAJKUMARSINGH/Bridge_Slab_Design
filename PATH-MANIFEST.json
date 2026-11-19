@@ -6,6 +6,7 @@
       "CANONICAL.md",
       "PATH-MANIFEST.json",
       "LICENSE",
+      "README.md",
       "SECURITY.md",
       "CONTRIBUTING.md",
       "CHANGELOG.md",
@@ -59,7 +60,11 @@
       "docs/week3/README.md",
       "docs/plan-b/README.md",
       "lib/auth/scrypt.ts",
-      "tests/auth/scrypt.test.ts"
+      "tests/auth/scrypt.test.ts",
+      "corpus/.gitkeep",
+      "generated/.gitkeep",
+      "docs/phase-2/specs/.gitkeep",
+      "docs/phase-2/verification/.gitkeep"
     ],
     "W01": [
       "containment/VERIFY-SCHEMAS.json",
