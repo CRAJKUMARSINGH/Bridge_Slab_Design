@@ -1,13 +1,13 @@
 {
-  "_note": "W01 evidence report (CODE-JUNCTION/CODEX2.txt §7). Machine-readable so gate-verify.ts can check the evidence paths exist. Declared W01 PARTIAL: the 22 template documents were removed by the 2026-11-19 documentation purge with no surviving copy, so their field contracts are recorded UNRESOLVED rather than invented (CODEX2 §2). 'commit' is null because CODEX2 §8 forbids committing or pushing without explicit authorization; baselineHead is the SHA the work started from.",
+  "_note": "W01 evidence report (CODE-JUNCTION/CODEX2.txt §7). Machine-readable so gate-verify.ts can check the evidence paths exist. Declared W01 PARTIAL: the 22 template documents were removed by the 2026-11-19 documentation purge with no surviving copy, so their field contracts are recorded UNRESOLVED rather than invented (CODEX2 §2). 'commit' is the W01 implementation commit; 'baselineHead' is the SHA the work started from.",
   "version": "1.0.0",
   "week": "W01",
   "instruction": "CODE-JUNCTION/CODEX2.txt",
   "declaration": "W01 PARTIAL",
   "declarationReason": "All 22 template contracts are accounted for and the verifier protocol is executable with positive and negative tests, but the templates' field-level content is unrecoverable (purged 2026-11-19, no surviving authority enumerates it), so 22 of 22 schemas are recorded UNRESOLVED rather than DEFINED (CODEX2 §2, §6).",
-  "commit": null,
+  "commit": "dfd0d8373095818cf32c03b8e4c07a88037afeb4",
   "baselineHead": "d471372c92a47bc56aaa39650d976ab591e34335",
-  "commitPolicy": "Not committed or pushed — CODEX2 §8 requires explicit authorization. Working tree holds only the files listed below plus regenerated gate outputs under scripts/gates/.out/.",
+  "commitPolicy": "Committed under explicit user authorization (CODEX2 §8). This report's own SHA line is recorded in a follow-up bookkeeping commit, since a commit cannot contain its own hash. CODE-JUNCTION/ is gitignored and local-only.",
   "filesCreated": [
     "containment/VERIFY-SCHEMAS.json",
     "containment/VERIFY-FIXTURES.json",
