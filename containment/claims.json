@@ -7,7 +7,8 @@
     "status": "TRUE",
     "adjudicator": "trae",
     "adjudicatedAt": "2026-10-23",
-    "closingWeek": "W00"
+    "closingWeek": "W00",
+    "note": "README.md was removed by the 2026-11-19 documentation purge; this record preserves what it advertised at adjudication time."
   },
   {
     "id": "C-002",
@@ -41,7 +42,8 @@
     "counterEvidence": "Only a subset of weeks have artefacts; PHASE-2-INDEX lists W01..W12A as the plan, not the state",
     "adjudicator": "trae",
     "adjudicatedAt": "2026-10-23",
-    "closingWeek": "W00"
+    "closingWeek": "W00",
+    "note": "creat.md was removed by the 2026-11-19 documentation purge; the plan it described lives on as containment/GATE-LEDGER.json."
   },
   {
     "id": "C-006",
@@ -74,13 +76,17 @@
     "counterEvidence": "No netlify.toml at repo root; vercel.json is present",
     "adjudicator": "trae",
     "adjudicatedAt": "2026-10-23",
-    "closingWeek": "W00"
+    "closingWeek": "W00",
+    "note": "CODE-JUNCTION/VENICE-GUIDE.MD was removed by the 2026-11-19 documentation purge; the counter-evidence (vercel.json) is what stands."
   },
   {
     "id": "C-009",
     "claim": "The findings in AUDIT-REPORT-v1.0.md are accurate",
     "source": "AUDIT-REPORT-v1.0.md",
-    "status": "UNADJ",
+    "status": "FALSE",
+    "counterEvidence": "Two findings the report made were adjudicated false in this index: C-007 (the @drawing/* alias is phantom) and E-005/BOLT-004 (Drawing_Module/src/components.tsx exists, so the alias resolves). The report itself was removed by the 2026-11-19 documentation purge, leaving no in-tree findings to re-check beyond the two already contradicted.",
+    "adjudicator": "trae",
+    "adjudicatedAt": "2026-11-19",
     "closingWeek": "W00"
   },
   {
@@ -99,7 +105,8 @@
     "counterEvidence": "The referenced docs/phase-2/... instruction tree does not exist under CODE-JUNCTION; only VENICE-GUIDE.MD is present",
     "adjudicator": "trae",
     "adjudicatedAt": "2026-10-23",
-    "closingWeek": "W00"
+    "closingWeek": "W00",
+    "note": "Both CODE-JUNCTION and its VENICE-GUIDE.MD were removed by the 2026-11-19 documentation purge. The claim was already FALSE — the enrichment plan path never resolved; the purge only removed the last copy of the page that cited it."
   },
   {
     "id": "C-012",

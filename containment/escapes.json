@@ -48,8 +48,8 @@
     "detectingGate": "gate:deps",
     "gateProvenRed": true,
     "patch": "PATCH-06/07/14",
-    "liveTreeStatus": "STILL_ABSENT",
-    "note": "eslint, archiver and puppeteer are still not installed. Recorded in .deps-plan.json pending their owning week rather than installed now."
+    "liveTreeStatus": "PARTIALLY_CLOSED",
+    "note": "eslint (^9.39.5), archiver (^8.0.0) and the five eslint plugin/parser devDependencies were installed on 2026-11-19: the seven W00 entries moved out of .deps-plan.json and into package.json, and eslint-baseline.json now records the measured violation set. puppeteer, @axe-core/puppeteer, harfbuzzjs, @pdf-lib/fontkit and the three @signpdf packages remain in .deps-plan.json pending their owning weeks W10/W11/W12A."
   },
   {
     "id": "E-005",
@@ -62,7 +62,7 @@
     "gateProvenRed": true,
     "patch": "PATCH-12",
     "liveTreeStatus": "CONFIRMED",
-    "note": "Drawing_Module/src/components.tsx exists — BOLT-004 is a false positive."
+    "note": "Drawing_Module/src/components.tsx exists — BOLT-004 is a false positive. The source report AUDIT-REPORT-v1.0.md was removed by the 2026-11-19 documentation purge; the finding it named is preserved here and as C-007 in containment/claims.json."
   },
   {
     "id": "E-006",
@@ -75,6 +75,6 @@
     "gateProvenRed": true,
     "patch": "PATCH-11/13",
     "liveTreeStatus": "PARTIALLY_STALE",
-    "note": "Node drift is FALSE here (.nvmrc = ci.yml = 24) and there is no netlify.toml (repo uses vercel.json). The README-facts-as-prose class still applies."
+    "note": "Node drift is FALSE here (.nvmrc = ci.yml = 24) and there is no netlify.toml (repo uses vercel.json). README.md was removed by the 2026-11-19 documentation purge; the README-facts-as-prose class still applies to any prose that returns to the tree."
   }
 ]

@@ -143,7 +143,6 @@ function tryEvaluate(wb: ExcelJS.Workbook, ws: ExcelJS.Worksheet, formula: strin
   if (!/^[-+*/().,<>=!&|[\] 0-9eE]*$/.test(bare)) return undefined;
 
   try {
-    // eslint-disable-next-line no-new-func
     const compiled = Function(
       '__IF', '__AND', '__OR', '__MAX', '__MIN', '__SUM', '__ABS', '__POWER', '__SQRT',
       '__TAN', '__COS', '__SIN', '__ROUND', '__MOD', '__PI', '__CEILING',
