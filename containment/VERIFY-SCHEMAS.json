@@ -1,0 +1,163 @@
+{
+  "_note": "W01's template kit, expressed as data (CODEX2 §2). The 22 template documents that PATH-MANIFEST.json assigns to W01 (docs/phase-2/_templates/*.md) were removed by the 2026-11-19 documentation purge. No surviving authoritative source enumerates their fields, so per CODEX2 §2 each template's content contract is recorded UNRESOLVED rather than invented — the names and one-line purposes below are derived from the manifest entries, not reconstructed from the deleted documents. `knownVersions` and `fieldTypes` are the vocabulary scripts/gates/gate-verify.ts validates registries against; `containment/VERIFY-FIXTURES.json` carries a valid and an invalid instance for every rule. gate-verify.ts asserts this registry mirrors the manifest's W01 template set exactly (no missing, no extra), that every entry has a recorded disposition, and that the validator accepts/rejects the fixtures deterministically.",
+  "version": "2.0.0",
+  "source": "PATH-MANIFEST.json#W01",
+  "knownVersions": ["2.0.0"],
+  "fieldTypes": ["string", "number", "integer", "boolean", "date", "string[]", "enum", "ref"],
+  "templates": [
+    {
+      "id": "A11Y-REPORT",
+      "status": "UNRESOLVED",
+      "purpose": "Accessibility audit report for a user-facing surface.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/A11Y-REPORT.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "ARCHITECTURE",
+      "status": "UNRESOLVED",
+      "purpose": "System structure and module boundaries.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/ARCHITECTURE.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "ASSUMPTION-REGISTER",
+      "status": "UNRESOLVED",
+      "purpose": "Register of assumptions and their discharge state.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/ASSUMPTION-REGISTER.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "CHATLOG-ENTRY",
+      "status": "UNRESOLVED",
+      "purpose": "A single reviewable engineering decision entry.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/CHATLOG-ENTRY.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "COMPUTE-TOPOLOGY",
+      "status": "UNRESOLVED",
+      "purpose": "Where each computation runs and what it depends on.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/COMPUTE-TOPOLOGY.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "DATA-MODEL",
+      "status": "UNRESOLVED",
+      "purpose": "Entities, fields and their provenance.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/DATA-MODEL.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "DRAWING-REGISTER",
+      "status": "UNRESOLVED",
+      "purpose": "Register of issued drawings with revision and scale.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/DRAWING-REGISTER.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "EXIT-GATE-EVIDENCE",
+      "status": "UNRESOLVED",
+      "purpose": "Evidence that a week's exit gate was met.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/EXIT-GATE-EVIDENCE.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "INPUT-DICTIONARY",
+      "status": "UNRESOLVED",
+      "purpose": "Every input variable with its unit and admissible range.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/INPUT-DICTIONARY.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "KNOWN-LIMITATIONS",
+      "status": "UNRESOLVED",
+      "purpose": "What the tool does not do, stated before it is asked.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/KNOWN-LIMITATIONS.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "LAYER-STANDARD",
+      "status": "UNRESOLVED",
+      "purpose": "The layer table: what may import what.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/LAYER-STANDARD.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "MEASUREMENT-RULES",
+      "status": "UNRESOLVED",
+      "purpose": "How quantities are measured and rounded.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/MEASUREMENT-RULES.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "MODULE-MATRIX",
+      "status": "UNRESOLVED",
+      "purpose": "Module by module: owner, inputs, outputs, tests.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/MODULE-MATRIX.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "ORACLE-TABLE",
+      "status": "UNRESOLVED",
+      "purpose": "The parity oracle table of expected source values.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/ORACLE-TABLE.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "PARITY-DIFF",
+      "status": "UNRESOLVED",
+      "purpose": "Expected versus actual values, with the delta classified.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/PARITY-DIFF.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "REALITY-AUDIT",
+      "status": "UNRESOLVED",
+      "purpose": "What exists in the tree versus what is claimed.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/REALITY-AUDIT.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "REPORT-SPEC",
+      "status": "UNRESOLVED",
+      "purpose": "The structure and content contract of a report.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/REPORT-SPEC.md",
+      "unresolved": "source template purged 2026-11-19; the phase-6 chapter list in CODE-JUNCTION/CODEX.txt describes a report but is not the template, so the contract is recorded UNRESOLVED rather than adopted"
+    },
+    {
+      "id": "RUNBOOK",
+      "status": "UNRESOLVED",
+      "purpose": "How to operate, diagnose and recover.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/RUNBOOK.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "SCORECARD",
+      "status": "UNRESOLVED",
+      "purpose": "The week's measurable outcome.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/SCORECARD.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "SECURITY",
+      "status": "UNRESOLVED",
+      "purpose": "Threat model and the controls that answer it.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/SECURITY.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "SOURCE-DEFECT-REGISTER",
+      "status": "UNRESOLVED",
+      "purpose": "Defects in the source material that must not be silently inherited.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/SOURCE-DEFECT-REGISTER.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    },
+    {
+      "id": "UAT-PLAN",
+      "status": "UNRESOLVED",
+      "purpose": "How the user will confirm acceptance.",
+      "source": "PATH-MANIFEST.json#W01:docs/phase-2/_templates/UAT-PLAN.md",
+      "unresolved": "source template purged 2026-11-19; no surviving authority enumerates its fields"
+    }
+  ]
+}

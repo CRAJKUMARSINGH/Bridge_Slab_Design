@@ -1,0 +1,24 @@
+{
+  "_note": "The verifier ledger: what makes a GREEN week in containment/GATE-LEDGER.json something other than a hand-typed string. Each GREEN week must appear here with a verifier, a date and a non-empty list of evidence paths that exist on disk; scripts/gates/gate-verify.ts fails an entry whose evidence is missing and fails a GREEN week with no entry at all. A week is verified by pointing at the artefacts that are the proof, not by asserting the proof in prose.",
+  "version": "1.0.0",
+  "weeks": {
+    "W00": {
+      "verifier": "trae",
+      "verifiedAt": "2026-11-19",
+      "evidence": [
+        "scripts/gates/preflight.ts",
+        "scripts/gates/.proven.json",
+        "scripts/gates/.ratchet.json"
+      ]
+    },
+    "W01": {
+      "verifier": "trae",
+      "verifiedAt": "2026-11-19",
+      "evidence": [
+        "containment/VERIFY-SCHEMAS.json",
+        "containment/VERIFICATION.json",
+        "scripts/gates/gate-verify.ts"
+      ]
+    }
+  }
+}

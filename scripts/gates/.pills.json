@@ -71,6 +71,12 @@
     "find": "\"gate-ratchet\": 2",
     "replace": "\"gate-ratchet\": 0"
   },
+  "verify": {
+    "gate": "gate-verify",
+    "file": "containment/VERIFY-SCHEMAS.json",
+    "find": "\"id\": \"A11Y-REPORT\"",
+    "replace": "\"id\": \"A11Y-REPORT __pill__\""
+  },
   "proven-red": {
     "gate": "gate-proven-red",
     "file": "scripts/gates/.proven.json",

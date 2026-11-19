@@ -62,6 +62,11 @@
       "tests/auth/scrypt.test.ts"
     ],
     "W01": [
+      "containment/VERIFY-SCHEMAS.json",
+      "containment/VERIFY-FIXTURES.json",
+      "containment/VERIFICATION.json",
+      "containment/W01-EVIDENCE.json",
+      "scripts/gates/gate-verify.ts",
       "docs/phase-2/_templates/A11Y-REPORT.md",
       "docs/phase-2/_templates/ARCHITECTURE.md",
       "docs/phase-2/_templates/ASSUMPTION-REGISTER.md",

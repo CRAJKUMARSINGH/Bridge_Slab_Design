@@ -1,0 +1,91 @@
+{
+  "_note": "W01 evidence report (CODE-JUNCTION/CODEX2.txt §7). Machine-readable so gate-verify.ts can check the evidence paths exist. Declared W01 PARTIAL: the 22 template documents were removed by the 2026-11-19 documentation purge with no surviving copy, so their field contracts are recorded UNRESOLVED rather than invented (CODEX2 §2). 'commit' is null because CODEX2 §8 forbids committing or pushing without explicit authorization; baselineHead is the SHA the work started from.",
+  "version": "1.0.0",
+  "week": "W01",
+  "instruction": "CODE-JUNCTION/CODEX2.txt",
+  "declaration": "W01 PARTIAL",
+  "declarationReason": "All 22 template contracts are accounted for and the verifier protocol is executable with positive and negative tests, but the templates' field-level content is unrecoverable (purged 2026-11-19, no surviving authority enumerates it), so 22 of 22 schemas are recorded UNRESOLVED rather than DEFINED (CODEX2 §2, §6).",
+  "commit": null,
+  "baselineHead": "d471372c92a47bc56aaa39650d976ab591e34335",
+  "commitPolicy": "Not committed or pushed — CODEX2 §8 requires explicit authorization. Working tree holds only the files listed below plus regenerated gate outputs under scripts/gates/.out/.",
+  "filesCreated": [
+    "containment/VERIFY-SCHEMAS.json",
+    "containment/VERIFY-FIXTURES.json",
+    "containment/VERIFICATION.json",
+    "containment/W01-EVIDENCE.json",
+    "scripts/gates/gate-verify.ts"
+  ],
+  "filesModified": [
+    "PATH-MANIFEST.json",
+    "package.json",
+    "scripts/gates/.pills.json",
+    "scripts/gates/.proven.json",
+    "scripts/gates/.ratchet.json",
+    "scripts/gates/gate-hygiene.ts",
+    "containment/GATE-LEDGER.json"
+  ],
+  "schemas": {
+    "total": 22,
+    "completed": 0,
+    "unresolved": 22,
+    "registry": "containment/VERIFY-SCHEMAS.json",
+    "metaSchema": "scripts/gates/gate-verify.ts#validateRegistry",
+    "knownVersions": ["2.0.0"],
+    "fieldTypes": ["string", "number", "integer", "boolean", "date", "string[]", "enum", "ref"],
+    "unresolvedIds": [
+      "A11Y-REPORT", "ARCHITECTURE", "ASSUMPTION-REGISTER", "CHATLOG-ENTRY",
+      "COMPUTE-TOPOLOGY", "DATA-MODEL", "DRAWING-REGISTER", "EXIT-GATE-EVIDENCE",
+      "INPUT-DICTIONARY", "KNOWN-LIMITATIONS", "LAYER-STANDARD", "MEASUREMENT-RULES",
+      "MODULE-MATRIX", "ORACLE-TABLE", "PARITY-DIFF", "REALITY-AUDIT",
+      "REPORT-SPEC", "RUNBOOK", "SCORECARD", "SECURITY",
+      "SOURCE-DEFECT-REGISTER", "UAT-PLAN"
+    ]
+  },
+  "verifierProtocol": {
+    "gate": "scripts/gates/gate-verify.ts",
+    "assertions": 9,
+    "checks": [
+      "schema completeness",
+      "valid fixture acceptance",
+      "invalid fixture rejection (per targeted rule)",
+      "missing mandatory fields",
+      "invalid types",
+      "unknown or unsupported schema versions",
+      "broken references (manifest template set)",
+      "duplicate identifiers",
+      "deterministic output",
+      "manifest consistency",
+      "evidence provenance"
+    ]
+  },
+  "testsExecuted": {
+    "positiveFixtures": 2,
+    "negativeFixtures": 9,
+    "negativeFixtureRules": [
+      "unknown-version", "duplicate-id", "missing-purpose", "missing-source",
+      "bad-status", "empty-required", "invalid-type", "unresolved-without-reason",
+      "registry-shape"
+    ],
+    "fixtures": "containment/VERIFY-FIXTURES.json"
+  },
+  "results": {
+    "gateFoundation": { "gate": "gate:foundation", "result": "PASS", "gates": 15, "preflightAssertions": 15 },
+    "gateProve": { "gate": "gate:prove", "result": "PASS", "gatesProvenRedGreen": 14 },
+    "gateVerify": { "gate": "gate-verify", "result": "PASS", "assertions": 9 }
+  },
+  "redGreenEvidence": {
+    "mechanism": "scripts/gates/.pills.json#verify corrupts containment/VERIFY-SCHEMAS.json (renames template id A11Y-REPORT); gate-verify must exit 1 (RED), the original bytes are restored, then gate-verify must exit 0 (GREEN).",
+    "redAt": "recorded in scripts/gates/.proven.json (gate-verify.redAt)",
+    "greenAt": "recorded in scripts/gates/.proven.json (gate-verify.greenAt)",
+    "observed": "verify: gate-verify RED (poisoned) -> GREEN (restored) — recorded"
+  },
+  "remainingRisks": [
+    "The 22 template field contracts remain UNRESOLVED; any later week that fills a template must define it and flip its status to DEFINED, which the ratchet and vacuity guards will require evidence for.",
+    "gate-verify's manifest-consistency assertion keys on docs/phase-2/_templates/*.md names in PATH-MANIFEST.json#W01; if a future manifest migration renames that prefix the assertion reports 'nothing to check' rather than passing silently (it requires planned.size > 0).",
+    "scripts/gates/gate-oracle.mjs and gate-parity.mjs remain NOT-IMPLEMENTED stubs (exit 2), so ORACLE-TABLE and PARITY-DIFF have no executable authority beyond their UNRESOLVED registry entries."
+  ],
+  "w02aDependencies": [
+    "W02A must treat every template in containment/VERIFY-SCHEMAS.json as UNRESOLVED and define fields only from surviving evidence, recording each requirement's source (CODEX2 §2.7).",
+    "W02A must keep gate:foundation (including gate-verify) green; a week may not go GREEN in containment/GATE-LEDGER.json without a containment/VERIFICATION.json record whose evidence exists on disk."
+  ]
+}

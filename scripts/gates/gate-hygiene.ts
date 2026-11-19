@@ -25,6 +25,7 @@ const REQUIRED_SCRIPTS = [
   "gate:index",
   "gate:deviations",
   "gate:vacuity",
+  "gate:verify",
   "gate:ratchet",
   "gate:foundation",
 ];

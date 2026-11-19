@@ -60,3 +60,6 @@ Thumbs.db
 
 # Local reference clones (nested repos; never commit as gitlinks)
 merge-refs/
+
+# Local instruction inputs (authoritative per-week specs; kept local, not committed)
+CODE-JUNCTION/

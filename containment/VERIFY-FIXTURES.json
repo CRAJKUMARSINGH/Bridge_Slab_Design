@@ -1,0 +1,117 @@
+{
+  "_note": "Validation fixtures for the W01 verifier (CODEX2 §2.6, §5). `registry.valid` entries must be ACCEPTED by the meta-schema in scripts/gates/gate-verify.ts; `registry.invalid` entries must be REJECTED, each for the rule named in its `rule` field. gate-verify.ts fails when a valid fixture is rejected, when an invalid fixture is accepted, or when an invalid fixture is rejected for a rule other than the one it targets — so the negative tests demonstrate that each rule actually fires, not merely that some error occurred. Fixtures are validated against the vocabulary (knownVersions, fieldTypes) declared by containment/VERIFY-SCHEMAS.json.",
+  "version": "1.0.0",
+  "registry": {
+    "valid": [
+      {
+        "name": "minimal-unresolved",
+        "value": {
+          "version": "2.0.0",
+          "templates": [
+            { "id": "X", "status": "UNRESOLVED", "purpose": "a purpose", "source": "somewhere", "unresolved": "no source survived" }
+          ]
+        }
+      },
+      {
+        "name": "defined-entry-with-typed-required",
+        "value": {
+          "version": "2.0.0",
+          "templates": [
+            { "id": "Y", "status": "DEFINED", "purpose": "a purpose", "source": "somewhere", "required": [{ "name": "A", "type": "string" }, { "name": "B", "type": "enum" }] }
+          ]
+        }
+      }
+    ],
+    "invalid": [
+      {
+        "name": "unsupported-version",
+        "rule": "unknown-version",
+        "value": {
+          "version": "9.9.9",
+          "templates": [
+            { "id": "X", "status": "UNRESOLVED", "purpose": "p", "source": "s", "unresolved": "r" }
+          ]
+        }
+      },
+      {
+        "name": "duplicate-identifier",
+        "rule": "duplicate-id",
+        "value": {
+          "version": "2.0.0",
+          "templates": [
+            { "id": "X", "status": "UNRESOLVED", "purpose": "p", "source": "s", "unresolved": "r" },
+            { "id": "X", "status": "UNRESOLVED", "purpose": "p", "source": "s", "unresolved": "r" }
+          ]
+        }
+      },
+      {
+        "name": "template-without-purpose",
+        "rule": "missing-purpose",
+        "value": {
+          "version": "2.0.0",
+          "templates": [
+            { "id": "X", "status": "UNRESOLVED", "source": "s", "unresolved": "r" }
+          ]
+        }
+      },
+      {
+        "name": "template-without-source",
+        "rule": "missing-source",
+        "value": {
+          "version": "2.0.0",
+          "templates": [
+            { "id": "X", "status": "UNRESOLVED", "purpose": "p", "unresolved": "r" }
+          ]
+        }
+      },
+      {
+        "name": "unsupported-status",
+        "rule": "bad-status",
+        "value": {
+          "version": "2.0.0",
+          "templates": [
+            { "id": "X", "status": "DONE", "purpose": "p", "source": "s", "unresolved": "r" }
+          ]
+        }
+      },
+      {
+        "name": "defined-without-required-fields",
+        "rule": "empty-required",
+        "value": {
+          "version": "2.0.0",
+          "templates": [
+            { "id": "X", "status": "DEFINED", "purpose": "p", "source": "s", "required": [] }
+          ]
+        }
+      },
+      {
+        "name": "required-field-with-unknown-type",
+        "rule": "invalid-type",
+        "value": {
+          "version": "2.0.0",
+          "templates": [
+            { "id": "X", "status": "DEFINED", "purpose": "p", "source": "s", "required": [{ "name": "A", "type": "wat" }] }
+          ]
+        }
+      },
+      {
+        "name": "unresolved-without-reason",
+        "rule": "unresolved-without-reason",
+        "value": {
+          "version": "2.0.0",
+          "templates": [
+            { "id": "X", "status": "UNRESOLVED", "purpose": "p", "source": "s" }
+          ]
+        }
+      },
+      {
+        "name": "templates-not-an-array",
+        "rule": "registry-shape",
+        "value": {
+          "version": "2.0.0",
+          "templates": {}
+        }
+      }
+    ]
+  }
+}
