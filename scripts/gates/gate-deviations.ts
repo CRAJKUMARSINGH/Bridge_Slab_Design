@@ -35,12 +35,13 @@
 //   3. every OPEN deviation names the week that closes it.
 //   4. every mechanical deviation (sourceUnit !== "n/a") carries an anchor.
 //   5. every declared anchor still captures its declared value.
-//   6. every file named by an anchor or a locator still exists.
+//   6. every file named by an anchor or a locator still exists — or its absence
+//      is declared, owned and explained in containment/VACUITY.json.
 //   7. no second ledger exists — no other file named deviations.json in the tree.
 //
 // CONTRACT: exit 0=PASS, 1=FAIL, 2=NOT IMPLEMENTED
 //           last stdout line = "GATE gate-deviations: PASS|FAIL <n> assertions"
-import { run, is, read, walk } from "./_lib";
+import { run, is, read, walk, declaredEmpty } from "./_lib";
 import { existsSync } from "node:fs";
 
 const DEV_PATH = "containment/DEVIATIONS.json";
@@ -168,12 +169,18 @@ await run("gate-deviations", 7, async () => {
   is(broken.length === 0, "every declared anchor still captures its declared value", broken.join("\n"));
 
   // 6. no deviation may point at a file that is gone — the ledger is a claim
-  // about THIS tree.
+  // about THIS tree. A path the repository deliberately removed is declared in
+  // containment/VACUITY.json; an UNDECLARED disappearance still fails here.
+  const empty = await declaredEmpty();
   const missing = devs
     .flatMap((d) => [d.sourceFile, d.codeFile, ...((d.anchors ?? []) as Anchor[]).map((a) => a.file)])
     .filter((f): f is string => typeof f === "string" && f.includes("/"))
-    .filter((f) => !existsSync(f));
-  is(missing.length === 0, "every file a deviation names still exists", `missing: ${[...new Set(missing)].join(", ")}`);
+    .filter((f) => !existsSync(f) && !empty.hit(f));
+  is(
+    missing.length === 0 && empty.broken.length === 0,
+    "every file a deviation names still exists, or its absence is declared",
+    [`missing: ${[...new Set(missing)].join(", ")}`, ...empty.broken].filter(Boolean).join("\n"),
+  );
 
   // 7. the ledger path is unique. A second file named deviations.json is a second
   //    truth: nothing reads it, so nothing can falsify it, and it is the copy a

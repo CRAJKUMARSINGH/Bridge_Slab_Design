@@ -5,9 +5,9 @@
     "gate-deps": 4,
     "gate-scripts": 2,
     "gate-chain": 2,
-    "gate-tasks": 2,
-    "gate-docs": 3,
-    "gate-hygiene": 9,
+    "gate-tasks": 3,
+    "gate-docs": 4,
+    "gate-hygiene": 7,
     "gate-index": 4,
     "gate-deviations": 7,
     "gate-ratchet": 2,
@@ -15,6 +15,6 @@
     "gate-readme": 1,
     "gate-proven-red": 2,
     "gate-vacuity": 3,
-    "gate-contracts": 4
+    "gate-verify": 9
   }
 }

@@ -1,0 +1,13 @@
+
+> workspace@0.0.0 candidate E:\Rajkumar\Bridge_Slab_Design
+> tsx scripts/build-release-candidate.ts
+
+  check: exit 0 in 140.1 s
+  verify: exit 1 in 88.3 s
+  test: exit 3221225794 in 0.0 s
+  audit:policy: exit 3221225794 in 0.0 s
+Refusing to bundle: pnpm run verify (exit 1), pnpm run test (exit 3221225794), pnpm run audit:policy (exit 3221225794) failed.
+Nothing was written to MANIFEST.md; the captured output is in evidence/release-candidate/gates/ for diagnosis.
+(node:12904) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ELIFECYCLE  Command failed with exit code 1.

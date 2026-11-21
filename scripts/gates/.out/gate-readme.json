@@ -1,9 +1,9 @@
 {
   "name": "gate-readme",
-  "ts": "2026-10-26T07:16:28.795Z",
+  "ts": "2026-11-19T02:41:52.241Z",
   "commit": "local",
-  "pass": false,
+  "pass": true,
   "assertions": 1,
   "declared": 1,
-  "detail": "README module map is stale — run: pnpm run gen:readme"
+  "detail": ""
 }

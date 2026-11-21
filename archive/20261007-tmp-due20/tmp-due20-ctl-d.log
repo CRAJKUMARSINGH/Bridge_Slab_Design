@@ -1,0 +1,58 @@
+
+> workspace@0.0.0 verify:outcomes E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:outcomes
+
+
+> @workspace/scripts@0.0.0 verify:outcomes E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-stability-outcomes.ts
+
+OK   larathi-stabil           UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   kherwara-golden          UNSAFE (4/5)  UNSAFE (3/5)  UNSAFE (3/5)
+OK   high-level-reference     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   small-bridge             UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   medium-bridge            UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   large-bridge             UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-bedach-bedla         UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-jakham-mandvi        UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-t01-jethliya         UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-sukanaka-matoon      UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-ayad-maharashtra     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-gumaniya-udaipur     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-katumbi-chandrod     UNSAFE (5/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-sisarama-highlevel   UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-kumbhalgarh-kelwara  UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-parwan-highlevel     UNSAFE (5/5)  UNSAFE (1/5)  UNSAFE (1/5)
+OK   irc-banas-highlevel      UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-ayad-fatehpura       UNSAFE (4/5)  SAFE   (0/5)  SAFE   (0/5)
+OK   irc-kherka-teegirder     UNSAFE (4/5)  UNSAFE (1/5)  UNSAFE (1/5)
+OK   irc-sukanaka-highlevel   UNSAFE (4/5)  UNSAFE (1/5)  UNSAFE (1/5)
+DEFECT acceptance rule reaches the browser from the response
+       - client/src/components/DesignCheckDashboard.tsx: hard-codes slidingFosMin = 1.5 where the engine applies 1.5 — the browser must read stabilityAcceptance from the design response, or a §M-1-style rule change leaves this behind
+       - client/src/components/DesignCheckDashboard.tsx: hard-codes overturningFosMin = 1.8 where the engine applies 1.8 — the browser must read stabilityAcceptance from the design response, or a §M-1-style rule change leaves this behind
+       - client/src/components/DesignCheckDashboard.tsx: hard-codes bearingFosMin = 2.5 where the engine applies 1 — the browser must read stabilityAcceptance from the design response, or a §M-1-style rule change leaves this behind
+       - client/src/components/DesignCheckDashboard.tsx: shows stability verdicts but never reads stabilityAcceptance from the response — the gate would otherwise stay green on code that ignores the rule the engine sent
+       - client/src/lib/tmp-limit-probe.ts: hard-codes slidingFosMin = 2.5 where the engine applies 1.5 — the browser must read stabilityAcceptance from the design response, or a §M-1-style rule change leaves this behind
+
+==============================================================================
+STABILITY OUTCOMES — 300 load cases across 20 templates
+  SAFE   195
+  UNSAFE 105
+  templates carrying at least one UNSAFE case: 20 of 20
+
+WHICH CHECK FAILS (cases may fail more than one):
+  sliding < 1.5            99
+  overturning < 1.8      82
+  bearing < 1            6
+  failing bearing ALONE    6 — everything else in those cases passes
+==============================================================================
+These are engineering verdicts, not gate failures. 20 template(s)
+must NOT be signed off on this run's numbers without a licensed engineer. A zero exit code
+below means the machinery reported the truth, not that the bridge stands.
+
+Evidence written: E:/Rajkumar/Bridge_Slab_Design/evidence/stability-outcomes.json
+Templates: 20 | defects: 5
+E:\Rajkumar\Bridge_Slab_Design\scripts:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @workspace/scripts@0.0.0 verify:outcomes: `tsx ./verify-stability-outcomes.ts`
+Exit status 1
+ ELIFECYCLE  Command failed with exit code 1.
+CTL_D_EXIT=1

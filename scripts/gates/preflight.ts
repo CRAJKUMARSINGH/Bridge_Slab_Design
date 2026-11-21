@@ -29,7 +29,7 @@ import { readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { builtinModules } from "node:module";
 import { execFileSync } from "node:child_process";
-import { json, gateFiles, gateName, pendingFor, tierOf, walk, type TierMap } from "./_lib";
+import { json, gateFiles, gateName, pendingFor, declaredEmpty, tierOf, walk, type TierMap } from "./_lib";
 
 const PKG = JSON.parse(await readFile("package.json", "utf8"));
 const results: { id: string; ok: boolean; detail: string }[] = [];
@@ -57,7 +57,21 @@ const tiers: TierMap = existsSync("containment/ARTIFACT-TIERS.json")
 // ── P-01  every path referenced by an instruction file resolves (or is planned)
 async function p01() {
   const files = await instructionFiles();
-  if (!files.length) return add("P-01", false, "no instruction files found");
+  const empty = await declaredEmpty();
+  // An instruction corpus that is not there cannot be verified, and reporting
+  // PASS on zero files would be the vacuity this whole gate exists to prevent.
+  // A declared, owned empty corpus (containment/VACUITY.json) is the one
+  // legitimate way to have nothing to read.
+  if (!files.length) {
+    const declared = empty.hit("docs/phase-2");
+    return add(
+      "P-01",
+      declared && empty.broken.length === 0,
+      declared
+        ? empty.broken.join("\n    ")
+        : "no instruction files found — docs/phase-2 is empty and is not declared so in containment/VACUITY.json",
+    );
+  }
   const planned = await manifestPaths();
   const ex = await pendingFor("P-01");
   const bad: string[] = [];
@@ -193,8 +207,17 @@ async function p06() {
   add("P-06", existsSync("drizzle.config.ts") || existsSync("lib/db/drizzle.config.ts"), "no drizzle config at root or lib/db");
 }
 async function p07() {
-  const ok = existsSync("archive") && existsSync("archive/MANIFEST.md");
-  add("P-07", ok, "archive/ or archive/MANIFEST.md missing — nothing retired may leave the tree without a manifest row");
+  const empty = await declaredEmpty();
+  const archive = existsSync("archive") || empty.hit("archive");
+  const manifest = existsSync("archive/MANIFEST.md") || empty.hit("archive/MANIFEST.md");
+  const ok = archive && manifest;
+  add(
+    "P-07",
+    ok && empty.broken.length === 0,
+    ok
+      ? empty.broken.join("\n    ")
+      : "archive/ or archive/MANIFEST.md missing — nothing retired may leave the tree without a manifest row",
+  );
 }
 async function p08() {
   const need = [
@@ -207,8 +230,9 @@ async function p08() {
     "docs/phase-2/specs",
     "docs/phase-2/verification",
   ];
-  const miss = need.filter((d) => !existsSync(d));
-  add("P-08", miss.length === 0, `missing: ${miss.join(", ")}`);
+  const empty = await declaredEmpty();
+  const miss = need.filter((d) => !existsSync(d) && !empty.hit(d));
+  add("P-08", miss.length === 0 && empty.broken.length === 0, `missing: ${miss.join(", ")}`);
 }
 async function p09() {
   const gates = await gateFiles();

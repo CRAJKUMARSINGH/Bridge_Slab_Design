@@ -1,0 +1,16 @@
+
+> workspace@0.0.0 verify:engine E:\Rajkumar\Bridge_Slab_Design
+> pnpm --filter @workspace/scripts run verify:engine "--" "--emit"
+
+
+> @workspace/scripts@0.0.0 verify:engine E:\Rajkumar\Bridge_Slab_Design\scripts
+> tsx ./verify-engine-boundary.ts "--" "--emit"
+
+Emitted 493 pinned values -> tests/golden/deliverable-engine/kherwara.json
+Golden: 493 outputs checked, 0 drifted, tamper moved 48 (tolerance 0.000001 relative).
+Diagnostic: +50 m³/s on the declared ProjectInput.discharge moved 0 of 493 pinned outputs — the engine derives Q from the section and its own velocity and reads the field nowhere on this path; sheet 3 prints it separately (§M-4).
+Boundary: 61 modules feed the artefacts from 4 entries; 0 of them under lib/engine/.
+Calculators in the engine closure: bridge-excel-generator/design-engine.ts [calculateCompleteDesign], shared/design-engine-types.ts [calculateDetailedEstimation].
+Snapshot: 493 outputs pinned for tests/golden/deliverable-engine/kherwara.json.
+verify-engine-boundary: OK (deliverable engine pinned, boundary measured, tamper control live). Green here does not certify the design — see §M-1.
+EMIT_EXIT=0

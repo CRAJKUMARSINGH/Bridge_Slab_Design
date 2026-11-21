@@ -1,12 +1,13 @@
 #!/usr/bin/env tsx
 // gate-hygiene — repo invariants that are cheap to state and expensive to lose.
 // 9 assertions: one lockfile; .gitignore agrees with what is tracked; a LICENSE
-// matching package.json; the four root documents; the listed foundation gates
-// wired; every gate file reachable from some package.json script; CI actually
-// invoking that harness as a blocking step; the two test runners disjoint (the
-// vitest lane excludes the node:test integration lane); and that excluded lane
-// still owned by the runner that executes it.
-import { run, is } from "./_lib";
+// matching package.json; the four root documents (or a declared, owned reason
+// they are absent); the listed foundation gates wired; every gate file reachable
+// from some package.json script; CI actually invoking that harness as a blocking
+// step; the two test runners disjoint (the vitest lane excludes the node:test
+// integration lane); and that excluded lane still owned by the runner that
+// executes it.
+import { run, is, declaredEmpty } from "./_lib";
 import { existsSync } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
 
@@ -27,6 +28,7 @@ const REQUIRED_SCRIPTS = [
   "gate:index",
   "gate:deviations",
   "gate:vacuity",
+  "gate:verify",
   "gate:ratchet",
   "gate:foundation",
 ];
@@ -51,9 +53,20 @@ await run("gate-hygiene", 9, async () => {
   const pkg = JSON.parse(await readFile("package.json", "utf8"));
   is(existsSync("LICENSE"), "LICENSE present", `no LICENSE (package.json says ${pkg.license ?? "unknown"})`);
 
-  // 4. the root documents the repo claims to have
-  const missingDocs = ["SECURITY.md", "CONTRIBUTING.md", "CHANGELOG.md", "ARCHITECTURE.md"].filter((f) => !existsSync(f));
-  is(missingDocs.length === 0, "the four root documents exist", missingDocs.map((f) => `missing ${f}`).join("\n"));
+  // 4. the root documents the repo claims to have — or a declared, owned reason
+  //    they are gone. The four were removed by the documentation purge;
+  //    containment/VACUITY.json records that as a deliberate state, so this
+  //    assertion still fails on an UNDECLARED disappearance while not
+  //    contradicting a purge a human chose.
+  const empty = await declaredEmpty();
+  const missingDocs = ["SECURITY.md", "CONTRIBUTING.md", "CHANGELOG.md", "ARCHITECTURE.md"].filter(
+    (f) => !existsSync(f) && !empty.hit(f),
+  );
+  is(
+    missingDocs.length === 0 && empty.broken.length === 0,
+    "the four root documents exist, or their absence is declared",
+    [...missingDocs.map((f) => `missing ${f}`), ...empty.broken].join("\n"),
+  );
 
   // 5. the foundation gates are reachable from package.json
   const missingScripts = REQUIRED_SCRIPTS.filter((s) => !pkg.scripts?.[s]);

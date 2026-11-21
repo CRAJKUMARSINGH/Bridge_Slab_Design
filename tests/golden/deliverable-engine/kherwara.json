@@ -1,6 +1,6 @@
 {
   "schemaVersion": "deliverable-engine-golden.v1",
-  "pinnedAt": "2026-10-16",
+  "pinnedAt": "2026-11-17",
   "toleranceRelative": 0.000001,
   "provenance": "Regression baseline accepted on 2026-10-06, when check / verify / test / audit:policy were all exit 0 (august-due.md §W). It pins that the deliverable engine keeps producing THESE numbers; it is not an independent authority that they are right, and it changes no verdict — the engineering items still owned by the signing engineer (§M-1 bearing acceptance, §M-3 legacy hydraulics block, §M-4 design discharge) are deliberately left as they were.",
   "input": "scripts/fixtures/kherwara-project-input.ts",
@@ -435,7 +435,9 @@
     "hydraulics.hfl": 100.6,
     "hydraulics.hydraulicRadius": 2.3283224770099555,
     "hydraulics.ircMinimumFreeboardAboveHfl": 0.6,
+    "hydraulics.isFoundingLevelSafe": false,
     "hydraulics.isFreeboardSafe": true,
+    "hydraulics.minFoundingLevelForScour": 91.79950871281693,
     "hydraulics.regimeWidth": 74.84148382758212,
     "hydraulics.requiredFreeboardAboveHfl": 0.6,
     "hydraulics.scourDepth": 2.4002456435915325,

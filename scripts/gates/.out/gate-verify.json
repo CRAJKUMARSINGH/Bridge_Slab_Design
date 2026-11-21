@@ -1,0 +1,9 @@
+{
+  "name": "gate-verify",
+  "ts": "2026-11-19T02:42:00.114Z",
+  "commit": "local",
+  "pass": true,
+  "assertions": 9,
+  "declared": 9,
+  "detail": ""
+}

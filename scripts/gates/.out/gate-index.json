@@ -1,9 +1,9 @@
 {
   "name": "gate-index",
-  "ts": "2026-10-26T07:16:33.536Z",
+  "ts": "2026-11-19T02:41:54.403Z",
   "commit": "local",
   "pass": true,
-  "assertions": 4,
-  "declared": 4,
+  "assertions": 3,
+  "declared": 3,
   "detail": ""
 }

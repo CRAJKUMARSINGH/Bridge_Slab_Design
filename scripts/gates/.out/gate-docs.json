@@ -1,33 +1,9 @@
 {
   "name": "gate-docs",
-  "ts": "2026-11-04T08:09:49.865Z",
-  "commit": null,
-  "pass": 5,
-  "fail": 0,
-  "detail": [
-    {
-      "check": "no-unfilled-placeholders",
-      "weekDirs": 19,
-      "verdict": "PASS"
-    },
-    {
-      "check": "all-instruction-files-present",
-      "count": 19,
-      "verdict": "PASS"
-    },
-    {
-      "check": "template-kit-complete",
-      "count": 22,
-      "verdict": "PASS"
-    },
-    {
-      "check": "golden-oracle-valid",
-      "bridges": 3,
-      "verdict": "PASS"
-    },
-    {
-      "check": "contracts-ts-valid",
-      "verdict": "PASS"
-    }
-  ]
+  "ts": "2026-11-19T02:41:49.937Z",
+  "commit": "local",
+  "pass": true,
+  "assertions": 4,
+  "declared": 4,
+  "detail": ""
 }

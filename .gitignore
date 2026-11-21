@@ -77,3 +77,12 @@ tmp-*.log
 # Transient parity dumps and install logs — regenerable, never commit.
 parity-dump/
 install.log
+
+# Local reference clones (nested repos; never commit as gitlinks)
+merge-refs/
+
+# Local instruction inputs (authoritative per-week specs; kept local, not committed)
+CODE-JUNCTION/
+
+# Session chat log (standing order: refreshed every 12 min; kept local, not committed)
+CREAT.md
